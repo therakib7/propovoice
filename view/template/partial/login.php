@@ -107,16 +107,19 @@
         <div class="col-lg-8" style="float:none;margin:auto;">
         <h4 class="pv-login-title"><?php esc_html_e( 'Please enter your login credentials', 'propovoice' ); ?></h4>
         <?php 
-            $args = array(
-                'redirect' => get_permalink(get_the_ID()), 
-                'form_id' => 'ndpv-login-form',
-                'label_username' => esc_html__( 'Username', 'propovoice' ),
-                'label_password' => esc_html__( 'Password', 'propovoice' ),
-                'label_remember' => esc_html__( 'Remember Me', 'propovoice' ),
-                'label_log_in' => esc_html__( 'Log In', 'propovoice' ),
-                'remember' => true
-            );
-            wp_login_form( $args );
+          $args = array(
+              'redirect' => get_permalink(get_the_ID()), 
+              'form_id' => 'ndpv-login-form',
+              'label_username' => esc_html__( 'Username', 'propovoice' ),
+              'label_password' => esc_html__( 'Password', 'propovoice' ),
+              'label_remember' => esc_html__( 'Remember Me', 'propovoice' ),
+              'label_log_in' => esc_html__( 'Log In', 'propovoice' ),
+              'remember' => true
+          );
+          wp_login_form( $args );
+          if ( isset( $_GET['login'] ) && $_GET['login'] == 'failed' ) {
+            echo '<p style="color: red">' . esc_html__( 'You enterd wrong credentials', 'propovoice' ) . '</p>';
+          }
         ?> 
         </div>
     </div>

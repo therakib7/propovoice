@@ -143,7 +143,8 @@ class Project
                 "post_status" => "publish",
                 "posts_per_page" => $per_page,
                 "offset" => $offset,
-            ];
+            ]; 
+        
         }
         
 
@@ -163,6 +164,24 @@ class Project
                     "compare" => "EXISTS",
                 ],
             ];
+        } else {
+            if ( current_user_can("ndpv_client_role") ) {
+                $user_id = get_current_user_id();
+                $id = get_user_meta($user_id, 'ndpv_client_id', true); 
+                $args['meta_query'][] = array(
+                    array(
+                        'key'   => 'person_id',
+                        'value' => $id
+                    )
+                );
+
+                $args['meta_query'][] = array(
+                    array(
+                        'key'   => 'org_id',
+                        'value' => $id
+                    )
+                );
+            }
         }
 
         if ($status_id) {

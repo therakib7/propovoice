@@ -274,9 +274,9 @@ class Invoice extends Component {
     const caps = ndpv.caps;
     return (
       <div className="ndpv-cpnt">
-        {!this.props.module_id && <Breadcrumb title={title} />}
+        {!this.props.module_id && !this.props.dashboard && <Breadcrumb title={title} />}
 
-        <div className="row">
+        {!this.props.dashboard && <div className="row">
           <div className="col">
             <h2 className="pv-page-title">
               {title == "Invoice"
@@ -293,9 +293,9 @@ class Invoice extends Component {
             // fields={EntityFields.invoice}
             />}
           </div>
-        </div>
+        </div>}
 
-        {!this.props.module_id && false && (
+        {!this.props.module_id && !this.props.dashboard && false && (
           <div className="pv-buttons-group pv-mb-20">
             <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5">
               <svg width={20} height={20} viewBox="0 0 20 20" fill="none">
@@ -371,7 +371,7 @@ class Invoice extends Component {
           </div>
         )}
 
-        {!this.props.module_id && (
+        {!this.props.module_id && !this.props.dashboard && (
           <Search
             path={this.state.path}
             title={title}
@@ -453,6 +453,7 @@ function InvoiceWrap(props) {
         routeChange={routeChange}
         path={path}
         module_id={module_id}
+        dashboard={props.dashboard}
         key={path}
       />
     </>

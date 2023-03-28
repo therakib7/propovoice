@@ -143,7 +143,7 @@ const Project = (props) => {
 
 	return (
 		<div className="ndpv-cpnt">
-			{!props.module_id && <Breadcrumb title={title} />}
+			{!props.module_id && !props.dashboard && <Breadcrumb title={title} />}
 
 			{props.state.formModal && (
 				<Form
@@ -169,7 +169,7 @@ const Project = (props) => {
 				/>
 			)}
 
-			<div className="row">
+			{!props.dashboard && <div className="row">
 				<div className="col">
 					<h2 className="pv-page-title">{ndpv.i18n.project}</h2>
 				</div>
@@ -222,12 +222,12 @@ const Project = (props) => {
 						</button>
 					</div>
 				</div>
-			</div>
+			</div>}
 
 			{/* <div className="pv-buttons-group pv-mb-20"> 
             </div> */}
 
-			<Search
+			{!props.dashboard && <Search
 				isClient={isClient}
 				title={title}
 				showing={lists.length}
@@ -236,7 +236,7 @@ const Project = (props) => {
 				handleSubmit={props.getLists}
 				boardView={boardView}
 				viewChange={viewChange}
-			/>
+			/>}
 
 			{checkedBoxes.length > 0 && (
 				<Action
