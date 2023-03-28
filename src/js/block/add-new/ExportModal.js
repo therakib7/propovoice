@@ -56,7 +56,9 @@ class Form extends Component {
   handleCheckbox = (e, type, slug = "") => {
     const target = e.target;
     let actions = this.state.form.actions;
-    const fields = Object.keys(this.props.fields);
+    const fields = Object.keys(this.props.fields).filter(
+      (key) => key != "not_assign"
+    );
     if (type == "action") {
       const { value } = e.target;
       if (target.checked) {
@@ -93,8 +95,11 @@ class Form extends Component {
   };
 
   render() {
-    const fields = this.props.fields;
-    delete fields.not_assign;
+    const fields = Object.fromEntries(
+      Object.entries(this.props.fields).filter(
+        ([key, value]) => key != "not_assign"
+      )
+    );
     const i18n = ndpv.i18n;
     const form = this.state.form;
     let title = "";
