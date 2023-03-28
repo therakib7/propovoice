@@ -2,17 +2,27 @@ import React, { Component } from "react";
 import { CSVLink } from "react-csv";
 import { toast } from "react-toastify";
 import api from "api";
-import pro from 'block/pro-alert';
-import ProLabel from 'block/pro-alert/label';
+import pro from "block/pro-alert";
+import ProLabel from "block/pro-alert/label";
 
 import WithRouter from "hoc/Router";
 import { Add } from "block/icon";
 class Form extends Component {
   csvLink = React.createRef();
   today = new Date();
-  date = this.today.getFullYear() + '-' + (this.today.getMonth() + 1) + '-' + this.today.getDate();
-  time = this.today.getHours() + "-" + this.today.getMinutes() + "-" + this.today.getSeconds();
-  dateTime = this.date + '-' + this.time;
+  date =
+    this.today.getFullYear() +
+    "-" +
+    (this.today.getMonth() + 1) +
+    "-" +
+    this.today.getDate();
+  time =
+    this.today.getHours() +
+    "-" +
+    this.today.getMinutes() +
+    "-" +
+    this.today.getSeconds();
+  dateTime = this.date + "-" + this.time;
   constructor(props) {
     super(props);
     this.initialState = {
@@ -32,14 +42,14 @@ class Form extends Component {
       tags: [],
       desc: "",
       note: "",
-      date: '',
+      date: "",
       active: false,
       actions: [],
     };
 
     this.state = {
       form: this.initialState,
-      csvFile: false
+      csvFile: false,
     };
   }
 
@@ -72,11 +82,13 @@ class Form extends Component {
     const title = this.props.title.toLowerCase();
     const data = { fields: this.state.form.actions, title };
 
-    api.add('export/csv', data, "pro").then((res) => {
-      this.setState({ csvFile: res.data }, () => {
-        this.csvLink.current.link.click()
-      });
-    })
+    api
+      .add("export/csv", data, "pro")
+      .then((res) => {
+        this.setState({ csvFile: res.data }, () => {
+          this.csvLink.current.link.click();
+        });
+      })
       .catch((error) => console.log(error.message));
   };
 
@@ -120,7 +132,9 @@ class Form extends Component {
                         id={i}
                         name="action"
                         value={data[0]}
-                        checked={form.actions.includes(data[0]) ? "checked" : ""}
+                        checked={
+                          form.actions.includes(data[0]) ? "checked" : ""
+                        }
                         onChange={(e) => this.handleCheckbox(e, "action")}
                       />
                       <label htmlFor={i}>{data[1]} </label>
@@ -144,13 +158,16 @@ class Form extends Component {
                     {i18n.save} <ProLabel blueBtn />
                   </button>
                 </div>
-                {this.state.csvFile && <div className="col">
-                  <CSVLink
-                    data={this.state.csvFile}
-                    className="d-none"
-                    filename={`${this.props.title}-${this.dateTime}.csv`}
-                    ref={this.csvLink}>
-                  </CSVLink></div>}
+                {this.state.csvFile && (
+                  <div className="col">
+                    <CSVLink
+                      data={this.state.csvFile}
+                      className="d-none"
+                      filename={`${this.props.title}-${this.dateTime}.csv`}
+                      ref={this.csvLink}
+                    ></CSVLink>
+                  </div>
+                )}
               </div>
             </div>
           </form>
