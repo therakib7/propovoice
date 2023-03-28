@@ -77,6 +77,7 @@ class Project
             : null;
         $table_view = isset($param["table_view"]) ? true : false;
         $project_req = isset($param["project_req"]) ? true : false;
+        $dashboard = isset($param["dashboard"]) ? true : false;
         if ($module_id || $table_view) {
             $board_view = false;
         }
@@ -100,7 +101,7 @@ class Project
                 $result["result"] = $column;
             endforeach;
         } else {
-            $result = $this->project_query($param, null, $project_req);
+            $result = $this->project_query($param, null, $project_req, $dashboard);
         }
 
         $result['extra'] = [
@@ -110,7 +111,7 @@ class Project
         wp_send_json_success($result);
     }
 
-    public function project_query($param, $status_id = null, $project_req = false)
+    public function project_query($param, $status_id = null, $project_req = false, $dashboard = false)
     {
         $per_page = 10;
         $offset = 0;
@@ -130,6 +131,10 @@ class Project
 
         $args = [];
 
+        if ( $dashboard ) {
+            $per_page = 5;
+        }
+
         if ( $project_req ) {
             $args = [
                 "post_type" => "ndpv_deal",
@@ -146,7 +151,32 @@ class Project
             ]; 
         
         }
-        
+
+        if ( $dashboard ) {
+
+            $term_args = array(
+                'hide_empty' => false, // also retrieve terms which are not used yet
+                'meta_query' => array(
+                    array(
+                        'key'     => 'type',
+                        'value'   => 'completed',
+                        'compare' => 'LIKE'
+                    )
+                ),
+                'taxonomy'  => 'ndpv_project_status',
+            );
+            $terms = get_terms( $term_args );
+            $term_id = $terms[0]->term_id;
+
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'ndpv_project_status',
+                    'terms' => array($term_id),
+                    'field' => 'id',
+                    'operator' => 'NOT IN',
+                ),
+            );
+        } 
 
         if ($status_id) {
             $args["orderby"] = "menu_order";

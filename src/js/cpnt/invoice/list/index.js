@@ -82,6 +82,10 @@ class Invoice extends Component {
       args.module_id = this.props.module_id;
     }
 
+    if (this.props.dashboard) {
+      args.dashboard = true;
+    }
+
     if (searchArgs) {
       //Filter all falsy values ( "", 0, false, null, undefined )
       searchArgs = Object.entries(searchArgs).reduce(
@@ -390,7 +394,7 @@ class Invoice extends Component {
           />
         )}
 
-        {this.state.empty && (
+        {this.state.empty && !this.props.dashboard && (
           <Empty
             title={title}
             searchVal={searchVal}

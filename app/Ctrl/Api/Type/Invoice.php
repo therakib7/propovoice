@@ -73,6 +73,7 @@ class Invoice
         $offset = 0;
 
         $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : null;
+        $dashboard = isset($param["dashboard"]) ? true : false;
         $recurring = isset($param["recurring"]) ? true : false;
 
         if (isset($param["per_page"])) {
@@ -81,6 +82,10 @@ class Invoice
 
         if (isset($param["page"]) && $param["page"] > 1) {
             $offset = $per_page * $param["page"] - $per_page;
+        }
+
+        if ( $dashboard ) {
+            $per_page = 5;
         }
 
         $args = [
@@ -116,6 +121,16 @@ class Invoice
                     "key" => "to",
                     "value" => [$client_id],
                     "compare" => "IN",
+                ],
+            ];
+        }
+
+        if ( $dashboard ) {
+            $args["meta_query"][] = [
+                [
+                    "key" => "status",
+                    "value" => ['accept', 'decline', 'paid'],
+                    "compare" => "NOT IN",
                 ],
             ];
         }

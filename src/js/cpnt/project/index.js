@@ -61,11 +61,19 @@ const Project = (props) => {
 			}
 		}
 
+		let args = {};
 		if (wage.length > 0 || isClient) {
 			setBoardView(true);
-			props.getLists({ table_view: true });
+			args.table_view = true;
+			if (props.dashboard) {
+				args.dashboard = true;
+			}
+			props.getLists(args);
 		} else {
-			props.getLists();
+			if (props.dashboard) {
+				args.dashboard = true;
+			}
+			props.getLists(args);
 		}
 
 		return () => {
@@ -246,7 +254,7 @@ const Project = (props) => {
 				/>
 			)}
 
-			{props.state.empty && (
+			{props.state.empty && !props.dashboard && (
 				<Empty
 					title={title}
 					searchVal={searchVal}
