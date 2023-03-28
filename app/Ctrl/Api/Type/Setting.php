@@ -570,6 +570,10 @@ class Setting
                     wp_send_json_error($reg_errors->get_error_messages());
                 } else {
                     wp_set_password( $data["new_password"], $user_id );
+
+                    // Log-in again.
+                    wp_set_auth_cookie($user_id);
+                    wp_set_current_user($user_id);
                 }                
                 
             }

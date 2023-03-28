@@ -284,6 +284,7 @@ class ListSingle extends Component {
     if (data.org == null) data.org = {};
 
     const { i18n, caps } = ndpv;
+    const isClient = caps.includes("ndpv_client_role");
     return (
       <div className="ndpv-cpnt">
         <nav className="pv-breadcrumb">
@@ -657,12 +658,12 @@ class ListSingle extends Component {
                   <div className="pv-list-content">
                     <h3 className="">
                       {data.title}
-                      <button
+                      {isClient && <button
                         className="pv-btn pv-edit-btn pv-btn-small pv-bg-stroke pv-bg-shadow"
                         onClick={() => this.setState({ projectModal: true })}
                       >
                         {i18n.edit}
-                      </button>
+                      </button>}
                     </h3>
                     <div className="pv-avatar-content">
                       <img src={img} alt="avatar" />
@@ -685,8 +686,12 @@ class ListSingle extends Component {
                     <div className="pv-select">
                       <label>
                         {i18n.project} {i18n.status}:
+
+                        {isClient && data.id && data.status_id && (
+                          <> {data.status_id.label}</>
+                        )}
                       </label>
-                      {data.id && data.status_id && (
+                      {!isClient && data.id && data.status_id && (
                         <Taxonomy
                           key={data.status_id.id}
                           id={data.id}
@@ -699,7 +704,7 @@ class ListSingle extends Component {
                       )}
                     </div>
                     <div className="pv-buttons pv-text-right">
-                      {data.status_id && data.status_id.type != "completed" && (
+                      {!isClient && data.status_id && data.status_id.type != "completed" && (
                         <button
                           className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow"
                           onClick={() =>
@@ -710,13 +715,13 @@ class ListSingle extends Component {
                         </button>
                       )}
 
-                      <Action
+                      {!isClient && <Action
                         id={data.id}
                         module="project"
                         edit={() => this.setState({ projectModal: true })}
                         del={this.deleteEntry}
                         padding={1}
-                      />
+                      />}
                     </div>
                   </div>
                 </div>
@@ -725,7 +730,7 @@ class ListSingle extends Component {
 
             <div className="pv-tag-content">
               <ul>
-                <li>
+                {!isClient && <li>
                   <label htmlFor="">{i18n.tag}: </label>
                   {data.id && (
                     <Taxonomy
@@ -737,7 +742,7 @@ class ListSingle extends Component {
                       multi
                     />
                   )}
-                </li>
+                </li>}
                 <li>
                   <label htmlFor="">
                     {i18n.start} {i18n.date}:

@@ -56,6 +56,10 @@ const TableBody = props => {
 
     const navigate = useNavigate();
     const handleOverview = (id) => {
+
+        if (isClient && !props.boardView) {
+            return;
+        }
         navigate(`/project/${id}`);
     };
 
@@ -80,6 +84,8 @@ const TableBody = props => {
                 <td>{row.status_id && <span className="pv-badge">{row.status_id.label}</span>}</td>
                 <td className="pv-action">
                     <Action
+                        project
+                        boardView={props.boardView}
                         row={row}
                         handleOverview={handleOverview}
                         editEntry={props.editEntry}
@@ -94,13 +100,13 @@ const TableBody = props => {
 }
 
 const Table = (props) => {
-    const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
+    const { tableData, editEntry, checkedBoxes, deleteEntry, boardView } = props;
     return (
         <>
             {tableData.length > 0 && <div className='pv-table-wrap'>
                 <table className='pv-table pv-table-four'>
                     <TableHeader checkedBoxes={checkedBoxes} />
-                    <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
+                    <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} boardView={boardView} />
                 </table>
             </div>}
         </>

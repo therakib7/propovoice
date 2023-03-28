@@ -183,7 +183,8 @@ export default (props) => {
 		}
 	}
 
-	const i18n = ndpv.i18n;
+	const { i18n, caps } = ndpv;
+	const isClient = caps.includes("ndpv_client_role");
 	return (
 		<>
 			{props.multi && listById && listById.map((item, itemIndex) => {
@@ -225,7 +226,7 @@ export default (props) => {
 					</svg>
 				</button>}
 
-				{!props.multi && !listById.length && <button
+				{!isClient && !props.multi && !listById.length && <button
 					ref={(n) => {
 						if (n) {
 							n.style.setProperty("background-color", '#E2E8F0', "important");
@@ -239,10 +240,10 @@ export default (props) => {
 				</button>}
 
 				{dropdown && <div className="pv-dropdown-content pv-show">
-					<button onClick={(e) => { openModal(e, 'new') }}>
+					{!isClient && <button onClick={(e) => { openModal(e, 'new') }}>
 						+ {i18n.add} {i18n.new} {props.title}
 						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <ProLabel />}
-					</button>
+					</button>}
 					{list && list.map((item, itemIndex) => {
 						return (
 							<a key={itemIndex} onClick={() => handleSelect(item)}>{item.label}</a>

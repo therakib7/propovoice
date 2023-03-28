@@ -47,9 +47,8 @@ const Dashboard = (props) => {
     useClickOutside(dropdownRef, close);
 
     const create = ndpv.i18n.create;
-    const i18n = ndpv.i18n;
-
-    const caps = ndpv.caps;
+    const { i18n, caps } = ndpv;
+    const isClient = caps.includes("ndpv_client_role");
     return (
         <div className="ndpv-dashboard">
             <div className="row">
@@ -60,7 +59,7 @@ const Dashboard = (props) => {
                     >
                         {i18n.ov}
                     </h2>
-                    {false &&<select value={year} onChange={(e) => setYear(e.target.value)} className="pv-overview-select">
+                    {false && <select value={year} onChange={(e) => setYear(e.target.value)} className="pv-overview-select">
                         <option value="2023">2023</option>
                         <option value="2022">2022</option>
                     </select>}
@@ -125,7 +124,7 @@ const Dashboard = (props) => {
 
             {!wage.length && <div className="pv-block">
                 <div className="row">
-                    {caps.includes("ndpv_task") && <div className="col-lg-7">
+                    {!isClient && caps.includes("ndpv_task") && <div className="col-lg-7">
                         <TaskCom />
                     </div>}
 

@@ -279,7 +279,7 @@ export default (props) => {
           </NavLink>
         </li>
       )}
-      {caps.includes("ndpv_task") && (
+      {caps.includes("ndpv_task") && !caps.includes("ndpv_client_role") && (
         <li>
           <NavLink
             to="task"

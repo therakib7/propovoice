@@ -269,6 +269,7 @@ const Project = (props) => {
 							<Table
 								tableData={lists}
 								searchVal={searchVal}
+								boardView={boardView}
 								editEntry={props.openForm}
 								checkedBoxes={{
 									data: checkedBoxes,
