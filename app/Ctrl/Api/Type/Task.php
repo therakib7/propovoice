@@ -239,6 +239,7 @@ class Task
             }
 
             $query_data["desc"] = get_the_content();
+            $query_data["note"] = get_post_meta($id, "note", true);
             $query_data["google_meet"] = get_post_meta(
                 $id,
                 "google_meet",
@@ -394,7 +395,8 @@ class Task
         $google_meet = isset($param["google_meet"])
             ? $param["google_meet"]
             : null;
-        $start_date = isset($param["start_date"]) ? $param["start_date"] : null;
+        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
+        $start_date = isset($param["start_date"]) ? $param["start_date"] : '';
         $due_date = isset($param["due_date"]) ? $param["due_date"] : null;
         $checklist = isset($param["checklist"]) ? $param["checklist"] : null;
 
@@ -447,6 +449,8 @@ class Task
                 if ($google_meet) {
                     update_post_meta($post_id, "google_meet", $google_meet);
                 }
+
+                update_post_meta($post_id, "note", $note);
 
                 if ($start_date) {
                     update_post_meta($post_id, "start_date", $start_date);

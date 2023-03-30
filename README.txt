@@ -183,6 +183,7 @@ The super fantastic pro features that accelerate your business growth and improv
 = 1.0.7.6 =
 * Fixed: CSS styling issue
 * Update: Export, Import Issue
+* Update: Task edit Issue
 * Update: JS and functional issues
 
 = 1.0.7.5 =

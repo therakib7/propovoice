@@ -36,7 +36,8 @@ export default class Form extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ form: { ...this.state.form, [name]: value } }, () => {
-      let reload = name == "title" ? true : false;
+      // let reload = name == "title" ? true : false;
+      let reload = true;
       this.updateRequest(reload);
     });
   };
@@ -132,7 +133,22 @@ export default class Form extends Component {
       this.setState({ form: data });
     }
 
+    // let status_id = {};
+    // if (this.state.form.status_id) {
+    //   console.log(this.state.form.status_id);
+    //   status_id = this.state.form.status_id.id;
+    // }
+    // this.props.reload({ status_id });
     this.props.reload();
+  };
+
+  handleTaskPriorityChange = () => {
+
+    // let status_id = {};
+    // if (this.state.form.status_id) {
+    //   status_id = this.state.form.status_id.id;
+    // }
+    // this.props.reload(status_id);
   };
 
   onDateChange = (date, type = null) => {
@@ -332,6 +348,7 @@ export default class Form extends Component {
                         data={form.priority_id}
                         taxonomy="task_priority"
                         title={i18n.prior}
+                        onChange={this.handleTaskPriorityChange}
                         /* small */ color
                       />
                     )}
