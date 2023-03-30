@@ -126,13 +126,38 @@ class Task
             $status_id = $get_taxonomy[0]->term_id;
         }
 
-        $args["tax_query"] = [
-            [
-                "taxonomy" => "ndpv_task_status",
-                "terms" => $status_id,
-                "field" => "term_id",
-            ],
-        ];
+        if ( $dashboard ) {
+            $tax_args = array(
+                'hide_empty' => false, // also retrieve terms which are not used yet
+                'meta_query' => array(
+                    array(
+                        'key'      => 'type',
+                        'value'    => 'done',
+                        'compare'  => 'LIKE'
+                    )
+                ),
+                'taxonomy'  => 'ndpv_task_status',
+            );
+            $terms = get_terms( $tax_args );
+            $status_id = $terms[0]->term_id;
+
+            $args["tax_query"] = [
+                [
+                    "taxonomy" => "ndpv_task_status",
+                    "terms" => $status_id,
+                    "field" => "term_id",
+                    'operator'  => 'NOT IN'
+                ],
+            ];
+        } else {
+            $args["tax_query"] = [
+                [
+                    "taxonomy" => "ndpv_task_status",
+                    "terms" => $status_id,
+                    "field" => "term_id",
+                ],
+            ];
+        }
 
         $query = new \WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination

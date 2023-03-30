@@ -117,6 +117,12 @@ export default class Form extends Component {
 
   handleTaskStatusChange = (val) => {
     let data = { ...this.state.form };
+
+    let status_id = {};
+    if (this.props.activeTab) {
+      status_id = this.props.activeTab;
+    }
+
     if (val == "done") {
       let obj = this.props.taxonomies.status.find((o) => o.type === val);
       data.status_id = obj;
@@ -126,29 +132,25 @@ export default class Form extends Component {
         if (data.status_id) {
           newData.status_id = data.status_id.id;
         }
-        api.edit("tasks", data.id, newData);
+        api.edit("tasks", data.id, newData).then((resp) => {
+          if (resp.data.success) {
+            this.props.reload({ status_id });
+          }
+        });
       });
     } else {
       data.status_id = val;
       this.setState({ form: data });
     }
-
-    // let status_id = {};
-    // if (this.state.form.status_id) {
-    //   console.log(this.state.form.status_id);
-    //   status_id = this.state.form.status_id.id;
-    // }
-    // this.props.reload({ status_id });
-    this.props.reload();
   };
 
-  handleTaskPriorityChange = () => {
+  handleTaskTaxDone = () => {
 
-    // let status_id = {};
-    // if (this.state.form.status_id) {
-    //   status_id = this.state.form.status_id.id;
-    // }
-    // this.props.reload(status_id);
+    let status_id = {};
+    if (this.props.activeTab) {
+      status_id = this.props.activeTab;
+    }
+    this.props.reload({ status_id });
   };
 
   onDateChange = (date, type = null) => {
@@ -246,6 +248,7 @@ export default class Form extends Component {
                 <Taxonomy
                   key={form.status_id.id}
                   onChange={this.handleTaskStatusChange}
+                  onDone={this.handleTaskTaxDone}
                   id={form.id}
                   data={form.status_id}
                   taxonomy="task_status"
@@ -348,7 +351,7 @@ export default class Form extends Component {
                         data={form.priority_id}
                         taxonomy="task_priority"
                         title={i18n.prior}
-                        onChange={this.handleTaskPriorityChange}
+                        onDone={this.handleTaskTaxDone}
                         /* small */ color
                       />
                     )}
