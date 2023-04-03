@@ -7,7 +7,7 @@ class Constant
     public function __construct()
     {
         if (!defined('NDPV_VERSION')) {
-            define('NDPV_VERSION', '1.0.7.5');
+            define('NDPV_VERSION', '1.0.7.6');
         }
 
         if (!defined('NDPV_PATH')) {

@@ -3,6 +3,10 @@
  * Template Name: Propovoice Estimate
  * Description: Template for Estimate Client View
  */
+
+use Ndpv\Ctrl\Cleanup\Style;
+
+add_action('wp_enqueue_scripts', [Style::getInstance(), 'clear_styles_and_scripts'], 100);
 ?>
 <!DOCTYPE html>
 <html lang="en">

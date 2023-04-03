@@ -49,7 +49,7 @@ export default (props) => {
 
   }
   // console.log(title)
-  console.log(form.title);
+  // console.log(form.title);
 
   function handleSubmit(e) {
     e.preventDefault();
