@@ -216,6 +216,7 @@ class ListSingle extends Component {
       this.setState({ data }, () => {
         let newData = {};
         if (data.status_id) {
+          newData.change_tax = true;
           newData.status_id = data.status_id.id;
         }
         api.edit("projects", this.props.id, newData);

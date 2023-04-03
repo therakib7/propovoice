@@ -81,6 +81,8 @@ const Task = (props) => {
 
       {props.state.formModal && (
         <FormEdit
+          key={activeTab}
+          activeTab={activeTab}
           tab_id={props.tab_id}
           reload={props.getLists}
           taxonomies={taxonomies}
