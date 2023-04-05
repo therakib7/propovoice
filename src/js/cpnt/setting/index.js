@@ -1,10 +1,10 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-// import Style from './style.scoped.scss' 
+// import Style from './style.scoped.scss'
 import Spinner from 'block/preloader/spinner';
 import WithApi from 'hoc/Api';
 
-//subtab: general 
+//subtab: general
 const General = lazy(() => import('./tab/general'));
 const Password = lazy(() => import('./tab/password'));
 
@@ -12,7 +12,7 @@ const Task = lazy(() => import('./tab/task'));
 const Lead = lazy(() => import('./tab/lead'));
 const Deal = lazy(() => import('./tab/deal'));
 
-//subtab: estinv 
+//subtab: estinv
 const EstinvCom = lazy(() => import('./tab/estinv/common'));
 const Estest = lazy(() => import('./tab/estinv/est'));
 const Estinv = lazy(() => import('./tab/estinv/inv'));
@@ -22,6 +22,7 @@ const Contact = lazy(() => import('./tab/contact'));
 const Tag = lazy(() => import('./tab/tag'));
 const CustomField = lazy(() => import('./tab/custom-field'));
 const Integrate = lazy(() => import('./tab/integrate'));
+const Team = lazy(() => import('./tab/team'));
 const License = lazy(() => import('./tab/license'));
 
 //subtab: email
@@ -99,14 +100,14 @@ const Setting = (props) => {
     tag: {
       label: i18n.tag
     },
-    'custom-fields': {
-      label: i18n.cus + ' ' + i18n.fields
-    },
-    'public-api': {
-      label: "Public API"
+    'custom-field': {
+      label: i18n.cus + ' ' + i18n.field
     },
     integration: {
       label: i18n.intg
+    },
+    team: {
+      label: 'Team'
     },
   };
 
@@ -212,7 +213,7 @@ const Setting = (props) => {
 
           <div className='col-md-9'>
             <div className="pv-setting-tab-content">
-              <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{(currentTab != 'custom-fields' && currentTab != 'integration') && currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label} {i18n.settings}</h4>
+              <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{tabs[currentTab] && tabs[currentTab].label}{(currentTab != 'custom-field' && currentTab != 'integration') && currentSubtab && tabs[currentTab].subtabs[currentSubtab] && ': ' + tabs[currentTab].subtabs[currentSubtab].label} {i18n.settings}</h4>
               {/* //TODO: subtab temp fix for integration */}
 
               <Suspense fallback={<Spinner />}>
@@ -233,9 +234,9 @@ const Setting = (props) => {
                 {currentTab == 'email' && currentSubtab == 'client_portal' && <ClientPortal {...props} />}
                 {currentTab == 'contact' && <Contact />}
                 {currentTab == 'tag' && <Tag />}
-                {currentTab == 'custom-fields' && <CustomField {...props} />}
+                {currentTab == 'custom-field' && <CustomField {...props} />}
                 {currentTab == 'integration' && <Integrate {...props} />}
-                {currentTab == 'public-api' && <Integrate {...props} />}
+                {currentTab == 'team' && <Team {...props} />}
                 {currentTab == 'license' && <License {...props} />}
               </Suspense>
             </div>
