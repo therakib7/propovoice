@@ -100,6 +100,8 @@ export default class Main extends Component {
         this.submitFormData(i);
     }
 
+    
+
     submitFormData = (i) => {
         let form = JSON.parse(JSON.stringify(this.state.singleForm));
         form[i].form = this.state.currentTab.slug;
@@ -119,9 +121,17 @@ export default class Main extends Component {
         });
     }
 
+   
+
     render() {
         const { loading, currentTab, list, singleForm, leadField } = this.state;
         const i18n = ndpv.i18n;
+        let copyEmbededCode = (form_id) => {
+            console.log(form_id)
+            console.log(currentTab)
+            console.log(singleForm)
+           
+        }
         return (
             <>
                 {loading ? <Spinner /> : <>
@@ -209,6 +219,9 @@ export default class Main extends Component {
                                                     <div className="col" style={{ textAlign: 'center', marginTop: 35 }}>
                                                         <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-color-white">
                                                             {i18n.save} <ProLabel blueBtn />
+                                                        </button>
+                                                        <button onClick={() => copyEmbededCode(item.id)} type='button' style={{marginLeft: 10}} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-color-white">
+                                                            {i18n.copy_form_code} <ProLabel blueBtn />
                                                         </button>
                                                     </div>
                                                 </div>

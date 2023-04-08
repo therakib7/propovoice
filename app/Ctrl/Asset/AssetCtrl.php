@@ -48,6 +48,7 @@ class AssetCtrl
                 "workspace-template.php",
                 "invoice-template.php",
                 "estimate-template.php",
+                "form-template.php",
             ])
         ) {
             return false;
