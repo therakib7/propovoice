@@ -163,6 +163,7 @@ class AssetCtrl
             $current_user = wp_get_current_user();
             wp_localize_script("ndpv-dashboard", "ndpv", [
                 "apiUrl" => esc_url(rest_url()),
+                "siteUrl" => get_site_url(),
                 "version" => ndpv()->version(),
                 "dashboard" => admin_url("admin.php?page=ndpv"),
                 "invoice_page_url" => sprintf(
