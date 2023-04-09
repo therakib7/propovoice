@@ -1753,7 +1753,7 @@ html {
 .ndpv .pv-breadcrumb {
   margin-bottom: 6px;
   margin-left: -5px;
-  display: inline-block;
+  display: none;
 }
 
 .ndpv .pv-breadcrumb ul {
@@ -3183,7 +3183,7 @@ table thead:first-child tr:first-child th {
 }
 
 .pv-modal-content .pv-dropdown-content {
-  height: 351px;
+  // height: 351px;
 }
 
 /*-------------------------------------------------------------- 

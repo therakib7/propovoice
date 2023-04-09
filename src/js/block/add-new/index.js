@@ -12,7 +12,7 @@ export default (props) => {
   const close = useCallback(() => setDropdown(false), []);
   useClickOutside(dropdownRef, close);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const showDropdown = () => {
     if (dropdown) {
@@ -56,7 +56,8 @@ export default (props) => {
             strokeLinejoin="round"
           ></path>
         </svg>
-        {ndpv.i18n["add" + "_" + props.title]}
+        {/* {ndpv.i18n["add" + "_" + props.title]} */}
+        {ndpv.i18n.add + ' ' + props.title}
       </button>
 
       {imp === true && (

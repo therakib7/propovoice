@@ -55,7 +55,6 @@ class I18n
             "trk" => esc_html__("Tracking", "propovoice"),
             //lead
             "level" => esc_html__("Level", "propovoice"),
-            "add_Lead" => esc_html__("Add Lead", "propovoice"),
             "source" => esc_html__("Source", "propovoice"),
             //deal
             "deal_pipeline" => esc_html__("Deal Pipeline", "propovoice"),
@@ -67,8 +66,6 @@ class I18n
             "proba" => esc_html__("Probability", "propovoice"),
             //estinv
             "nd" => __("&", "propovoice"),
-            "add_Estimate" => esc_html__("Add Estimate", "propovoice"),
-            "add_Invoice" => esc_html__("Add Invoice", "propovoice"),
             "estimate_number" => esc_html__("Estimate Number", "propovoice"),
             "estimate_date" => esc_html__("Estimate Date", "propovoice"),
             "invoice_number" => esc_html__("Invoice Number", "propovoice"),
@@ -260,6 +257,8 @@ class I18n
             "fee" => esc_html__("Fee", "propovoice"),
             "field" => esc_html__("Field", "propovoice"),
             "fields" => esc_html__("Fields", "propovoice"),
+            "team" => esc_html__("Team", "propovoice"),
+            "member" => esc_html__("Member", "propovoice"),
             "discount" => esc_html__("Discount", "propovoice"),
             "txn" => esc_html__("Transaction", "propovoice"),
             "stripe" => esc_html__("Stripe", "propovoice"),

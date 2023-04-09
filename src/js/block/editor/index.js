@@ -53,6 +53,7 @@ class BlockEditor extends Component {
 						height: 150,
 						menubar: false,
 						plugins: ['lists'],
+						content_style:"@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');.mce-content-body {font-family: 'Inter';fontSize = '10';font-style: normal;font-weight: 400;}",
 						toolbar: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist',
 						/* setup: function (ed) {
 							ed.on('init', function () {
