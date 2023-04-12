@@ -3,13 +3,12 @@ import { Add } from "block/icon";
 import { sprintf } from "sprintf-js";
 import Upload from "block/field/upload";
 import { uploadToDrive } from "api/gapi/gdrive";
-import { title } from "process";
 
 export default (props) => {
   const [form, setForm] = useState({
     id: null,
     tab_id: props.tab_id,
-    type: "drive",
+    type: "google-drive",
     title: "",
     file: "",
     url: "",
@@ -42,11 +41,13 @@ export default (props) => {
   }, [form.file, is_submit, driveFileId]);
 
   function handleChange(e) {
-    let title = e.target.value;
-    // let form = { ...form }
-    form.title = title;
-    setForm(form)
+    // let title = e.target.value;
+    // // let form = { ...form }
+    // form.title = title;
+    // setForm(form)
 
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
   }
   // console.log(title)
   // console.log(form.title);
