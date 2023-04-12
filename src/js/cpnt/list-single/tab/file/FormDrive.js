@@ -3,7 +3,6 @@ import { Add } from "block/icon";
 import { sprintf } from "sprintf-js";
 import Upload from "block/field/upload";
 import { uploadToDrive } from "api/gapi/gdrive";
-import { title } from "process";
 
 export default (props) => {
   const [form, setForm] = useState({
@@ -42,7 +41,6 @@ export default (props) => {
       return { ...prev, [name]: value };
     });
   };
-  // console.log(form.title);
 
   const handleSubmit = (e) => {
     e.preventDefault();
