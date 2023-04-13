@@ -34,7 +34,7 @@ const getOAuth2Data = async () => {
 };
 
 function gapiLoaded() {
-  gapi.load("client:auth2", initializeGapiClient);
+  window.gapi.load("client:auth2", initializeGapiClient);
 }
 
 async function initializeGapiClient() {
@@ -43,7 +43,7 @@ async function initializeGapiClient() {
   const DISCOVERY_DOC =
     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest";
 
-  await gapi.client.init({
+  await window.gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
   });
@@ -77,7 +77,7 @@ async function handleSignIn(myRequest) {
     }
     await myRequest();
   };
-  if (gapi.client.getToken() === null) {
+  if (window.gapi.client.getToken() === null) {
     // Prompt the user to select a Google Account and ask for consent to share their data
     // when establishing a new session.
     tokenClient.requestAccessToken({ prompt: "consent" });

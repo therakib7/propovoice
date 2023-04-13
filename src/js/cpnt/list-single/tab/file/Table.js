@@ -67,7 +67,6 @@ const TableBody = props => {
     let rows = props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
-        console.log(row);
         return (
             <tr key={index}>
                 <td>

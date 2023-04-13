@@ -32,8 +32,15 @@ function uploadFile(file, setForm) {
   );
 }
 
+function deleteFile(fileId) {
+  var request = window.gapi.client.drive.files.delete({
+    'fileId': fileId
+  });
+  request.execute(function (resp) {});
+}
+
 function sendRequest(method, url, body, callback, params) {
-  var accessToken = gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
+  var accessToken = window.gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
   var xhr = new XMLHttpRequest();
   xhr.open(method, url);
   xhr.setRequestHeader("Authorization", "Bearer " + accessToken);
@@ -63,6 +70,7 @@ function uploadCallback(setForm, load) {
     [fileId]
   );
 }
+
 function permissionCallback(fileId, load) {
   console.log(`The file id ${fileId} is public now!!!`);
 }
