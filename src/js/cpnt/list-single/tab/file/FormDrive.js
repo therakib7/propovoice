@@ -18,22 +18,21 @@ export default (props) => {
   const [selectedFile, setSelectedFile] = useState();
   const [is_submit, setIsSubmit] = useState(false);
 
+  // useEffect(() => {
+  //   if (form.file && is_submit) {
+  //     // uploadToDrive(selectedFile, setDriveFileId);
+  //     setIsSubmit(false);
+  //   }
+  // }, [form.file, is_submit, driveFileId]);
+  //
+
   useEffect(() => {
-    if (form.file && is_submit) {
-      uploadToDrive(selectedFile, setDriveFileId);
-      setIsSubmit(false);
+    if (form.url && !is_submit) {
+      props.handleSubmit(form);
+      props.close();
+      setIsSubmit(true);
     }
-    if (driveFileId) {
-      console.log("FileId in Form: ", driveFileId);
-      const driveUrl = `https://drive.google.com/uc?export=view&id=${driveFileId}`;
-      setForm((prev) => ({ ...prev, url: driveUrl }));
-      console.log(form);
-      if (form.url) {
-        props.handleSubmit(form);
-        props.close();
-      }
-    }
-  }, [form.file, is_submit, driveFileId]);
+  }, [form.url]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -44,7 +43,19 @@ export default (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmit(true);
+
+    uploadToDrive(selectedFile, setForm);
+
+    // props.handleSubmit(form);
+    // props.close();
+
+    // if (driveFileId) {
+    //   console.log("FileId in Form: ", driveFileId);
+    //   const driveUrl = `https://drive.google.com/uc?export=view&id=${driveFileId}`;
+    //   setForm((prev) => ({ ...prev, url: driveUrl }));
+    //   console.log(form);
+    // }
+    // setIsSubmit(true);
   };
 
   const handleUploadChange = (data, type = null) => {

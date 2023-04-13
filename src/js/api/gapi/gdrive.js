@@ -1,16 +1,16 @@
 import api from "api";
 import { handleSignIn } from "api/gapi/goauth2";
 
-export function uploadToDrive(file, setGdriveFileId) {
+export function uploadToDrive(file, setForm) {
   handleSignIn(() => {
-    uploadFile(file, setGdriveFileId);
+    uploadFile(file, setForm);
   });
 }
 
 /**
  * Upload file to Google Drive.
  */
-async function uploadFile(file, setGdriveFileId) {
+function uploadFile(file, setForm) {
   var metadata = {
     name: file.name, //Filename at Google Drive
     mimeType: "image/*", // mimeType at Google Drive
@@ -28,7 +28,7 @@ async function uploadFile(file, setGdriveFileId) {
     "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id",
     form,
     uploadCallback,
-    [setGdriveFileId]
+    [setForm]
   );
 }
 
@@ -45,9 +45,10 @@ function sendRequest(method, url, body, callback, params) {
   xhr.send(body);
 }
 
-function uploadCallback(setGdriveFileId, load) {
+function uploadCallback(setForm, load) {
   const fileId = load.target.response.id;
-  setGdriveFileId(fileId);
+  // setGdriveFileId(fileId);
+  setForm((prev) => ({ ...prev, url: `https://drive.google.com/uc?export=view&id=${fileId}` }));
   console.log("File uploaded successfully");
 
   const permissionBody = {
