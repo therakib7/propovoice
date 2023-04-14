@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Integrate\Form;
 
 use Ndpv\Helper\Fns;
@@ -59,7 +60,7 @@ class FormList
                 "name" => "Gravity Forms",
                 "slug" => "gravity_forms",
                 "img" =>
-                    "https://s38924.pcdn.co/wp-content/themes/gfcom-voyager/dist/images/logo-black.svg",
+                "https://s38924.pcdn.co/wp-content/themes/gfcom-voyager/dist/images/logo-black.svg",
                 "pro" => true,
             ],
             [
@@ -67,6 +68,13 @@ class FormList
                 "name" => "Fluent Forms",
                 "slug" => "fluent_forms",
                 "img" => "https://ps.w.org/fluentform/assets/icon-128x128.png",
+                "pro" => true,
+            ],
+            [
+                "active" => class_exists("MetForm\Plugin"),
+                "name" => "Metform",
+                "slug" => "metform",
+                "img" => "https://ps.w.org/metform/assets/icon-128x128.png?rev=2544152",
                 "pro" => true,
             ],
 
