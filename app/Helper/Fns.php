@@ -2,6 +2,7 @@
 
 namespace Ndpv\Helper;
 
+use Ndpv\Model\Business;
 use Ndpvp\Model\CustomField;
 
 class Fns
@@ -462,5 +463,77 @@ class Fns
         $label = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
         for ($i = 0; $bytes >= 1024 && $i < (count($label) - 1); $bytes /= 1024, $i++);
         return (round($bytes, 2) . " " . $label[$i]);
+    }
+
+    /**
+     *  Password mail
+     *
+     * @package NDPV Project
+     * @since 1.0
+     */
+    public static function password_mail($name, $email, $password)
+    {
+        //sent mail
+        $data = [];
+
+        $option = get_option('ndpv_email_client_portal_password');
+        if ($option) {
+            $data = $option;
+        } else {
+            $data['subject'] = ndpv()->get_default('email_template', 'client_portal', 'password', 'subject');
+            $data['msg'] = ndpv()->get_default('email_template', 'client_portal', 'password', 'msg');
+        }
+
+        $mail_subject = $data['subject'];
+        $msg = nl2br($data['msg']);
+
+        $business = new Business;
+        $business_info = $business->info();
+        $org_name = $business_info['name'];
+        $org_email = $business_info['email']; 
+        $permalink = Fns::client_page_url("workspace");
+        $login_url =  "<a href='$permalink'>$permalink</a>";
+
+        $subject = self::pass_email_variable($mail_subject, [
+            "org_name" => $org_name,
+        ]);
+        $template = ndpv()->render("email/password", [], true); 
+        $template = str_replace( '{msg}', $msg, $template );            
+        $body = self::pass_email_variable($template, [
+            "org_name" => $org_name,
+            "client_name" => $name,
+            "login_url" => $login_url,
+            "email" => $email,
+            "password" => $password,
+        ]);
+
+        $headers = ["Content-Type: text/html; charset=UTF-8"];
+        $headers[] = "From: " . $org_name . " <" . $org_email . ">";  
+        return wp_mail($email, $subject, $body, $headers, []);
+    }
+
+    private static function pass_email_variable( $string, $array = [] ) {
+        $org_name = isset($array['org_name']) ? $array['org_name'] : '';
+        $client_name = isset($array['client_name']) ? $array['client_name'] : '';
+        $login_url = isset($array['login_url']) ? $array['login_url'] : '';
+        $email = isset($array['email']) ? $array['email'] : '';
+        $password = isset($array['password']) ? $array['password'] : '';
+        return str_replace(
+            array( 
+                '{org_name}', 
+                '{client_name}', 
+                '{login_url}', 
+                '{email}', 
+                '{password}'
+            ),
+            array( 
+                $org_name, 
+                $client_name, 
+                $login_url, 
+                $email, 
+                $password 
+            ),
+            $string
+        );
     }
 }

@@ -30,7 +30,8 @@ export default (props) => {
             mod == "lead" ||
               mod == "client" ||
               mod == "person" ||
-              mod == "org"
+              mod == "org" ||
+              mod == "team"
               ? i18n.added
               : i18n.created,
             title
@@ -61,7 +62,7 @@ export default (props) => {
             strokeLinejoin="round"
           />
         </svg>
-        {mod == "lead" || mod == "client" || mod == "person" || mod == "org"
+        {mod == "lead" || mod == "client" || mod == "person" || mod == "org" || mod == "team"
           ? i18n.let_start_adding
           : i18n.let_start_creating}
       </button>}

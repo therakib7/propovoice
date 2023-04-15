@@ -20,22 +20,61 @@ export default class Form extends Component {
         this.state = {
             form: this.initialState,
             capsList: [
-                { label: 'Dashbaord', value: 'dashboard' },
-                { label: 'Lead', value: 'lead' },
-                { label: 'Deal', value: 'deal' },
-                { label: 'Estimate', value: 'estimate' },
-                { label: 'Invoice', value: 'invoice' },
-                { label: 'Client', value: 'client' },
-                { label: 'Project', value: 'project' },
-                { label: 'Contact', value: 'contact' },
+                { label: 'Dashbaord', value: 'ndpv_dashboard' },
+                { label: 'Lead', value: 'ndpv_lead' },
+                { label: 'Deal', value: 'ndpv_deal' },
+                { label: 'Estimate', value: 'ndpv_estimate' },
+                { label: 'Invoice', value: 'ndpv_invoice' },
+                { label: 'Client', value: 'ndpv_client' },
+                { label: 'Project', value: 'ndpv_project' },
+                { label: 'Contact', value: 'ndpv_contact' },
             ]
         };
     }
 
     handleChange = (e, type) => {
         const { name, value } = e.target;
+        if (this.props.modalType == 'new' && name == 'role') {
+            let form = { ...this.state.form };
+            form[name] = value;
 
-        this.setState({ form: { ...this.state.form, [name]: value } });
+            if (value == 'ndpv_admin') {
+                form.caps = [
+                    'ndpv_dashboard',
+                    'ndpv_lead',
+                    'ndpv_deal',
+                    'ndpv_estimate',
+                    'ndpv_invoice',
+                    'ndpv_client',
+                    'ndpv_project',
+                    'ndpv_contact'
+                ];
+            } else if (value == 'ndpv_manager') {
+                form.caps = [
+                    'ndpv_dashboard',
+                    'ndpv_lead',
+                    'ndpv_deal',
+                    'ndpv_estimate',
+                    'ndpv_invoice',
+                    'ndpv_client',
+                    'ndpv_project'
+                ];
+            } else if (value == 'ndpv_contributor') {
+                form.caps = [
+                    'ndpv_dashboard',
+                    'ndpv_lead',
+                    'ndpv_deal',
+                    'ndpv_estimate',
+                    'ndpv_invoice',
+                    'ndpv_client',
+                    'ndpv_project'
+                ];
+            }
+            // console.log(form)
+            this.setState({ form });
+        } else {
+            this.setState({ form: { ...this.state.form, [name]: value } });
+        }
     }
 
     handleCheckboxChange = (event) => {
@@ -100,8 +139,8 @@ export default class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{modalType} {i18n.team}</h2>
-                        <p>{sprintf(i18n.formDesc, modalType, i18n.team)}</p>
+                        <h2 className="pv-modal-title">{modalType} {i18n.team + ' ' + i18n.member}</h2>
+                        <p>{sprintf(i18n.formDesc, modalType, i18n.team + ' ' + i18n.member)}</p>
                     </div>
                     <form onSubmit={this.handleSubmit} >
                         <div className="pv-content">
@@ -147,12 +186,13 @@ export default class Form extends Component {
                                                 <div className="pv-field-checkbox" style={{ marginBottom: 0 }}>
                                                     <input
                                                         type="radio"
-                                                        id="role-coadmin"
+                                                        id="role-admin"
                                                         name="role"
-                                                        value='admin'
+                                                        value='ndpv_admin'
+                                                        checked={this.state.form.role == "ndpv_admin"}
                                                         onChange={this.handleChange}
                                                     />
-                                                    <label htmlFor="role-coadmin">Co Admin</label>
+                                                    <label htmlFor="role-admin">Co Admin</label>
                                                 </div>
                                             </div>
 
@@ -162,7 +202,8 @@ export default class Form extends Component {
                                                         type="radio"
                                                         id="role-manager"
                                                         name="role"
-                                                        value='project_manager'
+                                                        value='ndpv_manager'
+                                                        checked={this.state.form.role == "ndpv_manager"}
                                                         onChange={this.handleChange}
                                                     />
                                                     <label htmlFor="role-manager">Manager</label>
@@ -175,7 +216,8 @@ export default class Form extends Component {
                                                         type="radio"
                                                         id="role-contributor"
                                                         name="role"
-                                                        value='contributor'
+                                                        value='ndpv_contributor'
+                                                        checked={this.state.form.role == "ndpv_contributor"}
                                                         onChange={this.handleChange}
                                                     />
                                                     <label htmlFor="role-contributor">Contributor</label>

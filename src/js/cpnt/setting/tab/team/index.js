@@ -20,7 +20,7 @@ const Team = (props) => {
     <div className="ndpv-cpnt">
       <div className="row">
         <div className="col">
-          <h2 className="pv-page-title">{ndpv.i18n.team}</h2>
+          <h2 className="pv-page-title">{ndpv.i18n.team + ' ' + ndpv.i18n.member}</h2>
         </div>
         <div className="col">
           <AddNew

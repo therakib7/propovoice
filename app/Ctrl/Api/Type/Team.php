@@ -84,117 +84,32 @@ class Team
             $offset = $per_page * $param["page"] - $per_page;
         }
 
-        $args = [
-            "post_type" => "ndpv_lead",
-            "post_status" => "publish",
-            "posts_per_page" => $per_page,
-            "offset" => $offset,
-        ];
-
-        $args["meta_query"] = [
-            "relation" => "OR",
-        ];
-
-        if ($s) {
-            $contact_person = new Contact();
-            $person_ids = $contact_person->query($s, "person");
-            if ($person_ids) {
-                $args["meta_query"][] = [
-                    [
-                        "key" => "person_id",
-                        "value" => $person_ids,
-                        "compare" => "IN",
-                    ],
-                ];
-            }
-
-            $org_ids = $contact_person->query($s, "org");
-            if ($org_ids) {
-                $args["meta_query"][] = [
-                    [
-                        "key" => "org_id",
-                        "value" => $org_ids,
-                        "compare" => "IN",
-                    ],
-                ];
-            }
-        }
-
-        $query = new \WP_Query($args);
-        $total_data = $query->found_posts; //use this for pagination
+        
         $result = $data = [];
-        while ($query->have_posts()) {
-            $query->the_post();
-            $id = get_the_ID();
 
-            $query_data = [];
-            $query_data["id"] = $id;
+        $users = get_users( array(
+            'role__in' => array( 'ndpv_admin', 'ndpv_manager', 'ndpv_contributor' )
+        ) );
 
-            $queryMeta = get_post_meta($id);
-            $query_data["budget"] = isset($queryMeta["budget"])
-                ? $queryMeta["budget"][0]
-                : "";
-            $query_data["currency"] = isset($queryMeta["currency"])
-                ? $queryMeta["currency"][0]
-                : "";
-            $query_data["note"] = isset($queryMeta["note"])
-                ? $queryMeta["note"][0]
-                : "";
-            $query_data["desc"] = get_the_content();
+        $total_data = count($users);
 
-            //custom field
-            foreach( Fns::custom_field('lead') as $value ) {
-                $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
-            }
+        foreach ( $users as $user ) {
+            $info = [];
+            $info['id'] = $user->id; 
+            $info['name'] = $user->display_name; 
+            $info['img'] = Fns::gravatar($user->user_email); 
+            $info['email'] = $user->user_email; 
+            $info['role'] = $user->roles[0];  
+           
+            $user_data = new \WP_User($user->id);
+            $allcaps = array_keys( array_filter( $user_data->allcaps ) );
 
-            $query_data['level_id'] = null;
-            $level = get_the_terms($id, 'ndpv_lead_level');
-            if ($level) {
-                $term_id = $level[0]->term_id;
-                $query_data["level_id"] = [
-                    "id" => $term_id,
-                    "label" => $level[0]->name,
-                    "color" => get_term_meta($term_id, "color", true),
-                    "bg_color" => get_term_meta($term_id, "bg_color", true),
-                ];
-            }
-
-            $query_data["tags"] = [];
-            $tags = get_the_terms($id, "ndpv_tag");
-            if ($tags) {
-                $tagList = [];
-                foreach ($tags as $tag) {
-                    $tagList[] = [
-                        "id" => $tag->term_id,
-                        "label" => $tag->name,
-                    ];
-                }
-                $query_data["tags"] = $tagList;
-            }
-
-            $query_data["person"] = null;
-            $person_id = get_post_meta($id, "person_id", true);
-            if ($person_id) {
-                $person = new Person();
-                $query_data["person"] = $person->single($person_id);
-            }
-
-            $query_data["org"] = null;
-            $org_id = get_post_meta($id, "org_id", true);
-            if ($org_id) {
-                $org = new Org();
-                $query_data["org"] = $org->single($org_id);
-            }
-
-            $query_data["date"] = get_the_time(get_option("date_format"));
-            $data[] = $query_data;
+            $info['caps'] = $allcaps; 
+            $info['role_title'] = ucwords( str_replace( 'ndpv_', '', $user->roles[0] ) ); 
+            $data[] = $info;
         }
-        wp_reset_postdata();
 
         $result['result'] = $data;
-        $result['extra'] = [
-            'custom_field' => Fns::custom_field('lead'),
-        ];
         $result['total'] = $total_data;
 
         wp_send_json_success($result);
@@ -214,68 +129,6 @@ class Team
         $query_data["tab_id"] = isset($queryMeta["tab_id"])
             ? absint($queryMeta["tab_id"][0])
             : "";
-        $query_data["budget"] = isset($queryMeta["budget"])
-            ? $queryMeta["budget"][0]
-            : "";
-        $query_data["currency"] = isset($queryMeta["currency"])
-            ? $queryMeta["currency"][0]
-            : "";
-        $query_data["note"] = isset($queryMeta["note"])
-            ? $queryMeta["note"][0]
-            : "";
-        $query_data["desc"] = get_post_field("post_content", $id);
-
-        //custom field
-        foreach( Fns::custom_field('lead') as $value ) {
-            $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
-        }
-        $query_data['custom_field'] = Fns::custom_field('lead');
-
-        $query_data['level_id'] = '';
-        $level = get_the_terms($id, 'ndpv_lead_level');
-        if ($level) {
-            $term_id = $level[0]->term_id;
-            $color = get_term_meta($term_id, "color", true);
-            $bg_color = get_term_meta($term_id, "bg_color", true);
-            $query_data["level_id"] = [
-                "id" => $term_id,
-                "label" => $level[0]->name,
-                "color" => "#4a5568",
-                "bg_color" => "#E2E8F0",
-            ];
-
-            if ($color) {
-                $query_data["level_id"]["color"] = $color;
-            }
-
-            if ($bg_color) {
-                $query_data["level_id"]["bg_color"] = $bg_color;
-            }
-        }
-
-        $query_data["source_id"] = "";
-        $source = get_the_terms($id, "ndpv_lead_source");
-        if ($source) {
-            $query_data["source_id"] = [
-                "id" => $source[0]->term_id,
-                "label" => $source[0]->name,
-                "bg_color" => "",
-                "color" => "#718096",
-            ];
-        }
-
-        $query_data["tags"] = [];
-        $tags = get_the_terms($id, "ndpv_tag");
-        if ($tags) {
-            $tagList = [];
-            foreach ($tags as $tag) {
-                $tagList[] = [
-                    "id" => $tag->term_id,
-                    "label" => $tag->name,
-                ];
-            }
-            $query_data["tags"] = $tagList;
-        }
 
         $query_data["person"] = null;
         $person_id = isset($queryMeta["person_id"])
@@ -303,246 +156,180 @@ class Team
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
-        //lead
-        $first_name = isset($param["first_name"])
-            ? sanitize_text_field($param["first_name"])
-            : null;
-        $org_name = isset($param["org_name"])
-            ? sanitize_text_field($param["org_name"])
-            : null;
-        $person_id = isset($param["person_id"])
-            ? absint($param["person_id"])
-            : null;
-        $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
-        $level_id = isset($param["level_id"])
-            ? absint($param["level_id"])
-            : null;
-        $budget = isset($param["budget"])
-            ? sanitize_text_field($param["budget"])
-            : null;
-        $currency = isset($param["currency"])
-            ? sanitize_text_field($param["currency"])
-            : null;
-        $tags = isset($param["tags"])
-            ? array_map("absint", $param["tags"])
-            : null;
-        $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
-        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
-        $img = isset($param["img"]) ? absint($param["img"]) : null;
+        $name = isset($param["name"])
+            ? sanitize_text_field($param["name"])
+            : '';
+        $email = isset($param["email"])
+            ? sanitize_text_field($param["email"])
+            : ''; 
+        $role = isset($param["role"])
+            ? sanitize_text_field($param["role"])
+            : ''; 
+        
+        $caps = isset($param["caps"])
+            ? array_map("sanitize_text_field", $param["caps"])
+            : ''; 
 
-        if (empty($first_name) && empty($org_name)) {
+        if (empty($name)) {
             $reg_errors->add(
-                "field",
-                esc_html__("Contact info is missing", "propovoice")
+                "name_field",
+                esc_html__("Name is missing", "propovoice")
             );
-        }
+        } 
 
-        /* if (!is_email($email)) {
+        if (empty($email)) {
+            $reg_errors->add(
+                "email_field",
+                esc_html__("Email is missing", "propovoice")
+            );
+        } 
+
+        if ( !is_email($email) ) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        }  */
-        $person = new Person();
-        if ($person_id) {
-            $person->update($param);
-        }
+        } 
 
-        if (!$person_id && $first_name) {
-            $person_id = $person->create($param);
-        }
-
-        $org = new Org();
-        if (!$person_id && $org_id) {
-            $org->update($param);
-        }
-
-        if (!$org_id && $org_name) {
-            $org_id = $org->create($param);
-        }
+         if ( empty($email) ) {
+            $reg_errors->add(
+                "role_field",
+                esc_html__("Role is missing", "propovoice")
+            );
+        } 
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-            //insert lead
-            $data = [
-                "post_type" => "ndpv_lead",
-                "post_title" => "Lead",
-                "post_content" => $desc,
-                "post_status" => "publish",
-                "post_author" => get_current_user_id(),
-            ];
-            $post_id = wp_insert_post($data);
 
-            if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, "ws_id", ndpv()->get_workspace());
-                update_post_meta($post_id, "tab_id", $post_id); //for task, note, file
+            $user_id = email_exists( $email );
+        
+            if ( !$user_id ) {
+                $password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
+                $user_args = array (
+                    'user_login'     => $email,
+                    'user_pass'      => $password, 
+                    'user_email'     => $email,
+                    'nickname'       => $name,
+                    'display_name'   => $name
+                );
+                $user_id = wp_insert_user( $user_args); 
+                $user_id_role = new \WP_User($user_id);
+                $user_id_role->set_role($role);    
+                
 
-                if ($level_id) {
-                    wp_set_post_terms($post_id, [$level_id], "ndpv_lead_level");
+                $send_mail = Fns::password_mail( $name, $email, $password);
+
+                if ($send_mail) {
+                    //wp_send_json_success($send_mail);
+                } else {
+                    //wp_send_json_error(["Something wrong: Email not sent"]);
                 }
-
-                if ($person_id) {
-                    update_post_meta($post_id, "person_id", $person_id);
-                }
-
-                if ($org_id) {
-                    update_post_meta($post_id, "org_id", $org_id);
-                }
-
-                if ($budget) {
-                    update_post_meta($post_id, "budget", $budget);
-                }
-
-                if ($currency) {
-                    update_post_meta($post_id, "currency", $currency);
-                }
-
-                if ($tags) {
-                    wp_set_post_terms($post_id, $tags, "ndpv_tag");
-                }
-
-                if ($note) {
-                    update_post_meta($post_id, "note", $note);
-                }
-
-                //custom field
-                foreach(Fns::custom_field('lead') as $value) {
-                    $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
-                    if ( $field ) {
-                        update_post_meta($post_id, $value->id, $field);
-                    }
-                }
-
-                do_action('ndpvp/webhook', 'lead_add', $param);
-
-                wp_send_json_success($post_id);
             } else {
-                wp_send_json_error();
+                $user_id_role = new \WP_User($user_id);
+                $user_id_role->set_role($role);   
             }
+
+            $this->add_remove_user_caps($user_id, $caps);
+
+            wp_send_json_success($user_id);
         }
     }
 
-    public function update($req)
+     public function update($req)
     {
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
-        //lead
-        $first_name = isset($param["first_name"])
-            ? sanitize_text_field($param["first_name"])
-            : null;
-        $org_name = isset($param["org_name"])
-            ? sanitize_text_field($param["org_name"])
-            : null;
-        $person_id = isset($param["person_id"])
-            ? absint($param["person_id"])
-            : null;
-        $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
-        $level_id = isset($param["level_id"])
-            ? absint($param["level_id"])
-            : null;
-        $budget = isset($param["budget"])
-            ? sanitize_text_field($param["budget"])
-            : null;
-        $currency = isset($param["currency"])
-            ? sanitize_text_field($param["currency"])
-            : null;
-        $tags = isset($param["tags"])
-            ? array_map("absint", $param["tags"])
-            : null;
-        $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
-        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
-        $img = isset($param["img"]) ? absint($param["img"]) : null;
+        $name = isset($param["name"])
+            ? sanitize_text_field($param["name"])
+            : '';
+        $email = isset($param["email"])
+            ? sanitize_text_field($param["email"])
+            : ''; 
+        $role = isset($param["role"])
+            ? sanitize_text_field($param["role"])
+            : ''; 
+        $caps = isset($param["caps"])
+            ? array_map("sanitize_text_field", $param["caps"])
+            : ''; 
 
-        // $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
-
-        if (empty($first_name) && empty($org_name)) {
+        if (empty($name)) {
             $reg_errors->add(
-                "field",
-                esc_html__("Contact info is missing", "propovoice")
+                "name_field",
+                esc_html__("Name is missing", "propovoice")
             );
-        }
+        } 
 
-        /* if (!is_email($email)) {
+        if (empty($email)) {
+            $reg_errors->add(
+                "name_field",
+                esc_html__("Email is missing", "propovoice")
+            );
+        } 
+
+        if ( !is_email($email) ) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        } */
-
-        $person = new Person();
-        if ($person_id) {
-            $person->update($param);
-        }
-
-        if (!$person_id && $first_name) {
-            $person_id = $person->create($param);
-        }
-
-        $org = new Org();
-        if (!$person_id && $org_id) {
-            $org->update($param);
-        }
-
-        if ($org_id && $org_name) {
-            $org->update($param);
-        }
-
-        if (!$org_id && $org_name) {
-            $org_id = $org->create($param);
-        }
+        } 
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-            $url_params = $req->get_url_params();
-            $post_id = $url_params["id"];
 
-            $data = [
-                "ID" => $post_id,
-                "post_title" => "Lead",
-                "post_content" => $desc,
-                "post_author" => get_current_user_id(),
-            ];
-            $post_id = wp_update_post($data);
+            $user_id = email_exists( $email );
+        
+            if ( !$user_id ) {
+                $password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
+                $user_args = array (
+                    'user_login'   => $email,
+                    'user_pass'    => $password, 
+                    'user_email'   => $email,
+                    'nickname'     => $name,
+                    'display_name' => $name
+                );
 
-            if (!is_wp_error($post_id)) {
-                if ($level_id) {
-                    wp_set_post_terms($post_id, [$level_id], "ndpv_lead_level");
-                }
+                $user_id = wp_insert_user( $user_args );
+                 
 
-                if ($person_id) {
-                    update_post_meta($post_id, "person_id", $person_id);
-                }
+                /* $send_mail = Fns::password_mail( $name, $email, $password);
 
-                if ($org_id) {
-                    update_post_meta($post_id, "org_id", $org_id);
-                }
+                if ($send_mail) {
+                    //wp_send_json_success($send_mail);
+                } else {
+                    //wp_send_json_error(["Something wrong: Email not sent"]);
+                } */
+            } 
 
-                if ($budget) {
-                    update_post_meta($post_id, "budget", $budget);
-                }
+            $user_id_role = new \WP_User($user_id);
+            $user_id_role->set_role($role);  
+            
+            $this->add_remove_user_caps($user_id, $caps);
 
-                if ($currency) {
-                    update_post_meta($post_id, "currency", $currency);
-                }
-
-                if ($tags) {
-                    wp_set_post_terms($post_id, $tags, "ndpv_tag");
-                }
-
-                if ($note) {
-                    update_post_meta($post_id, "note", $note);
-                }
-
-                //custom field
-                foreach( Fns::custom_field('lead') as $value ) {
-                    $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
-                    update_post_meta($post_id, $value->id, $field);
-                }
-
-                do_action('ndpvp/webhook', 'lead_edit', $param);
-
-                wp_send_json_success($post_id);
-            } else {
-                wp_send_json_error();
-            }
+            wp_send_json_success($user_id);
         }
+    }
+
+    public function add_remove_user_caps($user_id, $caps)
+    {
+        $default_caps = [
+            'ndpv_dashboard',
+            'ndpv_lead',
+            'ndpv_deal',
+            'ndpv_estimate',
+            'ndpv_invoice',
+            'ndpv_client',
+            'ndpv_project',
+            'ndpv_contact'
+        ];
+
+        $user = new \WP_User($user_id);
+
+        $test = [];
+        foreach( $default_caps as $cap ) {
+            if ( in_array($cap, $caps) ) {
+                $user->add_cap($cap, true);
+            } else {
+                $user->add_cap($cap, false);
+            }
+        } 
+        
     }
 
     public function delete($req)
@@ -551,10 +338,9 @@ class Team
         $url_params = $req->get_url_params();
         $ids = explode(",", $url_params["id"]);
         foreach ($ids as $id) {
-            wp_delete_post($id);
+            $user_id_role = new \WP_User($id);
+            $user_id_role->set_role('subscriber');  
         }
-
-        do_action("ndpvp/webhook", "lead_del", $ids);
 
         wp_send_json_success($ids);
     }
@@ -562,21 +348,21 @@ class Team
     // check permission
     public function get_per()
     {
-        return current_user_can("ndpv_lead");
+        return current_user_can("administrator");
     }
 
     public function create_per()
     {
-        return current_user_can("ndpv_lead");
+        return current_user_can("administrator");
     }
 
     public function update_per()
     {
-        return current_user_can("ndpv_lead");
+        return current_user_can("administrator");
     }
 
     public function del_per()
     {
-        return current_user_can("ndpv_lead");
+        return current_user_can("administrator");
     }
 }
