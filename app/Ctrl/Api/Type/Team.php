@@ -83,7 +83,6 @@ class Team
         if (isset($param["page"]) && $param["page"] > 1) {
             $offset = $per_page * $param["page"] - $per_page;
         }
-
         
         $result = $data = [];
 
