@@ -32,14 +32,21 @@ function uploadFile(file, setForm) {
   );
 }
 
-function deleteFile(fileId) {
-  var request = window.gapi.client.drive.files.delete({
-    'fileId': fileId
-  });
-  request.execute(function (resp) {});
+export async function deleteFile(fileId) {
+  handleSignIn(() => {
+
+    var accessToken = window.gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
+    fetch(`https://www.googleapis.com/drive/v2/files/${fileId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Accept': 'application/json'
+      }
+    }).then(res => console.log(res));
+  })
 }
 
-function sendRequest(method, url, body, callback, params) {
+function sendRequest(method, url, body, callback, params = []) {
   var accessToken = window.gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
   var xhr = new XMLHttpRequest();
   xhr.open(method, url);

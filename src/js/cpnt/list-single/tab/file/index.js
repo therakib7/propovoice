@@ -73,7 +73,7 @@ const File = (props) => {
               }
               onClick={() => {
                 setActiveTab("drive");
-                props.getLists({ type: "drive" });
+                props.getLists({ type: "google-drive" });
               }}
             >
               {i18n.drive}
