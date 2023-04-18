@@ -38,14 +38,13 @@ const Setting = (props) => {
   let navigate = useNavigate();
 
   const { i18n, caps } = ndpv;
-  const isClient = caps.includes("ndpv_client_role");
+  const isClient = caps.includes("ndpv_client_role") || caps.includes("ndpv_contributor");
 
   let tabDefault = tab;
   let subtabDefault = subtab;
   if (tab === undefined) {
     tabDefault = 'general'
   }
-
 
   const tab_data = {
     general: {

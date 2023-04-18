@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Helper;
 
 class I18n
@@ -195,6 +196,7 @@ class I18n
             "logo" => esc_html__("Logo", "propovoice"),
             "cont" => esc_html__("Continue", "propovoice"),
             "save" => esc_html__("Save", "propovoice"),
+            "copy_form_code" => esc_html__("Copy Embeded Code", "propovoice"),
             "close" => esc_html__("Close", "propovoice"),
             //settings
             "cmn" => esc_html__("Common", "propovoice"),

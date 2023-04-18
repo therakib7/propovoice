@@ -66,7 +66,6 @@ export default class Form extends Component {
                     'ndpv_deal',
                     'ndpv_estimate',
                     'ndpv_invoice',
-                    'ndpv_client',
                     'ndpv_project'
                 ];
             }
@@ -227,7 +226,7 @@ export default class Form extends Component {
                                     </div>
                                 </div>
 
-                                {this.state.form.role && <div className="row">
+                                {this.state.form.role && (this.state.form.role != 'ndpv_admin') && <div className="row">
                                     <div className="col-10">
                                         <label>Capabilities</label>
                                         <div className="row">

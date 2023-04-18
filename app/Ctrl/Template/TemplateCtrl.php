@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Template;
 
 class TemplateCtrl
@@ -16,8 +17,9 @@ class TemplateCtrl
 	 */
 	function template_list($post_templates, $wp_theme, $post, $post_type)
 	{
-		if ( function_exists('ndpvp') ) {
+		if (function_exists('ndpvp')) {
 			$post_templates['workspace-template.php'] = esc_html__('Propovoice Workspace', 'propovoice');
+			$post_templates['form-template.php'] = esc_html__('Propovoice Embeded Form', 'propovoice');
 		}
 		$post_templates['estimate-template.php'] = esc_html__('Propovoice Client Estimate', 'propovoice');
 		$post_templates['invoice-template.php'] = esc_html__('Propovoice Client Invoice', 'propovoice');
@@ -35,12 +37,13 @@ class TemplateCtrl
 			'workspace',
 			'invoice',
 			'estimate',
+			'form',
 		];
 
-		foreach ( $templates as $template ) {
-			if ( get_page_template_slug() === $template .'-template.php' ) {
+		foreach ($templates as $template) {
+			if (get_page_template_slug() === $template . '-template.php') {
 				$custom_template = ndpv()->plugin_path() . '/view/template/' . $template . '-template.php';
-				if ( file_exists($custom_template) ) {
+				if (file_exists($custom_template)) {
 					return $custom_template;
 					break;
 				}

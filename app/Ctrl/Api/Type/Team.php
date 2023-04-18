@@ -98,13 +98,13 @@ class Team
             $info['name'] = $user->display_name; 
             $info['img'] = Fns::gravatar($user->user_email); 
             $info['email'] = $user->user_email; 
-            $info['role'] = $user->roles[0];  
+            $info['role'] = reset($user->roles);  
            
             $user_data = new \WP_User($user->id);
             $allcaps = array_keys( array_filter( $user_data->allcaps ) );
 
             $info['caps'] = $allcaps; 
-            $info['role_title'] = ucwords( str_replace( 'ndpv_', '', $user->roles[0] ) ); 
+            $info['role_title'] = ucwords( str_replace( 'ndpv_', '', reset($user->roles) ) ); 
             $data[] = $info;
         }
 

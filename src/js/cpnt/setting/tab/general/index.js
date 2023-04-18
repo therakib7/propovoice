@@ -20,7 +20,7 @@ const Main = (props) => {
 	const [currentTab, setCurrentTab] = useState('business');
 
 	const { i18n, caps, profile } = ndpv;
-	const isClient = caps.includes("ndpv_client_role");
+	const isClient = caps.includes("ndpv_client_role") || caps.includes("ndpv_contributor");
 	return (
 		<>
 			{isClient && <>
