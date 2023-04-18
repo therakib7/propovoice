@@ -33,10 +33,10 @@ function uploadFile(file, setForm) {
 }
 
 export async function deleteFile(fileId) {
-  handleSignIn(() => {
+  await handleSignIn(async () => {
 
-    var accessToken = window.gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
-    fetch(`https://www.googleapis.com/drive/v2/files/${fileId}`, {
+    var accessToken = await window.gapi.auth.getToken().access_token; // Here gapi is used for retrieving the access token.
+    await fetch(`https://www.googleapis.com/drive/v2/files/${fileId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${accessToken}`,

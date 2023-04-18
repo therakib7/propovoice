@@ -28,7 +28,6 @@ const getOAuth2Data = async () => {
     } else {
       toast.error("Please setup Google Client ID and Api key in Settings!");
       throw new Error("Please setup Google Client ID and Api key in Settings!");
-      return;
     }
   });
 };
@@ -80,10 +79,10 @@ async function handleSignIn(myRequest) {
   if (window.gapi.client.getToken() === null) {
     // Prompt the user to select a Google Account and ask for consent to share their data
     // when establishing a new session.
-    tokenClient.requestAccessToken({ prompt: "consent" });
+    await tokenClient.requestAccessToken({ prompt: "consent" });
   } else {
     // Skip display of account chooser and consent dialog for an existing session.
-    tokenClient.requestAccessToken({ prompt: "" });
+    await tokenClient.requestAccessToken({ prompt: "" });
   }
 }
 
