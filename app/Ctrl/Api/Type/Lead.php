@@ -120,6 +120,17 @@ class Lead
             }
         }
 
+
+        // Save the user IDs as a custom field for the post
+        $user_ids = array( 21 );
+        // update_post_meta( 78, '_ndpv_allowed_users', $user_ids );
+        // update_post_meta( 71, '_ndpv_allowed_users', $user_ids );
+
+        if ( current_user_can("ndpv_staff") ) {  
+            $args['post__in'] = Fns::get_posts_ids_by_type('ndpv_lead');
+            $args['orderby'] = 'post__in';
+        }
+
         $query = new \WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];

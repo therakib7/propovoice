@@ -43,6 +43,7 @@ class Client {
                     'user_login'     => $email,
                     'user_pass'      => $password, 
                     'user_email'     => $email,
+                    'first_name'     => $name,
                     'nickname'       => $name,
                     'display_name'   => $name
                 );

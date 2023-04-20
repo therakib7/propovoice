@@ -195,14 +195,23 @@ class Client
 
         $first_name = isset($param["first_name"])
             ? sanitize_text_field($param["first_name"])
-            : null;
+            : '';
         $org_name = isset($param["org_name"])
             ? sanitize_text_field($param["org_name"])
-            : null;
+            : '';
+
+        $email = isset($param["email"])
+            ? strtolower(sanitize_email($req["email"]))
+            : '';
+
         $person_id = isset($param["person_id"])
             ? absint($param["person_id"])
             : null;
         $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
+
+        $client_portal = isset($param["client_portal"])
+            ? rest_sanitize_boolean($param["client_portal"])
+            : false;
 
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
@@ -211,33 +220,39 @@ class Client
             );
         }
 
-        $person = new Person();
-        if ($person_id) {
-            $person->update($param);
-        }
-
-        if (!$person_id && $first_name) {
-            $param["is_client"] = true;
-            $person_id = $person->create($param);
-        }
-
-        $org = new Org();
-        if (!$person_id && $org_id) {
-            $org->update($param);
-        }
-
-        if (!$org_id && $org_name) {
-            if ($first_name) {
-                $param["is_client"] = false;
-            } else {
-                $param["is_client"] = true;
-            }
-            $org_id = $org->create($param);
-        }
-
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
+            $person = new Person();
+            if ($person_id) {
+                $person->update($param);
+            }
+
+            if (!$person_id && $first_name) {
+                $param["is_client"] = true;
+                $person_id = $person->create($param);
+            }
+
+            $org = new Org();
+            if (!$person_id && $org_id) {
+                $org->update($param);
+            }
+
+            if (!$org_id && $org_name) {
+                if ($first_name) {
+                    $param["is_client"] = false;
+                } else {
+                    $param["is_client"] = true;
+                }
+                $org_id = $org->create($param);
+            }
+
+            $post_id = ( $person_id ) ? $person_id : $org_id;
+            $client_model = new ModelClient();
+            $name = ( $person_id ) ? $first_name : $org_name;
+            $client_model->set_user_if_not($post_id, $name, $email, $client_portal);
+            update_post_meta($post_id, "client_portal", $client_portal);
+
             wp_send_json_success();
         }
     }
@@ -351,12 +366,6 @@ class Client
                 $client_model = new ModelClient();
                 $client_model->set_user_if_not($post_id, $first_name, $email, $client_portal);
                 update_post_meta($post_id, "client_portal", $client_portal);
-
-                /* if ( $client_portal ) {
-                    
-                } else {
-                    update_post_meta($post_id, "client_portal", false);
-                } */
 
                 wp_send_json_success($post_id);
             } else {

@@ -87,7 +87,7 @@ class Team
         $result = $data = [];
 
         $users = get_users( array(
-            'role__in' => array( 'ndpv_admin', 'ndpv_manager', 'ndpv_contributor' )
+            'role__in' => array( 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' )
         ) );
 
         $total_data = count($users);
@@ -206,6 +206,7 @@ class Team
                     'user_login'     => $email,
                     'user_pass'      => $password, 
                     'user_email'     => $email,
+                    'first_name'     => $name,
                     'nickname'       => $name,
                     'display_name'   => $name
                 );
@@ -280,6 +281,7 @@ class Team
                     'user_login'   => $email,
                     'user_pass'    => $password, 
                     'user_email'   => $email,
+                    'first_name'   => $name,
                     'nickname'     => $name,
                     'display_name' => $name
                 );
@@ -338,7 +340,9 @@ class Team
         $ids = explode(",", $url_params["id"]);
         foreach ($ids as $id) {
             $user_id_role = new \WP_User($id);
-            $user_id_role->set_role('subscriber');  
+            $user_id_role->remove_role('ndpv_admin');  
+            $user_id_role->remove_role('ndpv_manager');  
+            $user_id_role->remove_role('ndpv_staff');   
         }
 
         wp_send_json_success($ids);

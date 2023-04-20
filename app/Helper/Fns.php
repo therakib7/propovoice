@@ -51,6 +51,40 @@ class Fns
         return get_terms($args);
     }
 
+    public static function get_posts_ids_by_type( $post_type )
+    {   
+        $user_id = get_current_user_id();
+        $args1 = [
+            'posts_per_page' => -1,
+            'author' => $user_id,
+            'fields' => 'ids',
+            'post_type' => $post_type,
+        ];          
+        $query1 = new \WP_Query($args1);
+
+        $args2 = [
+            'posts_per_page' => -1,
+            'author__not_in' => [$user_id],
+            'fields' => 'ids',
+            'post_type' => $post_type,
+        ];
+
+        $args2["meta_query"] = [
+            "relation" => "AND",
+        ];
+        $args2["meta_query"][] = [
+            [
+                "key" => "_ndpv_allowed_users",
+                "value" => $user_id,
+                "compare" => "LIKE",
+            ], 
+        ];
+        $query2 = new \WP_Query($args2);
+        $merge_ids_posts = array_merge($query1->posts , $query2->posts);
+        wp_reset_query();
+        return $merge_ids_posts;
+    }
+
     public static function contact_exist($post_type, $value = '', $key = 'email' )
     {
         if ( $value ) {

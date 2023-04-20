@@ -27,6 +27,7 @@ export default class Form extends Component {
                 { label: 'Invoice', value: 'ndpv_invoice' },
                 { label: 'Client', value: 'ndpv_client' },
                 { label: 'Project', value: 'ndpv_project' },
+                { label: 'Task & Activity', value: 'ndpv_task' },
                 { label: 'Contact', value: 'ndpv_contact' },
             ]
         };
@@ -57,16 +58,17 @@ export default class Form extends Component {
                     'ndpv_estimate',
                     'ndpv_invoice',
                     'ndpv_client',
-                    'ndpv_project'
+                    'ndpv_project',
+                    'ndpv_contact'
                 ];
-            } else if (value == 'ndpv_contributor') {
+            } else if (value == 'ndpv_staff') {
                 form.caps = [
                     'ndpv_dashboard',
                     'ndpv_lead',
                     'ndpv_deal',
-                    'ndpv_estimate',
-                    'ndpv_invoice',
-                    'ndpv_project'
+                    'ndpv_client',
+                    'ndpv_project',
+                    'ndpv_task'
                 ];
             }
             // console.log(form)
@@ -191,7 +193,7 @@ export default class Form extends Component {
                                                         checked={this.state.form.role == "ndpv_admin"}
                                                         onChange={this.handleChange}
                                                     />
-                                                    <label htmlFor="role-admin">Co Admin</label>
+                                                    <label htmlFor="role-admin">Admin</label>
                                                 </div>
                                             </div>
 
@@ -215,11 +217,11 @@ export default class Form extends Component {
                                                         type="radio"
                                                         id="role-contributor"
                                                         name="role"
-                                                        value='ndpv_contributor'
-                                                        checked={this.state.form.role == "ndpv_contributor"}
+                                                        value='ndpv_staff'
+                                                        checked={this.state.form.role == "ndpv_staff"}
                                                         onChange={this.handleChange}
                                                     />
-                                                    <label htmlFor="role-contributor">Contributor</label>
+                                                    <label htmlFor="role-contributor">Staff</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -231,24 +233,31 @@ export default class Form extends Component {
                                         <label>Capabilities</label>
                                         <div className="row">
 
-                                            {this.state.capsList.map((c) => (
-                                                <div className="col-4" key={c.value}>
-                                                    <div className="pv-field-switch pv-mr-10">
-                                                        <label className="pv-switch">
-                                                            <input
-                                                                type="checkbox"
-                                                                id={c.value}
-                                                                name="cap"
-                                                                value={c.value}
-                                                                checked={this.state.form.caps.includes(c.value)}
-                                                                onChange={this.handleCheckboxChange}
-                                                            />
-                                                            <span className="pv-switch-slider pv-round" />
-                                                        </label>
+                                            {this.state.capsList.map((c) => {
+                                                if (this.state.form.role == 'ndpv_staff' && (
+                                                    c.value == 'ndpv_estimate' ||
+                                                    c.value == 'ndpv_invoice' ||
+                                                    c.value == 'ndpv_contact'
+                                                )) return;
+                                                return (
+                                                    <div className="col-4" key={c.value}>
+                                                        <div className="pv-field-switch pv-mr-10">
+                                                            <label className="pv-switch">
+                                                                <input
+                                                                    type="checkbox"
+                                                                    id={c.value}
+                                                                    name="cap"
+                                                                    value={c.value}
+                                                                    checked={this.state.form.caps.includes(c.value)}
+                                                                    onChange={this.handleCheckboxChange}
+                                                                />
+                                                                <span className="pv-switch-slider pv-round" />
+                                                            </label>
+                                                        </div>
+                                                        <label htmlFor={c.value}>{c.label}</label>
                                                     </div>
-                                                    <label htmlFor={c.value}>{c.label}</label>
-                                                </div>
-                                            ))}
+                                                )
+                                            })}
 
                                             {/* {capabilityList.map((c) => (
                                                 <div key={c.value}>
