@@ -4,6 +4,7 @@ import QtyType from './sub/QtyType';
 import Tax from './sub/Tax';
 import Fee from './sub/Fee';
 import Discount from './sub/Discount';
+import SavedItemsSettings from './sub/SavedItems';
 
 export default (props) => {
 
@@ -29,6 +30,10 @@ export default (props) => {
 			id: 'discount',
 			text: i18n.discount
 		},
+		{
+			id: 'saved_items',
+			text: i18n.saved_items
+		},
 	]);
 	const [currentTab, setCurrentTab] = useState('currency');
 
@@ -51,6 +56,7 @@ export default (props) => {
 			{currentTab == 'tax' && <Tax {...props} />}
 			{currentTab == 'fee' && <Fee />}
 			{currentTab == 'discount' && <Discount />}
+			{currentTab == 'saved_items' && <SavedItemsSettings />}
 		</>
 	);
 }  
