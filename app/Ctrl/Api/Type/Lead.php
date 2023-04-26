@@ -120,15 +120,15 @@ class Lead
             }
         }
 
-
-        // Save the user IDs as a custom field for the post
-        $user_ids = array( 21 );
-        // update_post_meta( 78, '_ndpv_allowed_users', $user_ids );
-        // update_post_meta( 71, '_ndpv_allowed_users', $user_ids );
-
         if ( current_user_can("ndpv_staff") ) {  
-            $args['post__in'] = Fns::get_posts_ids_by_type('ndpv_lead');
-            $args['orderby'] = 'post__in';
+            
+            $post_ids = Fns::get_posts_ids_by_type('ndpv_lead');
+            if ( !empty($post_ids) ) {
+                $args['post__in'] = $post_ids;
+                $args['orderby'] = 'post__in';
+            } else {
+                $args['author'] = get_current_user_id();
+            }            
         }
 
         $query = new \WP_Query($args);

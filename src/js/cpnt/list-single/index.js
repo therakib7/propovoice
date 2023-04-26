@@ -20,6 +20,8 @@ const Invoice = lazy(() => import("cpnt/invoice/list"));
 const Project = lazy(() => import("cpnt/project"));
 const Deal = lazy(() => import("cpnt/deal"));
 
+const Staff = lazy(() => import("block/staff"));
+
 class ListSingle extends Component {
   constructor(props) {
     super(props);
@@ -286,6 +288,7 @@ class ListSingle extends Component {
 
     const { i18n, caps } = ndpv;
     const isClient = caps.includes("ndpv_client_role");
+    const isStaff = caps.includes("ndpv_staff");
     return (
       <div className="ndpv-cpnt">
         <nav className="pv-breadcrumb">
@@ -1198,80 +1201,9 @@ class ListSingle extends Component {
               </div>
             </div>
 
-            <div className="pv-widget pv-info-box">
-              <h3 className="pv-widget-title">
-                Staff
-                <button className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow pv-mb-20" style={{ width: 'auto' }}>
-                  <svg
-                    width={12}
-                    height={12}
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1.875 6H10.125"
-                      stroke="#2D3748"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M6 1.875V10.125"
-                      stroke="#2D3748"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  Add Staff
-                </button>
-              </h3>
-              <div className="pv-persons-content">
-                <div className="pv-avatar-content pv-p-0">
-                  <img src="assets/img/avatar.png" alt="avatar" />
-                  <div className="pv-avatar-text">
-                    <h5>Nabil Ahmed</h5>
-                    <p>therakib@gmail.com</p>
-                  </div>
-                  <div className="pv-action-content">
-                    <button>
-                      <span className="pv-action-btn pv-bg-stroke pv-bg-shadow">
-                        <svg
-                          width={18}
-                          height={20}
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M7 12C7 10.8954 6.10457 10 5 10C3.89543 10 3 10.8954 3 12C3 13.1046 3.89543 14 5 14C6.10457 14 7 13.1046 7 12Z"
-                            fill="#718096"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14C13.1046 14 14 13.1046 14 12Z"
-                            fill="#718096"
-                          />
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14C20.1046 14 21 13.1046 21 12Z"
-                            fill="#718096"
-                          />
-                        </svg>
-                      </span>
-                    </button>
-                    <div className="pv-dropdown-content">
-                      <a href="#home">Remove</a>
-                    </div>
-                  </div>
-                  {/* ./ pv-action-content */}
-                </div>
-              </div>
-            </div>
-
+            {!isClient && !isStaff && !wage.length && <Suspense fallback={<Spinner />}>
+              <Staff tab_id={data.tab_id} />
+            </Suspense>}
 
             {false && (
               <div className="pv-widget pv-timeline-box">

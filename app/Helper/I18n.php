@@ -108,6 +108,7 @@ class I18n
             "Sign" => esc_html__("Signature", "propovoice"),
             "style" => esc_html__("Style", "propovoice"),
             "addi" => esc_html__("Additional", "propovoice"),
+            "staff" => esc_html__("Staff", "propovoice"),
             //Client
             "add_Client" => esc_html__("Add Client", "propovoice"),
             //project

@@ -97,9 +97,9 @@ class Task
             "posts_per_page" => -1,
         ];
 
-        if (!in_array("ndpv_manager", wp_get_current_user()->roles)) {
-            $args["author"] = get_current_user_id();
-        }
+        // if (!in_array("ndpv_manager", wp_get_current_user()->roles)) {
+        //     $args["author"] = get_current_user_id();
+        // }
 
         if (!$tab_id) {
             $args["posts_per_page"] = $per_page;
@@ -157,6 +157,17 @@ class Task
                     "field" => "term_id",
                 ],
             ];
+        }
+
+        if ( current_user_can("ndpv_staff") ) {  
+            
+            $post_ids = Fns::get_posts_ids_by_type('ndpv_task'); 
+            if ( !empty($post_ids) ) {
+                $args['post__in'] = $post_ids;
+                $args['orderby'] = 'post__in';
+            } else {
+                $args['author'] = get_current_user_id();
+            }            
         }
 
         $query = new \WP_Query($args);

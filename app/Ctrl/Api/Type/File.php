@@ -88,9 +88,9 @@ class File
             "offset" => $offset,
         ];
 
-        if (!in_array("ndpv_manager", wp_get_current_user()->roles)) {
-            $args["author"] = get_current_user_id();
-        }
+        // if (!in_array("ndpv_manager", wp_get_current_user()->roles)) {
+        //     $args["author"] = get_current_user_id();
+        // }
 
         $args["meta_query"] = [
             "relation" => "AND",
