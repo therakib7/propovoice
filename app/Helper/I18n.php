@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Helper;
 
 class I18n
@@ -161,6 +162,10 @@ class I18n
             "create" => esc_html__("Create", "propovoice"),
             "icon" => esc_html__("Icon", "propovoice"),
             "text" => esc_html__("Text", "propovoice"),
+            "date" => esc_html__("Date", "propovoice"),
+            "select" => esc_html__("Select", "propovoice"),
+            "multiselect" => esc_html__("Multiselect", "propovoice"),
+            "number" => esc_html__("Number", "propovoice"),
             "img" => esc_html__("Image", "propovoice"),
             "add" => esc_html__("Add", "propovoice"),
             "new" => esc_html__("New", "propovoice"),
@@ -198,6 +203,7 @@ class I18n
             "logo" => esc_html__("Logo", "propovoice"),
             "cont" => esc_html__("Continue", "propovoice"),
             "save" => esc_html__("Save", "propovoice"),
+            "copy_form_code" => esc_html__("Copy Embeded Code", "propovoice"),
             "close" => esc_html__("Close", "propovoice"),
             //settings
             "cmn" => esc_html__("Common", "propovoice"),
@@ -261,6 +267,7 @@ class I18n
             "field" => esc_html__("Field", "propovoice"),
             "fields" => esc_html__("Fields", "propovoice"),
             "discount" => esc_html__("Discount", "propovoice"),
+            "saved_items" => esc_html__("Saved Items", "propovoice"),
             "txn" => esc_html__("Transaction", "propovoice"),
             "stripe" => esc_html__("Stripe", "propovoice"),
             "paypal" => esc_html__("Paypal", "propovoice"),
