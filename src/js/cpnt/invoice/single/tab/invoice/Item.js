@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from 'api';
+import { toast } from "react-toastify";
 
 export default (props) => {
     const calcItemTotal = (qty, price) => {
@@ -23,10 +24,10 @@ export default (props) => {
         api.add('savefornext',data).then(res => {
             console.log(res)
             api.get('savefornext','').then(r => {
-                console.log(r);
+                toast.success('Item saved!')
             })
         }).catch(err => {
-            console.log(err);
+            toast.error('Unable to save');
         })
         
 

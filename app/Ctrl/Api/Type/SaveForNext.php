@@ -22,18 +22,29 @@ class SaveForNext
                     return true;
                 },
             ],
-            [
-                "methods" => "DELETE",
-                "callback" => [$this, "delete_data"],
-                "permission_callback" => function () {
-                    return true;
-                },
-            ],
+
             [
                 "methods" => "GET",
                 "callback" => [$this, "get_data"],
 
             ],
+        ]);
+
+        register_rest_route("ndpv/v1", "/savefornext/(?P<index>[a-zA-Z0-9\-]+)", [
+            "methods" => "DELETE",
+            "callback" => [$this, "delete_data"],
+            "permission_callback" => function () {
+                return true;
+            }
+        ]);
+
+        register_rest_route("ndpv/v1", "/savefornext/(?P<index>[a-zA-Z0-9\-]+)", [
+            "methods" => "PUT",
+            "callback" => [$this, "update_data"],
+            "permission_callback" => function () {
+                return true;
+            }
+
         ]);
     }
 
@@ -72,6 +83,7 @@ class SaveForNext
 
     public function delete_data($req)
     {
+        error_log('delte called');
         $param = $req->get_params();
         $index = $param['index'];
         // Get existing data from the option.
@@ -86,5 +98,43 @@ class SaveForNext
             // Save the updated data to the option.
             update_option($this->option_name, array_values($existing_data));
         }
+    }
+
+    public function update_data($request)
+    {
+        error_log('update data');
+        // Get the index of the item to update.
+        $index = $request->get_param('index');
+
+        error_log($index);
+        // Get the request data.
+        $data = $request->get_json_params();
+
+        // Get the existing item data.
+        $existing_data = get_option($this->option_name, array());
+
+        // Find the item to update based on the index.
+        $key = array_search($index, array_column($existing_data, 'index'));
+        if ($key !== false) {
+            // Update the item with the new data.
+            $existing_data[$key] = array_merge($existing_data[$key], $data);
+
+            // Update the item data option.
+            $updated = update_option($this->option_name, $existing_data);
+
+            if ($updated) {
+                // Return success response.
+                return new \WP_REST_Response(array(
+                    'status'  => 'success',
+                    'message' => 'item data item updated successfully.',
+                ), 200);
+            }
+        }
+
+        // Return error response if the item could not be found or updated.
+        return new \WP_REST_Response(array(
+            'status'  => 'error',
+            'message' => 'Failed to update item data item.',
+        ), 500);
     }
 }
