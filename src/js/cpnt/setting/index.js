@@ -94,6 +94,9 @@ const Setting = (props) => {
     "custom-fields": {
       label: i18n.cus + " " + i18n.fields,
     },
+    'public-api': {
+      label: "Public API"
+    },
     integration: {
       label: i18n.intg,
     },
@@ -177,8 +180,8 @@ const Setting = (props) => {
                           className={
                             "pv-subtab " +
                             (subkey == currentSubtab ||
-                            (!currentSubtab &&
-                              Object.keys(tabs[key].subtabs)[0] == subkey)
+                              (!currentSubtab &&
+                                Object.keys(tabs[key].subtabs)[0] == subkey)
                               ? "pv-active"
                               : "")
                           }
