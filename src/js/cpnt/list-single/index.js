@@ -1201,7 +1201,7 @@ class ListSingle extends Component {
               </div>
             </div>
 
-            {!isClient && !isStaff && !wage.length && <Suspense fallback={<Spinner />}>
+            {!isClient && !isStaff && !wage.length && data.tab_id && <Suspense fallback={<Spinner />}>
               <Staff tab_id={data.tab_id} />
             </Suspense>}
 

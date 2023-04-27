@@ -364,6 +364,14 @@ export default class Form extends Component {
               </div>
 
               <div className="row">
+                <div className="col">
+                  {!isClient && !isStaff && !wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
+                    <Staff tab_id={this.props.data.id} inForm />
+                  </Suspense>}
+                </div>
+              </div>
+
+              <div className="row">
                 <div className="col-lg">
                   <label htmlFor="google_meet">
                     {i18n.meeting} {i18n.link}
@@ -473,14 +481,6 @@ export default class Form extends Component {
                     data={this.state.form.checklist}
                     changeHandler={this.handleChecklistChange}
                   />
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col">
-                  {!isClient && !isStaff && !wage.length && <Suspense fallback={<Spinner />}>
-                    <Staff tab_id={this.props.data.id} />
-                  </Suspense>}
                 </div>
               </div>
 

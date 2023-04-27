@@ -52,6 +52,7 @@ const Dashboard = (props) => {
     const create = ndpv.i18n.create;
     const { i18n, caps } = ndpv;
     const isClient = caps.includes("ndpv_client_role");
+    const isStaff = caps.includes("ndpv_staff");
     return (
         <div className="ndpv-dashboard">
             <div className="row">
@@ -177,7 +178,7 @@ const Dashboard = (props) => {
                         </div>
                     </div>
                 </div>}
-                {!isClient && <>
+                {(!isClient && !isStaff) && <>
                     <div className="col-lg-8">
                         <Suspense fallback={<Spinner />}>
                             {wage.length > 0 && <div style={{ marginBottom: 25 }}><TaskCom /></div>}

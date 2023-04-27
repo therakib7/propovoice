@@ -38,7 +38,7 @@ const Setting = (props) => {
   let navigate = useNavigate();
 
   const { i18n, caps } = ndpv;
-  const isClient = caps.includes("ndpv_client_role") || caps.includes("ndpv_contributor");
+  const isClient = caps.includes("ndpv_client_role") || caps.includes("ndpv_staff");
 
   let tabDefault = tab;
   let subtabDefault = subtab;
