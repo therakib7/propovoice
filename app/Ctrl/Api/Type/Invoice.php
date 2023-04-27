@@ -547,8 +547,10 @@ class Invoice
         $query_data["wc"] = false;
         if (ndpv()->wage()) {
             $wc = get_option("ndpv_payment_wc");
-            if ($wc["status"] && class_exists("woocommerce")) {
-                $query_data["wc"] = true;
+            if (isset($wc["status"])) {
+                if ($wc["status"] && class_exists("woocommerce")) {
+                    $query_data["wc"] = true;
+                }
             }
         }
 
