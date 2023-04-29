@@ -127,7 +127,7 @@ export default (props) => {
 					</button>
 				</h3>}
 
-				{dropdown && <div className="pv-dropdown-content pv-show">
+				{dropdown && <div className="pv-dropdown-content pv-show" style={{ left: 0 }}>
 					{list && list.map((v, i) => {
 						return (
 							<a key={i} onClick={() => handleSelect(v)}>{v.name}</a>

@@ -38,25 +38,35 @@ const Setting = (props) => {
   let navigate = useNavigate();
 
   const { i18n, caps } = ndpv;
-  const isClient = caps.includes("ndpv_client_role") || caps.includes("ndpv_staff");
+  const isClientStaff = caps.includes("ndpv_client_role") || caps.includes("ndpv_staff");
+  const isNotClientStaff = !caps.includes("ndpv_client_role") || !caps.includes("ndpv_staff");
+  const isAdmin = !caps.includes("ndpv_client_role") || !caps.includes("ndpv_staff") || !caps.includes("ndpv_manager");
 
   let tabDefault = tab;
-  let subtabDefault = subtab;
+  let subTabDefault = subtab;
   if (tab === undefined) {
     tabDefault = 'general'
   }
 
-  const tab_data = {
-    general: {
+  const tab_data = {};
+
+  if (true) {
+    tab_data.general = {
       label: i18n.gen
-    },
-    lead: {
+    };
+  }
+  if (caps.includes("ndpv_lead")) {
+    tab_data.lead = {
       label: i18n.lead
-    },
-    deal: {
+    };
+  }
+  if (caps.includes("ndpv_deal")) {
+    tab_data.deal = {
       label: i18n.deal
-    },
-    estinv: {
+    };
+  }
+  if (caps.includes("ndpv_estimate") || caps.includes("ndpv_invoice")) {
+    tab_data.estinv = {
       label: i18n.est + ' ' + i18n.nd + ' ' + i18n.inv,
       subtabs: {
         common: {
@@ -69,14 +79,20 @@ const Setting = (props) => {
           label: i18n.inv
         },
       },
-    },
-    project: {
+    };
+  }
+  if (caps.includes("ndpv_project")) {
+    tab_data.project = {
       label: i18n.project
-    },
-    payment: {
+    };
+  }
+  if (isAdmin) {
+    tab_data.payment = {
       label: i18n.payment
-    },
-    email: {
+    };
+  }
+  if (isAdmin) {
+    tab_data.email = {
       label: i18n.email + ' ' + i18n.tmpl,
       subtabs: {
         estimate: {
@@ -89,33 +105,48 @@ const Setting = (props) => {
           label: 'Client Portal'
         },
       },
-    },
-    task: {
+    };
+  }
+  if (caps.includes("ndpv_task")) {
+    tab_data.task = {
       label: i18n.taska
-    },
-    contact: {
+    };
+
+  }
+  if (caps.includes("ndpv_contact")) {
+    tab_data.contact = {
       label: i18n.ct
-    },
-    tag: {
+    };
+  }
+  if (isNotClientStaff) {
+    tab_data.tag = {
       label: i18n.tag
-    },
-    'custom-field': {
+    };
+  }
+  if (isAdmin) {
+    tab_data['custom-field'] = {
       label: i18n.cus + ' ' + i18n.field
-    },
-    integration: {
+    };
+
+  }
+  if (isAdmin) {
+    tab_data.integration = {
       label: i18n.intg
-    },
-    team: {
+    };
+
+  }
+  if (isAdmin) {
+    tab_data.team = {
       label: 'Team'
-    },
-  };
+    };
+  }
 
   const [currentTab, setCurrentTab] = useState(tabDefault);
-  const [currentSubtab, setCurrentSubtab] = useState(subtabDefault);
+  const [currentSubtab, setCurrentSubtab] = useState(subTabDefault);
   const [tabs, setTabs] = useState(tab_data);
 
   useEffect(() => {
-    if (isClient) {
+    if (isClientStaff) {
       setTabs({
         general: {
           label: i18n.gen
