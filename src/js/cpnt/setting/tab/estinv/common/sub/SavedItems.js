@@ -43,6 +43,7 @@ export default function SavedItemsSettings() {
         const [data, setData] = useState({
             index: row.index,
             title: row.title,
+            desc: row.desc,
             qty: row.qty,
             qty_type: row.qty_type,
             tax: row.tax,
@@ -52,7 +53,7 @@ export default function SavedItemsSettings() {
         const updateRow = () => {
             row.title = data.title
             setHidden(!hidden)
-            api.edit('savefornext',data.index, data).then(res => {
+            api.edit('savefornext', data.index, data).then(res => {
                 toast.success('Item updated');
             }).catch(err => console.log(err))
         }
@@ -67,7 +68,12 @@ export default function SavedItemsSettings() {
                     />
                 </td>
                 <td>
-                    {hidden ? row.title : <input type="text" value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} />}
+                    <div>
+                        <div>{hidden ? <div style={{ fontWeight: '500', fontSize: '12px' }}>{row.title}</div> : <input type="text" value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} />}</div>
+                        <div>
+                        {hidden ? <div style={{ fontWeight: '400px', fontSize: '8px' }}>{row.desc}</div> : <input style={{marginTop:'5px'}} type="text" value={data.desc} onChange={(e) => setData({ ...data, desc: e.target.value })} />} 
+                        </div>
+                    </div>
                 </td>
                 <td>
                     {hidden ? row.qty : <input type="number" style={{ width: '50px' }} value={data.qty} onChange={(e) => setData({ ...data, qty: e.target.value })} />}

@@ -408,6 +408,17 @@ class Invoice extends Component {
     this.setState({ invoice });
   };
 
+  // handle data changes for single item
+  handleItemsValue = (elementIndex, data) => {
+    let invoice = { ...this.state.invoice };
+    let items = this.state.invoice.items.map((item, i) => {
+      if (elementIndex !== i) return item;
+      return { ...item, ...data };
+    });
+    invoice.items = items;
+    this.setState({ invoice });
+  }
+
   handleAddLineItem = (e) => {
     let invoice = { ...this.state.invoice };
     invoice.items = invoice.items.concat([
@@ -1058,6 +1069,7 @@ class Invoice extends Component {
                         currencyFormatter={this.formatCurrency}
                         addHandler={this.handleAddLineItem}
                         changeHandler={this.handleLineItemChange}
+                        handleItemsValue={this.handleItemsValue}
                         focusHandler={this.handleFocusSelect}
                         deleteHandler={this.handleRemoveLineItem}
                         reorderHandler={this.handleReorderItems}

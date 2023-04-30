@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import api from 'api';
 import { toast } from "react-toastify";
 
@@ -9,9 +9,19 @@ export default (props) => {
 
     const { index, title, desc, qty, qty_type, qtyTypeList, item_tax, tax, tax_type, price } = props
     const i18n = ndpv.i18n;
+    const [savedItems, setSavedItems] = useState([]);
+
+
+
+    useEffect(() => {
+        api.get('savefornext').then(data => {
+            setSavedItems(data.data)
+        }).catch(e => console.log(e));
+    }, [])
+
     const saveForNext = () => {
         let data = {
-            index: Math.random().toString(36).substring(2,7),
+            index: Math.random().toString(36).substring(2, 7),
             title: title,
             desc: desc,
             qty: qty,
@@ -21,30 +31,89 @@ export default (props) => {
             tax_type: tax_type
         }
 
-        api.add('savefornext',data).then(res => {
+        api.add('savefornext', data).then(res => {
             console.log(res)
-            api.get('savefornext','').then(r => {
+            api.get('savefornext', '').then(r => {
                 toast.success('Item saved!')
             })
         }).catch(err => {
             toast.error('Unable to save');
         })
-        
 
     }
-    const [visiblity, setVisiblity] = useState(false)
+    const [visiblity, setVisiblity] = useState(false);
+    const [suggestionVisiblity, setSuggestionVisiblity] = useState(false);
+    const [isFocused, setFocused] = useState(false);
+
+    const handleTitleFocus = (e) => {
+        setFocused(true)
+    }
+
+    const handleTitleBlur = (e) => {
+        setFocused(false)
+    }
+
+    useEffect(() => {
+        if (title.length < 1 && isFocused) {
+            setSuggestionVisiblity(true)
+        } else {
+            setSuggestionVisiblity(false)
+        }
+
+    }, [title, isFocused]);
+
+
+
+
+    const changeItemsValue = (e, item) => {
+        e.preventDefault();
+        setSuggestionVisiblity(false)
+        props.handleItemsValue(index, {
+            title: item.title,
+            desc: item.desc,
+            qty: item.qty,
+            price: item.price
+        });
+
+
+    }
+
     return (
         <>
             <td
                 onMouseEnter={() => setVisiblity(true)}
                 onMouseLeave={() => setVisiblity(false)}
+                style={{ position: 'relative' }}
             >
                 <input
+                    onFocus={handleTitleFocus}
+                    onBlur={handleTitleBlur}
                     name="title"
                     type="text"
                     placeholder={i18n.title}
                     value={title}
-                    onChange={props.changeHandler(index)} /> <br />
+                    onChange={props.changeHandler(index)} />
+
+                {suggestionVisiblity &&
+                    <div style={{ left: '16px', top: '53px', width: '295px' }} className="pv-dropdown-content pv-show">
+
+                        {savedItems.map((item, i) => {
+                            return <a onClick={(e) => changeItemsValue(e, item, index)} key={i} href="#">
+                                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+                                    <div>
+                                        <div style={{ fontWeight: '500', fontSize: '12px' }}>{item.title}</div>
+                                        <div style={{ fontSize: '8px', color: '#718096' }}>{item.desc}</div>
+                                    </div>
+
+                                    <div style={{ fontSize: '10px', color: '#718096' }}>${item.price}</div>
+                                </div>
+                            </a>
+                        })}
+
+                    </div>}
+
+
+                <br />
 
                 <textarea
                     name="desc"
