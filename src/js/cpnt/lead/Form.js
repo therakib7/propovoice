@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import { toast } from "react-toastify";
@@ -8,6 +8,7 @@ import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import api from 'api';
 
+const DateField = lazy(() => import("block/date-picker"))
 export default class Form extends Component {
     constructor(props) {
         super(props);
@@ -43,8 +44,9 @@ export default class Form extends Component {
     }
 
     handleChange = (e, type) => {
+      
         const { name, value } = e.target;
-
+        
         if (type == 'contact') {
             let contact = { ...this.state.form.contact, [name]: value };
             let form = { ...this.state.form }
@@ -386,18 +388,46 @@ export default class Form extends Component {
                                 </div>
 
                                 {this.state.custom_field && this.props.custom_field.map((item, i) => (
+
                                     <div key={i} className="row">
+                                        {console.log(item)}
                                         <div className="col">
                                             <label htmlFor={'custom-field-' + i}>
                                                 {item.label}
                                             </label>
-                                            <input
+                                            {item.type === 'date' &&
+                                                // <input
+                                                //     id={'custom-field-' + i}
+                                                //     type='date'
+                                                //     name={item.id}
+                                                //     value={form[item.id]}
+                                                //     onChange={this.handleChange}
+                                                // />
+                                                <DateField
                                                 id={'custom-field-' + i}
-                                                type='text'
-                                                name={item.id}
-                                                value={form[item.id]}
-                                                onChange={this.handleChange}
-                                            />
+                                                    date={form.start_date}
+                                                    type="date"
+                                                    name={item.id}
+                                                    onDateChange={this.handleChange}
+                                                />
+                                            }
+                                            {item.type === 'number' &&
+                                                <input
+                                                    id={'custom-field-' + i}
+                                                    type='number'
+                                                    name={item.id}
+                                                    value={form[item.id]}
+                                                    onChange={this.handleChange}
+                                                />
+                                            }
+                                            {item.type === 'text' &&
+                                                <input
+                                                    id={'custom-field-' + i}
+                                                    type='text'
+                                                    name={item.id}
+                                                    value={form[item.id]}
+                                                    onChange={this.handleChange}
+                                                />}
                                             {item.desc && <p className='pv-field-desc'>{item.desc}</p>}
                                         </div>
                                     </div>

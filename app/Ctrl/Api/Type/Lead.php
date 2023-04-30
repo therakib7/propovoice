@@ -154,7 +154,7 @@ class Lead
             $query_data["desc"] = get_the_content();
 
             //custom field
-            foreach( Fns::custom_field('lead') as $value ) {
+            foreach (Fns::custom_field('lead') as $value) {
                 $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
             }
 
@@ -237,7 +237,7 @@ class Lead
         $query_data["desc"] = get_post_field("post_content", $id);
 
         //custom field
-        foreach( Fns::custom_field('lead') as $value ) {
+        foreach (Fns::custom_field('lead') as $value) {
             $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
         }
         $query_data['custom_field'] = Fns::custom_field('lead');
@@ -415,9 +415,9 @@ class Lead
                 }
 
                 //custom field
-                foreach(Fns::custom_field('lead') as $value) {
+                foreach (Fns::custom_field('lead') as $value) {
                     $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
-                    if ( $field ) {
+                    if ($field) {
                         update_post_meta($post_id, $value->id, $field);
                     }
                 }
@@ -542,7 +542,7 @@ class Lead
                 }
 
                 //custom field
-                foreach( Fns::custom_field('lead') as $value ) {
+                foreach (Fns::custom_field('lead') as $value) {
                     $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
                     update_post_meta($post_id, $value->id, $field);
                 }

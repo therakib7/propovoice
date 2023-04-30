@@ -1,4 +1,6 @@
 import { useState } from "react";
+import api from 'api';
+import { toast } from "react-toastify";
 
 export default (props) => {
     const calcItemTotal = (qty, price) => {
@@ -9,6 +11,7 @@ export default (props) => {
     const i18n = ndpv.i18n;
     const saveForNext = () => {
         let data = {
+            index: Math.random().toString(36).substring(2,7),
             title: title,
             desc: desc,
             qty: qty,
@@ -17,6 +20,16 @@ export default (props) => {
             tax: tax,
             tax_type: tax_type
         }
+
+        api.add('savefornext',data).then(res => {
+            console.log(res)
+            api.get('savefornext','').then(r => {
+                toast.success('Item saved!')
+            })
+        }).catch(err => {
+            toast.error('Unable to save');
+        })
+        
 
     }
     const [visiblity, setVisiblity] = useState(false)
