@@ -2,8 +2,7 @@ import { NavLink } from "react-router-dom";
 // import { useState } from 'react';
 
 export default (props) => {
-  const i18n = ndpv.i18n;
-  const caps = ndpv.caps;
+  const { i18n, caps } = ndpv;
   return (
     <ul>
       {caps.includes("ndpv_dashboard") && (
@@ -280,7 +279,7 @@ export default (props) => {
           </NavLink>
         </li>
       )}
-      {caps.includes("ndpv_task") && (
+      {caps.includes("ndpv_task") && !caps.includes("ndpv_client_role") && (
         <li>
           <NavLink
             to="task"
@@ -381,7 +380,7 @@ export default (props) => {
           </a>
         </li>
       )}
-      <li className="pv-mt-35">
+      {!caps.includes("ndpv_client_role") && <li className="pv-mt-35">
         <a href="https://propovoice.com/docs" target="_blank">
           <svg width={20} height={18} viewBox="0 0 20 18" fill="none">
             <path
@@ -411,7 +410,7 @@ export default (props) => {
           </svg>
           <span>Doc &amp; Tutorial</span>
         </a>
-      </li>
+      </li>}
     </ul>
   );
 };

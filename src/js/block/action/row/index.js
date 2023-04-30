@@ -9,8 +9,14 @@ export default (props) => {
     const close = useCallback(() => setDropdown(false), []);
     useClickOutside(dropdownRef, close);
 
-    const row = props.row;
-    const i18n = ndpv.i18n;
+    const { row, project, boardView } = props;
+    const { i18n, caps } = ndpv;
+    const isClient = caps.includes("ndpv_client_role");
+
+    let overview = true;
+    if (project && isClient && !boardView) {
+        overview = false;
+    }
     return (
         <div className="pv-action-content">
             <button className={(dropdown ? 'pv-active' : '')} onClick={() => setDropdown(val => !val)} style={{ padding: '0 5px' }} >
@@ -18,9 +24,9 @@ export default (props) => {
             </button>
 
             {dropdown && <div className="pv-dropdown-content pv-show" ref={dropdownRef}>
-                {props.handleOverview && <a onClick={() => { setDropdown(false); props.handleOverview(row.id) }}>{i18n.ov}</a>}
-                {props.editEntry && <a onClick={() => { setDropdown(false); props.editEntry('edit', row) }}>{i18n.edit}</a>}
-                <a onClick={() => { setDropdown(false); props.deleteEntry('single', row.id) }}>{i18n.del}</a>
+                {overview && props.handleOverview && <a onClick={() => { setDropdown(false); props.handleOverview(row.id) }}>{i18n.ov}</a>}
+                {!isClient && props.editEntry && <a onClick={() => { setDropdown(false); props.editEntry('edit', row) }}>{i18n.edit}</a>}
+                {!isClient && <a onClick={() => { setDropdown(false); props.deleteEntry('single', row.id) }}>{i18n.del}</a>}
             </div>}
         </div>
     );

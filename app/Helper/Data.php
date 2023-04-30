@@ -85,6 +85,23 @@ Thank you for your business.
 Regards
 {org_name}'
                     ]
+                ],   
+                'client_portal' => [    
+                    'password' => [
+                        'subject' => '{org_name} client portal credentials',
+                        'msg' => 'Hi <b>{client_name}</b>,
+{org_name} gives you access to their client portal. 
+You can log in with the credentials
+
+<b>Login URL:</b> {login_url}
+<b>Email:</b> {email}
+<b>Password:</b> {password} 
+
+Thank you for staying with us.
+
+Regards
+{org_name}'
+                    ]
                 ],    
             ]
         ];

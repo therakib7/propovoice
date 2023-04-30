@@ -1,4 +1,4 @@
-import React, { Component, lazy } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import moment from "moment";
 import { Add } from "block/icon";
 import api from "api";
@@ -7,6 +7,8 @@ import { createEvent } from "api/gapi/gcalendar";
 import Taxonomy from "block/field/taxonomy";
 const DateField = lazy(() => import("block/date-picker"));
 import Checklist from "./Checklist";
+import Spinner from "block/preloader/spinner";
+const Staff = lazy(() => import("block/staff"));
 
 export default class Form extends Component {
   constructor(props) {
@@ -231,7 +233,9 @@ export default class Form extends Component {
 
   render() {
     const form = this.state.form;
-    const i18n = ndpv.i18n;
+    const { i18n, caps } = ndpv;
+    const isClient = caps.includes("ndpv_client_role");
+    const isStaff = caps.includes("ndpv_staff");
     return (
       <div className="pv-overlay">
         <div
@@ -360,6 +364,14 @@ export default class Form extends Component {
               </div>
 
               <div className="row">
+                <div className="col">
+                  {!isClient && !isStaff && !wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
+                    <Staff tab_id={this.props.data.id} inForm />
+                  </Suspense>}
+                </div>
+              </div>
+
+              <div className="row">
                 <div className="col-lg">
                   <label htmlFor="google_meet">
                     {i18n.meeting} {i18n.link}
@@ -471,6 +483,7 @@ export default class Form extends Component {
                   />
                 </div>
               </div>
+
             </div>
           </div>
         </div>

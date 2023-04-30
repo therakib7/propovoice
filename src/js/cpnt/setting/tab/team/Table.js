@@ -1,6 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import Moment from 'react-moment';
 import Action from 'block/action/row';
+import { Arrow, Email, Tag } from 'block/icon';
+import Moment from 'react-moment';
+import { useNavigate } from 'react-router-dom';
 
 const TableHeader = props => {
     const i18n = ndpv.i18n;
@@ -15,25 +16,15 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    {i18n.ct} {i18n.name}
+                    {i18n.name}
                 </th>
                 <th>
+                    <Email />
                     {i18n.email}
                 </th>
-                {/* <th>
-                    Company Name
-                </th> */}
                 <th>
-                    {i18n.mob}
-                </th>
-                <th>
-                    {i18n.type}
-                </th>
-                {!wage.length && <th>
-                    Portal Access
-                </th>}
-                <th>
-                    {i18n.date}
+                    <Arrow />
+                    Role
                 </th>
                 <th>
                     {i18n.action}
@@ -44,21 +35,22 @@ const TableHeader = props => {
 }
 
 const TableBody = props => {
-
     const navigate = useNavigate();
     const handleOverview = (id) => {
-        navigate(`/client/${id}`);
+        navigate(`/lead/${id}`);
     };
 
     let rows = props.tableData.map((row, index) => {
+
         let data = props.checkedBoxes.data;
         const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
+        const level = row.level_id;
 
         let img = ndpv.assetImgUri + 'avatar.png';
         if (row.img) {
-            img = row.img.src;
+            img = row.img;
         }
-        const i18n = ndpv.i18n;
+
         return (
             <tr key={index}>
                 <td>
@@ -68,22 +60,19 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
+                <td>
                     <div className="pv-avater">
                         <img src={img} alt="avatar" />
-                        <span>{row.type == 'person' ? row.first_name : row.org_name}</span>
+                        <span>{row.name}</span>
                     </div>
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.email}</td>
-                {/*<td>{row.org_name}</td> */}
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.mobile}</td>
-                <td>{row.type == 'person' ? i18n.prsn : i18n.org}</td>
-                {!wage.length && <td>{row.client_portal ? 'Yes' : 'No'}</td>}
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.date}</td>
+                <td>{row.email}</td>
+                <td>
+                    {row.role_title}
+                </td>
                 <td className="pv-action">
                     <Action
                         row={row}
-                        handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
                     />

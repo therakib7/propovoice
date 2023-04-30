@@ -90,6 +90,24 @@ class Dashbaord
             "post_status" => "publish",
             "posts_per_page" => -1,
         ];
+
+        $args["meta_query"] = [
+            "relation" => "AND",
+        ];
+
+        if ( current_user_can("ndpv_client_role") ) {
+            $user_id = get_current_user_id();
+            $client_id = get_user_meta($user_id, 'ndpv_client_id', true);
+
+            $args["meta_query"][] = [
+                [
+                    "key" => "to",
+                    "value" => [$client_id],
+                    "compare" => "IN",
+                ],
+            ];
+        }
+
         $query = new \WP_Query($args);
         while ($query->have_posts()) {
             $query->the_post();
@@ -166,6 +184,16 @@ class Dashbaord
                     "field" => "term_id",
                 ],
             ];
+
+            if ( current_user_can("ndpv_staff") ) {              
+                $post_ids = Fns::get_posts_ids_by_type('ndpv_deal');
+                if ( !empty($post_ids) ) {
+                    $args['post__in'] = $post_ids;
+                    $args['orderby'] = 'post__in';
+                } else {
+                    $args['author'] = get_current_user_id();
+                }            
+            }
 
             $query = new \WP_Query($args);
             $total_data = $query->found_posts; //use this for pagination
@@ -351,6 +379,23 @@ class Dashbaord
             "posts_per_page" => -1,
         ];
 
+        $args["meta_query"] = [
+            "relation" => "AND",
+        ];
+
+        if ( current_user_can("ndpv_client_role") ) {
+            $user_id = get_current_user_id();
+            $client_id = get_user_meta($user_id, 'ndpv_client_id', true);
+
+            $args["meta_query"][] = [
+                [
+                    "key" => "to",
+                    "value" => [$client_id],
+                    "compare" => "IN",
+                ],
+            ];
+        }
+        
         $args["date_query"] = [["year" => $year]];
 
         $query = new \WP_Query($args);
