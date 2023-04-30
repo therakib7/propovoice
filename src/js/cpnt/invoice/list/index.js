@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { toast } from "react-toastify";
-import EntityFields from "../../../block/add-new/EntityFields";
+import EntityFields from "block/add-new/EntityFields";
 import { useNavigate, useLocation } from "react-router-dom";
 import AppContext from "context/app-context";
 

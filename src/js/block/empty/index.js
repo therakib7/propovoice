@@ -62,10 +62,12 @@ export default (props) => {
             strokeLinejoin="round"
           />
         </svg>
-        {mod == "lead" || mod == "client" || mod == "person" || mod == "org" || mod == "team"
-          ? i18n.let_start_adding
-          : i18n.let_start_creating}
-      </button>}
-    </div>
+        {
+          mod == "lead" || mod == "client" || mod == "person" || mod == "org" || mod == "team"
+            ? i18n.let_start_adding
+            : i18n.let_start_creating
+        }
+      </button >}
+    </div >
   );
 };
