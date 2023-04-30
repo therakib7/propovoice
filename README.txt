@@ -181,8 +181,7 @@ The super fantastic pro features that accelerate your business growth and improv
 == Changelog ==
 
 = 1.0.7.7 =
-* Added: Helper JS and functional files for Client Portal
-* Added: Helper JS and functional files for Team Role 
+* Added: Helper JS and functional files for Client Portal, Team Role, Google Drive, Public Api, Metform, Save Items
 
 = 1.0.7.6 =
 * Fixed: CSS styling issue
