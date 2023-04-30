@@ -28,13 +28,12 @@ const getOAuth2Data = async () => {
     } else {
       toast.error("Please setup Google Client ID and Api key in Settings!");
       throw new Error("Please setup Google Client ID and Api key in Settings!");
-      return;
     }
   });
 };
 
 function gapiLoaded() {
-  gapi.load("client:auth2", initializeGapiClient);
+  window.gapi.load("client:auth2", initializeGapiClient);
 }
 
 async function initializeGapiClient() {
@@ -43,7 +42,7 @@ async function initializeGapiClient() {
   const DISCOVERY_DOC =
     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest";
 
-  await gapi.client.init({
+  await window.gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
   });
@@ -77,13 +76,13 @@ async function handleSignIn(myRequest) {
     }
     await myRequest();
   };
-  if (gapi.client.getToken() === null) {
+  if (window.gapi.client.getToken() === null) {
     // Prompt the user to select a Google Account and ask for consent to share their data
     // when establishing a new session.
-    tokenClient.requestAccessToken({ prompt: "consent" });
+    await tokenClient.requestAccessToken({ prompt: "consent" });
   } else {
     // Skip display of account chooser and consent dialog for an existing session.
-    tokenClient.requestAccessToken({ prompt: "" });
+    await tokenClient.requestAccessToken({ prompt: "" });
   }
 }
 

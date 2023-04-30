@@ -9,6 +9,9 @@ import Currency from 'block/field/currency';
 
 const DateField = lazy(() => import('block/date-picker'));
 
+const { i18n, caps } = ndpv;
+const isClient = caps.includes("ndpv_client_role");
+
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -145,10 +148,25 @@ class Form extends Component {
             form.tags = finalArray;
         }
 
+        if (isClient) {
+            form.project_req = true;
+
+            api.add('deals', form).then(resp => {
+                if (resp.data.success) {
+                    toast.success(ndpv.i18n.aAdd);
+                    this.props.close();
+                } else {
+                    resp.data.data.forEach(function (value, index, array) {
+                        toast.error(value);
+                    });
+                }
+            });
+            return;
+        }
+
         if (this.props.reload) {
 
             if (this.props.modalType == 'move') {
-
                 api.add('projects', form).then(resp => {
                     if (resp.data.success) {
                         toast.success(ndpv.i18n.aProM);
@@ -227,7 +245,7 @@ class Form extends Component {
     }
 
     render() {
-        const i18n = ndpv.i18n;
+
         // const stageList = this.state.stages;
         // const tagList = this.state.tags;
         const form = this.state.form;
@@ -248,7 +266,7 @@ class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Cross />
                         </span>
-                        <h2 className="pv-modal-title">{title} {i18n.project}</h2>
+                        <h2 className="pv-modal-title">{isClient ? i18n.new + ' ' + i18n.project + ' ' + i18n.req : title + ' ' + i18n.project}</h2>
                         <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.project + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
@@ -273,43 +291,43 @@ class Form extends Component {
                                     </div>
                                 </div>
 
-                                {/* {!this.props.reload && <> */}
-                                <Contact
-                                    first_name={form.first_name}
-                                    org_name={form.org_name}
-                                    onChange={this.handleContactChange}
-                                    onSelect={this.handleContactSelect}
-                                />
+                                {!isClient && <>
+                                    <Contact
+                                        first_name={form.first_name}
+                                        org_name={form.org_name}
+                                        onChange={this.handleContactChange}
+                                        onSelect={this.handleContactSelect}
+                                    />
 
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-email">
-                                            {i18n.email}
-                                        </label>
-                                        <input
-                                            id="form-email"
-                                            type="email"
-                                            name="email"
-                                            value={form.email}
-                                            onChange={this.handleChange}
-                                        />
+                                    <div className="row">
+                                        <div className="col-lg">
+                                            <label htmlFor="form-email">
+                                                {i18n.email}
+                                            </label>
+                                            <input
+                                                id="form-email"
+                                                type="email"
+                                                name="email"
+                                                value={form.email}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
+
+                                        <div className="col-lg">
+                                            <label htmlFor="form-mobile">
+                                                {i18n.mob}
+                                            </label>
+
+                                            <input
+                                                id="form-mobile"
+                                                type="text"
+                                                name="mobile"
+                                                value={form.mobile}
+                                                onChange={this.handleChange}
+                                            />
+                                        </div>
                                     </div>
-
-                                    <div className="col-lg">
-                                        <label htmlFor="form-mobile">
-                                            {i18n.mob}
-                                        </label>
-
-                                        <input
-                                            id="form-mobile"
-                                            type="text"
-                                            name="mobile"
-                                            value={form.mobile}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-                                {/* </>} */}
+                                </>}
 
                                 <div className="row">
                                     <div className="col-md">
@@ -335,7 +353,7 @@ class Form extends Component {
 
                                 </div>
 
-                                <div className="row">
+                                {!isClient && <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-status_id">
                                             {i18n.status}
@@ -349,9 +367,9 @@ class Form extends Component {
                                             color
                                         />
                                     </div>
-                                </div>
+                                </div>}
 
-                                <div className="row">
+                                {!isClient && <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-start_date">
                                             {i18n.start} {i18n.date}
@@ -369,9 +387,9 @@ class Form extends Component {
                                             <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
                                         </div>
                                     </div>
-                                </div>
+                                </div>}
 
-                                <div className="row">
+                                {!isClient && <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-tags">
                                             {i18n.tag}
@@ -386,7 +404,7 @@ class Form extends Component {
                                             />
                                         </div>
                                     </div>
-                                </div>
+                                </div>}
 
                                 <div className="row">
                                     <div className="col">
@@ -404,7 +422,7 @@ class Form extends Component {
                                     </div>
                                 </div>
 
-                                <div className="row">
+                                {!isClient && <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-note">
                                             {i18n.note}
@@ -418,9 +436,9 @@ class Form extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div>
+                                </div>}
 
-                                {this.state.custom_field && this.props.custom_field.map((item, i) => (
+                                {!isClient && this.state.custom_field && this.props.custom_field.map((item, i) => (
                                     <div key={i} className="row">
                                         <div className="col">
                                             <label htmlFor={'custom-field-' + i}>
@@ -447,7 +465,7 @@ class Form extends Component {
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.save}
+                                        {isClient ? i18n.req : i18n.save}
                                     </button>
                                 </div>
                             </div>

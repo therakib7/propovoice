@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-10 03:39+0000\n"
+"POT-Creation-Date: 2023-04-29 05:45+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,23 +15,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %s template
-#: ../app/Helper/Fns.php:348
+#: ../app/Helper/Fns.php:384
 msgid "%s does not exist."
 msgstr ""
 
-#: ../app/Helper/I18n.php:11, ../app/Ctrl/Setting/Type/Dashboard.php:29, ../app/Ctrl/Setting/Type/Dashboard.php:30
+#: ../app/Helper/I18n.php:11, ../app/Ctrl/Setting/Type/Dashboard.php:31, ../app/Ctrl/Setting/Type/Dashboard.php:32
 msgid "Dashboard"
 msgstr ""
 
-#: ../app/Helper/I18n.php:12, ../app/Ctrl/Setting/Type/Dashboard.php:39
+#: ../app/Helper/I18n.php:12, ../app/Ctrl/Setting/Type/Dashboard.php:41
 msgid "Lead"
 msgstr ""
 
-#: ../app/Helper/I18n.php:13, ../app/Ctrl/Setting/Type/Dashboard.php:46
+#: ../app/Helper/I18n.php:13, ../app/Ctrl/Setting/Type/Dashboard.php:48
 msgid "Deal"
 msgstr ""
 
-#: ../app/Helper/I18n.php:14, ../app/Ctrl/Setting/Type/Dashboard.php:51
+#: ../app/Helper/I18n.php:14, ../app/Ctrl/Setting/Type/Dashboard.php:53
 msgid "Estimate"
 msgstr ""
 
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Estimate No"
 msgstr ""
 
-#: ../app/Helper/I18n.php:16, ../app/Ctrl/Setting/Type/Dashboard.php:60
+#: ../app/Helper/I18n.php:16, ../app/Ctrl/Setting/Type/Dashboard.php:62
 msgid "Invoice"
 msgstr ""
 
@@ -47,11 +47,11 @@ msgstr ""
 msgid "Invoice No"
 msgstr ""
 
-#: ../app/Helper/I18n.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:65
+#: ../app/Helper/I18n.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:67
 msgid "Client"
 msgstr ""
 
-#: ../app/Helper/I18n.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:70
+#: ../app/Helper/I18n.php:19, ../app/Ctrl/Setting/Type/Dashboard.php:72
 msgid "Project"
 msgstr ""
 
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Task & Activity"
 msgstr ""
 
-#: ../app/Helper/I18n.php:22, ../app/Ctrl/Setting/Type/Dashboard.php:75
+#: ../app/Helper/I18n.php:22, ../app/Ctrl/Setting/Type/Dashboard.php:77
 msgid "Contact"
 msgstr ""
 
@@ -188,724 +188,724 @@ msgid "Level"
 msgstr ""
 
 #: ../app/Helper/I18n.php:59
-msgid "Add Lead"
-msgstr ""
-
-#: ../app/Helper/I18n.php:60
 msgid "Source"
 msgstr ""
 
-#: ../app/Helper/I18n.php:62, ../app/Ctrl/Setting/Type/Dashboard.php:45
+#: ../app/Helper/I18n.php:61, ../app/Ctrl/Setting/Type/Dashboard.php:47
 msgid "Deal Pipeline"
 msgstr ""
 
-#: ../app/Helper/I18n.php:63
+#: ../app/Helper/I18n.php:62
 msgid "Add Stage"
 msgstr ""
 
-#: ../app/Helper/I18n.php:64
+#: ../app/Helper/I18n.php:63
 msgid "Add Deal"
 msgstr ""
 
-#: ../app/Helper/I18n.php:65
+#: ../app/Helper/I18n.php:64
 msgid "Stage"
 msgstr ""
 
-#: ../app/Helper/I18n.php:66
+#: ../app/Helper/I18n.php:65
 msgid "Won"
 msgstr ""
 
-#: ../app/Helper/I18n.php:67
+#: ../app/Helper/I18n.php:66
 msgid "Lost"
 msgstr ""
 
-#: ../app/Helper/I18n.php:68
+#: ../app/Helper/I18n.php:67
 msgid "Probability"
 msgstr ""
 
-#: ../app/Helper/I18n.php:70
+#: ../app/Helper/I18n.php:69
 msgid "&"
 msgstr ""
 
-#: ../app/Helper/I18n.php:71
-msgid "Add Estimate"
-msgstr ""
-
-#: ../app/Helper/I18n.php:72
-msgid "Add Invoice"
-msgstr ""
-
-#: ../app/Helper/I18n.php:73
+#: ../app/Helper/I18n.php:70
 msgid "Estimate Number"
 msgstr ""
 
-#: ../app/Helper/I18n.php:74
+#: ../app/Helper/I18n.php:71
 msgid "Estimate Date"
 msgstr ""
 
-#: ../app/Helper/I18n.php:75
+#: ../app/Helper/I18n.php:72
 msgid "Invoice Number"
 msgstr ""
 
-#: ../app/Helper/I18n.php:76
+#: ../app/Helper/I18n.php:73
 msgid "Invoice Date"
 msgstr ""
 
-#: ../app/Helper/I18n.php:77
+#: ../app/Helper/I18n.php:74
 msgid "Template"
 msgstr ""
 
-#: ../app/Helper/I18n.php:78, ../app/Ctrl/Widget/Elementor/Widgets/Registration.php:35
+#: ../app/Helper/I18n.php:75, ../app/Ctrl/Widget/Elementor/Widgets/Registration.php:35
 msgid "Content"
 msgstr ""
 
-#: ../app/Helper/I18n.php:79
+#: ../app/Helper/I18n.php:76
 msgid "Number"
 msgstr ""
 
-#: ../app/Helper/I18n.php:80
+#: ../app/Helper/I18n.php:77
 msgid "Sender"
 msgstr ""
 
-#: ../app/Helper/I18n.php:81
+#: ../app/Helper/I18n.php:78
 msgid "Receiver"
 msgstr ""
 
-#: ../app/Helper/I18n.php:82
+#: ../app/Helper/I18n.php:79
 msgid "Item"
 msgstr ""
 
-#: ../app/Helper/I18n.php:83
+#: ../app/Helper/I18n.php:80
 msgid "Items"
 msgstr ""
 
-#: ../app/Helper/I18n.php:84
+#: ../app/Helper/I18n.php:81
 msgid "Quantity"
 msgstr ""
 
-#: ../app/Helper/I18n.php:85, ../app/Helper/I18n.php:154
+#: ../app/Helper/I18n.php:82, ../app/Helper/I18n.php:152
 msgid "Rate"
 msgstr ""
 
-#: ../app/Helper/I18n.php:86
+#: ../app/Helper/I18n.php:83
 msgid "Amount"
 msgstr ""
 
-#: ../app/Helper/I18n.php:87, ../app/Helper/I18n.php:113
+#: ../app/Helper/I18n.php:84, ../app/Helper/I18n.php:110
 msgid "Additional"
 msgstr ""
 
-#: ../app/Helper/I18n.php:88
+#: ../app/Helper/I18n.php:85
 msgid "Extra"
 msgstr ""
 
-#: ../app/Helper/I18n.php:89, ../app/Helper/I18n.php:296
+#: ../app/Helper/I18n.php:86, ../app/Helper/I18n.php:296
 msgid "Subtotal"
 msgstr ""
 
-#: ../app/Helper/I18n.php:90
+#: ../app/Helper/I18n.php:87
 msgid "Download"
 msgstr ""
 
-#: ../app/Helper/I18n.php:91
+#: ../app/Helper/I18n.php:88
 msgid "Print"
 msgstr ""
 
-#: ../app/Helper/I18n.php:92
+#: ../app/Helper/I18n.php:89
 msgid "Share"
 msgstr ""
 
-#: ../app/Helper/I18n.php:93
+#: ../app/Helper/I18n.php:90
 msgid "Send"
 msgstr ""
 
-#: ../app/Helper/I18n.php:94
+#: ../app/Helper/I18n.php:91
 msgid "Sent"
 msgstr ""
 
-#: ../app/Helper/I18n.php:95
+#: ../app/Helper/I18n.php:92
 msgid "Viewed"
 msgstr ""
 
-#: ../app/Helper/I18n.php:96
+#: ../app/Helper/I18n.php:93
 msgid "Accepted"
 msgstr ""
 
-#: ../app/Helper/I18n.php:97
+#: ../app/Helper/I18n.php:94
 msgid "Accept"
 msgstr ""
 
-#: ../app/Helper/I18n.php:98
+#: ../app/Helper/I18n.php:95
 msgid "Declined"
 msgstr ""
 
-#: ../app/Helper/I18n.php:99, ../app/Helper/I18n.php:252
+#: ../app/Helper/I18n.php:96, ../app/Helper/I18n.php:250
 msgid "Paid"
 msgstr ""
 
-#: ../app/Helper/I18n.php:100
+#: ../app/Helper/I18n.php:97
 msgid "Unpaid"
 msgstr ""
 
-#: ../app/Helper/I18n.php:101
+#: ../app/Helper/I18n.php:98
 msgid "Overdue"
 msgstr ""
 
-#: ../app/Helper/I18n.php:102
+#: ../app/Helper/I18n.php:99
 msgid "Reminder"
 msgstr ""
 
-#: ../app/Helper/I18n.php:103
+#: ../app/Helper/I18n.php:100
 msgid "Default"
 msgstr ""
 
-#: ../app/Helper/I18n.php:104
+#: ../app/Helper/I18n.php:101
 msgid "Recurring"
 msgstr ""
 
-#: ../app/Helper/I18n.php:105
+#: ../app/Helper/I18n.php:102
 msgid "Language"
 msgstr ""
 
-#: ../app/Helper/I18n.php:106
+#: ../app/Helper/I18n.php:103
 msgid "Hide"
 msgstr ""
 
-#: ../app/Helper/I18n.php:107
+#: ../app/Helper/I18n.php:104
 msgid "Position"
 msgstr ""
 
-#: ../app/Helper/I18n.php:108
+#: ../app/Helper/I18n.php:105
 msgid "Before"
 msgstr ""
 
-#: ../app/Helper/I18n.php:109
+#: ../app/Helper/I18n.php:106
 msgid "After"
 msgstr ""
 
-#: ../app/Helper/I18n.php:110
+#: ../app/Helper/I18n.php:107
 msgid "Authorized Signature"
 msgstr ""
 
-#: ../app/Helper/I18n.php:111
+#: ../app/Helper/I18n.php:108
 msgid "Signature"
 msgstr ""
 
-#: ../app/Helper/I18n.php:112
+#: ../app/Helper/I18n.php:109
 msgid "Style"
 msgstr ""
 
-#: ../app/Helper/I18n.php:115
+#: ../app/Helper/I18n.php:111
+msgid "Staff"
+msgstr ""
+
+#: ../app/Helper/I18n.php:113
 msgid "Add Client"
 msgstr ""
 
-#: ../app/Helper/I18n.php:117
+#: ../app/Helper/I18n.php:115
 msgid "Add Project"
 msgstr ""
 
-#: ../app/Helper/I18n.php:118
+#: ../app/Helper/I18n.php:116
 msgid "Currency"
 msgstr ""
 
-#: ../app/Helper/I18n.php:119
+#: ../app/Helper/I18n.php:117
 msgid "Budget"
 msgstr ""
 
-#: ../app/Helper/I18n.php:121
+#: ../app/Helper/I18n.php:119
 msgid "Add Person"
 msgstr ""
 
-#: ../app/Helper/I18n.php:122
+#: ../app/Helper/I18n.php:120
 msgid "Add Organization"
 msgstr ""
 
-#: ../app/Helper/I18n.php:123
+#: ../app/Helper/I18n.php:121
 msgid "Book"
 msgstr ""
 
-#: ../app/Helper/I18n.php:124
+#: ../app/Helper/I18n.php:122
 msgid "Person"
 msgstr ""
 
-#: ../app/Helper/I18n.php:125
+#: ../app/Helper/I18n.php:123
 msgid "Organization"
 msgstr ""
 
-#: ../app/Helper/I18n.php:126
+#: ../app/Helper/I18n.php:124
 msgid "Name"
 msgstr ""
 
-#: ../app/Helper/I18n.php:127
+#: ../app/Helper/I18n.php:125
 msgid "Email"
 msgstr ""
 
-#: ../app/Helper/I18n.php:128
+#: ../app/Helper/I18n.php:126
 msgid "Mobile"
 msgstr ""
 
-#: ../app/Helper/I18n.php:129
+#: ../app/Helper/I18n.php:127
 msgid "Website"
 msgstr ""
 
-#: ../app/Helper/I18n.php:130
+#: ../app/Helper/I18n.php:128
 msgid "URL"
 msgstr ""
 
-#: ../app/Helper/I18n.php:131
+#: ../app/Helper/I18n.php:129
 msgid "ZIP Code"
 msgstr ""
 
-#: ../app/Helper/I18n.php:132
+#: ../app/Helper/I18n.php:130
 msgid "Country"
 msgstr ""
 
-#: ../app/Helper/I18n.php:133
+#: ../app/Helper/I18n.php:131
 msgid "Region"
 msgstr ""
 
-#: ../app/Helper/I18n.php:135
+#: ../app/Helper/I18n.php:133
 msgid "Home"
 msgstr ""
 
-#: ../app/Helper/I18n.php:136
+#: ../app/Helper/I18n.php:134
 msgid "Total"
 msgstr ""
 
-#: ../app/Helper/I18n.php:137
+#: ../app/Helper/I18n.php:135
 msgid "Preview"
 msgstr ""
 
-#: ../app/Helper/I18n.php:139
+#: ../app/Helper/I18n.php:137
 msgid "Bill"
 msgstr ""
 
-#: ../app/Helper/I18n.php:140
+#: ../app/Helper/I18n.php:138
 msgid "Bill To"
 msgstr ""
 
-#: ../app/Helper/I18n.php:141
+#: ../app/Helper/I18n.php:139
 msgid "Info"
 msgstr ""
 
-#: ../app/Helper/I18n.php:142
+#: ../app/Helper/I18n.php:140
 msgid "No"
 msgstr ""
 
-#: ../app/Helper/I18n.php:144
+#: ../app/Helper/I18n.php:142
 msgid "Status"
 msgstr ""
 
-#: ../app/Helper/I18n.php:145
+#: ../app/Helper/I18n.php:143
 msgid "Date"
 msgstr ""
 
-#: ../app/Helper/I18n.php:146
+#: ../app/Helper/I18n.php:144
 msgid "Action"
 msgstr ""
 
-#: ../app/Helper/I18n.php:147
+#: ../app/Helper/I18n.php:145
 msgid "Show"
 msgstr ""
 
-#: ../app/Helper/I18n.php:148
+#: ../app/Helper/I18n.php:146
 msgid "All"
 msgstr ""
 
-#: ../app/Helper/I18n.php:149
+#: ../app/Helper/I18n.php:147
 msgid "Always"
 msgstr ""
 
-#: ../app/Helper/I18n.php:150
+#: ../app/Helper/I18n.php:148
 msgid "Search"
 msgstr ""
 
-#: ../app/Helper/I18n.php:151
+#: ../app/Helper/I18n.php:149
 msgid "Select"
 msgstr ""
 
-#: ../app/Helper/I18n.php:152
+#: ../app/Helper/I18n.php:150
 msgid "Type"
 msgstr ""
 
-#: ../app/Helper/I18n.php:153
+#: ../app/Helper/I18n.php:151
 msgid "Location"
 msgstr ""
 
-#: ../app/Helper/I18n.php:155
+#: ../app/Helper/I18n.php:153
 msgid "Duplicate"
 msgstr ""
 
-#: ../app/Helper/I18n.php:156
+#: ../app/Helper/I18n.php:154
 msgid "Draft"
 msgstr ""
 
-#: ../app/Helper/I18n.php:157
+#: ../app/Helper/I18n.php:155
 msgid "Request"
 msgstr ""
 
 #. translators: %s: Add, Edit %s: Module Name
-#: ../app/Helper/I18n.php:160
+#: ../app/Helper/I18n.php:158
 msgid "%s %s here"
 msgstr ""
 
-#: ../app/Helper/I18n.php:161
+#: ../app/Helper/I18n.php:159
 msgid "Add payment info here"
 msgstr ""
 
-#: ../app/Helper/I18n.php:162
+#: ../app/Helper/I18n.php:160
 msgid "Create"
 msgstr ""
 
-#: ../app/Helper/I18n.php:163
+#: ../app/Helper/I18n.php:161
 msgid "Icon"
 msgstr ""
 
-#: ../app/Helper/I18n.php:164, ../app/Helper/I18n.php:176
+#: ../app/Helper/I18n.php:162, ../app/Helper/I18n.php:174
 msgid "Text"
 msgstr ""
 
-#: ../app/Helper/I18n.php:165
+#: ../app/Helper/I18n.php:163
 msgid "Image"
 msgstr ""
 
-#: ../app/Helper/I18n.php:166
+#: ../app/Helper/I18n.php:164
 msgid "Add"
 msgstr ""
 
-#: ../app/Helper/I18n.php:167, ../app/Helper/I18n.php:171
+#: ../app/Helper/I18n.php:165, ../app/Helper/I18n.php:169
 msgid "New"
 msgstr ""
 
-#: ../app/Helper/I18n.php:168
+#: ../app/Helper/I18n.php:166
 msgid "Edit"
 msgstr ""
 
-#: ../app/Helper/I18n.php:169
+#: ../app/Helper/I18n.php:167
 msgid "Update"
 msgstr ""
 
-#: ../app/Helper/I18n.php:170
+#: ../app/Helper/I18n.php:168
 msgid "Delete"
 msgstr ""
 
-#: ../app/Helper/I18n.php:172
+#: ../app/Helper/I18n.php:170
 msgid "From"
 msgstr ""
 
-#: ../app/Helper/I18n.php:173
+#: ../app/Helper/I18n.php:171
 msgid "here"
 msgstr ""
 
-#: ../app/Helper/I18n.php:174
+#: ../app/Helper/I18n.php:172
 msgid "Tag"
 msgstr ""
 
-#: ../app/Helper/I18n.php:175
+#: ../app/Helper/I18n.php:173
 msgid "Background"
 msgstr ""
 
-#: ../app/Helper/I18n.php:177
+#: ../app/Helper/I18n.php:175
 msgid "Color"
 msgstr ""
 
-#: ../app/Helper/I18n.php:178
+#: ../app/Helper/I18n.php:176
 msgid "Description"
 msgstr ""
 
-#: ../app/Helper/I18n.php:179
+#: ../app/Helper/I18n.php:177
 msgid "Note"
 msgstr ""
 
-#: ../app/Helper/I18n.php:180
+#: ../app/Helper/I18n.php:178
 msgid "Title"
 msgstr ""
 
-#: ../app/Helper/I18n.php:181
+#: ../app/Helper/I18n.php:179
 msgid "Start"
 msgstr ""
 
-#: ../app/Helper/I18n.php:182
+#: ../app/Helper/I18n.php:180
 msgid "Due"
 msgstr ""
 
-#: ../app/Helper/I18n.php:183
+#: ../app/Helper/I18n.php:181
 msgid "Due Date"
 msgstr ""
 
-#: ../app/Helper/I18n.php:184
+#: ../app/Helper/I18n.php:182
 msgid "Subject"
 msgstr ""
 
-#: ../app/Helper/I18n.php:185
+#: ../app/Helper/I18n.php:183
 msgid "Message"
 msgstr ""
 
-#: ../app/Helper/I18n.php:186
+#: ../app/Helper/I18n.php:184
 msgid "Clear"
 msgstr ""
 
-#: ../app/Helper/I18n.php:187
+#: ../app/Helper/I18n.php:185
 msgid "Account"
 msgstr ""
 
-#: ../app/Helper/I18n.php:188, ../app/Helper/I18n.php:269
+#: ../app/Helper/I18n.php:186, ../app/Helper/I18n.php:269
 msgid "Public"
 msgstr ""
 
-#: ../app/Helper/I18n.php:189
+#: ../app/Helper/I18n.php:187
 msgid "Secret"
 msgstr ""
 
-#: ../app/Helper/I18n.php:190
+#: ../app/Helper/I18n.php:188
 msgid "ID"
 msgstr ""
 
-#: ../app/Helper/I18n.php:191
+#: ../app/Helper/I18n.php:189
 msgid "Key"
 msgstr ""
 
-#: ../app/Helper/I18n.php:192
+#: ../app/Helper/I18n.php:190
 msgid "Personal"
 msgstr ""
 
-#: ../app/Helper/I18n.php:193
+#: ../app/Helper/I18n.php:191
 msgid "Profile"
 msgstr ""
 
-#: ../app/Helper/I18n.php:194
+#: ../app/Helper/I18n.php:192
 msgid "File"
 msgstr ""
 
-#: ../app/Helper/I18n.php:195
+#: ../app/Helper/I18n.php:193
 msgid "Section"
 msgstr ""
 
-#: ../app/Helper/I18n.php:196
+#: ../app/Helper/I18n.php:194
 msgid "Details"
 msgstr ""
 
-#: ../app/Helper/I18n.php:197
+#: ../app/Helper/I18n.php:195
 msgid "Category"
 msgstr ""
 
-#: ../app/Helper/I18n.php:199
+#: ../app/Helper/I18n.php:197
 msgid "Logo"
 msgstr ""
 
-#: ../app/Helper/I18n.php:200
+#: ../app/Helper/I18n.php:198
 msgid "Continue"
 msgstr ""
 
-#: ../app/Helper/I18n.php:201
+#: ../app/Helper/I18n.php:199
 msgid "Save"
 msgstr ""
 
-#: ../app/Helper/I18n.php:202
+#: ../app/Helper/I18n.php:200
 msgid "Copy Embeded Code"
 msgstr ""
 
-#: ../app/Helper/I18n.php:203
+#: ../app/Helper/I18n.php:201
 msgid "Close"
 msgstr ""
 
-#: ../app/Helper/I18n.php:205
+#: ../app/Helper/I18n.php:203
 msgid "Common"
 msgstr ""
 
-#: ../app/Helper/I18n.php:206, ../app/Ctrl/Setting/Type/Dashboard.php:100, ../app/Ctrl/Setting/Type/Dashboard.php:101
+#: ../app/Helper/I18n.php:204, ../app/Ctrl/Setting/Type/Dashboard.php:102, ../app/Ctrl/Setting/Type/Dashboard.php:103
 msgid "Settings"
 msgstr ""
 
-#: ../app/Helper/I18n.php:207
+#: ../app/Helper/I18n.php:205
 msgid "Prefix"
 msgstr ""
 
-#: ../app/Helper/I18n.php:208
+#: ../app/Helper/I18n.php:206
 msgid "General"
 msgstr ""
 
-#: ../app/Helper/I18n.php:209
+#: ../app/Helper/I18n.php:207
 msgid "Business"
 msgstr ""
 
-#: ../app/Helper/I18n.php:210
+#: ../app/Helper/I18n.php:208
 msgid "Pay"
 msgstr ""
 
-#: ../app/Helper/I18n.php:211
+#: ../app/Helper/I18n.php:209
 msgid "Subscribe"
 msgstr ""
 
-#: ../app/Helper/I18n.php:212
+#: ../app/Helper/I18n.php:210
 msgid "Subscribed"
 msgstr ""
 
-#: ../app/Helper/I18n.php:213
+#: ../app/Helper/I18n.php:211
 msgid "Subscription"
 msgstr ""
 
-#: ../app/Helper/I18n.php:214
+#: ../app/Helper/I18n.php:212
 msgid "Payment"
 msgstr ""
 
-#: ../app/Helper/I18n.php:215
+#: ../app/Helper/I18n.php:213
 msgid "History"
 msgstr ""
 
-#: ../app/Helper/I18n.php:216
+#: ../app/Helper/I18n.php:214
 msgid "Payment Info"
 msgstr ""
 
-#: ../app/Helper/I18n.php:217
+#: ../app/Helper/I18n.php:215
 msgid "Method"
 msgstr ""
 
-#: ../app/Helper/I18n.php:218
+#: ../app/Helper/I18n.php:216
 msgid "Variable"
 msgstr ""
 
-#: ../app/Helper/I18n.php:219
+#: ../app/Helper/I18n.php:217
 msgid "Import"
 msgstr ""
 
-#: ../app/Helper/I18n.php:220
+#: ../app/Helper/I18n.php:218
 msgid "Export"
 msgstr ""
 
-#: ../app/Helper/I18n.php:221, ../app/Helper/I18n.php:310
+#: ../app/Helper/I18n.php:219, ../app/Helper/I18n.php:310
 msgid "Integration"
 msgstr ""
 
-#: ../app/Helper/I18n.php:222
+#: ../app/Helper/I18n.php:220
 msgid "License"
 msgstr ""
 
-#: ../app/Helper/I18n.php:223
+#: ../app/Helper/I18n.php:221
 msgid "Expires"
 msgstr ""
 
-#: ../app/Helper/I18n.php:224
+#: ../app/Helper/I18n.php:222
 msgid "Valid"
 msgstr ""
 
-#: ../app/Helper/I18n.php:225
+#: ../app/Helper/I18n.php:223
 msgid "Priority"
 msgstr ""
 
-#: ../app/Helper/I18n.php:226
+#: ../app/Helper/I18n.php:224
 msgid "Meeting Place or"
 msgstr ""
 
-#: ../app/Helper/I18n.php:227
+#: ../app/Helper/I18n.php:225
 msgid "meet"
 msgstr ""
 
-#: ../app/Helper/I18n.php:228, ../app/Helper/I18n.php:282
+#: ../app/Helper/I18n.php:226, ../app/Helper/I18n.php:282
 msgid "Active"
 msgstr ""
 
-#: ../app/Helper/I18n.php:229
+#: ../app/Helper/I18n.php:227
 msgid "Activate"
 msgstr ""
 
-#: ../app/Helper/I18n.php:230
+#: ../app/Helper/I18n.php:228
 msgid "Deactivate"
 msgstr ""
 
-#: ../app/Helper/I18n.php:232
+#: ../app/Helper/I18n.php:230
 msgid "Thanks for accepting"
 msgstr ""
 
-#: ../app/Helper/I18n.php:233
+#: ../app/Helper/I18n.php:231
 msgid "Sorry for declining"
 msgstr ""
 
-#: ../app/Helper/I18n.php:234
+#: ../app/Helper/I18n.php:232
 msgid "Sorry for the decline"
 msgstr ""
 
-#: ../app/Helper/I18n.php:235
+#: ../app/Helper/I18n.php:233
 msgid "You haven't pay yet"
 msgstr ""
 
-#: ../app/Helper/I18n.php:236
+#: ../app/Helper/I18n.php:234
 msgid "Thanks, We have received the payment"
 msgstr ""
 
-#: ../app/Helper/I18n.php:240
+#: ../app/Helper/I18n.php:238
 msgid "You have submited your payment information. it will take a while to approve the payment"
 msgstr ""
 
-#: ../app/Helper/I18n.php:244
+#: ../app/Helper/I18n.php:242
 msgid "Approval Pending"
 msgstr ""
 
-#: ../app/Helper/I18n.php:247
+#: ../app/Helper/I18n.php:245
 msgid "Pipeline"
 msgstr ""
 
-#: ../app/Helper/I18n.php:248
+#: ../app/Helper/I18n.php:246
 msgid "Back to WP Dashboard"
 msgstr ""
 
-#: ../app/Helper/I18n.php:249
+#: ../app/Helper/I18n.php:247
 msgid "Mark as"
 msgstr ""
 
-#: ../app/Helper/I18n.php:250
+#: ../app/Helper/I18n.php:248
 msgid "Drive"
 msgstr ""
 
-#: ../app/Helper/I18n.php:251
+#: ../app/Helper/I18n.php:249
 msgid "Done"
 msgstr ""
 
-#: ../app/Helper/I18n.php:253
+#: ../app/Helper/I18n.php:251
 msgid "completed"
 msgstr ""
 
-#: ../app/Helper/I18n.php:254
+#: ../app/Helper/I18n.php:252
 msgid "as"
 msgstr ""
 
-#: ../app/Helper/I18n.php:255
+#: ../app/Helper/I18n.php:253
 msgid "successful"
 msgstr ""
 
-#: ../app/Helper/I18n.php:256
+#: ../app/Helper/I18n.php:254
 msgid "Submit"
 msgstr ""
 
-#: ../app/Helper/I18n.php:257
+#: ../app/Helper/I18n.php:255
 msgid "Proposal"
 msgstr ""
 
-#: ../app/Helper/I18n.php:258
+#: ../app/Helper/I18n.php:256
 msgid "Accounting"
 msgstr ""
 
-#: ../app/Helper/I18n.php:259
+#: ../app/Helper/I18n.php:257
 msgid "Need Support"
 msgstr ""
 
-#: ../app/Helper/I18n.php:260
+#: ../app/Helper/I18n.php:258
 msgid "Feedback"
 msgstr ""
 
-#: ../app/Helper/I18n.php:261
+#: ../app/Helper/I18n.php:259
 msgid "Attachment"
 msgstr ""
 
-#: ../app/Helper/I18n.php:262
+#: ../app/Helper/I18n.php:260
 msgid "Fee"
 msgstr ""
 
-#: ../app/Helper/I18n.php:263
+#: ../app/Helper/I18n.php:261
 msgid "Field"
 msgstr ""
 
-#: ../app/Helper/I18n.php:264
+#: ../app/Helper/I18n.php:262
 msgid "Fields"
+msgstr ""
+
+#: ../app/Helper/I18n.php:263
+msgid "Team"
+msgstr ""
+
+#: ../app/Helper/I18n.php:264
+msgid "Member"
 msgstr ""
 
 #: ../app/Helper/I18n.php:265
@@ -1277,7 +1277,7 @@ msgstr ""
 
 #: ../app/Helper/I18n.php:384
 msgid ""
-"Please make sure your csv file has unique\n"
+"Please make sure your csv file has unique\n"
 "                      headers.Otherwise, it may fail to import"
 msgstr ""
 
@@ -1313,47 +1313,47 @@ msgstr ""
 msgid "Required field is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Business.php:240, ../app/Ctrl/Api/Type/Business.php:337
+#: ../app/Ctrl/Api/Type/Business.php:240, ../app/Ctrl/Api/Type/Business.php:337, ../app/Ctrl/Api/Type/Team.php:175, ../app/Ctrl/Api/Type/Team.php:257
 msgid "Name is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:206, ../app/Ctrl/Api/Type/Deal.php:415, ../app/Ctrl/Api/Type/Deal.php:598, ../app/Ctrl/Api/Type/Lead.php:336, ../app/Ctrl/Api/Type/Lead.php:460, ../app/Ctrl/Api/Type/Project.php:437, ../app/Ctrl/Api/Type/Project.php:630
+#: ../app/Ctrl/Api/Type/Client.php:230, ../app/Ctrl/Api/Type/Deal.php:428, ../app/Ctrl/Api/Type/Deal.php:630, ../app/Ctrl/Api/Type/Lead.php:347, ../app/Ctrl/Api/Type/Lead.php:471, ../app/Ctrl/Api/Type/Project.php:521, ../app/Ctrl/Api/Type/Project.php:721
 msgid "Contact info is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:279, ../app/Ctrl/Api/Type/Contact.php:349, ../app/Ctrl/Api/Type/Note.php:160, ../app/Ctrl/Api/Type/Note.php:199, ../app/Ctrl/Api/Type/Org.php:239, ../app/Ctrl/Api/Type/Org.php:353, ../app/Ctrl/Api/Type/Person.php:288, ../app/Ctrl/Api/Type/Person.php:403, ../app/Ctrl/Api/Type/Workspace.php:254, ../app/Ctrl/Api/Type/Workspace.php:363
+#: ../app/Ctrl/Api/Type/Client.php:312, ../app/Ctrl/Api/Type/Contact.php:349, ../app/Ctrl/Api/Type/Note.php:164, ../app/Ctrl/Api/Type/Note.php:203, ../app/Ctrl/Api/Type/Org.php:239, ../app/Ctrl/Api/Type/Org.php:353, ../app/Ctrl/Api/Type/Person.php:288, ../app/Ctrl/Api/Type/Person.php:403, ../app/Ctrl/Api/Type/Workspace.php:254, ../app/Ctrl/Api/Type/Workspace.php:363
 msgid "Name field is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:286, ../app/Ctrl/Api/Type/Contact.php:356, ../app/Ctrl/Api/Type/Org.php:246, ../app/Ctrl/Api/Type/Org.php:360, ../app/Ctrl/Api/Type/Person.php:295, ../app/Ctrl/Api/Type/Person.php:410, ../app/Ctrl/Api/Type/Workspace.php:261, ../app/Ctrl/Api/Type/Workspace.php:370
+#: ../app/Ctrl/Api/Type/Client.php:319, ../app/Ctrl/Api/Type/Contact.php:356, ../app/Ctrl/Api/Type/Org.php:246, ../app/Ctrl/Api/Type/Org.php:360, ../app/Ctrl/Api/Type/Person.php:295, ../app/Ctrl/Api/Type/Person.php:410, ../app/Ctrl/Api/Type/Team.php:187, ../app/Ctrl/Api/Type/Team.php:269, ../app/Ctrl/Api/Type/Workspace.php:261, ../app/Ctrl/Api/Type/Workspace.php:370
 msgid "Email id is not valid!"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Deal.php:440
+#: ../app/Ctrl/Api/Type/Deal.php:453
 msgid "Please select a stage"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/File.php:157, ../app/Ctrl/Api/Type/Note.php:119
+#: ../app/Ctrl/Api/Type/File.php:161, ../app/Ctrl/Api/Type/Note.php:123
 msgid "ago"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/File.php:202, ../app/Ctrl/Api/Type/Note.php:153
+#: ../app/Ctrl/Api/Type/File.php:206, ../app/Ctrl/Api/Type/Note.php:157
 msgid "Tab ID is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/File.php:209, ../app/Ctrl/Api/Type/Webhook.php:188, ../app/Ctrl/Api/Type/Webhook.php:260
+#: ../app/Ctrl/Api/Type/File.php:213, ../app/Ctrl/Api/Type/Webhook.php:188, ../app/Ctrl/Api/Type/Webhook.php:260
 msgid "Type is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:590, ../app/Ctrl/Api/Type/Invoice.php:741
+#: ../app/Ctrl/Api/Type/Invoice.php:618, ../app/Ctrl/Api/Type/Invoice.php:769
 msgid "Business is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:597
+#: ../app/Ctrl/Api/Type/Invoice.php:625
 msgid "Module is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:604, ../app/Ctrl/Api/Type/Invoice.php:748
+#: ../app/Ctrl/Api/Type/Invoice.php:632, ../app/Ctrl/Api/Type/Invoice.php:776
 msgid "Receiver is missing"
 msgstr ""
 
@@ -1369,23 +1369,31 @@ msgstr ""
 msgid "Bank & Others"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Project.php:420
+#: ../app/Ctrl/Api/Type/Project.php:504
 msgid "Please title is required"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Project.php:427
+#: ../app/Ctrl/Api/Type/Project.php:511
 msgid "Please select a status"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Setting.php:37, ../app/Ctrl/Api/Type/Setting.php:358
+#: ../app/Ctrl/Api/Type/Setting.php:37, ../app/Ctrl/Api/Type/Setting.php:379
 msgid "Tab is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Setting.php:448
+#: ../app/Ctrl/Api/Type/Setting.php:468
 msgid "Please install and activate WooCommerce plugin."
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Task.php:344
+#: ../app/Ctrl/Api/Type/Setting.php:558
+msgid "Current password not matched!!!"
+msgstr ""
+
+#: ../app/Ctrl/Api/Type/Setting.php:565
+msgid "Confirm password not matched!!!"
+msgstr ""
+
+#: ../app/Ctrl/Api/Type/Task.php:355
 msgid "Title field is missing"
 msgstr ""
 
@@ -1393,11 +1401,19 @@ msgstr ""
 msgid "Taxonomy is missing"
 msgstr ""
 
-#: ../app/Ctrl/Setting/Type/Dashboard.php:18, ../app/Ctrl/Setting/Type/Dashboard.php:19
+#: ../app/Ctrl/Api/Type/Team.php:182, ../app/Ctrl/Api/Type/Team.php:264
+msgid "Email is missing"
+msgstr ""
+
+#: ../app/Ctrl/Api/Type/Team.php:193
+msgid "Role is missing"
+msgstr ""
+
+#: ../app/Ctrl/Setting/Type/Dashboard.php:20, ../app/Ctrl/Setting/Type/Dashboard.php:21
 msgid "Propovoice"
 msgstr ""
 
-#: ../app/Ctrl/Setting/Type/Dashboard.php:112
+#: ../app/Ctrl/Setting/Type/Dashboard.php:114
 msgid "Go to Frontend"
 msgstr ""
 
@@ -1479,4 +1495,28 @@ msgstr ""
 
 #: ../view/template/partial/404.php:40
 msgid "We Can't find this page you're looking for"
+msgstr ""
+
+#: ../view/template/partial/login.php:108
+msgid "Please enter your login credentials"
+msgstr ""
+
+#: ../view/template/partial/login.php:113
+msgid "Username"
+msgstr ""
+
+#: ../view/template/partial/login.php:114
+msgid "Password"
+msgstr ""
+
+#: ../view/template/partial/login.php:115
+msgid "Remember Me"
+msgstr ""
+
+#: ../view/template/partial/login.php:116
+msgid "Log In"
+msgstr ""
+
+#: ../view/template/partial/login.php:121
+msgid "You enterd wrong credentials"
 msgstr ""

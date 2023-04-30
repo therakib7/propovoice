@@ -20,11 +20,12 @@ export default (props) => {
     });
   }, []);
 
-  const i18n = ndpv.i18n;
+  const { i18n, caps } = ndpv;
+
   return (
     <div className="pv-cards pv-mt-10 pv-cards-two">
       <div className="row">
-        <div className="col-md-6 col-lg">
+        {caps.includes("ndpv_client") && <div className="col-md-6 col-lg">
           <div className="pv-cards-content">
             <span style={{ background: "rgba(76, 111, 255, 0.12)" }}>
               <svg width={24} height={24} viewBox="0 0 24 24" fill="none">
@@ -86,8 +87,8 @@ export default (props) => {
             </p>
             <h4>{summary.total_client}</h4>
           </div>
-        </div>
-        <div className="col-md-6 col-lg">
+        </div>}
+        {caps.includes("ndpv_lead") && <div className="col-md-6 col-lg">
           <div className="pv-cards-content">
             <span style={{ background: "#f1faf1" }}>
               <svg width={24} height={24} viewBox="0 0 24 24" fill="none">
@@ -104,8 +105,8 @@ export default (props) => {
             </p>
             <h4>{summary.total_lead}</h4>
           </div>
-        </div>
-        <div className="col-md-6 col-lg">
+        </div>}
+        {caps.includes("ndpv_deal") && <div className="col-md-6 col-lg">
           <div className="pv-cards-content">
             <span style={{ background: "rgba(69, 172, 157, 0.28)" }}>
               <svg width={25} height={25} viewBox="0 0 25 25" fill="none">
@@ -139,8 +140,8 @@ export default (props) => {
             </p>
             <h4>{summary.total_deal}</h4>
           </div>
-        </div>
-        <div className="col-md-6 col-lg">
+        </div>}
+        {caps.includes("ndpv_estimate") && <div className="col-md-6 col-lg">
           <div className="pv-cards-content">
             <span style={{ background: "#F4F2FE" }}>
               <svg width={25} height={25} viewBox="0 0 25 25" fill="none">
@@ -160,8 +161,8 @@ export default (props) => {
             </p>
             <h4>{summary.total_invoice}</h4>
           </div>
-        </div>
-        <div className="col-md-6 col-lg">
+        </div>}
+        {caps.includes("ndpv_invoice") && <div className="col-md-6 col-lg">
           <div className="pv-cards-content">
             <span style={{ background: "rgba(182, 100, 144, .26)" }}>
               <svg width={24} height={24} viewBox="0 0 24 24" fill="none">
@@ -188,8 +189,8 @@ export default (props) => {
             </p>
             <h4>{summary.total_estimate}</h4>
           </div>
-        </div>
-        <div className="col-md-6 col-lg">
+        </div>}
+        {caps.includes("ndpv_project") && <div className="col-md-6 col-lg">
           <div className="pv-cards-content">
             <span style={{ background: "#ECF9FC" }}>
               <svg width={25} height={25} viewBox="0 0 25 25" fill="none">
@@ -223,7 +224,7 @@ export default (props) => {
             </p>
             <h4>{summary.total_project}</h4>
           </div>
-        </div>
+        </div>}
       </div>
     </div>
   );

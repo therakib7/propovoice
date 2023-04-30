@@ -9,7 +9,7 @@ use Ndpv\Model\Person;
 class Deal
 {
     public function __construct()
-    {
+    { 
         add_action("rest_api_init", [$this, "rest_routes"]);
     }
 
@@ -193,6 +193,17 @@ class Deal
                     ],
                 ];
             }
+        }
+
+        if ( current_user_can("ndpv_staff") ) {  
+            
+            $post_ids = Fns::get_posts_ids_by_type('ndpv_deal');
+            if ( !empty($post_ids) ) {
+                $args['post__in'] = $post_ids;
+                $args['orderby'] = 'post__in';
+            } else {
+                $args['author'] = get_current_user_id();
+            }            
         }
 
         $query = new \WP_Query($args);
@@ -404,41 +415,58 @@ class Deal
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
         $note = isset($param["note"]) ? nl2br($param["note"]) : "";
+        $project_req = isset($param["project_req"]) ? true : false;
 
         /* if ( $lead_id ) {
             wp_send_json_success($lead_id);
         } */
 
-        if (empty($first_name) && empty($org_name)) {
-            $reg_errors->add(
-                "field",
-                esc_html__("Contact info is missing", "propovoice")
-            );
-        }
+        if ( !$project_req ) {
+            if (empty($first_name) && empty($org_name)) {
+                $reg_errors->add(
+                    "field",
+                    esc_html__("Contact info is missing", "propovoice")
+                );
+            }
 
-        $person = new Person();
-        if ($person_id) {
-            $person->update($param);
-        }
+            $person = new Person();
+            if ($person_id) {
+                $person->update($param);
+            }
 
-        if (!$person_id && $first_name) {
-            $person_id = $person->create($param);
-        }
+            if (!$person_id && $first_name) {
+                $person_id = $person->create($param);
+            }
 
-        $org = new Org();
-        if (!$person_id && $org_id) {
-            $org->update($param);
-        }
+            $org = new Org();
+            if (!$person_id && $org_id) {
+                $org->update($param);
+            }
 
-        if (!$org_id && $org_name) {
-            $org_id = $org->create($param);
-        }
+            if (!$org_id && $org_name) {
+                $org_id = $org->create($param);
+            }
 
-        if (empty($stage_id)) {
-            $reg_errors->add(
-                "field",
-                esc_html__("Please select a stage", "propovoice")
-            );
+            if (empty($stage_id)) {
+                $reg_errors->add(
+                    "field",
+                    esc_html__("Please select a stage", "propovoice")
+                );
+            }
+        } else {
+            //auto asign first deal stage
+            $deal_stage = Fns::get_terms('deal_stage');
+            $stage_id = $deal_stage[0]->term_id;
+
+            //get client 
+            $user_id = get_current_user_id();
+            $client_id = get_user_meta($user_id, 'ndpv_client_id', true);
+            $type = get_user_meta($user_id, 'ndpv_client_type', true);
+            if ( $type == 'person' ) {
+                $person_id = $client_id;
+            } else {
+                $org_id = $client_id;
+            }
         }
 
         /* if ( !$lead_id && empty($contact_id)) {
@@ -467,6 +495,10 @@ class Deal
 
                 if ($title) {
                     update_post_meta($post_id, "title", $title);
+                }
+
+                if ($project_req) {
+                    update_post_meta($post_id, "project_req", true);
                 }
 
                 if ($stage_id) {
@@ -730,7 +762,7 @@ class Deal
 
     public function create_per()
     {
-        return current_user_can("ndpv_deal");
+        return current_user_can("ndpv_deal") || current_user_can("ndpv_client_role");
     }
 
     public function update_per()

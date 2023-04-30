@@ -14,6 +14,8 @@ class Dashboard
 
     public function add_settings_menu()
     {
+        if ( current_user_can("ndpv_client_role") ) return; //not allowed for client
+
         add_menu_page(
             esc_html__("Propovoice", "propovoice"),
             esc_html__("Propovoice", "propovoice"),

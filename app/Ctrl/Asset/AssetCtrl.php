@@ -16,7 +16,7 @@ class AssetCtrl
         $this->suffix = defined("SCRIPT_DEBUG") && SCRIPT_DEBUG ? "" : ".min";
         $this->version =
             defined("WP_DEBUG") && WP_DEBUG ? time() : ndpv()->version();
-        $this->current_user_caps = array_keys(wp_get_current_user()->allcaps);
+        $this->current_user_caps = array_keys(array_filter(wp_get_current_user()->allcaps));
 
         add_action("wp_enqueue_scripts", [$this, "public_scripts"], 9999);
         add_action("admin_enqueue_scripts", [$this, "admin_scripts"], 9999);
@@ -188,7 +188,9 @@ class AssetCtrl
                 "logo" => Fns::brand_logo(),
                 "assetUri" => trailingslashit(NDPV_URL),
                 "profile" => [
+                    "id" => $current_user->ID,
                     "name" => $current_user->display_name,
+                    "email" => $current_user->user_email,
                     "img" => get_avatar_url($current_user->ID, [
                         "size" => "36",
                     ]),

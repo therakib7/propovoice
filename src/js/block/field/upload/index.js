@@ -58,6 +58,7 @@ class Upload extends Component {
   // On file select (from the pop up)
   onFileChange = (event) => {
     this.maybeSetSelectedFile(event);
+
     this.onFileUpload(event.target.files[0]);
   };
 

@@ -23,6 +23,7 @@ use Ndpv\Ctrl\Api\Type\Project;
 use Ndpv\Ctrl\Api\Type\Setting;
 use Ndpv\Ctrl\Api\Type\Task;
 use Ndpv\Ctrl\Api\Type\Taxonomy;
+use Ndpv\Ctrl\Api\Type\Team;
 use Ndpv\Ctrl\Api\Type\Webhook;
 use Ndpv\Ctrl\Api\Type\SaveForNext;
 
@@ -53,6 +54,7 @@ class ApiCtrl
 		new Form();
 		new Webhook();
 		new Setting();
+		new Team();
 		new SaveForNext();
 	}
 }
