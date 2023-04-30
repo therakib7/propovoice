@@ -188,6 +188,7 @@ class AssetCtrl
                 "logo" => Fns::brand_logo(),
                 "assetUri" => trailingslashit(NDPV_URL),
                 "profile" => [
+                    "id" => $current_user->ID,
                     "name" => $current_user->display_name,
                     "email" => $current_user->user_email,
                     "img" => get_avatar_url($current_user->ID, [

@@ -23,6 +23,7 @@ const Tag = lazy(() => import('./tab/tag'));
 const CustomField = lazy(() => import('./tab/custom-field'));
 const Integrate = lazy(() => import('./tab/integrate'));
 const Team = lazy(() => import('./tab/team'));
+const PublicApi = lazy(() => import("./tab/public-api"));
 const License = lazy(() => import('./tab/license'));
 
 //subtab: email
@@ -133,11 +134,15 @@ const Setting = (props) => {
     tab_data.integration = {
       label: i18n.intg
     };
-
   }
   if (isAdmin) {
     tab_data.team = {
       label: 'Team'
+    };
+  }
+  if (isAdmin) {
+    tab_data['public-api'] = {
+      label: 'Public API'
     };
   }
 
@@ -267,6 +272,7 @@ const Setting = (props) => {
                 {currentTab == 'custom-field' && <CustomField {...props} />}
                 {currentTab == 'integration' && <Integrate {...props} />}
                 {currentTab == 'team' && <Team {...props} />}
+                {currentTab == "public-api" && <PublicApi {...props} />}
                 {currentTab == 'license' && <License {...props} />}
               </Suspense>
             </div>
