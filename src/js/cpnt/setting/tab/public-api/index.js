@@ -123,7 +123,7 @@ export default function PublicApi() {
                 <td>{pwd.last_used}</td>
                 <td>{pwd.last_ip}</td>
                 <td>
-                  <button onClick={() => deletePwd(pwd.uuid)} className="" type="button" >Revoke</button>
+                  <button onClick={() => deletePwd(pwd.uuid)} className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow" type="button" >Revoke</button>
                 </td>
               </tr>
 

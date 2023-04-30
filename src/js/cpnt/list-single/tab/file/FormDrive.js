@@ -3,13 +3,12 @@ import { Add } from "block/icon";
 import { sprintf } from "sprintf-js";
 import Upload from "block/field/upload";
 import { uploadToDrive } from "api/gapi/gdrive";
-import { title } from "process";
 
 export default (props) => {
   const [form, setForm] = useState({
     id: null,
     tab_id: props.tab_id,
-    type: "drive",
+    type: "google-drive",
     title: "",
     file: "",
     url: "",
@@ -19,47 +18,50 @@ export default (props) => {
   const [selectedFile, setSelectedFile] = useState();
   const [is_submit, setIsSubmit] = useState(false);
 
+  // useEffect(() => {
+  //   if (form.file && is_submit) {
+  //     // uploadToDrive(selectedFile, setDriveFileId);
+  //     setIsSubmit(false);
+  //   }
+  // }, [form.file, is_submit, driveFileId]);
+  //
+
   useEffect(() => {
-    if (form.file && is_submit) {
-      uploadToDrive(selectedFile, setDriveFileId);
-      setIsSubmit(false);
+    if (form.url && !is_submit) {
+      props.handleSubmit(form);
+      props.close();
+      setIsSubmit(true);
     }
-    if (driveFileId) {
-      console.log("FileId in Form: ", driveFileId);
-      let url = `https://drive.google.com/uc?export=view&id=${driveFileId}`;
-      // let form = { ...form }
-      form.url = url;
-      console.log(url);
+  }, [form.url]);
 
-      // form.title = e.target.title.value;
-      setForm(form);
-      if (form.url) {
-        props.handleSubmit(form);
-        props.close()
-      }
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
 
-  }, [form.file, is_submit, driveFileId]);
-
-  function handleChange(e) {
-    let title = e.target.value;
-    // let form = { ...form }
-    form.title = title;
-    setForm(form)
-
-  }
-  // console.log(title)
-  // console.log(form.title);
-
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmit(true);
-  }
+
+    uploadToDrive(selectedFile, setForm);
+
+    // props.handleSubmit(form);
+    // props.close();
+
+    // if (driveFileId) {
+    //   console.log("FileId in Form: ", driveFileId);
+    //   const driveUrl = `https://drive.google.com/uc?export=view&id=${driveFileId}`;
+    //   setForm((prev) => ({ ...prev, url: driveUrl }));
+    //   console.log(form);
+    // }
+    // setIsSubmit(true);
+  };
 
   const handleUploadChange = (data, type = null) => {
-    let form = { ...form };
-    form.file = data;
-    setForm(form);
+    setForm((prev) => {
+      return { ...prev, file: data };
+    });
   };
 
   const i18n = ndpv.i18n;
@@ -89,6 +91,7 @@ export default (props) => {
                     id="title"
                     type="text"
                     name="title"
+                    value={form.title}
                     onChange={handleChange}
                   />
                 </div>
@@ -129,4 +132,4 @@ export default (props) => {
       </div>
     </div>
   );
-}
+};

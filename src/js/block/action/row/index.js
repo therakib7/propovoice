@@ -27,6 +27,18 @@ export default (props) => {
                 {overview && props.handleOverview && <a onClick={() => { setDropdown(false); props.handleOverview(row.id) }}>{i18n.ov}</a>}
                 {!isClient && props.editEntry && <a onClick={() => { setDropdown(false); props.editEntry('edit', row) }}>{i18n.edit}</a>}
                 {!isClient && <a onClick={() => { setDropdown(false); props.deleteEntry('single', row.id) }}>{i18n.del}</a>}
+                {!isClient && <a onClick={() => {
+                    setDropdown(false);
+                    if (row.file && row.url) {
+                        const url = new URL(row.url);
+                        const urlParams = new URLSearchParams(url.search);
+                        const driveId = urlParams.get('id');
+                        props.deleteEntry('singleDrive', [row.id, driveId])
+                    } else {
+
+                        props.deleteEntry('single', row.id)
+                    }
+                }}>{i18n.del}</a>}
             </div>}
         </div>
     );
