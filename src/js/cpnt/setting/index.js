@@ -29,7 +29,7 @@ const License = lazy(() => import('./tab/license'));
 //subtab: email
 const EmailEstimate = lazy(() => import('./tab/email/estimate'));
 const EmailInvoice = lazy(() => import('./tab/email/invoice'));
-const ClientPortal = lazy(() => import('./tab/email/client-portal'));
+const EmailCredential = lazy(() => import('./tab/email/credential'));
 
 const Payment = lazy(() => import('cpnt/payment'));
 
@@ -41,7 +41,7 @@ const Setting = (props) => {
   const { i18n, caps } = ndpv;
   const isClientStaff = caps.includes("ndpv_client_role") || caps.includes("ndpv_staff");
   const isNotClientStaff = !caps.includes("ndpv_client_role") || !caps.includes("ndpv_staff");
-  const isAdmin = !caps.includes("ndpv_client_role") || !caps.includes("ndpv_staff") || !caps.includes("ndpv_manager");
+  const isAdmin = !caps.includes("ndpv_client_role") && !caps.includes("ndpv_staff") && !caps.includes("ndpv_manager");
 
   let tabDefault = tab;
   let subTabDefault = subtab;
@@ -105,6 +105,9 @@ const Setting = (props) => {
         client_portal: {
           label: 'Client Portal'
         },
+        team: {
+          label: 'Team'
+        },
       },
     };
   }
@@ -163,8 +166,10 @@ const Setting = (props) => {
     } else {
       if (has_wage.ins) {
         let new_tabs = { ...tabs }
-        new_tabs.license = {
-          label: i18n.licman
+        if (isAdmin) {
+          new_tabs.license = {
+            label: i18n.licman
+          }
         }
         setTabs(new_tabs);
       }
@@ -266,7 +271,8 @@ const Setting = (props) => {
 
                 {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate {...props} />}
                 {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice {...props} />}
-                {currentTab == 'email' && currentSubtab == 'client_portal' && <ClientPortal {...props} />}
+                {currentTab == 'email' && currentSubtab == 'client_portal' && <EmailCredential type='client_portal' {...props} />}
+                {currentTab == 'email' && currentSubtab == 'team' && <EmailCredential type='team' {...props} />}
                 {currentTab == 'contact' && <Contact />}
                 {currentTab == 'tag' && <Tag />}
                 {currentTab == 'custom-field' && <CustomField {...props} />}

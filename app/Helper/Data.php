@@ -102,6 +102,23 @@ Thank you for staying with us.
 Regards
 {org_name}'
                     ]
+                ],  
+                'team' => [    
+                    'password' => [
+                        'subject' => '{org_name} team credentials',
+                        'msg' => 'Hi <b>{client_name}</b>,
+{org_name} gives you access to their team. 
+You can log in with the credentials
+
+<b>Login URL:</b> {login_url}
+<b>Email:</b> {email}
+<b>Password:</b> {password} 
+
+Thank you for staying with us.
+
+Regards
+{org_name}'
+                    ]
                 ],    
             ]
         ];

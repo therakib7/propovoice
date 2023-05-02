@@ -98,9 +98,9 @@ export default (props) => {
 			<div className="pv-action-content" ref={dropdownContent}>
 				{props.inForm &&
 					<>
-						<label htmlFor="form-asign">Asign:</label>
+						<label htmlFor="form-asign">Team:</label>
 						<button
-							className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow pv-mb-20"
+							className="pv-btn pv-btn-medium pv-bg-stroke"
 							style={{
 								margin: '0 10px',
 								width: 'auto',
@@ -108,13 +108,26 @@ export default (props) => {
 							}}
 							onClick={(e) => showDropdown(e)}
 						>
-							+ Asign
+							Asign
+							<svg
+								width={10}
+								height={6}
+								style={{ marginLeft: '10px' }}
+								className='pv-mr-0'
+								viewBox="0 0 10 6"
+								fill="none"
+							>
+								<path
+									d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
+									fill='#4A5568'
+								/>
+							</svg>
 						</button>
 					</>
 				}
 
 				{!props.inForm && <h3 className="pv-widget-title">
-					Staff
+					Team
 					<button
 						className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow pv-mb-20"
 						style={{
@@ -123,7 +136,20 @@ export default (props) => {
 						}}
 						onClick={(e) => showDropdown(e)}
 					>
-						+ Asign
+						Asign
+						<svg
+							width={10}
+							height={6}
+							style={{ marginLeft: '10px' }}
+							className='pv-mr-0'
+							viewBox="0 0 10 6"
+							fill="none"
+						>
+							<path
+								d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
+								fill='#4A5568'
+							/>
+						</svg>
 					</button>
 				</h3>}
 
@@ -139,7 +165,7 @@ export default (props) => {
 			{listById && listById.map((v, i) => {
 				if (props.inForm) {
 					return (
-						<span key={i} style={{ marginRight: 10 }} className="pv-badge">{v.name} <b onClick={() => handleDelete(v.id)}>X</b></span>
+						<span key={i} style={{ marginRight: 10, padding: '12px 10px', fontSize: 12 }} className="pv-badge">{v.name} <b onClick={() => handleDelete(v.id)} style={{ padding: '9px 7px' }}>X</b></span>
 					)
 				} else {
 					return (

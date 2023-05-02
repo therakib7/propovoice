@@ -16,6 +16,8 @@ const Team = (props) => {
   }, []);
 
   const { title, lists, extra, checkedBoxes, searchVal } = props.state;
+  const { caps } = ndpv;
+  const isStaff = caps.includes("ndpv_staff");
   return (
     <div className="ndpv-cpnt">
       <div className="row">
@@ -23,11 +25,11 @@ const Team = (props) => {
           <h2 className="pv-page-title">{ndpv.i18n.team + ' ' + ndpv.i18n.member}</h2>
         </div>
         <div className="col">
-          <AddNew
+          {!isStaff && <AddNew
             title={title}
             openForm={props.openForm}
             reload={() => props.getLists()}
-          />
+          />}
         </div>
       </div>
 

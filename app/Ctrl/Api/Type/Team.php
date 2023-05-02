@@ -187,7 +187,7 @@ class Team
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
         } 
 
-         if ( empty($email) ) {
+         if ( empty($role) ) {
             $reg_errors->add(
                 "role_field",
                 esc_html__("Role is missing", "propovoice")
@@ -215,7 +215,7 @@ class Team
                 $user_id_role->set_role($role);    
                 
 
-                $send_mail = Fns::password_mail( $name, $email, $password);
+                $send_mail = Fns::password_mail( $name, $email, $password, 'team');
 
                 if ($send_mail) {
                     //wp_send_json_success($send_mail);
@@ -223,6 +223,21 @@ class Team
                     //wp_send_json_error(["Something wrong: Email not sent"]);
                 }
             } else {
+                //check if already exist
+                $user_data = new \WP_User($user_id);
+                $user_roles = $user_data->roles;
+                $check_roles = array( 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' );
+                $role_exist = false;
+                foreach( $check_roles as $role ) {
+                    if ( in_array($role, $user_roles) ) {
+                        $role_exist = true;
+                    }
+                }
+                if ( $role_exist ) {
+                    wp_send_json_error(['Team already exist! Please edit team member']);
+                }
+
+                //if not asign new role
                 $user_id_role = new \WP_User($user_id);
                 $user_id_role->set_role($role);   
             }
@@ -351,21 +366,21 @@ class Team
     // check permission
     public function get_per()
     {
-        return current_user_can("administrator");
+        return current_user_can("administrator") || current_user_can("ndpv_admin") || current_user_can("ndpv_manager") || current_user_can("ndpv_staff");
     }
 
     public function create_per()
     {
-        return current_user_can("administrator");
+        return current_user_can("administrator") || current_user_can("ndpv_admin") || current_user_can("ndpv_manager");
     }
 
     public function update_per()
     {
-        return current_user_can("administrator");
+        return current_user_can("administrator") || current_user_can("ndpv_admin") || current_user_can("ndpv_manager");
     }
 
     public function del_per()
     {
-        return current_user_can("administrator");
+        return current_user_can("administrator") || current_user_can("ndpv_admin") || current_user_can("ndpv_manager");
     }
 }

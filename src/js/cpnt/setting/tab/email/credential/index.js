@@ -20,7 +20,7 @@ export default class Reminder extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        api.get('settings', 'tab=email_client_portal_password').then(resp => {
+        api.get('settings', 'tab=email_' + this.props.type + '_password').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
             }
@@ -46,7 +46,7 @@ export default class Reminder extends Component {
         }
 
         let form = this.state.form;
-        form.tab = 'email_client_portal_password';
+        form.tab = 'email_' + this.props.type + '_password';
 
         api.add('settings', form).then(resp => {
             if (resp.data.success) {

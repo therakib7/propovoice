@@ -505,17 +505,17 @@ class Fns
      * @package NDPV Project
      * @since 1.0
      */
-    public static function password_mail($name, $email, $password)
+    public static function password_mail($name, $email, $password, $type = 'client_portal')
     {
         //sent mail
         $data = [];
 
-        $option = get_option('ndpv_email_client_portal_password');
+        $option = get_option('ndpv_email_'.$type.'_password');
         if ($option) {
             $data = $option;
         } else {
-            $data['subject'] = ndpv()->get_default('email_template', 'client_portal', 'password', 'subject');
-            $data['msg'] = ndpv()->get_default('email_template', 'client_portal', 'password', 'msg');
+            $data['subject'] = ndpv()->get_default('email_template', $type, 'password', 'subject');
+            $data['msg'] = ndpv()->get_default('email_template', $type, 'password', 'msg');
         }
 
         $mail_subject = $data['subject'];
