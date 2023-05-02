@@ -1127,6 +1127,11 @@ class ListSingle extends Component {
           </div>
 
           <div className="col-lg-3 pv-lead-right-content">
+
+            {!wage.length && data.tab_id && <Suspense fallback={<Spinner />}>
+              <Staff tab_id={data.tab_id} />
+            </Suspense>}
+
             <div className="pv-widget pv-info-box">
               <h3 className="pv-widget-title">
                 {i18n.addi} {i18n.info}
@@ -1200,10 +1205,6 @@ class ListSingle extends Component {
                   ))}
               </div>
             </div>
-
-            {!isClient && !isStaff && !wage.length && data.tab_id && <Suspense fallback={<Spinner />}>
-              <Staff tab_id={data.tab_id} />
-            </Suspense>}
 
             {false && (
               <div className="pv-widget pv-timeline-box">

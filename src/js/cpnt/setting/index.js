@@ -135,7 +135,7 @@ const Setting = (props) => {
       label: i18n.intg
     };
   }
-  if (isAdmin) {
+  if (isAdmin && !wage.length) {
     tab_data.team = {
       label: 'Team'
     };

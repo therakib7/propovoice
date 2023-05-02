@@ -365,7 +365,7 @@ export default class Form extends Component {
 
               <div className="row">
                 <div className="col">
-                  {!isClient && !isStaff && !wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
+                  {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
                     <Staff tab_id={this.props.data.id} inForm />
                   </Suspense>}
                 </div>
