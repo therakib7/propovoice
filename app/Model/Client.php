@@ -47,30 +47,28 @@ class Client {
     {  
         $user_id = email_exists( $email );
         
-        if ( !$user_id ) {
-            $password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
-            $user_args = array (
-                    'user_login'     => $email,
-                    'user_pass'      => $password, 
-                    'user_email'     => $email,
-                    'first_name'     => $name,
-                    'nickname'       => $name,
-                    'display_name'   => $name
+        if ( $client_portal ) {
+            if ( !$user_id ) {
+                $password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
+                $user_args = array(
+                    'user_login'   => $email,
+                    'user_pass'    => $password, 
+                    'user_email'   => $email,
+                    'first_name'   => $name,
+                    'nickname'     => $name,
+                    'display_name' => $name
                 );
-            $user_id = wp_insert_user( $user_args);
-            $user_id_role = new \WP_User($user_id);
-            $user_id_role->set_role('ndpv_client_role');    
-            
-            $type = get_post_type($post_id) == "ndpv_person" ? "person" : "org";
-            update_user_meta($user_id, 'ndpv_client_id', $post_id);
-            update_user_meta($user_id, 'ndpv_client_type', $type);
+                $user_id = wp_insert_user( $user_args);
+                $user_id_role = new \WP_User($user_id);
+                $user_id_role->set_role('ndpv_client_role');    
+                
+                $type = get_post_type($post_id) == "ndpv_person" ? "person" : "org";
+                update_user_meta($user_id, 'ndpv_client_id', $post_id);
+                update_user_meta($user_id, 'ndpv_client_type', $type);
 
-            $send_mail = Fns::password_mail( $name, $email, $password);
-
-            if ($send_mail) {
-                //wp_send_json_success($send_mail);
+                Fns::password_mail( $name, $email, $password);
             } else {
-                //wp_send_json_error(["Something wrong: Email not sent"]);
+                Fns::password_mail( $name, $email, 'Use your old password');
             }
         } 
 

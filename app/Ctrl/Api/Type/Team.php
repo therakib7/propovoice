@@ -215,13 +215,7 @@ class Team
                 $user_id_role->set_role($role);    
                 
 
-                $send_mail = Fns::password_mail( $name, $email, $password, 'team');
-
-                if ($send_mail) {
-                    //wp_send_json_success($send_mail);
-                } else {
-                    //wp_send_json_error(["Something wrong: Email not sent"]);
-                }
+                Fns::password_mail( $name, $email, $password, 'team');
             } else {
                 //check if already exist
                 $user_data = new \WP_User($user_id);
@@ -240,6 +234,8 @@ class Team
                 //if not asign new role
                 $user_id_role = new \WP_User($user_id);
                 $user_id_role->set_role($role);   
+
+                Fns::password_mail( $name, $email, 'Use your old password', 'team');
             }
 
             $this->add_remove_user_caps($user_id, $caps);
@@ -358,6 +354,7 @@ class Team
             $user_id_role->remove_role('ndpv_admin');  
             $user_id_role->remove_role('ndpv_manager');  
             $user_id_role->remove_role('ndpv_staff');   
+            $user_id_role->set_role('subscriber');  
         }
 
         wp_send_json_success($ids);
