@@ -193,6 +193,9 @@ class Org
         }
         $data['email'] = isset($meta['email']) ? $meta['email'][0] : '';
         $data['mobile'] = isset($meta['mobile']) ? $meta['mobile'][0] : '';
+        $data["client_portal"] = isset($meta["client_portal"])
+            ? $meta["client_portal"][0]
+            : false;
         $logo_id = isset($meta['logo']) ? $meta['logo'][0] : '';
         $logoData = null;
         if ($logo_id) {

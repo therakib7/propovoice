@@ -45,6 +45,9 @@ const TableHeader = props => {
                     {i18n.date}
                 </th> */}
                 <th>
+                    {i18n.aut}
+                </th>
+                <th>
                     {i18n.action}
                 </th>
             </tr>
@@ -82,6 +85,7 @@ const TableBody = props => {
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.budget && row.currency ? currency(row.budget, row.currency) : ''}</td>
                 <td>{row.status_id && <span className="pv-badge">{row.status_id.label}</span>}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.author}</td>
                 <td className="pv-action">
                     <Action
                         project

@@ -431,7 +431,7 @@ class Fns
     public static function gravatar($email, $size = 40)
     {
         $hash = md5(strtolower(trim($email)));
-        return sprintf('https://www.gravatar.com/avatar/%s?d=blank&s=%s', $hash, $size);
+        return sprintf('https://www.gravatar.com/avatar/%s?s=%s', $hash, $size);
     }
 
     /**

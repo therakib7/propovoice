@@ -170,7 +170,7 @@ class Client
                 : "";
             $query_data["client_portal"] = isset($queryMeta["client_portal"])
                 ? $queryMeta["client_portal"][0]
-                : "";
+                : false;
 
             $img_id = $query_data["img"];
             $imgData = null;
@@ -184,6 +184,7 @@ class Client
             }
             $query_data["img"] = $imgData;
 
+            $query_data["author"] = get_the_author();
             $query_data["date"] = get_the_time(get_option("date_format"));
             $data[] = $query_data;
         }

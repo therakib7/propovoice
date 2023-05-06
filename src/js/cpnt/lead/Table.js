@@ -31,6 +31,9 @@ const TableHeader = props => {
                     {i18n.tag}
                 </th>
                 <th>
+                    {i18n.aut}
+                </th>
+                <th>
                     {i18n.date}
                 </th>
                 <th>
@@ -107,6 +110,7 @@ const TableBody = props => {
                         )
                     })}
                 </td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.author}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.date}</td>
                 <td className="pv-action">
                     <Action

@@ -133,6 +133,7 @@ class I18n
             "home" => esc_html__("Home", "propovoice"),
             "total" => esc_html__("Total", "propovoice"),
             "prv" => esc_html__("Preview", "propovoice"),
+            "aut" => esc_html__("Author", "propovoice"),
             //invoice
             "bill" => esc_html__("Bill", "propovoice"),
             "billTo" => esc_html__("Bill To", "propovoice"),

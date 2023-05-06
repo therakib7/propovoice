@@ -1,5 +1,7 @@
 <?php
 namespace Ndpv\Ctrl\Api\Type;
+
+use Ndpv\Model\Client;
 use Ndpv\Model\Org;
 
 class Person
@@ -233,6 +235,11 @@ class Person
             $personData["address"] = isset($personMeta["address"])
                 ? $personMeta["address"][0]
                 : "";
+
+            $personData["client_portal"] = isset($personMeta["client_portal"])
+                ? $personMeta["client_portal"][0]
+                : false;
+
             $img_id = isset($personMeta["img"]) ? $personMeta["img"][0] : null;
             $imgData = null;
             if ($img_id) {
@@ -397,6 +404,10 @@ class Person
             : null;
         $img = isset($param["img"]) ? absint($param["img"]) : null;
 
+        $client_portal = isset($param["client_portal"])
+            ? rest_sanitize_boolean($param["client_portal"])
+            : false;
+
         if (empty($first_name)) {
             $reg_errors->add(
                 "field",
@@ -474,6 +485,12 @@ class Person
                     update_post_meta($post_id, "img", $img);
                 } else {
                     delete_post_meta($post_id, "img");
+                }
+
+                if ( isset($param['client_portal']) ) {
+                    $client_model = new Client();
+                    $client_model->set_user_if_not($post_id, $first_name, $email, $client_portal);
+                    update_post_meta($post_id, "client_portal", $client_portal);
                 }
 
                 do_action("ndpvp/webhook", "contact_edit", $param);
