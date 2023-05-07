@@ -11,6 +11,18 @@ class Style
     public function init()
     {
         add_action('current_screen', [$this, 'get_plugin_screen']);
+
+        if (!get_page_by_path('propovoice-form')) {
+            $args = array(
+                'post_title'    => 'Propovoice Form',
+                'post_name'     => 'propovoice-form',
+                'post_status'   => 'publish',
+                'post_author'   => 1,
+                'post_type'     => 'page',
+            );
+            $id = wp_insert_post($args);
+            add_post_meta($id, '_wp_page_template', 'form-template.php');
+        }
     }
 
     public function get_plugin_screen()
