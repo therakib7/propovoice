@@ -234,8 +234,6 @@ export default class Form extends Component {
   render() {
     const form = this.state.form;
     const { i18n, caps } = ndpv;
-    const isClient = caps.includes("ndpv_client_role");
-    const isStaff = caps.includes("ndpv_staff");
     return (
       <div className="pv-overlay">
         <div
@@ -366,7 +364,7 @@ export default class Form extends Component {
               <div className="row">
                 <div className="col">
                   {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
-                    <Staff tab_id={this.props.data.id} inForm />
+                    <Staff tab_id={this.props.data.id} parent_tab_id={this.props.tab_id} inForm />
                   </Suspense>}
                 </div>
               </div>
