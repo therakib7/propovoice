@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-
+import { useRef, useCallback, useState, useEffect } from "react";
+import useClickOutside from 'block/outside-click';
 import { getOAuth2Data } from "api/gapi/goauth2";
 import Preloader from "block/preloader/table";
 
@@ -20,6 +20,11 @@ const File = (props) => {
   const [fileModal, setFileModal] = useState(false);
   const [driveModal, setDriveModal] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
+  const [openDropdown, setOpenDropdown] = useState(false);
+
+  const dropdownRef = useRef();
+  const close = useCallback(() => setOpenDropdown(false), []);
+  useClickOutside(dropdownRef, close);
 
   const { lists, checkedBoxes, searchVal } = props.state;
   const i18n = ndpv.i18n;
@@ -87,9 +92,8 @@ const File = (props) => {
               {true && (
                 <button
                   className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
-                  onClick={async () => {
-                    await getOAuth2Data();
-                    setDriveModal(true);
+                  onClick={() => {
+                    setOpenDropdown(!openDropdown);
                   }}
                 >
                   <svg width={17} height={14} viewBox="0 0 17 16" fill="none">
@@ -115,41 +119,43 @@ const File = (props) => {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  {i18n.upload} to Google Drive
+                  {i18n.upload}
                 </button>
               )}
+              {openDropdown && <div className="pv-dropdown-content pv-show" ref={dropdownRef} >
+                <a onClick={async () => {
+                  setOpenDropdown(false);
+                  await getOAuth2Data();
+                  setDriveModal(true);
+                }} >
+                  <svg width={17} height={14} xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" id="social-media"><path d="M21.7319336,15.1376953c-0.0018921-0.0333252-0.0109253-0.0648193-0.0196533-0.0977173c-0.0087891-0.0328369-0.0167847-0.0644531-0.0317383-0.0942383c-0.0046387-0.0092773-0.0043945-0.0195923-0.0096436-0.0287476L15.5126953,4.25C15.4235229,4.0953369,15.258606,4.000061,15.0800781,4H8.9208984C8.833252,4.000061,8.7471924,4.0231934,8.6712646,4.0670166C8.5995483,4.1083984,8.5473633,4.1674805,8.5056152,4.2327271C8.5006104,4.239502,8.492981,4.2429199,8.4882812,4.25L2.3291016,14.9169922c-0.0898438,0.154541-0.0898438,0.345459,0,0.5L5.4091797,20.75c0.0072021,0.0125122,0.0214233,0.0179443,0.0296021,0.0296631c0.0339355,0.0488281,0.0745239,0.0894775,0.1233521,0.1234741c0.0183716,0.0127563,0.0338135,0.026062,0.0537109,0.0362549C5.6845093,20.9749756,5.7591553,20.999939,5.8417969,21h12.3173828c0.1785278-0.000061,0.3434448-0.0953369,0.4326172-0.25l3.0791016-5.3330078c0.0070801-0.0122681,0.0048828-0.0276489,0.0108643-0.0404663c0.0253296-0.053894,0.0402832-0.109314,0.0452881-0.1686401c0.0012207-0.0140991,0.0108643-0.0262451,0.0108643-0.0404663C21.737915,15.1568604,21.7325439,15.1480713,21.7319336,15.1376953z M14.7910156,5l5.5810547,9.6669922h-5.0029297L9.7871094,5H14.7910156z M14.2144165,14.6669922H9.7861938l2.2139282-3.8348389L14.2144165,14.6669922z M3.3388672,15.1669922L8.9208984,5.5l2.5019531,4.3330078L5.8417969,19.5L3.3388672,15.1669922z M17.8701172,20H6.7080078l2.5020142-4.3330078h11.1621094L17.8701172,20z" fill="#718096" stroke-width="1.5"></path></svg>
+                  Google Drive</a>
 
-              {true && (
-                <button
-                  className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
-                  onClick={() => setFileModal(true)}
-                >
-                  <svg width={17} height={14} viewBox="0 0 17 16" fill="none">
-                    <path
-                      d="M5.875 5.125L8.5 2.5L11.125 5.125"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M8.5 9.5V2.5"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M14 9.5V13C14 13.1326 13.9473 13.2598 13.8536 13.3536C13.7598 13.4473 13.6326 13.5 13.5 13.5H3.5C3.36739 13.5 3.24021 13.4473 3.14645 13.3536C3.05268 13.2598 3 13.1326 3 13V9.5"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                <a onClick={() => {
+                  setOpenDropdown(false);
+                  setFileModal(true);
+                }} >
+                  <svg width={17} height={14} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier"> <title></title>
+                      <g id="Complete">
+                        <g id="F-File">
+                          <g id="Add">
+                            <path d="M18,22H6a2,2,0,0,1-2-2V4A2,2,0,0,1,6,2h7.1a2,2,0,0,1,1.5.6l4.9,5.2A2,2,0,0,1,20,9.2V20A2,2,0,0,1,18,22Z" fill="none" id="File" stroke="#718096" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+                            <line fill="none" stroke="#718096" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" x1="12" x2="12" y1="17" y2="11"></line>
+                            <line fill="none" stroke="#718096" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" x1="9" x2="15" y1="14" y2="14"></line>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
                   </svg>
-                  {i18n.upload} {i18n.file}
-                </button>
-              )}
+                  {i18n.file}
+                </a>
+              </div>}
+
+
+
               <button
                 className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
                 onClick={() => props.openForm("new")}
