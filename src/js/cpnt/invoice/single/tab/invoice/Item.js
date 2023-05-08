@@ -211,7 +211,7 @@ export default (props) => {
                 onMouseLeave={() => setVisiblity(false)}
                 style={{ 'position': 'relative' }}
             >
-                {visiblity && <button onClick={saveForNext} className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow" style={{ 'position': 'absolute', 'top': '11px', 'left': '-69px', 'width': 'auto' }}>Save for next</button>}
+                {visiblity && !wage.length && <button onClick={saveForNext} className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow" style={{ 'position': 'absolute', 'top': '11px', 'left': '-69px', 'width': 'auto' }}>Save for next</button>}
                 <span
                     onClick={props.deleteHandler(index)}
                 >
