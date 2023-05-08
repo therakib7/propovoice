@@ -19,7 +19,7 @@ export default (props) => {
 	}, []);
 
 	const getData = () => {
-		api.get('staffs', 'tab_id=' + props.tab_id, 'pro').then(resp => {
+		api.get('staffs', 'tab_id=' + props.parent_tab_id, 'pro').then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data.result);
 			}

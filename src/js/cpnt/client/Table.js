@@ -90,6 +90,12 @@ const TableBody = props => {
                         handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
+                        resendPassword={
+                            {
+                                show: (row.client_portal),
+                                from: 'client_portal'
+                            }
+                        }
                     />
                 </td>
             </tr>

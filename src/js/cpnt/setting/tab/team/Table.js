@@ -77,6 +77,12 @@ const TableBody = props => {
                         row={row}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
+                        resendPassword={
+                            {
+                                show: true,
+                                from: 'team'
+                            }
+                        }
                     />
                 </td>}
             </tr>

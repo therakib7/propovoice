@@ -288,7 +288,6 @@ class ListSingle extends Component {
 
     const { i18n, caps } = ndpv;
     const isClient = caps.includes("ndpv_client_role");
-    const isStaff = caps.includes("ndpv_staff");
     return (
       <div className="ndpv-cpnt">
         <nav className="pv-breadcrumb">
@@ -1130,7 +1129,7 @@ class ListSingle extends Component {
 
           <div className="col-lg-3 pv-lead-right-content">
 
-            {!wage.length && data.tab_id && <Suspense fallback={<Spinner />}>
+            {!wage.length && data.tab_id && !isClient && <Suspense fallback={<Spinner />}>
               <Staff tab_id={data.tab_id} />
             </Suspense>}
 
