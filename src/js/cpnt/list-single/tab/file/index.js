@@ -10,6 +10,9 @@ import Table from "./Table";
 // import Search from './Search';
 // import Empty from 'block/empty';
 
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
+
 import Crud from "hoc/Crud";
 
 const File = (props) => {
@@ -132,13 +135,23 @@ const File = (props) => {
 
                 {openDropdown && <div className="pv-dropdown-content pv-show" ref={dropdownRef} >
                   {!wage.length &&
-
                     <a onClick={async () => {
                       setOpenDropdown(false);
                       await getOAuth2Data();
                       setDriveModal(true);
                     }} >
-                      <svg width={17} height={14} xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24" id="social-media"><path d="M21.7319336,15.1376953c-0.0018921-0.0333252-0.0109253-0.0648193-0.0196533-0.0977173c-0.0087891-0.0328369-0.0167847-0.0644531-0.0317383-0.0942383c-0.0046387-0.0092773-0.0043945-0.0195923-0.0096436-0.0287476L15.5126953,4.25C15.4235229,4.0953369,15.258606,4.000061,15.0800781,4H8.9208984C8.833252,4.000061,8.7471924,4.0231934,8.6712646,4.0670166C8.5995483,4.1083984,8.5473633,4.1674805,8.5056152,4.2327271C8.5006104,4.239502,8.492981,4.2429199,8.4882812,4.25L2.3291016,14.9169922c-0.0898438,0.154541-0.0898438,0.345459,0,0.5L5.4091797,20.75c0.0072021,0.0125122,0.0214233,0.0179443,0.0296021,0.0296631c0.0339355,0.0488281,0.0745239,0.0894775,0.1233521,0.1234741c0.0183716,0.0127563,0.0338135,0.026062,0.0537109,0.0362549C5.6845093,20.9749756,5.7591553,20.999939,5.8417969,21h12.3173828c0.1785278-0.000061,0.3434448-0.0953369,0.4326172-0.25l3.0791016-5.3330078c0.0070801-0.0122681,0.0048828-0.0276489,0.0108643-0.0404663c0.0253296-0.053894,0.0402832-0.109314,0.0452881-0.1686401c0.0012207-0.0140991,0.0108643-0.0262451,0.0108643-0.0404663C21.737915,15.1568604,21.7325439,15.1480713,21.7319336,15.1376953z M14.7910156,5l5.5810547,9.6669922h-5.0029297L9.7871094,5H14.7910156z M14.2144165,14.6669922H9.7861938l2.2139282-3.8348389L14.2144165,14.6669922z M3.3388672,15.1669922L8.9208984,5.5l2.5019531,4.3330078L5.8417969,19.5L3.3388672,15.1669922z M17.8701172,20H6.7080078l2.5020142-4.3330078h11.1621094L17.8701172,20z" fill="#718096" stroke-width="1.5"></path></svg>
+                      <svg
+                        width={17}
+                        height={14}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21.732 15.138c-.002-.034-.011-.065-.02-.098-.009-.033-.017-.064-.031-.094-.005-.01-.005-.02-.01-.029L15.513 4.25A.5.5 0 0015.08 4H8.92a.5.5 0 00-.249.067.488.488 0 00-.165.166c-.005.007-.013.01-.018.017L2.33 14.917a.497.497 0 000 .5l3.08 5.333c.007.013.022.018.03.03.034.048.074.09.123.123.019.013.034.026.054.036.069.036.143.06.226.061h12.317a.5.5 0 00.433-.25l3.079-5.333c.007-.012.005-.028.01-.04a.487.487 0 00.046-.17c.001-.013.01-.025.01-.04 0-.01-.004-.019-.005-.03zM14.79 5l5.581 9.667H15.37L9.787 5h5.004zm-.577 9.667H9.786L12 10.832l2.214 3.835zm-10.875.5L8.92 5.5l2.502 4.333L5.842 19.5l-2.503-4.333zM17.87 20H6.708l2.502-4.333h11.162L17.87 20z"
+                          fill="#718096"
+                          strokeWidth={1.5}
+                        />
+                      </svg>
                       Google Drive</a>
                   }
 
@@ -146,19 +159,25 @@ const File = (props) => {
                     setOpenDropdown(false);
                     setFileModal(true);
                   }} >
-                    <svg width={17} height={14} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
-                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                      <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                      <g id="SVGRepo_iconCarrier"> <title></title>
-                        <g id="Complete">
-                          <g id="F-File">
-                            <g id="Add">
-                              <path d="M18,22H6a2,2,0,0,1-2-2V4A2,2,0,0,1,6,2h7.1a2,2,0,0,1,1.5.6l4.9,5.2A2,2,0,0,1,20,9.2V20A2,2,0,0,1,18,22Z" fill="none" id="File" stroke="#718096" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
-                              <line fill="none" stroke="#718096" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" x1="12" x2="12" y1="17" y2="11"></line>
-                              <line fill="none" stroke="#718096" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" x1="9" x2="15" y1="14" y2="14"></line>
-                            </g>
-                          </g>
-                        </g>
+                    <svg
+                      width={17}
+                      height={14}
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                    >
+                      <g
+                        stroke="#718096"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                      >
+                        <path
+                          d="M18 22H6a2 2 0 01-2-2V4a2 2 0 012-2h7.1a2 2 0 011.5.6l4.9 5.2a2 2 0 01.5 1.4V20a2 2 0 01-2 2z"
+                          fill="none"
+                        />
+                        <path d="M12 17L12 11" />
+                        <path d="M9 14L15 14" />
                       </g>
                     </svg>
                     {i18n.file}
