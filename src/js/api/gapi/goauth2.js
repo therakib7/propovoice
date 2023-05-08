@@ -86,4 +86,4 @@ async function handleSignIn(myRequest) {
   }
 }
 
-export { handleSignIn };
+export { handleSignIn, getOAuth2Data };

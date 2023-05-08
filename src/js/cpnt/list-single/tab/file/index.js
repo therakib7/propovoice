@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+
+import { getOAuth2Data } from "api/gapi/goauth2";
 import Preloader from "block/preloader/table";
 
 import FormDrive from "./FormDrive";
@@ -85,7 +87,10 @@ const File = (props) => {
               {true && (
                 <button
                   className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
-                  onClick={() => setDriveModal(true)}
+                  onClick={async () => {
+                    await getOAuth2Data();
+                    setDriveModal(true);
+                  }}
                 >
                   <svg width={17} height={14} viewBox="0 0 17 16" fill="none">
                     <path
@@ -110,7 +115,7 @@ const File = (props) => {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  {i18n.upload} Drive
+                  {i18n.upload} to Google Drive
                 </button>
               )}
 
