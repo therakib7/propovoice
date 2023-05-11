@@ -1,5 +1,7 @@
 <?php
 namespace Ndpv\Ctrl\Api\Type;
+
+use Ndpv\Model\Client;
 use Ndpv\Model\Person;
 
 class Org
@@ -176,15 +178,34 @@ class Org
         $query_data = [];
         $query_data["id"] = $id;
 
-        $query_data["name"] = get_post_meta($id, "name", true);
-        $query_data["email"] = get_post_meta($id, "email", true);
-        $query_data["web"] = get_post_meta($id, "web", true);
-        $query_data["mobile"] = get_post_meta($id, "mobile", true);
-        $query_data["country"] = get_post_meta($id, "country", true);
-        $query_data["region"] = get_post_meta($id, "region", true);
-        $query_data["address"] = get_post_meta($id, "address", true);
+        $orgMeta = get_post_meta($id);
+        $query_data["name"] = isset($orgMeta["name"])
+            ? $orgMeta["name"][0]
+            : ""; 
+        $query_data["email"] = isset($orgMeta["email"])
+            ? $orgMeta["email"][0]
+            : "";
+        $query_data["web"] = isset($orgMeta["web"])
+            ? $orgMeta["web"][0]
+            : "";
+        $query_data["mobile"] = isset($orgMeta["mobile"])
+            ? $orgMeta["mobile"][0]
+            : "";        
+        $query_data["country"] = isset($orgMeta["country"])
+            ? $orgMeta["country"][0]
+            : "";
+        $query_data["region"] = isset($orgMeta["region"])
+            ? $orgMeta["region"][0]
+            : "";
+        $query_data["address"] = isset($orgMeta["address"])
+            ? $orgMeta["address"][0]
+            : "";
 
-        $logo_id = get_post_meta($id, "logo", true);
+        $query_data["client_portal"] = isset($orgMeta["client_portal"])
+            ? $orgMeta["client_portal"][0]
+            : false;
+ 
+        $logo_id = isset($orgMeta["logo"]) ? $orgMeta["logo"][0] : null;
         $logoData = null;
         if ($logo_id) {
             $logo_src = wp_get_attachment_image_src($logo_id, "thumbnail");
@@ -347,6 +368,10 @@ class Org
             : null;
         $logo = isset($param["logo"]) ? absint($param["logo"]) : null;
 
+        $client_portal = isset($param["client_portal"])
+            ? rest_sanitize_boolean($param["client_portal"])
+            : false;
+
         if (empty($name)) {
             $reg_errors->add(
                 "field",
@@ -411,6 +436,12 @@ class Org
                     update_post_meta($post_id, "logo", $logo);
                 } else {
                     delete_post_meta($post_id, "logo");
+                }
+
+                if ( isset($param['client_portal']) ) {
+                    $client_model = new Client();
+                    $client_model->set_user_if_not($post_id, $first_name, $email, $client_portal);
+                    update_post_meta($post_id, "client_portal", $client_portal);
                 }
 
                 do_action("ndpvp/webhook", "contact_edit", $param);

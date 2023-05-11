@@ -288,7 +288,6 @@ class ListSingle extends Component {
 
     const { i18n, caps } = ndpv;
     const isClient = caps.includes("ndpv_client_role");
-    const isStaff = caps.includes("ndpv_staff");
     return (
       <div className="ndpv-cpnt">
         <nav className="pv-breadcrumb">
@@ -1061,6 +1060,7 @@ class ListSingle extends Component {
         {this.state.contactModal &&
           (data.person ? (
             <ContactPerson
+              single
               data={data.person}
               modalType="edit"
               handleSubmit={this.personEdit}
@@ -1069,6 +1069,7 @@ class ListSingle extends Component {
             />
           ) : (
             <ContactOrg
+              single
               data={data.org}
               modalType="edit"
               handleSubmit={this.orgEdit}
@@ -1128,7 +1129,7 @@ class ListSingle extends Component {
 
           <div className="col-lg-3 pv-lead-right-content">
 
-            {!wage.length && data.tab_id && <Suspense fallback={<Spinner />}>
+            {!wage.length && data.tab_id && !isClient && <Suspense fallback={<Spinner />}>
               <Staff tab_id={data.tab_id} />
             </Suspense>}
 
@@ -1205,24 +1206,6 @@ class ListSingle extends Component {
                   ))}
               </div>
             </div>
-
-            {false && (
-              <div className="pv-widget pv-timeline-box">
-                <h3 className="pv-widget-title pv-mb-15">
-                  {i18n.timeline} {i18n.info}
-                </h3>
-                <ul>
-                  <li>
-                    <h4 className="timeline-title">
-                      Rakib Created Project Propovoice
-                    </h4>
-                    <span>Aprill 12, 2022</span>
-                    <span>4.10 PM</span>
-                  </li>
-                </ul>
-                {/* ./ widget */}
-              </div>
-            )}
           </div>
         </div>
       </div>

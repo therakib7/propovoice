@@ -189,6 +189,9 @@ class Person
         }
         $data['email'] = isset($meta['email']) ? $meta['email'][0] : '';
         $data['mobile'] = isset($meta['mobile']) ? $meta['mobile'][0] : '';
+        $data["client_portal"] = isset($meta["client_portal"])
+            ? $meta["client_portal"][0]
+            : false;
         $img_id = isset($meta['img']) ? $meta['img'][0] : '';
         $imgData = null;
         if ($img_id) {

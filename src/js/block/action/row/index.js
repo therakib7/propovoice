@@ -2,6 +2,9 @@ import React, { useRef, useCallback, useState } from 'react';
 import useClickOutside from 'block/outside-click';
 import { Edit } from 'block/icon';
 
+import { toast } from "react-toastify";
+import api from 'api';
+
 export default (props) => {
 
     const dropdownRef = useRef();
@@ -12,11 +15,32 @@ export default (props) => {
     const { row, project, boardView } = props;
     const { i18n, caps } = ndpv;
     const isClient = caps.includes("ndpv_client_role");
+    const isStaff = caps.includes("ndpv_staff");
 
     let overview = true;
     if (project && isClient && !boardView) {
         overview = false;
     }
+
+    const resendPassword = (id, from) => {
+
+        let newForm = {
+            id,
+            from,
+            type: 'resend-password'
+        };
+
+        api.add('actions', newForm, 'pro').then(resp => {
+            if (resp.data.success) {
+                toast.success('Password resent');
+            } else {
+                resp.data.data.forEach(function (value, index, array) {
+                    toast.error(value);
+                });
+            }
+        });
+    }
+
     return (
         <div className="pv-action-content">
             <button className={(dropdown ? 'pv-active' : '')} onClick={() => setDropdown(val => !val)} style={{ padding: '0 5px' }} >
@@ -38,6 +62,7 @@ export default (props) => {
                         props.deleteEntry('single', row.id)
                     }
                 }}>{i18n.del}</a>}
+                {props.resendPassword && props.resendPassword.show && <a onClick={() => { setDropdown(false); resendPassword(row.id, props.resendPassword.from) }}>Resend Password</a>}
             </div>}
         </div>
     );

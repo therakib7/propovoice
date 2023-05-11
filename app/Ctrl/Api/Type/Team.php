@@ -2,8 +2,7 @@
 
 namespace Ndpv\Ctrl\Api\Type;
 
-use Ndpv\Helper\Fns;
-use Ndpv\Model\Contact;
+use Ndpv\Helper\Fns; 
 use Ndpv\Model\Org;
 use Ndpv\Model\Person;
 
@@ -220,6 +219,8 @@ class Team
                 //check if already exist
                 $user_data = new \WP_User($user_id);
                 $user_roles = $user_data->roles;
+
+                //check without client
                 $check_roles = array( 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' );
                 $role_exist = false;
                 foreach( $check_roles as $role ) {
@@ -229,6 +230,15 @@ class Team
                 }
                 if ( $role_exist ) {
                     wp_send_json_error(['Team already exist! Please edit team member']);
+                } 
+
+                //check client 
+                $client_role_exist = false;
+                if ( in_array('ndpv_client_role', $user_roles) ) {
+                    $client_role_exist = true;
+                }
+                if ( $client_role_exist ) {
+                    wp_send_json_error(['The user already exist in client!']);
                 }
 
                 //if not asign new role

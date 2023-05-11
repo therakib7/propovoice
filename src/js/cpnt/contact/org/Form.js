@@ -20,6 +20,7 @@ class Form extends Component {
             region: '',
             address: '',
             logo: null,
+            client_portal: false,
             date: false
         };
 
@@ -29,7 +30,9 @@ class Form extends Component {
     }
 
     handleChange = e => {
-        const { name, value } = e.target;
+        const target = e.target;
+        const { name } = target;
+        const value = target.type == 'checkbox' ? target.checked : target.value;
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
@@ -246,6 +249,23 @@ class Form extends Component {
                                         <Upload data={form.logo} changeHandler={this.handleLogoChange} />
                                     </div>
                                 </div>
+
+                                {!wage.length && this.props.single && <div className="row">
+                                    <div className="col">
+                                        <label id="form-client_portal">Client Portal Access</label>
+                                        <div className="pv-field-switch pv-ml-10">
+                                            <label className='pv-switch'>
+                                                <input type='checkbox'
+                                                    id="form-client_portal"
+                                                    name='client_portal'
+                                                    checked={form.client_portal ? 'checked' : ''}
+                                                    onChange={this.handleChange}
+                                                />
+                                                <span className='pv-switch-slider pv-round'></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>}
                             </div>
                         </div>
 

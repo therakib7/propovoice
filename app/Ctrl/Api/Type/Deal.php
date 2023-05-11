@@ -271,6 +271,7 @@ class Deal
                 $query_data["org"] = $org->single($org_id);
             }
 
+            $query_data["author"] = get_the_author();
             $query_data["date"] = get_the_time(get_option("date_format"));
             $data[] = $query_data;
         }

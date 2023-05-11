@@ -143,7 +143,7 @@ const Setting = (props) => {
       label: 'Team'
     };
   }
-  if (isAdmin) {
+  if (isAdmin && !wage.length) {
     tab_data['public-api'] = {
       label: 'Public API'
     };

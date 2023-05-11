@@ -33,6 +33,9 @@ const TableHeader = props => {
                     Portal Access
                 </th>}
                 <th>
+                    {i18n.aut}
+                </th>
+                <th>
                     {i18n.date}
                 </th>
                 <th>
@@ -79,6 +82,7 @@ const TableBody = props => {
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.mobile}</td>
                 <td>{row.type == 'person' ? i18n.prsn : i18n.org}</td>
                 {!wage.length && <td>{row.client_portal ? 'Yes' : 'No'}</td>}
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.author}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.date}</td>
                 <td className="pv-action">
                     <Action
@@ -86,6 +90,12 @@ const TableBody = props => {
                         handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
+                        resendPassword={
+                            {
+                                show: (row.client_portal),
+                                from: 'client_portal'
+                            }
+                        }
                     />
                 </td>
             </tr>

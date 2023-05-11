@@ -16,7 +16,7 @@ import Crud from "hoc/Crud";
 
 const Project = (props) => {
 	const [loading, setLoading] = useState(false);
-	const [boardView, setBoardView] = useState(true);
+	const [boardView, setBoardView] = useState(false);
 	const [modal, setModal] = useState(false);
 	const [modalType, setModalType] = useState("new");
 	const newForm = {
@@ -53,28 +53,13 @@ const Project = (props) => {
 	const isClient = caps.includes("ndpv_client_role");
 
 	useEffect(() => {
-		if (props.onLoad) {
-			if (wage.length > 0 || isClient) {
-				props.onLoad(false);
-			} else {
-				props.onLoad(true);
-			}
-		}
 
 		let args = {};
-		if (wage.length > 0 || isClient) {
-			setBoardView(true);
-			args.table_view = true;
-			if (props.dashboard) {
-				args.dashboard = true;
-			}
-			props.getLists(args);
-		} else {
-			if (props.dashboard) {
-				args.dashboard = true;
-			}
-			props.getLists(args);
+		args.table_view = true;
+		if (props.dashboard) {
+			args.dashboard = true;
 		}
+		props.getLists(args);
 
 		return () => {
 			if (props.onLoad) {
@@ -101,10 +86,12 @@ const Project = (props) => {
 			if (!isClient) {
 				onload = true;
 				params = {};
+			} else {
+				params = { table_view: true, project_req: true };
 			}
 		} else {
 			if (isClient) {
-				params = { table_view: true, project_req: true };
+				params = { table_view: true };
 			}
 		}
 		const promise = props.getLists(params);
@@ -149,6 +136,19 @@ const Project = (props) => {
 
 	const { title, lists, extra, checkedBoxes, searchVal } = props.state;
 
+	let boardViewData = false;
+	if (!props.module_id && boardView && (!isClient)) {
+		boardViewData = true;
+	}
+
+	let tableViewData = false;
+	if ((props.module_id || !boardView) && isClient) {
+		tableViewData = true;
+	} else if ((!props.module_id && boardView) && isClient) {
+		tableViewData = true;
+	} else if ((!props.module_id && !boardView && !isClient)) {
+		tableViewData = true;
+	}
 	return (
 		<div className="ndpv-cpnt">
 			{!props.module_id && !props.dashboard && <Breadcrumb title={title} />}
@@ -266,13 +266,11 @@ const Project = (props) => {
 				<Preloader />
 			) : (
 				<>
-					{!props.module_id && boardView && (!isClient) && (
+					{boardViewData && (
 						<Board new={props.openForm} data={lists} taxForm={taxForm} />
 					)}
-					{/* {(props.module_id || !boardView) && <>
-                    {console.log(lists)}
-                </>} */}
-					{((boardView && isClient) || (props.module_id || !boardView)) && (
+
+					{tableViewData && (
 						<>
 							<Table
 								tableData={lists}

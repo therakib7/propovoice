@@ -36,6 +36,27 @@ export default function SavedItemsSettings() {
         })
     }
 
+    const deleteRows = () => {
+        console.log(checkedRows)
+        let jobs = []
+        checkedRows.map((rowId, index) => {
+
+            jobs.push(new Promise((resolve, reject) => {
+                api.del('savefornext', rowId).then((res) => {
+                    setCheckedRows(checkedRows.filter((id) => id !== rowId));
+                    resolve(res)
+                }).catch(err => {
+                    reject(err)
+                })
+            }))
+
+        })
+
+        Promise.all(jobs).then((e)=>{
+            toast.success('Items deleted');
+        });
+    }
+
     let Row = (props) => {
         let row = props.row;
         const [hidden, setHidden] = useState(true);
@@ -69,9 +90,9 @@ export default function SavedItemsSettings() {
                 </td>
                 <td>
                     <div>
-                        <div>{hidden ? <div style={{ fontWeight: '500', fontSize: '12px' }}>{row.title}</div> : <input type="text" value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} />}</div>
+                        <div>{hidden ? <div style={{ fontWeight: '500', fontSize: '16px' }}>{row.title}</div> : <input type="text" value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} />}</div>
                         <div>
-                        {hidden ? <div style={{ fontWeight: '400px', fontSize: '8px' }}>{row.desc}</div> : <input style={{marginTop:'5px'}} type="text" value={data.desc} onChange={(e) => setData({ ...data, desc: e.target.value })} />} 
+                            {hidden ? <div style={{ fontWeight: '400px', fontSize: '12px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', width: '150px' }}>{row.desc}</div> : <input style={{ marginTop: '5px' }} type="text" value={data.desc} onChange={(e) => setData({ ...data, desc: e.target.value })} />}
                         </div>
                     </div>
                 </td>
@@ -90,12 +111,12 @@ export default function SavedItemsSettings() {
                 <td>${hidden ? row.price * row.qty : data.price * data.qty}</td>
                 <td>
                     {!hidden ? <div style={{ width: '100%', display: 'block' }}>
-                        <button style={{ border: 'none', cursor: 'pointer', marginLeft: '10px' }} onClick={() => updateRow()}>
+                        <button style={{ border: 'none', cursor: 'pointer', marginLeft: '10px', background: 'none' }} onClick={() => updateRow()}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#CBD5E0" style={{ width: '16px', height: '16px' }}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                             </svg>
                         </button>
-                        <button style={{ border: 'none', cursor: 'pointer', marginLeft: '10px' }} onClick={() => setHidden(!hidden)}>
+                        <button style={{ border: 'none', cursor: 'pointer', marginLeft: '10px', background: 'none' }} onClick={() => setHidden(!hidden)}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#CBD5E0" style={{ width: '16px', height: '16px' }}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -104,8 +125,8 @@ export default function SavedItemsSettings() {
                     </div>
                         :
                         <div>
-                            <button style={{ border: 'none', cursor: 'pointer', marginLeft: '10px' }} onClick={() => setHidden(!hidden)}><EditIcon /></button>
-                            <button style={{ border: 'none', cursor: 'pointer', marginLeft: '10px' }} onClick={() => deleteRow(row.index)}><DeleteIcon /></button>
+                            <button style={{ border: 'none', cursor: 'pointer', marginLeft: '10px', background: 'none' }} onClick={() => setHidden(!hidden)}><EditIcon /></button>
+                            <button style={{ border: 'none', cursor: 'pointer', marginLeft: '10px', background: 'none' }} onClick={() => deleteRow(row.index)}><DeleteIcon /></button>
                         </div>
                     }
 
@@ -140,7 +161,7 @@ export default function SavedItemsSettings() {
                     <span>{checkedRows.length}  Items Selected </span>
                 </div>
                 <div className="pv-small-button-group">
-                    <button className="pv-btn pv-btn-small pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow">Delete</button>
+                    <button onClick={deleteRows} className="pv-btn pv-btn-small pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow">Delete</button>
                 </div>
             </div>
         }
