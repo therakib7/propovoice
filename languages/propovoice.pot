@@ -6,11 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2023-05-07 06:28+0000\n"
-=======
-"POT-Creation-Date: 2023-05-08 10:55+0000\n"
->>>>>>> 0000275306122e717a595a0ae533bc7411e5dd08
+"POT-Creation-Date: 2023-05-12 08:57+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -1293,7 +1289,7 @@ msgstr ""
 
 #: ../app/Helper/I18n.php:390
 msgid ""
-"Please make sure your csv file has unique\n"
+"Please make sure your csv file has unique\n"
 "                      headers.Otherwise, it may fail to import"
 msgstr ""
 
@@ -1329,11 +1325,7 @@ msgstr ""
 msgid "Required field is missing"
 msgstr ""
 
-<<<<<<< HEAD
-#: ../app/Ctrl/Api/Type/Business.php:240, ../app/Ctrl/Api/Type/Business.php:337, ../app/Ctrl/Api/Type/Team.php:175, ../app/Ctrl/Api/Type/Team.php:268
-=======
 #: ../app/Ctrl/Api/Type/Business.php:240, ../app/Ctrl/Api/Type/Business.php:337, ../app/Ctrl/Api/Type/Team.php:174, ../app/Ctrl/Api/Type/Team.php:278
->>>>>>> 0000275306122e717a595a0ae533bc7411e5dd08
 msgid "Name is missing"
 msgstr ""
 
@@ -1345,11 +1337,7 @@ msgstr ""
 msgid "Name field is missing"
 msgstr ""
 
-<<<<<<< HEAD
-#: ../app/Ctrl/Api/Type/Client.php:320, ../app/Ctrl/Api/Type/Contact.php:356, ../app/Ctrl/Api/Type/Org.php:267, ../app/Ctrl/Api/Type/Org.php:385, ../app/Ctrl/Api/Type/Person.php:302, ../app/Ctrl/Api/Type/Person.php:421, ../app/Ctrl/Api/Type/Team.php:187, ../app/Ctrl/Api/Type/Team.php:280, ../app/Ctrl/Api/Type/Workspace.php:261, ../app/Ctrl/Api/Type/Workspace.php:370
-=======
 #: ../app/Ctrl/Api/Type/Client.php:320, ../app/Ctrl/Api/Type/Contact.php:356, ../app/Ctrl/Api/Type/Org.php:267, ../app/Ctrl/Api/Type/Org.php:385, ../app/Ctrl/Api/Type/Person.php:302, ../app/Ctrl/Api/Type/Person.php:421, ../app/Ctrl/Api/Type/Team.php:186, ../app/Ctrl/Api/Type/Team.php:290, ../app/Ctrl/Api/Type/Workspace.php:261, ../app/Ctrl/Api/Type/Workspace.php:370
->>>>>>> 0000275306122e717a595a0ae533bc7411e5dd08
 msgid "Email id is not valid!"
 msgstr ""
 
@@ -1425,11 +1413,7 @@ msgstr ""
 msgid "Taxonomy is missing"
 msgstr ""
 
-<<<<<<< HEAD
-#: ../app/Ctrl/Api/Type/Team.php:182, ../app/Ctrl/Api/Type/Team.php:275
-=======
 #: ../app/Ctrl/Api/Type/Team.php:181, ../app/Ctrl/Api/Type/Team.php:285
->>>>>>> 0000275306122e717a595a0ae533bc7411e5dd08
 msgid "Email is missing"
 msgstr ""
 
