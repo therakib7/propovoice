@@ -1,0 +1,88 @@
+.app {
+	display: flex;
+	height: 80vh;
+}
+
+.sidebar {
+	width: 200px;
+	background-color: #f5f5f5;
+	padding: 20px;
+}
+
+.sidebar h2 {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.sidebar ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.sidebar li {
+	cursor: pointer;
+	padding: 10px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+}
+
+.sidebar li.active {
+	background-color: #e0e0e0;
+}
+
+.chat-panel {
+	flex: 1;
+	background-color: #fff;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+.chat-panel h2 {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+.chat-panel ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	flex: 1;
+	overflow-y: auto;
+}
+
+.chat-panel li {
+	margin-bottom: 10px;
+}
+
+.message {
+	display: flex;
+	flex-direction: column;
+}
+
+.message-text {
+	padding: 10px;
+	background-color: #e0e0e0;
+	border-radius: 5px;
+	font-size: 16px;
+	line-height: 1.5;
+	max-width: 70%;
+}
+
+.message.mine .message-text {
+	background-color: #4caf50;
+	color: #fff;
+	align-self: flex-end;
+}
+
+.message.other .message-text {
+	background-color: #e0e0e0;
+}
+
+.message-time {
+	font-size: 12px;
+	margin-top: 5px;
+}

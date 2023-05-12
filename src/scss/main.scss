@@ -18,36 +18,36 @@ html {
 }
 
 /* Sections
-   ========================================================================== */
+      ========================================================================== */
 /**
- * Remove the margin in all browsers.
- */
+    * Remove the margin in all browsers.
+    */
 body {
   margin: 0;
 }
 
 /**
- * Render the `main` element consistently in IE.
- */
+    * Render the `main` element consistently in IE.
+    */
 main {
   display: block;
 }
 
 /**
- * Correct the font size and margin on `h1` elements within `section` and
- * `article` contexts in Chrome, Firefox, and Safari.
- */
+    * Correct the font size and margin on `h1` elements within `section` and
+    * `article` contexts in Chrome, Firefox, and Safari.
+    */
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
 
 /* Grouping content
-   ========================================================================== */
+      ========================================================================== */
 /**
- * 1. Add the correct box sizing in Firefox.
- * 2. Show the overflow in Edge and IE.
- */
+    * 1. Add the correct box sizing in Firefox.
+    * 2. Show the overflow in Edge and IE.
+    */
 hr {
   box-sizing: content-box;
   /* 1 */
@@ -58,9 +58,9 @@ hr {
 }
 
 /**
- * 1. Correct the inheritance and scaling of font size in all browsers.
- * 2. Correct the odd `em` font sizing in all browsers.
- */
+    * 1. Correct the inheritance and scaling of font size in all browsers.
+    * 2. Correct the odd `em` font sizing in all browsers.
+    */
 pre {
   font-family: monospace, monospace;
   /* 1 */
@@ -69,18 +69,18 @@ pre {
 }
 
 /* Text-level semantics
-   ========================================================================== */
+      ========================================================================== */
 /**
- * Remove the gray background on active links in IE 10.
- */
+    * Remove the gray background on active links in IE 10.
+    */
 a {
   background-color: transparent;
 }
 
 /**
- * 1. Remove the bottom border in Chrome 57-
- * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
- */
+    * 1. Remove the bottom border in Chrome 57-
+    * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+    */
 abbr[title] {
   border-bottom: none;
   /* 1 */
@@ -92,12 +92,12 @@ abbr[title] {
 }
 
 /**
- * Add the correct font weight in Chrome, Edge, and Safari.
- */
+    * Add the correct font weight in Chrome, Edge, and Safari.
+    */
 /**
- * 1. Correct the inheritance and scaling of font size in all browsers.
- * 2. Correct the odd `em` font sizing in all browsers.
- */
+    * 1. Correct the inheritance and scaling of font size in all browsers.
+    * 2. Correct the odd `em` font sizing in all browsers.
+    */
 code,
 kbd,
 samp {
@@ -108,16 +108,16 @@ samp {
 }
 
 /**
- * Add the correct font size in all browsers.
- */
+    * Add the correct font size in all browsers.
+    */
 small {
   font-size: 80%;
 }
 
 /**
- * Prevent `sub` and `sup` elements from affecting the line height in
- * all browsers.
- */
+    * Prevent `sub` and `sup` elements from affecting the line height in
+    * all browsers.
+    */
 sub,
 sup {
   font-size: 75%;
@@ -135,20 +135,20 @@ sup {
 }
 
 /* Embedded content
-   ========================================================================== */
+      ========================================================================== */
 /**
- * Remove the border on pv-single-images inside links in IE 10.
- */
+    * Remove the border on pv-single-images inside links in IE 10.
+    */
 img {
   border-style: none;
 }
 
 /* Forms
-   ========================================================================== */
+      ========================================================================== */
 /**
- * 1. Change the font styles in all browsers.
- * 2. Remove the margin in Firefox and Safari.
- */
+    * 1. Change the font styles in all browsers.
+    * 2. Remove the margin in Firefox and Safari.
+    */
 button,
 input,
 optgroup,
@@ -165,9 +165,9 @@ textarea {
 }
 
 /**
- * Show the overflow in IE.
- * 1. Show the overflow in Edge.
- */
+    * Show the overflow in IE.
+    * 1. Show the overflow in Edge.
+    */
 button,
 input {
   /* 1 */
@@ -175,9 +175,9 @@ input {
 }
 
 /**
- * Remove the inheritance of text transform in Edge, Firefox, and IE.
- * 1. Remove the inheritance of text transform in Firefox.
- */
+    * Remove the inheritance of text transform in Edge, Firefox, and IE.
+    * 1. Remove the inheritance of text transform in Firefox.
+    */
 button,
 select {
   /* 1 */
@@ -185,8 +185,8 @@ select {
 }
 
 /**
- * Correct the inability to style clickable types in iOS and Safari.
- */
+    * Correct the inability to style clickable types in iOS and Safari.
+    */
 button,
 [type=button],
 [type=reset],
@@ -195,8 +195,8 @@ button,
 }
 
 /**
- * Remove the inner border and padding in Firefox.
- */
+    * Remove the inner border and padding in Firefox.
+    */
 button::-moz-focus-inner,
 [type=button]::-moz-focus-inner,
 [type=reset]::-moz-focus-inner,
@@ -206,8 +206,8 @@ button::-moz-focus-inner,
 }
 
 /**
- * Restore the focus styles unset by the previous rule.
- */
+    * Restore the focus styles unset by the previous rule.
+    */
 button:-moz-focusring,
 [type=button]:-moz-focusring,
 [type=reset]:-moz-focusring,
@@ -216,18 +216,18 @@ button:-moz-focusring,
 }
 
 /**
- * Correct the padding in Firefox.
- */
+    * Correct the padding in Firefox.
+    */
 fieldset {
   padding: 0.35em 0.75em 0.625em;
 }
 
 /**
- * 1. Correct the text wrapping in Edge and IE.
- * 2. Correct the color inheritance from `fieldset` elements in IE.
- * 3. Remove the padding so developers are not caught out when they zero out
- *    `fieldset` elements in all browsers.
- */
+    * 1. Correct the text wrapping in Edge and IE.
+    * 2. Correct the color inheritance from `fieldset` elements in IE.
+    * 3. Remove the padding so developers are not caught out when they zero out
+    *    `fieldset` elements in all browsers.
+    */
 legend {
   box-sizing: border-box;
   /* 1 */
@@ -244,23 +244,23 @@ legend {
 }
 
 /**
- * Add the correct vertical alignment in Chrome, Firefox, and Opera.
- */
+    * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+    */
 progress {
   vertical-align: baseline;
 }
 
 /**
- * Remove the default vertical scrollbar in IE 10+.
- */
+    * Remove the default vertical scrollbar in IE 10+.
+    */
 textarea {
   overflow: auto;
 }
 
 /**
- * 1. Add the correct box sizing in IE 10.
- * 2. Remove the padding in IE 10.
- */
+    * 1. Add the correct box sizing in IE 10.
+    * 2. Remove the padding in IE 10.
+    */
 [type=checkbox],
 [type=radio] {
   box-sizing: border-box;
@@ -270,17 +270,17 @@ textarea {
 }
 
 /**
- * Correct the cursor style of increment and decrement buttons in Chrome.
- */
+    * Correct the cursor style of increment and decrement buttons in Chrome.
+    */
 [type=number]::-webkit-inner-spin-button,
 [type=number]::-webkit-outer-spin-button {
   height: auto;
 }
 
 /**
- * 1. Correct the odd appearance in Chrome and Safari.
- * 2. Correct the outline style in Safari.
- */
+    * 1. Correct the odd appearance in Chrome and Safari.
+    * 2. Correct the outline style in Safari.
+    */
 [type=search] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -289,16 +289,16 @@ textarea {
 }
 
 /**
- * Remove the inner padding in Chrome and Safari on macOS.
- */
+    * Remove the inner padding in Chrome and Safari on macOS.
+    */
 [type=search]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
 /**
- * 1. Correct the inability to style clickable types in iOS and Safari.
- * 2. Change font properties to `inherit` in Safari.
- */
+    * 1. Correct the inability to style clickable types in iOS and Safari.
+    * 2. Change font properties to `inherit` in Safari.
+    */
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
   /* 1 */
@@ -307,33 +307,33 @@ textarea {
 }
 
 /* Interactive
-   ========================================================================== */
+      ========================================================================== */
 /*
- * Add the correct display in Edge, IE 10+, and Firefox.
- */
+    * Add the correct display in Edge, IE 10+, and Firefox.
+    */
 details {
   display: block;
 }
 
 /*
- * Add the correct display in all browsers.
- */
+    * Add the correct display in all browsers.
+    */
 summary {
   display: list-item;
 }
 
 /* Misc
-   ========================================================================== */
+      ========================================================================== */
 /**
- * Add the correct display in IE 10+.
- */
+    * Add the correct display in IE 10+.
+    */
 template {
   display: none;
 }
 
 /**
- * Add the correct display in IE 10.
- */
+    * Add the correct display in IE 10.
+    */
 [hidden] {
   display: none;
 }
@@ -1696,7 +1696,7 @@ html {
 .ndpv .pv-right-content .pv-right-content-data {
   max-width: 1280px;
   margin: auto;
-  padding: 110px 70px 40px;
+  padding: 110px 70px 0px;
 }
 
 @media screen and (max-width: 992px) {
@@ -1753,7 +1753,7 @@ html {
 .ndpv .pv-breadcrumb {
   margin-bottom: 6px;
   margin-left: -5px;
-  display: none;
+  display: inline-block;
 }
 
 .ndpv .pv-breadcrumb ul {
@@ -2483,7 +2483,7 @@ html {
 }
 
 .wp-admin.ndpv .pv-right-content-data {
-  padding: 45px 70px 0;
+  padding: 45px 70px 70px;
 }
 
 .wp-admin.ndpv input[type=checkbox]:focus {
@@ -2756,7 +2756,7 @@ html {
   top: -3px;
 }
 
-.react-datepicker__day-names {
+.react-datepicker__day-pv-names {
   color: #4A5568 !important;
 }
 
@@ -2810,6 +2810,10 @@ html {
 
 .wp-admin.ndpv .pv-right-content {
   overflow-y: inherit;
+}
+
+.ndpv .pv-board-content {
+  height: calc(100vh - 403px) !important;
 }
 
 @media screen and (max-width: 550px) {
@@ -3180,10 +3184,6 @@ table thead:first-child tr:first-child th {
 
 .hello-elementor-theme .pv-field-switch {
   top: 0;
-}
-
-.pv-modal-content .pv-dropdown-content {
-  // height: 351px;
 }
 
 /*-------------------------------------------------------------- 
@@ -6227,4 +6227,386 @@ select {
     display: table;
     left: 28%;
   }
+}
+
+.ndpv .pv-messages-sub-title {
+  font-size: 12px;
+  margin-top: 0;
+  color: #718096;
+  margin-bottom: 30px;
+}
+
+.ndpv .pv-people-list {
+  width: 350px;
+  float: left;
+  background-color: #EDF2F7;
+}
+
+@media screen and (max-width: 992px) {
+  .ndpv .pv-people-list {
+    width: 100%;
+  }
+}
+
+.ndpv .pv-people-list .pv-people-list-head {
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+  color: #2D3748;
+}
+
+.ndpv .pv-people-list .pv-people-list-head svg {
+  margin-right: 10px;
+}
+
+.ndpv .pv-people-list .pv-people-list-head h4 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.ndpv .pv-people-list .pv-projects {
+  font-size: 14px;
+  font-weight: 600;
+  color: #718096;
+  margin-left: 20px;
+}
+
+.ndpv .pv-people-list .pv-search {
+  margin: 10px 20px;
+  position: relative;
+}
+
+.ndpv .pv-people-list .pv-search svg {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+}
+
+.ndpv .pv-people-list input {
+  border-radius: 10px;
+  padding: 12px;
+  padding-left: 35px;
+  color: white;
+  background: #fff;
+  width: 100%;
+  font-size: 14px;
+  border: 1px solid #e2e8f0;
+}
+
+.ndpv .pv-people-list input:focus {
+  outline: none;
+}
+
+.ndpv .pv-people-list .pv-name {
+  font-weight: 600;
+  color: #2D3748;
+}
+
+.ndpv .pv-people-list ul {
+  padding: 20px;
+  height: 573px;
+  overflow-y: scroll;
+  padding-top: 5px;
+}
+
+.ndpv .pv-people-list ul .pv-time {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 10px;
+  color: #A0AEC0;
+}
+
+.ndpv .pv-people-list ul li {
+  padding: 15px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.ndpv .pv-people-list ul li:hover {
+  background-color: #fff;
+}
+
+.ndpv .pv-people-list img {
+  float: left;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.ndpv .pv-people-list .pv-about {
+  float: left;
+  margin-top: 8px;
+}
+
+.ndpv .pv-people-list .pv-status {
+  color: #718096;
+  font-size: 12px;
+}
+
+.ndpv .pv-people-list .pv-button {
+  margin-bottom: 15px;
+  margin-left: 20px;
+}
+
+.ndpv .pv-people-list .pv-button .pv-btn {
+  color: #718096;
+}
+
+.ndpv .pv-people-list .pv-button .pv-btn-active {
+  border: 1px solid #4C6FFF;
+  color: #4C6FFF !important;
+}
+
+.ndpv .pv-chat {
+  width: 602px;
+  float: left;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #434651;
+}
+
+@media screen and (max-width: 992px) {
+  .ndpv .pv-chat {
+    width: 100%;
+  }
+}
+
+.ndpv .pv-chat .pv-chat-header {
+  padding: 15px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ndpv .pv-chat .pv-chat-header .pv-chat-about {
+  float: left;
+  padding-left: 10px;
+  margin-top: 6px;
+}
+
+.ndpv .pv-chat .pv-chat-header .pv-chat-with {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.ndpv .pv-chat .pv-chat-header .pv-chat-num-messages {
+  color: #718096;
+  font-size: 12px;
+}
+
+.ndpv .pv-chat .pv-chat-history {
+  padding: 30px 30px 20px;
+  border-bottom: 2px solid white;
+  overflow-y: scroll;
+  height: 533px;
+}
+
+.ndpv .pv-chat .pv-chat-history p {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.ndpv .pv-chat .pv-chat-history ul li:nth-child(even) {
+  width: 50%;
+  background: #CBD5E0;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-bottom: 25px;
+}
+
+.ndpv .pv-chat .pv-chat-history .pv-message-data {
+  margin-bottom: 15px;
+  display: flex;
+}
+
+.ndpv .pv-chat .pv-chat-history .pv-message-data .pv-about {
+  background-color: #F7FAFC;
+  padding: 10px;
+  padding-left: 8px;
+  margin-bottom: 10px;
+}
+
+.ndpv .pv-chat .pv-chat-history .pv-message-data .pv-about .pv-name {
+  color: #3D3D3D;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ndpv .pv-chat .pv-chat-history .pv-message-data img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.ndpv .pv-chat .pv-chat-history .pv-message-data-time {
+  background: #EDF2F7;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #718096;
+}
+
+.ndpv .pv-chat .pv-chat-history .pv-message {
+  font-size: 12px;
+}
+
+.ndpv .pv-chat .pv-chat-history .pv-message:after {
+  bottom: 100%;
+  left: 7%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-width: 10px;
+  margin-left: -10px;
+}
+
+.ndpv .pv-chat .pv-chat-history .my-message {
+  background: #F7FAFC;
+}
+
+.ndpv .pv-chat .pv-chat-history .pv-other-message:after {
+  left: 93%;
+}
+
+.ndpv .pv-chat .pv-chat-message {
+  padding: 30px;
+  display: flex;
+  position: relative;
+}
+
+.ndpv .pv-chat .pv-chat-message .pv-icon {
+  margin-right: 10px;
+  display: inline-flex;
+}
+
+.ndpv .pv-chat .pv-chat-message .pv-icon .paper-clip {
+  padding: 8px;
+}
+
+.ndpv .pv-chat .pv-chat-message .pv-icon span {
+  padding: 6px;
+  display: inline-block;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  line-height: 13px;
+  height: 37px;
+  cursor: pointer;
+}
+
+.ndpv .pv-chat .pv-chat-message .pv-icon span:first-child {
+  margin-right: 10px;
+}
+
+.ndpv .pv-chat .pv-chat-message .pv-smile {
+  position: absolute;
+  left: 10px;
+  top: 9px;
+}
+
+.ndpv .pv-chat .pv-chat-message .pv-textarea {
+  position: relative;
+  width: 100%;
+}
+
+.ndpv .pv-chat .pv-chat-message textarea {
+  width: 100%;
+  border: none;
+  padding: 10px 20px;
+  padding-left: 40px !important;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #979797;
+  border: 1px solid #e2e8f0;
+}
+
+.ndpv .pv-chat .pv-chat-message textarea:focus {
+  outline: none;
+}
+
+.ndpv .pv-chat .pv-chat-message button {
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: #4C6FFF;
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translatey(-50%);
+  padding: 12px;
+  background: none;
+}
+
+.ndpv .pv-chat-right-content {
+  width: 185px;
+  float: left;
+}
+
+.ndpv .pv-multi-people-img {
+  width: 70px;
+}
+
+.ndpv .pv-multi-people-img img {
+  width: 30px;
+  height: 30px;
+  margin-right: 0px;
+}
+
+.ndpv .pv-multi-people-img .pv-add-img {
+  background: #FFB5C4;
+  padding: 5px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 10px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  color: #4A5568;
+  font-weight: 600;
+}
+
+.ndpv .clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.ndpv .pv-chat-right-content {
+  width: 185px;
+  float: left;
+  padding: 15px;
+  height: 100vh;
+  border-right: 1px solid #e2e8f0;
+}
+
+.ndpv .pv-chat-right-content .pv-btn.pv-btn-medium {
+  border-radius: 5px;
+  color: #2D3748;
+}
+
+.ndpv .pv-add-people-list {
+  display: flex;
+}
+
+.ndpv .pv-add-people-list img {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.ndpv .pv-add-people-list h4 {
+  font-size: 12px;
+  color: #4A5568;
+  font-weight: 500;
 }
