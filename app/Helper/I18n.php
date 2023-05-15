@@ -179,6 +179,7 @@ class I18n
             "txt" => esc_html__("Text", "propovoice"),
             "color" => esc_html__("Color", "propovoice"),
             "desc" => esc_html__("Description", "propovoice"),
+            "discuss" => esc_html__("Discussion", "propovoice"),
             "note" => esc_html__("Note", "propovoice"),
             "title" => esc_html__("Title", "propovoice"),
             "start" => esc_html__("Start", "propovoice"),

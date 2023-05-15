@@ -321,6 +321,7 @@
 
 .ndpv .pv-multi-people-img {
 	width: 70px;
+	margin: auto;
 }
 
 .ndpv .pv-multi-people-img img {
@@ -340,6 +341,13 @@
 	text-align: center;
 	color: #4A5568;
 	font-weight: 600;
+}
+
+.ndpv .pv-add-members h4 {
+	font-size: 14px;
+	font-weight: 600;
+	color: #718096;
+	margin-bottom: 15px;
 }
 
 .ndpv .clearfix:after {
@@ -362,6 +370,37 @@
 .ndpv .pv-chat-right-content .pv-btn.pv-btn-medium {
 	border-radius: 5px;
 	color: #2D3748;
+}
+
+.ndpv .pv-chat-right-content .pv-right-content-head {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.ndpv .pv-chat-right-content .pv-right-content-head h3 {
+	font-size: 14px;
+	color: #2D3748;
+	font-weight: 600;
+}
+
+.ndpv .pv-chat-right-content .pv-right-content-head p {
+	margin: 0;
+	font-size: 12px;
+	color: #718096;
+	font-weight: 500;
+	margin-bottom: 15px;
+}
+
+.ndpv .pv-chat-right-content .pv-right-content-head .pv-btn {
+	width: 100%;
+	color: #2D3748;
+	font-size: 14px;
+	font-weight: 500;
+	padding: 10px !important;
+}
+
+.ndpv .pv-chat-right-content .pv-right-content-head .pv-btn svg {
+	margin-right: 10px;
 }
 
 .ndpv .pv-add-people-list {

@@ -109,7 +109,7 @@ function App() {
             <ul className="pv-list">
               <li>
                 <span className="pv-time">08:11am</span>
-                <img src="assets/img/chat-people.png" alt="chat-people" />
+                <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                 <div className="pv-about">
                   <div className="pv-name">Comps Mobile App</div>
                   <div className="pv-status">
@@ -120,9 +120,9 @@ function App() {
               <li className="pv-multi-people">
                 <span className="pv-time">08:11am</span>
                 <div className="pv-multi-people-img">
-                  <img src="assets/img/multi-people-1.png" alt="multi-people" />
-                  <img src="assets/img/multi-people-2.png" alt="multi-people" />
-                  <img src="assets/img/multi-people-3.png" alt="multi-people" />
+                  <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="multi-people" />
+                  <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="multi-people" />
+                  <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="multi-people" />
                 </div>
                 <div className="pv-about">
                   <div className="pv-name">Comps Mobile App</div>
@@ -134,9 +134,9 @@ function App() {
               <li className="pv-multi-people">
                 <span className="pv-time">08:11am</span>
                 <div className="pv-multi-people-img">
-                  <img src="assets/img/multi-people-1.png" alt="multi-people" />
-                  <img src="assets/img/multi-people-2.png" alt="multi-people" />
-                  <img src="assets/img/multi-people-3.png" alt="multi-people" />
+                  <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="multi-people" />
+                  <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="multi-people" />
+                  <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="multi-people" />
                   <span className="pv-add-img">2+</span>
                 </div>
                 <div className="pv-about">
@@ -148,7 +148,7 @@ function App() {
               </li>
               <li>
                 <span className="pv-time">08:11am</span>
-                <img src="assets/img/chat-people-2.png" alt="chat-people" />
+                <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                 <div className="pv-about">
                   <div className="pv-name">Aiden Chavez</div>
                   <div className="pv-status">
@@ -158,7 +158,7 @@ function App() {
               </li>
               <li>
                 <span className="pv-time">08:11am</span>
-                <img src="assets/img/chat-people-3.png" alt="chat-people" />
+                <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                 <div className="pv-about">
                   <div className="pv-name">Qbyte Landing Page</div>
                   <div className="pv-status">
@@ -168,7 +168,7 @@ function App() {
               </li>
               <li>
                 <span className="pv-time">08:11am</span>
-                <img src="assets/img/chat-people-4.png" alt="chat-people" />
+                <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                 <div className="pv-about">
                   <div className="pv-name">Erica Hughes</div>
                   <div className="pv-status">
@@ -178,7 +178,7 @@ function App() {
               </li>
               <li>
                 <span className="pv-time">08:11am</span>
-                <img src="assets/img/chat-people-5.png" alt="chat-people" />
+                <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                 <div className="pv-about">
                   <div className="pv-name">Ginger Johnston</div>
                   <div className="pv-status">
@@ -188,7 +188,7 @@ function App() {
               </li>
               <li>
                 <span className="pv-time">08:11am</span>
-                <img src="assets/img/chat-people-6.png" alt="chat-people" />
+                <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                 <div className="pv-about">
                   <div className="pv-name">Tracy Carpenter</div>
                   <div className="pv-status">
@@ -198,7 +198,7 @@ function App() {
               </li>
               <li>
                 <span className="pv-time">08:11am</span>
-                <img src="assets/img/chat-people.png" alt="chat-people" />
+                <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                 <div className="pv-about">
                   <div className="pv-name">Christian Kelly</div>
                   <div className="pv-status">
@@ -208,7 +208,7 @@ function App() {
               </li>
               <li>
                 <span className="pv-time">08:11am</span>
-                <img src="assets/img/chat-people-2.png" alt="chat-people" />
+                <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                 <div className="pv-about">
                   <div className="pv-name">Christian Kelly</div>
                   <div className="pv-status">
@@ -243,7 +243,7 @@ function App() {
                     </span>
                   </p>
                   <div className="pv-message-data">
-                    <img src="assets/img/chat-people-2.png" alt="chat-people" />
+                    <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                     <div className="pv-about">
                       <div className="pv-name">Nabil Emon</div>
                       <div className="pv-message">
@@ -266,7 +266,7 @@ function App() {
                     </span>
                   </p>
                   <div className="pv-message-data">
-                    <img src="assets/img/chat-people-2.png" alt="chat-people" />
+                    <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                     <div className="pv-about">
                       <div className="pv-name">Nabil Emon</div>
                       <div className="pv-message">
@@ -289,7 +289,7 @@ function App() {
                     </span>
                   </p>
                   <div className="pv-message-data">
-                    <img src="assets/img/chat-people-2.png" alt="chat-people" />
+                    <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="chat-people" />
                     <div className="pv-about">
                       <div className="pv-name">Nabil Emon</div>
                       <div className="pv-message">
@@ -469,9 +469,9 @@ function App() {
           {/* end pv-chat */}
           <div className="pv-chat-right-content">
             <div className="pv-multi-people-img">
-              <img src="assets/img/multi-people-1.png" alt="multi-people" />
-              <img src="assets/img/multi-people-2.png" alt="multi-people" />
-              <img src="assets/img/multi-people-3.png" alt="multi-people" />
+              <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="multi-people" />
+              <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="multi-people" />
+              <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="multi-people" />
             </div>
             <h3>Comps Mobile App</h3>
             <p>3 Members</p>
@@ -503,7 +503,7 @@ function App() {
             <div className="pv-add-members">
               <h4>Project Members</h4>
               <div className="pv-add-people-list">
-                <img src="assets/img/avatar.png" alt="avatar" />
+                <img src="http://nurency-plugins.local/wp-content/plugins/propovoice/asset/img/avatar.png" alt="avatar" />
                 <h4>Nabil Ahmed</h4>
               </div>
             </div>

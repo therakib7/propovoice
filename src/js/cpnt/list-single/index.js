@@ -14,6 +14,7 @@ import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Task = lazy(() => import("./tab/task"));
+const Discussion = lazy(() => import("./tab/discussion"));
 const Note = lazy(() => import("./tab/note"));
 const File = lazy(() => import("./tab/file"));
 const Invoice = lazy(() => import("cpnt/invoice/list"));
@@ -31,6 +32,10 @@ class ListSingle extends Component {
         {
           id: "task",
           text: ndpv.i18n.taska,
+        },
+        {
+          id: "discussion",
+          text: ndpv.i18n.discuss,
         },
         {
           id: "note",
@@ -1103,6 +1108,11 @@ class ListSingle extends Component {
                   {currentTab == "task" && data.tab_id && (
                     <Task tab_id={data.tab_id} />
                   )}
+
+                  {currentTab == "discussion" && data.tab_id && (
+                    <Discussion tab_id={data.tab_id} />
+                  )}
+
                   {currentTab == "note" && data.tab_id && (
                     <Note tab_id={data.tab_id} />
                   )}
