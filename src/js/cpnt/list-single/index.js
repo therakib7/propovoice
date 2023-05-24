@@ -1100,6 +1100,7 @@ class ListSingle extends Component {
 
               <div className="pv-tab-content">
                 <Suspense fallback={<Spinner />}>
+
                   {currentTab == "task" && data.tab_id && (
                     <Task tab_id={data.tab_id} />
                   )}
