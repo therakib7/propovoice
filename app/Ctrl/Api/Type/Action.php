@@ -138,6 +138,7 @@ class Action
                     if ($key == "invoice") {
                         $value = maybe_unserialize($value);
 
+                        $value["id"] = $new_post_id;
                         $value["num"] = $num;
 
                         if ($type == "copy-to-inv") {
