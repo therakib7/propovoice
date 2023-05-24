@@ -339,8 +339,7 @@ class Lead
             ? array_map("absint", $param["tags"])
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
-        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
-        $img = isset($param["img"]) ? absint($param["img"]) : null;
+        $note = isset($param["note"]) ? nl2br($param["note"]) : ""; 
 
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
