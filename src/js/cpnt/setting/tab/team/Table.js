@@ -56,11 +56,11 @@ const TableBody = props => {
         return (
             <tr key={index}>
                 {!isStaff && <td>
-                    <input type="checkbox"
+                    {row.role != 'administrator' && <input type="checkbox"
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
-                    />
+                    />}
                 </td>}
                 <td>
                     <div className="pv-avater">
@@ -73,7 +73,7 @@ const TableBody = props => {
                     {row.role_title}
                 </td>
                 {!isStaff && <td className="pv-action">
-                    <Action
+                    {row.role != 'administrator' && <Action
                         row={row}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
@@ -83,7 +83,7 @@ const TableBody = props => {
                                 from: 'team'
                             }
                         }
-                    />
+                    />}
                 </td>}
             </tr>
         );

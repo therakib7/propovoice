@@ -207,12 +207,10 @@ class Org
             }
         }
         $data['logo'] = $logoData;
-        if ($details) {
-            $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
-            $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';
-            $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
-            $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
-        }
+        $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
+        $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';
+        $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
+        $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
         return $data;
     }
 }

@@ -2,6 +2,7 @@ import React, { Component, lazy } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import { toast } from "react-toastify";
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import Upload from 'block/field/upload';
 import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
@@ -29,6 +30,9 @@ export default class Form extends Component {
             currency: 'USD',
             desc: '',
             note: '',
+            country: '',
+            region: '',
+            address: '',
             img: '',
             date: false,
         };
@@ -44,9 +48,9 @@ export default class Form extends Component {
     }
 
     handleChange = (e, type) => {
-      
+
         const { name, value } = e.target;
-        
+
         if (type == 'contact') {
             let contact = { ...this.state.form.contact, [name]: value };
             let form = { ...this.state.form }
@@ -108,11 +112,17 @@ export default class Form extends Component {
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
+                    form.country = (form.person) ? form.person.country : '';
+                    form.region = (form.person) ? form.person.region : '';
+                    form.address = (form.person) ? form.person.address : '';
                     form.img = (form.person) ? form.person.img : '';
                 } else {
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
+                    form.country = (form.org) ? form.org.country : '';
+                    form.region = (form.org) ? form.org.region : '';
+                    form.address = (form.org) ? form.org.address : '';
                     form.img = (form.org) ? form.org.img : '';
                 }
                 form.org_name = (form.org) ? form.org.name : '';
@@ -142,17 +152,11 @@ export default class Form extends Component {
     }
 
     selectCountry(val) {
-        let contact = { ...this.state.form.contact, ['country']: val };
-        let form = { ...this.state.form }
-        form.contact = contact;
-        this.setState({ form });
+        this.setState({ form: { ...this.state.form, ['country']: val } });
     }
 
     selectRegion(val) {
-        let contact = { ...this.state.form.contact, ['region']: val };
-        let form = { ...this.state.form }
-        form.contact = contact;
-        this.setState({ form });
+        this.setState({ form: { ...this.state.form, ['region']: val } });
     }
 
     handleSubmit = (e) => {
@@ -379,6 +383,50 @@ export default class Form extends Component {
                                 </div>
 
                                 <div className="row">
+                                    <div className="col-md-6">
+                                        <label htmlFor="form-country">
+                                            {i18n.country}
+                                        </label>
+
+                                        <CountryDropdown
+                                            value={form.country}
+                                            valueType='short'
+                                            onChange={(val) => this.selectCountry(val)}
+                                        />
+                                    </div>
+
+                                    <div className="col-md-6">
+                                        <label htmlFor="form-region">
+                                            {i18n.region}
+                                        </label>
+
+                                        <RegionDropdown
+                                            country={form.country}
+                                            countryValueType='short'
+                                            value={form.region}
+                                            onChange={(val) => this.selectRegion(val)}
+                                        />
+                                    </div>
+
+                                </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="form-address">
+                                            {i18n.addr}
+                                        </label>
+
+                                        <input
+                                            id="form-address"
+                                            type="text"
+                                            name="address"
+                                            value={form.address}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-img">
                                             {i18n.img}
@@ -404,7 +452,7 @@ export default class Form extends Component {
                                                 //     onChange={this.handleChange}
                                                 // />
                                                 <DateField
-                                                id={'custom-field-' + i}
+                                                    id={'custom-field-' + i}
                                                     date={form.start_date}
                                                     type="date"
                                                     name={item.id}

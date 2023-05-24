@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import Upload from 'block/field/upload';
 import { sprintf } from 'sprintf-js';
 
 class Form extends Component {
@@ -20,6 +21,7 @@ class Form extends Component {
             country: '',
             region: '',
             address: '',
+            img: '',
             client_portal: false,
             date: false
         };
@@ -111,6 +113,12 @@ class Form extends Component {
         }
 
         this.setState({ form });
+    }
+
+    handleImgChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.img = data;
+        this.setState({ form })
     }
 
     render() {
@@ -226,6 +234,15 @@ class Form extends Component {
                                             value={form.address}
                                             onChange={this.handleChange}
                                         />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="field-img">
+                                            {i18n.img}
+                                        </label>
+                                        <Upload data={form.img} changeHandler={this.handleImgChange} />
                                     </div>
                                 </div>
 
