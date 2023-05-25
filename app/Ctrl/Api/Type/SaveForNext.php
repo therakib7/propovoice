@@ -26,7 +26,9 @@ class SaveForNext
             [
                 "methods" => "GET",
                 "callback" => [$this, "get_data"],
-
+                "permission_callback" => function () {
+                    return true;
+                },
             ],
         ]);
 
