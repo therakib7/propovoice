@@ -184,6 +184,7 @@ The super fantastic pro features that accelerate your business growth and improv
 * Fixed: Invoice & Estimate duplicate issue
 * Fixed: Team role issue
 * Fixed: Client portal issue
+* Fixed: Receiver information sync issue on estimate
 * Added: Address fields lead, deal, project, client
 
 = 1.5.1 =
