@@ -220,6 +220,10 @@ class Form extends Component {
             form.email = (val) ? val.email : '';
             form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
+            form.country = (val) ? val.country : '';
+            form.region = (val) ? val.region : '';
+            form.address = (val) ? val.address : '';
+            form.img = (val) ? val.img : '';
         } else {
             form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
@@ -227,6 +231,10 @@ class Form extends Component {
                 form.email = (val) ? val.email : '';
                 form.mobile = (val) ? val.mobile : '';
                 form.web = (val) ? val.web : '';
+                form.country = (val) ? val.country : '';
+                form.region = (val) ? val.region : '';
+                form.address = (val) ? val.address : '';
+                form.img = (val) ? val.img : '';
             }
         }
 
