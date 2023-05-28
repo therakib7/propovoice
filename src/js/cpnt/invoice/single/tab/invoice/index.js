@@ -1044,6 +1044,7 @@ class Invoice extends Component {
                         fromData={this.state.fromData}
                         toData={this.state.toData}
                         editId={this.props.id}
+                        moduleId={this.props.module_id}
                       />
 
                       <Suspense fallback={<Spinner />}>
