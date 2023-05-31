@@ -10,7 +10,7 @@ import Table from './Table';
 
 import Crud from 'hoc/Crud';
 
-const Note = (props) => {
+const Message = (props) => {
     useEffect(() => {
         props.getLists();
     }, []);
@@ -38,4 +38,4 @@ const Note = (props) => {
         </div>
     );
 }
-export default Crud(Note, 'note');
+export default Crud(Message, 'message', 'Messages', '', true);

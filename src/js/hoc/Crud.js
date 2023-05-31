@@ -3,15 +3,16 @@ import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import { deleteFile } from "api/gapi/gdrive";
 import axios from 'axios';
-import { apiUrl, token } from 'api/helper'
+import { apiUrl, apiProUrl, token } from 'api/helper'
 
-const HOC = (Inner, mod, title, modPlural = '') => {
-    // console.log("data", module);
+const HOC = (Inner, mod, title, modPlural = '', pro = false) => {
     if (!modPlural) {
         modPlural = mod + 's';
     }
 
-    const url = apiUrl + modPlural;
+    let urlPath = (pro) ? apiProUrl : apiUrl;
+
+    const url = urlPath + modPlural;
     const Crud = class extends Component {
         constructor(props) {
             super(props);
