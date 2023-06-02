@@ -86,7 +86,7 @@ class Team
         $result = $data = [];
 
         $users = get_users( array(
-            'role__in' => array( 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' )
+            'role__in' => array( 'administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' )
         ) );
 
         $total_data = count($users);
@@ -241,6 +241,15 @@ class Team
                     wp_send_json_error(['The user already exist in client!']);
                 }
 
+                //check administrator 
+                $administrator_role_exist = false;
+                if ( in_array('administrator', $user_roles) ) {
+                    $administrator_role_exist = true;
+                }
+                if ( $administrator_role_exist ) {
+                    wp_send_json_error(['The user already exist in administrator!']);
+                }
+
                 //if not asign new role
                 $user_id_role = new \WP_User($user_id);
                 $user_id_role->set_role($role);   
@@ -360,6 +369,9 @@ class Team
         $url_params = $req->get_url_params();
         $ids = explode(",", $url_params["id"]);
         foreach ($ids as $id) {
+
+            if ( user_can($id, 'administrator') ) continue;
+
             $user_id_role = new \WP_User($id);
             $user_id_role->remove_role('ndpv_admin');  
             $user_id_role->remove_role('ndpv_manager');  

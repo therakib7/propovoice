@@ -9,7 +9,6 @@ const InvoiceWrap = (props) => {
 
 	const { id, tab } = useParams();
 	let navigate = useNavigate();
-
 	const location = useLocation();
 	let path = '';
 	let module_id = null;

@@ -73,6 +73,13 @@ export default class FromTo extends Component {
             }
         });
 
+        if (this.props.moduleId) {
+            api.getS('deals', this.props.moduleId).then(resp => {
+                this.props.setTo(resp.data.data.person);
+            });
+        }
+
+
         if (this.props.editId) {
             let fromData = this.props.fromData;
             let toData = this.props.toData;
@@ -84,6 +91,8 @@ export default class FromTo extends Component {
             }
         }
     }
+
+
 
     handleContactSelect = (val) => {
         this.setState({ to: val });
@@ -99,6 +108,7 @@ export default class FromTo extends Component {
             });
         }
     }
+
 
     handleBusinessSubmit = business => {
         if (this.state.businessModalType == 'new') {

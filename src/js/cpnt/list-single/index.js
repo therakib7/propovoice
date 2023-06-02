@@ -11,6 +11,7 @@ import ProjectForm from "cpnt/project/Form";
 import React, { Component, lazy, Suspense } from "react";
 import Moment from "react-moment";
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
+import { CountryRegionData } from 'react-country-region-selector';
 import { toast } from "react-toastify";
 
 const Task = lazy(() => import("./tab/task"));
@@ -276,6 +277,20 @@ class ListSingle extends Component {
       });
     }
   };
+
+  countryByCode = (country = '') => {
+    if (country) {
+      let obj = CountryRegionData.find((o, i) => {
+        if (o[1] === country) {
+          return true; // stop searching
+        }
+      });
+
+      if (obj) {
+        return obj[0];
+      }
+    }
+  }
 
   render() {
     const { tabs = [], currentTab } = this.state;
@@ -1105,6 +1120,7 @@ class ListSingle extends Component {
 
               <div className="pv-tab-content">
                 <Suspense fallback={<Spinner />}>
+
                   {currentTab == "task" && data.tab_id && (
                     <Task tab_id={data.tab_id} />
                   )}
@@ -1166,8 +1182,24 @@ class ListSingle extends Component {
                   <>
                     <span>{i18n.addr}:</span>
                     {data.person ? data.person.address : data.org.address}
+                    {data.person.address || data.org.address ? <br /> : ''}
+
+                    {data.person ? <>
+                      {(data.person.region || data.person.country) &&
+                        <>
+                          {(data.person.region && data.person.country) ? data.person.region + ', ' : ''} {this.countryByCode(data.person.country)}
+                        </>
+                      }
+                    </> : <>
+                      {(data.org.region || data.org.country) &&
+                        <>
+                          {(data.org.region && data.org.country) ? data.org.region + ', ' : ''} {this.countryByCode(data.org.country)}
+                        </>
+                      }
+                    </>}
                   </>
                 )}
+
               </address>
 
               <div className="pv-desc-content">

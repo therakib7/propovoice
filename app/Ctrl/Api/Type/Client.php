@@ -232,6 +232,28 @@ class Client
             );
         }
 
+        if ( $client_portal ) {
+            $user_id = email_exists( $email );
+            if ( $user_id ) {
+                $user_data = new \WP_User($user_id);
+                $user_roles = $user_data->roles;
+                $check_roles = array( 'administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' );
+                $role_exist = false;
+                foreach( $check_roles as $role ) {
+                    if ( in_array($role, $user_roles) ) {
+                        $role_exist = true;
+                    }
+                }
+                if ( $role_exist ) { 
+                    $reg_errors->add(
+                        "already_exist",
+                        esc_html__("You can not added a Team member as client", "propovoice")
+                    );
+                } 
+            }
+        }
+        
+
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
@@ -319,6 +341,27 @@ class Client
                 "email_invalid",
                 esc_html__("Email id is not valid!", "propovoice")
             );
+        }
+
+        if ( $client_portal ) {
+            $user_id = email_exists( $email );
+            if ( $user_id ) {
+                $user_data = new \WP_User($user_id);
+                $user_roles = $user_data->roles;
+                $check_roles = array( 'administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' );
+                $role_exist = false;
+                foreach( $check_roles as $role ) {
+                    if ( in_array($role, $user_roles) ) {
+                        $role_exist = true;
+                    }
+                }
+                if ( $role_exist ) { 
+                    $reg_errors->add(
+                        "already_exist",
+                        esc_html__("You can not added a Team member as client", "propovoice")
+                    );
+                } 
+            }
         }
 
         if ($reg_errors->get_error_messages()) {
