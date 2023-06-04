@@ -4,17 +4,16 @@ class Form extends Component {
     constructor(props) {
         super(props);
 
-        this.initialState = {
+        this.initState = {
             id: null,
             tab_id: this.props.tab_id,
             text: '',
-            desc: '',
-            priority: '',
-            date: false
+            receiver_type: null,
+            attach_ids: [],
         };
 
         this.state = {
-            form: this.initialState
+            form: this.initState
         };
     }
 
@@ -27,12 +26,18 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.handleSubmit(this.state.form, 'new');
-        this.setState({ form: this.initialState });
+        const buttonClicked = e.nativeEvent.submitter;
+        let form = { ...this.state.form }
+        form.receiver_type = (buttonClicked.id === 'ndpv-client') ? 1 : 2;
+
+
+        this.props.handleSubmit(form, 'new');
+        this.setState({ form: this.initState });
     }
 
     render() {
-        const i18n = ndpv.i18n;
+        const { i18n, caps } = ndpv;
+        const isClient = caps.includes("ndpv_client_role");
         return (
             <div className="pv-chat-history">
                 <form onSubmit={this.handleSubmit} className="pv-textarea">
@@ -86,11 +91,11 @@ class Form extends Component {
                             </svg>
                         </span>
                         <div className="pv-button">
-                            <button className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow pv-mr-10">
-                                Send to team
-                            </button>
-                            <button className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow">
-                                Reply to Client
+                            {!isClient && <button type='submit' id='ndpv-team' className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow pv-mr-10">
+                                Send to Team
+                            </button>}
+                            <button type='submit' id='ndpv-client' className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow">
+                                {isClient ? 'Send' : 'Reply to Client'}
                             </button>
                         </div>
                     </div>

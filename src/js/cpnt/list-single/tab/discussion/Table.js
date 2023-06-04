@@ -23,29 +23,27 @@ const TableBody = props => {
     let rows = props.tableData.map((row, i) => {
         return (
             <li key={i}>
-                <p>
-                    <span className="pv-message-data-time">Mon, Dec 26, 2022</span>
-                </p>
+                {row.date_format && <p><span className="pv-message-data-time">{row.date_format}</span></p>}
                 <div className="pv-message-data">
                     <div className="pv-time-content">
-                        <span className="pv-time">{row.date}</span>
-                        <Action
+                        <span className="pv-time">{row.date_ago}</span>
+                        {/* <Action
                             row={row}
                             editEntry={props.editEntry}
                             deleteEntry={props.deleteEntry}
-                        />
+                        /> */}
                     </div>
 
                     <img src={ndpv.assetImgUri + 'avatar.png'} alt="avatar" />
 
                     <div className="pv-about">
                         <div className="pv-name">
-                            {row.by}
+                            {row.name}
                             <span
                                 className="pv-badge pv-ml"
-                                style={{ background: "#39D68A", marginLeft: 5 }}
+                                style={{ background: ((row.role == 'ndpv_client_role') ? '#39D68A' : '#25A8FF'), marginLeft: 5 }}
                             >
-                                Client
+                                {row.role_title}
                             </span>
                         </div>
                         <div className="pv-message">
@@ -54,8 +52,6 @@ const TableBody = props => {
                     </div>
                 </div>
             </li>
-
-
         );
     });
 
