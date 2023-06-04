@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Upload from 'block/field/upload';
+
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -27,42 +29,48 @@ class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const buttonClicked = e.nativeEvent.submitter;
+        let newForm = { ...this.state.form }
+
+        if (newForm.attach_ids.length > 0) {
+            newForm.attach_ids = newForm.attach_ids.map(item => item.id);;
+        }
+
+        newForm.receiver_type = (buttonClicked.id === 'ndpv-client') ? 1 : 2;
+
+        this.props.handleSubmit(newForm, 'new');
+        this.setState({
+            form: {
+                id: null,
+                tab_id: this.props.tab_id,
+                text: '',
+                receiver_type: null,
+                attach_ids: [],
+            }
+        });
+    }
+
+    handleAttachChange = (data, del = false) => {
         let form = { ...this.state.form }
-        form.receiver_type = (buttonClicked.id === 'ndpv-client') ? 1 : 2;
+        if (del) {
+            const newArray = form.attach_ids.filter(item => item.id !== data);
+            form.attach_ids = newArray;
+        } else {
+            form.attach_ids.push(data);
+        }
 
-
-        this.props.handleSubmit(form, 'new');
-        this.setState({ form: this.initState });
+        this.setState({ form })
     }
 
     render() {
         const { i18n, caps } = ndpv;
+        const form = this.state.form;
+        const attach_ids = form.attach_ids;
+
         const isClient = caps.includes("ndpv_client_role");
         return (
             <div className="pv-chat-history">
                 <form onSubmit={this.handleSubmit} className="pv-textarea">
-                    {/* <div className="pv-tab-buttons-group pv-text-right">
 
-                        <div className="pv-activity-field">
-                            <input
-                                id="field-text"
-                                type="text"
-                                required
-                                name="text"
-                                value={this.state.form.text}
-                                placeholder='Write your message'
-                                onChange={this.handleChange}
-                            />
-                        </div>
-
-                        <button className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow pv-mr-10">
-                            Send to team
-                        </button>
-
-                        <button className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow">
-                            Reply to client
-                        </button>
-                    </div> */}
                     <textarea
                         id="field-text"
                         type="text"
@@ -74,7 +82,7 @@ class Form extends Component {
                         rows={4}
                     />
                     <div className="pv-button-content">
-                        <span className="pv-paper-clip">
+                        {false && <span className="pv-paper-clip">
                             <svg
                                 width={15}
                                 height={16}
@@ -89,7 +97,10 @@ class Form extends Component {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                        </span>
+                        </span>}
+
+                        <Upload key={attach_ids} data={attach_ids} changeHandler={this.handleAttachChange} multiple clipOnly />
+
                         <div className="pv-button">
                             {!isClient && <button type='submit' id='ndpv-team' className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow pv-mr-10">
                                 Send to Team
