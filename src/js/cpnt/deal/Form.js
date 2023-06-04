@@ -345,6 +345,50 @@ class Form extends Component {
                                 {/* </>} */}
 
                                 <div className="row">
+                                    <div className="col-md-6">
+                                        <label htmlFor="form-country">
+                                            {i18n.country}
+                                        </label>
+
+                                        <CountryDropdown
+                                            value={form.country}
+                                            valueType='short'
+                                            onChange={(val) => this.selectCountry(val)}
+                                        />
+                                    </div>
+
+                                    <div className="col-md-6">
+                                        <label htmlFor="form-region">
+                                            {i18n.region}
+                                        </label>
+
+                                        <RegionDropdown
+                                            country={form.country}
+                                            countryValueType='short'
+                                            value={form.region}
+                                            onChange={(val) => this.selectRegion(val)}
+                                        />
+                                    </div>
+
+                                </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="form-address">
+                                            {i18n.addr}
+                                        </label>
+
+                                        <input
+                                            id="form-address"
+                                            type="text"
+                                            name="address"
+                                            value={form.address}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-stage_id">
                                             {i18n.stage}
@@ -447,50 +491,6 @@ class Form extends Component {
                                             rows={2}
                                             name="note"
                                             value={form.note}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label htmlFor="form-country">
-                                            {i18n.country}
-                                        </label>
-
-                                        <CountryDropdown
-                                            value={form.country}
-                                            valueType='short'
-                                            onChange={(val) => this.selectCountry(val)}
-                                        />
-                                    </div>
-
-                                    <div className="col-md-6">
-                                        <label htmlFor="form-region">
-                                            {i18n.region}
-                                        </label>
-
-                                        <RegionDropdown
-                                            country={form.country}
-                                            countryValueType='short'
-                                            value={form.region}
-                                            onChange={(val) => this.selectRegion(val)}
-                                        />
-                                    </div>
-
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="form-address">
-                                            {i18n.addr}
-                                        </label>
-
-                                        <input
-                                            id="form-address"
-                                            type="text"
-                                            name="address"
-                                            value={form.address}
                                             onChange={this.handleChange}
                                         />
                                     </div>
