@@ -197,13 +197,13 @@ class Media
 
         $reg_errors = new \WP_Error();
 
-        $img_max_size = 2048; //2048KB
+        $img_max_size = 5048; //5048KB
 
         // $file               = $_FILES['file'];
         $file = $file_data;
-        $allowed_file_types = ["image/jpg", "image/jpeg", "image/png"];
-        // Allowed file size -> 1MB
-        $allowed_file_size = $img_max_size * 2048;
+        $allowed_file_types = ["image/jpg", "image/jpeg", "image/png", "application/pdf"];
+        // Allowed file size -> 5MB
+        $allowed_file_size = $img_max_size * 5048;
 
         if (!empty($file["name"])) {
             // Check file type

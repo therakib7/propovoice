@@ -140,12 +140,21 @@ class File
                 : "";
             $fileData = null;
             if ($file_id) {
-                $file_src = wp_get_attachment_image_src($file_id, "thumbnail");
-                if ($file_src) {
-                    $fileData = [];
-                    $fileData["id"] = $file_id;
-                    $fileData["src"] = $file_src[0];
-                    $fileData["src_small"] = $file_src;
+                $attach_type = get_post_mime_type($file_id);
+                if ( $attach_type == "application/pdf" ) {
+                    $file_src = wp_get_attachment_url($file_id);
+                    if ($file_src) {
+                        $query_data["type"] = 'pdf';
+                        $query_data["url"] = $file_src;
+                    }
+                } else {
+                    $file_src = wp_get_attachment_image_src($file_id, "thumbnail");
+                    if ($file_src) {
+                        $fileData = [];
+                        $fileData["id"] = $file_id;
+                        $fileData["src"] = $file_src[0];
+                        $fileData["src_small"] = $file_src;
+                    }
                 }
             }
             $query_data["file"] = $fileData;

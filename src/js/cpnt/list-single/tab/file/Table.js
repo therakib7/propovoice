@@ -87,7 +87,7 @@ const TableBody = props => {
 
                     {row.type == 'google-drive' && <a target='_blank' href={row.url}><img src={row.url} alt="file" width="40" /></a>}
                     {!row.file && <img src={ndpv.assetImgUri + 'file.png'} alt="file" />}
-                    <span>{row.type == 'link' || row.type == 'google-drive' ? <a target='_blank' href={row.url}>{row.title}</a> : row.title}</span>
+                    <span>{row.type == 'link' || row.type == 'google-drive' || row.type == 'pdf' ? <a target='_blank' href={row.url}>{row.title}</a> : row.title}</span>
                 </td>
                 <td>
                     <div className="pv-avater">
