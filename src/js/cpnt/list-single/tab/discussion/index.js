@@ -13,8 +13,18 @@ import Crud from 'hoc/Crud';
 const Message = (props) => {
     useEffect(() => {
         props.getLists();
+
+        const interval = setInterval(() => {
+            props.getLists();
+        }, 15000); // Set the interval duration in milliseconds (e.g., 1000ms = 1 second)
+
+        // Clear the interval when the component is unmounted or the dependencies change
+        return () => clearInterval(interval);
+
     }, []);
     const { lists, checkedBoxes, searchVal } = props.state;
+
+
     return (
         <div className="">
             {props.state.formModal && <FormEdit
