@@ -1,23 +1,6 @@
 import React, { useRef, useCallback, useState } from 'react';
 import Action from 'block/action/row';
 
-{/* <div className="pv-note" key={index}>
-                <Action
-                    row={row}
-                    editEntry={props.editEntry}
-                    deleteEntry={props.deleteEntry}
-                />
-
-                <div className="pv-avater">
-                    <img src={ndpv.assetImgUri + 'avatar.png'} alt="avatar" />
-                </div>
-
-                <div className="pv-note-text">
-                    <h4>{row.by} <span>{row.date}</span></h4>
-                    <p>{row.text}</p>
-                </div>
-            </div> */}
-
 const TableBody = props => {
 
     let rows = props.tableData.map((row, i) => {
@@ -48,10 +31,20 @@ const TableBody = props => {
                         </div>
                         <div className="pv-message">
                             {row.text}
+                            {row.attachs.length > 0 && <br />}
+                            <ul>
+                                {row.attachs.map((item, i) => {
+                                    return (
+                                        <li key={i}><a href={item} target="_blank">
+                                            <b>{item}</b>
+                                        </a></li>
+                                    );
+                                })}
+                            </ul>
                         </div>
                     </div>
-                </div>
-            </li>
+                </div >
+            </li >
         );
     });
 
