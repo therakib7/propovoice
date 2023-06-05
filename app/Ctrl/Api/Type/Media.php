@@ -292,11 +292,16 @@ class Media
 
                         $file_info = [
                             "id" => $attach_id,
+                            "type" => get_post_mime_type($attach_id),
                             "src" => wp_get_attachment_image_url(
                                 $attach_id,
                                 "thumbnail"
                             ),
                         ];
+
+                        if ( $file_info['type'] == 'application/pdf' ) {
+                            $file_info['name'] = basename( get_attached_file( $attach_id ) );
+                        }
                     }
 
                     wp_send_json_success($file_info);
@@ -338,6 +343,6 @@ class Media
 
     public function del_per()
     {
-        return current_user_can("ndpv_media");
+        return current_user_can("ndpv_media") || current_user_can("administrator");
     }
 }

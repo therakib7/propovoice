@@ -140,8 +140,8 @@ class Upload extends Component {
           <>
             {data && data.map((item, i) => {
               return (
-                <div className="pv-field-logo" key={i}>
-                  <img src={item.src} width={this.props.small ? "40" : "100"} />
+                <div className="pv-field-logo" key={i} style={{ marginRight: 10 }}>
+                  {item.type == 'application/pdf' ? item.name : <img src={item.src} width={this.props.small ? "40" : "100"} />}
                   {remove && (
                     <span
                       className="pv-field-logo-close"
@@ -150,7 +150,6 @@ class Upload extends Component {
                       ×
                     </span>
                   )}
-
                 </div>
               );
             })}
