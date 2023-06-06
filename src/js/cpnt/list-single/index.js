@@ -35,10 +35,6 @@ class ListSingle extends Component {
           text: ndpv.i18n.taska,
         },
         {
-          id: "discussion",
-          text: ndpv.i18n.discuss,
-        },
-        {
           id: "note",
           text: ndpv.i18n.note,
         },
@@ -81,10 +77,19 @@ class ListSingle extends Component {
   }
 
   componentDidMount() {
+
     this.getData();
     const path = this.props.path;
 
     let tabs = this.state.tabs;
+
+    if (!wage.length) {
+      this.state.tabs.splice(1, 0, {
+        id: "discussion",
+        text: ndpv.i18n.discuss,
+      });
+    }
+
     if (path == "deal") {
       tabs.push({
         id: "estimate",
@@ -1125,7 +1130,7 @@ class ListSingle extends Component {
                     <Task tab_id={data.tab_id} />
                   )}
 
-                  {currentTab == "discussion" && data.tab_id && (
+                  {!wage.length && currentTab == "discussion" && data.tab_id && (
                     <Discussion tab_id={data.tab_id} />
                   )}
 
