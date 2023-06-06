@@ -18,7 +18,7 @@ export default (props) => {
     const isStaff = caps.includes("ndpv_staff");
 
     let overview = true;
-    if (project && isClient && !boardView) {
+    if (project && isClient && boardView) {
         overview = false;
     }
 

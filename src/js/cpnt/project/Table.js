@@ -60,7 +60,7 @@ const TableBody = props => {
     const navigate = useNavigate();
     const handleOverview = (id) => {
 
-        if (isClient && !props.boardView) {
+        if (isClient && props.boardView) {
             return;
         }
         navigate(`/project/${id}`);
