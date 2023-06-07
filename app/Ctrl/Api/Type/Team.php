@@ -82,7 +82,7 @@ class Team
         if (isset($param["page"]) && $param["page"] > 1) {
             $offset = $per_page * $param["page"] - $per_page;
         }
-        
+
         $result = $data = [];
 
         $users = get_users( array(
@@ -93,12 +93,12 @@ class Team
 
         foreach ( $users as $user ) {
             $info = [];
-            $info['id'] = $user->id; 
+            $info['id'] = $user->id;
             $info['name'] = $user->display_name; 
             $info['img'] = Fns::gravatar($user->user_email); 
             $info['email'] = $user->user_email; 
-            $info['role'] = reset($user->roles);  
-           
+            $info['role'] = reset($user->roles);
+
             $user_data = new \WP_User($user->id);
             $allcaps = array_keys( array_filter( $user_data->allcaps ) );
 

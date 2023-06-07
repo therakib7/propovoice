@@ -188,6 +188,7 @@ class I18n
             "sub" => esc_html__("Subject", "propovoice"),
             "msg" => esc_html__("Message", "propovoice"),
             "clear" => esc_html__("Clear", "propovoice"),
+            "cancel" => esc_html__("Cancel", "propovoice"),
             "account" => esc_html__("Account", "propovoice"),
             "pub" => esc_html__("Public", "propovoice"),
             "secret" => esc_html__("Secret", "propovoice"),

@@ -145,7 +145,7 @@ export default class Form extends Component {
                     <div className="pv-modal-footer pv-mt-10">
                         <div className="row">
                             <div className="col">
-                                <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
+                                <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                             </div>
                             <div className="col">
                                 <button onClick={this.handleSubmit} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-medium pv-float-right pv-color-white">
