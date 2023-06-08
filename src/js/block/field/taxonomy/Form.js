@@ -90,7 +90,8 @@ export default class Form extends Component {
         }
     }
 
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+        e.preventDefault();
 
         if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
 
