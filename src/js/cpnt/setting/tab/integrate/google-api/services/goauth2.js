@@ -47,6 +47,7 @@ export default class GOAuth2 extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
+    if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
     let form = this.state.form;
     form.tab = "google_api_oauth2";
 

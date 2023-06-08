@@ -39,6 +39,8 @@ export default class DefaultMail extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
+
         let form = this.state.form;
         form.tab = 'email_invoice_default';
 
@@ -100,4 +102,4 @@ export default class DefaultMail extends Component {
             </form>
         );
     }
-} 
+}

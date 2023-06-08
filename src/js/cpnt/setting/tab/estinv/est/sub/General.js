@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 import api from 'api';
 
 export default class General extends Component {
@@ -9,10 +9,10 @@ export default class General extends Component {
 
         this.state = {
             form: {
-                prefix: '' 
+                prefix: ''
             }
         };
-    } 
+    }
 
     componentDidMount() {
         api.get('settings', 'tab=estimate_general').then(resp => {
@@ -34,6 +34,7 @@ export default class General extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let form = this.state.form;
         form.tab = 'estimate_general';
 
@@ -68,10 +69,10 @@ export default class General extends Component {
                         />
                     </div>
 
-                    <div className="col"> 
+                    <div className="col">
                     </div>
 
-                </div> 
+                </div>
 
                 <div className="row">
                     <div className="col">
@@ -83,4 +84,4 @@ export default class General extends Component {
             </form>
         );
     }
-} 
+}

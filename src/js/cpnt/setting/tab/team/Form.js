@@ -114,6 +114,8 @@ export default class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let form = { ...this.state.form }
 
         if (this.props.reload) {

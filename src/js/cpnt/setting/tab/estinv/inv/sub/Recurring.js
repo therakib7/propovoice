@@ -50,6 +50,7 @@ export default class Recurring extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let form = this.state.form;
         form.tab = 'invoice_recurring';
 
@@ -72,4 +73,4 @@ export default class Recurring extends Component {
             </form>
         );
     }
-} 
+}

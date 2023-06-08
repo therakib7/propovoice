@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const token = {
   headers: {
@@ -53,6 +54,8 @@ export default function PublicApi() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
     await createPwd(appPwdName);
     setIsSubmitted(true);
     setAppPwdName("");

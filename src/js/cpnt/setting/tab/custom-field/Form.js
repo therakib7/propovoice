@@ -51,6 +51,7 @@ export default class Form extends Component {
 
     handleSubmit = () => {
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let newForm = { ...this.state.form }
         newForm.mod = this.props.mod;
 

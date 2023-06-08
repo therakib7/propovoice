@@ -55,6 +55,8 @@ export default class WC extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
+
         let form = this.state.form;
         form.tab = 'payment_wc';
 
@@ -94,11 +96,11 @@ export default class WC extends Component {
                         </div>
                         <p className='pv-field-desc'><b>{i18n.note}:</b> When you active WooCommerce, other Propovoice payment method will be disabled.</p>
                     </div>
-                </div> 
+                </div>
 
                 <div className="row">
                     <div className="col">
-                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue" style={{margin: '0'}}>
+                        <button className="pv-btn pv-bg-blue pv-bg-hover-blue" style={{ margin: '0' }}>
                             {i18n.save}
                         </button>
                     </div>
@@ -106,4 +108,4 @@ export default class WC extends Component {
             </form>
         );
     }
-} 
+}
