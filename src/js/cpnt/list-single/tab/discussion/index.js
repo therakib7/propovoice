@@ -44,6 +44,7 @@ const Message = (props) => {
             <Form
                 handleSubmit={props.handleSubmit}
                 tab_id={props.tab_id}
+                path={props.path}
             />
         </div>
     );

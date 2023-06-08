@@ -370,3 +370,43 @@ input:-webkit-autofill:active {
     width: auto;
     padding-left: 5px;
 }
+
+// messing and discussion
+.ndpv .pv-msg-attach {
+    li {
+        margin-top: 10px;
+    }
+    .pv-attach-pdf {
+        font-size: 12px;
+        background: #EDF2F7;
+        padding: 20px 15px;
+        display: inline-block;
+        color: #4A5568;
+        border-radius: 10px;
+        .pv-pdf-icon {
+            background: white;
+            padding: 8px;
+            border-radius: 50%;
+            svg {
+                top: 2px;
+                position: relative;
+            }
+        }
+        .pv-pdf-name {
+            font-weight: 500;
+            margin: 0 10px;
+        }
+        .pv-download-pdf {
+            svg {
+                top: 2px;
+                position: relative;
+            }
+        }
+    }
+    li img {
+        max-width: 300px;
+        border-radius: 10px;
+        width: auto;
+        height: auto;
+    }
+}

@@ -229,14 +229,14 @@ export default class FromTo extends Component {
                                     <>
                                         <h4 className="pv-title-small">
                                             {(toData.type == 'person') ? toData.first_name : toData.org_name}
-                                            <span>
+                                            {false && <span>
                                                 <button
                                                     className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"
                                                     onClick={() => this.setState({ contactData: toData, contactModal: true, contactModalType: 'edit' })}
                                                 >
                                                     {i18n.edit}
                                                 </button>
-                                            </span>
+                                            </span>}
                                         </h4>
                                         <address>
                                             {toData.address &&

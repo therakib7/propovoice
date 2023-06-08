@@ -1131,7 +1131,7 @@ class ListSingle extends Component {
                   )}
 
                   {!wage.length && currentTab == "discussion" && data.tab_id && (
-                    <Discussion tab_id={data.tab_id} />
+                    <Discussion tab_id={data.tab_id} path={path} />
                   )}
 
                   {currentTab == "note" && data.tab_id && (
