@@ -199,7 +199,6 @@ class Media
 
         $img_max_size = 5048; //5048KB
 
-        // $file               = $_FILES['file'];
         $file = $file_data;
         $allowed_file_types = ["image/jpg", "image/jpeg", "image/png", "application/pdf"];
         // Allowed file size -> 5MB
@@ -229,7 +228,7 @@ class Media
             }
 
             // Check file size
-            if ($file["size"] > $allowed_file_size) {
+            /* if ($file["size"] > $allowed_file_size) {
                 $reg_errors->add(
                     "field",
                     sprintf(
@@ -240,7 +239,7 @@ class Media
                         Fns::format_bytes($allowed_file_size)
                     )
                 );
-            }
+            } */
 
             if ($reg_errors->get_error_messages()) {
                 wp_send_json_error($reg_errors->get_error_messages());
