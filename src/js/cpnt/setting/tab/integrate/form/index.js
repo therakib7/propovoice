@@ -92,6 +92,8 @@ export default class Main extends Component {
 
     handleSubmit = (e, i) => {
         e.preventDefault();
+
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         if (wage.length > 0) {
             pro();
             return;
@@ -150,7 +152,7 @@ export default class Main extends Component {
                                     </iframe>
                                 </div>`;
 
-        
+
             const textarea = document.createElement("textarea");
             textarea.value = embedingCode;
             document.body.appendChild(textarea);
@@ -158,7 +160,7 @@ export default class Main extends Component {
             document.execCommand("copy");
             document.body.removeChild(textarea);
             toast.success('Code copied')
-    
+
         }
         return (
             <>
@@ -264,4 +266,4 @@ export default class Main extends Component {
             </>
         );
     }
-} 
+}

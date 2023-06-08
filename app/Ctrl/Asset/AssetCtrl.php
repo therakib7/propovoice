@@ -16,7 +16,9 @@ class AssetCtrl
         $this->suffix = defined("SCRIPT_DEBUG") && SCRIPT_DEBUG ? "" : ".min";
         $this->version =
             defined("WP_DEBUG") && WP_DEBUG ? time() : ndpv()->version();
-        $this->current_user_caps = array_keys(array_filter(wp_get_current_user()->allcaps));
+        $this->current_user_caps = array_keys(
+            array_filter(wp_get_current_user()->allcaps)
+        );
 
         add_action("wp_enqueue_scripts", [$this, "public_scripts"], 9999);
         add_action("admin_enqueue_scripts", [$this, "admin_scripts"], 9999);
@@ -198,6 +200,9 @@ class AssetCtrl
                 ],
                 "i18n" => I18n::dashboard(),
                 "caps" => $this->current_user_caps,
+                "isDemo" => apply_filters("ndpv_demo", false),
+                "demoMsg" =>
+                    "You are not allowed to change settings in demo mode!!!",
             ]);
         }
     }

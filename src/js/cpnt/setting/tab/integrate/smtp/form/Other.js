@@ -37,7 +37,7 @@ export default class Form extends Component {
         this.getData();
     }
 
-    getData = () => { 
+    getData = () => {
         this.props.getAll('settings', 'tab=smtp_other').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
@@ -48,6 +48,7 @@ export default class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let form = this.state.form;
         form.tab = 'smtp_other';
 
@@ -60,7 +61,7 @@ export default class Form extends Component {
                     toast.error(value);
                 });
             }
-        }) 
+        })
     }
 
     render() {
@@ -106,10 +107,10 @@ export default class Form extends Component {
                     <div className="col-md">
                         <label htmlFor="field-secure">
                             Encryption
-                        </label> 
+                        </label>
 
                         <div style={{ display: 'flex' }}>
-                            <div className="pv-field-radio" style={{marginRight: 20}}>
+                            <div className="pv-field-radio" style={{ marginRight: 20 }}>
                                 <input
                                     type='radio'
                                     id="secure_"
@@ -121,7 +122,7 @@ export default class Form extends Component {
                                 <label htmlFor="secure_">None</label>
                             </div>
 
-                            <div className="pv-field-radio" style={{marginRight: 20}}>
+                            <div className="pv-field-radio" style={{ marginRight: 20 }}>
                                 <input
                                     type='radio'
                                     id="secure_ssl"
@@ -133,7 +134,7 @@ export default class Form extends Component {
                                 <label htmlFor="secure_ssl">SSL</label>
                             </div>
 
-                            <div className="pv-field-radio" style={{marginRight: 20}}>
+                            <div className="pv-field-radio" style={{ marginRight: 20 }}>
                                 <input
                                     type='radio'
                                     id="secure_tls"
@@ -143,7 +144,7 @@ export default class Form extends Component {
                                     onChange={this.handleChange}
                                 />
                                 <label htmlFor="secure_tls">TLS</label>
-                            </div> 
+                            </div>
                         </div>
                         {/* <p class="pv-field-desc">TLS is not the same as STARTTLS, For Most servers SSL is the recommended option.</p> */}
                     </div>
@@ -207,4 +208,4 @@ export default class Form extends Component {
             </form>
         );
     }
-} 
+}

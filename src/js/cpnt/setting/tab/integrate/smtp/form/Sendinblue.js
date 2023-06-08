@@ -6,9 +6,9 @@ export default class Form extends Component {
     constructor(props) {
         super(props);
 
-        this.initialState = { 
-            key: '', 
-            web: '' 
+        this.initialState = {
+            key: '',
+            web: ''
         };
 
         this.state = {
@@ -44,6 +44,7 @@ export default class Form extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let form = this.state.form;
         form.tab = 'smtp_sendinblue';
 
@@ -109,4 +110,4 @@ export default class Form extends Component {
             </form>
         );
     }
-} 
+}

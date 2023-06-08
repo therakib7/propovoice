@@ -24,7 +24,8 @@ const TableBody = props => {
                             {row.name}
                             <span
                                 className="pv-badge pv-ml"
-                                style={{ background: ((row.me) ? '#39D68A' : '#25A8FF'), marginLeft: 5 }}
+                                // style={{ background: ((row.me) ? '#39D68A' : '#25A8FF'), marginLeft: 5 }}
+                                style={{ background: ((row.role == 'ndpv_client_role') ? '#39D68A' : '#25A8FF'), marginLeft: 5 }}
                             >
                                 {row.role_title}
                             </span>

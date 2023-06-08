@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Add } from 'block/icon';
+import { toast } from 'react-toastify';
 
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
@@ -57,6 +58,8 @@ class FormStripe extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         if (wage.length > 0) {
             pro();
             return;
@@ -155,4 +158,4 @@ class FormStripe extends Component {
         );
     }
 }
-export default FormStripe; 
+export default FormStripe;

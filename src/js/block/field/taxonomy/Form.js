@@ -77,6 +77,7 @@ export default class Form extends Component {
     }
 
     editData = () => {
+
         //condition added to stop multi rendering 
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
@@ -89,7 +90,10 @@ export default class Form extends Component {
         }
     }
 
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
 
         let newForm = { ...this.state.form }
         newForm.taxonomy = this.props.taxonomy;

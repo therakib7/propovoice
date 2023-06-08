@@ -40,6 +40,7 @@ export default class Reminder extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         if (wage.length > 0) {
             pro();
             return;
@@ -106,4 +107,4 @@ export default class Reminder extends Component {
             </form>
         );
     }
-} 
+}
