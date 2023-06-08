@@ -190,22 +190,6 @@ class Form extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-web">
-                                            {i18n.web}
-                                        </label>
-
-                                        <input
-                                            id="form-web"
-                                            type="text"
-                                            name="web"
-                                            value={form.web}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
                                     <div className="col-md-6">
                                         <label htmlFor="form-country">
                                             {i18n.country}
@@ -230,7 +214,6 @@ class Form extends Component {
                                             onChange={(val) => this.selectRegion(val)}
                                         />
                                     </div>
-
                                 </div>
 
                                 <div className="row">
@@ -244,6 +227,22 @@ class Form extends Component {
                                             type="text"
                                             name="address"
                                             value={form.address}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-lg">
+                                        <label htmlFor="form-web">
+                                            {i18n.web}
+                                        </label>
+
+                                        <input
+                                            id="form-web"
+                                            type="text"
+                                            name="web"
+                                            value={form.web}
                                             onChange={this.handleChange}
                                         />
                                     </div>
