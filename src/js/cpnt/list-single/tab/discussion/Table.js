@@ -2,6 +2,25 @@ import React, { useRef, useCallback, useState } from 'react';
 import Action from 'block/action/row';
 
 const TableBody = props => {
+    const { caps } = ndpv;
+    const isClient = caps.includes("ndpv_client_role");
+
+    const bgStyle = (role) => {
+        let removeStyle = false;
+
+        if (!isClient && role != 'ndpv_client_role') {
+            removeStyle = true;
+        }
+
+        if (isClient && role == 'ndpv_client_role') {
+            removeStyle = true;
+        }
+
+        if (removeStyle) {
+            return { background: 'transparent', padding: 0 }
+        }
+        return {};
+    };
 
     let rows = props.tableData.map((row, i) => {
         return (
@@ -30,7 +49,7 @@ const TableBody = props => {
                                 {row.role_title}
                             </span>
                         </div>
-                        <div className="pv-message">
+                        <div className="pv-message" style={bgStyle(row.role)}>
                             {row.text}
                         </div>
 
