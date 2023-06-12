@@ -430,8 +430,12 @@ class Lead
                 do_action("ndpvp/webhook", "lead_add", $param);
 
                 $activity_data = [
-                    "message" => "New lead created",
+                    "message" =>
+                        "New lead created by <code>" .
+                        wp_get_current_user()->display_name .
+                        "</code>",
                     "post_id" => $post_id,
+                    "action_id" => 1,
                     "created_by" => get_current_user_id(),
                 ];
                 do_action("ndpv_activity", $activity_data);
