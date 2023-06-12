@@ -83,7 +83,7 @@ class ListSingle extends Component {
 
     let tabs = this.state.tabs;
 
-    if (!wage.length) {
+    if (!wage.length && path == "project") {
       this.state.tabs.splice(1, 0, {
         id: "discussion",
         text: ndpv.i18n.discuss,
@@ -1130,7 +1130,7 @@ class ListSingle extends Component {
                     <Task tab_id={data.tab_id} />
                   )}
 
-                  {!wage.length && currentTab == "discussion" && data.tab_id && (
+                  {!wage.length && currentTab == "discussion" && path == "project" && data.tab_id && (
                     <Discussion tab_id={data.tab_id} path={path} />
                   )}
 
