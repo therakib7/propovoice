@@ -76,9 +76,12 @@ class Project
             ? absint($param["module_id"])
             : null;
         $table_view = isset($param["table_view"]) ? true : false;
+        $project_req = isset($param["project_req"]) ? true : false;
+        $dashboard = isset($param["dashboard"]) ? true : false;
         if ($module_id || $table_view) {
             $board_view = false;
         }
+
         $result = [];
         if ($board_view) {
             $get_status = Fns::get_terms("project_status");
@@ -98,7 +101,7 @@ class Project
                 $result["result"] = $column;
             endforeach;
         } else {
-            $result = $this->project_query($param);
+            $result = $this->project_query($param, null, $project_req, $dashboard);
         }
 
         $result['extra'] = [
@@ -108,7 +111,7 @@ class Project
         wp_send_json_success($result);
     }
 
-    public function project_query($param, $status_id = null)
+    public function project_query($param, $status_id = null, $project_req = false, $dashboard = false)
     {
         $per_page = 10;
         $offset = 0;
@@ -126,12 +129,54 @@ class Project
             : null;
         $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : null;
 
-        $args = [
-            "post_type" => "ndpv_project",
-            "post_status" => "publish",
-            "posts_per_page" => $per_page,
-            "offset" => $offset,
-        ];
+        $args = [];
+
+        if ( $dashboard ) {
+            $per_page = 5;
+        }
+
+        if ( $project_req ) {
+            $args = [
+                "post_type" => "ndpv_deal",
+                "post_status" => "publish",
+                "posts_per_page" => $per_page,
+                "offset" => $offset,
+            ];
+        } else {
+            $args = [
+                "post_type" => "ndpv_project",
+                "post_status" => "publish",
+                "posts_per_page" => $per_page,
+                "offset" => $offset,
+            ]; 
+        
+        }
+
+        if ( $dashboard ) {
+
+            $term_args = array(
+                'hide_empty' => false, // also retrieve terms which are not used yet
+                'meta_query' => array(
+                    array(
+                        'key'     => 'type',
+                        'value'   => 'completed',
+                        'compare' => 'LIKE'
+                    )
+                ),
+                'taxonomy'  => 'ndpv_project_status',
+            );
+            $terms = get_terms( $term_args );
+            $term_id = $terms[0]->term_id;
+
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'ndpv_project_status',
+                    'terms' => array($term_id),
+                    'field' => 'id',
+                    'operator' => 'NOT IN',
+                ),
+            );
+        } 
 
         if ($status_id) {
             $args["orderby"] = "menu_order";
@@ -141,6 +186,33 @@ class Project
         $args["meta_query"] = [
             "relation" => "OR",
         ];
+
+        if ( $project_req ) { 
+            $args["meta_query"][] = [
+                [
+                    "key" => "project_req",
+                    "compare" => "EXISTS",
+                ],
+            ];
+        } else {
+            if ( current_user_can("ndpv_client_role") ) {
+                $user_id = get_current_user_id();
+                $id = get_user_meta($user_id, 'ndpv_client_id', true); 
+                $args['meta_query'][] = array(
+                    array(
+                        'key'   => 'person_id',
+                        'value' => $id
+                    )
+                );
+
+                $args['meta_query'][] = array(
+                    array(
+                        'key'   => 'org_id',
+                        'value' => $id
+                    )
+                );
+            }
+        }
 
         if ($status_id) {
             $args["tax_query"] = [
@@ -193,6 +265,16 @@ class Project
                     ],
                 ];
             }
+        }
+
+        if ( current_user_can("ndpv_staff") ) {              
+            $post_ids = Fns::get_posts_ids_by_type('ndpv_project');
+            if ( !empty($post_ids) ) {
+                $args['post__in'] = $post_ids;
+                $args['orderby'] = 'post__in';
+            } else {
+                $args['author'] = get_current_user_id();
+            }            
         }
 
         $query = new \WP_Query($args);
@@ -262,6 +344,7 @@ class Project
                 $query_data["org"] = $org->single($org_id);
             }
 
+            $query_data["author"] = get_the_author();
             $query_data["date"] = get_the_time(get_option("date_format"));
             $data[] = $query_data;
         }
@@ -414,6 +497,8 @@ class Project
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
         $note = isset($param["note"]) ? nl2br($param["note"]) : "";
 
+        $deal_id = isset($param["deal_id"]) ? absint($param["deal_id"]) : false;
+
         if (empty($title)) {
             $reg_errors->add(
                 "field",
@@ -522,7 +607,7 @@ class Project
                 if ($org_id && !$person_id) {
                     update_post_meta($org_id, "is_client", 1);
                 }
-                //end is_client
+                //end is_client                 
 
                 if ($budget) {
                     update_post_meta($post_id, "budget", $budget);
@@ -546,6 +631,13 @@ class Project
 
                 if ($note) {
                     update_post_meta($post_id, "note", $note);
+                }
+
+                if ( $deal_id ) {
+                    $project_req = get_post_meta($deal_id, 'project_req', true);
+                    if ( $project_req ) {
+                        delete_post_meta($deal_id, "project_req");  
+                    }
                 }
 
                 //custom field

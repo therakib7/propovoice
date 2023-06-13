@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import api from 'api';
 import WithRouter from 'hoc/Router';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import Upload from 'block/field/upload';
 import { Add } from 'block/icon';
 import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
@@ -29,6 +31,10 @@ class Form extends Component {
             tags: [],
             desc: '',
             note: '',
+            country: '',
+            region: '',
+            address: '',
+            img: '',
             date: false
         };
 
@@ -76,10 +82,18 @@ class Form extends Component {
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
+                    form.country = (form.person) ? form.person.country : '';
+                    form.region = (form.person) ? form.person.region : '';
+                    form.address = (form.person) ? form.person.address : '';
+                    form.img = (form.person) ? form.person.img : '';
                 } else {
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
+                    form.country = (form.org) ? form.org.country : '';
+                    form.region = (form.org) ? form.org.region : '';
+                    form.address = (form.org) ? form.org.address : '';
+                    form.img = (form.org) ? form.org.img : '';
                 }
                 form.org_name = (form.org) ? form.org.name : '';
 
@@ -123,6 +137,14 @@ class Form extends Component {
         this.setState({ form: { ...this.state.form, ['tags']: val } });
     }
 
+    selectCountry(val) {
+        this.setState({ form: { ...this.state.form, ['country']: val } });
+    }
+
+    selectRegion(val) {
+        this.setState({ form: { ...this.state.form, ['region']: val } });
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         let form = { ...this.state.form }
@@ -134,6 +156,10 @@ class Form extends Component {
         if (!form.stage_id) {
             toast.error(ndpv.i18n.stage + ' ' + ndpv.i18n.isReq);
             return;
+        }
+
+        if (form.img) {
+            form.img = form.img.id;
         }
 
         if (form.tags.length) {
@@ -204,6 +230,10 @@ class Form extends Component {
             form.email = (val) ? val.email : '';
             form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
+            form.country = (val) ? val.country : '';
+            form.region = (val) ? val.region : '';
+            form.address = (val) ? val.address : '';
+            form.img = (val) ? val.img : '';
         } else {
             form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
@@ -211,10 +241,20 @@ class Form extends Component {
                 form.email = (val) ? val.email : '';
                 form.mobile = (val) ? val.mobile : '';
                 form.web = (val) ? val.web : '';
+                form.country = (val) ? val.country : '';
+                form.region = (val) ? val.region : '';
+                form.address = (val) ? val.address : '';
+                form.img = (val) ? val.img : '';
             }
         }
 
         this.setState({ form });
+    }
+
+    handleImgChange = (data, type = null) => {
+        let form = { ...this.state.form }
+        form.img = data;
+        this.setState({ form })
     }
 
     render() {
@@ -303,6 +343,50 @@ class Form extends Component {
                                     </div>
                                 </div>
                                 {/* </>} */}
+
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label htmlFor="form-country">
+                                            {i18n.country}
+                                        </label>
+
+                                        <CountryDropdown
+                                            value={form.country}
+                                            valueType='short'
+                                            onChange={(val) => this.selectCountry(val)}
+                                        />
+                                    </div>
+
+                                    <div className="col-md-6">
+                                        <label htmlFor="form-region">
+                                            {i18n.region}
+                                        </label>
+
+                                        <RegionDropdown
+                                            country={form.country}
+                                            countryValueType='short'
+                                            value={form.region}
+                                            onChange={(val) => this.selectRegion(val)}
+                                        />
+                                    </div>
+
+                                </div>
+
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="form-address">
+                                            {i18n.addr}
+                                        </label>
+
+                                        <input
+                                            id="form-address"
+                                            type="text"
+                                            name="address"
+                                            value={form.address}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
 
                                 <div className="row">
                                     <div className="col-md">
@@ -412,6 +496,15 @@ class Form extends Component {
                                     </div>
                                 </div>
 
+                                <div className="row">
+                                    <div className="col">
+                                        <label htmlFor="field-img">
+                                            {i18n.img}
+                                        </label>
+                                        <Upload data={form.img} changeHandler={this.handleImgChange} />
+                                    </div>
+                                </div>
+
                                 {this.state.custom_field && this.props.custom_field.map((item, i) => (
                                     <div key={i} className="row">
                                         <div className="col">
@@ -435,7 +528,7 @@ class Form extends Component {
                         <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
@@ -451,4 +544,4 @@ class Form extends Component {
     }
 }
 
-export default WithRouter(Form);  
+export default WithRouter(Form);

@@ -11,14 +11,18 @@ import ProjectForm from "cpnt/project/Form";
 import React, { Component, lazy, Suspense } from "react";
 import Moment from "react-moment";
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
+import { CountryRegionData } from 'react-country-region-selector';
 import { toast } from "react-toastify";
 
 const Task = lazy(() => import("./tab/task"));
+const Discussion = lazy(() => import("./tab/discussion"));
 const Note = lazy(() => import("./tab/note"));
 const File = lazy(() => import("./tab/file"));
 const Invoice = lazy(() => import("cpnt/invoice/list"));
 const Project = lazy(() => import("cpnt/project"));
 const Deal = lazy(() => import("cpnt/deal"));
+
+const Staff = lazy(() => import("block/staff"));
 
 class ListSingle extends Component {
   constructor(props) {
@@ -55,12 +59,12 @@ class ListSingle extends Component {
         person: {
           first_name: "",
           country: "",
-          region: ""
+          region: "",
         },
         org: {
           name: "",
           country: "",
-          region: ""
+          region: "",
         },
         level_id: null,
         stage_id: null,
@@ -73,10 +77,19 @@ class ListSingle extends Component {
   }
 
   componentDidMount() {
+
     this.getData();
     const path = this.props.path;
 
     let tabs = this.state.tabs;
+
+    if (!wage.length && path == "project") {
+      this.state.tabs.splice(1, 0, {
+        id: "discussion",
+        text: ndpv.i18n.discuss,
+      });
+    }
+
     if (path == "deal") {
       tabs.push({
         id: "estimate",
@@ -135,7 +148,8 @@ class ListSingle extends Component {
   };
 
   getStageTagData = () => {
-    api.get("taxonomies", "taxonomy=deal_stage,tag,project_status")
+    api
+      .get("taxonomies", "taxonomy=deal_stage,tag,project_status")
       .then((resp) => {
         if (resp.data.success) {
           this.setState({
@@ -181,7 +195,7 @@ class ListSingle extends Component {
         let newData = {};
         if (data.probability) {
           newData.probability = data.probability;
-		  newData.change_prob = true;
+          newData.change_prob = true;
         }
         api.edit("deals", this.props.id, newData);
       }, 300);
@@ -215,6 +229,7 @@ class ListSingle extends Component {
       this.setState({ data }, () => {
         let newData = {};
         if (data.status_id) {
+          newData.change_tax = true;
           newData.status_id = data.status_id.id;
         }
         api.edit("projects", this.props.id, newData);
@@ -268,6 +283,20 @@ class ListSingle extends Component {
     }
   };
 
+  countryByCode = (country = '') => {
+    if (country) {
+      let obj = CountryRegionData.find((o, i) => {
+        if (o[1] === country) {
+          return true; // stop searching
+        }
+      });
+
+      if (obj) {
+        return obj[0];
+      }
+    }
+  }
+
   render() {
     const { tabs = [], currentTab } = this.state;
     const { path } = this.props;
@@ -279,8 +308,11 @@ class ListSingle extends Component {
     } else if (data.org && data.org.img) {
       img = data.org.img.src;
     }
-    const i18n = ndpv.i18n;
-    const caps = ndpv.caps;
+
+    if (data.org == null) data.org = {};
+
+    const { i18n, caps } = ndpv;
+    const isClient = caps.includes("ndpv_client_role");
     return (
       <div className="ndpv-cpnt">
         <nav className="pv-breadcrumb">
@@ -654,12 +686,12 @@ class ListSingle extends Component {
                   <div className="pv-list-content">
                     <h3 className="">
                       {data.title}
-                      <button
+                      {isClient && <button
                         className="pv-btn pv-edit-btn pv-btn-small pv-bg-stroke pv-bg-shadow"
                         onClick={() => this.setState({ projectModal: true })}
                       >
                         {i18n.edit}
-                      </button>
+                      </button>}
                     </h3>
                     <div className="pv-avatar-content">
                       <img src={img} alt="avatar" />
@@ -682,8 +714,12 @@ class ListSingle extends Component {
                     <div className="pv-select">
                       <label>
                         {i18n.project} {i18n.status}:
+
+                        {isClient && data.id && data.status_id && (
+                          <> {data.status_id.label}</>
+                        )}
                       </label>
-                      {data.id && data.status_id && (
+                      {!isClient && data.id && data.status_id && (
                         <Taxonomy
                           key={data.status_id.id}
                           id={data.id}
@@ -696,7 +732,7 @@ class ListSingle extends Component {
                       )}
                     </div>
                     <div className="pv-buttons pv-text-right">
-                      {data.status_id && data.status_id.type != "completed" && (
+                      {!isClient && data.status_id && data.status_id.type != "completed" && (
                         <button
                           className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow"
                           onClick={() =>
@@ -707,13 +743,13 @@ class ListSingle extends Component {
                         </button>
                       )}
 
-                      <Action
+                      {!isClient && <Action
                         id={data.id}
                         module="project"
                         edit={() => this.setState({ projectModal: true })}
                         del={this.deleteEntry}
                         padding={1}
-                      />
+                      />}
                     </div>
                   </div>
                 </div>
@@ -722,7 +758,7 @@ class ListSingle extends Component {
 
             <div className="pv-tag-content">
               <ul>
-                <li>
+                {!isClient && <li>
                   <label htmlFor="">{i18n.tag}: </label>
                   {data.id && (
                     <Taxonomy
@@ -734,7 +770,7 @@ class ListSingle extends Component {
                       multi
                     />
                   )}
-                </li>
+                </li>}
                 <li>
                   <label htmlFor="">
                     {i18n.start} {i18n.date}:
@@ -1002,60 +1038,54 @@ class ListSingle extends Component {
           </>
         )}
 
-        {
-          this.state.leadModal && (
-            <LeadForm
-              data={data}
-              custom_field={data.custom_field}
-              modalType="edit"
-              close={() => this.setState({ leadModal: false })}
-              reload={() => this.getData()}
-            />
-          )
-        }
+        {this.state.leadModal && (
+          <LeadForm
+            data={data}
+            custom_field={data.custom_field}
+            modalType="edit"
+            close={() => this.setState({ leadModal: false })}
+            reload={() => this.getData()}
+          />
+        )}
 
-        {
-          this.state.dealModal && (
-            <DealForm
-              data={data}
-              custom_field={data.custom_field}
-              modalType={this.state.dealModalType}
-              close={() => this.setState({ dealModal: false })}
-              reload={() => {
-                let tabs = this.state.tabs;
-                tabs.push({
-                  id: "estimate",
-                  text: i18n.est,
-                });
-                this.getData();
-              }}
-            />
-          )
-        }
+        {this.state.dealModal && (
+          <DealForm
+            data={data}
+            custom_field={data.custom_field}
+            modalType={this.state.dealModalType}
+            close={() => this.setState({ dealModal: false })}
+            reload={() => {
+              let tabs = this.state.tabs;
+              tabs.push({
+                id: "estimate",
+                text: i18n.est,
+              });
+              this.getData();
+            }}
+          />
+        )}
 
-        {
-          this.state.projectModal && (
-            <ProjectForm
-              data={data}
-              custom_field={data.custom_field}
-              modalType={this.state.projectModalType}
-              close={() => this.setState({ projectModal: false })}
-              reload={() => {
-                let tabs = this.state.tabs;
-                tabs.push({
-                  id: "invoice",
-                  text: i18n.inv,
-                });
-                this.getData();
-              }}
-            />
-          )
-        }
+        {this.state.projectModal && (
+          <ProjectForm
+            data={data}
+            custom_field={data.custom_field}
+            modalType={this.state.projectModalType}
+            close={() => this.setState({ projectModal: false })}
+            reload={() => {
+              let tabs = this.state.tabs;
+              tabs.push({
+                id: "invoice",
+                text: i18n.inv,
+              });
+              this.getData();
+            }}
+          />
+        )}
 
-        {
-          this.state.contactModal &&
+        {this.state.contactModal &&
           (data.person ? (
             <ContactPerson
+              single
               data={data.person}
               modalType="edit"
               handleSubmit={this.personEdit}
@@ -1064,14 +1094,14 @@ class ListSingle extends Component {
             />
           ) : (
             <ContactOrg
+              single
               data={data.org}
               modalType="edit"
               handleSubmit={this.orgEdit}
               close={() => this.setState({ contactModal: false })}
               reload={() => this.getData()}
             />
-          ))
-        }
+          ))}
 
         <div className="row pv-mt-25">
           <div className="col-lg-9">
@@ -1095,9 +1125,15 @@ class ListSingle extends Component {
 
               <div className="pv-tab-content">
                 <Suspense fallback={<Spinner />}>
+
                   {currentTab == "task" && data.tab_id && (
                     <Task tab_id={data.tab_id} />
                   )}
+
+                  {!wage.length && currentTab == "discussion" && path == "project" && data.tab_id && (
+                    <Discussion tab_id={data.tab_id} path={path} />
+                  )}
+
                   {currentTab == "note" && data.tab_id && (
                     <Note tab_id={data.tab_id} />
                   )}
@@ -1123,6 +1159,11 @@ class ListSingle extends Component {
           </div>
 
           <div className="col-lg-3 pv-lead-right-content">
+
+            {!wage.length && data.tab_id && !isClient && <Suspense fallback={<Spinner />}>
+              <Staff tab_id={data.tab_id} />
+            </Suspense>}
+
             <div className="pv-widget pv-info-box">
               <h3 className="pv-widget-title">
                 {i18n.addi} {i18n.info}
@@ -1146,8 +1187,24 @@ class ListSingle extends Component {
                   <>
                     <span>{i18n.addr}:</span>
                     {data.person ? data.person.address : data.org.address}
+                    {data.person.address || data.org.address ? <br /> : ''}
+
+                    {data.person ? <>
+                      {(data.person.region || data.person.country) &&
+                        <>
+                          {(data.person.region && data.person.country) ? data.person.region + ', ' : ''} {this.countryByCode(data.person.country)}
+                        </>
+                      }
+                    </> : <>
+                      {(data.org.region || data.org.country) &&
+                        <>
+                          {(data.org.region && data.org.country) ? data.org.region + ', ' : ''} {this.countryByCode(data.org.country)}
+                        </>
+                      }
+                    </>}
                   </>
                 )}
+
               </address>
 
               <div className="pv-desc-content">
@@ -1161,17 +1218,15 @@ class ListSingle extends Component {
                   </>
                 )}
 
-                {
-                  data.desc && (
-                    <>
-                      <h5>{i18n.note}:</h5>
-                      <p
-                        className=""
-                        dangerouslySetInnerHTML={{ __html: data.note }}
-                      ></p>
-                    </>
-                  )
-                }
+                {data.desc && (
+                  <>
+                    <h5>{i18n.note}:</h5>
+                    <p
+                      className=""
+                      dangerouslySetInnerHTML={{ __html: data.note }}
+                    ></p>
+                  </>
+                )}
 
                 {/* <div key={i} className="row">
 										<div className="col">
@@ -1187,39 +1242,20 @@ class ListSingle extends Component {
 										</div>
 									</div> */}
 
-                {
-                  data.custom_field && data.custom_field.map((item, i) => (
+                {data.custom_field &&
+                  data.custom_field.map((item, i) => (
                     <React.Fragment key={i}>
                       <h5>{item.label}:</h5>
-                      <p dangerouslySetInnerHTML={{ __html: data[item.id] }}></p>
+                      <p
+                        dangerouslySetInnerHTML={{ __html: data[item.id] }}
+                      ></p>
                     </React.Fragment>
-                  ))
-                }
-              </div >
-            </div >
-
-            {
-              false && (
-                <div className="pv-widget pv-timeline-box">
-                  <h3 className="pv-widget-title pv-mb-15">
-                    {i18n.timeline} {i18n.info}
-                  </h3>
-                  <ul>
-                    <li>
-                      <h4 className="timeline-title">
-                        Rakib Created Project Propovoice
-                      </h4>
-                      <span>Aprill 12, 2022</span>
-                      <span>4.10 PM</span>
-                    </li>
-                  </ul>
-                  {/* ./ widget */}
-                </div>
-              )
-            }
-          </div >
-        </div >
-      </div >
+                  ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

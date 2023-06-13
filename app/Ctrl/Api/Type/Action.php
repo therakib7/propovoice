@@ -120,13 +120,30 @@ class Action
                         $value = "draft";
                     }
 
-                    if ($key == "path" && $type == "copy-to-inv") {
-                        $value = "invoice";
+                    if ($key == "path") {
+                        $prefix = $value == "estimate" ? "Est" : "Inv";
                     }
 
-                    if ($key == "invoice" && $type == "copy-to-inv") {
+                    if ($key == "path" && $type == "copy-to-inv") {
+                        $value = "invoice";
+                        $prefix = "Inv";
+                    }
+
+                    $num = "{$prefix}-{$new_post_id}";
+
+                    if ($key == "num") {
+                        $value = $num;
+                    }
+
+                    if ($key == "invoice") {
                         $value = maybe_unserialize($value);
-                        $value["path"] = "invoice";
+
+                        $value["id"] = $new_post_id;
+                        $value["num"] = $num;
+
+                        if ($type == "copy-to-inv") {
+                            $value["path"] = "invoice";
+                        }
                     }
 
                     add_post_meta(

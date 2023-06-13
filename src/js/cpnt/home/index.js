@@ -17,6 +17,7 @@ const Client = lazy(() => import('cpnt/client'));
 const Lead = lazy(() => import('cpnt/lead'));
 const Deal = lazy(() => import('cpnt/deal'));
 const Task = lazy(() => import('cpnt/task'));
+const Message = lazy(() => import('cpnt/message'));
 const ListSingle = lazy(() => import('cpnt/list-single'));
 
 const Project = lazy(() => import('cpnt/project'));
@@ -51,7 +52,7 @@ export default () => {
     const boardView = (load = true) => {
         const span = contentRef.current; // corresponding DOM node
         if (load) {
-            span.className = 'pv-right-content-data pv-deal-content';
+            span.className = 'pv-right-content-data pv-board-area';
         } else {
             span.className = 'pv-right-content-data';
         }
@@ -59,8 +60,7 @@ export default () => {
 
     const [modules, setModules] = useState(['estimate', 'quotation', 'invoice']);
 
-    const i18n = ndpv.i18n;
-    const caps = ndpv.caps;
+    const { i18n, caps } = ndpv;
     return (
         <HashRouter>
             <ToastContainer hideProgressBar />
@@ -168,6 +168,8 @@ export default () => {
 
                                 <Route path="/task" exact element={<Task />} />
                                 <Route path="/task/:id" exact element={<ListSingle />} />
+
+                                <Route path="/message" exact element={<Message />} />
 
                                 <Route path="/project" exact element={<Project onLoad={boardView} />} />
                                 <Route path="/project/:id" exact element={<ListSingle />} />

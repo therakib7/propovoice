@@ -41,7 +41,7 @@ export default class Main extends Component {
                 {
                     name: "Albato",
                     slug: "albato",
-                    img: "https://albato.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FLogo.e59ec163.svg&w=256&q=75",
+                    img: "https://albato.com/_next/static/media/Logo.e59ec163.svg",
                     pro: true,
                 },
                 {

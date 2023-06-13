@@ -189,6 +189,9 @@ class Person
         }
         $data['email'] = isset($meta['email']) ? $meta['email'][0] : '';
         $data['mobile'] = isset($meta['mobile']) ? $meta['mobile'][0] : '';
+        $data["client_portal"] = isset($meta["client_portal"])
+            ? $meta["client_portal"][0]
+            : false;
         $img_id = isset($meta['img']) ? $meta['img'][0] : '';
         $imgData = null;
         if ($img_id) {
@@ -201,12 +204,10 @@ class Person
         }
         $data['img'] = $imgData;
 
-        if ($details) {
-            $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
-            $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';
-            $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
-            $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
-        }
+        $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
+        $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';
+        $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
+        $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
 
         return $data;
     }

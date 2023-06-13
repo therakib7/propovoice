@@ -120,6 +120,16 @@ class Lead
             }
         }
 
+        if (current_user_can("ndpv_staff")) {
+            $post_ids = Fns::get_posts_ids_by_type("ndpv_lead");
+            if (!empty($post_ids)) {
+                $args["post__in"] = $post_ids;
+                $args["orderby"] = "post__in";
+            } else {
+                $args["author"] = get_current_user_id();
+            }
+        }
+
         $query = new \WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
@@ -143,12 +153,14 @@ class Lead
             $query_data["desc"] = get_the_content();
 
             //custom field
-            foreach( Fns::custom_field('lead') as $value ) {
-                $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
+            foreach (Fns::custom_field("lead") as $value) {
+                $query_data[$value->id] = isset($queryMeta[$value->id])
+                    ? $queryMeta[$value->id][0]
+                    : "";
             }
 
-            $query_data['level_id'] = null;
-            $level = get_the_terms($id, 'ndpv_lead_level');
+            $query_data["level_id"] = null;
+            $level = get_the_terms($id, "ndpv_lead_level");
             if ($level) {
                 $term_id = $level[0]->term_id;
                 $query_data["level_id"] = [
@@ -186,16 +198,17 @@ class Lead
                 $query_data["org"] = $org->single($org_id);
             }
 
+            $query_data["author"] = get_the_author();
             $query_data["date"] = get_the_time(get_option("date_format"));
             $data[] = $query_data;
         }
         wp_reset_postdata();
 
-        $result['result'] = $data;
-        $result['extra'] = [
-            'custom_field' => Fns::custom_field('lead'),
+        $result["result"] = $data;
+        $result["extra"] = [
+            "custom_field" => Fns::custom_field("lead"),
         ];
-        $result['total'] = $total_data;
+        $result["total"] = $total_data;
 
         wp_send_json_success($result);
     }
@@ -226,13 +239,15 @@ class Lead
         $query_data["desc"] = get_post_field("post_content", $id);
 
         //custom field
-        foreach( Fns::custom_field('lead') as $value ) {
-            $query_data[$value->id] = isset($queryMeta[$value->id]) ? $queryMeta[$value->id][0] : '';
+        foreach (Fns::custom_field("lead") as $value) {
+            $query_data[$value->id] = isset($queryMeta[$value->id])
+                ? $queryMeta[$value->id][0]
+                : "";
         }
-        $query_data['custom_field'] = Fns::custom_field('lead');
+        $query_data["custom_field"] = Fns::custom_field("lead");
 
-        $query_data['level_id'] = '';
-        $level = get_the_terms($id, 'ndpv_lead_level');
+        $query_data["level_id"] = "";
+        $level = get_the_terms($id, "ndpv_lead_level");
         if ($level) {
             $term_id = $level[0]->term_id;
             $color = get_term_meta($term_id, "color", true);
@@ -328,7 +343,6 @@ class Lead
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
         $note = isset($param["note"]) ? nl2br($param["note"]) : "";
-        $img = isset($param["img"]) ? absint($param["img"]) : null;
 
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
@@ -404,14 +418,23 @@ class Lead
                 }
 
                 //custom field
-                foreach(Fns::custom_field('lead') as $value) {
-                    $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
-                    if ( $field ) {
+                foreach (Fns::custom_field("lead") as $value) {
+                    $field = isset($param[$value->id])
+                        ? sanitize_text_field($param[$value->id])
+                        : "";
+                    if ($field) {
                         update_post_meta($post_id, $value->id, $field);
                     }
                 }
 
-                do_action('ndpvp/webhook', 'lead_add', $param);
+                do_action("ndpvp/webhook", "lead_add", $param);
+
+                $activity_data = [
+                    "message" => "New lead created",
+                    "post_id" => $post_id,
+                    "created_by" => get_current_user_id(),
+                ];
+                do_action("ndpv_activity", $activity_data);
 
                 wp_send_json_success($post_id);
             } else {
@@ -531,12 +554,14 @@ class Lead
                 }
 
                 //custom field
-                foreach( Fns::custom_field('lead') as $value ) {
-                    $field = isset($param[$value->id]) ? sanitize_text_field($param[$value->id]) : '';
+                foreach (Fns::custom_field("lead") as $value) {
+                    $field = isset($param[$value->id])
+                        ? sanitize_text_field($param[$value->id])
+                        : "";
                     update_post_meta($post_id, $value->id, $field);
                 }
 
-                do_action('ndpvp/webhook', 'lead_edit', $param);
+                do_action("ndpvp/webhook", "lead_edit", $param);
 
                 wp_send_json_success($post_id);
             } else {

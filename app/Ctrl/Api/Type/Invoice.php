@@ -73,6 +73,7 @@ class Invoice
         $offset = 0;
 
         $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : null;
+        $dashboard = isset($param["dashboard"]) ? true : false;
         $recurring = isset($param["recurring"]) ? true : false;
 
         if (isset($param["per_page"])) {
@@ -81,6 +82,10 @@ class Invoice
 
         if (isset($param["page"]) && $param["page"] > 1) {
             $offset = $per_page * $param["page"] - $per_page;
+        }
+
+        if ( $dashboard ) {
+            $per_page = 5;
         }
 
         $args = [
@@ -106,6 +111,29 @@ class Invoice
                 )
             );
         } */
+
+        if ( current_user_can("ndpv_client_role") ) {
+            $user_id = get_current_user_id();
+            $client_id = get_user_meta($user_id, 'ndpv_client_id', true);
+
+            $args["meta_query"][] = [
+                [
+                    "key" => "to",
+                    "value" => [$client_id],
+                    "compare" => "IN",
+                ],
+            ];
+        }
+
+        if ( $dashboard ) {
+            $args["meta_query"][] = [
+                [
+                    "key" => "status",
+                    "value" => ['accept', 'decline', 'paid'],
+                    "compare" => "NOT IN",
+                ],
+            ];
+        }
 
         if ($recurring) {
             $args["meta_query"][] = [
@@ -547,8 +575,10 @@ class Invoice
         $query_data["wc"] = false;
         if (ndpv()->wage()) {
             $wc = get_option("ndpv_payment_wc");
-            if ($wc["status"] && class_exists("woocommerce")) {
-                $query_data["wc"] = true;
+            if (isset($wc["status"])) {
+                if ($wc["status"] && class_exists("woocommerce")) {
+                    $query_data["wc"] = true;
+                }
             }
         }
 

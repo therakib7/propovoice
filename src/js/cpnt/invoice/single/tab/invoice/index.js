@@ -408,6 +408,17 @@ class Invoice extends Component {
     this.setState({ invoice });
   };
 
+  // handle data changes for single item
+  handleItemsValue = (elementIndex, data) => {
+    let invoice = { ...this.state.invoice };
+    let items = this.state.invoice.items.map((item, i) => {
+      if (elementIndex !== i) return item;
+      return { ...item, ...data };
+    });
+    invoice.items = items;
+    this.setState({ invoice });
+  }
+
   handleAddLineItem = (e) => {
     let invoice = { ...this.state.invoice };
     invoice.items = invoice.items.concat([
@@ -501,7 +512,7 @@ class Invoice extends Component {
           if (this.props.path == "invoice") {
             toast.error("Paid Invoice is not editable");
           } else if (this.props.path == "estimate") {
-            toast.error("Accept or Decline Estimate is not editable");
+            toast.error("Accepted or Declined Estimate is not editable");
           }
           edit = false;
           break;
@@ -1033,6 +1044,7 @@ class Invoice extends Component {
                         fromData={this.state.fromData}
                         toData={this.state.toData}
                         editId={this.props.id}
+                        moduleId={this.props.module_id}
                       />
 
                       <Suspense fallback={<Spinner />}>
@@ -1058,6 +1070,7 @@ class Invoice extends Component {
                         currencyFormatter={this.formatCurrency}
                         addHandler={this.handleAddLineItem}
                         changeHandler={this.handleLineItemChange}
+                        handleItemsValue={this.handleItemsValue}
                         focusHandler={this.handleFocusSelect}
                         deleteHandler={this.handleRemoveLineItem}
                         reorderHandler={this.handleReorderItems}

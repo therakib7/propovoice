@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Form as ModelForm;
@@ -41,6 +42,8 @@ class Form
             $data = $model->gravity_forms();
         } elseif ($form == "fluent_forms") {
             $data = $model->fluent_forms();
+        } elseif ($form == "metform") {
+            $data = $model->metform();
         }
 
         wp_send_json_success($data);

@@ -17,7 +17,7 @@ const TableHeader = props => {
                         width={16}
                         height={16}
                         viewBox="0 0 16 16"
-                        fill="none" 
+                        fill="none"
                     >
                         <path
                             d="M8 10C10.2091 10 12 8.20914 12 6C12 3.79086 10.2091 2 8 2C5.79086 2 4 3.79086 4 6C4 8.20914 5.79086 10 8 10Z"
@@ -38,7 +38,7 @@ const TableHeader = props => {
                         width={12}
                         height={12}
                         viewBox="0 0 12 12"
-                        fill="none" 
+                        fill="none"
                     >
                         <path
                             d="M6 10.5C8.48528 10.5 10.5 8.48528 10.5 6C10.5 3.51472 8.48528 1.5 6 1.5C3.51472 1.5 1.5 3.51472 1.5 6C1.5 8.48528 3.51472 10.5 6 10.5Z"
@@ -62,11 +62,11 @@ const TableHeader = props => {
     );
 }
 
-const TableBody = props => { 
+const TableBody = props => {
     const i18n = ndpv.i18n;
     let rows = props.tableData.map((row, index) => {
         let data = props.checkedBoxes.data;
-        const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false; 
+        const checkedCheckbox = (data.indexOf(row.id) !== -1) ? true : false;
         return (
             <tr key={index}>
                 <td>
@@ -77,7 +77,7 @@ const TableBody = props => {
                     />
                 </td>
                 <td>
-                    {row.file && <div style={{width: 40, display: 'inline-block'}}>
+                    {row.file && !row.url && <div style={{ width: 40, display: 'inline-block' }}>
                         <ModalImage
                             small={row.file.src}
                             large={row.file.src}
@@ -85,8 +85,9 @@ const TableBody = props => {
                         />
                     </div>}
 
+                    {row.type == 'google-drive' && <a target='_blank' href={row.url}><img src={row.url} alt="file" width="40" /></a>}
                     {!row.file && <img src={ndpv.assetImgUri + 'file.png'} alt="file" />}
-                    <span>{row.type == 'link' ?<a target='_blank' href={row.url}>{row.title}</a> : row.title }</span>
+                    <span>{row.type == 'link' || row.type == 'google-drive' || row.type == 'pdf' ? <a target='_blank' href={row.url}>{row.title}</a> : row.title}</span>
                 </td>
                 <td>
                     <div className="pv-avater">
@@ -94,7 +95,7 @@ const TableBody = props => {
                     </div>
                 </td>
                 <td>{row.date}</td>
-                <td className="pv-action"> 
+                <td className="pv-action">
                     <Action
                         row={row}
                         editEntry={row.type == 'link' ? props.editEntry : false}
@@ -120,4 +121,4 @@ export default (props) => {
             </div>}
         </>
     );
-} 
+}

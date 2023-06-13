@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl;
 
 use Ndpv\Ctrl\Ajax\AjaxCtrl;
@@ -13,15 +14,18 @@ use Ndpv\Ctrl\Meta\MetaCtrl;
 use Ndpv\Ctrl\Setting\SettingCtrl;
 use Ndpv\Ctrl\Taxonomy\TaxonomyCtrl;
 use Ndpv\Ctrl\Widget\WidgetCtrl;
+use Ndpv\Ctrl\Cleanup\Style;
 
-class MainCtrl {
+class MainCtrl
+{
 
-    public function __construct() {
+    public function __construct()
+    {
 
         //if ( is_admin() ) {
-            new TaxonomyCtrl();
-            new SettingCtrl();
-            new AssistCtrl();
+        new TaxonomyCtrl();
+        new SettingCtrl();
+        new AssistCtrl();
         //}
         new AssetCtrl();
         new TemplateCtrl();
@@ -32,5 +36,6 @@ class MainCtrl {
         new ApiCtrl();
         new CronCtrl();
         new IntegrateCtrl();
+        Style::getInstance()->init();
     }
 }

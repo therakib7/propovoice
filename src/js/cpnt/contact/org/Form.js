@@ -20,6 +20,7 @@ class Form extends Component {
             region: '',
             address: '',
             logo: null,
+            client_portal: false,
             date: false
         };
 
@@ -29,7 +30,9 @@ class Form extends Component {
     }
 
     handleChange = e => {
-        const { name, value } = e.target;
+        const target = e.target;
+        const { name } = target;
+        const value = target.type == 'checkbox' ? target.checked : target.value;
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
@@ -91,6 +94,10 @@ class Form extends Component {
             form.email = (val) ? val.email : '';
             form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
+            form.country = (val) ? val.country : '';
+            form.region = (val) ? val.region : '';
+            form.address = (val) ? val.address : '';
+            form.logo = (val) ? val.logo : '';
         } else {
             form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
@@ -98,6 +105,10 @@ class Form extends Component {
                 form.email = (val) ? val.email : '';
                 form.mobile = (val) ? val.mobile : '';
                 form.web = (val) ? val.web : '';
+                form.country = (val) ? val.country : '';
+                form.region = (val) ? val.region : '';
+                form.address = (val) ? val.address : '';
+                form.logo = (val) ? val.logo : '';
             }
         }
 
@@ -179,22 +190,6 @@ class Form extends Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-web">
-                                            {i18n.web}
-                                        </label>
-
-                                        <input
-                                            id="form-web"
-                                            type="text"
-                                            name="web"
-                                            value={form.web}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
                                     <div className="col-md-6">
                                         <label htmlFor="form-country">
                                             {i18n.country}
@@ -219,7 +214,6 @@ class Form extends Component {
                                             onChange={(val) => this.selectRegion(val)}
                                         />
                                     </div>
-
                                 </div>
 
                                 <div className="row">
@@ -239,6 +233,22 @@ class Form extends Component {
                                 </div>
 
                                 <div className="row">
+                                    <div className="col-lg">
+                                        <label htmlFor="form-web">
+                                            {i18n.web}
+                                        </label>
+
+                                        <input
+                                            id="form-web"
+                                            type="text"
+                                            name="web"
+                                            value={form.web}
+                                            onChange={this.handleChange}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="row">
                                     <div className="col">
                                         <label htmlFor="field-logo">
                                             {i18n.logo}
@@ -246,13 +256,30 @@ class Form extends Component {
                                         <Upload data={form.logo} changeHandler={this.handleLogoChange} />
                                     </div>
                                 </div>
+
+                                {!wage.length && this.props.single && <div className="row">
+                                    <div className="col">
+                                        <label id="form-client_portal">Client Portal Access</label>
+                                        <div className="pv-field-switch pv-ml-10">
+                                            <label className='pv-switch'>
+                                                <input type='checkbox'
+                                                    id="form-client_portal"
+                                                    name='client_portal'
+                                                    checked={form.client_portal ? 'checked' : ''}
+                                                    onChange={this.handleChange}
+                                                />
+                                                <span className='pv-switch-slider pv-round'></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>}
                             </div>
                         </div>
 
                         <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">

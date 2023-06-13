@@ -58,6 +58,7 @@ export default class Reminder extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let form = this.state.form;
         form.tab = this.props.path + '_reminder';
 
@@ -313,4 +314,4 @@ export default class Reminder extends Component {
             </form>
         );
     }
-} 
+}

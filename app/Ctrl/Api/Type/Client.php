@@ -1,6 +1,8 @@
 <?php
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Helper\Fns;
+use Ndpv\Model\Client as ModelClient;
 use Ndpv\Model\Org;
 use Ndpv\Model\Person;
 
@@ -116,6 +118,16 @@ class Client
             ],
         ];
 
+        if ( current_user_can("ndpv_staff") ) {   
+            $post_ids = Fns::get_posts_ids_by_type(["ndpv_person", "ndpv_org"]); 
+            if ( !empty($post_ids) ) {
+                $args['post__in'] = $post_ids;
+                $args['orderby'] = 'post__in';
+            } else {
+                $args['author'] = get_current_user_id();
+            }            
+        }
+
         $query = new \WP_Query($args);
         $total_data = $query->found_posts; //use this for pagination
         $result = $data = [];
@@ -156,6 +168,9 @@ class Client
             $query_data["img"] = isset($queryMeta["img"])
                 ? $queryMeta["img"][0]
                 : "";
+            $query_data["client_portal"] = isset($queryMeta["client_portal"])
+                ? $queryMeta["client_portal"][0]
+                : false;
 
             $img_id = $query_data["img"];
             $imgData = null;
@@ -169,6 +184,7 @@ class Client
             }
             $query_data["img"] = $imgData;
 
+            $query_data["author"] = get_the_author();
             $query_data["date"] = get_the_time(get_option("date_format"));
             $data[] = $query_data;
         }
@@ -191,14 +207,23 @@ class Client
 
         $first_name = isset($param["first_name"])
             ? sanitize_text_field($param["first_name"])
-            : null;
+            : '';
         $org_name = isset($param["org_name"])
             ? sanitize_text_field($param["org_name"])
-            : null;
+            : '';
+
+        $email = isset($param["email"])
+            ? strtolower(sanitize_email($req["email"]))
+            : '';
+
         $person_id = isset($param["person_id"])
             ? absint($param["person_id"])
             : null;
         $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
+
+        $client_portal = isset($param["client_portal"])
+            ? rest_sanitize_boolean($param["client_portal"])
+            : false;
 
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
@@ -207,33 +232,61 @@ class Client
             );
         }
 
-        $person = new Person();
-        if ($person_id) {
-            $person->update($param);
-        }
-
-        if (!$person_id && $first_name) {
-            $param["is_client"] = true;
-            $person_id = $person->create($param);
-        }
-
-        $org = new Org();
-        if (!$person_id && $org_id) {
-            $org->update($param);
-        }
-
-        if (!$org_id && $org_name) {
-            if ($first_name) {
-                $param["is_client"] = false;
-            } else {
-                $param["is_client"] = true;
+        if ( $client_portal ) {
+            $user_id = email_exists( $email );
+            if ( $user_id ) {
+                $user_data = new \WP_User($user_id);
+                $user_roles = $user_data->roles;
+                $check_roles = array( 'administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' );
+                $role_exist = false;
+                foreach( $check_roles as $role ) {
+                    if ( in_array($role, $user_roles) ) {
+                        $role_exist = true;
+                    }
+                }
+                if ( $role_exist ) { 
+                    $reg_errors->add(
+                        "already_exist",
+                        esc_html__("You can not added a Team member as client", "propovoice")
+                    );
+                } 
             }
-            $org_id = $org->create($param);
         }
+        
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
+            $person = new Person();
+            if ($person_id) {
+                $person->update($param);
+            }
+
+            if (!$person_id && $first_name) {
+                $param["is_client"] = true;
+                $person_id = $person->create($param);
+            }
+
+            $org = new Org();
+            if (!$person_id && $org_id) {
+                $org->update($param);
+            }
+
+            if (!$org_id && $org_name) {
+                if ($first_name) {
+                    $param["is_client"] = false;
+                } else {
+                    $param["is_client"] = true;
+                }
+                $org_id = $org->create($param);
+            }
+
+            $post_id = ( $person_id ) ? $person_id : $org_id;
+            $client_model = new ModelClient();
+            $name = ( $person_id ) ? $first_name : $org_name;
+            $client_model->set_user_if_not($post_id, $name, $email, $client_portal);
+            update_post_meta($post_id, "client_portal", $client_portal);
+
             wp_send_json_success();
         }
     }
@@ -268,10 +321,13 @@ class Client
         $address = isset($param["address"])
             ? sanitize_text_field($req["address"])
             : null;
-        $img =
-            isset($param["img"]) && isset($param["img"]["id"])
+        $img = isset($param["img"]) && isset($param["img"]["id"])
                 ? absint($param["img"]["id"])
                 : null;
+
+        $client_portal = isset($param["client_portal"])
+            ? rest_sanitize_boolean($param["client_portal"])
+            : false;
 
         if (empty($first_name)) {
             $reg_errors->add(
@@ -285,6 +341,27 @@ class Client
                 "email_invalid",
                 esc_html__("Email id is not valid!", "propovoice")
             );
+        }
+
+        if ( $client_portal ) {
+            $user_id = email_exists( $email );
+            if ( $user_id ) {
+                $user_data = new \WP_User($user_id);
+                $user_roles = $user_data->roles;
+                $check_roles = array( 'administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' );
+                $role_exist = false;
+                foreach( $check_roles as $role ) {
+                    if ( in_array($role, $user_roles) ) {
+                        $role_exist = true;
+                    }
+                }
+                if ( $role_exist ) { 
+                    $reg_errors->add(
+                        "already_exist",
+                        esc_html__("You can not added a Team member as client", "propovoice")
+                    );
+                } 
+            }
         }
 
         if ($reg_errors->get_error_messages()) {
@@ -340,6 +417,10 @@ class Client
                 if ($img) {
                     update_post_meta($post_id, "img", $img);
                 }
+
+                $client_model = new ModelClient();
+                $client_model->set_user_if_not($post_id, $first_name, $email, $client_portal);
+                update_post_meta($post_id, "client_portal", $client_portal);
 
                 wp_send_json_success($post_id);
             } else {

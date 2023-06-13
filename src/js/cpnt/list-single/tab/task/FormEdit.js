@@ -1,4 +1,4 @@
-import React, { Component, lazy } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import moment from "moment";
 import { Add } from "block/icon";
 import api from "api";
@@ -7,6 +7,8 @@ import { createEvent } from "api/gapi/gcalendar";
 import Taxonomy from "block/field/taxonomy";
 const DateField = lazy(() => import("block/date-picker"));
 import Checklist from "./Checklist";
+import Spinner from "block/preloader/spinner";
+const Staff = lazy(() => import("block/staff"));
 
 export default class Form extends Component {
   constructor(props) {
@@ -36,7 +38,8 @@ export default class Form extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ form: { ...this.state.form, [name]: value } }, () => {
-      let reload = name == "title" ? true : false;
+      // let reload = name == "title" ? true : false;
+      let reload = true;
       this.updateRequest(reload);
     });
   };
@@ -116,6 +119,12 @@ export default class Form extends Component {
 
   handleTaskStatusChange = (val) => {
     let data = { ...this.state.form };
+
+    let status_id = {};
+    if (this.props.activeTab) {
+      status_id = this.props.activeTab;
+    }
+
     if (val == "done") {
       let obj = this.props.taxonomies.status.find((o) => o.type === val);
       data.status_id = obj;
@@ -125,14 +134,25 @@ export default class Form extends Component {
         if (data.status_id) {
           newData.status_id = data.status_id.id;
         }
-        api.edit("tasks", data.id, newData);
+        api.edit("tasks", data.id, newData).then((resp) => {
+          if (resp.data.success) {
+            this.props.reload({ status_id });
+          }
+        });
       });
     } else {
       data.status_id = val;
       this.setState({ form: data });
     }
+  };
 
-    this.props.reload();
+  handleTaskTaxDone = () => {
+
+    let status_id = {};
+    if (this.props.activeTab) {
+      status_id = this.props.activeTab;
+    }
+    this.props.reload({ status_id });
   };
 
   onDateChange = (date, type = null) => {
@@ -213,7 +233,7 @@ export default class Form extends Component {
 
   render() {
     const form = this.state.form;
-    const i18n = ndpv.i18n;
+    const { i18n, caps } = ndpv;
     return (
       <div className="pv-overlay">
         <div
@@ -230,6 +250,7 @@ export default class Form extends Component {
                 <Taxonomy
                   key={form.status_id.id}
                   onChange={this.handleTaskStatusChange}
+                  onDone={this.handleTaskTaxDone}
                   id={form.id}
                   data={form.status_id}
                   taxonomy="task_status"
@@ -332,10 +353,19 @@ export default class Form extends Component {
                         data={form.priority_id}
                         taxonomy="task_priority"
                         title={i18n.prior}
+                        onDone={this.handleTaskTaxDone}
                         /* small */ color
                       />
                     )}
                   </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col">
+                  {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
+                    <Staff tab_id={this.props.data.id} parent_tab_id={this.props.tab_id} inForm />
+                  </Suspense>}
                 </div>
               </div>
 
@@ -451,6 +481,7 @@ export default class Form extends Component {
                   />
                 </div>
               </div>
+
             </div>
           </div>
         </div>

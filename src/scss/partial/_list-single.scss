@@ -1,7 +1,7 @@
 .ndpv .pv-list-single-head {
   background-color: #fff;
   padding: 30px;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   border-radius: 8px 8px 0 0;
 }
 
@@ -24,12 +24,11 @@
 }
 
 .ndpv .pv-list-single-head .pv-list-content h3 .pv-btn {
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   margin-left: 20px;
   margin-bottom: 5px;
   font-size: 10px;
   margin-top: 4px;
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
 }
@@ -53,7 +52,7 @@
 }
 
 .ndpv .pv-list-single-head .pv-edit-btn .pv-btn {
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 5px 12px !important;
 }
 
@@ -163,7 +162,7 @@
 .ndpv .pv-tag-content {
   padding: 30px;
   background-color: #fff;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   border-top: none;
   border-radius: 0 0 8px 8px;
 }
@@ -272,7 +271,7 @@
 }
 
 .ndpv .pv-tag-content ul .pv-action-content .pv-btn {
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 4px 10px !important;
   color: #718096 !important;
   line-height: 100%;
@@ -315,7 +314,7 @@
 }
 
 .ndpv .pv-tab-buttons-group {
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   padding: 5px 10px 10px;
   border-radius: 8px;
   background-color: #fff;
@@ -348,7 +347,6 @@
   border-style: dashed !important;
   width: 34px;
   height: 36px;
-  padding: inherit;
 }
 
 .ndpv .pv-task-btn img {
@@ -408,7 +406,7 @@
 .ndpv .pv-small-button-group .pv-btn-small {
   color: #718096 !important;
   font-weight: 500;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   margin-right: 5px;
   text-transform: capitalize;
 }
@@ -533,7 +531,7 @@
 
 .ndpv .pv-board-column .pv-board-column-item {
   background-color: #fff;
-  border: 1px solid #dddddda8;
+  border: 1px solid rgba(221, 221, 221, 0.6588235294);
   border-radius: 8px;
   margin-bottom: 15px;
 }
@@ -611,7 +609,7 @@
 
 .ndpv .pv-board-content {
   margin-top: 10px;
-  height: calc(100vh - 420px);
+  height: calc(100vh - 380px) !important;
   overflow-y: scroll;
 }
 
@@ -724,7 +722,6 @@
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -757,4 +754,161 @@
 
 .ndpv input:checked+section.pv-accordion-table .pv-accordion-title span svg {
   transform: rotate(0deg);
+}
+
+.ndpv .pv-chat-history p {
+  text-align: center;
+  margin-bottom: 25px;
+  position: relative;
+  border-top: 1px solid #e2e8f0;
+}
+
+.ndpv .pv-message-data-time {
+  background: #EDF2F7;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #718096;
+}
+
+.ndpv .pv-time-content {
+  position: absolute;
+  right: 0;
+  display: flex;
+  top: 12px;
+}
+
+.ndpv .pv-time-content svg {
+  cursor: pointer;
+}
+
+.ndpv .pv-time-content .pv-time {
+  font-size: 11px;
+  font-weight: 300;
+  color: #718096;
+  margin-right: 10px;
+}
+
+.ndpv .pv-message-data {
+  margin-bottom: 15px;
+  display: flex;
+  position: relative;
+}
+
+.ndpv .pv-message-data .pv-about {
+  padding-left: 8px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.ndpv .pv-message-data .pv-about .pv-badge {
+  border-radius: 10px;
+  color: #fff;
+  padding: 3px 7px;
+}
+
+.ndpv .pv-message-data .pv-about .pv-name {
+  color: #3D3D3D;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ndpv .pv-message-data img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.ndpv .pv-message-data-time {
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #718096;
+  position: absolute;
+  top: -15px;
+  left: 42%;
+}
+
+.ndpv .pv-message {
+  font-size: 12px;
+  background: #EDF2F7;
+  padding: 10px;
+  width: 80%;
+  margin-top: 10px;
+  color: #4A5568;
+  border-radius: 10px;
+}
+
+.ndpv .pv-message:after {
+  bottom: 100%;
+  left: 7%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-width: 10px;
+  margin-left: -10px;
+}
+
+.ndpv .my-message {
+  background: #F7FAFC;
+}
+
+.ndpv .pv-other-message:after {
+  left: 93%;
+}
+
+.ndpv .pv-chat-message {
+  padding: 30px;
+  display: flex;
+  position: relative;
+}
+
+.ndpv .pv-chat-message .pv-icon {
+  margin-right: 10px;
+  display: inline-flex;
+}
+
+.ndpv .pv-chat-history textarea {
+  width: 100%;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 12px;
+  color: #979797;
+  border: 1px solid #e2e8f0;
+  background: #F8FAFC;
+}
+
+.ndpv .pv-chat-history .pv-textarea textarea:focus {
+  outline: none;
+}
+
+.ndpv .pv-chat-history .pv-textarea .pv-button-content {
+  display: flex;
+  margin-top: 10px;
+}
+
+.ndpv .pv-chat-history .pv-textarea .pv-button-content .pv-btn {
+  color: #2D3748;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.ndpv .pv-chat-history .pv-textarea .pv-paper-clip {
+  padding: 8px;
+  display: inline-block;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  line-height: 13px;
+  cursor: pointer;
+  background: #F8FAFC;
+}
+
+.ndpv .pv-chat-history .pv-textarea .pv-button {
+  margin-left: auto;
 }

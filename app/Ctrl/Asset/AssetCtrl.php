@@ -16,7 +16,9 @@ class AssetCtrl
         $this->suffix = defined("SCRIPT_DEBUG") && SCRIPT_DEBUG ? "" : ".min";
         $this->version =
             defined("WP_DEBUG") && WP_DEBUG ? time() : ndpv()->version();
-        $this->current_user_caps = array_keys(wp_get_current_user()->allcaps);
+        $this->current_user_caps = array_keys(
+            array_filter(wp_get_current_user()->allcaps)
+        );
 
         add_action("wp_enqueue_scripts", [$this, "public_scripts"], 9999);
         add_action("admin_enqueue_scripts", [$this, "admin_scripts"], 9999);
@@ -48,6 +50,7 @@ class AssetCtrl
                 "workspace-template.php",
                 "invoice-template.php",
                 "estimate-template.php",
+                "form-template.php",
             ])
         ) {
             return false;
@@ -162,6 +165,7 @@ class AssetCtrl
             $current_user = wp_get_current_user();
             wp_localize_script("ndpv-dashboard", "ndpv", [
                 "apiUrl" => esc_url(rest_url()),
+                "siteUrl" => get_site_url(),
                 "version" => ndpv()->version(),
                 "dashboard" => admin_url("admin.php?page=ndpv"),
                 "invoice_page_url" => sprintf(
@@ -186,7 +190,9 @@ class AssetCtrl
                 "logo" => Fns::brand_logo(),
                 "assetUri" => trailingslashit(NDPV_URL),
                 "profile" => [
+                    "id" => $current_user->ID,
                     "name" => $current_user->display_name,
+                    "email" => $current_user->user_email,
                     "img" => get_avatar_url($current_user->ID, [
                         "size" => "36",
                     ]),
@@ -194,6 +200,9 @@ class AssetCtrl
                 ],
                 "i18n" => I18n::dashboard(),
                 "caps" => $this->current_user_caps,
+                "isDemo" => apply_filters("ndpv_demo", false),
+                "demoMsg" =>
+                    "You are not allowed to change settings in demo mode!!!",
             ]);
         }
     }

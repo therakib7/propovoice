@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-
+import { deleteFile } from "api/gapi/gdrive";
 import axios from 'axios';
-import { apiUrl, token } from 'api/helper'
+import { apiUrl, apiProUrl, token } from 'api/helper'
 
-const HOC = (Inner, mod, title, modPlural = '') => {
-    // console.log("data", module);
+const HOC = (Inner, mod, title, modPlural = '', pro = false) => {
     if (!modPlural) {
         modPlural = mod + 's';
     }
 
-    const url = apiUrl + modPlural;
+    let urlPath = (pro) ? apiProUrl : apiUrl;
+
+    const url = urlPath + modPlural;
     const Crud = class extends Component {
         constructor(props) {
             super(props);
@@ -146,7 +147,8 @@ const HOC = (Inner, mod, title, modPlural = '') => {
             }
         }
 
-        deleteEntry = (type, index, module = null, args = null) => {
+        deleteEntry = async (type, index, module = null, args = null) => {
+
             if (confirm(ndpv.i18n.aConf)) {
                 //TODO: instant delete do it later
                 /* if (type == 'single' && module != 'task' ) {
@@ -156,8 +158,14 @@ const HOC = (Inner, mod, title, modPlural = '') => {
                         })
                     });
                 } */
+                if (type == 'singleDrive') {
+                    console.log(index);
+                    await deleteFile(index[1]);
+                    index = index[0];
+                }
 
-                let ids = (type == 'single') ? index : this.state.checkedBoxes.toString();
+                let ids = (type == 'single') || (type == 'singleDrive') ? index : this.state.checkedBoxes.toString();
+
                 axios.delete(`${url}/${ids}`, token).then(resp => {
                     if (resp.data.success) {
                         toast.success(ndpv.i18n.aDel);

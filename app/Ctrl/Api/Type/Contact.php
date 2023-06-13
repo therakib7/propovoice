@@ -223,10 +223,10 @@ class Contact
         }
 
         if ($status) {
-            $term_id = $status[0]->term_id;
+            $term_id = $status[0]->term_id ?? null;
             $query_data["status_id"] = [
                 "id" => $term_id,
-                "label" => $status[0]->name,
+                "label" => $status[0]->name ?? null,
                 "color" => "#4a5568",
                 "bg_color" => "#E2E8F0",
                 "type" => get_term_meta($term_id, "type", true),

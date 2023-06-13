@@ -121,6 +121,10 @@
     position: relative;
 }
 
+.ndpv .pv-right-content .pv-right-content-data.pv-board-area {
+    padding-bottom: 20px;
+}
+
 .wp-admin.ndpv {
     background-color: #f7f8fa !important;
     overflow-y: auto;
@@ -137,11 +141,19 @@
     .pv-right-content {
         height: calc(100vh - 30px);
     }
+
+    .pv-board-content {
+        height: calc(100vh - 350px) !important;
+    }
 }
 
 .ndpv {
-    .pv-deal-content {
+    .pv-board-area {
         max-width: none !important;
+    }
+
+    .pv-right-content-data.pv-deal-content {
+        padding-bottom: 10px;
     }
 
     .pi-field-multi {
@@ -350,4 +362,51 @@ input:-webkit-autofill:active {
 
 .ndpv .pv-horizontal-tab li {
     margin: 0;
+}
+
+// client portal
+.ndpv-client .pv-table tr td:first-child,
+.ndpv-client .pv-table tr th:first-child {
+    width: auto;
+    padding-left: 5px;
+}
+
+// messing and discussion
+.ndpv .pv-msg-attach {
+    li {
+        margin-top: 10px;
+    }
+    .pv-attach-pdf {
+        font-size: 12px;
+        background: #EDF2F7;
+        padding: 20px 15px;
+        display: inline-block;
+        color: #4A5568;
+        border-radius: 10px;
+        .pv-pdf-icon {
+            background: white;
+            padding: 8px;
+            border-radius: 50%;
+            svg {
+                top: 2px;
+                position: relative;
+            }
+        }
+        .pv-pdf-name {
+            font-weight: 500;
+            margin: 0 10px;
+        }
+        .pv-download-pdf {
+            svg {
+                top: 2px;
+                position: relative;
+            }
+        }
+    }
+    li img {
+        max-width: 300px;
+        border-radius: 10px;
+        width: auto;
+        height: auto;
+    }
 }

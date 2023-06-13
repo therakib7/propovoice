@@ -51,6 +51,7 @@ export default class Form extends Component {
 
     handleSubmit = () => {
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let newForm = { ...this.state.form }
         newForm.mod = this.props.mod;
 
@@ -132,6 +133,10 @@ export default class Form extends Component {
                                     <label htmlFor="field-label">{i18n.type}</label>
                                     <select name="type" value={form.type} onChange={this.handleChange}>
                                         <option value="text">{i18n.text}</option>
+                                        {/* <option value="date">{i18n.date}</option>
+                                        <option value="select">{i18n.select}</option>
+                                        <option value="multiselect">{i18n.multiselect}</option>
+                                        <option value="number">{i18n.number}</option> */}
                                     </select>
                                 </div>
                             </div>
@@ -141,7 +146,7 @@ export default class Form extends Component {
                     <div className="pv-modal-footer pv-mt-10">
                         <div className="row">
                             <div className="col">
-                                <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
+                                <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                             </div>
                             <div className="col">
                                 <button onClick={this.handleSubmit} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-medium pv-float-right pv-color-white">

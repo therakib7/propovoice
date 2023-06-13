@@ -92,6 +92,8 @@ export default class Main extends Component {
 
     handleSubmit = (e, i) => {
         e.preventDefault();
+
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         if (wage.length > 0) {
             pro();
             return;
@@ -99,6 +101,8 @@ export default class Main extends Component {
 
         this.submitFormData(i);
     }
+
+
 
     submitFormData = (i) => {
         let form = JSON.parse(JSON.stringify(this.state.singleForm));
@@ -119,9 +123,45 @@ export default class Main extends Component {
         });
     }
 
+
+
     render() {
         const { loading, currentTab, list, singleForm, leadField } = this.state;
+        console.log(singleForm)
         const i18n = ndpv.i18n;
+        let getFormSlug = (formName) => {
+            let formList = {
+                contact_form_7: 'contact-form-7',
+                wpforms: 'wpforms',
+                ninja_forms: 'ninja_form',
+                fluent_forms: 'fluentform',
+            }
+
+            return formList[formName];
+
+        }
+
+        let copyEmbededCode = (form_id) => {
+            let siteUrl = ndpv.siteUrl;
+            let previewLink = siteUrl + `/propovoice-form/?type=${getFormSlug(currentTab.slug)}&id=${form_id}`;
+            let embedingCode = `<div style="position: relative; width: 100%; height: 0; padding-top: 100.0000%;
+                                    padding-bottom: 0;  margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+                                    will-change: transform;">
+                                    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                                        src="${previewLink}" allowfullscreen="allowfullscreen" allow="fullscreen">
+                                    </iframe>
+                                </div>`;
+
+
+            const textarea = document.createElement("textarea");
+            textarea.value = embedingCode;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            toast.success('Code copied')
+
+        }
         return (
             <>
                 {loading ? <Spinner /> : <>
@@ -210,6 +250,9 @@ export default class Main extends Component {
                                                         <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-color-white">
                                                             {i18n.save} <ProLabel blueBtn />
                                                         </button>
+                                                        <button onClick={() => copyEmbededCode(item.id)} type='button' style={{ marginLeft: 10 }} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-color-white">
+                                                            {i18n.copy_form_code} <ProLabel blueBtn />
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -223,4 +266,4 @@ export default class Main extends Component {
             </>
         );
     }
-} 
+}

@@ -11,17 +11,19 @@ import Bank from './payment/Bank';
 import Paypal from './payment/Paypal';
 import Stripe from './payment/Stripe';
 
+const { i18n, caps } = ndpv;
+const isClient = caps.includes("ndpv_client_role");
+
 const TableHeader = props => {
-    const i18n = ndpv.i18n;
     return (
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox"
+                    {!isClient && <input type="checkbox"
                         // value={row.id}
                         // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
                         onChange={(e) => props.checkedBoxes.handle(e, 'all')}
-                    />
+                    />}
                 </th>
                 <th>
                     {props.path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est} ID
@@ -29,9 +31,9 @@ const TableHeader = props => {
                 {/* <th>
                     Project
                 </th> */}
-                <th>
+                {!isClient && <th>
                     {i18n.ct}
-                </th>
+                </th>}
                 <th>
                     {i18n.total}
                 </th>
@@ -63,7 +65,12 @@ const TableHeader = props => {
 
 const TableBody = props => {
     let navigate = useNavigate();
-    function handleClick(row, viewPath = '') {
+    function handleClick(row, viewPath = '', client_portal, client_url) {
+        if (client_portal) {
+            const newWindow = window.open(client_url, '_blank', 'noopener,noreferrer')
+            if (newWindow) newWindow.opener = null
+            return;
+        }
         let path = props.path;
         let view = '';
         switch (row.status) {
@@ -127,7 +134,6 @@ const TableBody = props => {
                     style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}
                 >{(recurring.status && recurring.hasOwnProperty('subscription') && recurring.subscription) ? ndpv.i18n.subsed : ndpv.i18n.paid}</span>
                 break;
-                break;
         }
 
         let payment_method;
@@ -159,18 +165,18 @@ const TableBody = props => {
         return (
             <tr key={index}>
                 <td>
-                    <input type="checkbox"
+                    {!isClient && <input type="checkbox"
                         value={row.id}
                         checked={checkedCheckbox}
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
-                    />
+                    />}
                 </td>
-                <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'><span className='pv-list-title'>{nNum}</span></td>
+                <td onClick={() => { handleClick(row, '/tab/preview', isClient, client_url); }} className='pv-cursor-pointer'><span className='pv-list-title'>{nNum}</span></td>
                 {/*<td>{row.project.name}</td>*/}
-                {!props.client_id && <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'>
+                {!isClient && !props.client_id && <td onClick={() => { handleClick(row, '/tab/preview', isClient, client_url); }} className='pv-cursor-pointer'>
                     {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
                 </td>}
-                <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'>{currency(row.total, row.invoice.currency, row.invoice.lang)}</td>
+                <td onClick={() => { handleClick(row, '/tab/preview', isClient, client_url); }} className='pv-cursor-pointer'>{currency(row.total, row.invoice.currency, row.invoice.lang)}</td>
                 {/* {(props.path == 'invoice') &&
                     <>
                         <td>{row.paid}</td>
@@ -179,7 +185,7 @@ const TableBody = props => {
                 }  */}
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
-                <td onClick={() => { handleClick(row); }} className='pv-cursor-pointer'><Moment format={ndpv.date_format}>{row.date}</Moment></td>
+                <td onClick={() => { handleClick(row, '/tab/preview', isClient, client_url); }} className='pv-cursor-pointer'><Moment format={ndpv.date_format}>{row.date}</Moment></td>
                 <td className="pv-action">
                     <Action
                         row={row}

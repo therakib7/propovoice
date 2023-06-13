@@ -4,11 +4,12 @@ import QtyType from './sub/QtyType';
 import Tax from './sub/Tax';
 import Fee from './sub/Fee';
 import Discount from './sub/Discount';
+import SavedItemsSettings from './sub/SavedItems';
 
 export default (props) => {
 
 	const i18n = ndpv.i18n;
-	const [tabs, setTabs] = useState([
+	let allTabs = [
 		{
 			id: 'currency',
 			text: i18n.cur
@@ -28,8 +29,18 @@ export default (props) => {
 		{
 			id: 'discount',
 			text: i18n.discount
-		},
-	]);
+		}
+
+	]
+
+	if (!wage.length) {
+		allTabs.push({
+			id: 'saved_items',
+			text: i18n.saved_items
+		});
+	}
+	const [tabs, setTabs] = useState(allTabs);
+
 	const [currentTab, setCurrentTab] = useState('currency');
 
 	return (
@@ -51,6 +62,7 @@ export default (props) => {
 			{currentTab == 'tax' && <Tax {...props} />}
 			{currentTab == 'fee' && <Fee />}
 			{currentTab == 'discount' && <Discount />}
+			{currentTab == 'saved_items' && !wage.length && <SavedItemsSettings />}
 		</>
 	);
 }  

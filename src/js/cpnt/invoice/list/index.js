@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { toast } from "react-toastify";
-import EntityFields from "../../../block/add-new/EntityFields";
+import EntityFields from "block/add-new/EntityFields";
 import { useNavigate, useLocation } from "react-router-dom";
 import AppContext from "context/app-context";
 
@@ -80,6 +80,10 @@ class Invoice extends Component {
 
     if (this.props.module_id) {
       args.module_id = this.props.module_id;
+    }
+
+    if (this.props.dashboard) {
+      args.dashboard = true;
     }
 
     if (searchArgs) {
@@ -274,28 +278,28 @@ class Invoice extends Component {
     const caps = ndpv.caps;
     return (
       <div className="ndpv-cpnt">
-        {!this.props.module_id && <Breadcrumb title={title} />}
+        {!this.props.module_id && !this.props.dashboard && <Breadcrumb title={title} />}
 
-        <div className="row">
+        {!this.props.dashboard && <div className="row">
           <div className="col">
             <h2 className="pv-page-title">
               {title == "Invoice"
                 ? ndpv.i18n.inv
                 : title == "Estimate"
-                ? ndpv.i18n.est
-                : title}
+                  ? ndpv.i18n.est
+                  : title}
             </h2>
           </div>
           <div className="col">
             {!caps.includes("ndpv_client_role") && <AddNew
               title={title}
               openForm={() => this.newInvoie()}
-              // fields={EntityFields.invoice}
+            // fields={EntityFields.invoice}
             />}
           </div>
-        </div>
+        </div>}
 
-        {!this.props.module_id && false && (
+        {!this.props.module_id && !this.props.dashboard && false && (
           <div className="pv-buttons-group pv-mb-20">
             <button className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-5">
               <svg width={20} height={20} viewBox="0 0 20 20" fill="none">
@@ -371,8 +375,9 @@ class Invoice extends Component {
           </div>
         )}
 
-        {!this.props.module_id && (
+        {!this.props.module_id && !this.props.dashboard && (
           <Search
+            path={this.state.path}
             title={title}
             showing={invoices.length}
             showItem={this.showItem}
@@ -389,7 +394,7 @@ class Invoice extends Component {
           />
         )}
 
-        {this.state.empty && (
+        {this.state.empty && !this.props.dashboard && (
           <Empty
             title={title}
             searchVal={searchVal}
@@ -452,6 +457,7 @@ function InvoiceWrap(props) {
         routeChange={routeChange}
         path={path}
         module_id={module_id}
+        dashboard={props.dashboard}
         key={path}
       />
     </>

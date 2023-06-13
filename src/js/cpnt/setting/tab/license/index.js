@@ -42,6 +42,7 @@ export default class License extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let form = { ...this.state.form }
         form.tab = 'license';
         this.setState({ loading: true });
@@ -157,4 +158,4 @@ export default class License extends Component {
             </>
         );
     }
-} 
+}

@@ -3,8 +3,8 @@ Contributors: Propovoice, therakib7, nasirbinburhan
 Donate link:
 Tags: CRM, Invoice Builder, Lead Management, WP CRM, Deal Pipeline, Wordpress CRM, Free Wordpress CRM, ERP, Business Management, Business Automation, Estimate, Quotation, Lead Generation, Billing, Client Management, Project Management, Customer, Client, Free Wordpress CRM
 Requires at least: 5.0
-Tested up to: 6.1
-Stable tag: 1.0.7.1
+Tested up to: 6.2
+Stable tag: 1.6.1
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -179,6 +179,39 @@ The super fantastic pro features that accelerate your business growth and improv
 7. Settings
 
 == Changelog ==
+
+= 1.6.1 =
+* Update: JS and functional issues
+
+= 1.6.0 =
+* Added: Helper JS and functional files for Discussion
+
+= 1.5.2 =
+* Fixed: Invoice & Estimate duplicate issue
+* Fixed: Team role issue
+* Fixed: Client portal issue
+* Fixed: Receiver information sync issue on estimate
+* Added: Address fields lead, deal, project, client
+
+= 1.5.1 =
+* Fixed: Email template Estimate & Invoice link
+
+= 1.5.0 =
+* Added: Helper JS and functional files for Client Portal, Team Role, Google Drive, Public Api, Metform, Save Items
+
+= 1.0.7.6 =
+* Fixed: CSS styling issue
+* Update: Export, Import Issue
+* Update: Task edit Issue
+* Update: JS and functional issues
+
+= 1.0.7.5 =
+* Fixed: Dashboard loading issue
+
+= 1.0.7.2 =
+* Fixed: Accept and Decline button issue
+* Fixed: Paid Invoice edit issue
+* Update: CSS issue
 
 = 1.0.7.1 =
 * Added: Helper JS and functional files for Custom Fields and User Role

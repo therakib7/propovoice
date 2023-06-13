@@ -197,13 +197,12 @@ class Media
 
         $reg_errors = new \WP_Error();
 
-        $img_max_size = 2048; //2048KB
+        $img_max_size = 5048; //5048KB
 
-        // $file               = $_FILES['file'];
         $file = $file_data;
-        $allowed_file_types = ["image/jpg", "image/jpeg", "image/png"];
-        // Allowed file size -> 1MB
-        $allowed_file_size = $img_max_size * 2048;
+        $allowed_file_types = ["image/jpg", "image/jpeg", "image/png", "application/pdf"];
+        // Allowed file size -> 5MB
+        $allowed_file_size = $img_max_size * 5048;
 
         if (!empty($file["name"])) {
             // Check file type
@@ -229,7 +228,7 @@ class Media
             }
 
             // Check file size
-            if ($file["size"] > $allowed_file_size) {
+            /* if ($file["size"] > $allowed_file_size) {
                 $reg_errors->add(
                     "field",
                     sprintf(
@@ -240,7 +239,7 @@ class Media
                         Fns::format_bytes($allowed_file_size)
                     )
                 );
-            }
+            } */
 
             if ($reg_errors->get_error_messages()) {
                 wp_send_json_error($reg_errors->get_error_messages());
@@ -292,11 +291,16 @@ class Media
 
                         $file_info = [
                             "id" => $attach_id,
+                            "type" => get_post_mime_type($attach_id),
                             "src" => wp_get_attachment_image_url(
                                 $attach_id,
                                 "thumbnail"
                             ),
                         ];
+
+                        if ( $file_info['type'] == 'application/pdf' ) {
+                            $file_info['name'] = basename( get_attached_file( $attach_id ) );
+                        }
                     }
 
                     wp_send_json_success($file_info);
@@ -338,6 +342,6 @@ class Media
 
     public function del_per()
     {
-        return current_user_can("ndpv_media");
+        return current_user_can("ndpv_media") || current_user_can("administrator");
     }
 }

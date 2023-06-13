@@ -31,6 +31,9 @@ const TableHeader = props => {
                     {i18n.tag}
                 </th>
                 <th>
+                    {i18n.aut}
+                </th>
+                <th>
                     {i18n.date}
                 </th>
                 <th>
@@ -72,10 +75,10 @@ const TableBody = props => {
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
                     <div className="pv-avater">
                         <img src={img} alt="avatar" />
-                        <span>{(row.person) ? row.person.first_name : row.org.name}</span>
+                        <span>{(row.person) ? row.person.first_name : row.org ? row.org.name : ""}</span>
                     </div>
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org ? row.org.email : ""}</td>
                 <td>
                     {level && <>
                         {(level.color && level.bg_color) && <span className="pv-badge"
@@ -107,6 +110,7 @@ const TableBody = props => {
                         )
                     })}
                 </td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.author}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.date}</td>
                 <td className="pv-action">
                     <Action

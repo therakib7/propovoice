@@ -58,7 +58,7 @@ export default (props) => {
 	}
 
 	const handleDelete = (id, tax) => {
-
+		if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
 		if (confirm(ndpv.i18n.aConf)) {
 			api.del('taxonomies', id + '/' + tax).then(resp => {
 				if (resp.data.success) {

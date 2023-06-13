@@ -1,5 +1,6 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { Add } from 'block/icon';
+import { toast } from 'react-toastify';
 
 // const Editor = lazy(() => import('block/editor'));
 
@@ -62,6 +63,8 @@ class FormBank extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         this.props.handleSubmit(this.state.form);
         // this.setState({ form: this.initialState });
     }

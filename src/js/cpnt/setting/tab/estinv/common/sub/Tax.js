@@ -30,16 +30,18 @@ export default class ExtraAmount extends Component {
     }
 
     handleChange = (e) => {
+
+        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let form = { ...this.state.form }
         const target = e.target;
         const name = target.name;
         const value = target.type == 'checkbox' ? target.checked : target.value;
         form[name] = value;
 
-        if ( wage.length > 0 && name == 'item_tax' ) {
-			pro();
-			return;
-		}
+        if (wage.length > 0 && name == 'item_tax') {
+            pro();
+            return;
+        }
 
         this.setState({ form }, () => {
             let form = this.state.form;
@@ -97,12 +99,12 @@ export default class ExtraAmount extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.tax} {i18n.fields}</label>
-                        <Taxonomy taxonomy='extra_amount' title={i18n.tax+' '+i18n.field} extra_amount_type='tax' tax_cal />
+                        <Taxonomy taxonomy='extra_amount' title={i18n.tax + ' ' + i18n.field} extra_amount_type='tax' tax_cal />
                     </div>
                     <div className="col">
                     </div>
-                </div>  
+                </div>
             </div>
         );
     }
-} 
+}

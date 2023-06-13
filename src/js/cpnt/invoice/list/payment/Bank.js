@@ -44,7 +44,7 @@ class Bank extends Component {
                 if (resp.data.success) {
                     this.props.close();
                     this.props.reload();
-                    toast.success(i18n.scf + ' ' +  i18n.paid);
+                    toast.success(i18n.scf + ' ' + i18n.paid);
                 } else {
                     resp.data.data.forEach(function (value, index, array) {
                         toast.error(value);
@@ -113,7 +113,7 @@ class Bank extends Component {
                         <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">

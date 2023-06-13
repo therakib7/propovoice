@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useRef, useCallback, useState, useEffect } from "react";
+import useClickOutside from 'block/outside-click';
+import { getOAuth2Data } from "api/gapi/goauth2";
 import Preloader from "block/preloader/table";
 
 import FormDrive from "./FormDrive";
@@ -7,6 +9,9 @@ import FormLink from "./FormLink";
 import Table from "./Table";
 // import Search from './Search';
 // import Empty from 'block/empty';
+
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 
 import Crud from "hoc/Crud";
 
@@ -18,6 +23,11 @@ const File = (props) => {
   const [fileModal, setFileModal] = useState(false);
   const [driveModal, setDriveModal] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
+  const [openDropdown, setOpenDropdown] = useState(false);
+
+  const dropdownRef = useRef();
+  const close = useCallback(() => setOpenDropdown(false), []);
+  useClickOutside(dropdownRef, close);
 
   const { lists, checkedBoxes, searchVal } = props.state;
   const i18n = ndpv.i18n;
@@ -66,86 +76,117 @@ const File = (props) => {
               {i18n.link}
             </button>
 
-            <button
-              className={
-                "pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow " +
-                (activeTab == "drive" ? "pv-active" : "")
-              }
-              onClick={() => {
-                setActiveTab("drive");
-                props.getLists({ type: "drive" });
-              }}
-            >
-              {i18n.drive}
-            </button>
+            {!wage.length &&
+
+              <button
+                className={
+                  "pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow " +
+                  (activeTab == "drive" ? "pv-active" : "")
+                }
+                onClick={() => {
+                  setActiveTab("drive");
+                  props.getLists({ type: "google-drive" });
+                }}
+              >
+                {i18n.drive}
+              </button>
+            }
           </div>
 
           <div className="col-sm-7">
             <div className="pv-buttons-right pv-text-right">
-              {false && (
-                <button
-                  className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
-                  onClick={() => setDriveModal(true)}
-                >
-                  <svg width={17} height={14} viewBox="0 0 17 16" fill="none">
-                    <path
-                      d="M5.875 5.125L8.5 2.5L11.125 5.125"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M8.5 9.5V2.5"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M14 9.5V13C14 13.1326 13.9473 13.2598 13.8536 13.3536C13.7598 13.4473 13.6326 13.5 13.5 13.5H3.5C3.36739 13.5 3.24021 13.4473 3.14645 13.3536C3.05268 13.2598 3 13.1326 3 13V9.5"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  {i18n.upload} Drive
-                </button>
-              )}
+              <div
+                style={{ position: 'relative', display: 'inline-block' }}
+              >
+                {true && (
+                  <button
+                    className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
+                    style={{ marginBottom: 10 }}
+                    onClick={() => {
+                      setOpenDropdown(!openDropdown);
+                    }}
+                  >
+                    <svg width={17} height={14} viewBox="0 0 17 16" fill="none">
+                      <path
+                        d="M5.875 5.125L8.5 2.5L11.125 5.125"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M8.5 9.5V2.5"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M14 9.5V13C14 13.1326 13.9473 13.2598 13.8536 13.3536C13.7598 13.4473 13.6326 13.5 13.5 13.5H3.5C3.36739 13.5 3.24021 13.4473 3.14645 13.3536C3.05268 13.2598 3 13.1326 3 13V9.5"
+                        stroke="#718096"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                    {i18n.upload}
+                  </button>
+                )}
+
+                {openDropdown && <div className="pv-dropdown-content pv-show" ref={dropdownRef} >
+                  {!wage.length &&
+                    <a onClick={async () => {
+                      setOpenDropdown(false);
+                      await getOAuth2Data();
+                      setDriveModal(true);
+                    }} >
+                      <svg
+                        width={17}
+                        height={14}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21.732 15.138c-.002-.034-.011-.065-.02-.098-.009-.033-.017-.064-.031-.094-.005-.01-.005-.02-.01-.029L15.513 4.25A.5.5 0 0015.08 4H8.92a.5.5 0 00-.249.067.488.488 0 00-.165.166c-.005.007-.013.01-.018.017L2.33 14.917a.497.497 0 000 .5l3.08 5.333c.007.013.022.018.03.03.034.048.074.09.123.123.019.013.034.026.054.036.069.036.143.06.226.061h12.317a.5.5 0 00.433-.25l3.079-5.333c.007-.012.005-.028.01-.04a.487.487 0 00.046-.17c.001-.013.01-.025.01-.04 0-.01-.004-.019-.005-.03zM14.79 5l5.581 9.667H15.37L9.787 5h5.004zm-.577 9.667H9.786L12 10.832l2.214 3.835zm-10.875.5L8.92 5.5l2.502 4.333L5.842 19.5l-2.503-4.333zM17.87 20H6.708l2.502-4.333h11.162L17.87 20z"
+                          fill="#718096"
+                          strokeWidth={1.5}
+                        />
+                      </svg>
+                      Google Drive</a>
+                  }
+
+                  <a onClick={() => {
+                    setOpenDropdown(false);
+                    setFileModal(true);
+                  }} >
+                    <svg
+                      width={17}
+                      height={14}
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                    >
+                      <g
+                        stroke="#718096"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                      >
+                        <path
+                          d="M18 22H6a2 2 0 01-2-2V4a2 2 0 012-2h7.1a2 2 0 011.5.6l4.9 5.2a2 2 0 01.5 1.4V20a2 2 0 01-2 2z"
+                          fill="none"
+                        />
+                        <path d="M12 17L12 11" />
+                        <path d="M9 14L15 14" />
+                      </g>
+                    </svg>
+                    {i18n.file}
+                  </a>
+                </div>}
+
+              </div>
 
 
-              {true && (
-                <button
-                  className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
-                  onClick={() => setFileModal(true)}
-                >
-                  <svg width={17} height={14} viewBox="0 0 17 16" fill="none">
-                    <path
-                      d="M5.875 5.125L8.5 2.5L11.125 5.125"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M8.5 9.5V2.5"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M14 9.5V13C14 13.1326 13.9473 13.2598 13.8536 13.3536C13.7598 13.4473 13.6326 13.5 13.5 13.5H3.5C3.36739 13.5 3.24021 13.4473 3.14645 13.3536C3.05268 13.2598 3 13.1326 3 13V9.5"
-                      stroke="#718096"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  {i18n.upload} {i18n.file}
-                </button>
-              )}
               <button
                 className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-bg-hover-shadow"
                 onClick={() => props.openForm("new")}
