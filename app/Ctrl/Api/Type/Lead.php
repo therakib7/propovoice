@@ -567,6 +567,17 @@ class Lead
 
                 do_action("ndpvp/webhook", "lead_edit", $param);
 
+                $activity_data = [
+                    "message" =>
+                        "Lead updated by <code>" .
+                        wp_get_current_user()->display_name .
+                        "</code>",
+                    "post_id" => $post_id,
+                    "action_id" => 1,
+                    "created_by" => get_current_user_id(),
+                ];
+                do_action("ndpv_activity", $activity_data);
+
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();
