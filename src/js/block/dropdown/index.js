@@ -5,6 +5,7 @@ const Dropdown = (props) => {
   const dropdownRef = useRef(null);
   const [dropdown, setDropdown] = useState(false);
   const [userNotifications, setUserNotifications] = useState();
+  const [countUnseen, setCountUnseen] = useState(0);
   const [svgCode, setSvgCode] = useState(null);
 
   const toggleDropdown = () => {
@@ -28,14 +29,35 @@ const Dropdown = (props) => {
   useEffect(() => {
     if (props.purpose === "notification") {
       get_user_notifications();
+
+      const interval = setInterval(() => {
+        count_unseen_notifications();
+      }, 5000); // Adjust the interval time as needed (in milliseconds)
+
+      count_unseen_notifications();
+
+      return () => {
+        clearInterval(interval);
+      };
     }
   }, []);
+
+  useEffect(() => {
+    if (props.purpose === "notification") {
+      get_user_notifications();
+    }
+  }, [countUnseen]);
 
   const get_user_notifications = () => {
     api.get(`users/${ndpv.profile.id}/notifications`, "", "pro").then(resp => {
       setUserNotifications(resp.data);
-    })
+    });
+  }
 
+  const count_unseen_notifications = () => {
+    api.get(`users/${ndpv.profile.id}/notifications/count-unseen`, "", "pro").then(resp => {
+      setCountUnseen(resp.data);
+    });
   }
 
   const iconContent = props.isSvgIcon ? (
@@ -49,6 +71,7 @@ const Dropdown = (props) => {
     <div className="pv-dropdown" ref={dropdownRef}>
       <button className="pv-dropbtn" onClick={toggleDropdown}>
         {iconContent}
+        {props.purpose === "notification" && countUnseen > 0 && (countUnseen)}
         {props.label}
         <svg className="pv-dropdown-angle" width="12" height="7" viewBox="0 0 12 7" fill="none">
           <path
