@@ -48,6 +48,12 @@ const Dropdown = (props) => {
     }
   }, [countUnseen]);
 
+  useEffect(() => {
+    if (props.purpose === "notification" && dropdown && countUnseen > 0) {
+      markAsSeen();
+    }
+  }, [dropdown]);
+
   const get_user_notifications = () => {
     api.get(`users/${ndpv.profile.id}/notifications`, "", "pro").then(resp => {
       setUserNotifications(resp.data);
@@ -56,6 +62,12 @@ const Dropdown = (props) => {
 
   const count_unseen_notifications = () => {
     api.get(`users/${ndpv.profile.id}/notifications/count-unseen`, "", "pro").then(resp => {
+      setCountUnseen(resp.data);
+    });
+  }
+
+  const markAsSeen = () => {
+    api.get(`users/${ndpv.profile.id}/notifications/mark-as-seen`, "", "pro").then(resp => {
       setCountUnseen(resp.data);
     });
   }
