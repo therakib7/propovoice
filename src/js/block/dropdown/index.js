@@ -6,8 +6,6 @@ const Dropdown = (props) => {
   const [dropdown, setDropdown] = useState(false);
   const [userNotifications, setUserNotifications] = useState();
   const [countNew, setCountNew] = useState(0);
-  const [notificationUpdate, setNotificationUpdate] = useState(0);
-  const [svgCode, setSvgCode] = useState(null);
 
   const toggleDropdown = () => {
     setDropdown((prevDropdown) => !prevDropdown);
@@ -46,20 +44,25 @@ const Dropdown = (props) => {
     }
   }, [props.purpose, dropdown, countNew]);
 
-  const get_user_notifications = () => {
-    api.get(`users/${ndpv.profile.id}/notifications`, "", "pro").then(resp => {
+  const get_user_notifications = (filter = "all") => {
+    api.get(`notifications/users/${ndpv.profile.id}`, `filter=${filter}`, "pro").then(resp => {
       setUserNotifications(resp.data);
     });
   }
 
   const count_new_notifications = () => {
-    api.get(`users/${ndpv.profile.id}/notifications/count-new`, "", "pro").then(resp => {
+    api.get(`notifications/users/${ndpv.profile.id}/count-new`, "", "pro").then(resp => {
       setCountNew(resp.data);
     });
   }
 
   const markAsOld = () => {
-    api.get(`users/${ndpv.profile.id}/notifications/mark-as-old`, "", "pro").then(resp => {
+    api.get(`notifications/users/${ndpv.profile.id}/mark-as-old`, "", "pro").then(resp => {
+      setCountNew(resp.data);
+    });
+  }
+  const markAllAsRead = () => {
+    api.get(`notifications/users/${ndpv.profile.id}/mark-all-as-read`, "", "pro").then(resp => {
       setCountNew(resp.data);
     });
   }
@@ -67,9 +70,16 @@ const Dropdown = (props) => {
   const handleNotificationOnClick = (notificationId) => {
     api.get(`notifications/${notificationId}/mark-as-read`, "", "pro").then(resp => {
       setDropdown(false);
-      setNotificationUpdate(1);
     });
   };
+
+  const handleFilterOnClick = (filter) => {
+    get_user_notifications(filter)
+  }
+
+  const handleMarkAllAsReadOnClick = () => {
+    markAllAsRead();
+  }
 
   const blueCircleStyle = {
     height: "6px",
@@ -103,12 +113,22 @@ const Dropdown = (props) => {
         </svg>
       </button>
 
-      {dropdown && (
-        <ul className="pv-dropdown-content pv-show">
+      {dropdown && (<div >
+
+        {
+          props.purpose === "notification" && (
+            <div style={{ display: "inline-block" }}>
+              <button onClick={() => { handleFilterOnClick("all") }}>All</button>
+              <button onClick={() => { handleFilterOnClick("unseen") }}>Unread</button>
+              <button onClick={() => { handleMarkAllAsReadOnClick() }}>Mark all as read</button>
+            </div>
+          )
+        }
+        < ul className="pv-dropdown-content pv-show">
 
           {userNotifications && userNotifications.map((item, index) => {
             const isSeen = parseInt(item.is_seen);
-            return (<li key={index} onClick={handleNotificationOnClick.bind(null, item.notification_id)}><div style={{ display: "inline-block" }} dangerouslySetInnerHTML={{ __html: item.message }}></div>{!isSeen && (< div style={blueCircleStyle}></div>)
+            return (<li key={index} onClick={() => { handleNotificationOnClick(item.notification_id) }}><div style={{ display: "inline-block" }} dangerouslySetInnerHTML={{ __html: item.message }}></div>{!isSeen && (< div style={blueCircleStyle}></div>)
             }</li>)
           })}
 
@@ -119,6 +139,7 @@ const Dropdown = (props) => {
 
 
         </ul>
+      </div>
       )
       }
     </div >
