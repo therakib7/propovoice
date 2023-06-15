@@ -5,7 +5,8 @@ const Dropdown = (props) => {
   const dropdownRef = useRef(null);
   const [dropdown, setDropdown] = useState(false);
   const [userNotifications, setUserNotifications] = useState();
-  const [countUnseen, setCountUnseen] = useState(0);
+  const [countNew, setCountNew] = useState(0);
+  const [notificationUpdate, setNotificationUpdate] = useState(0);
   const [svgCode, setSvgCode] = useState(null);
 
   const toggleDropdown = () => {
@@ -29,30 +30,21 @@ const Dropdown = (props) => {
   useEffect(() => {
     if (props.purpose === "notification") {
       get_user_notifications();
+      count_new_notifications();
+
+      if (dropdown && countNew > 0) {
+        markAsOld();
+      }
 
       const interval = setInterval(() => {
-        count_unseen_notifications();
-      }, 5000); // Adjust the interval time as needed (in milliseconds)
-
-      count_unseen_notifications();
+        count_new_notifications();
+      }, 5000);
 
       return () => {
         clearInterval(interval);
       };
     }
-  }, []);
-
-  useEffect(() => {
-    if (props.purpose === "notification") {
-      get_user_notifications();
-    }
-  }, [countUnseen]);
-
-  useEffect(() => {
-    if (props.purpose === "notification" && dropdown && countUnseen > 0) {
-      markAsSeen();
-    }
-  }, [dropdown]);
+  }, [props.purpose, dropdown, countNew]);
 
   const get_user_notifications = () => {
     api.get(`users/${ndpv.profile.id}/notifications`, "", "pro").then(resp => {
@@ -60,16 +52,31 @@ const Dropdown = (props) => {
     });
   }
 
-  const count_unseen_notifications = () => {
-    api.get(`users/${ndpv.profile.id}/notifications/count-unseen`, "", "pro").then(resp => {
-      setCountUnseen(resp.data);
+  const count_new_notifications = () => {
+    api.get(`users/${ndpv.profile.id}/notifications/count-new`, "", "pro").then(resp => {
+      setCountNew(resp.data);
     });
   }
 
-  const markAsSeen = () => {
-    api.get(`users/${ndpv.profile.id}/notifications/mark-as-seen`, "", "pro").then(resp => {
-      setCountUnseen(resp.data);
+  const markAsOld = () => {
+    api.get(`users/${ndpv.profile.id}/notifications/mark-as-old`, "", "pro").then(resp => {
+      setCountNew(resp.data);
     });
+  }
+
+  const handleNotificationOnClick = (notificationId) => {
+    api.get(`notifications/${notificationId}/mark-as-read`, "", "pro").then(resp => {
+      setDropdown(false);
+      setNotificationUpdate(1);
+    });
+  };
+
+  const blueCircleStyle = {
+    height: "6px",
+    width: "6px",
+    backgroundColor: "#4C6FFF",
+    borderRadius: "50%",
+    display: "inline-block"
   }
 
   const iconContent = props.isSvgIcon ? (
@@ -83,7 +90,7 @@ const Dropdown = (props) => {
     <div className="pv-dropdown" ref={dropdownRef}>
       <button className="pv-dropbtn" onClick={toggleDropdown}>
         {iconContent}
-        {props.purpose === "notification" && countUnseen > 0 && (countUnseen)}
+        {props.purpose === "notification" && countNew > 0 && (countNew)}
         {props.label}
         <svg className="pv-dropdown-angle" width="12" height="7" viewBox="0 0 12 7" fill="none">
           <path
@@ -97,10 +104,12 @@ const Dropdown = (props) => {
       </button>
 
       {dropdown && (
-        <div className="pv-dropdown-content pv-show">
+        <ul className="pv-dropdown-content pv-show">
 
           {userNotifications && userNotifications.map((item, index) => {
-            return (< a key={index} href="#" > <div dangerouslySetInnerHTML={{ __html: item.message }}></div></a>)
+            const isSeen = parseInt(item.is_seen);
+            return (<li key={index} onClick={handleNotificationOnClick.bind(null, item.notification_id)}><div style={{ display: "inline-block" }} dangerouslySetInnerHTML={{ __html: item.message }}></div>{!isSeen && (< div style={blueCircleStyle}></div>)
+            }</li>)
           })}
 
           {props.list.length > 0 && (props.list.map((item, index) => (
@@ -109,7 +118,7 @@ const Dropdown = (props) => {
           {!userNotifications && !props.list.length && (<a>No content</a>)}
 
 
-        </div>
+        </ul>
       )
       }
     </div >

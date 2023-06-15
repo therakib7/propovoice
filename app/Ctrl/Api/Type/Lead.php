@@ -431,9 +431,9 @@ class Lead
 
                 $activity_data = [
                     "message" =>
-                        "New lead created by <code>" .
+                        "<a href='$site_url/workspace/#/lead/$post_id' >Lead updated by <code>" .
                         wp_get_current_user()->display_name .
-                        "</code>",
+                        "</code></a>",
                     "post_id" => $post_id,
                     "action_id" => 1,
                     "created_by" => get_current_user_id(),
@@ -567,11 +567,12 @@ class Lead
 
                 do_action("ndpvp/webhook", "lead_edit", $param);
 
+                $site_url = get_home_url();
                 $activity_data = [
                     "message" =>
-                        "Lead updated by <code>" .
+                        "<a href='$site_url/workspace/#/lead/$post_id' >Lead updated by <code>" .
                         wp_get_current_user()->display_name .
-                        "</code>",
+                        "</code></a>",
                     "post_id" => $post_id,
                     "action_id" => 1,
                     "created_by" => get_current_user_id(),
