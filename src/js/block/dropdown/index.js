@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import moment from 'moment';
 import api from 'api';
 
 const Dropdown = (props) => {
@@ -129,7 +130,11 @@ const Dropdown = (props) => {
           {userNotifications && userNotifications.map((item, index) => {
             const isSeen = parseInt(item.is_seen);
             return (<li key={index} onClick={() => { handleNotificationOnClick(item.notification_id) }}><div style={{ display: "inline-block" }} dangerouslySetInnerHTML={{ __html: item.message }}></div>{!isSeen && (< div style={blueCircleStyle}></div>)
-            }</li>)
+
+            }<p>
+                {moment.utc(item.created_at).local().startOf('seconds').fromNow()}
+              </p>
+            </li>)
           })}
 
           {props.list.length > 0 && (props.list.map((item, index) => (
