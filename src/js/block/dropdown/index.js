@@ -1,11 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
-import moment from 'moment';
 import api from 'api';
+import NotificationDropdown from './NotificationDropdown';
 
 const Dropdown = (props) => {
   const dropdownRef = useRef(null);
   const [dropdown, setDropdown] = useState(false);
-  const [userNotifications, setUserNotifications] = useState();
   const [countNew, setCountNew] = useState(0);
 
   const toggleDropdown = () => {
@@ -26,68 +25,32 @@ const Dropdown = (props) => {
     };
   }, [dropdownRef]);
 
+
   useEffect(() => {
-    if (props.purpose === "notification") {
-      get_user_notifications();
-      count_new_notifications();
-
-      if (dropdown && countNew > 0) {
-        markAsOld();
-      }
-
-      const interval = setInterval(() => {
-        count_new_notifications();
-      }, 5000);
-
-      return () => {
-        clearInterval(interval);
-      };
+    count_new_notifications();
+    if (dropdown && countNew > 0) {
+      markAsOld();
     }
-  }, [props.purpose, dropdown, countNew]);
 
-  const get_user_notifications = (filter = "all") => {
-    api.get(`notifications/users/${ndpv.profile.id}`, `filter=${filter}`, "pro").then(resp => {
-      setUserNotifications(resp.data);
-    });
-  }
+    const interval = setInterval(() => {
+      count_new_notifications();
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [dropdown, countNew]);
+
 
   const count_new_notifications = () => {
     api.get(`notifications/users/${ndpv.profile.id}/count-new`, "", "pro").then(resp => {
       setCountNew(resp.data);
     });
   }
-
   const markAsOld = () => {
     api.get(`notifications/users/${ndpv.profile.id}/mark-as-old`, "", "pro").then(resp => {
       setCountNew(resp.data);
     });
-  }
-  const markAllAsRead = () => {
-    api.get(`notifications/users/${ndpv.profile.id}/mark-all-as-read`, "", "pro").then(resp => {
-      setCountNew(resp.data);
-    });
-  }
-
-  const handleNotificationOnClick = (notificationId) => {
-    api.get(`notifications/${notificationId}/mark-as-read`, "", "pro").then(resp => {
-      setDropdown(false);
-    });
-  };
-
-  const handleFilterOnClick = (filter) => {
-    get_user_notifications(filter)
-  }
-
-  const handleMarkAllAsReadOnClick = () => {
-    markAllAsRead();
-  }
-
-  const blueCircleStyle = {
-    height: "6px",
-    width: "6px",
-    backgroundColor: "#4C6FFF",
-    borderRadius: "50%",
-    display: "inline-block"
   }
 
   const iconContent = props.isSvgIcon ? (
@@ -117,30 +80,19 @@ const Dropdown = (props) => {
       {dropdown && (<div >
 
         {
-          props.purpose === "notification" && (
-            <div style={{ display: "inline-block" }}>
-              <button onClick={() => { handleFilterOnClick("all") }}>All</button>
-              <button onClick={() => { handleFilterOnClick("unseen") }}>Unread</button>
-              <button onClick={() => { handleMarkAllAsReadOnClick() }}>Mark all as read</button>
-            </div>
-          )
+          props.purpose === "notification" &&
+          <NotificationDropdown
+            dropdown={dropdown}
+            updateDropdown={setDropdown}
+            updateCount={setCountNew}
+          />
         }
         < ul className="pv-dropdown-content pv-show">
-
-          {userNotifications && userNotifications.map((item, index) => {
-            const isSeen = parseInt(item.is_seen);
-            return (<li key={index} onClick={() => { handleNotificationOnClick(item.notification_id) }}><div style={{ display: "inline-block" }} dangerouslySetInnerHTML={{ __html: item.message }}></div>{!isSeen && (< div style={blueCircleStyle}></div>)
-
-            }<p>
-                {moment.utc(item.created_at).local().startOf('seconds').fromNow()}
-              </p>
-            </li>)
-          })}
 
           {props.list.length > 0 && (props.list.map((item, index) => (
             <a key={index} href={item.url}>{item.label}</a>
           )))}
-          {!userNotifications && !props.list.length && (<a>No content</a>)}
+          {props.purpose !== "notification" && !props.list.length && (<a>No content</a>)}
 
 
         </ul>
