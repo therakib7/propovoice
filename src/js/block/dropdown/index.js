@@ -53,8 +53,50 @@ const Dropdown = (props) => {
     });
   }
 
+  const iconStyle = {
+    background: "rgba(76, 111, 255, 0.1)",
+    width: "36px",
+    height: "36px",
+    borderRadius: "50%",
+    display: "flex",
+    justifyContent: "center", /* Horizontal centering */
+    alignItems: "center" /* Vertical centering */
+  };
+  const countStyle = {
+    // position: 'absolute',
+    minWidth: '12px',
+    minHeight: '12px',
+    // left: '1130px',
+    // top: '22px',
+    background: '#FF267F',
+    padding: "2px",
+
+    display: "flex",
+    justifyContent: "center", /* Horizontal centering */
+    alignItems: "center", /* Vertical centering */
+    borderRadius: "50%",
+    position: 'relative',
+    // width: '6px',
+    // height: '9px',
+    // left: '1133px',
+    // top: '23px',
+    top: '-10px',
+    right: '10px',
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    fontSize: '9px',
+    lineHeight: '100%',
+    color: '#FFFFFF',
+
+  }
+
   const iconContent = props.isSvgIcon ? (
-    props.icon
+    <>
+      <div style={iconStyle}>{props.icon}</div>
+
+      {props.purpose === "notification" && countNew > 0 && (<div style={countStyle}>{countNew}</div>)}
+    </>
   ) : (
     <img src={props.icon} alt={props.label} />
   );
@@ -64,9 +106,8 @@ const Dropdown = (props) => {
     <div className="pv-dropdown" ref={dropdownRef}>
       <button className="pv-dropbtn" onClick={toggleDropdown}>
         {iconContent}
-        {props.purpose === "notification" && countNew > 0 && (countNew)}
         {props.label}
-        <svg className="pv-dropdown-angle" width="12" height="7" viewBox="0 0 12 7" fill="none">
+        {props.purpose !== "notification" && (<svg className="pv-dropdown-angle" width="12" height="7" viewBox="0 0 12 7" fill="none">
           <path
             d="M10.375 1.25L6 5.625L1.625 1.25"
             stroke="#718096"
@@ -74,7 +115,8 @@ const Dropdown = (props) => {
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-        </svg>
+        </svg>)}
+
       </button>
 
       {dropdown && (<div >

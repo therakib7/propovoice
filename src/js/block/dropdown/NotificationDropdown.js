@@ -28,8 +28,6 @@ const NotificationDropdown = (props) => {
     markAllAsRead();
   }
 
-
-
   const handleNotificationOnClick = (notificationId) => {
     api.get(`notifications/${notificationId}/mark-as-read`, "", "pro").then(resp => {
       props.updateDropdown(false);
@@ -45,27 +43,37 @@ const NotificationDropdown = (props) => {
   }
 
 
+
   return (
     <>
-      <div style={{ display: "inline-block" }}>
-        <button onClick={() => { handleFilterOnClick("all") }}>All</button>
-        <button onClick={() => { handleFilterOnClick("unseen") }}>Unread</button>
-        <button onClick={() => { handleMarkAllAsReadOnClick() }}>Mark all as read</button>
+      <div className="pv-dropdown-content pv-show" >
+        <h3 style={{ padding: '12px 16px' }}>Notifications</h3>
+
+        <div style={{ display: 'inline-flex', gap: '8px', padding: '12px 16px' }}>
+          <button className='pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow pv-active' onClick={() => { handleFilterOnClick("all") }}>All</button>
+          <button className='pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow' onClick={() => { handleFilterOnClick("unseen") }}>Unread</button>
+          <button className='pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow' onClick={() => { handleMarkAllAsReadOnClick() }}>Mark all as read</button>
+        </div>
+        < ul >
+
+          {userNotifications && userNotifications.map((item, index) => {
+            const isSeen = parseInt(item.is_seen);
+            return (
+              <li style={{}} key={index} onClick={() => { handleNotificationOnClick(item.notification_id) }}>
+                <div style={{}}>
+                  <div style={{}} dangerouslySetInnerHTML={{ __html: item.message }}></div>
+                  {!isSeen &&
+                    (< div style={blueCircleStyle}></div>)
+                  }
+                </div>
+                <div >
+                  {moment.utc(item.created_at).local().startOf('seconds').fromNow()}
+                </div>
+              </li>
+            )
+          })}
+        </ul>
       </div>
-
-      < ul className="pv-dropdown-content pv-show">
-        {userNotifications && userNotifications.map((item, index) => {
-          const isSeen = parseInt(item.is_seen);
-          return (
-            <li key={index} onClick={() => { handleNotificationOnClick(item.notification_id) }}><div style={{ display: "inline-block" }} dangerouslySetInnerHTML={{ __html: item.message }}></div>{!isSeen && (< div style={blueCircleStyle}></div>)
-
-            }<p>
-                {moment.utc(item.created_at).local().startOf('seconds').fromNow()}
-              </p>
-            </li>
-          )
-        })}
-      </ul>
     </>
   );
 }
