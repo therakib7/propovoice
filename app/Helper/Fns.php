@@ -446,6 +446,17 @@ class Fns
     }
 
     /**
+     *  String to slug convert
+     *
+     * @package NDPV Project
+     * @since 1.0
+     */
+    public static function slugify_key($string)
+    {
+        return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '_', $string), '_'));
+    }
+
+    /**
      * Sanitize out put
      *
      * @package NDPV Project

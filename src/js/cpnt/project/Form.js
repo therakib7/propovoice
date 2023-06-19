@@ -7,6 +7,8 @@ import { Cross } from 'block/icon';
 import Taxonomy from 'block/field/taxonomy';
 import Currency from 'block/field/currency';
 
+import CustomField from 'block/field/custom-field';
+
 const DateField = lazy(() => import('block/date-picker'));
 
 const { i18n, caps } = ndpv;
@@ -118,6 +120,13 @@ class Form extends Component {
         const target = e.target;
         const name = target.name;
         const value = target.type === 'checkbox' ? target.checked : target.value;
+        this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    handleCFChange = (e) => {
+
+        const { name, value } = e.target;
+
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
@@ -446,22 +455,7 @@ class Form extends Component {
                                     </div>
                                 </div>}
 
-                                {!isClient && this.state.custom_field && this.props.custom_field.map((item, i) => (
-                                    <div key={i} className="row">
-                                        <div className="col">
-                                            <label htmlFor={'custom-field-' + i}>
-                                                {item.label}
-                                            </label>
-                                            <input
-                                                id={'custom-field-' + i}
-                                                type='text'
-                                                name={item.id}
-                                                value={form[item.id]}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
+                                {!isClient && this.state.custom_field && <CustomField mod='project' form={form} onChange={this.handleCFChange} />}
 
                             </div>
                         </div>
