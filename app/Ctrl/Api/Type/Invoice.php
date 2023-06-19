@@ -438,6 +438,14 @@ class Invoice
                 ? maybe_unserialize($invMeta["invoice"][0])
                 : "";
 
+            $original_date = $invoice['date'];
+            $timestamp_date = strtotime($original_date);
+            $invoice['date_i18n'] = date_i18n(get_option('date_format'), $timestamp_date);
+
+            $original_due_date = $invoice['due_date'];
+            $timestamp_due_date = strtotime($original_due_date);
+            $invoice['due_date_i18n'] = date_i18n(get_option('date_format'), $timestamp_due_date); 
+
             $reminder = isset($invoice["reminder"])
                 ? $invoice["reminder"]
                 : null;
