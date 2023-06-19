@@ -43,15 +43,15 @@ export default (props) => {
 								// <input
 								//     id={'custom-field-' + i}
 								//     type='date'
-								//     name={item.id}
-								//     value={form[item.id]}
+								//     name={item.slug}
+								//     value={form[item.slug]}
 								//     onChange={handleChange}
 								// />
 								<DateField
 									id={'custom-field-' + i}
 									date={form.start_date}
 									type="date"
-									name={item.id}
+									name={item.slug}
 									onDateChange={handleChange}
 								/>
 							}
@@ -59,8 +59,8 @@ export default (props) => {
 								<input
 									id={'custom-field-' + i}
 									type='number'
-									name={item.id}
-									value={form[item.id]}
+									name={item.slug}
+									value={form[item.slug]}
 									onChange={handleChange}
 								/>
 							}
@@ -68,8 +68,8 @@ export default (props) => {
 								<input
 									id={'custom-field-' + i}
 									type='text'
-									name={item.id}
-									value={form[item.id]}
+									name={item.slug}
+									value={form[item.slug]}
 									onChange={handleChange}
 								/>}
 							{item.desc && <p className='pv-field-desc'>{item.desc}</p>}

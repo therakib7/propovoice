@@ -10,7 +10,6 @@ import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
 import api from 'api';
 
-const DateField = lazy(() => import("block/date-picker"))
 export default class Form extends Component {
     constructor(props) {
         super(props);
@@ -74,7 +73,7 @@ export default class Form extends Component {
         if (this.props.custom_field) {
             let obj = {};
             this.props.custom_field.map((item, i) => {
-                obj[item.id] = '';
+                obj[item.slug] = '';
             });
             const merge_obj = { ...this.state.form, ...obj };
             this.setState({ form: merge_obj, custom_field: true });
