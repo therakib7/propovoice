@@ -54,6 +54,7 @@ const Dropdown = (props) => {
   }
 
   const iconStyle = {
+    position: 'relative',
     background: "rgba(76, 111, 255, 0.1)",
     width: "36px",
     height: "36px",
@@ -66,22 +67,15 @@ const Dropdown = (props) => {
     // position: 'absolute',
     minWidth: '12px',
     minHeight: '12px',
-    // left: '1130px',
-    // top: '22px',
     background: '#FF267F',
     padding: "2px",
-
     display: "flex",
     justifyContent: "center", /* Horizontal centering */
     alignItems: "center", /* Vertical centering */
     borderRadius: "50%",
-    position: 'relative',
-    // width: '6px',
-    // height: '9px',
-    // left: '1133px',
-    // top: '23px',
-    top: '-10px',
-    right: '10px',
+    position: 'absolute',
+    top: '0px',
+    right: '0px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: 500,
@@ -93,9 +87,11 @@ const Dropdown = (props) => {
 
   const iconContent = props.isSvgIcon ? (
     <>
-      <div style={iconStyle}>{props.icon}</div>
+      <div style={iconStyle}>{props.icon}
 
-      {props.purpose === "notification" && countNew > 0 && (<div style={countStyle}>{countNew}</div>)}
+        {props.purpose === "notification" && countNew > 0 && (<div style={countStyle}>{countNew}</div>)}
+      </div>
+
     </>
   ) : (
     <img src={props.icon} alt={props.label} />
