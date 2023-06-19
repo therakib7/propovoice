@@ -43,18 +43,19 @@ const NotificationDropdown = (props) => {
     zIndex: "9",
     position: 'absolute',
     top: "55px",
+    right: "0",
     background: "#FFFFFF",
     border: "1px solid #E2E8F0",
     boxShadow: "0px 4.95074px 6.60099px rgba(32, 29, 67, 0.07)",
     borderRadius: "10px",
-    padding: "16px"
   }
   const listStyle = {
     display: "flex",
     flexDirection: "column",
     gap: "14px",
     overflow: "auto",
-    marginRight: "4px"
+    marginRight: "4px",
+    padding: "16px"
   }
 
   const listItmeStyle = {
@@ -85,9 +86,9 @@ const NotificationDropdown = (props) => {
   return (
     <>
       <div className="" style={dropdownWraperStyle}>
-        <h3 style={{}}>Notifications</h3>
+        <h3 style={{ padding: "16px 16px 0 16px" }}>Notifications</h3>
 
-        <div style={{ display: 'inline-flex', gap: '8px' }}>
+        <div style={{ display: 'inline-flex', gap: '8px', padding: "0 16px" }}>
           <button className='pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow pv-active' onClick={() => { handleFilterOnClick("all") }}>All</button>
           <button className='pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow' onClick={() => { handleFilterOnClick("unseen") }}>Unread</button>
           <button className='pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow' onClick={() => { handleMarkAllAsReadOnClick() }}>Mark all as read</button>
