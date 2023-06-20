@@ -1247,7 +1247,7 @@ class ListSingle extends Component {
                     <React.Fragment key={i}>
                       <h5>{item.label}:</h5>
                       <p
-                        dangerouslySetInnerHTML={{ __html: data[item.id] }}
+                        dangerouslySetInnerHTML={{ __html: data[item.slug] }}
                       ></p>
                     </React.Fragment>
                   ))}

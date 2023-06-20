@@ -154,8 +154,8 @@ class Lead
 
             //custom field
             foreach (Fns::custom_field("lead") as $value) {
-                $query_data[$value->id] = isset($queryMeta[$value->id])
-                    ? $queryMeta[$value->id][0]
+                $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
+                    ? $queryMeta[$value['slug']][0]
                     : "";
             }
 
@@ -240,8 +240,8 @@ class Lead
 
         //custom field
         foreach (Fns::custom_field("lead") as $value) {
-            $query_data[$value->id] = isset($queryMeta[$value->id])
-                ? $queryMeta[$value->id][0]
+            $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
+                ? $queryMeta[$value['slug']][0]
                 : "";
         }
         $query_data["custom_field"] = Fns::custom_field("lead");
@@ -419,11 +419,11 @@ class Lead
 
                 //custom field
                 foreach (Fns::custom_field("lead") as $value) {
-                    $field = isset($param[$value->id])
-                        ? sanitize_text_field($param[$value->id])
+                    $field = isset($param[$value['slug']])
+                        ? sanitize_text_field($param[$value['slug']])
                         : "";
                     if ($field) {
-                        update_post_meta($post_id, $value->id, $field);
+                        update_post_meta($post_id, $value['slug'], $field);
                     }
                 }
 
@@ -559,10 +559,10 @@ class Lead
 
                 //custom field
                 foreach (Fns::custom_field("lead") as $value) {
-                    $field = isset($param[$value->id])
-                        ? sanitize_text_field($param[$value->id])
+                    $field = isset($param[$value['slug']])
+                        ? sanitize_text_field($param[$value['slug']])
                         : "";
-                    update_post_meta($post_id, $value->id, $field);
+                    update_post_meta($post_id, $value['slug'], $field);
                 }
 
                 do_action("ndpvp/webhook", "lead_edit", $param);

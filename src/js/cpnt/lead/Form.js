@@ -7,9 +7,9 @@ import Upload from 'block/field/upload';
 import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
+import CustomField from 'block/field/custom-field';
 import api from 'api';
 
-const DateField = lazy(() => import("block/date-picker"))
 export default class Form extends Component {
     constructor(props) {
         super(props);
@@ -61,12 +61,19 @@ export default class Form extends Component {
         }
     }
 
+    handleCFChange = (e) => {
+
+        const { name, value } = e.target;
+
+        this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
     componentDidMount() {
         //custom fields
         if (this.props.custom_field) {
             let obj = {};
             this.props.custom_field.map((item, i) => {
-                obj[item.id] = '';
+                obj[item.slug] = '';
             });
             const merge_obj = { ...this.state.form, ...obj };
             this.setState({ form: merge_obj, custom_field: true });
@@ -443,51 +450,7 @@ export default class Form extends Component {
                                     </div>
                                 </div>
 
-                                {this.state.custom_field && this.props.custom_field.map((item, i) => (
-
-                                    <div key={i} className="row">
-                                        {console.log(item)}
-                                        <div className="col">
-                                            <label htmlFor={'custom-field-' + i}>
-                                                {item.label}
-                                            </label>
-                                            {item.type === 'date' &&
-                                                // <input
-                                                //     id={'custom-field-' + i}
-                                                //     type='date'
-                                                //     name={item.id}
-                                                //     value={form[item.id]}
-                                                //     onChange={this.handleChange}
-                                                // />
-                                                <DateField
-                                                    id={'custom-field-' + i}
-                                                    date={form.start_date}
-                                                    type="date"
-                                                    name={item.id}
-                                                    onDateChange={this.handleChange}
-                                                />
-                                            }
-                                            {item.type === 'number' &&
-                                                <input
-                                                    id={'custom-field-' + i}
-                                                    type='number'
-                                                    name={item.id}
-                                                    value={form[item.id]}
-                                                    onChange={this.handleChange}
-                                                />
-                                            }
-                                            {item.type === 'text' &&
-                                                <input
-                                                    id={'custom-field-' + i}
-                                                    type='text'
-                                                    name={item.id}
-                                                    value={form[item.id]}
-                                                    onChange={this.handleChange}
-                                                />}
-                                            {item.desc && <p className='pv-field-desc'>{item.desc}</p>}
-                                        </div>
-                                    </div>
-                                ))}
+                                {this.state.custom_field && <CustomField mod='lead' form={form} onChange={this.handleCFChange} />}
                             </div>
                         </div>
 
