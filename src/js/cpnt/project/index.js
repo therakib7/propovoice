@@ -288,7 +288,7 @@ const Project = (props) => {
 								<Pagination
 									forcePage={props.state.currentPage - 1}
 									pageCount={props.state.totalPage}
-									onPageChange={props.handlePageClick}
+									onPageChange={e => props.handlePageClick(e, { table_view: true })}
 								/>
 							)}
 						</>
