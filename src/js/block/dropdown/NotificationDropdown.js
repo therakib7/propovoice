@@ -60,8 +60,8 @@ const NotificationDropdown = (props) => {
 
   const listItmeStyle = {
     display: "flex",
-    flexDirection: "column",
     gap: "4px",
+    alignItems: 'center'
   }
   const blueCircleStyle = {
     height: "6px",
@@ -99,15 +99,22 @@ const NotificationDropdown = (props) => {
             const isSeen = parseInt(item.is_seen);
             return (
               <li style={listItmeStyle} key={index} onClick={() => { handleNotificationOnClick(item.notification_id) }}>
-                <div style={{ display: "flex", gap: "4px", alignItems: "center", }}>
-                  <div style={{ flexGrow: "1" }} dangerouslySetInnerHTML={{ __html: item.message }}></div>
-                  {!isSeen &&
-                    (< div style={blueCircleStyle}></div>)
+                <div style={{
+                  display: "flex", flexDirection: 'column', gap: "4px", flexGrow: "1", paddingBottom: '14px', borderBottom: '1px solid #EDF2F7', ':lastChild': {
+                    borderBottom: 'none'
                   }
+                }}>
+                  <div style={{
+
+                  }} dangerouslySetInnerHTML={{ __html: item.message }}></div>
+                  <div style={!isSeen ? howLongStyle : { ...howLongStyle, color: '#A0AEC0' }}>
+                    {moment.utc(item.created_at).local().startOf('seconds').fromNow()}
+                  </div>
                 </div>
-                <div style={howLongStyle}>
-                  {moment.utc(item.created_at).local().startOf('seconds').fromNow()}
-                </div>
+
+                {
+                  (< div style={!isSeen ? blueCircleStyle : { ...blueCircleStyle, visibility: 'hidden' }}></div>)
+                }
               </li>
             )
           })}
