@@ -15,7 +15,7 @@ const General = (props) => {
                     notification_type: "app",
                     is_enable: appNotification
                 };
-                submit_user_preferences(data);
+                submitUserPreferences(data);
             };
 
             if (typeChanged == "mail") {
@@ -23,10 +23,12 @@ const General = (props) => {
                     notification_type: "mail",
                     is_enable: mailNotification
                 };
-                submit_user_preferences(data);
+                submitUserPreferences(data);
             };
 
         } else {
+            getUserPreference("notification_type=app", setAppNotification)
+            getUserPreference("notification_type=mail", setMailNotification)
             isMounted.current = true;
         }
     }, [appNotification, mailNotification])
@@ -41,7 +43,14 @@ const General = (props) => {
         setTypeChanged("mail");
     }
 
-    const submit_user_preferences = (data) => {
+
+    const getUserPreference = (args, callback) => {
+        api.get(`notifications/users/${ndpv.profile.id}/preferences`, args, "pro").then(resp => {
+            callback(resp.data);
+        });
+    }
+
+    const submitUserPreferences = (data) => {
         api.add(`notifications/users/${ndpv.profile.id}/preferences`, data, "pro").then(resp => {
             toast.success("Notification Preference updated successfully!!!")
         });
