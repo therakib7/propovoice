@@ -24,6 +24,8 @@ const CustomField = lazy(() => import('./tab/custom-field'));
 const Integrate = lazy(() => import('./tab/integrate'));
 const Team = lazy(() => import('./tab/team'));
 const PublicApi = lazy(() => import("./tab/public-api"));
+
+const Notification = lazy(() => import('./tab/notification'));
 const License = lazy(() => import('./tab/license'));
 
 //subtab: email
@@ -146,6 +148,11 @@ const Setting = (props) => {
   if (isAdmin && !wage.length) {
     tab_data['public-api'] = {
       label: 'Public API'
+    };
+  }
+  if (!wage.length) {
+    tab_data['notification'] = {
+      label: 'Notification'
     };
   }
 
@@ -279,6 +286,7 @@ const Setting = (props) => {
                 {currentTab == 'integration' && <Integrate {...props} />}
                 {currentTab == 'team' && <Team {...props} />}
                 {currentTab == "public-api" && <PublicApi {...props} />}
+                {currentTab == "notification" && <Notification {...props} />}
                 {currentTab == 'license' && <License {...props} />}
               </Suspense>
             </div>
