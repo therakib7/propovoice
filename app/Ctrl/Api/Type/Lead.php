@@ -427,18 +427,8 @@ class Lead
                     }
                 }
 
+                $param['id'] = $post_id;
                 do_action("ndpvp/webhook", "lead_add", $param);
-
-                $activity_data = [
-                    "message" =>
-                        "<a href='$site_url/workspace/#/lead/$post_id' >Lead updated by <code>" .
-                        wp_get_current_user()->display_name .
-                        "</code></a>",
-                    "post_id" => $post_id,
-                    "action_slug" => "add_new_lead",
-                    "created_by" => get_current_user_id(),
-                ];
-                do_action("ndpv_activity", $activity_data);
 
                 wp_send_json_success($post_id);
             } else {
@@ -565,19 +555,7 @@ class Lead
                     update_post_meta($post_id, $value["slug"], $field);
                 }
 
-                do_action("ndpvp/webhook", "lead_edit", $param);
-
-                $site_url = get_home_url();
-                $activity_data = [
-                    "message" =>
-                        "<a href='$site_url/workspace/#/lead/$post_id' >Lead updated by <code>" .
-                        wp_get_current_user()->display_name .
-                        "</code></a>",
-                    "post_id" => $post_id,
-                    "action_slug" => "add_new_lead",
-                    "created_by" => get_current_user_id(),
-                ];
-                do_action("ndpv_activity", $activity_data);
+                do_action("ndpvp/webhook", "lead_edit", $param);  
 
                 wp_send_json_success($post_id);
             } else {
