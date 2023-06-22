@@ -561,8 +561,12 @@ class Deal
                 }
 
                 $param["id"] = $post_id;
-                do_action('ndpvp/webhook', 'deal_add', $param);
 
+                if (!empty($param["lead_id"])) {
+                    do_action('ndpvp/webhook', 'move_to_deal', $param);
+                } else {
+                    do_action('ndpvp/webhook', 'deal_add', $param);
+                }
 
                 wp_send_json_success($post_id);
             } else {
