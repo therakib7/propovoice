@@ -312,6 +312,27 @@ class Setting
                 }
             }
 
+            if ($tab == "email_notification_default") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    $data = $option;
+                } else {
+                    $data["subject"] = ndpv()->get_default(
+                        "email_template",
+                        "notification",
+                        "default",
+                        "subject"
+                    );
+                    $data["msg"] = ndpv()->get_default(
+                        "email_template",
+                        "notification",
+                        "default",
+                        "msg"
+                    );
+                }
+            }
+
             if ($tab == "estvoice_tax") {
                 $option = get_option("ndpv_" . $tab);
 
@@ -560,6 +581,16 @@ class Setting
             }
 
             if ($tab == "email_team_password") {
+                $data["subject"] = isset($param["subject"])
+                    ? sanitize_text_field($param["subject"])
+                    : null;
+                $data["msg"] = isset($param["msg"])
+                    ? sanitize_textarea_field($param["msg"])
+                    : null;
+                $option = update_option("ndpv_" . $tab, $data);
+            }
+
+            if ($tab == "email_notification_default") {
                 $data["subject"] = isset($param["subject"])
                     ? sanitize_text_field($param["subject"])
                     : null;
