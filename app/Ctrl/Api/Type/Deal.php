@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -9,7 +10,7 @@ use Ndpv\Model\Person;
 class Deal
 {
     public function __construct()
-    { 
+    {
         add_action("rest_api_init", [$this, "rest_routes"]);
     }
 
@@ -82,7 +83,7 @@ class Deal
         if ($board_view) {
             $get_stage = Fns::get_terms("deal_stage");
             $column = [];
-            foreach ($get_stage as $stage):
+            foreach ($get_stage as $stage) :
                 $stage_id = $stage->term_id;
                 $stage_name = $stage->name;
                 $items = $this->deal_query($param, $stage_id);
@@ -195,15 +196,15 @@ class Deal
             }
         }
 
-        if ( current_user_can("ndpv_staff") ) {  
-            
+        if (current_user_can("ndpv_staff")) {
+
             $post_ids = Fns::get_posts_ids_by_type('ndpv_deal');
-            if ( !empty($post_ids) ) {
+            if (!empty($post_ids)) {
                 $args['post__in'] = $post_ids;
                 $args['orderby'] = 'post__in';
             } else {
                 $args['author'] = get_current_user_id();
-            }            
+            }
         }
 
         $query = new \WP_Query($args);
@@ -226,7 +227,7 @@ class Deal
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
             $query_data['probability'] = isset($queryMeta['probability']) ? $queryMeta['probability'][0] : '';
             //custom field
-            foreach( Fns::custom_field('deal') as $value ) {
+            foreach (Fns::custom_field('deal') as $value) {
                 $query_data[$value['slug']] = isset($queryMeta[$value['slug']]) ? $queryMeta[$value['slug']][0] : '';
             }
 
@@ -316,7 +317,7 @@ class Deal
         $query_data["desc"] = get_post_field("post_content", $id);
 
         //custom field
-        foreach( Fns::custom_field('deal') as $value ) {
+        foreach (Fns::custom_field('deal') as $value) {
             $query_data[$value['slug']] = isset($queryMeta[$value['slug']]) ? $queryMeta[$value['slug']][0] : '';
         }
         $query_data['custom_field'] = Fns::custom_field('deal');
@@ -422,7 +423,7 @@ class Deal
             wp_send_json_success($lead_id);
         } */
 
-        if ( !$project_req ) {
+        if (!$project_req) {
             if (empty($first_name) && empty($org_name)) {
                 $reg_errors->add(
                     "field",
@@ -463,7 +464,7 @@ class Deal
             $user_id = get_current_user_id();
             $client_id = get_user_meta($user_id, 'ndpv_client_id', true);
             $type = get_user_meta($user_id, 'ndpv_client_type', true);
-            if ( $type == 'person' ) {
+            if ($type == 'person') {
                 $person_id = $client_id;
             } else {
                 $org_id = $client_id;
@@ -552,14 +553,25 @@ class Deal
                 }
 
                 //custom field
-                foreach(Fns::custom_field('deal') as $value) {
+                foreach (Fns::custom_field('deal') as $value) {
                     $field = isset($param[$value['slug']]) ? sanitize_text_field($param[$value['slug']]) : '';
-                    if ( $field ) {
+                    if ($field) {
                         update_post_meta($post_id, $value['slug'], $field);
                     }
                 }
 
                 do_action('ndpvp/webhook', 'deal_add', $param);
+
+                $activity_data = [
+                    "message" =>
+                    "<a href='$site_url/workspace/#/deal/$post_id' >New deal created by <code>" .
+                        wp_get_current_user()->display_name .
+                        "</code></a>",
+                    "post_id" => $post_id,
+                    "action_slug" => "create_new_deal",
+                    "created_by" => get_current_user_id(),
+                ];
+                do_action("ndpv_activity", $activity_data);
 
                 wp_send_json_success($post_id);
             } else {
@@ -715,7 +727,7 @@ class Deal
                 update_post_meta($post_id, 'note', $note);
 
                 //custom field
-                foreach( Fns::custom_field('deal') as $value ) {
+                foreach (Fns::custom_field('deal') as $value) {
                     $field = isset($param[$value['slug']]) ? sanitize_text_field($param[$value['slug']]) : '';
                     update_post_meta($post_id, $value['slug'], $field);
                 }
