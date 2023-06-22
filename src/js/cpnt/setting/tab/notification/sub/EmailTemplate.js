@@ -19,7 +19,7 @@ export default class EmailTemplate extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        api.get('settings', 'tab=email_estimate_default').then(resp => {
+        api.get('settings', 'tab=email_notification_default').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
             }
@@ -41,7 +41,7 @@ export default class EmailTemplate extends Component {
 
         if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let form = this.state.form;
-        form.tab = 'email_estimate_default';
+        form.tab = 'email_notification_default';
 
         api.add('settings', form).then(resp => {
             if (resp.data.success) {
@@ -72,7 +72,7 @@ export default class EmailTemplate extends Component {
                             value={this.state.form.subject}
                             onChange={this.handleChange}
                         />
-                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{org_name}'}, {'{client_name}'} </p>
+                        <p className='pv-field-desc'><b>{i18n.var}:</b>{'{org_name}'}, {'{notification}'} </p>
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@ export default class EmailTemplate extends Component {
                             value={this.state.form.msg}
                             onChange={this.handleChange}
                         />
-                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{org_name}'}</p>
+                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{name}'}, {'{notification_link}'}, {'{org_name}'}</p>
                     </div>
                 </div>
 
