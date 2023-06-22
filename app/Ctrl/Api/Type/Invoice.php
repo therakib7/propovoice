@@ -84,7 +84,7 @@ class Invoice
             $offset = $per_page * $param["page"] - $per_page;
         }
 
-        if ( $dashboard ) {
+        if ($dashboard) {
             $per_page = 5;
         }
 
@@ -112,7 +112,7 @@ class Invoice
             );
         } */
 
-        if ( current_user_can("ndpv_client_role") ) {
+        if (current_user_can("ndpv_client_role")) {
             $user_id = get_current_user_id();
             $client_id = get_user_meta($user_id, 'ndpv_client_id', true);
 
@@ -125,7 +125,7 @@ class Invoice
             ];
         }
 
-        if ( $dashboard ) {
+        if ($dashboard) {
             $args["meta_query"][] = [
                 [
                     "key" => "status",
@@ -444,7 +444,7 @@ class Invoice
 
             $original_due_date = $invoice['due_date'];
             $timestamp_due_date = strtotime($original_due_date);
-            $invoice['due_date_i18n'] = date_i18n(get_option('date_format'), $timestamp_due_date); 
+            $invoice['due_date_i18n'] = date_i18n(get_option('date_format'), $timestamp_due_date);
 
             $reminder = isset($invoice["reminder"])
                 ? $invoice["reminder"]
@@ -733,6 +733,18 @@ class Invoice
                 $hook = $path == "invoice" ? "inv" : "est";
                 do_action("ndpvp/webhook", $hook . "_add", $param);
 
+                $action_slug = $path == 'invoice' ? "create_invoice" : "create_estimate";
+                $activity_data = [
+                    "message" =>
+                    "<a href='$site_url/workspace/#/$path/$post_id' >New $path created by <code>" .
+                        wp_get_current_user()->display_name .
+                        "</code></a>",
+                    "post_id" => $post_id,
+                    "action_slug" => $action_slug,
+                    "created_by" => get_current_user_id(),
+                ];
+                do_action("ndpv_activity", $activity_data);
+
                 wp_send_json_success([
                     "id" => $post_id,
                     "token" => $token,
@@ -851,6 +863,19 @@ class Invoice
 
                 $hook = $path == "invoice" ? "inv" : "est";
                 do_action("ndpvp/webhook", $hook . "_edit", $param);
+
+                $action_slug = $path == 'invoice' ? "edit_invoice" : "edit_estimate";
+                $path_capitalized = ucfirst($path);
+                $activity_data = [
+                    "message" =>
+                    "<a href='$site_url/workspace/#/$path/$post_id' > $path_capitalized updated by <code>" .
+                        wp_get_current_user()->display_name .
+                        "</code></a>",
+                    "post_id" => $post_id,
+                    "action_slug" => $action_slug,
+                    "created_by" => get_current_user_id(),
+                ];
+                do_action("ndpv_activity", $activity_data);
 
                 wp_send_json_success($post_id);
             } else {

@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 class File
@@ -141,7 +142,7 @@ class File
             $fileData = null;
             if ($file_id) {
                 $attach_type = get_post_mime_type($file_id);
-                if ( $attach_type == "application/pdf" ) {
+                if ($attach_type == "application/pdf") {
                     $file_src = wp_get_attachment_url($file_id);
                     if ($file_src) {
                         $query_data["type"] = 'pdf';
@@ -201,8 +202,8 @@ class File
             : null;
         $file =
             isset($param["file"]) && isset($param["file"]["id"])
-                ? absint($param["file"]["id"])
-                : null;
+            ? absint($param["file"]["id"])
+            : null;
 
         $title = isset($param["title"])
             ? sanitize_text_field($param["title"])
@@ -251,6 +252,18 @@ class File
                 if ($file) {
                     update_post_meta($post_id, "file", $file);
                 }
+
+
+                $activity_data = [
+                    "message" =>
+                    "<a href='$site_url/workspace/#/' >New file added <code>" .
+                        wp_get_current_user()->display_name .
+                        "</code></a>",
+                    "post_id" => $post_id,
+                    "action_slug" => "add_file",
+                    "created_by" => get_current_user_id(),
+                ];
+                do_action("ndpv_activity", $activity_data);
 
                 wp_send_json_success($post_id);
             } else {
