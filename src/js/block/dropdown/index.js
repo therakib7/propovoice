@@ -122,6 +122,7 @@ const Dropdown = (props) => {
           <NotificationDropdown
             dropdown={dropdown}
             updateDropdown={setDropdown}
+            countNew={countNew}
             updateCount={setCountNew}
           />
         }

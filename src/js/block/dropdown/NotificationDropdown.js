@@ -12,7 +12,7 @@ const NotificationDropdown = (props) => {
 
   useEffect(() => {
     get_user_notifications();
-  }, [props.dropdown]);
+  }, [props.dropdown, props.countNew]);
 
   const get_user_notifications = (filter = "all") => {
     api.get(`notifications/users/${ndpv.profile.id}`, `filter=${filter}`, "pro").then(resp => {
