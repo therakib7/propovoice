@@ -154,8 +154,8 @@ class Lead
 
             //custom field
             foreach (Fns::custom_field("lead") as $value) {
-                $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
-                    ? $queryMeta[$value['slug']][0]
+                $query_data[$value["slug"]] = isset($queryMeta[$value["slug"]])
+                    ? $queryMeta[$value["slug"]][0]
                     : "";
             }
 
@@ -240,8 +240,8 @@ class Lead
 
         //custom field
         foreach (Fns::custom_field("lead") as $value) {
-            $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
-                ? $queryMeta[$value['slug']][0]
+            $query_data[$value["slug"]] = isset($queryMeta[$value["slug"]])
+                ? $queryMeta[$value["slug"]][0]
                 : "";
         }
         $query_data["custom_field"] = Fns::custom_field("lead");
@@ -419,11 +419,11 @@ class Lead
 
                 //custom field
                 foreach (Fns::custom_field("lead") as $value) {
-                    $field = isset($param[$value['slug']])
-                        ? sanitize_text_field($param[$value['slug']])
+                    $field = isset($param[$value["slug"]])
+                        ? sanitize_text_field($param[$value["slug"]])
                         : "";
                     if ($field) {
-                        update_post_meta($post_id, $value['slug'], $field);
+                        update_post_meta($post_id, $value["slug"], $field);
                     }
                 }
 
@@ -435,7 +435,7 @@ class Lead
                         wp_get_current_user()->display_name .
                         "</code></a>",
                     "post_id" => $post_id,
-                    "action_id" => 1,
+                    "action_slug" => "add_new_lead",
                     "created_by" => get_current_user_id(),
                 ];
                 do_action("ndpv_activity", $activity_data);
@@ -559,10 +559,10 @@ class Lead
 
                 //custom field
                 foreach (Fns::custom_field("lead") as $value) {
-                    $field = isset($param[$value['slug']])
-                        ? sanitize_text_field($param[$value['slug']])
+                    $field = isset($param[$value["slug"]])
+                        ? sanitize_text_field($param[$value["slug"]])
                         : "";
-                    update_post_meta($post_id, $value['slug'], $field);
+                    update_post_meta($post_id, $value["slug"], $field);
                 }
 
                 do_action("ndpvp/webhook", "lead_edit", $param);
@@ -574,7 +574,7 @@ class Lead
                         wp_get_current_user()->display_name .
                         "</code></a>",
                     "post_id" => $post_id,
-                    "action_id" => 1,
+                    "action_slug" => "add_new_lead",
                     "created_by" => get_current_user_id(),
                 ];
                 do_action("ndpv_activity", $activity_data);
