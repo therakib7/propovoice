@@ -122,7 +122,7 @@ Regards
                 ],    
                 'notification' => [    
                     'default' => [
-                        'subject' => '{org_name} Notifation: {notification}',
+                        'subject' => '{org_name} Notification: {notification}',
                         'msg' => 'Hi <b>{name}</b>,
 You have a notification 
 {notification_link}
