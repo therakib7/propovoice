@@ -254,16 +254,7 @@ class File
                 }
 
 
-                $activity_data = [
-                    "message" =>
-                    "<a href='$site_url/workspace/#/' >New file added <code>" .
-                        wp_get_current_user()->display_name .
-                        "</code></a>",
-                    "post_id" => $post_id,
-                    "action_slug" => "add_file",
-                    "created_by" => get_current_user_id(),
-                ];
-                do_action("ndpv_activity", $activity_data);
+                do_action("ndpvp/webhook", "file_add", $param);
 
                 wp_send_json_success($post_id);
             } else {
