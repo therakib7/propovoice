@@ -133,10 +133,11 @@ export default class Form extends Component {
                                     <label htmlFor="field-label">{i18n.type}</label>
                                     <select name="type" value={form.type} onChange={this.handleChange}>
                                         <option value="text">{i18n.text}</option>
+                                        <option value="number">{i18n.number}</option>
                                         {/* <option value="date">{i18n.date}</option>
                                         <option value="select">{i18n.select}</option>
                                         <option value="multiselect">{i18n.multiselect}</option>
-                                        <option value="number">{i18n.number}</option> */}
+                                         */}
                                     </select>
                                 </div>
                             </div>
