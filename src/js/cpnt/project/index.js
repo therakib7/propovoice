@@ -142,13 +142,16 @@ const Project = (props) => {
 	}
 
 	let tableViewData = false;
-	if ((props.module_id || !boardView) && isClient) {
+	if (props.module_id) {
+		tableViewData = true;
+	} else if ((props.module_id || !boardView) && isClient) {
 		tableViewData = true;
 	} else if ((!props.module_id && boardView) && isClient) {
 		tableViewData = true;
 	} else if ((!props.module_id && !boardView && !isClient)) {
 		tableViewData = true;
 	}
+	// console.log(tableViewData)
 	return (
 		<div className="ndpv-cpnt">
 			{!props.module_id && !props.dashboard && <Breadcrumb title={title} />}
@@ -237,6 +240,7 @@ const Project = (props) => {
 
 			{!props.dashboard && <Search
 				isClient={isClient}
+				module_id={props.module_id}
 				title={title}
 				showing={lists.length}
 				showItem={showItem}

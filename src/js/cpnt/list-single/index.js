@@ -1187,7 +1187,7 @@ class ListSingle extends Component {
                   <>
                     <span>{i18n.addr}:</span>
                     {data.person ? data.person.address : data.org.address}
-                    {data.person.address || data.org.address ? <br /> : ''}
+                    {(data.person && data.person.address) || (data.org && data.org.address) ? <br /> : ''}
 
                     {data.person ? <>
                       {(data.person.region || data.person.country) &&
@@ -1242,15 +1242,12 @@ class ListSingle extends Component {
 										</div>
 									</div> */}
 
-                {data.custom_field &&
-                  data.custom_field.map((item, i) => (
-                    <React.Fragment key={i}>
-                      <h5>{item.label}:</h5>
-                      <p
-                        dangerouslySetInnerHTML={{ __html: data[item.slug] }}
-                      ></p>
-                    </React.Fragment>
-                  ))}
+                {data.custom_field && data.custom_field.map((item, i) => (
+                  <React.Fragment key={i}>
+                    <h5>{item.label}:</h5>
+                    <p dangerouslySetInnerHTML={{ __html: data[item.slug] }}></p>
+                  </React.Fragment>
+                ))}
               </div>
             </div>
           </div>
