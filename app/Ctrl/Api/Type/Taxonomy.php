@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -195,12 +196,12 @@ class Taxonomy
                         if (
                             $taxonomy == "extra_amount" &&
                             $extra_amount_type !=
-                                $term_property["extra_amount_type"]
+                            $term_property["extra_amount_type"]
                         ) {
                             if (
                                 $extra_amount_type &&
                                 $extra_amount_type !=
-                                    $term_property["extra_amount_type"]
+                                $term_property["extra_amount_type"]
                             ) {
                                 continue;
                             }
@@ -312,8 +313,8 @@ class Taxonomy
             : null;
         $icon =
             isset($param["icon"]) && isset($param["icon"]["id"])
-                ? absint($param["icon"]["id"])
-                : null;
+            ? absint($param["icon"]["id"])
+            : null;
         $extra_amount_type = isset($param["extra_amount_type"])
             ? sanitize_text_field($param["extra_amount_type"])
             : null;
@@ -408,8 +409,8 @@ class Taxonomy
             : null;
         $icon =
             isset($param["icon"]) && isset($param["icon"]["id"])
-                ? absint($param["icon"]["id"])
-                : null;
+            ? absint($param["icon"]["id"])
+            : null;
         $tax_cal = isset($param["tax_cal"])
             ? sanitize_text_field($param["tax_cal"])
             : null;
@@ -495,6 +496,17 @@ class Taxonomy
                         }
                     }
 
+                    if ($taxonomy = "task_status") {
+                        do_action("ndpvp/webhook", "task_status_change", $param);
+                    }
+
+                    if ($taxonomy = "lead_label") {
+                        do_action("ndpvp/webhook", "lead_label_change", $param);
+                    }
+
+                    if ($taxonomy = "deal_stage") {
+                        do_action("ndpvp/webhook", "deal_stage_change", $param);
+                    }
                     wp_send_json_success($term_id);
                 } else {
                     wp_send_json_error();
@@ -506,7 +518,7 @@ class Taxonomy
     public function reorder_taxonomies($ids = [])
     {
         $i = 1;
-        foreach ($ids as $id):
+        foreach ($ids as $id) :
             update_term_meta($id, "tax_pos", $i);
             $i++;
         endforeach;
