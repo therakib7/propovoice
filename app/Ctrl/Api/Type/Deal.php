@@ -563,7 +563,7 @@ class Deal
                 $param["id"] = $post_id;
 
                 if (!empty($param["lead_id"])) {
-                    do_action('ndpvp/webhook', 'move_to_deal', $param);
+                    do_action('ndpvp/webhook', 'lead_to_deal', $param);
                 } else {
                     do_action('ndpvp/webhook', 'deal_add', $param);
                 }
