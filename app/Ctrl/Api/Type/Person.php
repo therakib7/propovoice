@@ -125,7 +125,7 @@ class Person
             $query_data["org_id"] = isset($queryMeta["org_id"])
                 ? $queryMeta["org_id"][0]
                 : "";
-            $query_data["org_name"] = $queryMeta["org_id"]
+            $query_data["org_name"] = isset( $queryMeta["org_id"] ) && $queryMeta["org_id"]
                 ? get_post_meta($query_data["org_id"], "name", true)
                 : "";
             $query_data["email"] = isset($queryMeta["email"])

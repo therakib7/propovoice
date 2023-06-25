@@ -454,6 +454,9 @@ class Taxonomy
                         "ndpv_" . $taxonomy
                     );
                 }
+                
+                do_action("ndpvp/webhook", "taxonomy", $param);
+
                 wp_send_json_success();
             } else if ($delete) {
                 if ($post_id) { //delete term from post
@@ -495,8 +498,6 @@ class Taxonomy
                             delete_term_meta($term_id, "url");
                         }
                     }
-
-                    do_action("ndpvp/webhook", "taxonomy", $param);
 
                     wp_send_json_success($term_id);
                 } else {
