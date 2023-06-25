@@ -496,7 +496,6 @@ class Taxonomy
                         }
                     }
 
-
                     do_action("ndpvp/webhook", "taxonomy", $param);
 
                     wp_send_json_success($term_id);
