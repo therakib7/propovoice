@@ -496,17 +496,9 @@ class Taxonomy
                         }
                     }
 
-                    if ($taxonomy = "task_status") {
-                        do_action("ndpvp/webhook", "task_status_change", $param);
-                    }
 
-                    if ($taxonomy = "lead_label") {
-                        do_action("ndpvp/webhook", "lead_label_change", $param);
-                    }
+                    do_action("ndpvp/webhook", "taxonomy", $param);
 
-                    if ($taxonomy = "deal_stage") {
-                        do_action("ndpvp/webhook", "deal_stage_change", $param);
-                    }
                     wp_send_json_success($term_id);
                 } else {
                     wp_send_json_error();
