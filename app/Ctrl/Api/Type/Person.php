@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Client;
@@ -125,7 +126,7 @@ class Person
             $query_data["org_id"] = isset($queryMeta["org_id"])
                 ? $queryMeta["org_id"][0]
                 : "";
-            $query_data["org_name"] = isset( $queryMeta["org_id"] ) && $queryMeta["org_id"]
+            $query_data["org_name"] = isset($queryMeta["org_id"]) && $queryMeta["org_id"]
                 ? get_post_meta($query_data["org_id"], "name", true)
                 : "";
             $query_data["email"] = isset($queryMeta["email"])
@@ -487,7 +488,7 @@ class Person
                     delete_post_meta($post_id, "img");
                 }
 
-                if ( isset($param['client_portal']) ) {
+                if (isset($param['client_portal'])) {
                     $client_model = new Client();
                     $client_model->set_user_if_not($post_id, $first_name, $email, $client_portal);
                     update_post_meta($post_id, "client_portal", $client_portal);

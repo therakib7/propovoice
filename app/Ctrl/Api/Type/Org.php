@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Client;
@@ -126,7 +127,7 @@ class Org
             $query_data["person_id"] = isset($queryMeta["person_id"])
                 ? $queryMeta["person_id"][0]
                 : "";
-            $query_data["first_name"] = isset( $queryMeta["person_id"] ) && $queryMeta["person_id"]
+            $query_data["first_name"] = isset($queryMeta["person_id"]) && $queryMeta["person_id"]
                 ? get_post_meta($query_data["person_id"], "first_name", true)
                 : "";
             $query_data["email"] = isset($queryMeta["email"])
@@ -181,7 +182,7 @@ class Org
         $orgMeta = get_post_meta($id);
         $query_data["name"] = isset($orgMeta["name"])
             ? $orgMeta["name"][0]
-            : ""; 
+            : "";
         $query_data["email"] = isset($orgMeta["email"])
             ? $orgMeta["email"][0]
             : "";
@@ -190,7 +191,7 @@ class Org
             : "";
         $query_data["mobile"] = isset($orgMeta["mobile"])
             ? $orgMeta["mobile"][0]
-            : "";        
+            : "";
         $query_data["country"] = isset($orgMeta["country"])
             ? $orgMeta["country"][0]
             : "";
@@ -204,7 +205,7 @@ class Org
         $query_data["client_portal"] = isset($orgMeta["client_portal"])
             ? $orgMeta["client_portal"][0]
             : false;
- 
+
         $logo_id = isset($orgMeta["logo"]) ? $orgMeta["logo"][0] : null;
         $logoData = null;
         if ($logo_id) {
@@ -438,7 +439,7 @@ class Org
                     delete_post_meta($post_id, "logo");
                 }
 
-                if ( isset($param['client_portal']) ) {
+                if (isset($param['client_portal'])) {
                     $client_model = new Client();
                     $client_model->set_user_if_not($post_id, $first_name, $email, $client_portal);
                     update_post_meta($post_id, "client_portal", $client_portal);
