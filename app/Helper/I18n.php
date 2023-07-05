@@ -162,8 +162,8 @@ class I18n
             "icon" => esc_html__("Icon", "propovoice"),
             "text" => esc_html__("Text", "propovoice"),
             "date" => esc_html__("Date", "propovoice"),
-            "select" => esc_html__("Select", "propovoice"),
             "multiselect" => esc_html__("Multiselect", "propovoice"),
+            "radio" => esc_html__("Radio", "propovoice"),
             "number" => esc_html__("Number", "propovoice"),
             "img" => esc_html__("Image", "propovoice"),
             "add" => esc_html__("Add", "propovoice"),
@@ -394,6 +394,10 @@ class I18n
                       headers.Otherwise, it may fail to import",
                 "propovoice"
             ),
+            // custom field
+            "opt" => esc_html__("Option", "propovoice"), 
+            "optList" => esc_html__("Option list", "propovoice"), 
+            "optDef" => esc_html__("Option default", "propovoice"), 
         ];
     }
 }

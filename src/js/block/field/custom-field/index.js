@@ -36,9 +36,40 @@ export default (props) => {
 					<div key={i} className="row">
 						{/* {console.log(item)} */}
 						<div className="col">
-							<label htmlFor={'custom-field-' + i}>
+							<label htmlFor={'custom-field-' + i} style={{ display: 'block' }}>
 								{item.label}
 							</label>
+
+							{item.type === 'text' &&
+								<input
+									id={'custom-field-' + i}
+									type='text'
+									name={item.slug}
+									value={form[item.slug]}
+									onChange={handleChange}
+								/>
+							}
+
+							{item.type === 'number' &&
+								<input
+									id={'custom-field-' + i}
+									type='number'
+									name={item.slug}
+									value={form[item.slug]}
+									onChange={handleChange}
+								/>
+							}
+
+							{item.type === 'select' &&
+								<select id={'custom-field-' + i} name={item.slug} value={form[item.slug]} onChange={handleChange}>
+									{item.options.map((item, i) => {
+										return (
+											<option key={i} value={item}>{item}</option>
+										);
+									})}
+								</select>
+							}
+
 							{item.type === 'date' &&
 								// <input
 								//     id={'custom-field-' + i}
@@ -49,29 +80,12 @@ export default (props) => {
 								// />
 								<DateField
 									id={'custom-field-' + i}
-									date={form.start_date}
+									// date={form.start_date}
 									type="date"
 									name={item.slug}
 									onDateChange={handleChange}
 								/>
 							}
-							{item.type === 'number' &&
-								<input
-									id={'custom-field-' + i}
-									type='number'
-									name={item.slug}
-									value={form[item.slug]}
-									onChange={handleChange}
-								/>
-							}
-							{item.type === 'text' &&
-								<input
-									id={'custom-field-' + i}
-									type='text'
-									name={item.slug}
-									value={form[item.slug]}
-									onChange={handleChange}
-								/>}
 							{item.desc && <p className='pv-field-desc'>{item.desc}</p>}
 						</div>
 					</div>
