@@ -450,7 +450,7 @@ export default class Form extends Component {
                                     </div>
                                 </div>
 
-                                {this.state.custom_field && <CustomField mod='lead' form={form} onChange={this.handleCFChange} />}
+                                {this.state.custom_field && <CustomField mod='lead' type={this.props.modalType} form={form} onChange={this.handleCFChange} />}
                             </div>
                         </div>
 

@@ -1245,7 +1245,7 @@ class ListSingle extends Component {
                 {data.custom_field && data.custom_field.map((item, i) => (
                   <React.Fragment key={i}>
                     <h5>{item.label}:</h5>
-                    <p dangerouslySetInnerHTML={{ __html: data[item.slug] }}></p>
+                    {item.type == 'date' ? <Moment format={ndpv.date_format}>{data[item.slug]}</Moment> : <p dangerouslySetInnerHTML={{ __html: data[item.slug] }}></p>}
                   </React.Fragment>
                 ))}
               </div>

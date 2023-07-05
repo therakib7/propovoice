@@ -49,7 +49,7 @@ export default (props) => {
     }
     setCurrentTab(tab);
     setCurrentSubtab(subtab);
-    routeChange(tab, subtab);
+    // routeChange(tab, subtab);
   };
 
   const title = (mod = null) => {
