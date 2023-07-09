@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy } from "react";
 import api from 'api';
 import Spinner from 'block/preloader/spinner';
+import MultiSelect from 'block/field/multi-select';
 const DateField = lazy(() => import("block/date-picker"))
 
 export default (props) => {
@@ -27,6 +28,16 @@ export default (props) => {
 
 	const handleChange = props.onChange;
 
+	const handleMultiSelect = (value, name) => {
+		const e = {
+			target: {
+				name,
+				value
+			}
+		};
+		props.onChange(e)
+	};
+
 	const handleDateChange = (value, name) => {
 		const e = {
 			target: {
@@ -39,7 +50,8 @@ export default (props) => {
 
 	const form = props.form;
 
-	// new Date(data.invoice.date);
+	const { i18n } = ndpv;
+
 	return (
 		<>
 			{loading ? <Spinner /> : <>
@@ -54,28 +66,21 @@ export default (props) => {
 									{item.label}
 								</label>
 
-								{item.type === 'text' &&
+								{(item.type === 'text' ||
+									item.type === 'email' ||
+									item.type === 'number') &&
 									<input
 										id={'custom-field-' + i}
-										type='text'
+										type={item.type}
 										name={item.slug}
 										value={form[item.slug]}
 										onChange={handleChange}
 									/>
 								}
 
-								{item.type === 'number' &&
-									<input
-										id={'custom-field-' + i}
-										type='number'
-										name={item.slug}
-										value={form[item.slug]}
-										onChange={handleChange}
-									/>
-								}
-
-								{false && item.type === 'select' &&
+								{item.type === 'select' &&
 									<select id={'custom-field-' + i} name={item.slug} value={form[item.slug]} onChange={handleChange}>
+										<option value=''>{i18n.select}</option>
 										{item.options.map((item, i) => {
 											return (
 												<option key={i} value={item}>{item}</option>
@@ -84,27 +89,14 @@ export default (props) => {
 									</select>
 								}
 
-								{(item.type == 'select' || item.type == 'multi-select') && item.options.length > 0 &&
-									<select
-										multiple={(item.type == 'multi-select')}
-										name={item.slug}
+								{(item.type == 'multi-select') && <div className="pi-field-multi">
+									<MultiSelect
+										onChange={(val) => handleMultiSelect(val, item.slug)}
+										options={item.options}
 										value={form[item.slug]}
-										onChange={handleChange}
-										ref={(n) => {
-											if (n && (item.type == 'multi-select')) {
-												n.style.setProperty("background-image", 'none', "important");
-											} else if (n && (item.type == 'select')) {
-												n.style.setProperty("background-image", 'auto', "important");
-											}
-										}}
-									>
-										{(item.type == 'select') && <option value=''>{ndpv.i18n.select}</option>}
-										{item.options.map((item, i) => {
-											return (
-												<option key={i} value={item}>{item}</option>
-											);
-										})}
-									</select>}
+										title={item.label}
+									/>
+								</div>}
 
 								{item.type === 'date' &&
 									<DateField

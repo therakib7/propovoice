@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+import MultiSelect from 'block/field/multi-select';
 class Options extends Component {
 
     constructor(props) {
@@ -14,9 +15,19 @@ class Options extends Component {
         };
     }
 
+    componentDidMount() {
+        //added this multi place, because not working in invoice single
+        this.editData();
+    }
+
     componentDidUpdate() {
+        this.editData();
+    }
+
+    editData = () => {
+        //condition added to stop multi rendering
         if (!this.state.edit && this.props.data) {
-            this.setState({ edit: true, options: this.props.data });
+            this.setState({ edit: true, options: this.props.data, value: this.props.value });
         }
     }
 
@@ -37,6 +48,12 @@ class Options extends Component {
 
     handleValue = (e) => {
         this.setState({ value: e.target.value }, () => {
+            this.props.changeValueHandler(this.state.value);
+        });
+    }
+
+    handleMultiSelect = (value) => {
+        this.setState({ value }, () => {
             this.props.changeValueHandler(this.state.value);
         });
     }
@@ -72,8 +89,9 @@ class Options extends Component {
     }
 
     render = () => {
-        const { options } = this.state;
+        const { options, value } = this.state;
         const { i18n } = ndpv;
+        const { label, typeLabel } = this.props;
         return (
             <>
                 <div className="col-md">
@@ -131,7 +149,7 @@ class Options extends Component {
                     })}
                     <input
                         type="text"
-                        placeholder={i18n.add + " " + this.props.label + " " + i18n.opt}
+                        placeholder={i18n.add + " " + typeLabel + " " + i18n.opt}
                         value={this.state.newItem}
                         onChange={this.handleNewItem}
                         onKeyPress={e => {
@@ -144,25 +162,26 @@ class Options extends Component {
 
                 {options.length > 0 && <div className="col-md">
                     <label htmlFor="field-default">{i18n.optDef}</label>
-                    <select
-                        multiple={(this.props.type == 'multi-select')}
+                    {(this.props.type == 'select') && <select
                         value={this.state.value}
                         onChange={this.handleValue}
-                        ref={(n) => {
-                            if (n && (this.props.type == 'multi-select')) {
-                                n.style.setProperty("background-image", 'none', "important");
-                            } else if (n && (this.props.type == 'select')) {
-                                n.style.setProperty("background-image", 'auto', "important");
-                            }
-                        }}
                     >
-                        {(this.props.type == 'select') && <option value=''>{i18n.select}</option>}
+                        <option value=''>{i18n.select}</option>
                         {options.map((item, i) => {
                             return (
                                 <option key={i} value={item}>{item}</option>
                             );
                         })}
-                    </select>
+                    </select>}
+
+                    {(this.props.type == 'multi-select') && <div className="pi-field-multi">
+                        <MultiSelect
+                            onChange={this.handleMultiSelect}
+                            options={options}
+                            value={value}
+                            title={label}
+                        />
+                    </div>}
                 </div>}
             </>
         )

@@ -100,6 +100,7 @@ export default class Form extends Component {
 
     render() {
         const { label, desc, type, options, value } = this.state.form;
+
         const i18n = ndpv.i18n;
 
         let typeLabel = '';
@@ -168,14 +169,17 @@ export default class Form extends Component {
                                 </div>
 
                                 {(type == 'select' || type == 'multi-select' || type == 'radio') &&
-                                    <Options
-                                        data={options}
-                                        type={type}
-                                        label={typeLabel}
-                                        value={value}
-                                        changeHandler={this.handleOptionsChange}
-                                        changeValueHandler={this.handleOptionsValueChange}
-                                    />
+                                    <>
+                                        <Options
+                                            data={options}
+                                            type={type}
+                                            typeLabel={typeLabel}
+                                            label={label}
+                                            value={value}
+                                            changeHandler={this.handleOptionsChange}
+                                            changeValueHandler={this.handleOptionsValueChange}
+                                        />
+                                    </>
                                 }
 
                             </div>

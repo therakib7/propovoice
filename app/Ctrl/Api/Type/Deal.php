@@ -227,7 +227,15 @@ class Deal
             $query_data['probability'] = isset($queryMeta['probability']) ? $queryMeta['probability'][0] : '';
             //custom field
             foreach( Fns::custom_field('deal') as $value ) {
-                $query_data[$value['slug']] = isset($queryMeta[$value['slug']]) ? $queryMeta[$value['slug']][0] : '';
+                if ( $value['type'] == 'multi-select') {
+                    $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
+                    ? maybe_unserialize( $queryMeta[$value['slug']][0] )
+                    : "";
+                } else {
+                    $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
+                    ? $queryMeta[$value['slug']][0]
+                    : "";
+                }
             }
 
             if (!$stage_id) {
@@ -317,7 +325,15 @@ class Deal
 
         //custom field
         foreach( Fns::custom_field('deal') as $value ) {
-            $query_data[$value['slug']] = isset($queryMeta[$value['slug']]) ? $queryMeta[$value['slug']][0] : '';
+            if ( $value['type'] == 'multi-select') {
+                $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
+                ? maybe_unserialize( $queryMeta[$value['slug']][0] )
+                : "";
+            } else {
+                $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
+                ? $queryMeta[$value['slug']][0]
+                : "";
+            }
         }
         $query_data['custom_field'] = Fns::custom_field('deal');
 
@@ -553,7 +569,17 @@ class Deal
 
                 //custom field
                 foreach(Fns::custom_field('deal') as $value) {
-                    $field = isset($param[$value['slug']]) ? sanitize_text_field($param[$value['slug']]) : '';
+                    $field = '';
+                    if ( $value['type'] == 'multi-select') {
+                        $field = isset($param[$value['slug']])
+                        ? array_map("sanitize_text_field", $param[$value['slug']])
+                        : "";
+                    } else {
+                        $field = isset($param[$value['slug']])
+                        ? sanitize_text_field($param[$value['slug']])
+                        : "";
+                    }
+
                     if ( $field ) {
                         update_post_meta($post_id, $value['slug'], $field);
                     }
@@ -716,7 +742,16 @@ class Deal
 
                 //custom field
                 foreach( Fns::custom_field('deal') as $value ) {
-                    $field = isset($param[$value['slug']]) ? sanitize_text_field($param[$value['slug']]) : '';
+                    $field = '';
+                    if ( $value['type'] == 'multi-select') {
+                        $field = isset($param[$value['slug']])
+                        ? array_map("sanitize_text_field", $param[$value['slug']])
+                        : "";
+                    } else {
+                        $field = isset($param[$value['slug']])
+                        ? sanitize_text_field($param[$value['slug']])
+                        : "";
+                    }
                     update_post_meta($post_id, $value['slug'], $field);
                 }
 
