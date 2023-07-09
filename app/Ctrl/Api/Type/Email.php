@@ -98,7 +98,8 @@ class Email
             if ($logo_id) {
                 $logo_src = wp_get_attachment_image_src($logo_id, "thumbnail");
                 if ($logo_src) {
-                    $org_img = "<img src='" . $logo_src[0] . "' alt='' />";
+                    $org_img = "<img src='" . $logo_src[0] . "' alt='' style='max-width: 200px !important;
+      max-height: 90px !important;' />";
                 }
             }
 
