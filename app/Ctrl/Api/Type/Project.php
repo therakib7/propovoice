@@ -148,8 +148,8 @@ class Project
                 "post_status" => "publish",
                 "posts_per_page" => $per_page,
                 "offset" => $offset,
-            ]; 
-        
+            ];
+
         }
 
         if ( $dashboard ) {
@@ -176,7 +176,7 @@ class Project
                     'operator' => 'NOT IN',
                 ),
             );
-        } 
+        }
 
         if ($status_id) {
             $args["orderby"] = "menu_order";
@@ -187,7 +187,7 @@ class Project
             "relation" => "OR",
         ];
 
-        if ( $project_req ) { 
+        if ( $project_req ) {
             $args["meta_query"][] = [
                 [
                     "key" => "project_req",
@@ -197,7 +197,7 @@ class Project
         } else {
             if ( current_user_can("ndpv_client_role") ) {
                 $user_id = get_current_user_id();
-                $id = get_user_meta($user_id, 'ndpv_client_id', true); 
+                $id = get_user_meta($user_id, 'ndpv_client_id', true);
                 $args['meta_query'][] = array(
                     array(
                         'key'   => 'person_id',
@@ -267,14 +267,14 @@ class Project
             }
         }
 
-        if ( current_user_can("ndpv_staff") ) {              
+        if ( current_user_can("ndpv_staff") ) {
             $post_ids = Fns::get_posts_ids_by_type('ndpv_project');
             if ( !empty($post_ids) ) {
                 $args['post__in'] = $post_ids;
                 $args['orderby'] = 'post__in';
             } else {
                 $args['author'] = get_current_user_id();
-            }            
+            }
         }
 
         $query = new \WP_Query($args);
@@ -623,7 +623,7 @@ class Project
                 if ($org_id && !$person_id) {
                     update_post_meta($org_id, "is_client", 1);
                 }
-                //end is_client                 
+                //end is_client
 
                 if ($budget) {
                     update_post_meta($post_id, "budget", $budget);
@@ -652,7 +652,7 @@ class Project
                 if ( $deal_id ) {
                     $project_req = get_post_meta($deal_id, 'project_req', true);
                     if ( $project_req ) {
-                        delete_post_meta($deal_id, "project_req");  
+                        delete_post_meta($deal_id, "project_req");
                     }
                 }
 

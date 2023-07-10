@@ -73,6 +73,9 @@ class Invoice
         $offset = 0;
 
         $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : null;
+        $module_id = isset($param["module_id"])
+            ? absint($param["module_id"])
+            : null;
         $dashboard = isset($param["dashboard"]) ? true : false;
         $recurring = isset($param["recurring"]) ? true : false;
 
@@ -187,11 +190,26 @@ class Invoice
             );
         } */
 
-        if (isset($param["module_id"])) {
+        if ( $module_id ) {
+            $args["meta_query"]['relation'] = "OR";
             $args["meta_query"][] = [
                 [
                     "key" => "module_id",
                     "value" => $param["module_id"],
+                ],
+            ];
+
+            $args["meta_query"][] = [
+                [
+                    "key" => "person_id",
+                    "value" => $module_id,
+                ],
+            ];
+
+            $args["meta_query"][] = [
+                [
+                    "key" => "org_id",
+                    "value" => $module_id,
                 ],
             ];
         }
