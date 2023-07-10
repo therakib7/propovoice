@@ -163,7 +163,7 @@ class Options extends Component {
                 {options.length > 0 && <div className="col-md">
                     <label htmlFor="field-default">{i18n.optDef}</label>
                     {(this.props.type == 'select') && <select
-                        value={this.state.value}
+                        value={value}
                         onChange={this.handleValue}
                     >
                         <option value=''>{i18n.select}</option>

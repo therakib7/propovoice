@@ -6,6 +6,7 @@ const DateField = lazy(() => import("block/date-picker"))
 
 export default (props) => {
 	const [loading, setLoading] = useState(false);
+	const [defaultValue, setDefaultValue] = useState(true);
 	const [list, setList] = useState([]);
 
 	useEffect(() => {
@@ -26,7 +27,12 @@ export default (props) => {
 		});
 	}
 
-	const handleChange = props.onChange;
+	// const handleChange = props.onChange;
+
+	const handleChange = (e) => {
+		setDefaultValue(false);
+		props.onChange(e)
+	};
 
 	const handleMultiSelect = (value, name) => {
 		const e = {
@@ -58,6 +64,10 @@ export default (props) => {
 				{list.map((item, i) => {
 					if (item.type === 'date' && form[item.slug] && props.type != 'new') {
 						form[item.slug] = new Date(form[item.slug])
+					}
+
+					if (props.type == 'new' && defaultValue) {
+						form[item.slug] = item.value;
 					}
 					return (
 						<div key={i} className="row">
