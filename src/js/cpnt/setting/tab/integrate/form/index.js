@@ -234,7 +234,7 @@ export default class Main extends Component {
                                                                         >
                                                                             {Object.entries(leadField).map((t, i) => <option key={i} value={t[0]}>{t[1]}</option>)}
 
-                                                                            {this.state.customLeadField.map((item, i) => <option key={i} value={item.id}>{item.label}</option>)}
+                                                                            {this.state.customLeadField.map((item, i) => <option key={i} value={item.slug}>{item.label}</option>)}
                                                                         </select>
                                                                     </td>
                                                                     <td>

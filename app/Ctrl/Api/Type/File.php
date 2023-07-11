@@ -128,9 +128,7 @@ class File
             $query_data["type"] = isset($queryMeta["type"])
                 ? sanitize_text_field($queryMeta["type"][0])
                 : "";
-            $query_data["title"] = isset($queryMeta["title"])
-                ? sanitize_text_field($queryMeta["title"][0])
-                : "";
+
             $query_data["url"] = isset($queryMeta["url"])
                 ? sanitize_text_field($queryMeta["url"][0])
                 : "";
@@ -138,6 +136,11 @@ class File
             $file_id = isset($queryMeta["file"])
                 ? sanitize_text_field($queryMeta["file"][0])
                 : "";
+
+            $query_data["title"] = isset($queryMeta["title"])
+                ? sanitize_text_field($queryMeta["title"][0])
+                : get_the_title($file_id);
+
             $fileData = null;
             if ($file_id) {
                 $attach_type = get_post_mime_type($file_id);

@@ -83,7 +83,25 @@ class Lead
 
             if ($note) {
                 update_post_meta($post_id, 'note', $note);
-            } 
+            }
+
+            //custom field
+            foreach (Fns::custom_field("lead") as $value) {
+                $field = '';
+                if ( $value['type'] == 'multi-select') {
+                    $field = isset($param[$value['slug']])
+                    ? array_map("sanitize_text_field", $param[$value['slug']])
+                    : "";
+                } else {
+                    $field = isset($param[$value['slug']])
+                    ? sanitize_text_field($param[$value['slug']])
+                    : "";
+                }
+
+                if ($field) {
+                    update_post_meta($post_id, $value['slug'], $field);
+                }
+            }
         }
     }
 
@@ -115,14 +133,14 @@ class Lead
             );
         }
 
-        if ( current_user_can("ndpv_staff") ) {              
+        if ( current_user_can("ndpv_staff") ) {
             $post_ids = Fns::get_posts_ids_by_type('ndpv_lead');
             if ( !empty($post_ids) ) {
                 $args['post__in'] = $post_ids;
                 $args['orderby'] = 'post__in';
             } else {
                 $args['author'] = get_current_user_id();
-            }            
+            }
         }
 
         $query = new \WP_Query($args);
