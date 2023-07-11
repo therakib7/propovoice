@@ -341,7 +341,7 @@ class Form extends Component {
                                                 id="form-email"
                                                 type="email"
                                                 name="email"
-                                                readOnly={this.fromClient}
+                                                disabled={this.fromClient}
                                                 value={form.email}
                                                 onChange={this.handleChange}
                                             />
@@ -356,7 +356,7 @@ class Form extends Component {
                                                 id="form-mobile"
                                                 type="text"
                                                 name="mobile"
-                                                readOnly={this.fromClient}
+                                                disabled={this.fromClient}
                                                 value={form.mobile}
                                                 onChange={this.handleChange}
                                             />

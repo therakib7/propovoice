@@ -84,7 +84,7 @@ export default (props) => {
                         type="text"
                         name="first_name"
                         autoComplete='off'
-                        readOnly={props.fromClient}
+                        disabled={props.fromClient}
                         value={props.first_name}
                         onChange={handleChange}
                     />
@@ -112,7 +112,7 @@ export default (props) => {
                         type="text"
                         name="org_name"
                         autoComplete='off'
-                        readOnly={props.fromClient}
+                        disabled={props.fromClient}
                         value={props.org_name}
                         onChange={handleChange}
                     />
