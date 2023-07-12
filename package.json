@@ -12,6 +12,7 @@
         "dev": "mix",
         "prod": "mix -p",
         "watch": "mix watch",
+        "lint": "eslint src --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
         "package": "mix -p && cross-env NODE_ENV=package mix",
         "zip": "npm run package && cross-env NODE_ENV=zip mix"
     },
@@ -26,6 +27,8 @@
         "cli-color": "^2.0.0",
         "cross-env": "^7.0.3",
         "emojic": "^1.1.16",
+        "eslint": "^8.44.0",
+        "eslint-plugin-react": "^7.32.2",
         "fs-extra": "^9.0.1",
         "laravel-mix": "^6.0.8",
         "postcss": "^8.4.5",
