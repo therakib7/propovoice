@@ -75,7 +75,7 @@ class Person
 
         //for searching contact from other module
         $first_name = isset($param["first_name"]) ? sanitize_text_field($param["first_name"]) : '';
-        if ( $first_name ) {
+        if ($first_name) {
             $s = $first_name;
         }
 
@@ -309,7 +309,16 @@ class Person
                 esc_html__("Email id is not valid!", "propovoice")
             );
         }
+        $person_id = $this->is_person_exists($email, $mobile);
 
+        if ($person_id) {
+            $reg_errors->add(
+                "already_exist",
+                esc_html__("Person already exists!!!", "propovoice")
+            );
+
+            wp_send_json_error($reg_errors->get_error_messages());
+        }
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
@@ -375,6 +384,38 @@ class Person
             } else {
                 wp_send_json_error();
             }
+        }
+    }
+
+    public function is_person_exists($email, $mobile)
+    {
+        $args = array(
+            "post_type" => ["ndpv_person"],
+            "post_status" => "publish",
+            'meta_query' => array(
+                'relation' => 'OR',
+                array(
+                    'key'     => 'email',
+                    'value'   => $email,
+                    'compare' => '=',
+                ),
+                array(
+                    'key'     => 'mobile',
+                    'value'   => $mobile,
+                    'compare' => '=',
+                ),
+            ),
+            'fields' => 'ids',
+            'posts_per_page' => 1,
+        );
+
+        $posts = get_posts($args);
+
+        if ($posts) {
+            $post_id = $posts[0];
+            return $post_id;
+        } else {
+            return false;
         }
     }
 

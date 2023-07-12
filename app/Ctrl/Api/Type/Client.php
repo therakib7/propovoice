@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -118,14 +119,14 @@ class Client
             ],
         ];
 
-        if ( current_user_can("ndpv_staff") ) {   
-            $post_ids = Fns::get_posts_ids_by_type(["ndpv_person", "ndpv_org"]); 
-            if ( !empty($post_ids) ) {
+        if (current_user_can("ndpv_staff")) {
+            $post_ids = Fns::get_posts_ids_by_type(["ndpv_person", "ndpv_org"]);
+            if (!empty($post_ids)) {
                 $args['post__in'] = $post_ids;
                 $args['orderby'] = 'post__in';
             } else {
                 $args['author'] = get_current_user_id();
-            }            
+            }
         }
 
         $query = new \WP_Query($args);
@@ -216,6 +217,10 @@ class Client
             ? strtolower(sanitize_email($req["email"]))
             : '';
 
+        $mobile = isset($param["mobile"])
+            ? sanitize_text_field($param["mobile"])
+            : '';
+
         $person_id = isset($param["person_id"])
             ? absint($param["person_id"])
             : null;
@@ -231,26 +236,36 @@ class Client
                 esc_html__("Contact info is missing", "propovoice")
             );
         }
- 
+
+        $client_id = $this->is_client_exists($email, $mobile);
+        if ($client_id) {
+            $reg_errors->add(
+                "already_exist",
+                esc_html__("Client already exists!!!", "propovoice")
+            );
+
+            wp_send_json_error($reg_errors->get_error_messages());
+        }
+
         //check if team exist
-        $user_id = email_exists( $email );
-        if ( $user_id ) {
+        $user_id = email_exists($email);
+        if ($user_id) {
             $user_data = new \WP_User($user_id);
             $user_roles = $user_data->roles;
-            $check_roles = array( 'administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' );
+            $check_roles = array('administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff');
             $role_exist = false;
-            foreach( $check_roles as $role ) {
-                if ( in_array($role, $user_roles) ) {
+            foreach ($check_roles as $role) {
+                if (in_array($role, $user_roles)) {
                     $role_exist = true;
                 }
             }
-            if ( $role_exist ) { 
+            if ($role_exist) {
                 $reg_errors->add(
                     "already_exist",
                     esc_html__("You can not add a Team member as client", "propovoice")
                 );
-            } 
-        } 
+            }
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
@@ -279,13 +294,45 @@ class Client
                 $org_id = $org->create($param);
             }
 
-            $post_id = ( $person_id ) ? $person_id : $org_id;
+            $post_id = ($person_id) ? $person_id : $org_id;
             $client_model = new ModelClient();
-            $name = ( $person_id ) ? $first_name : $org_name;
+            $name = ($person_id) ? $first_name : $org_name;
             $client_model->set_user_if_not($post_id, $name, $email, $client_portal);
             update_post_meta($post_id, "client_portal", $client_portal);
 
             wp_send_json_success();
+        }
+    }
+
+    public function is_client_exists($email, $mobile)
+    {
+        $args = array(
+            "post_type" => ["ndpv_person", "ndpv_org"],
+            "post_status" => "publish",
+            'meta_query' => array(
+                'relation' => 'OR',
+                array(
+                    'key'     => 'email',
+                    'value'   => $email,
+                    'compare' => '=',
+                ),
+                array(
+                    'key'     => 'mobile',
+                    'value'   => $mobile,
+                    'compare' => '=',
+                ),
+            ),
+            'fields' => 'ids',
+            'posts_per_page' => 1,
+        );
+
+        $posts = get_posts($args);
+
+        if ($posts) {
+            $post_id = $posts[0];
+            return $post_id;
+        } else {
+            return false;
         }
     }
 
@@ -320,8 +367,8 @@ class Client
             ? sanitize_text_field($req["address"])
             : null;
         $img = isset($param["img"]) && isset($param["img"]["id"])
-                ? absint($param["img"]["id"])
-                : null;
+            ? absint($param["img"]["id"])
+            : null;
 
         $client_portal = isset($param["client_portal"])
             ? rest_sanitize_boolean($param["client_portal"])
@@ -342,24 +389,24 @@ class Client
         }
 
         //check if team exist
-        $user_id = email_exists( $email );
-        if ( $user_id ) {
+        $user_id = email_exists($email);
+        if ($user_id) {
             $user_data = new \WP_User($user_id);
             $user_roles = $user_data->roles;
-            $check_roles = array( 'administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' );
+            $check_roles = array('administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff');
             $role_exist = false;
-            foreach( $check_roles as $role ) {
-                if ( in_array($role, $user_roles) ) {
+            foreach ($check_roles as $role) {
+                if (in_array($role, $user_roles)) {
                     $role_exist = true;
                 }
             }
-            if ( $role_exist ) { 
+            if ($role_exist) {
                 $reg_errors->add(
                     "already_exist",
                     esc_html__("You can not add a Team member as client", "propovoice")
                 );
-            } 
-        } 
+            }
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
