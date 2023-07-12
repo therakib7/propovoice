@@ -39,21 +39,20 @@ class Form extends Component {
             date: false
         };
 
-        if (this.props.parentData && Object.keys(this.props.parentData.person).length > 0) {
+        if (this.props.parentData) {
             this.fromClient = true;
-            const person = this.props.parentData.person;
-            this.initialState.first_name = person.first_name;
-            this.initialState.email = person.email;
-            this.initialState.mobile = person.mobile;
-        }
-        if (this.props.parentData && Object.keys(this.props.parentData.org).length > 0) {
-            this.fromClient = true;
-            const org = this.props.parentData.org;
-            this.initialState.org_name = org.org_name;
-            this.initialState.email = org.email;
-            this.initialState.mobile = org.mobile;
-        }
+            const { person, org } = this.props.parentData;
 
+            if (person && Object.keys(person).length > 0) {
+                this.initialState.first_name = person.first_name;
+                this.initialState.email = person.email;
+                this.initialState.mobile = person.mobile;
+            } else if (org && Object.keys(org).length > 0) {
+                this.initialState.org_name = org.name;
+                this.initialState.email = org.email;
+                this.initialState.mobile = org.mobile;
+            }
+        }
         this.state = {
             form: this.initialState,
             custom_field: false,
