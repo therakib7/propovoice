@@ -126,7 +126,7 @@ class Task
             $status_id = $get_taxonomy[0]->term_id;
         }
 
-        if ( $dashboard ) {
+        if ($dashboard) {
             $tax_args = array(
                 'hide_empty' => false, // also retrieve terms which are not used yet
                 'meta_query' => array(
@@ -138,7 +138,7 @@ class Task
                 ),
                 'taxonomy'  => 'ndpv_task_status',
             );
-            $terms = get_terms( $tax_args );
+            $terms = get_terms($tax_args);
             $status_id = $terms[0]->term_id;
 
             $args["tax_query"] = [
@@ -159,15 +159,15 @@ class Task
             ];
         }
 
-        if ( current_user_can("ndpv_staff") ) {  
-            
-            $post_ids = Fns::get_posts_ids_by_type('ndpv_task'); 
-            if ( !empty($post_ids) ) {
+        if (current_user_can("ndpv_staff")) {
+
+            $post_ids = Fns::get_posts_ids_by_type('ndpv_task');
+            if (!empty($post_ids)) {
                 $args['post__in'] = $post_ids;
                 $args['orderby'] = 'post__in';
             } else {
                 $args['author'] = get_current_user_id();
-            }            
+            }
         }
 
         $query = new \WP_Query($args);
@@ -407,6 +407,8 @@ class Task
                 }
 
                 do_action("ndpvp/webhook", "task_add", $param);
+
+
 
                 wp_send_json_success($post_id);
             } else {

@@ -51,6 +51,7 @@
       background-color: #fff;
       margin: 0 auto;
       margin-bottom: 20px;
+      min-width: 380px;
     }
 
     .ndpv-head {

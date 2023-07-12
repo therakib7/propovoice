@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Invoice;
@@ -36,6 +37,7 @@ class PaymentProcess
         $param = $req->get_params();
 
         $invoice_id = isset($param["invoice_id"]) ? $param["invoice_id"] : "";
+        $param["post_id"] = $invoice_id;
         $payment_method = isset($param["payment_method"])
             ? $param["payment_method"]
             : "";
@@ -49,8 +51,12 @@ class PaymentProcess
                     : false;
                 if ($mark_as_paid) {
                     update_post_meta($invoice_id, "status", "paid");
+
+                    do_action("ndpvp/webhook", "inv_paid", $param);
                 } else {
                     update_post_meta($invoice_id, "status", "paid_req");
+
+                    do_action("ndpvp/webhook", "inv_paid_req", $param);
                 }
 
                 $payment_details = isset($param["payment_details"])
@@ -72,12 +78,16 @@ class PaymentProcess
                 update_post_meta($invoice_id, "payment_info", $bank_info);
             } elseif ($payment_method == "paypal") {
                 update_post_meta($invoice_id, "status", "paid");
+
+                do_action("ndpvp/webhook", "inv_paid", $param);
                 $payment_info = isset($param["payment_info"])
                     ? $param["payment_info"]
                     : "";
                 update_post_meta($invoice_id, "payment_info", $payment_info);
             } elseif ($payment_method == "stripe") {
                 update_post_meta($invoice_id, "status", "paid");
+
+                do_action("ndpvp/webhook", "inv_paid", $param);
                 $payment_info = isset($param["payment_info"])
                     ? $param["payment_info"]
                     : "";

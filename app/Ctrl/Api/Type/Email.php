@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -97,7 +98,7 @@ class Email
             if ($logo_id) {
                 $logo_src = wp_get_attachment_image_src($logo_id, "thumbnail");
                 if ($logo_src) {
-                    $org_img = "<img src='" . $logo_src[0] . "' alt='' />";
+                    $org_img = "<img src='" . $logo_src[0] . "' alt='' style='max-width: 200px !important;max-height: 90px !important;'/>";
                 }
             }
 
@@ -187,6 +188,15 @@ class Email
             $feedback["attachment"] = $attachment;
             $feedback["time"] = current_time("timestamp");
             update_post_meta($invoice_id, "feedback", $feedback);
+        }
+
+        $param["post_id"] = $invoice_id;
+        if ($feedback_type == "accept") {
+            do_action("ndpvp/webhook", "est_accept", $param);
+        }
+        if ($feedback_type == "decline") {
+
+            do_action("ndpvp/webhook", "est_reject", $param);
         }
 
         wp_send_json_success();

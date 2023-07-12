@@ -7,10 +7,10 @@ use Ndpvp\Model\CustomField;
 
 class Fns
 {
-    
+
     public static function custom_field($mod = '')
     {
-        if ( ndpv()->wage() ) {
+        if (ndpv()->wage()) {
             $custom_field = new CustomField();
             return $custom_field->get($mod);
         } else {
@@ -51,15 +51,15 @@ class Fns
         return get_terms($args);
     }
 
-    public static function get_posts_ids_by_type( $post_type )
-    {   
+    public static function get_posts_ids_by_type($post_type)
+    {
         $user_id = get_current_user_id();
         $args1 = [
             'posts_per_page' => -1,
             'author' => $user_id,
             'fields' => 'ids',
             'post_type' => $post_type,
-        ];          
+        ];
         $query1 = new \WP_Query($args1);
 
         $args2 = [
@@ -77,17 +77,17 @@ class Fns
                 "key" => "_ndpv_allowed_users",
                 "value" => $user_id,
                 "compare" => "LIKE",
-            ], 
+            ],
         ];
         $query2 = new \WP_Query($args2);
-        $merge_ids_posts = array_merge($query1->posts , $query2->posts);
+        $merge_ids_posts = array_merge($query1->posts, $query2->posts);
         wp_reset_query();
         return $merge_ids_posts;
     }
 
-    public static function contact_exist($post_type, $value = '', $key = 'email' )
+    public static function contact_exist($post_type, $value = '', $key = 'email')
     {
-        if ( $value ) {
+        if ($value) {
             $args = array(
                 'post_type' => 'ndpv_' . $post_type,
                 'meta_query' => array(
@@ -100,7 +100,7 @@ class Fns
             );
             $number_query = new \WP_Query($args);
             $ids = $number_query->posts;
-            if ( !empty($ids) ) {
+            if (!empty($ids)) {
                 return $ids[0];
             }
         }
@@ -111,13 +111,13 @@ class Fns
     {
         $white_label = get_option("ndpv_white_label");
         $logo = null;
-        if ( $white_label && isset( $white_label['logo'] ) ) {
+        if ($white_label && isset($white_label['logo'])) {
             $data['logo'] = $white_label['logo'];
             $logo_id = $white_label['logo'];
             $logoData = null;
-            if ( $logo_id ) {
-                $logo_src = wp_get_attachment_image_src( $logo_id, 'thumbnail' );
-                if ( $logo_src ) {
+            if ($logo_id) {
+                $logo_src = wp_get_attachment_image_src($logo_id, 'thumbnail');
+                if ($logo_src) {
                     $logoData = [];
                     $logoData['id'] = $logo_id;
                     $logoData['src'] = $logo_src[0];
@@ -220,7 +220,7 @@ class Fns
         $footer_text = "<p>Powered by</p>
 <h3>Propovoice</h3>";
         $email_footer = get_option('ndpv_email_footer');
-        if ( ndpv()->wage() ) {
+        if (ndpv()->wage()) {
             if (isset($email_footer['text'])) {
                 $footer_text = $email_footer['text'];
             }
@@ -243,7 +243,7 @@ class Fns
             ],
         ];
 
-        if ( ndpv()->wage() ) {
+        if (ndpv()->wage()) {
             $get_taxonomy = self::get_terms('email_social');
             $format_taxonomy = [];
             foreach ($get_taxonomy as $single) {
@@ -253,7 +253,7 @@ class Fns
                     $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
                     if ($icon_src) {
                         $term_url = get_term_meta($single->term_id, 'url', true);
-                        if ( $term_url ) {
+                        if ($term_url) {
                             $format_taxonomy[] = [
                                 'url' => $term_url,
                                 'icon' => $icon_src[0]
@@ -262,18 +262,19 @@ class Fns
                     }
                 }
             }
-            if ( $format_taxonomy ) {
+            if ($format_taxonomy) {
                 $social_list = $format_taxonomy;
             }
         }
 
-        foreach ($social_list as $val) {
+        foreach ($social_list as $key => $val) {
+            $margin_right = $key === array_key_last($social_list) ? 0 : "15px";
             if ($val['url']) {
-                $social .= '<li><a href="' . esc_url($val['url']) . '"><img src="' . esc_url($val['icon']) . '" alt=""></a></li>';
+                $social .= '<li  style="display: inline-block;text-align:center;vertical-align:middle;margin-right:' . $margin_right . ';"><a href="' . esc_url($val['url']) . '"  style="display: table-cell;list-style: none;padding: 7px;width: 23px;height: 23px;background-color: #fff;border-radius: 100%;line-height: 16px;text-align: center;vertical-align: middle;"><img src="' . esc_url($val['icon']) . '" alt=""  style="max-height: 16px !important;max-width: 16px !important;"></a></li>';
             }
         }
 
-        if ( isset($email_footer['active']) && !$email_footer['active'] ) {
+        if (isset($email_footer['active']) && !$email_footer['active']) {
             $footer_text = '';
             $social = '';
         }
@@ -521,7 +522,7 @@ class Fns
         //sent mail
         $data = [];
 
-        $option = get_option('ndpv_email_'.$type.'_password');
+        $option = get_option('ndpv_email_' . $type . '_password');
         if ($option) {
             $data = $option;
         } else {
@@ -535,15 +536,15 @@ class Fns
         $business = new Business;
         $business_info = $business->info();
         $org_name = $business_info['name'];
-        $org_email = $business_info['email']; 
+        $org_email = $business_info['email'];
         $permalink = Fns::client_page_url("workspace");
         $login_url =  "<a href='$permalink'>$permalink</a>";
 
         $subject = self::pass_email_variable($mail_subject, [
             "org_name" => $org_name,
         ]);
-        $template = ndpv()->render("email/password", [], true); 
-        $template = str_replace( '{msg}', $msg, $template );            
+        $template = ndpv()->render("email/password", [], true);
+        $template = str_replace('{msg}', $msg, $template);
         $body = self::pass_email_variable($template, [
             "org_name" => $org_name,
             "client_name" => $name,
@@ -553,30 +554,31 @@ class Fns
         ]);
 
         $headers = ["Content-Type: text/html; charset=UTF-8"];
-        $headers[] = "From: " . $org_name . " <" . $org_email . ">";  
+        $headers[] = "From: " . $org_name . " <" . $org_email . ">";
         return wp_mail($email, $subject, $body, $headers, []);
     }
 
-    private static function pass_email_variable( $string, $array = [] ) {
+    private static function pass_email_variable($string, $array = [])
+    {
         $org_name = isset($array['org_name']) ? $array['org_name'] : '';
         $client_name = isset($array['client_name']) ? $array['client_name'] : '';
         $login_url = isset($array['login_url']) ? $array['login_url'] : '';
         $email = isset($array['email']) ? $array['email'] : '';
         $password = isset($array['password']) ? $array['password'] : '';
         return str_replace(
-            array( 
-                '{org_name}', 
-                '{client_name}', 
-                '{login_url}', 
-                '{email}', 
+            array(
+                '{org_name}',
+                '{client_name}',
+                '{login_url}',
+                '{email}',
                 '{password}'
             ),
-            array( 
-                $org_name, 
-                $client_name, 
-                $login_url, 
-                $email, 
-                $password 
+            array(
+                $org_name,
+                $client_name,
+                $login_url,
+                $email,
+                $password
             ),
             $string
         );
