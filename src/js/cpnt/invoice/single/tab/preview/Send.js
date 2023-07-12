@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 // import jsPDF from 'jspdf';
 // import html2canvas from 'html2canvas';
+import moment from 'moment';
 import ProLabel from 'block/pro-alert/label';
 import pro from 'block/pro-alert';
 import { Add } from 'block/icon';
@@ -36,11 +37,8 @@ export default class Send extends Component {
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
-    convertDate = str => {
-        let date = new Date(str),
-            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-            day = ("0" + date.getDate()).slice(-2);
-        return [date.getFullYear(), mnth, day].join("-");
+    convertDate = dateStr => {
+        return moment(dateStr).format(ndpv.date_format);
     }
 
     //try to call it from invoice to avoid duplication code
@@ -251,7 +249,7 @@ export default class Send extends Component {
                         <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">

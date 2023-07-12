@@ -71,7 +71,13 @@ class Org
         $per_page = 10;
         $offset = 0;
 
-        $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : null;
+        $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : '';
+
+        //for searching contact from other module
+        $name = isset($param["name"]) ? sanitize_text_field($param["name"]) : '';
+        if ( $name ) {
+            $s = $name;
+        }
 
         if (isset($param["per_page"])) {
             $per_page = $param["per_page"];

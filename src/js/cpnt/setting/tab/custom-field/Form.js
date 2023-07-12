@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import api from 'api';
 import { Add } from 'block/icon';
+import Options from "./Options";
 
 export default class Form extends Component {
     constructor(props) {
@@ -12,6 +13,8 @@ export default class Form extends Component {
             label: '',
             desc: '',
             type: 'text',
+            options: [],
+            value: '',
             mod: 'lead'
         };
 
@@ -83,16 +86,40 @@ export default class Form extends Component {
         this.props.close()
     }
 
-    handleLogoChange = (data, type = null) => {
-        let form = { ...this.state.form }
-        form.icon = data;
-        this.setState({ form })
-    }
+    handleOptionsChange = (data) => {
+        let form = { ...this.state.form };
+        form.options = data;
+        this.setState({ form });
+    };
+
+    handleOptionsValueChange = (data) => {
+        let form = { ...this.state.form };
+        form.value = data;
+        this.setState({ form });
+    };
 
     render() {
-        const form = this.state.form;
+        const { label, desc, type, options, value } = this.state.form;
+
         const i18n = ndpv.i18n;
-        const eat = this.props.extra_amount_type;
+
+        let typeLabel = '';
+
+        switch (type) {
+            case 'select':
+                typeLabel = i18n.select
+                break;
+            case 'multi-select':
+                typeLabel = i18n.multiselect
+                break;
+            case 'radio':
+                typeLabel = i18n.radio
+                break;
+
+            default:
+                break;
+        }
+
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content pv-modal-style-two pv-modal-small">
@@ -113,7 +140,7 @@ export default class Form extends Component {
                                         id="field-label"
                                         type="text"
                                         name="label"
-                                        value={form.label}
+                                        value={label}
                                         onChange={this.handleChange}
                                     />
                                 </div>
@@ -124,21 +151,37 @@ export default class Form extends Component {
                                         id="field-desc"
                                         type="text"
                                         name="desc"
-                                        value={form.desc}
+                                        value={desc}
                                         onChange={this.handleChange}
                                     />
                                 </div>
 
                                 <div className="col-md">
                                     <label htmlFor="field-label">{i18n.type}</label>
-                                    <select name="type" value={form.type} onChange={this.handleChange}>
+                                    <select name="type" value={type} onChange={this.handleChange}>
                                         <option value="text">{i18n.text}</option>
-                                        {/* <option value="date">{i18n.date}</option>
+                                        <option value="email">{i18n.email}</option>
+                                        <option value="number">{i18n.number}</option>
                                         <option value="select">{i18n.select}</option>
-                                        <option value="multiselect">{i18n.multiselect}</option>
-                                        <option value="number">{i18n.number}</option> */}
+                                        <option value="multi-select">{i18n.multiselect}</option>
+                                        <option value="date">{i18n.date}</option>
                                     </select>
                                 </div>
+
+                                {(type == 'select' || type == 'multi-select' || type == 'radio') &&
+                                    <>
+                                        <Options
+                                            data={options}
+                                            type={type}
+                                            typeLabel={typeLabel}
+                                            label={label}
+                                            value={value}
+                                            changeHandler={this.handleOptionsChange}
+                                            changeValueHandler={this.handleOptionsValueChange}
+                                        />
+                                    </>
+                                }
+
                             </div>
                         </div>
                     </div>

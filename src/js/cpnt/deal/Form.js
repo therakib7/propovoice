@@ -513,7 +513,7 @@ class Form extends Component {
                                     </div>
                                 </div>
 
-                                {this.state.custom_field && <CustomField mod='deal' form={form} onChange={this.handleCFChange} />}
+                                {this.state.custom_field && <CustomField mod='deal' type={this.props.modalType} form={form} onChange={this.handleCFChange} />}
 
                             </div>
                         </div>

@@ -222,6 +222,7 @@ const Deal = (props) => {
             </div> */}
 
       <Search
+        module_id={props.module_id}
         title={title}
         showing={lists.length}
         showItem={showItem}

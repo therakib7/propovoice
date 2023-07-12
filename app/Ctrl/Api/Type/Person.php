@@ -72,6 +72,12 @@ class Person
         $offset = 0;
         $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : null;
 
+        //for searching contact from other module
+        $first_name = isset($param["first_name"]) ? sanitize_text_field($param["first_name"]) : '';
+        if ( $first_name ) {
+            $s = $first_name;
+        }
+
         if (isset($param["per_page"])) {
             $per_page = $param["per_page"];
         }
