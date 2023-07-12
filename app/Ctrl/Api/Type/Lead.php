@@ -154,14 +154,14 @@ class Lead
 
             //custom field
             foreach (Fns::custom_field("lead") as $value) {
-                if ( $value['type'] == 'multi-select') {
+                if ($value['type'] == 'multi-select') {
                     $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
-                    ? maybe_unserialize( $queryMeta[$value['slug']][0] )
-                    : "";
+                        ? maybe_unserialize($queryMeta[$value['slug']][0])
+                        : "";
                 } else {
                     $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
-                    ? $queryMeta[$value['slug']][0]
-                    : "";
+                        ? $queryMeta[$value['slug']][0]
+                        : "";
                 }
             }
 
@@ -246,14 +246,14 @@ class Lead
 
         //custom field
         foreach (Fns::custom_field("lead") as $value) {
-            if ( $value['type'] == 'multi-select') {
+            if ($value['type'] == 'multi-select') {
                 $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
-                ? maybe_unserialize( $queryMeta[$value['slug']][0] )
-                : "";
+                    ? maybe_unserialize($queryMeta[$value['slug']][0])
+                    : "";
             } else {
                 $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
-                ? $queryMeta[$value['slug']][0]
-                : "";
+                    ? $queryMeta[$value['slug']][0]
+                    : "";
             }
         }
         $query_data["custom_field"] = Fns::custom_field("lead");
@@ -432,29 +432,23 @@ class Lead
                 //custom field
                 foreach (Fns::custom_field("lead") as $value) {
                     $field = '';
-                    if ( $value['type'] == 'multi-select') {
+                    if ($value['type'] == 'multi-select') {
                         $field = isset($param[$value['slug']])
-                        ? array_map("sanitize_text_field", $param[$value['slug']])
-                        : "";
+                            ? array_map("sanitize_text_field", $param[$value['slug']])
+                            : "";
                     } else {
                         $field = isset($param[$value['slug']])
-                        ? sanitize_text_field($param[$value['slug']])
-                        : "";
+                            ? sanitize_text_field($param[$value['slug']])
+                            : "";
                     }
 
                     if ($field) {
-                        update_post_meta($post_id, $value['slug'], $field);
+                        update_post_meta($post_id, $value["slug"], $field);
                     }
                 }
 
+                $param['id'] = $post_id;
                 do_action("ndpvp/webhook", "lead_add", $param);
-
-                $activity_data = [
-                    "message" => "New lead created",
-                    "post_id" => $post_id,
-                    "created_by" => get_current_user_id(),
-                ];
-                do_action("ndpv_activity", $activity_data);
 
                 wp_send_json_success($post_id);
             } else {
@@ -576,14 +570,14 @@ class Lead
                 //custom field
                 foreach (Fns::custom_field("lead") as $value) {
                     $field = '';
-                    if ( $value['type'] == 'multi-select') {
+                    if ($value['type'] == 'multi-select') {
                         $field = isset($param[$value['slug']])
-                        ? array_map("sanitize_text_field", $param[$value['slug']])
-                        : "";
+                            ? array_map("sanitize_text_field", $param[$value['slug']])
+                            : "";
                     } else {
                         $field = isset($param[$value['slug']])
-                        ? sanitize_text_field($param[$value['slug']])
-                        : "";
+                            ? sanitize_text_field($param[$value['slug']])
+                            : "";
                     }
 
                     update_post_meta($post_id, $value['slug'], $field);

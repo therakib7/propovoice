@@ -1,5 +1,6 @@
 import React, { Suspense, lazy, useRef, useCallback, useState } from 'react';
 import useClickOutside from 'block/outside-click';
+import Dropdown from 'block/dropdown';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -40,9 +41,13 @@ export default () => {
 
     const contentRef = useRef();
     const dropdownRef = useRef();
+    const notificationDropdownRef = useRef();
+    const [notificationDropdown, setNotificationDropdown] = useState(false);
     const [dropdown, setDropdown] = useState(false);
     const dropdownClose = useCallback(() => setDropdown(false), []);
+    const notificationDropdownClose = useCallback(() => setNotificationDropdown(false), []);
     useClickOutside(dropdownRef, dropdownClose);
+    useClickOutside(notificationDropdownRef, notificationDropdownClose);
 
     const sidebarRef = useRef();
     const [sidebar, setSidebar] = useState(false);
@@ -59,8 +64,33 @@ export default () => {
     };
 
     const [modules, setModules] = useState(['estimate', 'quotation', 'invoice']);
-
     const { i18n, caps } = ndpv;
+
+    const profileDropdownList = [
+        {
+            label: i18n.logout,
+            url: ndpv.profile.logout
+        }
+    ]
+
+    const navBarStyle = {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '0px',
+        gap: '16px',
+
+    };
+
+
+
+    const notificationIcon = (
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+            <path fill="none" d="M0 0h24v24H0V0z" />
+            <path fill="#4C6FFF" d="M18 16v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.68-1.5-1.51-1.5S10.5 3.17 10.5 4v.68C7.63 5.36 6 7.92 6 11v5l-1.3 1.29c-.63.63-.19 1.71.7 1.71h13.17c.89 0 1.34-1.08.71-1.71L18 16zm-6.01 6c1.1 0 2-.9 2-2h-4a2 2 0 002 2zM6.77 4.73c.42-.38.43-1.03.03-1.43a1 1 0 00-1.39-.02 10.424 10.424 0 00-3.27 6.06c-.09.61.38 1.16 1 1.16.48 0 .9-.35.98-.83a8.44 8.44 0 012.65-4.94zM18.6 3.28c-.4-.37-1.02-.36-1.4.02-.4.4-.38 1.04.03 1.42 1.38 1.27 2.35 3 2.65 4.94.07.48.49.83.98.83.61 0 1.09-.55.99-1.16-.38-2.37-1.55-4.48-3.25-6.05z" />
+        </svg>
+    );
     return (
         <HashRouter>
             <ToastContainer hideProgressBar />
@@ -120,32 +150,19 @@ export default () => {
                                     placeholder="Search Contact, Invoice, Proposal "
                                 />
                             </div>
-                            <div className="pv-avater">
-                                <div className="pv-dropdown">
-                                    <button className="pv-dropbtn" onClick={() => setDropdown(val => !val)}>
-                                        <img src={ndpv.profile.img} alt="avatar" />
-                                        {ndpv.profile.name}
-                                        <svg
-                                            className="pv-dropdown-angle"
-                                            width={12}
-                                            height={7}
-                                            viewBox="0 0 12 7"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M10.375 1.25L6 5.625L1.625 1.25"
-                                                stroke="#718096"
-                                                strokeWidth="1.5"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                    </button>
-
-                                    {dropdown && <div className="pv-dropdown-content pv-show" ref={dropdownRef}>
-                                        <a href={ndpv.profile.logout}>{i18n.logout}</a>
-                                    </div>}
-                                </div>
+                            <div className="pv-avater" style={navBarStyle}>
+                                <Dropdown
+                                    isSvgIcon={true}
+                                    icon={notificationIcon}
+                                    list={[]}
+                                    purpose="notification"
+                                />
+                                <Dropdown
+                                    isSvgIcon={false}
+                                    icon={ndpv.profile.img}
+                                    label={ndpv.profile.name}
+                                    list={profileDropdownList}
+                                />
                             </div>
                         </div>
                     </div>
@@ -198,6 +215,6 @@ export default () => {
                     </div>
                 </div>
             </div>
-        </HashRouter>
+        </HashRouter >
     )
-} 
+}

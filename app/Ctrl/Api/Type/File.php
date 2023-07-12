@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 class File
@@ -144,7 +145,7 @@ class File
             $fileData = null;
             if ($file_id) {
                 $attach_type = get_post_mime_type($file_id);
-                if ( $attach_type == "application/pdf" ) {
+                if ($attach_type == "application/pdf") {
                     $file_src = wp_get_attachment_url($file_id);
                     if ($file_src) {
                         $query_data["type"] = 'pdf';
@@ -204,8 +205,8 @@ class File
             : null;
         $file =
             isset($param["file"]) && isset($param["file"]["id"])
-                ? absint($param["file"]["id"])
-                : null;
+            ? absint($param["file"]["id"])
+            : null;
 
         $title = isset($param["title"])
             ? sanitize_text_field($param["title"])
@@ -254,6 +255,9 @@ class File
                 if ($file) {
                     update_post_meta($post_id, "file", $file);
                 }
+
+
+                do_action("ndpvp/webhook", "file_add", $param);
 
                 wp_send_json_success($post_id);
             } else {
