@@ -39,6 +39,20 @@ class Form extends Component {
             date: false
         };
 
+        if (this.props.parentData) {
+            this.fromClient = true;
+            const { person, org } = this.props.parentData;
+
+            if (person && Object.keys(person).length > 0) {
+                this.initialState.first_name = person.first_name;
+                this.initialState.email = person.email;
+                this.initialState.mobile = person.mobile;
+            } else if (org && Object.keys(org).length > 0) {
+                this.initialState.org_name = org.name;
+                this.initialState.email = org.email;
+                this.initialState.mobile = org.mobile;
+            }
+        }
         this.state = {
             form: this.initialState,
             custom_field: false,
@@ -67,7 +81,7 @@ class Form extends Component {
     }
 
     editData = () => {
-        //condition added to stop multi rendering 
+        //condition added to stop multi rendering
         if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
             if (this.state.form.id != this.props.data.id) {
                 let form = { ...this.props.data }
@@ -312,6 +326,7 @@ class Form extends Component {
                                     <Contact
                                         first_name={form.first_name}
                                         org_name={form.org_name}
+                                        fromClient={this.fromClient}
                                         onChange={this.handleContactChange}
                                         onSelect={this.handleContactSelect}
                                     />
@@ -325,6 +340,7 @@ class Form extends Component {
                                                 id="form-email"
                                                 type="email"
                                                 name="email"
+                                                disabled={this.fromClient}
                                                 value={form.email}
                                                 onChange={this.handleChange}
                                             />
@@ -339,6 +355,7 @@ class Form extends Component {
                                                 id="form-mobile"
                                                 type="text"
                                                 name="mobile"
+                                                disabled={this.fromClient}
                                                 value={form.mobile}
                                                 onChange={this.handleChange}
                                             />

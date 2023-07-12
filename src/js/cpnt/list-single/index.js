@@ -1148,7 +1148,7 @@ class ListSingle extends Component {
                     <Invoice module_id={data.id} path={"invoice"} />
                   )}
                   {currentTab == "project" && data.id && (
-                    <Project module_id={data.id} />
+                    <Project module_id={data.id} data={data} />
                   )}
                   {currentTab == "deal" && data.id && (
                     <Deal module_id={data.id} />
