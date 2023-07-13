@@ -180,6 +180,16 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
+= 1.6.3 =
+* Fixed: Contact person searching issue
+* Fixed: Invoice date and due_date email date format issue
+* Fixed: File upload image title issue
+* Fixed: Email template reply issue
+* Fixed: Estimate & Invoice under client showing issue
+* Fixed: Currency issue
+* Added: Helper JS and functional files for Notification and Custom Fields
+* Update: Functional issue
+
 = 1.6.2 =
 * Added: Custom fields can add by field slug
 * Fixed: Deal and project pagination issue
