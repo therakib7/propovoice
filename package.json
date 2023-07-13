@@ -12,7 +12,7 @@
         "dev": "mix",
         "prod": "mix -p",
         "watch": "mix watch",
-        "lint": "eslint src --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "eslint": "eslint src --ext js,ts,tsx --report-unused-disable-directives --max-warnings 0",
         "package": "mix -p && cross-env NODE_ENV=package mix",
         "zip": "npm run package && cross-env NODE_ENV=zip mix"
     },

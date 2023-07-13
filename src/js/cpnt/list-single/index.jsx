@@ -247,7 +247,7 @@ class ListSingle extends Component {
         toast.success(ndpv.i18n.aUpd);
         this.getData();
       } else {
-        resp.data.data.forEach(function (value) {
+        resp.data.data.forEach(function (value, index, array) {
           toast.error(value);
         });
       }
@@ -261,7 +261,7 @@ class ListSingle extends Component {
         toast.success(ndpv.i18n.aUpd);
         this.getData();
       } else {
-        resp.data.data.forEach(function (value) {
+        resp.data.data.forEach(function (value, index, array) {
           toast.error(value);
         });
       }
@@ -275,7 +275,7 @@ class ListSingle extends Component {
           toast.success(ndpv.i18n.aDel);
           this.props.navigate(`/${type}`);
         } else {
-          resp.data.data.forEach(function (value) {
+          resp.data.data.forEach(function (value, index, array) {
             toast.error(value);
           });
         }
