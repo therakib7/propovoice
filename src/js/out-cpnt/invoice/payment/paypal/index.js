@@ -13,7 +13,6 @@ import { toast } from "react-toastify";
 import "./style.css";
 
 import Api from "api/payment-process";
-import axios from "axios";
 
 // This values are the props in the UI
 
@@ -54,8 +53,8 @@ const ButtonWrapper = ({ invoice, currency, showSpinner }) => {
       {details
         ? viewDetails(details, i18n)
         : !isSubscribe
-        ? viewPayPalBtns(invoice_id, amount, currency, style, setDetails)
-        : viewPayPalSubsBtns(invoice_id)}
+          ? viewPayPalBtns(invoice_id, amount, currency, style, setDetails)
+          : viewPayPalSubsBtns(invoice_id)}
     </>
   );
 };
@@ -148,7 +147,7 @@ function onOrderApprove(data, actions, invoice_id, setDetails) {
         // close();
         // toast.success('Thanks for payment');
       } else {
-        resp.data.data.forEach(function (value, index, array) {
+        resp.data.data.forEach(function (value) {
           toast.error(value);
         });
       }
@@ -179,7 +178,7 @@ function onSubsSuccess(data, actions, invoice_id) {
       "",
       "pro"
     )
-    .then((res) => {});
+    .then(() => { });
   alert("You have successfully created subscription " + data.subscriptionID);
 }
 

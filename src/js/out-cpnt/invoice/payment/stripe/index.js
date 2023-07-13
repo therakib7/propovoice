@@ -170,7 +170,7 @@ class CheckoutForm extends Component {
                             // toast.success('Thanks for payment');
 
                         } else {
-                            resp.data.data.forEach(function (value, index, array) {
+                            resp.data.data.forEach(function (value) {
                                 toast.error(value);
                             });
                         }
@@ -280,17 +280,8 @@ class CheckoutForm extends Component {
     }
 }
 
-const ELEMENTS_OPTIONS = {
-    fonts: [
-        {
-            cssSrc: 'https://fonts.googleapis.com/css?family=Roboto',
-        },
-    ],
-};
-
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-
 class Stripe extends Component {
     constructor(props) {
         super(props);
@@ -303,7 +294,6 @@ class Stripe extends Component {
         return (
             <>
                 {this.props.show && (
-                    // <Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
                     <Elements stripe={stripePromise} >
                         <ElementsConsumer>
                             {({ stripe, elements }) => (

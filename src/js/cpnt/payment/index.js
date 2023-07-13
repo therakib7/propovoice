@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import Style from './style.scoped.scss'
+import './style.scoped.scss'
 
 import AppContext from 'context/app-context';
 import Preloader from 'block/preloader/table';
 import Api from 'api/payment';
-import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 
 //form
@@ -18,8 +17,6 @@ import TableBank from './table/Bank';
 import WC from './WC';
 import TablePaypal from './table/Paypal';
 import TableStripe from './table/Stripe';
-import Search from './Search';
-import Empty from 'block/empty';
 
 export default class Payment extends Component {
     constructor(props) {
@@ -90,7 +87,7 @@ export default class Payment extends Component {
                         toast.success(ndpv.i18n.aAdd);
                         this.getLists();
                     } else {
-                        resp.data.data.forEach(function (value, index, array) {
+                        resp.data.data.forEach(function (value) {
                             toast.error(value);
                         });
                     }
@@ -103,7 +100,7 @@ export default class Payment extends Component {
                         toast.success(ndpv.i18n.aUpd);
                         this.getLists();
                     } else {
-                        resp.data.data.forEach(function (value, index, array) {
+                        resp.data.data.forEach(function (value) {
                             toast.error(value);
                         });
                     }
@@ -117,7 +114,7 @@ export default class Payment extends Component {
 
             if (type == 'single') {
                 this.setState({
-                    payments: this.state.payments.filter((payment, i) => {
+                    payments: this.state.payments.filter((payment) => {
                         return payment.id !== index;
                     })
                 });
@@ -132,7 +129,7 @@ export default class Payment extends Component {
                         }
                         this.getLists();
                     } else {
-                        resp.data.data.forEach(function (value, index, array) {
+                        resp.data.data.forEach(function (value) {
                             toast.error(value);
                         });
                     }
@@ -222,7 +219,7 @@ export default class Payment extends Component {
 
     render() {
         const i18n = ndpv.i18n;
-        const { payments, title, currentTab, currentTabTitle } = this.state;
+        const { payments, currentTab, currentTabTitle } = this.state;
         return (
             <div className="ndpv-cpnt">
 

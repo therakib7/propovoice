@@ -1,20 +1,20 @@
-(function($) {
-    $(function() {
-        var modal = $( '.pv-feedback-modal' );
+(function ($) {
+    $(function () {
+        var modal = $('.pv-feedback-modal');
         var deactivateLink = '';
 
         // Open modal
-        $('#the-list').on('click', 'a.ndpv-deactivate-link', function(e) {
-            e.preventDefault(); 
+        $('#the-list').on('click', 'a.ndpv-deactivate-link', function (e) {
+            e.preventDefault();
             modal.addClass('pv-show');
-            deactivateLink = $(this).attr('href'); 
+            deactivateLink = $(this).attr('href');
         });
 
         // Close modal; Cancel
-        modal.on('click', '.pv-close', function(e) {
+        modal.on('click', '.pv-close', function (e) {
             e.preventDefault();
             modal.removeClass('pv-show');
-        }); 
+        });
 
         // Reason change
         modal.on('click', 'input[type="radio"]', function () {
@@ -23,33 +23,32 @@
 
             $('.ndpv-data-alert').show();
 
-            var val = $(this).val(); 
-            parent.next().show(); 
+            parent.next().show();
         });
 
         // Submit response
-        modal.on('click', 'button', function(e) {
+        modal.on('click', 'button', function (e) {
             e.preventDefault();
 
-            var btn = $(this); 
+            var btn = $(this);
 
-            var submit = btn.hasClass('pv-feedback-submit'); 
-            
-            if ( btn.hasClass('disabled') ) {
+            var submit = btn.hasClass('pv-feedback-submit');
+
+            if (btn.hasClass('disabled')) {
                 return;
             }
 
-            var radio = $( 'input[type="radio"]:checked', modal );
+            var radio = $('input[type="radio"]:checked', modal);
 
-            var reason_key = ( 0 === radio.length ) ? 'none' : radio.val();
- 
-            var input = $('.ndpv-feedback-text input[name="reason_'+reason_key+'"]', modal); 
+            var reason_key = (0 === radio.length) ? 'none' : radio.val();
+
+            var input = $('.ndpv-feedback-text input[name="reason_' + reason_key + '"]', modal);
 
             var data_collect = $("#ndpv-data-collect").is(':checked') ? '1' : '';
 
-            var nonce = $('.pv-form-style-one input[name="_wpnonce"]', modal).val();  
-            
-            if ( reason_key == 'none') {
+            var nonce = $('.pv-form-style-one input[name="_wpnonce"]', modal).val();
+
+            if (reason_key == 'none') {
                 window.location.href = deactivateLink;
             } else {
                 $.ajax({
@@ -61,20 +60,20 @@
                         data_collect,
                         nonce,
                         reason_key: reason_key,
-                        reason: ( 0 !== input.length ) ? input.val().trim() : ''
+                        reason: (0 !== input.length) ? input.val().trim() : ''
                     },
-                    beforeSend: function() {
+                    beforeSend: function () {
                         btn.addClass('disabled');
                         btn.text('Processing...');
                     },
-                    complete: function() {
+                    complete: function () {
                         window.location.href = deactivateLink;
                     },
-                    error: function() { // if error occured
+                    error: function () { // if error occured
                         window.location.href = deactivateLink;
                     },
                 });
             }
         });
     });
-} (jQuery));
+}(jQuery));

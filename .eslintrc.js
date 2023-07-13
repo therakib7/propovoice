@@ -28,5 +28,11 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "react/prop-types": "warn"
+    },
+    "globals": {
+        "ndpv": "readonly",
+        "wage": "readonly",
+        "jQuery": "readonly"
     }
 }
