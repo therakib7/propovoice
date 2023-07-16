@@ -190,28 +190,13 @@ class Invoice
             );
         } */
 
-        if ( $module_id ) {
-            $args["meta_query"]['relation'] = "OR";
+        if ( $module_id ) { 
             $args["meta_query"][] = [
                 [
-                    "key" => "module_id",
-                    "value" => $param["module_id"],
-                ],
-            ];
-
-            $args["meta_query"][] = [
-                [
-                    "key" => "person_id",
+                    "key" => "to",
                     "value" => $module_id,
                 ],
-            ];
-
-            $args["meta_query"][] = [
-                [
-                    "key" => "org_id",
-                    "value" => $module_id,
-                ],
-            ];
+            ]; 
         }
 
         $query = new \WP_Query($args);
