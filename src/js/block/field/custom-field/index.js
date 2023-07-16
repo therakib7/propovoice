@@ -66,9 +66,10 @@ export default (props) => {
 						form[item.slug] = new Date(form[item.slug])
 					}
 
-					if (props.type == 'new' && defaultValue) {
+					if (props.type == 'new' && defaultValue && item.value) {
 						form[item.slug] = item.value;
 					}
+
 					return (
 						<div key={i} className="row">
 							<div className="col">
@@ -109,13 +110,16 @@ export default (props) => {
 								</div>}
 
 								{item.type === 'date' &&
-									<DateField
-										id={'custom-field-' + i}
-										date={form[item.slug]}
-										type="date"
-										name={item.slug}
-										onDateChange={(val) => handleDateChange(val, item.slug)}
-									/>
+									<div className="pv-field-date">
+										<DateField
+											key={form[item.slug]}
+											id={'custom-field-' + i}
+											date={form[item.slug]}
+											type="date"
+											name={item.slug}
+											onDateChange={(val) => handleDateChange(val, item.slug)}
+										/>
+									</div>
 								}
 								{item.desc && <p className='pv-field-desc'>{item.desc}</p>}
 							</div>

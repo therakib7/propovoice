@@ -62,9 +62,7 @@ export default class Form extends Component {
     }
 
     handleCFChange = (e) => {
-
         const { name, value } = e.target;
-
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
