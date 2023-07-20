@@ -9,6 +9,7 @@ import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
 import api from 'api';
+import Input from 'block/input';
 
 export default class Form extends Component {
     constructor(props) {
@@ -251,11 +252,24 @@ export default class Form extends Component {
         this.setState({ form })
     }
 
+
     render() {
 
         const form = this.state.form;
         const i18n = ndpv.i18n;
 
+        const emailInput = {
+            label: ndpv.i18n.email,
+            type: "email",
+            id: "form-email",
+            name: "email",
+            value: form.email,
+            wrapperClassName: "col-lg",
+            handleChange: this.handleChange,
+            validation: {
+                required: true
+            }
+        };
         const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
         return (
             <div className="pv-overlay pv-show">
@@ -279,19 +293,7 @@ export default class Form extends Component {
                                 />
 
                                 <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-email">
-                                            {i18n.email}
-                                        </label>
-                                        <input
-                                            id="form-email"
-                                            type="email"
-                                            required
-                                            name="email"
-                                            value={form.email}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
+                                    <Input  {...emailInput} />
 
                                     <div className="col-lg">
                                         <label htmlFor="form-mobile">
