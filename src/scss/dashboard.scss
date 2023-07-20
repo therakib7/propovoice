@@ -410,3 +410,14 @@ input:-webkit-autofill:active {
         height: auto;
     }
 }
+.ndpv {
+    .pv-preloader.pv-preloader-submit {
+        padding: 0;
+    }
+    .pv-preloader.pv-preloader-submit:before {
+        width: 25px;
+        height: 25px;
+        left: -20px;
+        top: 2px;
+    }
+}

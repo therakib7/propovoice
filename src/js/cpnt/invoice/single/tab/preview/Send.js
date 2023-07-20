@@ -6,6 +6,7 @@ import moment from 'moment';
 import ProLabel from 'block/pro-alert/label';
 import pro from 'block/pro-alert';
 import { Add } from 'block/icon';
+import Preloader from "block/preloader/spinner";
 
 import api from 'api';
 export default class Send extends Component {
@@ -13,6 +14,7 @@ export default class Send extends Component {
         super(props);
 
         this.state = {
+            submitPreloader: false,
             form: {
                 invoice_id: null,
                 path: '',
@@ -149,7 +151,10 @@ export default class Send extends Component {
         let form = { ...this.state.form }
         form.type = 'sent';
 
+        this.setState({ submitPreloader: true });
+
         api.add('emails', form).then(resp => {
+            this.setState({ submitPreloader: false });
             if (resp.data.success) {
                 toast.success(ndpv.i18n.aMail);
                 this.props.close();
@@ -166,6 +171,7 @@ export default class Send extends Component {
         let path = this.props.path;
         let path_title = path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est;
         const i18n = ndpv.i18n;
+        const { submitPreloader, form } = this.state;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -192,7 +198,7 @@ export default class Send extends Component {
                                             required
                                             readOnly
                                             name="name"
-                                            value={this.state.form.toData.name}
+                                            value={form.toData.name}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -208,7 +214,7 @@ export default class Send extends Component {
                                             required
                                             readOnly
                                             name="email"
-                                            value={this.state.form.toData.email}
+                                            value={form.toData.email}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -224,7 +230,7 @@ export default class Send extends Component {
                                             type="text"
                                             required
                                             name="subject"
-                                            value={this.state.form.subject}
+                                            value={form.subject}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -238,7 +244,7 @@ export default class Send extends Component {
                                             id="form-msg"
                                             rows={8}
                                             name="msg"
-                                            value={this.state.form.msg}
+                                            value={form.msg}
                                             onChange={this.handleChange}
                                         />
                                     </div>
@@ -252,8 +258,8 @@ export default class Send extends Component {
                                     <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.send} {i18n.email}
+                                    <button type='submit' disabled={submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+                                        {submitPreloader && <Preloader submit />} {i18n.send} {i18n.email}
                                     </button>
                                 </div>
                             </div>

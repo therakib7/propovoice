@@ -21,6 +21,7 @@ const HOC = (Inner, mod, title, modPlural = '', pro = false) => {
                 title: title, //capitalize
                 // title: mod.charAt(0).toUpperCase() + mod.slice(1), //capitalize
                 empty: false,
+                submitPreloader: false,
                 preloader: true,
                 formModal: false,
                 searchModal: false,
@@ -119,28 +120,32 @@ const HOC = (Inner, mod, title, modPlural = '', pro = false) => {
                 type = newType;
             }
 
+            this.setState({ submitPreloader: true });
+
             if (type == 'new') {
 
                 axios.post(url, list, token).then(resp => {
                     if (resp.data.success) {
-                        this.setState({ formModal: false })
+                        this.setState({ formModal: false, submitPreloader: false })
                         toast.success(ndpv.i18n.aAdd);
                         this.getLists(args);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
+                            this.setState({ submitPreloader: false });
                         });
                     }
                 })
             } else {
                 axios.put(`${url}/${list.id}`, list, token).then(resp => {
                     if (resp.data.success) {
-                        this.setState({ formModal: false })
+                        this.setState({ formModal: false, submitPreloader: false })
                         toast.success(ndpv.i18n.aUpd);
                         this.getLists(args);
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
                             toast.error(value);
+                            this.setState({ submitPreloader: false });
                         });
                     }
                 })

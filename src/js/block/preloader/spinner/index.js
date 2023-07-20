@@ -1,6 +1,6 @@
 const Snipper = props => {
   return (
-    <div className="pv-preloader"></div>
+    <div className={(props.submit) ? "pv-preloader pv-preloader-submit" : "pv-preloader"}></div>
   )
 }
 export default Snipper

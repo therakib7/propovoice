@@ -8,6 +8,7 @@ import Taxonomy from 'block/field/taxonomy';
 import Currency from 'block/field/currency';
 
 import CustomField from 'block/field/custom-field';
+import Preloader from "block/preloader/spinner";
 
 const DateField = lazy(() => import('block/date-picker'));
 
@@ -54,6 +55,7 @@ class Form extends Component {
             }
         }
         this.state = {
+            submitPreloader: false,
             form: this.initialState,
             custom_field: false,
             stages: [],
@@ -174,7 +176,9 @@ class Form extends Component {
         if (isClient) {
             form.project_req = true;
 
+            this.setState({ submitPreloader: true });
             api.add('deals', form).then(resp => {
+                this.setState({ submitPreloader: false });
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aAdd);
                     this.props.close();
@@ -188,9 +192,10 @@ class Form extends Component {
         }
 
         if (this.props.reload) {
-
+            this.setState({ submitPreloader: true });
             if (this.props.modalType == 'move') {
                 api.add('projects', form).then(resp => {
+                    this.setState({ submitPreloader: false });
                     if (resp.data.success) {
                         toast.success(ndpv.i18n.aProM);
                         let id = resp.data.data;
@@ -205,9 +210,17 @@ class Form extends Component {
                 });
 
             } else {
-                api.edit('projects', form.id, form);
-                this.props.close();
-                this.props.reload();
+                api.edit('projects', form.id, form).then(resp => {
+                    this.setState({ submitPreloader: false });
+                    if (resp.data.success) {
+                        this.props.close();
+                        this.props.reload();
+                    } else {
+                        resp.data.data.forEach(function (value, index, array) {
+                            toast.error(value);
+                        });
+                    }
+                });
             }
         } else {
             this.props.handleSubmit(form);
@@ -277,8 +290,6 @@ class Form extends Component {
 
     render() {
 
-        // const stageList = this.state.stages;
-        // const tagList = this.state.tags;
         const form = this.state.form;
 
         let title = '';
@@ -289,6 +300,8 @@ class Form extends Component {
         } else if (this.props.modalType == 'move') {
             title = i18n.moveto
         }
+
+        const submitPreloader = (isClient || this.props.reload) ? this.state.submitPreloader : this.props.submitPreloader;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -483,8 +496,8 @@ class Form extends Component {
                                     <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {isClient ? i18n.req : i18n.save}
+                                    <button type='submit' disabled={submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+                                        {submitPreloader && <Preloader submit />} {isClient ? i18n.req : i18n.save}
                                     </button>
                                 </div>
                             </div>
