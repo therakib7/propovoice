@@ -27,6 +27,8 @@ const Dropdown = (props) => {
 
 
   useEffect(() => {
+    if (wage.length) return;
+
     count_new_notifications();
     if (dropdown && countNew > 0) {
       markAsOld();
