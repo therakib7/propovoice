@@ -9,6 +9,7 @@ import Currency from 'block/field/currency';
 
 import CustomField from 'block/field/custom-field';
 import Preloader from "block/preloader/spinner";
+import { checkRoute } from 'helper';
 
 const DateField = lazy(() => import('block/date-picker'));
 
@@ -201,6 +202,7 @@ class Form extends Component {
                         let id = resp.data.data;
                         this.props.close();
                         this.props.navigate(`/project/${id}`);
+                        checkRoute();
                         this.props.reload();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {

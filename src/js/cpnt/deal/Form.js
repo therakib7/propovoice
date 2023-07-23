@@ -11,6 +11,7 @@ import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
 import Preloader from "block/preloader/spinner";
 import { sprintf } from 'sprintf-js';
+import { checkRoute } from 'helper';
 
 class Form extends Component {
     constructor(props) {
@@ -190,6 +191,7 @@ class Form extends Component {
                         let id = resp.data.data;
                         this.props.close();
                         this.props.navigate(`/deal/${id}`);
+                        checkRoute();
                         this.props.reload();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
