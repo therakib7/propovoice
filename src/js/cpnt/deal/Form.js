@@ -70,7 +70,7 @@ class Form extends Component {
     }
 
     editData = () => {
-        //condition added to stop multi rendering 
+        //condition added to stop multi rendering
         if (this.props.modalType == 'edit' || this.props.modalType == 'move') {
             if (this.state.form.id != this.props.data.id) {
 
