@@ -1,57 +1,41 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
 
-const Text = (props) => {
-    const data = props.data;
+export function FormWrapper({ submitHandler, close, children }) {
     return (
-        <>
-            <label htmlFor={'form' + data.id}>{data.label}</label>
-            <input
-                id={'form' + data.id}
-                type='text'
-                name={data.id}
-            />
-        </>
+
+        <form onSubmit={submitHandler} >
+            {children}
+            <FormFooter close={close} />
+        </form>
     );
 }
 
-export default (props) => {
-
-    // const data = props.data;
-    const data = [
-        {
-            id: 'name',
-            type: 'text',
-            label: 'Name',
-            placeholder: '',
-            desc: '',
-        },
-        {
-            id: 'email',
-            type: 'email',
-            label: 'Email',
-            placeholder: '',
-            desc: '',
-        },
-    ];
+export function FormContent({ formStyleClass, children }) {
     return (
-        <form className="pv-form-style-one">
+        <div className="pv-content">
+            <div className={formStyleClass}>
+                {children}
+            </div>
+        </div>
+    );
 
-            {data && data.map((item, i) => {
-                let field = '';
-                switch (item.type) {
-                    case 'text':
-                        field = <Text data={item} />
-                        break;
+}
 
-                    case 'number':
+export function FormFooter({ close }) {
+    const i18n = ndpv.i18n;
+    return (
+        <div className="pv-modal-footer">
+            <div className="row">
+                <div className="col">
+                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => close()}>{i18n.cancel}</button>
+                </div>
+                <div className="col">
+                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+                        {i18n.save}
+                    </button>
+                </div>
+            </div>
+        </div>
 
-                        break;
-
-                    default:
-                        break;
-                }
-                return field;
-            })}
-        </form>
     );
 }
