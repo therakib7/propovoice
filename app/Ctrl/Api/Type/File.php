@@ -11,18 +11,6 @@ class File
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/files", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
 
         register_rest_route("ndpv/v1", "/files/(?P<id>\d+)", [
             "methods" => "GET",
@@ -34,6 +22,19 @@ class File
                         return is_numeric($param);
                     },
                 ],
+            ],
+        ]);
+
+        register_rest_route("ndpv/v1", "/files" . ndpv()->plain_route(), [
+            [
+                "methods" => "GET",
+                "callback" => [$this, "get"],
+                "permission_callback" => [$this, "get_per"],
+            ],
+            [
+                "methods" => "POST",
+                "callback" => [$this, "create"],
+                "permission_callback" => [$this, "create_per"],
             ],
         ]);
 

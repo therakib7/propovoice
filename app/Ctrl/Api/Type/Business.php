@@ -10,19 +10,6 @@ class Business
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/businesses", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
-
         register_rest_route("ndpv/v1", "/businesses/(?P<id>\d+)", [
             "methods" => "GET",
             "callback" => [$this, "get_single"],
@@ -33,6 +20,19 @@ class Business
                         return is_numeric($param);
                     },
                 ],
+            ],
+        ]);
+        
+        register_rest_route("ndpv/v1", "/businesses" . ndpv()->plain_route(), [
+            [
+                "methods" => "GET",
+                "callback" => [$this, "get"],
+                "permission_callback" => [$this, "get_per"],
+            ],
+            [
+                "methods" => "POST",
+                "callback" => [$this, "create"],
+                "permission_callback" => [$this, "create_per"],
             ],
         ]);
 

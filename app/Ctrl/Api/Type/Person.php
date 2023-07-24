@@ -14,18 +14,6 @@ class Person
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/persons", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
 
         register_rest_route("ndpv/v1", "/persons/(?P<id>\d+)", [
             "methods" => "GET",
@@ -37,6 +25,19 @@ class Person
                         return is_numeric($param);
                     },
                 ],
+            ],
+        ]);
+
+        register_rest_route("ndpv/v1", "/persons". ndpv()->plain_route(), [
+            [
+                "methods" => "GET",
+                "callback" => [$this, "get"],
+                "permission_callback" => [$this, "get_per"],
+            ],
+            [
+                "methods" => "POST",
+                "callback" => [$this, "create"],
+                "permission_callback" => [$this, "create_per"],
             ],
         ]);
 

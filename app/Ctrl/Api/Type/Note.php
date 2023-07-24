@@ -10,19 +10,6 @@ class Note
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/notes", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
-
         register_rest_route("ndpv/v1", "/notes/(?P<id>\d+)", [
             "methods" => "GET",
             "callback" => [$this, "get_single"],
@@ -33,6 +20,19 @@ class Note
                         return is_numeric($param);
                     },
                 ],
+            ],
+        ]);
+        
+        register_rest_route("ndpv/v1", "/notes" . ndpv()->plain_route(), [
+            [
+                "methods" => "GET",
+                "callback" => [$this, "get"],
+                "permission_callback" => [$this, "get_per"],
+            ],
+            [
+                "methods" => "POST",
+                "callback" => [$this, "create"],
+                "permission_callback" => [$this, "create_per"],
             ],
         ]);
 

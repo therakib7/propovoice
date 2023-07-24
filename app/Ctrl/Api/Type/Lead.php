@@ -31,9 +31,7 @@ class Lead
             ],
         ]);
 
-        $plain_permalink = false ? '/(?P<args>.*)' : '';
-
-        register_rest_route("ndpv/v1", "/leads" . $plain_permalink, [
+        register_rest_route("ndpv/v1", "/leads" . ndpv()->plain_route(), [
             [
                 "methods" => "GET",
                 "callback" => [$this, "get"],
@@ -45,7 +43,6 @@ class Lead
                 "permission_callback" => [$this, "create_per"],
             ],
         ]);
- 
 
         register_rest_route("ndpv/v1", "/leads/(?P<id>\d+)", [
             "methods" => "PUT",

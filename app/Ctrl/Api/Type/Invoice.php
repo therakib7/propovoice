@@ -14,19 +14,6 @@ class Invoice
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/invoices", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
-
         register_rest_route("ndpv/v1", "/invoices/(?P<id>\d+)", [
             "methods" => "GET",
             "callback" => [$this, "get_single"],
@@ -37,6 +24,19 @@ class Invoice
                         return is_numeric($param);
                     },
                 ],
+            ],
+        ]);
+        
+        register_rest_route("ndpv/v1", "/invoices" . ndpv()->plain_route(), [
+            [
+                "methods" => "GET",
+                "callback" => [$this, "get"],
+                "permission_callback" => [$this, "get_per"],
+            ],
+            [
+                "methods" => "POST",
+                "callback" => [$this, "create"],
+                "permission_callback" => [$this, "create_per"],
             ],
         ]);
 

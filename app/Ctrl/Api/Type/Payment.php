@@ -10,18 +10,6 @@ class Payment
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/payments", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
 
         register_rest_route("ndpv/v1", "/payments/(?P<id>\d+)", [
             "methods" => "GET",
@@ -33,6 +21,19 @@ class Payment
                         return is_numeric($param);
                     },
                 ],
+            ],
+        ]);
+
+        register_rest_route("ndpv/v1", "/payments" . ndpv()->plain_route(), [
+            [
+                "methods" => "GET",
+                "callback" => [$this, "get"],
+                "permission_callback" => [$this, "get_per"],
+            ],
+            [
+                "methods" => "POST",
+                "callback" => [$this, "create"],
+                "permission_callback" => [$this, "create_per"],
             ],
         ]);
 
