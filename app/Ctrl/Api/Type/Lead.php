@@ -45,7 +45,6 @@ class Lead
                 "permission_callback" => [$this, "create_per"],
             ],
         ]);
- 
 
         register_rest_route("ndpv/v1", "/leads/(?P<id>\d+)", [
             "methods" => "PUT",

@@ -397,7 +397,7 @@ class I18n
             // custom field
             "opt" => esc_html__("Option", "propovoice"), 
             "optList" => esc_html__("Option list", "propovoice"), 
-            "optDef" => esc_html__("Option default", "propovoice"), 
+            "optDef" => esc_html__("Default options", "propovoice"), 
         ];
     }
 }
