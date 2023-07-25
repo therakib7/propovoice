@@ -41,7 +41,8 @@ const Dropdown = (props) => {
     return () => {
       clearInterval(interval);
     };
-  }, [dropdown, countNew]);
+  }, []);
+  // }, [dropdown, countNew]);
 
 
   const count_new_notifications = () => {
