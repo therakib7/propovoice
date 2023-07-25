@@ -1,7 +1,7 @@
-import React, { Component, lazy } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import Upload from 'block/field/upload';
 import Currency from 'block/field/currency';
@@ -9,454 +9,446 @@ import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
 import api from 'api';
-import Input from 'block/input';
-import { FormWrapper, FormContent, FormFooter } from '../../block/form';
+import { TextInput } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
-export default class Form extends Component {
-    constructor(props) {
-        super(props);
+const Form = (props) => {
+    const initialState = {
+        id: null,
+        first_name: '',
+        org_name: '',
+        person_id: null,
+        org_id: null,
+        email: '',
+        mobile: '',
+        web: '',
+        source_id: '', //tax
+        level_id: '', //tax
+        tags: [], //tax
+        budget: '',
+        currency: 'USD',
+        desc: '',
+        note: '',
+        country: '',
+        region: '',
+        address: '',
+        img: '',
+        date: false,
+    };
 
-        this.initialState = {
-            id: null,
-            first_name: '',
-            org_name: '',
-            person_id: null,
-            org_id: null,
-            email: '',
-            mobile: '',
-            web: '',
-            source_id: '', //tax
-            level_id: '', //tax
-            tags: [], //tax
-            budget: '',
-            currency: 'USD',
-            desc: '',
-            note: '',
-            country: '',
-            region: '',
-            address: '',
-            img: '',
-            date: false,
-        };
+    const [form, setForm] = useState(initialState);
+    const [custom_field, setCustomField] = useState(false);
+    const [levels, setLevels] = useState([]);
+    const [tags, setTags] = useState([]);
+    const [personList, setPersonList] = useState([]);
+    const [orgList, setOrgList] = useState([]);
 
-        this.state = {
-            form: this.initialState,
-            custom_field: false,
-            levels: [],
-            tags: [],
-            personList: [],
-            orgList: [],
-        };
-    }
-
-    handleChange = (e, type) => {
-
-        const { name, value } = e.target;
-
-        if (type == 'contact') {
-            let contact = { ...this.state.form.contact, [name]: value };
-            let form = { ...this.state.form }
-            form.contact = contact;
-            this.setState({ form });
-        } else {
-            this.setState({ form: { ...this.state.form, [name]: value } });
-        }
-    }
-
-    handleCFChange = (e) => {
-        const { name, value } = e.target;
-        this.setState({ form: { ...this.state.form, [name]: value } });
-    }
-
-    componentDidMount() {
-        //custom fields
-        if (this.props.custom_field) {
+    useEffect(() => {
+        // custom fields
+        if (props.custom_field) {
             let obj = {};
-            this.props.custom_field.map((item, i) => {
+            props.custom_field.forEach((item) => {
                 obj[item.slug] = '';
             });
-            const merge_obj = { ...this.state.form, ...obj };
-            this.setState({ form: merge_obj, custom_field: true });
+            const merge_obj = { ...form, ...obj };
+            setForm(merge_obj);
+            setCustomField(true);
         }
 
-        //find person
+        // find person and organization lists
         let args = {
             page: 1,
-            per_page: 10
-        }
+            per_page: 10,
+        };
         let params = new URLSearchParams(args).toString();
 
-        api.get('persons', params).then(resp => {
+        api.get('persons', params).then((resp) => {
             if (resp.data.success) {
                 let personList = resp.data.data.result;
-                this.setState({ personList });
+                setPersonList(personList);
             }
         });
 
-        api.get('organizations', params).then(resp => {
+        api.get('organizations', params).then((resp) => {
             if (resp.data.success) {
                 let orgList = resp.data.data.result;
-                this.setState({ orgList });
+                setOrgList(orgList);
             }
         });
 
-        //added this multi place, because not working in invoice single
-        this.editData();
-    }
+        // added multi place, because not working in invoice single
+        editData();
+    }, []);
 
-    componentDidUpdate() {
-        this.editData();
-    }
+    useEffect(() => {
+        editData();
+    }, [props.modalType, form.id]);
 
-    editData = () => {
-        //condition added to stop multi rendering
-        if (this.props.modalType == 'edit') {
-            if (this.state.form.id != this.props.data.id) {
-                let form = this.props.data;
-                form.first_name = (form.person) ? form.person.first_name : '';
-                if (form.person) {
-                    form.person_id = (form.person) ? form.person.id : null;
-                    form.email = (form.person) ? form.person.email : '';
-                    form.mobile = (form.person) ? form.person.mobile : '';
-                    form.web = (form.person) ? form.person.web : '';
-                    form.country = (form.person) ? form.person.country : '';
-                    form.region = (form.person) ? form.person.region : '';
-                    form.address = (form.person) ? form.person.address : '';
-                    form.img = (form.person) ? form.person.img : '';
+    const handleChange = (e, type) => {
+        const { name, value } = e.target;
+        if (type === 'contact') {
+            let contact = { ...form.contact, [name]: value };
+            let updatedForm = { ...form, contact };
+            setForm(updatedForm);
+        } else {
+            setForm({ ...form, [name]: value });
+        }
+    };
+
+    const handleCFChange = (e) => {
+        const { name, value } = e.target;
+        setForm({ ...form, [name]: value });
+    };
+
+    const editData = () => {
+        // condition added to stop multi rendering
+        if (props.modalType === 'edit') {
+            if (form.id !== props.data.id) {
+                let updatedForm = { ...props.data };
+                updatedForm.first_name = updatedForm.person ? updatedForm.person.first_name : '';
+                if (updatedForm.person) {
+                    updatedForm.person_id = updatedForm.person ? updatedForm.person.id : null;
+                    updatedForm.email = updatedForm.person ? updatedForm.person.email : '';
+                    updatedForm.mobile = updatedForm.person ? updatedForm.person.mobile : '';
+                    updatedForm.web = updatedForm.person ? updatedForm.person.web : '';
+                    updatedForm.country = updatedForm.person ? updatedForm.person.country : '';
+                    updatedForm.region = updatedForm.person ? updatedForm.person.region : '';
+                    updatedForm.address = updatedForm.person ? updatedForm.person.address : '';
+                    updatedForm.img = updatedForm.person ? updatedForm.person.img : '';
                 } else {
-                    form.email = (form.org) ? form.org.email : '';
-                    form.mobile = (form.org) ? form.org.mobile : '';
-                    form.web = (form.org) ? form.org.web : '';
-                    form.country = (form.org) ? form.org.country : '';
-                    form.region = (form.org) ? form.org.region : '';
-                    form.address = (form.org) ? form.org.address : '';
-                    form.img = (form.org) ? form.org.img : '';
+                    updatedForm.email = updatedForm.org ? updatedForm.org.email : '';
+                    updatedForm.mobile = updatedForm.org ? updatedForm.org.mobile : '';
+                    updatedForm.web = updatedForm.org ? updatedForm.org.web : '';
+                    updatedForm.country = updatedForm.org ? updatedForm.org.country : '';
+                    updatedForm.region = updatedForm.org ? updatedForm.org.region : '';
+                    updatedForm.address = updatedForm.org ? updatedForm.org.address : '';
+                    updatedForm.img = updatedForm.org ? updatedForm.org.img : '';
                 }
-                form.org_name = (form.org) ? form.org.name : '';
+                updatedForm.org_name = updatedForm.org ? updatedForm.org.name : '';
 
-                if (form.org) {
-                    form.org_id = (form.org) ? form.org.id : null;
+                if (updatedForm.org) {
+                    updatedForm.org_id = updatedForm.org ? updatedForm.org.id : null;
                 }
-                this.setState({ form });
+                setForm(updatedForm);
             }
         } else {
-            if (this.state.form.id != null) {
-                this.setState({ form: this.initialState });
+            if (form.id !== null) {
+                setForm(initialState);
             }
         }
-    }
+    };
 
-    currencyChange = val => {
-        this.setState({ form: { ...this.state.form, ['currency']: val } });
-    }
+    const currencyChange = (val) => {
+        setForm({ ...form, currency: val });
+    };
 
-    handleLevelChange = val => {
-        this.setState({ form: { ...this.state.form, ['level_id']: val } });
-    }
+    const handleLevelChange = (val) => {
+        setForm({ ...form, level_id: val });
+    };
 
-    handleTagChange = val => {
-        this.setState({ form: { ...this.state.form, ['tags']: val } });
-    }
+    const handleTagChange = (val) => {
+        setForm({ ...form, tags: val });
+    };
 
-    selectCountry(val) {
-        this.setState({ form: { ...this.state.form, ['country']: val } });
-    }
+    const selectCountry = (val) => {
+        setForm({ ...form, country: val });
+    };
 
-    selectRegion(val) {
-        this.setState({ form: { ...this.state.form, ['region']: val } });
-    }
+    const selectRegion = (val) => {
+        setForm({ ...form, region: val });
+    };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        let form = { ...this.state.form }
-
-        if (form.level_id) {
-            form.level_id = form.level_id.id;
+    const onSubmit = (e) => {
+        let updatedForm = { ...form };
+        console.log(updatedForm);
+        if (updatedForm.level_id) {
+            updatedForm.level_id = updatedForm.level_id.id;
         }
 
-        if (form.img) {
-            form.img = form.img.id;
+        if (updatedForm.img) {
+            updatedForm.img = updatedForm.img.id;
         }
 
-        if (form.tags.length) {
-            let finalArray = form.tags.map(function (obj) {
+        if (updatedForm.tags.length) {
+            let finalArray = updatedForm.tags.map(function (obj) {
                 return obj.id;
             });
-            form.tags = finalArray;
+            updatedForm.tags = finalArray;
         }
 
-        delete form.person;
-        delete form.org;
+        delete updatedForm.person;
+        delete updatedForm.org;
 
-        if (this.props.reload) {
-            api.edit('leads', form.id, form);
-            this.props.close();
+        if (props.reload) {
+            api.edit('leads', updatedForm.id, updatedForm);
+            props.close();
             toast.success(ndpv.i18n.aUpd);
-            this.props.reload();
+            props.reload();
         } else {
-            this.props.handleSubmit(form);
+            props.handleSubmit(updatedForm);
         }
-    }
+    };
 
-    handleContactChange = (val, type) => {
-        let form = { ...this.state.form }
-        if (type == 'person') {
-            form.first_name = val;
+    const handleContactChange = (val, type) => {
+        let updatedForm = { ...form };
+        if (type === 'person') {
+            updatedForm.first_name = val;
         } else {
-            form.org_name = val;
+            updatedForm.org_name = val;
         }
-        this.setState({ form });
-    }
+        setForm(updatedForm);
+    };
 
-    handleContactSelect = (val, type) => {
-        let form = { ...this.state.form }
+    const handleContactSelect = (val, type) => {
+        let updatedForm = { ...form };
         if (!val) {
-            if (type == 'person') {
-                form.person_id = null;
+            if (type === 'person') {
+                updatedForm.person_id = null;
             } else {
-                form.org_id = null;
+                updatedForm.org_id = null;
             }
-            this.setState({ form });
+            setForm(updatedForm);
             return;
-        };
+        }
 
-        if (type == 'person') {
-            form.first_name = val.first_name;
-            form.person_id = (val) ? val.id : null;
-            form.email = (val) ? val.email : '';
-            form.mobile = (val) ? val.mobile : '';
-            form.web = (val) ? val.web : '';
-            form.country = (val) ? val.country : '';
-            form.region = (val) ? val.region : '';
-            form.address = (val) ? val.address : '';
-            form.img = (val) ? val.img : '';
+        if (type === 'person') {
+            updatedForm.first_name = val.first_name;
+            updatedForm.person_id = val ? val.id : null;
+            updatedForm.email = val ? val.email : '';
+            updatedForm.mobile = val ? val.mobile : '';
+            updatedForm.web = val ? val.web : '';
+            updatedForm.country = val ? val.country : '';
+            updatedForm.region = val ? val.region : '';
+            updatedForm.address = val ? val.address : '';
+            updatedForm.img = val ? val.img : '';
         } else {
-            form.org_name = val.name;
-            form.org_id = (val) ? val.id : null;
-            if (!form.first_name) {
-                form.email = (val) ? val.email : '';
-                form.mobile = (val) ? val.mobile : '';
-                form.web = (val) ? val.web : '';
-                form.country = (val) ? val.country : '';
-                form.region = (val) ? val.region : '';
-                form.address = (val) ? val.address : '';
-                form.img = (val) ? val.img : '';
+            updatedForm.org_name = val.name;
+            updatedForm.org_id = val ? val.id : null;
+            if (!updatedForm.first_name) {
+                updatedForm.email = val ? val.email : '';
+                updatedForm.mobile = val ? val.mobile : '';
+                updatedForm.web = val ? val.web : '';
+                updatedForm.country = val ? val.country : '';
+                updatedForm.region = val ? val.region : '';
+                updatedForm.address = val ? val.address : '';
+                updatedForm.img = val ? val.img : '';
             }
         }
 
-        this.setState({ form });
-    }
+        setForm(updatedForm);
+    };
 
-    handleImgChange = (data, type = null) => {
-        let form = { ...this.state.form }
-        form.img = data;
-        this.setState({ form })
-    }
+    const handleImgChange = (data, type = null) => {
+        let updatedForm = { ...form };
+        updatedForm.img = data;
+        setForm(updatedForm);
+    };
 
+    const i18n = ndpv.i18n;
 
-    render() {
+    const emailInput = {
+        label: ndpv.i18n.email,
+        type: 'email',
+        id: 'form-email',
+        name: 'email',
+        value: form.email,
+        wrapperClassName: 'col-lg',
+        onChange: handleChange,
+        validation: {
+            required: {
+                value: true,
+                message: "Email Required"
+            },
+        },
+    };
 
-        const form = this.state.form;
-        const i18n = ndpv.i18n;
+    const modalType = props.modalType === 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
 
-        const emailInput = {
-            label: ndpv.i18n.email,
-            type: "email",
-            id: "form-email",
-            name: "email",
-            value: form.email,
-            wrapperClassName: "col-lg",
-            handleChange: this.handleChange,
-            validation: {
-                required: true
-            }
-        };
-        const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
-        return (
-            <div className="pv-overlay pv-show">
-                <div className="pv-modal-content">
+    return (
+        <div className="pv-overlay pv-show">
+            <div className="pv-modal-content">
 
-                    <div className="pv-modal-header pv-gradient">
-                        <span className="pv-close" onClick={() => this.props.close()}>
-                            <Add />
-                        </span>
-                        <h2 className="pv-modal-title">{modalType} {i18n.lead}</h2>
-                        <p>{sprintf(i18n.formDesc, modalType, i18n.lead)}</p>
-                    </div>
-
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
-                        <FormContent formStyleClass="pv-form-style-one">
-
-                            <Contact
-                                first_name={form.first_name}
-                                org_name={form.org_name}
-                                onChange={this.handleContactChange}
-                                onSelect={this.handleContactSelect}
-                            />
-
-                            <div className="row">
-                                <Input  {...emailInput} />
-
-                                <div className="col-lg">
-                                    <label htmlFor="form-mobile">
-                                        {i18n.mob}
-                                    </label>
-
-                                    <input
-                                        id="form-mobile"
-                                        type="text"
-                                        name="mobile"
-                                        value={form.mobile}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <label htmlFor="form-country">
-                                        {i18n.country}
-                                    </label>
-
-                                    <CountryDropdown
-                                        value={form.country}
-                                        valueType='short'
-                                        onChange={(val) => this.selectCountry(val)}
-                                    />
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label htmlFor="form-region">
-                                        {i18n.region}
-                                    </label>
-
-                                    <RegionDropdown
-                                        country={form.country}
-                                        countryValueType='short'
-                                        value={form.region}
-                                        onChange={(val) => this.selectRegion(val)}
-                                    />
-                                </div>
-
-                            </div>
-
-                            <div className="row">
-                                <div className="col">
-                                    <label htmlFor="form-address">
-                                        {i18n.addr}
-                                    </label>
-
-                                    <input
-                                        id="form-address"
-                                        type="text"
-                                        name="address"
-                                        value={form.address}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-md">
-                                    <label htmlFor="field-budget">
-                                        {i18n.budget}
-                                    </label>
-
-                                    <input
-                                        id="field-budget"
-                                        type="number"
-                                        name="budget"
-                                        value={form.budget}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-
-                                <div className="col-md">
-                                    <label htmlFor="field-currency">
-                                        {i18n.cur}
-                                    </label>
-                                    <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-md">
-                                    <label htmlFor="field-level_id">
-                                        {i18n.level}
-                                    </label>
-                                    <Taxonomy
-                                        data={form.level_id}
-                                        // list={levelList}
-                                        taxonomy='lead_level'
-                                        title={i18n.level}
-                                        onChange={this.handleLevelChange}
-                                        color
-                                    />
-                                </div>
-
-                                <div className="col-md">
-                                    <label htmlFor="field-tags">
-                                        {i18n.tag}
-                                    </label>
-
-                                    <div className="pi-field-multi">
-                                        <Taxonomy
-                                            onChange={this.handleTagChange}
-                                            data={form.tags}
-                                            taxonomy='tag'
-                                            title={i18n.tag}
-                                            multi
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col">
-                                    <label htmlFor="form-desc">
-                                        {i18n.desc}
-                                    </label>
-
-                                    <textarea
-                                        id="form-desc"
-                                        type="text"
-                                        name="desc"
-                                        value={form.desc}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col">
-                                    <label htmlFor="form-note">
-                                        {i18n.note}
-                                    </label>
-
-                                    <textarea
-                                        id="form-note"
-                                        type="text"
-                                        name="note"
-                                        value={form.note}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col">
-                                    <label htmlFor="field-img">
-                                        {i18n.img}
-                                    </label>
-                                    <Upload data={form.img} changeHandler={this.handleImgChange} />
-                                </div>
-                            </div>
-
-                            {this.state.custom_field && <CustomField mod='lead' type={this.props.modalType} form={form} onChange={this.handleCFChange} />}
-                        </FormContent>
-                    </FormWrapper>
+                <div className="pv-modal-header pv-gradient">
+                    <span className="pv-close" onClick={() => props.close()}>
+                        <Add />
+                    </span>
+                    <h2 className="pv-modal-title">{modalType} {i18n.lead}</h2>
+                    <p>{sprintf(i18n.formDesc, modalType, i18n.lead)}</p>
                 </div>
+
+                <FormWrapper submitHandler={onSubmit} close={props.close}>
+                    <FormContent formStyleClass="pv-form-style-one">
+
+                        <Contact
+                            first_name={form.first_name}
+                            org_name={form.org_name}
+                            onChange={handleContactChange}
+                            onSelect={handleContactSelect}
+                        />
+
+                        <div className="row">
+                            <TextInput  {...emailInput} />
+
+                            <div className="col-lg">
+                                <label htmlFor="form-mobile">
+                                    {i18n.mob}
+                                </label>
+
+                                <input
+                                    id="form-mobile"
+                                    type="text"
+                                    name="mobile"
+                                    value={form.mobile}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-md-6">
+                                <label htmlFor="form-country">
+                                    {i18n.country}
+                                </label>
+
+                                <CountryDropdown
+                                    value={form.country}
+                                    valueType='short'
+                                    onChange={(val) => selectCountry(val)}
+                                />
+                            </div>
+
+                            <div className="col-md-6">
+                                <label htmlFor="form-region">
+                                    {i18n.region}
+                                </label>
+
+                                <RegionDropdown
+                                    country={form.country}
+                                    countryValueType='short'
+                                    value={form.region}
+                                    onChange={(val) => selectRegion(val)}
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <label htmlFor="form-address">
+                                    {i18n.addr}
+                                </label>
+
+                                <input
+                                    id="form-address"
+                                    type="text"
+                                    name="address"
+                                    value={form.address}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-md">
+                                <label htmlFor="field-budget">
+                                    {i18n.budget}
+                                </label>
+
+                                <input
+                                    id="field-budget"
+                                    type="number"
+                                    name="budget"
+                                    value={form.budget}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            <div className="col-md">
+                                <label htmlFor="field-currency">
+                                    {i18n.cur}
+                                </label>
+                                <Currency key={form.currency} onChange={currencyChange} value={form.currency} form />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col-md">
+                                <label htmlFor="field-level_id">
+                                    {i18n.level}
+                                </label>
+                                <Taxonomy
+                                    data={form.level_id}
+                                    // list={levelList}
+                                    taxonomy='lead_level'
+                                    title={i18n.level}
+                                    onChange={handleLevelChange}
+                                    color
+                                />
+                            </div>
+
+                            <div className="col-md">
+                                <label htmlFor="field-tags">
+                                    {i18n.tag}
+                                </label>
+
+                                <div className="pi-field-multi">
+                                    <Taxonomy
+                                        onChange={handleTagChange}
+                                        data={form.tags}
+                                        taxonomy='tag'
+                                        title={i18n.tag}
+                                        multi
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <label htmlFor="form-desc">
+                                    {i18n.desc}
+                                </label>
+
+                                <textarea
+                                    id="form-desc"
+                                    type="text"
+                                    name="desc"
+                                    value={form.desc}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <label htmlFor="form-note">
+                                    {i18n.note}
+                                </label>
+
+                                <textarea
+                                    id="form-note"
+                                    type="text"
+                                    name="note"
+                                    value={form.note}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="row">
+                            <div className="col">
+                                <label htmlFor="field-img">
+                                    {i18n.img}
+                                </label>
+                                <Upload data={form.img} changeHandler={handleImgChange} />
+                            </div>
+                        </div>
+
+                        {custom_field && <CustomField mod='lead' type={props.modalType} form={form} onChange={handleCFChange} />}
+                    </FormContent>
+                </FormWrapper>
             </div>
-        );
-    }
+        </div>
+    );
 }
+export default Form;

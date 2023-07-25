@@ -1,12 +1,38 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
+import React, { useState, createContext } from "react";
+import { toast } from 'react-toastify';
+
+export const FormContext = createContext({});
 
 export function FormWrapper({ submitHandler, close, children }) {
-    return (
+    // const [errors, setErrors] = useState({});
 
-        <form onSubmit={submitHandler} >
-            {children}
-            <FormFooter close={close} />
-        </form>
+    // const form = {
+    //     email: {
+    //         value: '',
+    //         validation: {
+    //             required: {
+    //                 value: true,
+    //                 message: "Email required",
+    //                 error: "Email required"
+    //             },
+    //         }
+    //     }
+    // }
+    const [form, setForm] = useState({});
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        if (Object.keys(errors).length !== 0) {
+            toast.error("Invalid input!!!");
+        } else { submitHandler(e) }
+    }
+    return (
+        <FormContext.Provider value={{ form, setForm }}>
+            <form onSubmit={onSubmit} >
+                {children}
+                <FormFooter close={close} />
+            </form>
+        </FormContext.Provider>
     );
 }
 
