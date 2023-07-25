@@ -13,7 +13,7 @@ class FormList
 
     public function rest_routes()
     {
-        register_rest_route('ndpv/v1', '/intg-form', [
+        register_rest_route('ndpv/v1', '/intg-form' . ndpv()->plain_route(), [
             'methods' => 'GET',
             'callback' => [$this, 'get'],
             'permission_callback' => [$this, 'get_per']

@@ -23,18 +23,17 @@ class Webhook
                 ],
             ],
         ]);
-        
+
         register_rest_route("ndpv/v1", "/webhooks" . ndpv()->plain_route(), [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
+            "methods" => "GET",
+            "callback" => [$this, "get"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/webhooks", [
+            "methods" => "POST",
+            "callback" => [$this, "create"],
+            "permission_callback" => [$this, "create_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/webhooks/(?P<id>\d+)", [

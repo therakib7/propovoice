@@ -31,16 +31,15 @@ class Project
         ]);
 
         register_rest_route("ndpv/v1", "/projects" . ndpv()->plain_route(), [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
+            "methods" => "GET",
+            "callback" => [$this, "get"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/projects", [
+            "methods" => "POST",
+            "callback" => [$this, "create"],
+            "permission_callback" => [$this, "create_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/projects/(?P<id>\d+)", [

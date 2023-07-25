@@ -27,16 +27,15 @@ class Taxonomy
         ]);
 
         register_rest_route("ndpv/v1", "/taxonomies" . ndpv()->plain_route(), [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
+            "methods" => "GET",
+            "callback" => [$this, "get"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/taxonomies", [
+            "methods" => "POST",
+            "callback" => [$this, "create"],
+            "permission_callback" => [$this, "create_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/taxonomies/(?P<id>\d+)", [
@@ -73,6 +72,7 @@ class Taxonomy
 
     public function get($req)
     {
+        // wp_send_json($req->get_params());
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
 

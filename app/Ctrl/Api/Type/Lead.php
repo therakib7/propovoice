@@ -32,16 +32,15 @@ class Lead
         ]);
 
         register_rest_route("ndpv/v1", "/leads" . ndpv()->plain_route(), [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
+            "methods" => "GET",
+            "callback" => [$this, "get"],
+            "permission_callback" => [$this, "get_per"],
+        ]);
+
+        register_rest_route("ndpv/v1", "/leads", [
+            "methods" => "POST",
+            "callback" => [$this, "create"],
+            "permission_callback" => [$this, "create_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/leads/(?P<id>\d+)", [
