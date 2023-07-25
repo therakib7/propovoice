@@ -58,8 +58,7 @@ class ApiCtrl
 		new SaveForNext();
 
 		//for plain permalink api support
-		// add_filter('rest_request_before_callbacks', [$this, 'rest_request_filter'], 10, 3);
-
+		add_filter('rest_request_before_callbacks', [$this, 'rest_request_filter'], 10, 3);
 	}
 
 	public function rest_request_filter($response, $handler, $request) {
