@@ -163,6 +163,7 @@ const Project = (props) => {
 					handleSubmit={handleSubmit}
 					modalType={props.state.formModalType}
 					data={props.state.list}
+					submitPreloader={props.state.submitPreloader}
 					close={props.closeForm}
 					boardView={boardView}
 				/>

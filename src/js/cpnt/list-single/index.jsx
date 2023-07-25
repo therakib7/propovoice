@@ -50,6 +50,7 @@ class ListSingle extends Component {
       projectModal: false,
       projectModalType: "edit",
       contactModal: false,
+      submitPreloader: false,
       levels: [],
       stages: [],
       tags: [],
@@ -241,13 +242,15 @@ class ListSingle extends Component {
   };
 
   personEdit = (data) => {
+    this.setState({ submitPreloader: true });
     api.edit("persons", data.id, data).then((resp) => {
       if (resp.data.success) {
-        this.setState({ contactModal: false });
+        this.setState({ contactModal: false, submitPreloader: false });
         toast.success(ndpv.i18n.aUpd);
         this.getData();
       } else {
         resp.data.data.forEach(function (value, index, array) {
+          this.setState({ submitPreloader: false });
           toast.error(value);
         });
       }
@@ -255,13 +258,15 @@ class ListSingle extends Component {
   };
 
   orgEdit = (data) => {
+    this.setState({ submitPreloader: true });
     api.edit("organizations", data.id, data).then((resp) => {
       if (resp.data.success) {
-        this.setState({ contactModal: false });
+        this.setState({ contactModal: false, submitPreloader: false });
         toast.success(ndpv.i18n.aUpd);
         this.getData();
       } else {
         resp.data.data.forEach(function (value, index, array) {
+          this.setState({ submitPreloader: false });
           toast.error(value);
         });
       }
@@ -1088,6 +1093,7 @@ class ListSingle extends Component {
               single
               data={data.person}
               modalType="edit"
+              submitPreloader={this.state.submitPreloader}
               handleSubmit={this.personEdit}
               close={() => this.setState({ contactModal: false })}
               reload={() => this.getData()}
@@ -1097,6 +1103,7 @@ class ListSingle extends Component {
               single
               data={data.org}
               modalType="edit"
+              submitPreloader={this.state.submitPreloader}
               handleSubmit={this.orgEdit}
               close={() => this.setState({ contactModal: false })}
               reload={() => this.getData()}

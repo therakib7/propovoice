@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-07-10 09:13+0000\n"
+"POT-Creation-Date: 2023-07-16 10:08+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %s template
-#: ../app/Helper/Fns.php:384
+#: ../app/Helper/Fns.php:385
 msgid "%s does not exist."
 msgstr ""
 
@@ -1353,39 +1353,43 @@ msgstr ""
 msgid "Name is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:231, ../app/Ctrl/Api/Type/Deal.php:445, ../app/Ctrl/Api/Type/Deal.php:657, ../app/Ctrl/Api/Type/Lead.php:362, ../app/Ctrl/Api/Type/Lead.php:503, ../app/Ctrl/Api/Type/Project.php:538, ../app/Ctrl/Api/Type/Project.php:747
+#: ../app/Ctrl/Api/Type/Client.php:236, ../app/Ctrl/Api/Type/Deal.php:446, ../app/Ctrl/Api/Type/Deal.php:664, ../app/Ctrl/Api/Type/Lead.php:362, ../app/Ctrl/Api/Type/Lead.php:497, ../app/Ctrl/Api/Type/Project.php:538, ../app/Ctrl/Api/Type/Project.php:747
 msgid "Contact info is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:250, ../app/Ctrl/Api/Type/Client.php:359
+#: ../app/Ctrl/Api/Type/Client.php:244
+msgid "Client already exists!!!"
+msgstr ""
+
+#: ../app/Ctrl/Api/Type/Client.php:265, ../app/Ctrl/Api/Type/Client.php:406
 msgid "You can not add a Team member as client"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:333, ../app/Ctrl/Api/Type/Contact.php:349, ../app/Ctrl/Api/Type/Note.php:164, ../app/Ctrl/Api/Type/Note.php:203, ../app/Ctrl/Api/Type/Org.php:266, ../app/Ctrl/Api/Type/Org.php:384, ../app/Ctrl/Api/Type/Person.php:301, ../app/Ctrl/Api/Type/Person.php:420, ../app/Ctrl/Api/Type/Workspace.php:254, ../app/Ctrl/Api/Type/Workspace.php:363
+#: ../app/Ctrl/Api/Type/Client.php:380, ../app/Ctrl/Api/Type/Contact.php:349, ../app/Ctrl/Api/Type/Note.php:164, ../app/Ctrl/Api/Type/Note.php:203, ../app/Ctrl/Api/Type/Org.php:267, ../app/Ctrl/Api/Type/Org.php:385, ../app/Ctrl/Api/Type/Person.php:302, ../app/Ctrl/Api/Type/Person.php:462, ../app/Ctrl/Api/Type/Workspace.php:254, ../app/Ctrl/Api/Type/Workspace.php:363
 msgid "Name field is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:340, ../app/Ctrl/Api/Type/Contact.php:356, ../app/Ctrl/Api/Type/Org.php:273, ../app/Ctrl/Api/Type/Org.php:391, ../app/Ctrl/Api/Type/Person.php:308, ../app/Ctrl/Api/Type/Person.php:427, ../app/Ctrl/Api/Type/Team.php:186, ../app/Ctrl/Api/Type/Team.php:299, ../app/Ctrl/Api/Type/Workspace.php:261, ../app/Ctrl/Api/Type/Workspace.php:370
+#: ../app/Ctrl/Api/Type/Client.php:387, ../app/Ctrl/Api/Type/Contact.php:356, ../app/Ctrl/Api/Type/Org.php:274, ../app/Ctrl/Api/Type/Org.php:392, ../app/Ctrl/Api/Type/Person.php:309, ../app/Ctrl/Api/Type/Person.php:469, ../app/Ctrl/Api/Type/Team.php:186, ../app/Ctrl/Api/Type/Team.php:299, ../app/Ctrl/Api/Type/Workspace.php:261, ../app/Ctrl/Api/Type/Workspace.php:370
 msgid "Email id is not valid!"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Deal.php:470
+#: ../app/Ctrl/Api/Type/Deal.php:471
 msgid "Please select a stage"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/File.php:170, ../app/Ctrl/Api/Type/Note.php:123
+#: ../app/Ctrl/Api/Type/File.php:174, ../app/Ctrl/Api/Type/Note.php:123
 msgid "ago"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/File.php:215, ../app/Ctrl/Api/Type/Note.php:157
+#: ../app/Ctrl/Api/Type/File.php:219, ../app/Ctrl/Api/Type/Note.php:157
 msgid "Tab ID is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/File.php:222, ../app/Ctrl/Api/Type/Webhook.php:188, ../app/Ctrl/Api/Type/Webhook.php:260
+#: ../app/Ctrl/Api/Type/File.php:226, ../app/Ctrl/Api/Type/Webhook.php:188, ../app/Ctrl/Api/Type/Webhook.php:260
 msgid "Type is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:646, ../app/Ctrl/Api/Type/Invoice.php:797
+#: ../app/Ctrl/Api/Type/Invoice.php:646, ../app/Ctrl/Api/Type/Invoice.php:798
 msgid "Business is missing"
 msgstr ""
 
@@ -1393,7 +1397,7 @@ msgstr ""
 msgid "Module is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:660, ../app/Ctrl/Api/Type/Invoice.php:804
+#: ../app/Ctrl/Api/Type/Invoice.php:660, ../app/Ctrl/Api/Type/Invoice.php:805
 msgid "Receiver is missing"
 msgstr ""
 
@@ -1405,6 +1409,10 @@ msgstr ""
 msgid "Bank & Others"
 msgstr ""
 
+#: ../app/Ctrl/Api/Type/Person.php:317
+msgid "Person already exists!!!"
+msgstr ""
+
 #: ../app/Ctrl/Api/Type/Project.php:521
 msgid "Please title is required"
 msgstr ""
@@ -1413,19 +1421,19 @@ msgstr ""
 msgid "Please select a status"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Setting.php:37, ../app/Ctrl/Api/Type/Setting.php:400
+#: ../app/Ctrl/Api/Type/Setting.php:37, ../app/Ctrl/Api/Type/Setting.php:421
 msgid "Tab is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Setting.php:489
+#: ../app/Ctrl/Api/Type/Setting.php:510
 msgid "Please install and activate WooCommerce plugin."
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Setting.php:589
+#: ../app/Ctrl/Api/Type/Setting.php:620
 msgid "Current password not matched!!!"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Setting.php:596
+#: ../app/Ctrl/Api/Type/Setting.php:627
 msgid "Confirm password not matched!!!"
 msgstr ""
 
@@ -1433,7 +1441,7 @@ msgstr ""
 msgid "Title field is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Taxonomy.php:91, ../app/Ctrl/Api/Type/Taxonomy.php:338, ../app/Ctrl/Api/Type/Taxonomy.php:431
+#: ../app/Ctrl/Api/Type/Taxonomy.php:92, ../app/Ctrl/Api/Type/Taxonomy.php:339, ../app/Ctrl/Api/Type/Taxonomy.php:432
 msgid "Taxonomy is missing"
 msgstr ""
 
@@ -1533,26 +1541,26 @@ msgstr ""
 msgid "We Can't find this page you're looking for"
 msgstr ""
 
-#: ../view/template/partial/login.php:108
+#: ../view/template/partial/login.php:112
 msgid "Please enter your login credentials"
 msgstr ""
 
-#: ../view/template/partial/login.php:113
+#: ../view/template/partial/login.php:117
 msgid "Username"
 msgstr ""
 
-#: ../view/template/partial/login.php:114
+#: ../view/template/partial/login.php:118
 msgid "Password"
 msgstr ""
 
-#: ../view/template/partial/login.php:115
+#: ../view/template/partial/login.php:119
 msgid "Remember Me"
 msgstr ""
 
-#: ../view/template/partial/login.php:116
+#: ../view/template/partial/login.php:120
 msgid "Log In"
 msgstr ""
 
-#: ../view/template/partial/login.php:121
+#: ../view/template/partial/login.php:125
 msgid "You enterd wrong credentials"
 msgstr ""

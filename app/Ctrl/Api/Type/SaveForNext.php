@@ -13,19 +13,20 @@ class SaveForNext
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/savefornext", [
-
+        register_rest_route("ndpv/v1", "/savefornext" . ndpv()->plain_route(), [
             [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
+                "methods" => "GET",
+                "callback" => [$this, "get_data"],
                 "permission_callback" => function () {
                     return true;
                 },
             ],
+        ]);
 
+        register_rest_route("ndpv/v1", "/savefornext", [
             [
-                "methods" => "GET",
-                "callback" => [$this, "get_data"],
+                "methods" => "POST",
+                "callback" => [$this, "create"],
                 "permission_callback" => function () {
                     return true;
                 },
@@ -85,7 +86,7 @@ class SaveForNext
 
     public function delete_data($req)
     {
-        error_log('delte called');
+
         $param = $req->get_params();
         $index = $param['index'];
         // Get existing data from the option.
@@ -104,11 +105,10 @@ class SaveForNext
 
     public function update_data($request)
     {
-        error_log('update data');
+
         // Get the index of the item to update.
         $index = $request->get_param('index');
 
-        error_log($index);
         // Get the request data.
         $data = $request->get_json_params();
 

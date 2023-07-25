@@ -5,7 +5,11 @@ import Upload from 'block/field/upload';
 import api from 'api';
 import ProLabel from 'block/pro-alert/label';
 import pro from 'block/pro-alert';
+import Preloader from "block/preloader/spinner";
+
 export default (props) => {
+    const [submitPreloader, setSubmitPreloader] = useState(false);
+
     const [form, setForm] = useState({
         id: null,
         active: true,
@@ -39,8 +43,9 @@ export default (props) => {
         }
 
         form.tab = 'email_footer';
-
+        setSubmitPreloader(true);
         api.add('settings', form).then(resp => {
+            setSubmitPreloader(false);
             if (resp.data.success) {
                 toast.success(ndpv.i18n.aUpd);
             } else {
@@ -108,8 +113,8 @@ export default (props) => {
 
             <div className="row">
                 <div className="col">
-                    <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
-                        {ndpv.i18n.save} <ProLabel blueBtn />
+                    <button disabled={submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue">
+                        {submitPreloader && <Preloader submit />} {ndpv.i18n.save} <ProLabel blueBtn />
                     </button>
                 </div>
             </div>

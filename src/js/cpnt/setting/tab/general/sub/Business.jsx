@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Upload from 'block/field/upload';
 import api from 'api';
+import Preloader from "block/preloader/spinner";
 export default class Business extends Component {
     constructor(props) {
         super(props);
@@ -22,6 +23,7 @@ export default class Business extends Component {
         };
 
         this.state = {
+            submitPreloader: false,
             form: this.initialState
         };
     }
@@ -58,8 +60,11 @@ export default class Business extends Component {
 
         let form = { ...this.state.form }
 
+        this.setState({ submitPreloader: true });
+
         if (!form.id) {
             api.add('businesses', form).then(resp => {
+                this.setState({ submitPreloader: false });
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aAdd);
                 } else {
@@ -70,6 +75,7 @@ export default class Business extends Component {
             })
         } else {
             api.edit('businesses', form.id, form).then(resp => {
+                this.setState({ submitPreloader: false });
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aUpd);
                 } else {
@@ -89,6 +95,7 @@ export default class Business extends Component {
 
     render() {
         const i18n = ndpv.i18n;
+        const submitPreloader = this.state.submitPreloader;
         return (
             <form onSubmit={this.handleSubmit} className="pv-form-style-one">
                 <div className="row">
@@ -208,8 +215,8 @@ export default class Business extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <button className="pv-btn pv-btn-big pv-bg-blue pv-bg-hover-blue">
-                            {i18n.save}
+                        <button disabled={submitPreloader} className="pv-btn pv-btn-big pv-bg-blue pv-bg-hover-blue">
+                            {submitPreloader && <Preloader submit />} {i18n.save}
                         </button>
                     </div>
                 </div>

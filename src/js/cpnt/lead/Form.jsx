@@ -8,6 +8,7 @@ import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
+import Preloader from "block/preloader/spinner";
 import api from 'api';
 
 export default class Form extends Component {
@@ -62,9 +63,7 @@ export default class Form extends Component {
     }
 
     handleCFChange = (e) => {
-
         const { name, value } = e.target;
-
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
@@ -460,8 +459,8 @@ export default class Form extends Component {
                                     <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.save}
+                                    <button type='submit' disabled={this.props.submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+                                        {this.props.submitPreloader && <Preloader submit />} {i18n.save}
                                     </button>
                                 </div>
                             </div>

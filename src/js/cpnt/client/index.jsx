@@ -3,7 +3,7 @@ import Breadcrumb from "block/breadcrumb";
 import AddNew from "block/add-new";
 import Action from "block/action/table";
 import Pagination from "block/pagination";
-import EntityFields from "../../block/add-new/EntityFields";
+import EntityFields from "block/add-new/EntityFields";
 import Preloader from "block/preloader/table";
 
 import Form from "./Form";
@@ -133,6 +133,7 @@ const Client = (props) => {
           handleSubmit={props.handleSubmit}
           modalType={props.state.formModalType}
           data={props.state.list}
+          submitPreloader={props.state.submitPreloader}
           close={props.closeForm}
         />
       )}

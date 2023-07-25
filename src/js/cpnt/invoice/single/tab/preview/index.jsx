@@ -67,10 +67,10 @@ export default class Preview extends Component {
         if (previewRef) {
             let height = 'auto';
 
-            if (previewRef.clientHeight > 1123) {
-                height = (Math.ceil(previewRef.clientHeight / 1123) * 1123) + 'px';
+            if (previewRef.clientHeight > 1024) {
+                height = (Math.ceil(previewRef.clientHeight / 1024) * 1024) + 'px';
             } else {
-                height = '1123px';
+                height = '1024px';
             }
             this.setState({ previewHeight: height });
         }
@@ -282,4 +282,4 @@ export default class Preview extends Component {
             </div>
         );
     }
-} 
+}

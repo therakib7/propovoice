@@ -210,6 +210,15 @@ final class Ndpv {
         $option = get_option( 'ndpv_workspace_default' );
         return $option ? absint( $option ) : null;
     }
+
+    /**
+     * For checking plain permalink
+     * @return string
+     */
+    public function plain_route() {
+        $permalink_structure = get_option('permalink_structure');
+        return $permalink_structure === '' ? '/(?P<args>.*)' : '';
+    }
 }
 
 /**

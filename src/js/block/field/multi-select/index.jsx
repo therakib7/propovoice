@@ -71,7 +71,7 @@ export default (props) => {
 				<button
 					className={(!props.small) ? 'pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow' : 'pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow'}
 					onClick={(e) => showDropdown(e)}>
-					+ {i18n.add} {props.title}
+					+ {i18n.add} {i18n.def}
 				</button>
 
 				{dropdown && <div className="pv-dropdown-content pv-show">

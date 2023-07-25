@@ -14,18 +14,6 @@ class Org
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/organizations", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
 
         register_rest_route("ndpv/v1", "/organizations/(?P<id>\d+)", [
             "methods" => "GET",
@@ -38,6 +26,18 @@ class Org
                     },
                 ],
             ],
+        ]);
+
+        register_rest_route("ndpv/v1", "/organizations" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "get"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/organizations", [
+            "methods" => "POST",
+            "callback" => [$this, "create"],
+            "permission_callback" => [$this, "create_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/organizations/(?P<id>\d+)", [

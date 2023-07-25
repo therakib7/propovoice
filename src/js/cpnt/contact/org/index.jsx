@@ -160,6 +160,7 @@ const Org = (props) => {
         handleSubmit={props.handleSubmit}
         modalType={props.state.formModalType}
         data={props.state.list}
+        submitPreloader={props.state.submitPreloader}
         close={props.closeForm}
       />}
 

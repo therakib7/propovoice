@@ -31,7 +31,7 @@ class Dashbaord
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/dashboard", [
+        register_rest_route("ndpv/v1", "/dashboard" . ndpv()->plain_route(), [
             [
                 "methods" => "GET",
                 "callback" => [$this, "get"],
@@ -43,28 +43,44 @@ class Dashbaord
     public function get($req)
     {
         $param = $req->get_params();
+        $reg_errors = new \WP_Error();
 
-        if ($param["section"] == "summary") {
-            $this->summary($param);
+        $section = isset($param["section"])
+            ? sanitize_text_field($param["section"])
+            : null;
+
+        if (empty($section)) {
+            $reg_errors->add(
+                "field",
+                esc_html__("Section is missing", "propovoice")
+            );
         }
 
-        if ($param["section"] == "deal_tracking") {
-            $this->deal_tracking($param);
-        }
+        if ($reg_errors->get_error_messages()) {
+            wp_send_json_error($reg_errors->get_error_messages());
+        } else {
+            if ($param["section"] == "summary") {
+                $this->summary($param);
+            }
 
-        if ($param["section"] == "deal_funnel") {
-            $this->deal_funnel($param);
-        }
+            if ($param["section"] == "deal_tracking") {
+                $this->deal_tracking($param);
+            }
 
-        if (
-            $param["section"] == "lead_level" ||
-            $param["section"] == "lead_source"
-        ) {
-            $this->lead_level_source($param);
-        }
+            if ($param["section"] == "deal_funnel") {
+                $this->deal_funnel($param);
+            }
 
-        if ($param["section"] == "estimate" || $param["section"] == "invoice") {
-            $this->estvoice($param);
+            if (
+                $param["section"] == "lead_level" ||
+                $param["section"] == "lead_source"
+            ) {
+                $this->lead_level_source($param);
+            }
+
+            if ($param["section"] == "estimate" || $param["section"] == "invoice") {
+                $this->estvoice($param);
+            }
         }
     }
 

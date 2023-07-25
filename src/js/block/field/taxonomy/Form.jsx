@@ -3,6 +3,7 @@ import ColorPicker from 'block/color-picker';
 import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
 import api from 'api';
+import Preloader from "block/preloader/spinner";
 import { Add } from 'block/icon';
 
 export default class Form extends Component {
@@ -23,6 +24,7 @@ export default class Form extends Component {
         };
 
         this.state = {
+            submitPreloader: false,
             form: this.initialState
         };
     }
@@ -78,7 +80,7 @@ export default class Form extends Component {
 
     editData = () => {
 
-        //condition added to stop multi rendering 
+        //condition added to stop multi rendering
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
@@ -98,14 +100,18 @@ export default class Form extends Component {
         let newForm = { ...this.state.form }
         newForm.taxonomy = this.props.taxonomy;
 
+        this.setState({ submitPreloader: true });
+
         if (this.props.modalType == 'new') {
             if (this.props.extra_amount_type) {
                 newForm.extra_amount_type = this.props.extra_amount_type;
             }
             api.add('taxonomies', newForm).then(resp => {
+                this.setState({ submitPreloader: false });
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aAdd);
                     newForm.id = resp.data.data;
+                    this.props.close()
                     this.props.reload(newForm);
                 } else {
                     resp.data.data.forEach(function (value) {
@@ -115,8 +121,10 @@ export default class Form extends Component {
             });
         } else {
             api.edit('taxonomies', newForm.id, newForm).then(resp => {
+                this.setState({ submitPreloader: false });
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aUpd);
+                    this.props.close()
                     this.props.reload();
                 } else {
                     resp.data.data.forEach(function (value) {
@@ -126,7 +134,7 @@ export default class Form extends Component {
             });
         }
         // setModal(false);
-        this.props.close()
+        
     }
 
     handleLogoChange = (data) => {
@@ -136,9 +144,9 @@ export default class Form extends Component {
     }
 
     render() {
-        const form = this.state.form;
         const i18n = ndpv.i18n;
         const eat = this.props.extra_amount_type;
+        const { submitPreloader, form } = this.state;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content pv-modal-style-two pv-modal-small">
@@ -328,8 +336,8 @@ export default class Form extends Component {
                                 <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                             </div>
                             <div className="col">
-                                <button onClick={this.handleSubmit} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-medium pv-float-right pv-color-white">
-                                    {i18n.save}
+                                <button onClick={this.handleSubmit} disabled={submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-medium pv-float-right pv-color-white">
+                                    {submitPreloader && <Preloader submit />} {i18n.save}
                                 </button>
                             </div>
                         </div>

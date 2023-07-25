@@ -14,19 +14,6 @@ class Invoice
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/invoices", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
-
         register_rest_route("ndpv/v1", "/invoices/(?P<id>\d+)", [
             "methods" => "GET",
             "callback" => [$this, "get_single"],
@@ -38,6 +25,18 @@ class Invoice
                     },
                 ],
             ],
+        ]);
+
+        register_rest_route("ndpv/v1", "/invoices" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "get"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/invoices", [
+            "methods" => "POST",
+            "callback" => [$this, "create"],
+            "permission_callback" => [$this, "create_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/invoices/(?P<id>\d+)", [
@@ -190,28 +189,13 @@ class Invoice
             );
         } */
 
-        if ( $module_id ) {
-            $args["meta_query"]['relation'] = "OR";
+        if ( $module_id ) { 
             $args["meta_query"][] = [
                 [
-                    "key" => "module_id",
-                    "value" => $param["module_id"],
-                ],
-            ];
-
-            $args["meta_query"][] = [
-                [
-                    "key" => "person_id",
+                    "key" => "to",
                     "value" => $module_id,
                 ],
-            ];
-
-            $args["meta_query"][] = [
-                [
-                    "key" => "org_id",
-                    "value" => $module_id,
-                ],
-            ];
+            ]; 
         }
 
         $query = new \WP_Query($args);

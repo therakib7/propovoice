@@ -54,10 +54,12 @@ export default (props) => {
 		<DatePicker
 			selected={props.date}
 			onChange={(date) => props.onDateChange(date, props.type)}
-			customInput={<CustomInput type={props.type}
-			clear={(val, type) => props.onDateChange(null, type)} />}
+			customInput={<CustomInput
+				type={props.type}
+				clear={(val, type) => props.onDateChange(null, type)}
+			/>}
 			// dateFormat={ndpv.date_format} 
-			dateFormat="PP" 
+			dateFormat="PP"
 		/>
 	);
 };

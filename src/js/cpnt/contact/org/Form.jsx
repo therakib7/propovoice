@@ -3,6 +3,7 @@ import Upload from 'block/field/upload';
 import Contact from 'block/field/contact';
 import { Add } from 'block/icon';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import Preloader from "block/preloader/spinner";
 
 class Form extends Component {
     constructor(props) {
@@ -282,8 +283,8 @@ class Form extends Component {
                                     <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.save}
+                                    <button type='submit' disabled={this.props.submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+                                        {this.props.submitPreloader && <Preloader submit />} {i18n.save}
                                     </button>
                                 </div>
                             </div>

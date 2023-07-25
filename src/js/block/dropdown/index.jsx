@@ -27,6 +27,8 @@ const Dropdown = (props) => {
 
 
   useEffect(() => {
+    if (wage.length) return;
+
     count_new_notifications();
     if (dropdown && countNew > 0) {
       markAsOld();
@@ -39,7 +41,8 @@ const Dropdown = (props) => {
     return () => {
       clearInterval(interval);
     };
-  }, [dropdown, countNew]);
+  }, []);
+  // }, [dropdown, countNew]);
 
 
   const count_new_notifications = () => {

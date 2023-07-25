@@ -13,7 +13,7 @@ class Form
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/forms", [
+        register_rest_route("ndpv/v1", "/forms" . ndpv()->plain_route(), [
             [
                 "methods" => "GET",
                 "callback" => [$this, "get"],
