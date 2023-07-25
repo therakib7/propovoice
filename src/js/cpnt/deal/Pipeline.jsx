@@ -257,4 +257,4 @@ function Pipeline(props) {
 	);
 }
 
-export default WithApi(Pipeline);  
+export default WithApi(Pipeline);

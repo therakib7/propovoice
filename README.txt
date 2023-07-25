@@ -195,7 +195,7 @@ The super fantastic pro features that accelerate your business growth and improv
 * Fixed: Deal and project pagination issue
 * Fixed: Deal single viewing issue
 * Fixed: Project showing under client issue
-* Fixed: Estimate and Invoice date translation issue 
+* Fixed: Estimate and Invoice date translation issue
 * Update: Functional issue
 
 = 1.6.1 =
