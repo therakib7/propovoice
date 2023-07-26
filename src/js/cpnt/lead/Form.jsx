@@ -246,7 +246,7 @@ export default class Form extends Component {
         this.setState({ form });
     }
 
-    handleImgChange = (data, type = null) => {
+    handleImgChange = (data) => {
         let form = { ...this.state.form }
         form.img = data;
         this.setState({ form })

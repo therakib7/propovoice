@@ -62,7 +62,6 @@ class ApiCtrl
 	}
 
 	public function rest_request_filter($response, $handler, $request) {
-
 		$permalink_structure = get_option('permalink_structure');
         if ( $permalink_structure === '' ) {
 			$params = $request->get_params();

@@ -163,24 +163,26 @@ class AssetCtrl
                 true
             );
             $current_user = wp_get_current_user();
+            $segment = (get_option('permalink_structure') === '' ? '&' : '?');
             wp_localize_script("ndpv-dashboard", "ndpv", [
                 "apiUrl" => esc_url(rest_url()),
                 "siteUrl" => get_site_url(),
                 "version" => ndpv()->version(),
                 "dashboard" => admin_url("admin.php?page=ndpv"),
                 "invoice_page_url" => sprintf(
-                    "%s?id=%s&token=%s",
+                    "%s%sid=%s&token=%s",
                     Fns::client_page_url("invoice"),
+                    $segment,
                     "invoice_id",
                     "invoice_token"
                 ),
                 "estimate_page_url" => sprintf(
-                    "%s?id=%s&token=%s",
+                    "%s%sid=%s&token=%s",
                     Fns::client_page_url("estimate"),
+                    $segment,
                     "invoice_id",
                     "invoice_token"
                 ),
-                //'apiServerUrl' => 'http://ncpluginserver.local/wp-json/', //TODO: change server URL later
                 "apiServerUrl" => "https://appux.co/propovoice-server/wp-json/", //TODO: change server URL later
                 "nonce" => wp_create_nonce("wp_rest"),
                 "date_format" => Fns::phpToMomentFormat(
