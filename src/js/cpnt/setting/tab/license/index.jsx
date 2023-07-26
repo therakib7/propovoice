@@ -102,7 +102,7 @@ export default class License extends Component {
             <>
                 {this.state.loading ? <Spinner /> : <form onSubmit={this.handleSubmit} className="pv-form-style-one">
 
-                    {form.status != 'valid' && <div className="row">
+                    {(form.status != 'valid' && form.status != 'expired') && <div className="row">
                         <div className="col">
                             <label htmlFor="form-key">{i18n.license} {i18n.key}</label>
                             <input
@@ -116,12 +116,12 @@ export default class License extends Component {
                         </div>
                     </div>}
 
-                    {form.status == 'valid' && <>
+                    {(form.status == 'valid' || form.status == 'expired') && <>
                         <div className="row pv-mt-30">
                             <div className="col">
                                 <label htmlFor="form-status">
                                     {i18n.license} {i18n.status}:
-                                    <span className="pv-pro-label pv-bg-green pv-color-white">{i18n.valid}</span>
+                                    <span className={"pv-pro-label " + (form.status == 'valid' ? "pv-bg-green pv-color-white" : "pv-bg-red")}>{form.status == 'valid' ? i18n.valid : i18n.expired}</span>
                                 </label>
                             </div>
                         </div>
