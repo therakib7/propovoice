@@ -160,7 +160,6 @@ const Form = (props) => {
 
     const onSubmit = (e) => {
         let updatedForm = { ...form };
-        console.log(updatedForm);
         if (updatedForm.level_id) {
             updatedForm.level_id = updatedForm.level_id.id;
         }

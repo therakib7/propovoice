@@ -22,9 +22,7 @@ export function FormWrapper({ submitHandler, close, children }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        if (Object.keys(errors).length !== 0) {
-            toast.error("Invalid input!!!");
-        } else { submitHandler(e) }
+        submitHandler(e)
     }
     return (
         <FormContext.Provider value={{ form, setForm }}>
