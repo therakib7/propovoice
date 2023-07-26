@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { toast } from 'react-toastify';
 import { checkAllValidation } from "./input/validations";
 
@@ -18,15 +18,40 @@ export function FormWrapper({ submitHandler, close, children }) {
     //         }
     //     }
     // }
+    //
+    // errorFields = {
+    //     email: [required, email]
+    // }
+    //
+    //
     const [form, setForm] = useState({});
+    const [errorFields, setErrorFields] = useState({});
+
+
+    const countErrors = (errorFields) => {
+        if (!errorFields || typeof errorFields !== 'object') {
+            return 0;
+        }
+        return Object.values(errorFields).reduce(function (acc, criteria) {
+            return acc + criteria.length;
+        }, 0);
+    }
+
 
     const onSubmit = (e) => {
         e.preventDefault();
-        checkAllValidation(form, setForm)
+        checkAllValidation(form, setForm, setErrorFields)
+        console.log(errorFields)
+        const count = countErrors(errorFields)
+        console.log(count)
+        if (count > 0) {
+            return;
+        }
+
         submitHandler(e)
     }
     return (
-        <FormContext.Provider value={{ form, setForm }}>
+        <FormContext.Provider value={{ form, setForm, setErrorFields }}>
             <form onSubmit={onSubmit} >
                 {children}
                 <FormFooter close={close} />

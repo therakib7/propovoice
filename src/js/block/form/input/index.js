@@ -4,7 +4,7 @@ import { checkValidation } from "./validations";
 
 export const TextInput = ({ label, type, id, name, value, placeholder, wrapperClassName = "col", validation, onChange }) => {
 
-  const { form, setForm } = useContext(FormContext);
+  const { form, setForm, setErrorFields } = useContext(FormContext);
   const errorMessage = form[name]?.validation?.required?.error || '';
   const inputValue = form[name]?.value;
 
@@ -17,7 +17,7 @@ export const TextInput = ({ label, type, id, name, value, placeholder, wrapperCl
 
   const handleChange = (e) => {
     setForm({ ...form, [name]: { ...form[name], value: e.target.value } })
-    checkValidation(name, e.target.value, form, setForm)
+    checkValidation(name, e.target.value, form, setForm, setErrorFields)
     onChange(e);
   }
 
