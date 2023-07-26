@@ -16,17 +16,17 @@ export const TextInput = ({ label, type, id, name, value, placeholder, wrapperCl
   }, [])
 
   const handleChange = (e) => {
-    console.log(e.target.value)
     setForm({ ...form, [name]: { ...form[name], value: e.target.value } })
     checkValidation(name, e.target.value, form, setForm)
     onChange(e);
   }
 
+  const isRequired = validation.required?.value ?? false
 
   return (
     <div className={wrapperClassName}>
       <label htmlFor={id}>
-        {label}
+        {label} {isRequired && (<span style={{ color: "red" }}>*</span>)}
       </label>
       <input
         id={id}
@@ -36,8 +36,8 @@ export const TextInput = ({ label, type, id, name, value, placeholder, wrapperCl
         placeholder={placeholder}
         onChange={handleChange}
       />
-      {inputValue}<br />
-      {errorMessage}
-    </div>
+      <div style={{ color: "red", marginTop: "4px" }}>{errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1)}</div>
+
+    </div >
   );
 }

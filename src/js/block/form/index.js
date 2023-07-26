@@ -1,10 +1,10 @@
 import React, { useState, createContext } from "react";
 import { toast } from 'react-toastify';
+import { checkAllValidation } from "./input/validations";
 
 export const FormContext = createContext({});
 
 export function FormWrapper({ submitHandler, close, children }) {
-    // const [errors, setErrors] = useState({});
 
     // const form = {
     //     email: {
@@ -22,6 +22,7 @@ export function FormWrapper({ submitHandler, close, children }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        checkAllValidation(form, setForm)
         submitHandler(e)
     }
     return (

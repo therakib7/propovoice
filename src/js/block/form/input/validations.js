@@ -9,6 +9,18 @@ export const checkValidation = (name, value, form, setForm) => {
         checkRequired(criteria, criteriaValue, name, value, form, setForm)
     }
   }
+}
+
+export const checkAllValidation = (form, setForm) => {
+  for (const [name, { value, validation }] of Object.entries(form)) {
+    for (const [criteria, criteriaValue] of Object.entries(validation)) {
+      switch (criteria) {
+        case 'required':
+          checkRequired(criteria, criteriaValue, name, value, form, setForm)
+      }
+    }
+
+  }
 
 }
 
