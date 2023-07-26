@@ -62,7 +62,7 @@ export default class License extends Component {
                     window.location.reload(1);
                 }, 1000);
             } else {
-                data.forEach(function (value, index, array) {
+                data.forEach(function (value) {
                     toast.error(value);
                 });
             }
