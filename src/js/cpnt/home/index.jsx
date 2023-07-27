@@ -168,6 +168,7 @@ export default () => {
                     </div>
 
                     <div className='pv-right-content-data' ref={contentRef}>
+                        {wagex.exp && <p className="ndpv-license-expired">Your license key has expired!!!, Please activate with new license.</p>}
                         <Suspense fallback={<Spinner />}>
                             <Routes>
                                 <Route path="/" element={<Dashboard />} />

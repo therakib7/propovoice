@@ -78,6 +78,13 @@ class TemplateCtrl
             apply_filters("ndpv_wage", ["PT97"])
         );
         wp_localize_script(
+            "ndpv-dashboard",
+            "wagex",
+            [
+                'exp' => ndpv()->wagex()
+            ]
+        );
+        wp_localize_script(
             "ndpv-invoice",
             "wage",
             apply_filters("ndpv_wage", ["PT97"])

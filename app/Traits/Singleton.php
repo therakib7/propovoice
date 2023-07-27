@@ -33,4 +33,9 @@ trait Singleton
     {
         return function_exists('ndpvp') && ndpvp()->wage();
     }
+
+    public function wagex()
+    {
+        return function_exists('ndpvp') && ndpvp()->wagex();
+    }
 }

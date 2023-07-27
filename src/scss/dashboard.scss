@@ -421,3 +421,11 @@ input:-webkit-autofill:active {
         top: 2px;
     }
 }
+
+//expired license
+.ndpv-license-expired {
+    margin-bottom: 0;
+    color: rgb(255, 103, 113);
+    font-weight: 500;
+    padding-bottom: 20px;
+}
