@@ -36,6 +36,6 @@ trait Singleton
 
     public function wagex()
     {
-        return function_exists('ndpvp') && ndpvp()->wagex();
+        return function_exists('ndpvp') && method_exists(ndpvp(), 'wagex') && ndpvp()->wagex();
     }
 }
