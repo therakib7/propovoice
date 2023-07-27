@@ -31,8 +31,6 @@ export function FormWrapper({ submitHandler, close, children }) {
 
     useEffect(() => {
         if (isSubmitted) {
-
-            console.log(errorFields)
             const count = countErrors(errorFields)
             if (count === 0) {
                 submitHandler(submitEvent)

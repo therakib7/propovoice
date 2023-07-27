@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { FormContext } from 'block/form';
 import { checkValidation } from "./validations";
 
-export const TextInput = ({ label, type, id, name, value, placeholder, wrapperClassName = "col", validation, onChange }) => {
+export const TextInput = ({ label, type, id, name, value, placeholder, wrapperClassName = "col", validation = {}, onChange }) => {
 
   const { form, setForm, setErrorFields } = useContext(FormContext);
 
