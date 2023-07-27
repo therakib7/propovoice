@@ -8,6 +8,7 @@ export const TextInput = ({ label, wrapperClassName = "col", validation = {}, on
   const { name, value } = attrs;
   const validationConditions = form[name]?.validation || {};
 
+  console.log(form)
 
   useEffect(() => {
     if (!(name in form)) {
@@ -36,7 +37,7 @@ export const TextInput = ({ label, wrapperClassName = "col", validation = {}, on
     onChange(e);
   }
 
-  const isRequired = validation.required?.value ?? false
+  const isRequired = form[name]?.validation?.required?.value ?? false
 
   return (
     <div className={wrapperClassName}>
@@ -48,7 +49,7 @@ export const TextInput = ({ label, wrapperClassName = "col", validation = {}, on
         {...attrs}
       />
       {Object.entries(validationConditions).map(([criteria, { error = "" }]) => (
-        <div key={criteria} style={{ color: "red", marginTop: "4px" }}>
+        <div key={criteria} style={{ color: "#fd5870", marginTop: "4px" }}>
           {error.charAt(0).toUpperCase() + error.slice(1)}
         </div>
       ))}

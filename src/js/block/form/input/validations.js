@@ -63,3 +63,24 @@ const removeError = (criteria, name, value, setForm, setErrorFields) => {
     return prev
   })
 }
+
+export const alterValidation = (current_name, current_value, field1, field2, setForm) => {
+
+  const alt_name =
+    current_name !== field1
+      ? field1
+      : field2;
+
+  if (current_value.length > 0) {
+    setForm((prevForm) => (
+      { ...prevForm, [alt_name]: { ...prevForm[alt_name], validation: { ...prevForm[alt_name].validation, required: { ...prevForm[alt_name].validation.required, value: false, error: "" } } } }
+    )
+    )
+
+    setForm((prevForm) => (
+      { ...prevForm, [current_name]: { ...prevForm[current_name], validation: { ...prevForm[current_name].validation, required: { ...prevForm[current_name].validation.required, value: true } } } }
+    )
+    )
+
+  }
+}
