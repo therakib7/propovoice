@@ -285,6 +285,12 @@ export default class Form extends Component {
             value: form.mobile,
             wrapperClassName: 'col-lg',
             onChange: this.handleChange,
+            validation: {
+                required: {
+                    value: true,
+                    message: "mobile is required"
+                },
+            },
         };
 
 
