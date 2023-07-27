@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { FormContext } from 'block/form';
 import { checkValidation } from "./validations";
 
-export const TextInput = ({ label, type, id, name, value, placeholder, wrapperClassName = "col", validation = {}, onChange }) => {
+export const TextInput = ({ label, wrapperClassName = "col", validation = {}, onChange, ...attrs }) => {
 
   const { form, setForm, setErrorFields } = useContext(FormContext);
-
+  const name = attrs.name;
+  const value = attrs.value;
   const validationConditions = form[name]?.validation || {};
-  const inputValue = form[name]?.value;
 
+  console.log(attrs);
 
   useEffect(() => {
     if (!(name in form)) {
@@ -34,16 +35,12 @@ export const TextInput = ({ label, type, id, name, value, placeholder, wrapperCl
 
   return (
     <div className={wrapperClassName}>
-      <label htmlFor={id}>
+      <label htmlFor={attrs.id}>
         {label} {isRequired && (<span style={{ color: "red" }}>*</span>)}
       </label>
       <input
-        id={id}
-        type={type}
-        name={name}
-        value={value}
-        placeholder={placeholder}
         onChange={handleChange}
+        {...attrs}
       />
       {Object.entries(validationConditions).map(([criteria, { error = "" }]) => (
         <div key={criteria} style={{ color: "red", marginTop: "4px" }}>
