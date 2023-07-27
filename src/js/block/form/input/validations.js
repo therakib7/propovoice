@@ -25,7 +25,7 @@ export const checkAllValidation = (form, setForm, setErrorFields) => {
 }
 
 const checkRequired = (criteria, criteriaValue, name, value, setForm, setErrorFields) => {
-  if (criteriaValue.value && value === "") {
+  if (criteriaValue.value && value.length === 0) {
     addError(criteria, criteriaValue, name, value, setForm, setErrorFields)
   } else {
     removeError(criteria, name, value, setForm, setErrorFields)

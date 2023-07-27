@@ -5,11 +5,9 @@ import { checkValidation } from "./validations";
 export const TextInput = ({ label, wrapperClassName = "col", validation = {}, onChange, ...attrs }) => {
 
   const { form, setForm, setErrorFields } = useContext(FormContext);
-  const name = attrs.name;
-  const value = attrs.value;
+  const { name, value } = attrs;
   const validationConditions = form[name]?.validation || {};
 
-  console.log(attrs);
 
   useEffect(() => {
     if (!(name in form)) {
@@ -19,6 +17,13 @@ export const TextInput = ({ label, wrapperClassName = "col", validation = {}, on
       }));
     }
   }, []);
+
+  useEffect(() => {
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: { ...prevForm[name], value },
+    }));
+  }, [value]);
 
   const handleChange = (e) => {
 
