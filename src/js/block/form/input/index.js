@@ -5,18 +5,27 @@ import { checkValidation } from "./validations";
 export const TextInput = ({ label, type, id, name, value, placeholder, wrapperClassName = "col", validation, onChange }) => {
 
   const { form, setForm, setErrorFields } = useContext(FormContext);
+
   const errorMessage = form[name]?.validation?.required?.error || '';
   const inputValue = form[name]?.value;
 
 
   useEffect(() => {
     if (!(name in form)) {
-      setForm({ ...form, [name]: { ...form[name], value, validation } });
+      setForm((prevForm) => ({
+        ...prevForm,
+        [name]: { ...prevForm[name], value, validation },
+      }));
     }
-  }, [])
+  }, []);
 
   const handleChange = (e) => {
-    setForm({ ...form, [name]: { ...form[name], value: e.target.value } })
+
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: { ...prevForm[name], value: e.target.value },
+    }));
+
     checkValidation(name, e.target.value, form, setForm, setErrorFields)
     onChange(e);
   }

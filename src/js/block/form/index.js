@@ -26,7 +26,20 @@ export function FormWrapper({ submitHandler, close, children }) {
     //
     const [form, setForm] = useState({});
     const [errorFields, setErrorFields] = useState({});
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [submitEvent, setSubmitEvent] = useState();
 
+    useEffect(() => {
+        if (isSubmitted) {
+
+            console.log(errorFields)
+            const count = countErrors(errorFields)
+            if (count === 0) {
+                submitHandler(submitEvent)
+            }
+            setIsSubmitted(false)
+        }
+    }, [isSubmitted, errorFields])
 
     const countErrors = (errorFields) => {
         if (!errorFields || typeof errorFields !== 'object') {
@@ -40,16 +53,12 @@ export function FormWrapper({ submitHandler, close, children }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        console.log(e);
         checkAllValidation(form, setForm, setErrorFields)
-        console.log(errorFields)
-        const count = countErrors(errorFields)
-        console.log(count)
-        if (count > 0) {
-            return;
-        }
-
-        submitHandler(e)
+        setSubmitEvent(e)
+        setIsSubmitted(true)
     }
+
     return (
         <FormContext.Provider value={{ form, setForm, setErrorFields }}>
             <form onSubmit={onSubmit} >

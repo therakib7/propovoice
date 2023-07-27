@@ -261,6 +261,22 @@ const Form = (props) => {
         },
     };
 
+    const mobileInput = {
+        label: i18n.mob,
+        id: "form-mobile",
+        type: "text",
+        name: "mobile",
+        value: form.mobile,
+        wrapperClassName: 'col-lg',
+        onChange: handleChange,
+        validation: {
+            required: {
+                value: true,
+                message: "mobile is required"
+            },
+        },
+    };
+
     const modalType = props.modalType === 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
 
     return (
@@ -287,20 +303,7 @@ const Form = (props) => {
 
                         <div className="row">
                             <TextInput  {...emailInput} />
-
-                            <div className="col-lg">
-                                <label htmlFor="form-mobile">
-                                    {i18n.mob}
-                                </label>
-
-                                <input
-                                    id="form-mobile"
-                                    type="text"
-                                    name="mobile"
-                                    value={form.mobile}
-                                    onChange={handleChange}
-                                />
-                            </div>
+                            <TextInput {...mobileInput} />
                         </div>
 
                         <div className="row">
