@@ -84,12 +84,14 @@ export default (props) => {
 
     const personValidation = {
         required: {
-            value: true
+            value: true,
+            group: "contact"
         }
     }
     const orgValidation = {
         required: {
-            value: true
+            value: true,
+            group: "contact"
         }
     }
     const person = (
@@ -168,6 +170,7 @@ export default (props) => {
                     value={props.org_name}
                     onChange={handleChange}
                     validation={orgValidation}
+                    group="contact"
                 />
 
                 <div style={{ position: "absolute", bottom: 0, left: "15px", zIndex: 9999 }} className="pv-field-search" ref={orgRef}>

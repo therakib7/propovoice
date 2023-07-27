@@ -8,7 +8,6 @@ export const TextInput = ({ label, wrapperClassName = "col", validation = {}, on
   const { name, value } = attrs;
   const validationConditions = form[name]?.validation || {};
 
-  console.log(form)
 
   useEffect(() => {
     if (!(name in form)) {

@@ -1,6 +1,6 @@
 import React, { useState, createContext, useEffect } from "react";
 import { toast } from 'react-toastify';
-import { checkAllValidation } from "./input/validations";
+import { checkAllValidation, groupProcessing, removeError } from "./input/validations";
 
 export const FormContext = createContext({});
 
@@ -13,11 +13,14 @@ export function FormWrapper({ submitHandler, close, children }) {
     //             required: {
     //                 value: true,
     //                 message: "Email required",
+    //                 group : "contact"
     //                 error: "Email required"
     //             },
     //         }
     //     }
     // }
+    //
+    // groupFields = {contact: {first_name: "", org_name: "something"}}
     //
     // errorFields = {
     //     email: [required, email]
@@ -26,6 +29,7 @@ export function FormWrapper({ submitHandler, close, children }) {
     //
     const [form, setForm] = useState({});
     const [errorFields, setErrorFields] = useState({});
+    const [groupFields, setGroupFields] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [submitEvent, setSubmitEvent] = useState();
 
@@ -41,6 +45,25 @@ export function FormWrapper({ submitHandler, close, children }) {
         }
     }, [isSubmitted, errorFields])
 
+    useEffect(() => {
+        groupProcessing(form, setGroupFields)
+        for (const [groupName, fieldObj] of Object.entries(groupFields)) {
+            for (const [field, value] of Object.entries(fieldObj)) {
+                if (value.length > 0) {
+
+                    for (const [name, { value, validation }] of Object.entries(form)) {
+                        for (const [criteria, criteriaValue] of Object.entries(validation)) {
+                            if (criteria === "required" && criteriaValue?.group === groupName) {
+                                removeError(criteria, name, value, setForm, setErrorFields)
+                            }
+                        }
+                    }
+                    return;
+                }
+            }
+        }
+    }, [groupFields])
+
     const countErrors = (errorFields) => {
         if (!errorFields || typeof errorFields !== 'object') {
             return 0;
@@ -51,8 +74,12 @@ export function FormWrapper({ submitHandler, close, children }) {
     }
 
 
+    console.log(groupFields);
+
     const onSubmit = (e) => {
         e.preventDefault();
+        // generateGroupObj
+        // if there is any field value(search index), then make required false to all other fields
         checkAllValidation(form, setForm, setErrorFields)
         setSubmitEvent(e)
         setIsSubmitted(true)
