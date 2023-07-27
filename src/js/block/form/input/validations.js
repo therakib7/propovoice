@@ -26,26 +26,9 @@ export const checkAllValidation = (form, setForm, setErrorFields) => {
 
 const checkRequired = (criteria, criteriaValue, name, value, setForm, setErrorFields) => {
   if (criteriaValue.value && value === "") {
-    const message = criteriaValue.message ?? name + " " + defaultErrorMessages[criteria]
-    setErrorMessage(setForm, name, value, criteria, message)
-
-    setErrorFields((prev) => {
-      const updatedValue = Array.isArray(prev[name]) ? [...prev[name], criteria] : [criteria];
-      return { ...prev, [name]: [...new Set(updatedValue)] };
-    })
-
+    addError(criteria, criteriaValue, name, value, setForm, setErrorFields)
   } else {
-    setErrorMessage(setForm, name, value, criteria, "");
-
-    setErrorFields((prev) => {
-      if (prev[name] && Array.isArray(prev[name])) {
-        const index = prev[name].indexOf(criteria);
-        if (index !== -1) {
-          prev[name].splice(index, 1);
-        }
-      }
-      return prev
-    })
+    removeError(criteria, name, value, setForm, setErrorFields)
   }
 }
 
@@ -53,4 +36,30 @@ const setErrorMessage = (setForm, name, value, criteria, errorMessage) => {
   setForm((prevForm) => (
     { ...prevForm, [name]: { ...prevForm[name], value, validation: { ...prevForm[name].validation, [criteria]: { ...prevForm[name].validation[criteria], error: errorMessage } } } }
   ))
+}
+
+const addError = (criteria, criteriaValue, name, value, setForm, setErrorFields) => {
+  const message = criteriaValue.message ?? name + " " + defaultErrorMessages[criteria]
+  setErrorMessage(setForm, name, value, criteria, message)
+
+  setErrorFields((prev) => {
+    const updatedValue = Array.isArray(prev[name]) ? [...prev[name], criteria] : [criteria];
+    return { ...prev, [name]: [...new Set(updatedValue)] };
+  })
+}
+
+const removeError = (criteria, name, value, setForm, setErrorFields) => {
+
+
+  setErrorMessage(setForm, name, value, criteria, "");
+
+  setErrorFields((prev) => {
+    if (prev[name] && Array.isArray(prev[name])) {
+      const index = prev[name].indexOf(criteria);
+      if (index !== -1) {
+        prev[name].splice(index, 1);
+      }
+    }
+    return prev
+  })
 }
