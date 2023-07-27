@@ -15,19 +15,6 @@ class Contact
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/contacts", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
-
         register_rest_route("ndpv/v1", "/contacts/(?P<id>\d+)", [
             "methods" => "GET",
             "callback" => [$this, "get_single"],
@@ -39,6 +26,18 @@ class Contact
                     },
                 ],
             ],
+        ]);
+
+        register_rest_route("ndpv/v1", "/contacts" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "get"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/contacts", [
+            "methods" => "POST",
+            "callback" => [$this, "create"],
+            "permission_callback" => [$this, "create_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/contacts/(?P<id>\d+)", [

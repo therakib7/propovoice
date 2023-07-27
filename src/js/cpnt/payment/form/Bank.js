@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy } from 'react';
+import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import { toast } from 'react-toastify';
 

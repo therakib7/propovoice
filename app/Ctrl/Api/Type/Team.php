@@ -2,7 +2,7 @@
 
 namespace Ndpv\Ctrl\Api\Type;
 
-use Ndpv\Helper\Fns; 
+use Ndpv\Helper\Fns;
 use Ndpv\Model\Org;
 use Ndpv\Model\Person;
 
@@ -15,19 +15,6 @@ class Team
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/teams", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
-
         register_rest_route("ndpv/v1", "/teams/(?P<id>\d+)", [
             "methods" => "GET",
             "callback" => [$this, "get_single"],
@@ -39,6 +26,18 @@ class Team
                     },
                 ],
             ],
+        ]);
+
+        register_rest_route("ndpv/v1", "/teams" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "get"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/teams", [
+            "methods" => "POST",
+            "callback" => [$this, "create"],
+            "permission_callback" => [$this, "create_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/teams/(?P<id>\d+)", [

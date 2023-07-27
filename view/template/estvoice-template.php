@@ -35,9 +35,9 @@
 
         if ($check_permission) {
             echo '<div id="ndpv-invoice"></div>';
-        } else { 
+        } else {
             ndpv()->render('template/partial/403');
         }
-    } else { 
+    } else {
         ndpv()->render('template/partial/404');
     }

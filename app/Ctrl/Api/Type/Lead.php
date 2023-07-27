@@ -9,26 +9,15 @@ use Ndpv\Model\Person;
 
 class Lead
 {
+
     public function __construct()
     {
         add_action("rest_api_init", [$this, "rest_routes"]);
+
     }
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/leads", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
-
         register_rest_route("ndpv/v1", "/leads/(?P<id>\d+)", [
             "methods" => "GET",
             "callback" => [$this, "get_single"],
@@ -40,6 +29,18 @@ class Lead
                     },
                 ],
             ],
+        ]);
+
+        register_rest_route("ndpv/v1", "/leads" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "get"],
+            "permission_callback" => [$this, "get_per"],
+        ]);
+
+        register_rest_route("ndpv/v1", "/leads", [
+            "methods" => "POST",
+            "callback" => [$this, "create"],
+            "permission_callback" => [$this, "create_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/leads/(?P<id>\d+)", [

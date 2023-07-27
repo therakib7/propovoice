@@ -1,7 +1,5 @@
-import api from "api";
 import { handleSignIn } from "api/gapi/goauth2";
 let eventData;
-let hangoutLink;
 
 export const createEvent = (data, updateGoogleMeet) => {
   eventData = data;
@@ -13,7 +11,7 @@ export const createEvent = (data, updateGoogleMeet) => {
 const myEvent = async (updateGoogleMeet) => {
   const meetingRequestId = crypto.randomUUID();
 
-  event = {
+  const event = {
     summary: eventData.summary,
     description: "",
     start: {

@@ -227,6 +227,7 @@ class I18n
             "license" => esc_html__("License", "propovoice"),
             "exps" => esc_html__("Expires", "propovoice"),
             "valid" => esc_html__("Valid", "propovoice"),
+            "expired" => esc_html__("Expired", "propovoice"),
             "prior" => esc_html__("Priority", "propovoice"),
             "meeting" => esc_html__("Meeting Place or", "propovoice"),
             "meet" => esc_html__("meet", "propovoice"),
@@ -397,7 +398,7 @@ class I18n
             // custom field
             "opt" => esc_html__("Option", "propovoice"), 
             "optList" => esc_html__("Option list", "propovoice"), 
-            "optDef" => esc_html__("Option default", "propovoice"), 
+            "optDef" => esc_html__("Default options", "propovoice"), 
         ];
     }
 }

@@ -11,7 +11,7 @@ class Setting
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/settings", [
+        register_rest_route("ndpv/v1", "/settings" . ndpv()->plain_route(), [
             "methods" => "GET",
             "callback" => [$this, "get"],
             "permission_callback" => [$this, "get_per"],

@@ -14,30 +14,29 @@ class Invoice
 
     public function rest_routes()
     {
-        register_rest_route("ndpv/v1", "/invoices", [
-            [
-                "methods" => "GET",
-                "callback" => [$this, "get"],
-                "permission_callback" => [$this, "get_per"],
-            ],
-            [
-                "methods" => "POST",
-                "callback" => [$this, "create"],
-                "permission_callback" => [$this, "create_per"],
-            ],
-        ]);
-
         register_rest_route("ndpv/v1", "/invoices/(?P<id>\d+)", [
             "methods" => "GET",
             "callback" => [$this, "get_single"],
             "permission_callback" => [$this, "get_per_single"],
             "args" => [
                 "id" => [
-                    "validate_callback" => function ($param, $request, $key) {
+                    "validate_callback" => function ($param) {
                         return is_numeric($param);
                     },
                 ],
             ],
+        ]);
+
+        register_rest_route("ndpv/v1", "/invoices" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "get"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/invoices", [
+            "methods" => "POST",
+            "callback" => [$this, "create"],
+            "permission_callback" => [$this, "create_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/invoices/(?P<id>\d+)", [
@@ -67,7 +66,20 @@ class Invoice
 
     public function get($req)
     {
+
         $param = $req->get_params();
+        //this is the short solution to fix plain permalink issue
+        $permalink_structure = get_option('permalink_structure');
+        if ( $permalink_structure === '' && isset( $param['token'] ) ) {
+            $text = isset( $param['args']) ? $param['args'] : '';
+
+            preg_match('/\d+/', $text, $matches);
+            if ( !empty($matches) ) {
+                $req->set_url_params(['id' => $matches[0]]);
+                $this->get_single($req);
+            }
+            return;
+        }
 
         $per_page = 10;
         $offset = 0;

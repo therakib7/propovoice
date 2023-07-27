@@ -64,7 +64,7 @@ export default class WC extends Component {
             if (resp.data.success) {
                 toast.success(ndpv.i18n.aUpd);
             } else {
-                resp.data.data.forEach(function (value, index, array) {
+                resp.data.data.forEach(function (value) {
                     toast.error(value);
                 });
             }

@@ -1,4 +1,3 @@
-import api from "api";
 import { handleSignIn } from "api/gapi/goauth2";
 
 export function uploadToDrive(file, setForm) {
@@ -78,6 +77,6 @@ function uploadCallback(setForm, load) {
   );
 }
 
-function permissionCallback(fileId, load) {
+function permissionCallback(fileId) {
   console.log(`The file id ${fileId} is public now!!!`);
 }

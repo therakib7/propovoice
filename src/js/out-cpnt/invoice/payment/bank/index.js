@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
 import Api from 'api/payment-process';
-import { sprintf } from 'sprintf-js';
 
 class Bank extends Component {
     constructor(props) {
@@ -42,14 +41,14 @@ class Bank extends Component {
                     toast.success(ndpv.i18n.aThankR);
 
                 } else {
-                    resp.data.data.forEach(function (value, index, array) {
+                    resp.data.data.forEach(function (value) {
                         toast.error(value);
                     });
                 }
             })
     }
 
-    handleUploadChange = (data, type = null) => {
+    handleUploadChange = (data) => {
         let form = { ...this.state.form }
         form.receipt = data;
         this.setState({ form })
@@ -69,7 +68,7 @@ class Bank extends Component {
                                         width={25}
                                         height={25}
                                         viewBox="0 0 16 16"
-                                        fill="none" 
+                                        fill="none"
                                     >
                                         <path
                                             d="M12.5 3.5L3.5 12.5"

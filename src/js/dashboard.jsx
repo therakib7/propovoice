@@ -4,12 +4,12 @@ import Home from 'cpnt/home';
 import AppContext from 'context/app-context';
 import msgData from 'context/data/msg';
 
+import { checkRoute } from 'helper';
+
 function Dashboard() {
     return (
         <>
             <AppContext.Provider value={{
-                user_id: null,
-                user_role: null,
                 CrudMsg: msgData
             }}>
                 <Home />
@@ -29,18 +29,21 @@ document.addEventListener('DOMContentLoaded', function () {
         );
     }
 
-    //show current menu in dashbaord 
+    //show current menu in dashbaord
+    const currentHash = window.location.hash;
     let navUl = document.querySelectorAll('#toplevel_page_ndpv ul > li');
+
+    //on click active
     for (let y = 0, l = navUl.length; y < l; y++) {
-        //TODO: set current class when reload
-        //let link = navUl[y].getElementsByTagName('a');
-        navUl[y].addEventListener('click', checkLi);
+        navUl[y].addEventListener('click', function () {
+            for (let y = 0, l = navUl.length; y < l; y++) {
+                navUl[y].classList.remove('current');
+            }
+            this.classList.add('current');
+        });
     }
-    function checkLi() {
-        for (let y = 0, l = navUl.length; y < l; y++) {
-            navUl[y].classList.remove('current');
-        }
-        this.classList.add('current');
-    }
+
+    //initial active route
+    checkRoute();
 
 });
