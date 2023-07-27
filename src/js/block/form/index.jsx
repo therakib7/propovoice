@@ -51,7 +51,6 @@ export function FormWrapper({ submitHandler, close, children }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(e);
         checkAllValidation(form, setForm, setErrorFields)
         setSubmitEvent(e)
         setIsSubmitted(true)

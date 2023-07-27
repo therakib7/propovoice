@@ -6,7 +6,7 @@ export const TextInput = ({ label, type, id, name, value, placeholder, wrapperCl
 
   const { form, setForm, setErrorFields } = useContext(FormContext);
 
-  const errorMessage = form[name]?.validation?.required?.error || '';
+  const validationConditions = form[name]?.validation || {};
   const inputValue = form[name]?.value;
 
 
@@ -45,8 +45,11 @@ export const TextInput = ({ label, type, id, name, value, placeholder, wrapperCl
         placeholder={placeholder}
         onChange={handleChange}
       />
-      <div style={{ color: "red", marginTop: "4px" }}>{errorMessage.charAt(0).toUpperCase() + errorMessage.slice(1)}</div>
-
+      {Object.entries(validationConditions).map(([criteria, { error = "" }]) => (
+        <div key={criteria} style={{ color: "red", marginTop: "4px" }}>
+          {error.charAt(0).toUpperCase() + error.slice(1)}
+        </div>
+      ))}
     </div >
   );
 }
