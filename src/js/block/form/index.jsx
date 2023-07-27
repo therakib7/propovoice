@@ -34,6 +34,8 @@ export function FormWrapper({ submitHandler, close, children }) {
             const count = countErrors(errorFields)
             if (count === 0) {
                 submitHandler(submitEvent)
+            } else {
+                toast.error("Invalid submission!!!")
             }
             setIsSubmitted(false)
         }
