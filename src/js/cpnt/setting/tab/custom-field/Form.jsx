@@ -146,7 +146,7 @@ export default class Form extends Component {
                                 </div>
 
                                 <div className="col-md">
-                                    <label htmlFor="field-label">{i18n.desc}</label>
+                                    <label htmlFor="field-desc">{i18n.desc}</label>
                                     <input
                                         id="field-desc"
                                         type="text"
@@ -157,8 +157,8 @@ export default class Form extends Component {
                                 </div>
 
                                 <div className="col-md">
-                                    <label htmlFor="field-label">{i18n.type}</label>
-                                    <select name="type" value={type} onChange={this.handleChange}>
+                                    <label htmlFor="field-type">{i18n.type}</label>
+                                    <select name="type" id="field-type" value={type} onChange={this.handleChange}>
                                         <option value="text">{i18n.text}</option>
                                         <option value="email">{i18n.email}</option>
                                         <option value="number">{i18n.number}</option>
