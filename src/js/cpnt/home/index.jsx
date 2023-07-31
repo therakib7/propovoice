@@ -151,12 +151,14 @@ export default () => {
                                 />
                             </div>
                             <div className="pv-avater" style={navBarStyle}>
-                                <Dropdown
-                                    isSvgIcon={true}
-                                    icon={notificationIcon}
-                                    list={[]}
-                                    purpose="notification"
-                                />
+                                {false &&
+                                    <Dropdown
+                                        isSvgIcon={true}
+                                        icon={notificationIcon}
+                                        list={[]}
+                                        purpose="notification"
+                                    />
+                                }
                                 <Dropdown
                                     isSvgIcon={false}
                                     icon={ndpv.profile.img}
