@@ -149,7 +149,7 @@ const Setting = (props) => {
       label: 'Public API'
     };
   }
-  if (!wage.length) {
+  if (false && !wage.length) {
     tab_data['notification'] = {
       label: 'Notification'
     };
