@@ -46,14 +46,16 @@ export function FormWrapper({ submitHandler, close, children }) {
     }, [isSubmitted, errorFields])
 
     useEffect(() => {
-        groupProcessing(form, setGroupFields)
+
         for (const [groupName, fieldObj] of Object.entries(groupFields)) {
             for (const [field, value] of Object.entries(fieldObj)) {
+
                 if (value.length > 0) {
 
                     for (const [name, { value, validation }] of Object.entries(form)) {
                         for (const [criteria, criteriaValue] of Object.entries(validation)) {
-                            if (criteria === "required" && criteriaValue?.group === groupName) {
+                            if (criteria === "required" && criteriaValue?.group === groupName && name !== field) {
+                                console.log(name)
                                 removeError(criteria, name, value, setForm, setErrorFields)
                             }
                         }
@@ -74,12 +76,13 @@ export function FormWrapper({ submitHandler, close, children }) {
     }
 
 
-    console.log(groupFields);
 
     const onSubmit = (e) => {
         e.preventDefault();
         // generateGroupObj
         // if there is any field value(search index), then make required false to all other fields
+
+        groupProcessing(form, setGroupFields)
         checkAllValidation(form, setForm, setErrorFields)
         setSubmitEvent(e)
         setIsSubmitted(true)
