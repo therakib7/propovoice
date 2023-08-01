@@ -75,7 +75,7 @@ export function FormWrapper({ submitHandler, close, children }) {
         }, 0);
     }
 
-
+    console.log(form)
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -89,7 +89,7 @@ export function FormWrapper({ submitHandler, close, children }) {
     }
 
     return (
-        <FormContext.Provider value={{ form, setForm, setErrorFields }}>
+        <FormContext.Provider value={{ form, setForm, setErrorFields, groupFields }}>
             <form onSubmit={onSubmit} >
                 {children}
                 <FormFooter close={close} />

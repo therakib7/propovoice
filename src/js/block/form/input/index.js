@@ -5,7 +5,7 @@ import { checkValidation } from "./validations";
 export const TextInput = ({ label, wrapperClassName = "col", validation = {}, onChange, ...attrs }) => {
 
   const { form, setForm, setErrorFields } = useContext(FormContext);
-  const { name, value } = attrs;
+  const { name, value = "" } = attrs;
   const validationConditions = form[name]?.validation || {};
 
 

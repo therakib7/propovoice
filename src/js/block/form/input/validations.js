@@ -25,22 +25,29 @@ export const checkAllValidation = (form, setForm, setErrorFields) => {
 }
 
 const checkRequired = (criteria, criteriaValue, name, value, setForm, setErrorFields) => {
-  if (criteriaValue?.value && value.length === 0) {
-    addError(criteria, criteriaValue, name, value, setForm, setErrorFields)
+
+  if (criteriaValue?.value && value?.length === 0) {
+    addError(criteria, criteriaValue, name, setForm, setErrorFields)
   } else {
-    removeError(criteria, name, value, setForm, setErrorFields)
+    removeError(criteria, name, setForm, setErrorFields)
   }
 }
 
-const setErrorMessage = (setForm, name, value, criteria, errorMessage) => {
-  setForm((prevForm) => (
-    { ...prevForm, [name]: { ...prevForm[name], value, validation: { ...prevForm[name].validation, [criteria]: { ...prevForm[name].validation[criteria], error: errorMessage } } } }
-  ))
+const setErrorMessage = (setForm, name, criteria, errorMessage, criteriaValue = "default") => {
+
+  setForm((prevForm) => {
+
+    criteriaValue = criteriaValue !== "default" ? criteriaValue : prevForm[name].validation[criteria].value
+
+    console.log(name, prevForm[name].validation[criteria].value)
+    return { ...prevForm, [name]: { ...prevForm[name], validation: { ...prevForm[name].validation, [criteria]: { ...prevForm[name].validation[criteria], value: criteriaValue, error: errorMessage } } } }
+  })
 }
 
-const addError = (criteria, criteriaValue, name, value, setForm, setErrorFields) => {
+const addError = (criteria, criteriaValue, name, setForm, setErrorFields) => {
+
   const message = criteriaValue.message ?? name + " " + defaultErrorMessages[criteria]
-  setErrorMessage(setForm, name, value, criteria, message)
+  setErrorMessage(setForm, name, criteria, message)
 
   setErrorFields((prev) => {
     const updatedValue = Array.isArray(prev[name]) ? [...prev[name], criteria] : [criteria];
@@ -48,10 +55,10 @@ const addError = (criteria, criteriaValue, name, value, setForm, setErrorFields)
   })
 }
 
-export const removeError = (criteria, name, value, setForm, setErrorFields) => {
+export const removeError = (criteria, name, setForm, setErrorFields) => {
 
 
-  setErrorMessage(setForm, name, value, criteria, "");
+  setErrorMessage(setForm, name, criteria, "", false);
 
   setErrorFields((prev) => {
     if (prev[name] && Array.isArray(prev[name])) {
@@ -64,7 +71,7 @@ export const removeError = (criteria, name, value, setForm, setErrorFields) => {
   })
 }
 
-export const alterValidation = (current_name, current_value, field1, field2, setForm) => {
+export const alterValidation = (current_name, current_value, field1, field2, criteria, setForm, setErrorFields) => {
 
   const alt_name =
     current_name !== field1
@@ -72,15 +79,16 @@ export const alterValidation = (current_name, current_value, field1, field2, set
       : field2;
 
   if (current_value.length > 0) {
-    setForm((prevForm) => (
-      { ...prevForm, [alt_name]: { ...prevForm[alt_name], validation: { ...prevForm[alt_name].validation, required: { ...prevForm[alt_name].validation.required, value: false, error: "" } } } }
-    )
-    )
-
-    setForm((prevForm) => (
-      { ...prevForm, [current_name]: { ...prevForm[current_name], validation: { ...prevForm[current_name].validation, required: { ...prevForm[current_name].validation.required, value: true } } } }
-    )
-    )
+    removeError(criteria, alt_name, setForm, setErrorFields)
+    // setForm((prevForm) => (
+    //   { ...prevForm, [alt_name]: { ...prevForm[alt_name], validation: { ...prevForm[alt_name].validation, required: { ...prevForm[alt_name].validation.required, value: false, error: "" } } } }
+    // )
+    // )
+    addError(criteria, true, current_name, setForm, setErrorFields)
+    // setForm((prevForm) => (
+    //   { ...prevForm, [current_name]: { ...prevForm[current_name], validation: { ...prevForm[current_name].validation, required: { ...prevForm[current_name].validation.required, value: true } } } }
+    // )
+    // )
   }
 }
 
