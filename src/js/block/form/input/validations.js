@@ -67,7 +67,7 @@ export const removeError = (criteria, name, setForm, setErrorFields, criteriaVal
 
 export const alterValidation = (current_name, current_value, fields, criteria, setForm, setErrorFields) => {
   fields.map((field) => {
-    if (field === current_name || current_value.length === 0) return;
+    if (field === current_name && current_value.length === 0) return;
     removeError(criteria, field, setForm, setErrorFields)
   })
 }
@@ -86,4 +86,44 @@ const generateGroup = (form, setGroupFields) => {
       }
     }
   }
+}
+
+export const setGroupValidation = (fields, form, setForm) => {
+  const groupDataFields = []
+  const groupEmptyFields = []
+
+  for (const [name, value] of Object.entries(fields)) {
+    if (value?.length > 0) {
+      groupDataFields.push(name)
+    }
+    else {
+      groupEmptyFields.push(name)
+    }
+  }
+
+  console.log("data: ", groupDataFields)
+  console.log("empty: ", groupEmptyFields)
+
+  if (groupDataFields.length > 0) {
+    groupDataFields.map((field) => {
+      addRequired(field, setForm)
+    })
+
+    groupEmptyFields.map((field) => {
+      removeRequired(field, setForm)
+    })
+
+  }
+
+}
+
+const addRequired = (field, setForm) => {
+  setForm((prevForm) => (
+    { ...prevForm, [field]: { ...prevForm[field], validation: { ...prevForm[field].validation, required: { ...prevForm[field].validation.required, value: true } } } }
+  ))
+}
+const removeRequired = (field, setForm) => {
+  setForm((prevForm) => (
+    { ...prevForm, [field]: { ...prevForm[field], validation: { ...prevForm[field].validation, required: { ...prevForm[field].validation.required, value: false, error: "" } } } }
+  ))
 }

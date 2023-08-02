@@ -12,7 +12,7 @@ export default (props) => {
     const orgRef = useRef();
 
 
-    const { setForm, setErrorFields } = useContext(FormContext);
+    const { form, setForm, setErrorFields } = useContext(FormContext);
     const [personList, setPersonList] = useState([]);
     const [orgList, setOrgList] = useState([]);
     const [personModal, setPersonModal] = useState(false);
@@ -27,9 +27,14 @@ export default (props) => {
 
     let timeout = 0;
 
+    const contactFields = ["first_name", "org_name"]
+
+    useEffect(() => {
+    }, [])
+
     const handleChange = e => {
         const { name, value } = e.target;
-        alterValidation(name, value, ["first_name", "org_name"], "required", setForm, setErrorFields)
+        alterValidation(name, value, contactFields, "required", setForm, setErrorFields)
 
         if (value.length < 1) {
             setPersonModal(false);
