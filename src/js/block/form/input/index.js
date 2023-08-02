@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FormContext } from 'block/form';
-import { checkValidation } from "./validations";
+import { checkValidation, groupProcessing } from "./validations";
 
 export const TextInput = ({ label, wrapperClassName = "col", validation = {}, onChange, ...attrs }) => {
 
-  const { form, setForm, setErrorFields } = useContext(FormContext);
-  const { name, value = "" } = attrs;
+  const { form, setForm, setErrorFields, setGroupFields } = useContext(FormContext);
+  const { name, initValue = "" } = attrs;
   const validationConditions = form[name]?.validation || {};
 
 
@@ -13,25 +13,24 @@ export const TextInput = ({ label, wrapperClassName = "col", validation = {}, on
     if (!(name in form)) {
       setForm((prevForm) => ({
         ...prevForm,
-        [name]: { ...prevForm[name], value, validation },
+        [name]: { ...prevForm[name], value: initValue, validation },
       }));
     }
   }, []);
 
-  useEffect(() => {
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: { ...prevForm[name], value },
-    }));
-  }, [value]);
+  // useEffect(() => {
+  //   setForm((prevForm) => ({
+  //     ...prevForm,
+  //     [name]: { ...prevForm[name], value },
+  //   }));
+  // }, [value]);
 
   const handleChange = (e) => {
-
     setForm((prevForm) => ({
       ...prevForm,
       [name]: { ...prevForm[name], value: e.target.value },
     }));
-
+    groupProcessing(form, setGroupFields)
     checkValidation(name, e.target.value, form, setForm, setErrorFields)
     onChange(e);
   }

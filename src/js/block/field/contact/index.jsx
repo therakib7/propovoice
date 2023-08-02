@@ -29,8 +29,7 @@ export default (props) => {
 
     const handleChange = e => {
         const { name, value } = e.target;
-        // alterValidation(name, value, "first_name", "org_name", "required", setForm, setErrorFields)
-
+        alterValidation(name, value, ["first_name", "org_name"], "required", setForm, setErrorFields)
 
         if (value.length < 1) {
             setPersonModal(false);

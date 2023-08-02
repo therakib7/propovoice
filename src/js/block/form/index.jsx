@@ -34,7 +34,7 @@ export function FormWrapper({ submitHandler, close, children }) {
     const [submitEvent, setSubmitEvent] = useState();
 
     useEffect(() => {
-        if (isSubmitted) {
+        if (isSubmitted && submitEvent) {
             const count = countErrors(errorFields)
             if (count === 0) {
                 submitHandler(submitEvent)
@@ -47,23 +47,24 @@ export function FormWrapper({ submitHandler, close, children }) {
 
     useEffect(() => {
 
-        for (const [groupName, fieldObj] of Object.entries(groupFields)) {
-            for (const [field, value] of Object.entries(fieldObj)) {
-
-                if (value.length > 0) {
-
-                    for (const [name, { value, validation }] of Object.entries(form)) {
-                        for (const [criteria, criteriaValue] of Object.entries(validation)) {
-                            if (criteria === "required" && criteriaValue?.group === groupName && name !== field) {
-                                console.log(name)
-                                removeError(criteria, name, value, setForm, setErrorFields)
-                            }
-                        }
-                    }
-                    return;
-                }
-            }
-        }
+        console.log(form);
+        console.log(groupFields);
+        checkAllValidation(form, setForm, setErrorFields)
+        setIsSubmitted(true)
+        // for (const [groupName, fieldObj] of Object.entries(groupFields)) {
+        //     for (const [field, value] of Object.entries(fieldObj)) {
+        //         if (value.length > 0) {
+        //             for (const [name, { value, validation }] of Object.entries(form)) {
+        //                 for (const [criteria, criteriaValue] of Object.entries(validation)) {
+        //                     if (criteria === "required" && criteriaValue?.group === groupName && name !== field) {
+        //                         removeError(criteria, name, setForm, setErrorFields)
+        //                     }
+        //                 }
+        //             }
+        //             return;
+        //         }
+        //     }
+        // }
     }, [groupFields])
 
     const countErrors = (errorFields) => {
@@ -75,7 +76,6 @@ export function FormWrapper({ submitHandler, close, children }) {
         }, 0);
     }
 
-    console.log(form)
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -83,13 +83,14 @@ export function FormWrapper({ submitHandler, close, children }) {
         // if there is any field value(search index), then make required false to all other fields
 
         groupProcessing(form, setGroupFields)
-        checkAllValidation(form, setForm, setErrorFields)
         setSubmitEvent(e)
-        setIsSubmitted(true)
     }
 
+    console.log(form);
+    console.log(groupFields);
+
     return (
-        <FormContext.Provider value={{ form, setForm, setErrorFields, groupFields }}>
+        <FormContext.Provider value={{ form, setForm, setErrorFields, groupFields, setGroupFields }}>
             <form onSubmit={onSubmit} >
                 {children}
                 <FormFooter close={close} />
