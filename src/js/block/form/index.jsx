@@ -1,5 +1,6 @@
 import React, { useState, createContext, useEffect } from "react";
 import { toast } from 'react-toastify';
+import Preloader from "block/preloader/spinner";
 import { checkAllValidation, groupProcessing, removeError, setGroupValidation } from "./input/validations";
 
 export const FormContext = createContext({});
@@ -32,6 +33,7 @@ export function FormWrapper({ submitHandler, close, children }) {
     const [groupFields, setGroupFields] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [submitEvent, setSubmitEvent] = useState();
+    const [submitPreloader, setSubmitPreloader] = useState(false);
 
 
     useEffect(() => {
@@ -42,6 +44,8 @@ export function FormWrapper({ submitHandler, close, children }) {
             } else {
                 toast.error("Invalid submission!!!")
             }
+
+            setSubmitPreloader(false)
             setIsSubmitted(false)
         }
     }, [isSubmitted, errorFields])
@@ -60,6 +64,7 @@ export function FormWrapper({ submitHandler, close, children }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        setSubmitPreloader(true)
         // groupProcessing(form, setGroupFields)
 
         // for (const [_group, fields] of Object.entries(groupFields)) {
@@ -75,7 +80,8 @@ export function FormWrapper({ submitHandler, close, children }) {
         <FormContext.Provider value={{ form, setForm, setErrorFields, groupFields, setGroupFields }}>
             <form onSubmit={onSubmit} >
                 {children}
-                <FormFooter close={close} />
+                <FormFooter close={close} submitPreloader={submitPreloader} />
+
             </form>
         </FormContext.Provider>
     );
@@ -92,7 +98,7 @@ export function FormContent({ formStyleClass, children }) {
 
 }
 
-export function FormFooter({ close }) {
+export function FormFooter({ close, submitPreloader }) {
     const i18n = ndpv.i18n;
     return (
         <div className="pv-modal-footer">
@@ -102,7 +108,7 @@ export function FormFooter({ close }) {
                 </div>
                 <div className="col">
                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                        {i18n.save}
+                        {submitPreloader && <Preloader submit />}                       {i18n.save}
                     </button>
                 </div>
             </div>

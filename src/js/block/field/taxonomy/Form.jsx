@@ -5,6 +5,7 @@ import Upload from 'block/field/upload';
 import api from 'api';
 import Preloader from "block/preloader/spinner";
 import { Add } from 'block/icon';
+import { TextInput } from 'block/form/input';
 
 export default class Form extends Component {
     constructor(props) {
@@ -134,7 +135,7 @@ export default class Form extends Component {
             });
         }
         // setModal(false);
-        
+
     }
 
     handleLogoChange = (data) => {
