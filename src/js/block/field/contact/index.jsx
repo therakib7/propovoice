@@ -34,7 +34,7 @@ export default (props) => {
 
     const handleChange = e => {
         const { name, value } = e.target;
-        alterValidation(name, value, contactFields, "required", setForm, setErrorFields)
+        // alterValidation(name, value, contactFields, "required", setForm, setErrorFields)
 
         if (value.length < 1) {
             setPersonModal(false);
@@ -87,16 +87,16 @@ export default (props) => {
     const i18n = ndpv.i18n;
 
     const personValidation = {
-        required: {
-            value: true,
-            group: "contact"
-        }
+        // required: {
+        //     value: false,
+        //     group: "contact"
+        // }
     }
     const orgValidation = {
-        required: {
-            value: true,
-            group: "contact"
-        }
+        // required: {
+        //     value: false,
+        //     group: "contact"
+        // }
     }
     const person = (
         <>

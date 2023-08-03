@@ -1,13 +1,11 @@
 export const defaultErrorMessages = {
-  required: "field is required"
+  required: "field is required",
+  email: "is invalid"
 }
 
 export const checkValidation = (name, value, form, setForm, setErrorFields) => {
   for (const [criteria, criteriaValue] of Object.entries(form[name].validation)) {
-    switch (criteria) {
-      case 'required':
-        checkRequired(criteria, criteriaValue, name, value, setForm, setErrorFields)
-    }
+    validationByCriteria(criteria, criteriaValue, name, value, setForm, setErrorFields)
   }
 
 }
@@ -15,11 +13,20 @@ export const checkValidation = (name, value, form, setForm, setErrorFields) => {
 export const checkAllValidation = (form, setForm, setErrorFields) => {
   for (const [name, { value, validation }] of Object.entries(form)) {
     for (const [criteria, criteriaValue] of Object.entries(validation)) {
-      switch (criteria) {
-        case 'required':
-          checkRequired(criteria, criteriaValue, name, value, setForm, setErrorFields)
-      }
+      validationByCriteria(criteria, criteriaValue, name, value, setForm, setErrorFields)
     }
+  }
+}
+
+const validationByCriteria = (criteria, criteriaValue, name, value, setForm, setErrorFields) => {
+  switch (criteria) {
+    case 'required':
+      checkRequired(criteria, criteriaValue, name, value, setForm, setErrorFields)
+      break;
+
+    case 'email':
+      checkEmail(criteria, criteriaValue, name, value, setForm, setErrorFields)
+      break;
   }
 }
 
@@ -27,6 +34,18 @@ const checkRequired = (criteria, criteriaValue, name, value, setForm, setErrorFi
   if (criteriaValue?.value && value?.length === 0) {
     addError(criteria, criteriaValue, name, setForm, setErrorFields)
   } else {
+    removeError(criteria, name, setForm, setErrorFields, true)
+  }
+}
+
+const checkEmail = (criteria, criteriaValue, name, email, setForm, setErrorFields) => {
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const isValid = emailPattern.test(email)
+  if (!isValid && email.length > 0) {
+    addError(criteria, criteriaValue, name, setForm, setErrorFields)
+
+  }
+  else {
     removeError(criteria, name, setForm, setErrorFields, true)
   }
 }

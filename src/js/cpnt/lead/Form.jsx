@@ -274,6 +274,9 @@ export default class Form extends Component {
                     value: true,
                     message: "Email Required"
                 },
+                email: {
+                    value: true
+                }
             },
         };
 

@@ -60,11 +60,11 @@ export function FormWrapper({ submitHandler, close, children }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        groupProcessing(form, setGroupFields)
+        // groupProcessing(form, setGroupFields)
 
-        for (const [_group, fields] of Object.entries(groupFields)) {
-            setGroupValidation(fields, form, setForm)
-        }
+        // for (const [_group, fields] of Object.entries(groupFields)) {
+        //     setGroupValidation(fields, form, setForm)
+        // }
         checkAllValidation(form, setForm, setErrorFields)
         setIsSubmitted(true)
         setSubmitEvent(e)
