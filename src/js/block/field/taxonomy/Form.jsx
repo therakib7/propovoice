@@ -6,6 +6,7 @@ import api from 'api';
 import Preloader from "block/preloader/spinner";
 import { Add } from 'block/icon';
 import { TextInput } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
     constructor(props) {
@@ -159,22 +160,19 @@ export default class Form extends Component {
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {this.props.title}</h2>
                     </div>
 
-                    <div className="pv-content">
-                        <div className="pv-form-style-one">
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                        <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
-                                <div className="col-md">
-                                    <label htmlFor="field-label">
-                                        {i18n.name}
-                                    </label>
-
-                                    <input
-                                        id="field-label"
-                                        type="text"
-                                        name="label"
-                                        value={form.label}
-                                        onChange={(e) => this.handleChange(e)}
-                                    />
-                                </div>
+                                <TextInput
+                                    label={i18n.name}
+                                    id="field-label"
+                                    type="text"
+                                    name="label"
+                                    wrapperClassName='col-md'
+                                    value={form.label}
+                                    onChange={(e) => this.handleChange(e)}
+                                    validation={{ required: { value: true } }}
+                                />
                             </div>
 
                             {this.props.color && <>
@@ -328,23 +326,10 @@ export default class Form extends Component {
                                     </div>
                                 </>
                             }
-                        </div>
-                    </div>
-
-                    <div className="pv-modal-footer pv-mt-10">
-                        <div className="row">
-                            <div className="col">
-                                <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
-                            </div>
-                            <div className="col">
-                                <button onClick={this.handleSubmit} disabled={submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-medium pv-float-right pv-color-white">
-                                    {submitPreloader && <Preloader submit />} {i18n.save}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                        </FormContent>
+                    </FormWrapper>
                 </div>
-            </div>
+            </div >
         );
     }
 }
