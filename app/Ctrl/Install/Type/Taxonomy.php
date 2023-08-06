@@ -337,27 +337,36 @@ class Taxonomy
     public function custom_media_sideload_image($image_url = '', $post_id = false)
     {
         require_once ABSPATH . 'wp-admin/includes/file.php';
+
+        // Download the image from the URL
         $tmp = download_url($image_url);
+
+        // Check if there was an error during download
+        if (is_wp_error($tmp)) {
+            return $tmp; // Return the WP_Error object
+        }
+
         // Set variables for storage
-        // fix file filename for query strings
         preg_match('/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $image_url, $matches);
         $file_array['name'] = basename($matches[0]);
         $file_array['tmp_name'] = $tmp;
-        // If error storing temporarily, unlink
-        if (is_wp_error($tmp)) {
-            @unlink($file_array['tmp_name']);
-            $file_array['tmp_name'] = '';
-        }
+
+        // Handle the sideloading of the image
         $time = current_time('mysql');
-        $file = wp_handle_sideload($file_array, array('test_form'=>false), $time);
+        $file = wp_handle_sideload($file_array, array('test_form' => false), $time);
+
+        // Check if there was an error during sideloading
         if (isset($file['error'])) {
             return new \WP_Error('upload_error', $file['error']);
         }
+
+        // Insert the attachment into the media library
         $url = $file['url'];
         $type = $file['type'];
         $file = $file['file'];
         $title = preg_replace('/\.[^.]+$/', '', basename($file));
         $parent = (int) absint($post_id) > 0 ? absint($post_id) : 0;
+
         $attachment = array(
             'post_mime_type' => $type,
             'guid' => $url,
@@ -365,12 +374,17 @@ class Taxonomy
             'post_title' => $title,
             'post_content' => ''
         );
+
         $id = wp_insert_attachment($attachment, $file, $parent);
+
+        // Update attachment metadata
         if (!is_wp_error($id)) {
             require_once ABSPATH . 'wp-admin/includes/image.php';
             $data = wp_generate_attachment_metadata($id, $file);
             wp_update_attachment_metadata($id, $data);
         }
+
         return $id;
     }
+
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Setting\Type;
 
 class Welcome
@@ -7,6 +7,13 @@ class Welcome
 	public function __construct()
 	{
 		add_action('admin_menu', [$this, 'add_settings_menu'], 30);
+		add_action('admin_head', function() {
+			echo "<style>
+				li.toplevel_page_ndpv-welcome {
+					display: none;
+				}
+			</style>";
+		});
 	}
 
 	public function add_settings_menu()
@@ -16,17 +23,11 @@ class Welcome
 			esc_html__('Propovoice Welcome', 'propovoice'),
 			'manage_options',
 			'ndpv-welcome',
-			array($this, 'main_settings'),
-			'dashicons-groups',
-			30
+			array($this, 'render')
 		);
-
-		add_action('admin_menu', function () {
-			remove_menu_page('ndpv-welcome');
-		}, 100);
 	}
 
-	function main_settings()
+	function render()
 	{
 		echo '<div class="wrap" id="ndpv-welcome"></div>';
 	}
