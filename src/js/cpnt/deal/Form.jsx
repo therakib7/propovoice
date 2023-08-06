@@ -205,6 +205,7 @@ class Form extends Component {
                     this.setState({ submitPreloader: false });
                     if (resp.data.success) {
                         this.props.close();
+                        toast.success(ndpv.i18n.aUpd);
                         this.props.reload();
                     } else {
                         resp.data.data.forEach(function (value, index, array) {
