@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Upload from 'block/field/upload';
 import { Add } from 'block/icon';
+import { TextInput } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
 
 class Form extends Component {
@@ -107,26 +109,25 @@ class Form extends Component {
                         <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.biz + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
-                    <form onSubmit={this.handleSubmit} >
-                        <div className="pv-content">
-                            <div className="pv-form-style-one">
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label
-                                            htmlFor="field-name">
-                                            {i18n.name}
-                                        </label>
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                        <FormContent formStyleClass="pv-form-style-one">
+                            <div className="row">
+                                <div className="col-md">
+                                    <label
+                                        htmlFor="field-name">
+                                        {i18n.name}
+                                    </label>
 
-                                        <input
-                                            id="field-name"
-                                            type="text"
-                                            name="name"
-                                            value={form.name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
+                                    <input
+                                        id="field-name"
+                                        type="text"
+                                        name="name"
+                                        value={form.name}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
 
-                                    {/* <div className="col-md">
+                                {/* <div className="col-md">
                                             <label
                                                 htmlFor="field-org_name">
                                                 Company Name
@@ -141,115 +142,96 @@ class Form extends Component {
                                             />
                                         </div> */}
 
+                            </div>
+                            <div className="row">
+                                <div className="col-md">
+                                    <label
+                                        htmlFor="field-web">
+                                        {i18n.web}
+                                    </label>
+
+                                    <input
+                                        id="field-web"
+                                        type="text"
+                                        name="web"
+                                        value={form.web}
+                                        onChange={this.handleChange}
+                                    />
                                 </div>
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label
-                                            htmlFor="field-web">
-                                            {i18n.web}
-                                        </label>
 
-                                        <input
-                                            id="field-web"
-                                            type="text"
-                                            name="web"
-                                            value={form.web}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                    <div className="col-md">
-                                        <label
-                                            htmlFor="field-email">
+                                <TextInput
+                                    label={i18n.email}
+                                    id="field-email"
+                                    type="email"
+                                    name="email"
+                                    value={form.email}
+                                    wrapperClassName='col-md'
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true }, email: { value: true } }}
 
-                                            {i18n.email}
+                                />
 
-                                        </label>
+                            </div>
+                            <div className="row">
+                                <div className="col-md">
+                                    <label
+                                        htmlFor="field-mobile">
+                                        {i18n.mob}
+                                    </label>
 
-                                        <input
-                                            id="field-email"
-                                            type="email"
-                                            required
-                                            name="email"
-                                            value={form.email}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-
+                                    <input
+                                        id="field-mobile"
+                                        type="text"
+                                        name="mobile"
+                                        value={form.mobile}
+                                        onChange={this.handleChange}
+                                    />
                                 </div>
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label
-                                            htmlFor="field-mobile">
-                                            {i18n.mob}
-                                        </label>
+                                <div className="col-md">
+                                    <label
+                                        htmlFor="field-zip">
+                                        {i18n.zip}
+                                    </label>
 
-                                        <input
-                                            id="field-mobile"
-                                            type="text"
-                                            name="mobile"
-                                            value={form.mobile}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                    <div className="col-md">
-                                        <label
-                                            htmlFor="field-zip">
-                                            {i18n.zip}
-                                        </label>
-
-                                        <input
-                                            id="field-zip"
-                                            type="text"
-                                            name="zip"
-                                            value={form.zip}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col">
-                                        <label
-                                            htmlFor="field-address">
-                                            {i18n.addr}
-                                        </label>
-
-                                        <input
-                                            id="field-address"
-                                            type="text"
-                                            name="address"
-                                            placeholder='Write you full address here'
-                                            value={form.address}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col">
-                                        <label
-                                            htmlFor="field-logo">
-                                            {i18n.logo}
-                                        </label>
-                                        <Upload data={form.logo} changeHandler={this.handleLogoChange} />
-                                    </div>
+                                    <input
+                                        id="field-zip"
+                                        type="text"
+                                        name="zip"
+                                        value={form.zip}
+                                        onChange={this.handleChange}
+                                    />
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
-                                </div>
-                                <div className="col">
-                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.save}
-                                    </button>
+                                    <label
+                                        htmlFor="field-address">
+                                        {i18n.addr}
+                                    </label>
+
+                                    <input
+                                        id="field-address"
+                                        type="text"
+                                        name="address"
+                                        placeholder='Write you full address here'
+                                        value={form.address}
+                                        onChange={this.handleChange}
+                                    />
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                            <div className="row">
+                                <div className="col">
+                                    <label
+                                        htmlFor="field-logo">
+                                        {i18n.logo}
+                                    </label>
+                                    <Upload data={form.logo} changeHandler={this.handleLogoChange} />
+                                </div>
+                            </div>
+                        </FormContent>
+                    </FormWrapper>
+                </div >
+            </div >
         );
     }
 }

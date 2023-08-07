@@ -104,7 +104,7 @@ export function FormFooter({ close, submitPreloader }) {
         <div className="pv-modal-footer">
             <div className="row">
                 <div className="col">
-                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => close()}>{i18n.cancel}</button>
+                    {close && <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => close()}>{i18n.cancel}</button>}
                 </div>
                 <div className="col">
                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
