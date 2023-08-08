@@ -40,7 +40,7 @@ export const TextInput = ({ label, wrapperClassName = "col", validation = {}, on
   return (
     <div className={wrapperClassName}>
       <label htmlFor={attrs.id}>
-        {label} {isRequired && (<span style={{ color: "red" }}>*</span>)}
+        {label} {isRequired && (<span style={{ color: "red" }} title="This field is required">*</span>)}
       </label>
       <input
         onChange={handleChange}
