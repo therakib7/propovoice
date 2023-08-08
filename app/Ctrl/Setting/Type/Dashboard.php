@@ -21,7 +21,7 @@ class Dashboard
             esc_html__("Propovoice", "propovoice"),
             "ndpv_core",
             "ndpv",
-            [$this, "main_settings"],
+            [$this, "render"],
             "dashicons-groups",
             2
         );
@@ -130,7 +130,7 @@ class Dashboard
         remove_submenu_page("ndpv", "ndpv");
     }
 
-    function main_settings()
+    function render()
     {
         echo '<div class="wrap"><div id="ndpv-dashboard"></div></div>';
     }

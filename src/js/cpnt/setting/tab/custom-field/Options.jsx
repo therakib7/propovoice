@@ -95,7 +95,7 @@ class Options extends Component {
         return (
             <>
                 <div className="col-md">
-                    <label htmlFor="field-label">{i18n.optList}</label>
+                    <label htmlFor="">{i18n.optList}</label>
                     {options.map((item, i) => {
                         return (
                             <div
@@ -147,22 +147,26 @@ class Options extends Component {
                             </div>
                         );
                     })}
-                    <input
-                        type="text"
-                        placeholder={i18n.add + " " + typeLabel + " " + i18n.opt}
-                        value={this.state.newItem}
-                        onChange={this.handleNewItem}
-                        onKeyPress={e => {
-                            if (e.key === 'Enter') {
-                                this.addItem(e)
-                            }
-                        }}
-                    />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                        <input
+                            type="text"
+                            placeholder={i18n.add + " " + typeLabel + " " + i18n.opt}
+                            value={this.state.newItem}
+                            onChange={this.handleNewItem}
+                            onKeyPress={e => {
+                                if (e.key === 'Enter') {
+                                    this.addItem(e)
+                                }
+                            }}
+                        />
+                        <button onClick={this.addItem} className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow">{i18n.add}</button>
+                    </div>
                 </div>
 
                 {options.length > 0 && <div className="col-md">
                     <label htmlFor="field-default">{i18n.optDef}</label>
                     {(this.props.type == 'select') && <select
+                        id="field-default"
                         value={value}
                         onChange={this.handleValue}
                     >
@@ -174,8 +178,9 @@ class Options extends Component {
                         })}
                     </select>}
 
-                    {(this.props.type == 'multi-select') && <div className="pi-field-multi">
+                    {(this.props.type == 'multi-select') && Array.isArray(value) && <div className="pi-field-multi">
                         <MultiSelect
+                            setting
                             onChange={this.handleMultiSelect}
                             options={options}
                             value={value}
