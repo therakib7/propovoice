@@ -39,6 +39,7 @@ class Role
     public function update_admin_caps()
     {
         $admin_role = get_role("administrator");
+        if ( $admin_role->has_cap("ndpv_core") ) return; // if already set return
 
         foreach (self::$ndpv_caps as $cap => $perm) {
             $admin_role->add_cap($cap, $perm);

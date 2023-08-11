@@ -11,6 +11,14 @@ class Filter
             $this,
             "hide_bank_attachment",
         ]);
+
+        //current_user_can always return true, false when super admin in multisite
+        add_filter( 'map_meta_cap', function( $caps, $cap ) {
+            if ( 'ndpv_client_role' === $cap ) {
+                $caps = array('do_not_allow');
+            }
+            return $caps;
+        }, 10, 2 );
     }
 
     function body_class($classes)
