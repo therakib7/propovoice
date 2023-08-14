@@ -190,10 +190,17 @@ export default class Form extends Component {
         delete form.org;
 
         if (this.props.reload) {
-            api.edit('leads', form.id, form);
-            this.props.close();
-            toast.success(ndpv.i18n.aUpd);
-            this.props.reload();
+            api.edit('leads', form.id, form).then(resp => {
+                if (resp.data.success) {
+                    this.props.close();
+                    toast.success(ndpv.i18n.aUpd);
+                    this.props.reload();
+                } else {
+                    resp.data.data.forEach(function (value) {
+                        toast.error(value);
+                    });
+                }
+            });
         } else {
             this.props.handleSubmit(form);
         }

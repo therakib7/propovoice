@@ -427,9 +427,6 @@ class Person
         $first_name = isset($param["first_name"])
             ? sanitize_text_field($req["first_name"])
             : null;
-        $last_name = isset($param["last_name"])
-            ? sanitize_text_field($req["last_name"])
-            : null;
         $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
         $org_name = isset($param["org_name"])
             ? sanitize_text_field($req["org_name"])
@@ -488,11 +485,16 @@ class Person
                     update_post_meta($post_id, "first_name", $first_name);
                 }
 
+                $org = new Org();
                 if (!$org_id && $org_name) {
-                    $org = new Org();
                     $org_id = $org->create([
                         "org_name" => $org_name,
                         "person_id" => $post_id,
+                    ]);
+                } else if ($org_id && $org_name) {
+                    $org->update([
+                        "org_id" => $org_id,
+                        "org_name" => $org_name
                     ]);
                 }
 

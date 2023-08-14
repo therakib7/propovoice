@@ -572,8 +572,7 @@ class Lead
                 foreach (Fns::custom_field("lead") as $value) {
                     $field = '';
                     if ($value['type'] == 'multi-select') {
-                        $field = isset($param[$value['slug']])
-                            ? array_map("sanitize_text_field", $param[$value['slug']])
+                        $field = isset($param[$value['slug']]) && is_array( $param[$value['slug']] ) ? array_map("sanitize_text_field", $param[$value['slug']])
                             : "";
                     } else {
                         $field = isset($param[$value['slug']])
