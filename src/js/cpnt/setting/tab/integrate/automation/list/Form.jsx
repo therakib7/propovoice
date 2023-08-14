@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import actionList from './actions';
+import { TextInput } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
     constructor(props) {
@@ -117,127 +119,123 @@ export default class Form extends Component {
                         <h2 className="pv-modal-title">{modalType} {this.props.title}</h2>
                         <p>{sprintf(i18n.formDesc, modalType, this.props.title)}</p>
                     </div>
-                    <form onSubmit={this.handleSubmit} >
-                        <div className="pv-content">
-                            <div className="pv-form-style-one">
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                        <FormContent formStyleClass="pv-form-style-one">
 
-                                <div className="row">
-                                    <div className="col">
-                                        <label>
-                                            {i18n.act}
+                            <div className="row">
+                                <div className="col">
+                                    <label>
+                                        {i18n.act}
+                                    </label>
+                                    <div className="pv-field-switch pv-ml-10">
+                                        <label className='pv-switch'>
+                                            <input type='checkbox'
+                                                id="reminder-active"
+                                                name='active'
+                                                checked={form.active ? 'checked' : ''}
+                                                onChange={this.handleChange}
+                                            />
+                                            <span className='pv-switch-slider pv-round'></span>
                                         </label>
-                                        <div className="pv-field-switch pv-ml-10">
-                                            <label className='pv-switch'>
-                                                <input type='checkbox'
-                                                    id="reminder-active"
-                                                    name='active'
-                                                    checked={form.active ? 'checked' : ''}
-                                                    onChange={this.handleChange}
-                                                />
-                                                <span className='pv-switch-slider pv-round'></span>
-                                            </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <TextInput
+                                    label={i18n.name}
+                                    id="name"
+                                    type="text"
+                                    name="name"
+                                    wrapperClassName='col-md'
+                                    value={form.name}
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true } }}
+                                />
+                            </div>
+
+                            <div className="row">
+                                <TextInput
+                                    label="Webhook URL"
+                                    id="url"
+                                    type="text"
+                                    name="url"
+                                    value={form.url}
+                                    wrapperClassName='col-md'
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true } }}
+                                />
+                            </div>
+
+                            {false && <div className="row">
+                                <div className="col-md-6">
+                                    <label htmlFor="method">Method</label>
+                                    <select
+                                        name="method"
+                                        value={form.method}
+                                        onChange={this.handleChange}
+                                    >
+                                        <option value='post'>POST</option>
+                                        <option value='get'>GET</option>
+                                    </select>
+                                </div>
+                            </div>}
+
+                            <div className='row'>
+                                <div className='col' style={{ marginBottom: 10 }}>
+                                    <h4 className='pv-title-medium' style={{ textTransform: 'capitalize' }}>Actions List</h4>
+                                </div>
+                                <div className='col' style={{ marginBottom: 10, textAlign: 'right' }}>
+                                    <a onClick={(e) => this.handleCheckbox(e, 'all')} >Select All</a> | <a onClick={(e) => this.handleCheckbox(e, 'none')}>Deselect All</a>
+                                </div>
+                            </div>
+
+                            <div className="pv-intg-list pv-mb-15">
+                                {actionList.map((item, i) => (
+                                    <div key={i}
+                                        className="pv-intg-item"
+                                        style={{
+                                            alignItems: 'initial',
+                                            padding: '14px 15px 5px',
+                                            cursor: 'auto'
+                                        }}
+                                    // onClick={() => this.addCurrentTab(item)}
+                                    >
+
+                                        <div className="pv-field-checkbox">
+                                            <input
+                                                type='checkbox'
+                                                id={item.slug + '-mod'}
+                                                name='mod'
+                                                value={item.slug}
+                                                style={{ marginRight: 8 }}
+                                                // checked={reminder.after.includes(1) ? 'checked' : ''}
+                                                onChange={(e) => this.handleCheckbox(e, 'group')}
+                                            />
+                                            <label
+                                                htmlFor={item.slug + '-mod'}
+                                                style={{
+                                                    fontSize: 16,
+                                                    fontWeight: 500,
+                                                    color: '#2D3748'
+                                                }}
+                                            >{item.label}</label>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="name">{i18n.name}</label>
-
-                                        <input
-                                            id="name"
-                                            type="text"
-                                            required
-                                            name="name"
-                                            value={form.name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="url">Webhook URL</label>
-                                        <input
-                                            id="url"
-                                            type="text"
-                                            required
-                                            name="url"
-                                            value={form.url}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                {false && <div className="row">
-                                    <div className="col-md-6">
-                                        <label htmlFor="method">Method</label>
-                                        <select
-                                            name="method"
-                                            value={form.method}
-                                            onChange={this.handleChange}
-                                        >
-                                            <option value='post'>POST</option>
-                                            <option value='get'>GET</option>
-                                        </select>
-                                    </div>
-                                </div>}
-
-                                <div className='row'>
-                                    <div className='col' style={{ marginBottom: 10 }}>
-                                        <h4 className='pv-title-medium' style={{ textTransform: 'capitalize' }}>Actions List</h4>
-                                    </div>
-                                    <div className='col' style={{ marginBottom: 10, textAlign: 'right' }}>
-                                        <a onClick={(e) => this.handleCheckbox(e, 'all')} >Select All</a> | <a onClick={(e) => this.handleCheckbox(e, 'none')}>Deselect All</a>
-                                    </div>
-                                </div>
-
-                                <div className="pv-intg-list pv-mb-15">
-                                    {actionList.map((item, i) => (
-                                        <div key={i}
-                                            className="pv-intg-item"
-                                            style={{
-                                                alignItems: 'initial',
-                                                padding: '14px 15px 5px',
-                                                cursor: 'auto'
-                                            }}
-                                        // onClick={() => this.addCurrentTab(item)}
-                                        >
-
-                                            <div className="pv-field-checkbox">
+                                        {Object.entries(item.list).map((t, k) => (
+                                            <div key={k} className="pv-field-checkbox">
                                                 <input
                                                     type='checkbox'
-                                                    id={item.slug + '-mod'}
-                                                    name='mod'
-                                                    value={item.slug}
-                                                    style={{ marginRight: 8 }}
-                                                    // checked={reminder.after.includes(1) ? 'checked' : ''} 
-                                                    onChange={(e) => this.handleCheckbox(e, 'group')}
+                                                    id={item.slug + '-' + k}
+                                                    name='action'
+                                                    value={t[0]}
+                                                    checked={form.actions.includes(t[0]) ? 'checked' : ''}
+                                                    onChange={(e) => this.handleCheckbox(e, 'action')}
                                                 />
-                                                <label
-                                                    htmlFor={item.slug + '-mod'}
-                                                    style={{
-                                                        fontSize: 16,
-                                                        fontWeight: 500,
-                                                        color: '#2D3748'
-                                                    }}
-                                                >{item.label}</label>
+                                                <label htmlFor={item.slug + '-' + k}>{t[1]}</label>
                                             </div>
-
-                                            {Object.entries(item.list).map((t, k) => (
-                                                <div key={k} className="pv-field-checkbox">
-                                                    <input
-                                                        type='checkbox'
-                                                        id={item.slug + '-' + k}
-                                                        name='action'
-                                                        value={t[0]}
-                                                        checked={form.actions.includes(t[0]) ? 'checked' : ''}
-                                                        onChange={(e) => this.handleCheckbox(e, 'action')}
-                                                    />
-                                                    <label htmlFor={item.slug + '-' + k}>{t[1]}</label>
-                                                </div>
-                                            ))}
-                                            {/* <h4>{item.label}</h4>
+                                        ))}
+                                        {/* <h4>{item.label}</h4>
                                             <ul>
                                                 {Object.entries(item.list).map((t, k) => (
                                                     <li key={k}>
@@ -245,27 +243,13 @@ export default class Form extends Component {
                                                     </li>
                                                 ))}
                                             </ul> */}
-                                        </div>
-                                    ))}
-                                </div>
+                                    </div>
+                                ))}
                             </div>
-                        </div>
-
-                        <div className="pv-modal-footer">
-                            <div className="row">
-                                <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
-                                </div>
-                                <div className="col">
-                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.save}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                        </FormContent>
+                    </FormWrapper>
+                </div >
+            </div >
         );
     }
 }

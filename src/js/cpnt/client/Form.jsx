@@ -5,6 +5,8 @@ import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import Upload from 'block/field/upload';
 import { sprintf } from 'sprintf-js';
 import Preloader from "block/preloader/spinner";
+import { TextInput } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
 class Form extends Component {
     constructor(props) {
@@ -146,149 +148,131 @@ class Form extends Component {
                         <p>{sprintf(i18n.formDesc, modalType, i18n.client)}</p>
                     </div>
 
-                    <form onSubmit={this.handleSubmit} >
-                        <div className="pv-content">
-                            <div className="pv-form-style-one">
-                                <Contact
-                                    first_name={form.first_name}
-                                    org_name={form.org_name}
-                                    onChange={this.handleContactChange}
-                                    onSelect={this.handleContactSelect}
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                        <FormContent formStyleClass="pv-form-style-one">
+                            <Contact
+                                first_name={form.first_name}
+                                org_name={form.org_name}
+                                onChange={this.handleContactChange}
+                                onSelect={this.handleContactSelect}
+                            />
+
+                            <div className="row">
+
+                                <TextInput
+                                    label={i18n.email}
+                                    id="form-email"
+                                    type="email"
+                                    wrapperClassName='col-lg'
+                                    name="email"
+                                    value={form.email}
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true }, email: { value: true } }}
                                 />
+                                <div className="col-lg">
+                                    <label htmlFor="form-mobile">
+                                        {i18n.mob}
+                                    </label>
 
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-email">
-                                            {i18n.email}
-                                        </label>
-
-                                        <input
-                                            id="form-email"
-                                            type="email"
-                                            required
-                                            name="email"
-                                            value={form.email}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                    <div className="col-lg">
-                                        <label htmlFor="form-mobile">
-                                            {i18n.mob}
-                                        </label>
-
-                                        <input
-                                            id="form-mobile"
-                                            type="text"
-                                            name="mobile"
-                                            value={form.mobile}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
+                                    <input
+                                        id="form-mobile"
+                                        type="text"
+                                        name="mobile"
+                                        value={form.mobile}
+                                        onChange={this.handleChange}
+                                    />
                                 </div>
-
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label htmlFor="form-country">
-                                            {i18n.country}
-                                        </label>
-
-                                        <CountryDropdown
-                                            value={form.country}
-                                            valueType='short'
-                                            onChange={(val) => this.selectCountry(val)}
-                                        />
-                                    </div>
-
-                                    <div className="col-md-6">
-                                        <label htmlFor="form-region">
-                                            {i18n.region}
-                                        </label>
-
-                                        <RegionDropdown
-                                            country={form.country}
-                                            countryValueType='short'
-                                            value={form.region}
-                                            onChange={(val) => this.selectRegion(val)}
-                                        />
-                                    </div>
-
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="form-address">
-                                            {i18n.addr}
-                                        </label>
-
-                                        <input
-                                            id="form-address"
-                                            type="text"
-                                            name="address"
-                                            value={form.address}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-web">
-                                            {i18n.web}
-                                        </label>
-
-                                        <input
-                                            id="form-web"
-                                            type="text"
-                                            name="web"
-                                            value={form.web}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="field-img">
-                                            {i18n.img}
-                                        </label>
-                                        <Upload data={form.img} changeHandler={this.handleImgChange} />
-                                    </div>
-                                </div>
-
-                                {!wage.length && <div className="row">
-                                    <div className="col">
-                                        <label id="form-client_portal">Client Portal Access</label>
-                                        <div className="pv-field-switch pv-ml-10">
-                                            <label className='pv-switch'>
-                                                <input type='checkbox'
-                                                    id="form-client_portal"
-                                                    name='client_portal'
-                                                    checked={form.client_portal ? 'checked' : ''}
-                                                    onChange={this.handleChange}
-                                                />
-                                                <span className='pv-switch-slider pv-round'></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>}
                             </div>
-                        </div>
 
-                        <div className="pv-modal-footer">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <label htmlFor="form-country">
+                                        {i18n.country}
+                                    </label>
+
+                                    <CountryDropdown
+                                        value={form.country}
+                                        valueType='short'
+                                        onChange={(val) => this.selectCountry(val)}
+                                    />
+                                </div>
+
+                                <div className="col-md-6">
+                                    <label htmlFor="form-region">
+                                        {i18n.region}
+                                    </label>
+
+                                    <RegionDropdown
+                                        country={form.country}
+                                        countryValueType='short'
+                                        value={form.region}
+                                        onChange={(val) => this.selectRegion(val)}
+                                    />
+                                </div>
+
+                            </div>
+
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
-                                </div>
-                                <div className="col">
-                                    <button type='submit' disabled={this.props.submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {this.props.submitPreloader && <Preloader submit />} {i18n.save}
-                                    </button>
+                                    <label htmlFor="form-address">
+                                        {i18n.addr}
+                                    </label>
+
+                                    <input
+                                        id="form-address"
+                                        type="text"
+                                        name="address"
+                                        value={form.address}
+                                        onChange={this.handleChange}
+                                    />
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
+                            <div className="row">
+                                <div className="col-lg">
+                                    <label htmlFor="form-web">
+                                        {i18n.web}
+                                    </label>
+
+                                    <input
+                                        id="form-web"
+                                        type="text"
+                                        name="web"
+                                        value={form.web}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col">
+                                    <label htmlFor="field-img">
+                                        {i18n.img}
+                                    </label>
+                                    <Upload data={form.img} changeHandler={this.handleImgChange} />
+                                </div>
+                            </div>
+
+                            {!wage.length && <div className="row">
+                                <div className="col">
+                                    <label id="form-client_portal">Client Portal Access</label>
+                                    <div className="pv-field-switch pv-ml-10">
+                                        <label className='pv-switch'>
+                                            <input type='checkbox'
+                                                id="form-client_portal"
+                                                name='client_portal'
+                                                checked={form.client_portal ? 'checked' : ''}
+                                                onChange={this.handleChange}
+                                            />
+                                            <span className='pv-switch-slider pv-round'></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>}
+                        </FormContent>
+                    </FormWrapper>
+                </div >
+            </div >
         );
     }
 }

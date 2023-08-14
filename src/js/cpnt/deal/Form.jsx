@@ -12,6 +12,8 @@ import CustomField from 'block/field/custom-field';
 import Preloader from "block/preloader/spinner";
 import { sprintf } from 'sprintf-js';
 import { checkRoute } from 'helper';
+import { TextInput } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
 class Form extends Component {
     constructor(props) {
@@ -307,247 +309,224 @@ class Form extends Component {
 
                     </div>
 
-                    <form onSubmit={this.handleSubmit} >
-                        <div className="pv-content">
-                            <div className="pv-form-style-one">
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                        <FormContent formStyleClass="pv-form-style-one">
 
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-title">
-                                            {i18n.title}
-                                        </label>
+                            <div className="row">
+                                <TextInput
+                                    label={i18n.title}
+                                    id="field-title"
+                                    type="text"
+                                    name="title"
+                                    wrapperClassName='col-md'
+                                    value={form.title}
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true } }}
+                                />
+                            </div>
 
-                                        <input
-                                            id="field-title"
-                                            type="text"
-                                            name="title"
-                                            required
-                                            value={form.title}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
+                            {/* {!this.props.reload && <>  */}
+                            <Contact
+                                first_name={form.first_name}
+                                org_name={form.org_name}
+                                onChange={this.handleContactChange}
+                                onSelect={this.handleContactSelect}
+                            />
 
-                                {/* {!this.props.reload && <>  */}
-                                <Contact
-                                    first_name={form.first_name}
-                                    org_name={form.org_name}
-                                    onChange={this.handleContactChange}
-                                    onSelect={this.handleContactSelect}
+                            <div className="row">
+                                <TextInput
+                                    label={i18n.email}
+                                    id="form-email"
+                                    type="email"
+                                    name="email"
+                                    wrapperClassName='col-lg'
+                                    value={form.email}
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true }, email: { value: true } }}
                                 />
 
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-email">
-                                            {i18n.email}
-                                        </label>
-                                        <input
-                                            id="form-email"
-                                            type="email"
-                                            name="email"
-                                            required
-                                            value={form.email}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
+                                <div className="col-lg">
+                                    <label htmlFor="form-mobile">
+                                        {i18n.mob}
+                                    </label>
 
-                                    <div className="col-lg">
-                                        <label htmlFor="form-mobile">
-                                            {i18n.mob}
-                                        </label>
-
-                                        <input
-                                            id="form-mobile"
-                                            type="text"
-                                            name="mobile"
-                                            value={form.mobile}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
+                                    <input
+                                        id="form-mobile"
+                                        type="text"
+                                        name="mobile"
+                                        value={form.mobile}
+                                        onChange={this.handleChange}
+                                    />
                                 </div>
-                                {/* </>} */}
+                            </div>
+                            {/* </>} */}
 
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <label htmlFor="form-country">
-                                            {i18n.country}
-                                        </label>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <label htmlFor="form-country">
+                                        {i18n.country}
+                                    </label>
 
-                                        <CountryDropdown
-                                            value={form.country}
-                                            valueType='short'
-                                            onChange={(val) => this.selectCountry(val)}
-                                        />
-                                    </div>
-
-                                    <div className="col-md-6">
-                                        <label htmlFor="form-region">
-                                            {i18n.region}
-                                        </label>
-
-                                        <RegionDropdown
-                                            country={form.country}
-                                            countryValueType='short'
-                                            value={form.region}
-                                            onChange={(val) => this.selectRegion(val)}
-                                        />
-                                    </div>
-
+                                    <CountryDropdown
+                                        value={form.country}
+                                        valueType='short'
+                                        onChange={(val) => this.selectCountry(val)}
+                                    />
                                 </div>
 
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="form-address">
-                                            {i18n.addr}
-                                        </label>
+                                <div className="col-md-6">
+                                    <label htmlFor="form-region">
+                                        {i18n.region}
+                                    </label>
 
-                                        <input
-                                            id="form-address"
-                                            type="text"
-                                            name="address"
-                                            value={form.address}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
+                                    <RegionDropdown
+                                        country={form.country}
+                                        countryValueType='short'
+                                        value={form.region}
+                                        onChange={(val) => this.selectRegion(val)}
+                                    />
                                 </div>
-
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-stage_id">
-                                            {i18n.stage}
-                                        </label>
-                                        <Taxonomy
-                                            selectedFirst
-                                            data={form.stage_id}
-                                            taxonomy='deal_stage'
-                                            title={i18n.stage}
-                                            onChange={this.handleStageChange}
-                                            color
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-budget">
-                                            {i18n.budget}
-                                        </label>
-
-                                        <input
-                                            id="field-budget"
-                                            type="number"
-                                            name="budget"
-                                            value={form.budget}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-
-                                    <div className="col-md">
-                                        <label htmlFor="field-currency">
-                                            {i18n.cur}
-                                        </label>
-                                        <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
-                                    </div>
-
-                                </div>
-
-                                {!wage.length && <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-probability">
-                                            {i18n.proba} <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
-                                        </label>
-
-                                        <input
-                                            id="field-probability"
-                                            type="range"
-                                            min="1" max="100"
-                                            name="probability"
-                                            value={form.probability}
-                                            style={{ background: `linear-gradient(to right, #3264fe ${probabilityPercent}%, #ccd6ff ${probabilityPercent}%)` }}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>}
-
-                                <div className="row">
-                                    <div className="col-md">
-                                        <label htmlFor="field-tags">
-                                            {i18n.tag}
-                                        </label>
-
-                                        <div className="pi-field-multi">
-                                            <Taxonomy
-                                                onChange={this.handleTagChange}
-                                                data={form.tags}
-                                                taxonomy='tag'
-                                                title={i18n.tag}
-                                                multi
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="field-desc">
-                                            {i18n.desc}
-                                        </label>
-
-                                        <textarea
-                                            id="form-desc"
-                                            rows={2}
-                                            name="desc"
-                                            value={form.desc}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="field-note">
-                                            {i18n.note}
-                                        </label>
-
-                                        <textarea
-                                            id="form-note"
-                                            rows={2}
-                                            name="note"
-                                            value={form.note}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="field-img">
-                                            {i18n.img}
-                                        </label>
-                                        <Upload data={form.img} changeHandler={this.handleImgChange} />
-                                    </div>
-                                </div>
-
-                                {this.state.custom_field && <CustomField mod='deal' type={this.props.modalType} form={form} onChange={this.handleCFChange} />}
 
                             </div>
-                        </div>
 
-                        <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
-                                </div>
-                                <div className="col">
-                                    <button type='submit' disabled={submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {submitPreloader && <Preloader submit />} {i18n.save}
-                                    </button>
+                                    <label htmlFor="form-address">
+                                        {i18n.addr}
+                                    </label>
+
+                                    <input
+                                        id="form-address"
+                                        type="text"
+                                        name="address"
+                                        value={form.address}
+                                        onChange={this.handleChange}
+                                    />
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
+                            <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-stage_id">
+                                        {i18n.stage}
+                                    </label>
+                                    <Taxonomy
+                                        selectedFirst
+                                        data={form.stage_id}
+                                        taxonomy='deal_stage'
+                                        title={i18n.stage}
+                                        onChange={this.handleStageChange}
+                                        color
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-budget">
+                                        {i18n.budget}
+                                    </label>
+
+                                    <input
+                                        id="field-budget"
+                                        type="number"
+                                        name="budget"
+                                        value={form.budget}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+
+                                <div className="col-md">
+                                    <label htmlFor="field-currency">
+                                        {i18n.cur}
+                                    </label>
+                                    <Currency key={form.currency} onChange={this.currencyChange} value={form.currency} form />
+                                </div>
+
+                            </div>
+
+                            {!wage.length && <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-probability">
+                                        {i18n.proba} <span style={{ position: 'absolute', right: '15px' }}>({form.probability}%)</span>
+                                    </label>
+
+                                    <input
+                                        id="field-probability"
+                                        type="range"
+                                        min="1" max="100"
+                                        name="probability"
+                                        value={form.probability}
+                                        style={{ background: `linear-gradient(to right, #3264fe ${probabilityPercent}%, #ccd6ff ${probabilityPercent}%)` }}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                            </div>}
+
+                            <div className="row">
+                                <div className="col-md">
+                                    <label htmlFor="field-tags">
+                                        {i18n.tag}
+                                    </label>
+
+                                    <div className="pi-field-multi">
+                                        <Taxonomy
+                                            onChange={this.handleTagChange}
+                                            data={form.tags}
+                                            taxonomy='tag'
+                                            title={i18n.tag}
+                                            multi
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col">
+                                    <label htmlFor="field-desc">
+                                        {i18n.desc}
+                                    </label>
+
+                                    <textarea
+                                        id="form-desc"
+                                        rows={2}
+                                        name="desc"
+                                        value={form.desc}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col">
+                                    <label htmlFor="field-note">
+                                        {i18n.note}
+                                    </label>
+
+                                    <textarea
+                                        id="form-note"
+                                        rows={2}
+                                        name="note"
+                                        value={form.note}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col">
+                                    <label htmlFor="field-img">
+                                        {i18n.img}
+                                    </label>
+                                    <Upload data={form.img} changeHandler={this.handleImgChange} />
+                                </div>
+                            </div>
+
+                            {this.state.custom_field && <CustomField mod='deal' type={this.props.modalType} form={form} onChange={this.handleCFChange} />}
+                        </FormContent>
+                    </FormWrapper>
+                </div >
+            </div >
         );
     }
 }

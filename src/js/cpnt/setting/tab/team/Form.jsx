@@ -3,6 +3,8 @@ import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import { toast } from "react-toastify";
 import api from 'api';
+import { TextInput } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
     constructor(props) {
@@ -145,123 +147,116 @@ export default class Form extends Component {
                         <h2 className="pv-modal-title">{modalType} {i18n.team + ' ' + i18n.member}</h2>
                         <p>{sprintf(i18n.formDesc, modalType, i18n.team + ' ' + i18n.member)}</p>
                     </div>
-                    <form onSubmit={this.handleSubmit} >
-                        <div className="pv-content">
-                            <div className="pv-form-style-one">
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                        <FormContent formStyleClass="pv-form-style-one">
 
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-name">
-                                            {i18n.name}
-                                        </label>
-                                        <input
-                                            id="form-name"
-                                            type="text"
-                                            required
-                                            name="name"
-                                            value={form.name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
+                            <div className="row">
+                                <TextInput
+                                    label={i18n.name}
+                                    id="form-name"
+                                    type="text"
+                                    name="name"
+                                    value={form.name}
+                                    wrapperClassName="col-lg"
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true } }}
+                                />
+                            </div>
 
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label htmlFor="form-email">
-                                            {i18n.email}
-                                        </label>
-                                        <input
-                                            id="form-email"
-                                            type="email"
-                                            required
-                                            name="email"
-                                            value={form.email}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
+                            <div className="row">
+                                <TextInput
+                                    label={i18n.email}
+                                    id="form-email"
+                                    type="email"
+                                    name="email"
+                                    value={form.email}
+                                    wrapperClassName="col-lg"
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true }, email: { value: true } }}
+                                />
+                            </div>
 
-                                <div className="row">
-                                    <div className="col-7">
-                                        <label>Role</label>
-                                        <div className="row">
-                                            <div className="col-6">
-                                                <div className="pv-field-checkbox" style={{ marginBottom: 0 }}>
-                                                    <input
-                                                        type="radio"
-                                                        id="role-admin"
-                                                        name="role"
-                                                        value='ndpv_admin'
-                                                        checked={this.state.form.role == "ndpv_admin"}
-                                                        onChange={this.handleChange}
-                                                    />
-                                                    <label htmlFor="role-admin">Admin</label>
-                                                </div>
+                            <div className="row">
+                                <div className="col-7">
+                                    <label>Role</label>
+                                    <div className="row">
+                                        <div className="col-6">
+                                            <div className="pv-field-checkbox" style={{ marginBottom: 0 }}>
+                                                <input
+                                                    type="radio"
+                                                    id="role-admin"
+                                                    name="role"
+                                                    value='ndpv_admin'
+                                                    checked={this.state.form.role == "ndpv_admin"}
+                                                    onChange={this.handleChange}
+                                                />
+                                                <label htmlFor="role-admin">Admin</label>
                                             </div>
+                                        </div>
 
-                                            <div className="col-6">
-                                                <div className="pv-field-checkbox" style={{ marginBottom: 0 }}>
-                                                    <input
-                                                        type="radio"
-                                                        id="role-manager"
-                                                        name="role"
-                                                        value='ndpv_manager'
-                                                        checked={this.state.form.role == "ndpv_manager"}
-                                                        onChange={this.handleChange}
-                                                    />
-                                                    <label htmlFor="role-manager">Manager</label>
-                                                </div>
+                                        <div className="col-6">
+                                            <div className="pv-field-checkbox" style={{ marginBottom: 0 }}>
+                                                <input
+                                                    type="radio"
+                                                    id="role-manager"
+                                                    name="role"
+                                                    value='ndpv_manager'
+                                                    checked={this.state.form.role == "ndpv_manager"}
+                                                    onChange={this.handleChange}
+                                                />
+                                                <label htmlFor="role-manager">Manager</label>
                                             </div>
+                                        </div>
 
-                                            <div className="col-6">
-                                                <div className="pv-field-checkbox" style={{ marginBottom: 0 }}>
-                                                    <input
-                                                        type="radio"
-                                                        id="role-contributor"
-                                                        name="role"
-                                                        value='ndpv_staff'
-                                                        checked={this.state.form.role == "ndpv_staff"}
-                                                        onChange={this.handleChange}
-                                                    />
-                                                    <label htmlFor="role-contributor">Staff</label>
-                                                </div>
+                                        <div className="col-6">
+                                            <div className="pv-field-checkbox" style={{ marginBottom: 0 }}>
+                                                <input
+                                                    type="radio"
+                                                    id="role-contributor"
+                                                    name="role"
+                                                    value='ndpv_staff'
+                                                    checked={this.state.form.role == "ndpv_staff"}
+                                                    onChange={this.handleChange}
+                                                />
+                                                <label htmlFor="role-contributor">Staff</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                {this.state.form.role && (this.state.form.role != 'ndpv_admin') && <div className="row">
-                                    <div className="col-10">
-                                        <label>Capabilities</label>
-                                        <div className="row">
+                            {this.state.form.role && (this.state.form.role != 'ndpv_admin') && <div className="row">
+                                <div className="col-10">
+                                    <label>Capabilities</label>
+                                    <div className="row">
 
-                                            {this.state.capsList.map((c) => {
-                                                if (this.state.form.role == 'ndpv_staff' && (
-                                                    c.value == 'ndpv_estimate' ||
-                                                    c.value == 'ndpv_invoice' ||
-                                                    c.value == 'ndpv_contact'
-                                                )) return;
-                                                return (
-                                                    <div className="col-4" key={c.value}>
-                                                        <div className="pv-field-switch pv-mr-10">
-                                                            <label className="pv-switch">
-                                                                <input
-                                                                    type="checkbox"
-                                                                    id={c.value}
-                                                                    name="cap"
-                                                                    value={c.value}
-                                                                    checked={this.state.form.caps.includes(c.value)}
-                                                                    onChange={this.handleCheckboxChange}
-                                                                />
-                                                                <span className="pv-switch-slider pv-round" />
-                                                            </label>
-                                                        </div>
-                                                        <label htmlFor={c.value}>{c.label}</label>
+                                        {this.state.capsList.map((c) => {
+                                            if (this.state.form.role == 'ndpv_staff' && (
+                                                c.value == 'ndpv_estimate' ||
+                                                c.value == 'ndpv_invoice' ||
+                                                c.value == 'ndpv_contact'
+                                            )) return;
+                                            return (
+                                                <div className="col-4" key={c.value}>
+                                                    <div className="pv-field-switch pv-mr-10">
+                                                        <label className="pv-switch">
+                                                            <input
+                                                                type="checkbox"
+                                                                id={c.value}
+                                                                name="cap"
+                                                                value={c.value}
+                                                                checked={this.state.form.caps.includes(c.value)}
+                                                                onChange={this.handleCheckboxChange}
+                                                            />
+                                                            <span className="pv-switch-slider pv-round" />
+                                                        </label>
                                                     </div>
-                                                )
-                                            })}
+                                                    <label htmlFor={c.value}>{c.label}</label>
+                                                </div>
+                                            )
+                                        })}
 
-                                            {/* {capabilityList.map((c) => (
+                                        {/* {capabilityList.map((c) => (
                                                 <div key={c.value}>
                                                     <input
                                                         type="checkbox"
@@ -275,28 +270,14 @@ export default class Form extends Component {
                                                 </div>
                                             ))} */}
 
-                                        </div>
                                     </div>
-                                </div>}
-
-                            </div>
-                        </div>
-
-                        <div className="pv-modal-footer">
-                            <div className="row">
-                                <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
-                                <div className="col">
-                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.save}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                            </div>}
+
+                        </FormContent>
+                    </FormWrapper>
+                </div >
+            </div >
         );
     }
 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import { toast } from 'react-toastify';
+import { TextInput } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
 // const Editor = lazy(() => import('block/editor'));
 
@@ -81,41 +83,34 @@ class FormBank extends Component {
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.account}</h2>
                         <p>{i18n.necInfo}</p>
                     </div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="pv-content">
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                        <FormContent formStyleClass="pv-form-style-one">
+                            <div className="row">
+                                <TextInput
+                                    label={i18n.name}
+                                    id="form-name"
+                                    type="text"
+                                    name="name"
+                                    wrapperClassName='col-lg'
+                                    value={this.state.form.name}
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true } }}
+                                />
+                            </div>
 
-                            <div className='pv-form-style-one'>
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label
-                                            htmlFor="form-name">
-                                            {i18n.name}
-                                        </label>
-
-                                        <input
-                                            id="form-name"
-                                            type="text"
-                                            required
-                                            name="name"
-                                            value={this.state.form.name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <label htmlFor="form-details">
-                                            {i18n.dtl}
-                                        </label>
-                                        <textarea
-                                            id="form-details"
-                                            rows={4}
-                                            name="details"
-                                            value={this.state.form.details}
-                                            onChange={this.handleChange}
-                                        />
-                                        {/*<Suspense fallback={<Spinner />}> 
+                            <div className="row">
+                                <div className="col">
+                                    <label htmlFor="form-details">
+                                        {i18n.dtl}
+                                    </label>
+                                    <textarea
+                                        id="form-details"
+                                        rows={4}
+                                        name="details"
+                                        value={this.state.form.details}
+                                        onChange={this.handleChange}
+                                    />
+                                    {/*<Suspense fallback={<Spinner />}>
                                             <Editor
                                                 key={'pv-bank-details'}
                                                 value={this.state.form.details} 
@@ -123,28 +118,14 @@ class FormBank extends Component {
                                             />
                                         </Suspense> */}
 
-                                        <p className='pv-field-desc'>{i18n.bankDesc}</p>
-                                    </div>
+                                    <p className='pv-field-desc'>{i18n.bankDesc}</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="pv-modal-footer">
-                            <div className="row">
-                                <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
-                                </div>
-                                <div className="col">
-                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.save}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                        </FormContent>
+                    </FormWrapper>
+                </div >
                 {/* ./ pv-modal-content */}
-            </div>
+            </div >
         );
     }
 }

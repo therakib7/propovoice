@@ -1,10 +1,11 @@
 import React, { useState, createContext, useEffect } from "react";
 import { toast } from 'react-toastify';
-import { checkAllValidation } from "./input/validations";
+import Preloader from "block/preloader/spinner";
+import { checkAllValidation, groupProcessing, removeError, setGroupValidation } from "./input/validations";
 
 export const FormContext = createContext({});
 
-export function FormWrapper({ submitHandler, close, children }) {
+export function FormWrapper({ submitHandler, close, submitLabel, children, formTag = true }) {
 
     // const form = {
     //     email: {
@@ -13,11 +14,14 @@ export function FormWrapper({ submitHandler, close, children }) {
     //             required: {
     //                 value: true,
     //                 message: "Email required",
+    //                 group : "contact"
     //                 error: "Email required"
     //             },
     //         }
     //     }
     // }
+    //
+    // groupFields = {contact: {first_name: "", org_name: "something"}}
     //
     // errorFields = {
     //     email: [required, email]
@@ -26,18 +30,27 @@ export function FormWrapper({ submitHandler, close, children }) {
     //
     const [form, setForm] = useState({});
     const [errorFields, setErrorFields] = useState({});
+    const [groupFields, setGroupFields] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [submitEvent, setSubmitEvent] = useState();
+    const [submitPreloader, setSubmitPreloader] = useState(false);
+
 
     useEffect(() => {
-        if (isSubmitted) {
+        if (isSubmitted && submitEvent) {
             const count = countErrors(errorFields)
             if (count === 0) {
                 submitHandler(submitEvent)
+            } else {
+                toast.error("Invalid submission!!!")
             }
+
+            setSubmitPreloader(false)
             setIsSubmitted(false)
         }
     }, [isSubmitted, errorFields])
+
+
 
     const countErrors = (errorFields) => {
         if (!errorFields || typeof errorFields !== 'object') {
@@ -51,18 +64,29 @@ export function FormWrapper({ submitHandler, close, children }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        setSubmitPreloader(true)
+        // groupProcessing(form, setGroupFields)
+
+        // for (const [_group, fields] of Object.entries(groupFields)) {
+        //     setGroupValidation(fields, form, setForm)
+        // }
         checkAllValidation(form, setForm, setErrorFields)
-        setSubmitEvent(e)
         setIsSubmitted(true)
+        setSubmitEvent(e)
     }
+    const formContent = (
+        <>
+            {children}
+            <FormFooter close={close} submitPreloader={submitPreloader} submitLabel={submitLabel} formTag={formTag} onSubmit={onSubmit} />
+        </>
+    );
 
     return (
-        <FormContext.Provider value={{ form, setForm, setErrorFields }}>
-            <form onSubmit={onSubmit} >
-                {children}
-                <FormFooter close={close} />
-            </form>
-        </FormContext.Provider>
+        <FormContext.Provider value={{ form, setForm, setErrorFields, groupFields, setGroupFields }}>
+            {
+                formTag ? <form onSubmit={onSubmit}>{formContent}</form> : <div>{formContent}</div>
+            }
+        </FormContext.Provider >
     );
 }
 
@@ -77,21 +101,24 @@ export function FormContent({ formStyleClass, children }) {
 
 }
 
-export function FormFooter({ close }) {
+export function FormFooter({ close, submitPreloader, submitLabel, formTag, onSubmit }) {
     const i18n = ndpv.i18n;
     return (
         <div className="pv-modal-footer">
             <div className="row">
                 <div className="col">
-                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => close()}>{i18n.cancel}</button>
+                    {close && <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => close()}>{i18n.cancel}</button>}
                 </div>
                 <div className="col">
-                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                        {i18n.save}
+                    <button type='submit'
+                        {...(!formTag ? { onClick: onSubmit } : {})}
+                        className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+
+                        {submitPreloader && <Preloader submit />}                       {submitLabel ? submitLabel : i18n.save}
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
 
     );
 }

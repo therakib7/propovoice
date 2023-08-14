@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 import api from 'api';
 import { Add } from 'block/icon';
 import Options from "./Options";
+import { TextInput } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
     constructor(props) {
@@ -131,19 +133,19 @@ export default class Form extends Component {
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {this.props.title}</h2>
                     </div>
 
-                    <div className="pv-content">
-                        <div className="pv-form-style-one">
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                        <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
-                                <div className="col-md">
-                                    <label htmlFor="field-label">{i18n.label}</label>
-                                    <input
-                                        id="field-label"
-                                        type="text"
-                                        name="label"
-                                        value={label}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
+                                <TextInput
+                                    label={i18n.label}
+                                    id="field-label"
+                                    type="text"
+                                    name="label"
+                                    value={label}
+                                    wrapperClassName='col-md'
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true } }}
+                                />
 
                                 <div className="col-md">
                                     <label htmlFor="field-desc">{i18n.desc}</label>
@@ -181,25 +183,11 @@ export default class Form extends Component {
                                         />
                                     </>
                                 }
-
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="pv-modal-footer pv-mt-10">
-                        <div className="row">
-                            <div className="col">
-                                <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
-                            </div>
-                            <div className="col">
-                                <button onClick={this.handleSubmit} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-medium pv-float-right pv-color-white">
-                                    {i18n.save}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                        </FormContent>
+                    </FormWrapper>
                 </div>
-            </div>
+            </div >
         );
     }
 }

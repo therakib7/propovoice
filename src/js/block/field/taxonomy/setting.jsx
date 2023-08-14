@@ -132,6 +132,7 @@ export default (props) => {
 												className={snapshot.isDragging ? styles.listItemDragging : styles.listItem}
 											>
 
+
 												<div className="">
 													<span className="pv-mt-3 pv-dot-list">
 														<svg

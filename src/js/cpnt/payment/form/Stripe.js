@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
+import { TextInput } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
 class FormStripe extends Component {
     constructor(props) {
@@ -80,81 +82,54 @@ class FormStripe extends Component {
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.stripe}</h2>
                         <p>Please fill up necessary informaiton in the form.</p>
                     </div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="pv-content">
-
-                            <div className='pv-form-style-one'>
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label
-                                            htmlFor="form-account_name">
-                                            {i18n.account} {i18n.name}
-                                        </label>
-
-                                        <input
-                                            id="form-account_name"
-                                            type="text"
-                                            required
-                                            name="account_name"
-                                            value={this.state.form.account_name}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label
-                                            htmlFor="form-public_key">
-                                            {i18n.pub} {i18n.key}
-                                        </label>
-
-                                        <input
-                                            id="form-public_key"
-                                            type="text"
-                                            required
-                                            name="public_key"
-                                            value={this.state.form.public_key}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col-lg">
-                                        <label
-                                            htmlFor="form-secret_key">
-                                            {i18n.secret} {i18n.key}
-                                        </label>
-
-                                        <input
-                                            id="form-secret_key"
-                                            type="text"
-                                            required
-                                            name="secret_key"
-                                            value={this.state.form.secret_key}
-                                            onChange={this.handleChange}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="pv-modal-footer">
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                        <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
-                                <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
-                                </div>
-                                <div className="col">
-                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {i18n.save} <ProLabel blueBtn />
-                                    </button>
-                                </div>
+
+                                <TextInput
+                                    label={i18n.account + " " + i18n.name}
+                                    id="form-account_name"
+                                    type="text"
+                                    name="account_name"
+                                    wrapperClassName='col-lg'
+                                    value={this.state.form.account_name}
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true } }}
+                                />
                             </div>
-                        </div>
-                    </form>
-                </div>
+
+                            <div className="row">
+
+                                <TextInput
+                                    label={i18n.pub + " " + i18n.key}
+                                    id="form-public_key"
+                                    type="text"
+                                    name="public_key"
+                                    wrapperClassName='col-lg'
+                                    value={this.state.form.public_key}
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true } }}
+                                />
+                            </div>
+
+                            <div className="row">
+
+                                <TextInput
+                                    label={i18n.secret + " " + i18n.key}
+                                    id="form-secret_key"
+                                    type="text"
+                                    name="secret_key"
+                                    wrapperClassName='col-lg'
+                                    value={this.state.form.secret_key}
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true } }}
+                                />
+                            </div>
+                        </FormContent>
+                    </FormWrapper>
+                </div >
                 {/* ./ pv-modal-content */}
-            </div>
+            </div >
         );
     }
 }
