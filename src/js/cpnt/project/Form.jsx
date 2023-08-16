@@ -408,6 +408,7 @@ class Form extends Component {
                                         taxonomy='project_status'
                                         title={i18n.status}
                                         onChange={this.handleStatusChange}
+                                        formTag={false}
                                         color
                                     />
                                 </div>
@@ -444,6 +445,7 @@ class Form extends Component {
                                             data={form.tags}
                                             taxonomy='tag'
                                             title={i18n.tag}
+                                            formTag={false}
                                             multi
                                         />
                                     </div>
