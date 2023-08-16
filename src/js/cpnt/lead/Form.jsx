@@ -310,7 +310,7 @@ export default class Form extends Component {
                         <p>{sprintf(i18n.formDesc, modalType, i18n.lead)}</p>
                     </div>
 
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close} formTag={false}>
                         <FormContent formStyleClass="pv-form-style-one">
                             <Contact
                                 first_name={form.first_name}
