@@ -262,6 +262,7 @@ export default (props) => {
 				data={form}
 				color={props.color}
 				close={() => setModal(false)}
+				formTag={props.formTag}
 			/>}
 		</>
 	);
