@@ -204,8 +204,8 @@ export default (props) => {
 					className={(!props.small) ? 'pv-btn pv-btn-medium' : 'pv-btn pv-btn-small'}
 					ref={(n) => {
 						if (n) {
-							n.style.setProperty("background-color", listById[0].bg_color, "important");
-							n.style.setProperty("color", listById[0].color, "important");
+							n.style.setProperty("background-color", (listById[0].bg_color ? listById[0].bg_color : '#E2E8F0'), "important");
+							n.style.setProperty("color", (listById[0].color ? listById[0].color : '#4a5568'), "important");
 						}
 					}}
 					onClick={(e) => showDropdown(e)}
@@ -221,7 +221,7 @@ export default (props) => {
 					>
 						<path
 							d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
-							fill={listById[0].color}
+							fill={(listById[0].color ? listById[0].color : '#4a5568')}
 						/>
 					</svg>
 				</button>}
@@ -262,6 +262,7 @@ export default (props) => {
 				data={form}
 				color={props.color}
 				close={() => setModal(false)}
+				formTag={props.formTag}
 			/>}
 		</>
 	);

@@ -407,8 +407,6 @@ class Task
 
                 do_action("ndpvp/webhook", "task_add", $param);
 
-
-
                 wp_send_json_success($post_id);
             } else {
                 wp_send_json_error();

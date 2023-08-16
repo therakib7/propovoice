@@ -310,7 +310,7 @@ export default class Form extends Component {
                         <p>{sprintf(i18n.formDesc, modalType, i18n.lead)}</p>
                     </div>
 
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close} >
                         <FormContent formStyleClass="pv-form-style-one">
                             <Contact
                                 first_name={form.first_name}
@@ -402,6 +402,7 @@ export default class Form extends Component {
                                         taxonomy='lead_level'
                                         title={i18n.level}
                                         onChange={this.handleLevelChange}
+                                        formTag={false}
                                         color
                                     />
                                 </div>
@@ -417,6 +418,7 @@ export default class Form extends Component {
                                             data={form.tags}
                                             taxonomy='tag'
                                             title={i18n.tag}
+                                            formTag={false}
                                             multi
                                         />
                                     </div>

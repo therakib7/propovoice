@@ -112,7 +112,7 @@ export function FormFooter({ close, submitPreloader, submitLabel, formTag, onSub
                 <div className="col">
                     <button type='submit'
                         {...(!formTag ? { onClick: onSubmit } : {})}
-                        className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+                        className="pv-btn pv-bg-blue pv-bg-hover-blue  pv-float-right pv-color-white">
 
                         {submitPreloader && <Preloader submit />}                       {submitLabel ? submitLabel : i18n.save}
                     </button>
