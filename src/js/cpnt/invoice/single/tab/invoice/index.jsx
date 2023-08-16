@@ -21,6 +21,7 @@ import Preview from "../preview";
 // import Attach from './Attach';
 const DateField = lazy(() => import("block/date-picker"));
 import Upload from "block/field/upload";
+import Signature from "../../../../media/Signature";
 
 //sidebar section
 const InvTemplate = lazy(() => import("inv-tmpl"));
@@ -30,6 +31,7 @@ const Currency = lazy(() => import("./sidebar/Currency"));
 const ExtraAmount = lazy(() => import("./sidebar/ExtraAmount"));
 const Reminder = lazy(() => import("./sidebar/Reminder"));
 const Recurring = lazy(() => import("./sidebar/Recurring"));
+
 
 class Invoice extends Component {
   constructor(props) {
@@ -1143,12 +1145,13 @@ class Invoice extends Component {
                           </div>
 
                           <div className="col-md-6 pv-text-right">
-                            <Upload
-                              label={i18n.aSign}
-                              padding={"20px 30px"}
-                              data={invoice.sign}
-                              changeHandler={this.handleSignChange}
-                            />
+                            <Signature />
+                            {/* <Upload */}
+                            {/*   label={i18n.aSign} */}
+                            {/*   padding={"20px 30px"} */}
+                            {/*   data={invoice.sign} */}
+                            {/*   changeHandler={this.handleSignChange} */}
+                            {/* /> */}
                           </div>
                         </div>
                       </div>
