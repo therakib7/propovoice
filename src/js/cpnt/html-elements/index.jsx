@@ -38,12 +38,28 @@ export const Icon = ({ name }) => {
   return (icon)
 }
 
-export const Button = () => {
+export const Button = ({ type = "button", iconName, size, handleClick }) => {
+  let addClassName = "";
+  switch (size) {
+    case 'big':
+      addClassName += " pv-btn-big";
+      break;
+    case 'medium':
+      addClassName += " pv-btn-medium";
+      break;
+
+  }
+
   return (<button
-    className={'pv-btn pv-bg-air-white pv-bg-hover-blue pv-hover-color-white pv-bg-blue pv-color-white'}
-    onClick={(e) => { e.preventDefault(); }}
+    type={type}
+    className={'pv-btn pv-bg-air-white pv-bg-hover-blue pv-hover-color-white pv-bg-blue pv-color-white' + addClassName}
+    onClick={(e) => {
+      e.preventDefault();
+      handleClick();
+    }
+    }
   >
-    <Icon name="upload" />
+    <Icon name={iconName} />
     Upload
   </button>)
 }
