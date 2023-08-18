@@ -1148,11 +1148,8 @@ class ListSingle extends Component {
                   {currentTab == "file" && data.tab_id && (
                     <File tab_id={data.tab_id} />
                   )}
-                  {currentTab == "estimate" && data.id && (
-                    <Invoice module_id={data.id} path={"estimate"} />
-                  )}
-                  {currentTab == "invoice" && data.id && (
-                    <Invoice module_id={data.id} path={"invoice"} />
+                  {(currentTab == "estimate" || currentTab == "invoice") && data.id && (
+                    <Invoice module_id={data.id} path={currentTab} client_mod={(path == "client")} />
                   )}
                   {currentTab == "project" && data.id && (
                     <Project module_id={data.id} data={data} />

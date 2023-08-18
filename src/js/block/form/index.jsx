@@ -35,7 +35,6 @@ export function FormWrapper({ submitHandler, close, submitLabel, children, formT
     const [submitEvent, setSubmitEvent] = useState();
     const [submitPreloader, setSubmitPreloader] = useState(false);
 
-
     useEffect(() => {
         if (isSubmitted && submitEvent) {
             const count = countErrors(errorFields)
@@ -50,8 +49,6 @@ export function FormWrapper({ submitHandler, close, submitLabel, children, formT
         }
     }, [isSubmitted, errorFields])
 
-
-
     const countErrors = (errorFields) => {
         if (!errorFields || typeof errorFields !== 'object') {
             return 0;
@@ -60,7 +57,6 @@ export function FormWrapper({ submitHandler, close, submitLabel, children, formT
             return acc + criteria.length;
         }, 0);
     }
-
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -74,6 +70,7 @@ export function FormWrapper({ submitHandler, close, submitLabel, children, formT
         setIsSubmitted(true)
         setSubmitEvent(e)
     }
+
     const formContent = (
         <>
             {children}

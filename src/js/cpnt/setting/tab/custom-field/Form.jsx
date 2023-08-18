@@ -65,6 +65,7 @@ export default class Form extends Component {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aAdd);
                     newForm.id = resp.data.data;
+                    this.props.close()
                     this.props.reload(newForm);
                 } else {
                     resp.data.data.forEach(function (value) {
@@ -76,6 +77,7 @@ export default class Form extends Component {
             api.edit('custom-fields', newForm.id, newForm).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aUpd);
+                    this.props.close()
                     this.props.reload();
                 } else {
                     resp.data.data.forEach(function (value) {
@@ -84,8 +86,6 @@ export default class Form extends Component {
                 }
             });
         }
-        // setModal(false);
-        this.props.close()
     }
 
     handleOptionsChange = (data) => {

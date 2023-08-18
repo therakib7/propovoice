@@ -53,7 +53,7 @@ const TableHeader = props => {
                     </th>
                 }
                 <th>
-                    {i18n.date}
+                    {i18n.due_date}
                 </th>
                 <th>
                     {i18n.action}
@@ -73,13 +73,18 @@ const TableBody = props => {
         }
         let path = props.path;
         let view = '';
+        if (viewPath) {
+            view = viewPath;
+        }
+        /*
+        Condition off from v1.6.6
         switch (row.status) {
             case 'accept':
             case 'decline':
             case 'paid':
                 view = viewPath;
                 break;
-        }
+        } */
 
         navigate(`/${path}/${row.id}${view}`);
     }
@@ -185,7 +190,7 @@ const TableBody = props => {
                 }  */}
                 <td>{status}</td>
                 {(props.path == 'invoice') && <td>{payment_method}</td>}
-                <td onClick={() => { handleClick(row, '/tab/preview', isClient, client_url); }} className='pv-cursor-pointer'><Moment format={ndpv.date_format}>{row.date}</Moment></td>
+                <td onClick={() => { handleClick(row, '/tab/preview', isClient, client_url); }} className='pv-cursor-pointer'>{row.due_date && <Moment format={ndpv.date_format}>{row.due_date}</Moment>}</td>
                 <td className="pv-action">
                     <Action
                         row={row}

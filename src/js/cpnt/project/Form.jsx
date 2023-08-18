@@ -468,7 +468,7 @@ class Form extends Component {
                                 </div>
                             </div>
 
-                            {!isClient && <div className="row">
+                            {false && !isClient && <div className="row">
                                 <div className="col">
                                     <label htmlFor="field-note">
                                         {i18n.note}

@@ -56,6 +56,7 @@ class I18n
             "trk" => esc_html__("Tracking", "propovoice"),
             //lead
             "level" => esc_html__("Level", "propovoice"),
+            "ct_img" => esc_html__("Contact Image", "propovoice"),
             "source" => esc_html__("Source", "propovoice"),
             //deal
             "deal_pipeline" => esc_html__("Deal Pipeline", "propovoice"),
@@ -142,6 +143,7 @@ class I18n
             //table
             "status" => esc_html__("Status", "propovoice"),
             "date" => esc_html__("Date", "propovoice"),
+            "due_date" => esc_html__("Due Date", "propovoice"),
             "action" => esc_html__("Action", "propovoice"),
             "show" => esc_html__("Show", "propovoice"),
             "all" => esc_html__("All", "propovoice"),
@@ -349,6 +351,7 @@ class I18n
             "yrly" => esc_html__("Yearly", "propovoice"),
             "hYear" => esc_html__("Half Yearly", "propovoice"),
             "cus" => esc_html__("Custom", "propovoice"),
+            "cus_fields" => esc_html__("Custom Fields", "propovoice"),
             "intvIn" => esc_html__("Interval In", "propovoice"),
             "hour" => esc_html__("Hour", "propovoice"),
             "day" => esc_html__("Day", "propovoice"),
