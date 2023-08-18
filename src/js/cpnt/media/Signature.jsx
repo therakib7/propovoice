@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Modal from './Modal'
+import { SvgIcon, Button } from "../html-elements";
+import MediaSelector from "./MediaSelector";
 
 export default function Signature() {
   const [signature, setSignature] = useState()
@@ -15,22 +16,59 @@ export default function Signature() {
   </svg>)
 
   const viewSignatureButton = () => {
-    return (<button
-      className={"pv-btn pv-bg-stroke pv-bg-hover-stroke "}
-      onClick={(e) => {}}
-      style={{
-        padding: "10px 20px",
-        border: "1px solid #E2E8F0",
-      }}
-    >
-      {uploadIcon}
-      <span>Authorized signature</span>
-    </button>)
+    return (
+      <>
+        <Button
+          label="Authorized signature"
+          iconName="upload"
+        />
+        <button
+          className={"pv-btn pv-bg-stroke pv-bg-hover-stroke "}
+          onClick={(e) => {}}
+          style={{
+            padding: "10px 20px",
+            border: "1px solid #E2E8F0",
+          }}
+        >
+          {uploadIcon}
+          <span>Authorized signature</span>
+        </button>
+      </>
+    )
+
   }
+
+  const modalButtons = [
+
+    {
+      label: "Remove",
+      iconName: "x",
+      size: "medium",
+    }, {
+      label: "Upload",
+      iconName: "upload",
+      size: "medium",
+      cssStyle: { marginLeft: "15px" }
+
+    },
+    {
+      label: "Select",
+      iconName: "tick",
+      size: "medium",
+      cssStyle: { marginLeft: "15px" }
+    }
+  ]
 
   return (
     <>
       {!signature && viewSignatureButton()}
-      {false && <Modal />}
+      {true &&
+        (
+          <MediaSelector
+            title="Signature"
+            modalButtons={modalButtons}
+          />
+        )
+      }
     </>);
 }
