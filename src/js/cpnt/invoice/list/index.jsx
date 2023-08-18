@@ -82,6 +82,10 @@ class Invoice extends Component {
       args.module_id = this.props.module_id;
     }
 
+    if (this.props.client_mod) {
+      args.client_mod = true;
+    }
+
     if (this.props.dashboard) {
       args.dashboard = true;
     }
@@ -434,12 +438,17 @@ function InvoiceWrap(props) {
   let path = location.pathname;
   //module id is, project, deal id etc
   let module_id = null;
+  let client_mod = false;
   if (props.path) {
     path = "/" + props.path;
   }
 
   if (props.module_id) {
     module_id = props.module_id;
+  }
+
+  if (props.client_mod) {
+    client_mod = true;
   }
 
   let navigate = useNavigate();
@@ -457,6 +466,7 @@ function InvoiceWrap(props) {
         routeChange={routeChange}
         path={path}
         module_id={module_id}
+        client_mod={client_mod}
         dashboard={props.dashboard}
         key={path}
       />

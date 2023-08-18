@@ -499,7 +499,7 @@ class Form extends Component {
                                 </div>
                             </div>
 
-                            <div className="row">
+                            {false && <div className="row">
                                 <div className="col">
                                     <label htmlFor="field-note">
                                         {i18n.note}
@@ -513,12 +513,12 @@ class Form extends Component {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-                            </div>
+                            </div>}
 
                             <div className="row">
                                 <div className="col">
                                     <label htmlFor="field-img">
-                                        {i18n.img}
+                                        {i18n.ct_img}
                                     </label>
                                     <Upload data={form.img} changeHandler={this.handleImgChange} />
                                 </div>

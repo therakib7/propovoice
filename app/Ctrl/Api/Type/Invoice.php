@@ -203,9 +203,11 @@ class Invoice
         } */
 
         if ( $module_id ) { 
+            //if query from client module search key as 'to'
+            $module_key = isset($param["client_mod"]) ? 'to' : 'module_id';
             $args["meta_query"][] = [
                 [
-                    "key" => "to",
+                    "key" => $module_key,
                     "value" => $module_id,
                 ],
             ]; 
