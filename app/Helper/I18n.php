@@ -351,6 +351,7 @@ class I18n
             "yrly" => esc_html__("Yearly", "propovoice"),
             "hYear" => esc_html__("Half Yearly", "propovoice"),
             "cus" => esc_html__("Custom", "propovoice"),
+            "cus_fields" => esc_html__("Custom Fields", "propovoice"),
             "intvIn" => esc_html__("Interval In", "propovoice"),
             "hour" => esc_html__("Hour", "propovoice"),
             "day" => esc_html__("Day", "propovoice"),

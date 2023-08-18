@@ -3,6 +3,7 @@ import api from 'api';
 import Spinner from 'block/preloader/spinner';
 import MultiSelect from 'block/field/multi-select';
 const DateField = lazy(() => import("block/date-picker"))
+import "./style.css";
 
 export default (props) => {
 	const [loading, setLoading] = useState(false);
@@ -61,6 +62,11 @@ export default (props) => {
 	return (
 		<>
 			{loading ? <Spinner /> : <>
+				{list.length > 0 && <div className="pv-hl">
+					<hr />
+					<span className="pv-hl-text">{i18n.cus_fields}</span>
+				</div>}
+
 				{list.map((item, i) => {
 					if (item.type === 'date' && form[item.slug] && props.type != 'new') {
 						form[item.slug] = new Date(form[item.slug])

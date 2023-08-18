@@ -1,0 +1,21 @@
+.pv-hl {
+	text-align: center;
+	position: relative;
+}
+
+.pv-hl hr {
+	margin: 20px 0;
+	border: none;
+	border-top: 1px solid #CBD5E0;
+}
+
+.pv-hl-text {
+	background-color: #fff;
+	color: #2D3748 !important;
+	padding: 0 10px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1;
+}

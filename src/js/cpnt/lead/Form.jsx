@@ -8,7 +8,6 @@ import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
-import Preloader from "block/preloader/spinner";
 import api from 'api';
 import { TextInput } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
