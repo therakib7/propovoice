@@ -21,7 +21,7 @@ export default (props) => {
         props.isPrvwLoad();
     }, []);
 
-    const { id, num, path, top_sections, items, sections, item_tax, item_label, attach, sign, date_i18n, due_date_i18n } = props.data.invoice;
+    const { id, num, path, top_sections, items, sections, item_tax, item_label, attach, sign, date, due_date } = props.data.invoice;
     const { fromData, toData, status } = props.data;
     const i18n = ndpv.i18n;
     let title = (path == 'invoice') ? i18n.inv : i18n.est;
@@ -45,8 +45,8 @@ export default (props) => {
                                 <p>{titleNo}: <span>{id ? nNum : ''}</span></p>
 
                                 <div className="pv-inv-from-time">
-                                    <p>{i18n.date}: <span>{date_i18n}</span></p>
-                                    <p>{i18n.dueDate}: <span>{due_date_i18n}</span></p>
+                                    <p>{i18n.date}: <span>{date && <Moment format={ndpv.date_format}>{date}</Moment>}</span></p>
+                                    <p>{i18n.dueDate}: <span>{due_date && <Moment format={ndpv.date_format}>{due_date}</Moment>}</span></p>
                                 </div>
                             </div>
                         </div>
@@ -70,6 +70,6 @@ export default (props) => {
                     {sign && <Sign data={sign} />}
                 </div>
             </div>
-        </div>
+        </div >
     )
 } 
