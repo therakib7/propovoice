@@ -598,7 +598,7 @@ class Invoice extends Component {
     this.setState({ invoice });
   };
 
-  onPaymentChange = (data, type, method_id = null) => {
+  onPaymentChange = (data, type, method = null) => {
     let invoice = { ...this.state.invoice };
     if (type == "method") {
       if (invoice.payment_methods.hasOwnProperty(data)) {
@@ -611,12 +611,17 @@ class Invoice extends Component {
           this.setState({ invoice });
         }
       } else {
-        if (method_id) {
-          invoice.payment_methods[data] = method_id;
+        if (method) {
+          invoice.payment_methods[data] = method.id;
+          if (method.type == "bank") {
+            this.setState({ invoice, paymentBankData: method });
+          } else {
+            this.setState({ invoice });
+          }
         } else {
           invoice.payment_methods[data] = null;
+          this.setState({ invoice });
         }
-        this.setState({ invoice });
       }
     } else {
       //type id
@@ -981,8 +986,8 @@ class Invoice extends Component {
                                 <div className="pv-info-lavel">
                                   <label htmlFor="info-number">
                                     {this.props.path == "invoice"
-                                      ? i18n.invoice_number
-                                      : i18n.estimate_number}
+                                      ? i18n.inv_num
+                                      : i18n.est_num}
                                     :
                                   </label>
                                 </div>
@@ -1005,8 +1010,8 @@ class Invoice extends Component {
                                 <div className="pv-info-lavel">
                                   <label htmlFor="date">
                                     {this.props.path == "invoice"
-                                      ? i18n.invoice_date
-                                      : i18n.estimate_date}
+                                      ? i18n.inv_date
+                                      : i18n.est_date}
                                     :
                                   </label>
                                 </div>
@@ -1167,7 +1172,7 @@ class Invoice extends Component {
                         className="pv-title-medium"
                         style={{ fontSize: "18px" }}
                       >
-                        {i18n.prv} {title}
+                        {i18n.tmpl_prv}
                       </h2>
 
                       <div

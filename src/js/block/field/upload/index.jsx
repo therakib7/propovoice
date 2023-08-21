@@ -101,7 +101,7 @@ class Upload extends Component {
     const clipOnly = this.props.clipOnly;
 
     let label = this.props.label;
-    label = label ? label : "Upload";
+    label = label ? label : ndpv.i18n.upload;
 
     let btnClass = this.props.btnClass;
     btnClass = btnClass ? btnClass : "";
@@ -156,7 +156,7 @@ class Upload extends Component {
           </>
         )}
 
-        {(!data || multiple) && (
+        {(!this.props.viewOnly) && (!data || multiple) && (
           <>
             <input
               type="file"

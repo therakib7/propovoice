@@ -310,7 +310,7 @@ class Invoice
             }
 
             $query_data["feedback"] = isset($invMeta["feedback"])
-                ? $invMeta["feedback"][0]
+                ? maybe_unserialize($invMeta["feedback"][0])
                 : "";
             $query_data["payment_method"] = isset($invMeta["payment_method"])
                 ? $invMeta["payment_method"][0]
