@@ -145,37 +145,42 @@ class Media
         $request = $req->get_params();
         $args = array(
             'post_type' => 'attachment',
-            'meta_key' => 'ndpv_attach_type',
-            'meta_value' => 'signature',
-            'meta_compare' => '=',
-            'posts_per_page' => -1,
+            'meta_query' => array(
+                array(
+                    'key' => 'ndpv_attach_type',
+                    'value' => 'signature',
+                    // 'meta_compare' => '='
+                )
+            ),
+            // 'posts_per_page' => -1,
         );
+        $posts = get_posts($args);
+        wp_send_json($posts);
+        // $query = new \WP_Query($args);
+        // if ($query->have_posts()) {
+        //     $attachments = array();
 
-        $query = new \WP_Query($args);
-        if ($query->have_posts()) {
-            $attachments = array();
+        //     while ($query->have_posts()) {
+        //         $query->the_post();
 
-            while ($query->have_posts()) {
-                $query->the_post();
+        //         // Get attachment details
+        //         $attachment_id = get_the_ID();
+        //         $attachment_title = get_the_title();
+        //         $attachment_url = wp_get_attachment_url($attachment_id);
 
-                // Get attachment details
-                $attachment_id = get_the_ID();
-                $attachment_title = get_the_title();
-                $attachment_url = wp_get_attachment_url($attachment_id);
+        //         // Add attachment details to the array
+        //         $attachments[] = array(
+        //             'attachment_id' => $attachment_id,
+        //             'attachment_title' => $attachment_title,
+        //             'attachment_url' => $attachment_url
+        //         );
+        //     }
 
-                // Add attachment details to the array
-                $attachments[] = array(
-                    'attachment_id' => $attachment_id,
-                    'attachment_title' => $attachment_title,
-                    'attachment_url' => $attachment_url
-                );
-            }
-
-            // Send JSON response
-            wp_send_json($attachments);
-        } else {
-            wp_send_json(array()); // Send an empty array if no attachments are found
-        }
+        //     // Send JSON response
+        //     wp_send_json($attachments);
+        // } else {
+        //     wp_send_json(array());
+        // }
 
         wp_reset_postdata();
     }

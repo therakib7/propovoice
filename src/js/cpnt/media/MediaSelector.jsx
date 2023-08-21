@@ -4,7 +4,7 @@ import Api from "api/media";
 import { toast } from "react-toastify";
 
 export default function MediaSelector({ title, attachType }) {
-
+  const [files, setFiles] = useState();
   const fileInputRef = useRef(null);
   const handleSelect = () => {
     alert("Select button clicked")
@@ -16,7 +16,7 @@ export default function MediaSelector({ title, attachType }) {
 
   const getAttachment = () => {
     Api.getAttachment("attach_type=signature").then((resp) => {
-      console.log(resp);
+      setFiles(resp);
     })
 
   }
