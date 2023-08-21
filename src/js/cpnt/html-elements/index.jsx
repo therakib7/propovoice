@@ -14,7 +14,7 @@ export const Button = ({ label, type = "button", iconName, size, cssStyle, handl
 
   return (<button
     type={type}
-    style={cssStyle}
+    style={{ margin: "5px", ...cssStyle }}
     className={'pv-btn pv-bg-air-white pv-bg-hover-blue pv-hover-color-white pv-bg-blue pv-color-white' + addClassName}
     onClick={(e) => {
       e.preventDefault();

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SvgIcon, Button } from "../html-elements";
 import MediaSelector from "./MediaSelector";
 
-export default function Signature() {
+export default function Signature({}) {
   const [signature, setSignature] = useState()
 
   const uploadIcon = (<svg width={25} height={25} viewBox="0 0 14 14" fill="none">
@@ -38,26 +38,8 @@ export default function Signature() {
 
   }
 
-  const modalButtons = [
 
-    {
-      label: "Remove",
-      iconName: "x",
-      size: "medium",
-    }, {
-      label: "Upload",
-      iconName: "upload",
-      size: "medium",
-      cssStyle: { marginLeft: "15px" }
-
-    },
-    {
-      label: "Select",
-      iconName: "tick",
-      size: "medium",
-      cssStyle: { marginLeft: "15px" }
-    }
-  ]
+  const i18n = ndpv.i18n;
 
   return (
     <>
@@ -65,8 +47,8 @@ export default function Signature() {
       {true &&
         (
           <MediaSelector
-            title="Signature"
-            modalButtons={modalButtons}
+            title={i18n.aSign}
+            attachType="signature"
           />
         )
       }
