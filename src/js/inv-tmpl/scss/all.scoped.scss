@@ -1,4 +1,5 @@
 @import "_seal.scss";
+
 :root {
   --pv-inv-secondary: #4c6fff;
   --pv-inv-text-primary: #000000;
@@ -23,15 +24,24 @@
   width: 784px;
   overflow: hidden;
   margin: 0 auto;
+
+  strong {
+    font-size: var(--pv-inv-micro);
+    font-weight: 600;
+    left: 0;
+  }
+
   a {
     text-decoration: none;
     color: inherit;
   }
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
+
   margin: 0 auto;
   background-color: var(--pv-inv-white);
   position: relative;
@@ -40,6 +50,7 @@
     display: flex;
     justify-content: space-between;
   }
+
   .pv-inv-head {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -47,6 +58,7 @@
     margin-left: 34px;
     margin-bottom: 10px;
   }
+
   .pv-inv-shapes {
     display: grid;
     align-items: center;
@@ -58,19 +70,24 @@
     justify-content: space-around;
     margin-top: 31px;
   }
+
   .pv-inv-from {
-    width: 45%;
+    width: 48%;
   }
+
   .pv-inv-from-date {
     margin-top: 18px;
   }
+
   .pv-inv-from-logo {
     margin-bottom: 18px;
   }
+
   .pv-inv-from-logo img {
     max-width: 200px !important;
     max-height: 80px;
   }
+
   .pv-inv-from h5 {
     font-family: var(--pv-inv-font-family-2);
     font-style: normal;
@@ -80,6 +97,7 @@
     color: #000000;
     margin-bottom: 9px;
   }
+
   .pv-inv-from h6 {
     font-family: var(--pv-inv-font-family-2);
     font-style: normal;
@@ -89,6 +107,7 @@
     color: #2d3748;
     margin-bottom: 3px;
   }
+
   .pv-inv-from p {
     font-family: var(--pv-inv-font-family-1);
     font-style: normal;
@@ -97,19 +116,23 @@
     line-height: 140%;
     color: #4a5568;
   }
+
   .pv-inv-from-date p {
     font-style: normal;
     font-weight: 700;
     font-size: var(--pv-inv-small);
     line-height: 200%;
+
     span {
       font-weight: 400;
     }
   }
+
   .pv-inv-from-time {
     display: flex;
     column-gap: 18px;
   }
+
   .pv-inv-to h5 {
     font-family: var(--pv-inv-font-family-2);
     font-style: normal;
@@ -120,6 +143,7 @@
     margin-bottom: 9px;
     //margin-top: 18px;
   }
+
   .pv-inv-to h6 {
     font-family: var(--pv-inv-font-family-2);
     font-style: normal;
@@ -129,6 +153,7 @@
     color: #2d3748;
     margin-bottom: 3px;
   }
+
   .pv-inv-to p {
     font-family: var(--pv-inv-font-family-1);
     font-style: normal;
@@ -149,6 +174,7 @@
     margin-bottom: 18px;
     text-transform: uppercase;
   }
+
   .pv-inv-to {
     width: 35%;
   }
@@ -160,6 +186,7 @@
     margin-top: 30px;
     margin-bottom: 24px;
   }
+
   .pv-inv-items table thead th {
     padding: 10px;
     color: var(--pv-inv-white);
@@ -190,6 +217,7 @@
     display: flex;
     justify-content: space-between;
   }
+
   .pv-inv-total table {
     border-spacing: 0;
     min-width: 200px;
@@ -207,6 +235,7 @@
     color: var(--pv-inv-text-primary);
     letter-spacing: 0.5px;
   }
+
   .pv-inv-total table td {
     text-align: right;
     font-family: var(--pv-inv-font-family-1);
@@ -217,52 +246,66 @@
     color: #718096;
     padding-right: 10px;
   }
+
   .pv-inv-total .pv-inv-table-bg th {
     color: var(--pv-inv-white);
     padding: 6px;
     padding-left: 28px;
     padding-right: 10px;
   }
+
   .pv-inv-total .pv-inv-table-bg td {
     color: var(--pv-inv-white);
     line-height: 140%;
   }
+
   tr.pv-inv-table-bg {
     background-color: var(--pv-inv-primary);
   }
+
   .pv-inv-total .subtotal th {
     font-weight: 800;
     color: #1a202c;
   }
+
   .pv-inv-total .subtotal td {
     font-weight: 800;
     color: #1a202c;
   }
+
   .pv-inv-total .total {
     padding-top: 20px;
   }
+
   .pv-inv-total .light th {
     font-weight: 400;
   }
+
   .pv-inv-total .total td {
     font-weight: 800;
     color: #1a202c;
     font-size: 15px;
   }
+
   .pv-inv-total table tr.pv-inv-before-total th {
     padding-bottom: 10px;
   }
+
   .pv-inv-section {
     margin-bottom: 10px;
   }
-  .pv-inv-section-content { 
+
+  .pv-inv-section-content {
     ul {
       list-style-type: unset;
     }
+
     ol {
       list-style-type: decimal;
     }
-    ul, ol {
+
+    ul,
+    ol {
       li {
         font-family: Inter;
         font-style: normal;
@@ -274,9 +317,11 @@
       }
     }
   }
+
   .pv-inv-mt-35 {
     margin-top: 35px;
   }
+
   .pv-inv-section-title {
     font-family: var(--pv-inv-font-family-1);
     font-style: normal;
@@ -285,6 +330,7 @@
     line-height: 150%;
     color: var(--pv-inv-text-secondary);
   }
+
   .pv-inv-section-content p {
     font-family: Inter;
     font-style: normal;
@@ -293,18 +339,22 @@
     line-height: 200%;
     color: var(--pv-inv-text-5th);
   }
+
   .pv-inv-sign {
     float: right;
     padding-right: 40px;
     margin-top: 20px;
   }
+
   .pv-inv-sign img {
     max-width: 190px;
     max-height: 90px;
   }
+
   .pv-inv-bank {
     overflow: hidden;
   }
+
   .pv-inv-bank h4 {
     font-family: var(--pv-inv-font-family-1);
     font-style: normal;
@@ -323,6 +373,7 @@
     line-height: 150%;
     color: #4a5568;
   }
+
   .pv-inv-border {
     border: 0.5px solid #a0aec0;
     margin: 0 -30px;
