@@ -55,29 +55,28 @@ class Payment extends Component {
         this.props.handleChange(data, type, method_id);
     }
 
-    handleSubmit = payment => {
-        Api.create(payment)
-            .then(resp => {
-                if (resp.data.success) {
-                    this.setState({ bankModal: false })
-                    toast.success(ndpv.i18n.aAdd);
-                    this.props.handleChange(resp.data.data, 'bank');
-                    this.getLists();
-                } else {
-                    resp.data.data.forEach(function (value) {
-                        toast.error(value);
-                    });
-                }
-            })
-    }
-
     getByPaymentMethod = (method_id) => {
         let list = this.state.payments.filter(x => x.method_id === method_id)[0].list;
         if (list.length == 1) {
-            return list[0].id;
+            return list[0];
         } else {
             return null;
         }
+    }
+
+    handleSubmit = payment => {
+        Api.create(payment).then(resp => {
+            if (resp.data.success) {
+                this.setState({ bankModal: false })
+                toast.success(ndpv.i18n.aAdd);
+                this.props.handleChange(resp.data.data, 'bank');
+                this.getLists();
+            } else {
+                resp.data.data.forEach(function (value) {
+                    toast.error(value);
+                });
+            }
+        })
     }
 
     render() {

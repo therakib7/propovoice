@@ -68,10 +68,10 @@ class I18n
             "proba" => esc_html__("Probability", "propovoice"),
             //estinv
             "nd" => __("&", "propovoice"),
-            "estimate_number" => esc_html__("Estimate Number", "propovoice"),
-            "estimate_date" => esc_html__("Estimate Date", "propovoice"),
-            "invoice_number" => esc_html__("Invoice Number", "propovoice"),
-            "invoice_date" => esc_html__("Invoice Date", "propovoice"),
+            "est_num" => esc_html__("Estimate Number", "propovoice"),
+            "est_date" => esc_html__("Estimate Date", "propovoice"),
+            "inv_num" => esc_html__("Invoice Number", "propovoice"),
+            "inv_date" => esc_html__("Invoice Date", "propovoice"),
             "tmpl" => esc_html__("Template", "propovoice"),
             "con" => esc_html__("Content", "propovoice"),
             "num" => esc_html__("Number", "propovoice"),
@@ -134,6 +134,7 @@ class I18n
             "home" => esc_html__("Home", "propovoice"),
             "total" => esc_html__("Total", "propovoice"),
             "prv" => esc_html__("Preview", "propovoice"),
+            "tmpl_prv" => esc_html__("Template Preview", "propovoice"),
             "aut" => esc_html__("Author", "propovoice"),
             //invoice
             "bill" => esc_html__("Bill", "propovoice"),

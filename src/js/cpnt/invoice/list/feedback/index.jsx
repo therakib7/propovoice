@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
 import { Add } from 'block/icon';
 
@@ -15,13 +14,6 @@ class Feedback extends Component {
                 // attachment: null,
             },
         };
-    }
-
-    componentDidMount() {
-        // this.setState({ note: this.props.data.note });
-        /* if (this.state.form.invoice_id != this.props.data.id) { 
-            this.setState({ form: this.props.data.payment_info });
-        } */
     }
 
     handleChange = e => {
@@ -56,27 +48,30 @@ class Feedback extends Component {
                                     <label htmlFor="form-note">
                                         {i18n.addi} {i18n.note}
                                     </label>
-                                    <textarea
+                                    {/* <textarea
                                         id="form-note"
                                         rows={2}
                                         name="note"
                                         value={data.feedback.note}
                                         onChange={this.handleChange}
-                                    />
+                                    /> */}
+                                    <p
+                                        style={{ margin: 0 }}
+                                        dangerouslySetInnerHTML={{ __html: data.feedback.note }}
+                                    ></p>
                                 </div>
                             </div>
 
                             <div className="row">
                                 <div className="col-md">
                                     <label htmlFor="field-receipt">{i18n.addi} {i18n.atch}</label>
-                                    <Upload label={'Upload'} attach_type='secret' library={false} data={data.feedback.attachment} changeHandler={this.handleUploadChange} remove={false} />
+                                    <Upload attach_type='secret' viewOnly library={false} data={data.feedback.attachment} changeHandler={this.handleUploadChange} remove={false} />
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="pv-modal-footer">
-
                     </div>
                 </div>
             </div>
