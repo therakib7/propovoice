@@ -7,6 +7,10 @@ const getAll = (args = '') => {
 	return axios.get(`${url}/?${args}`, token);
 };
 
+const getAttachment = (args = '') => {
+	return axios.get(`${url}/attachment/?${args}`, token);
+};
+
 const get = id => {
 	return axios.get(`${url}/${id}`, token);
 };
@@ -29,6 +33,7 @@ const findByArg = title => {
 
 export default {
 	getAll,
+	getAttachment,
 	get,
 	create,
 	update,

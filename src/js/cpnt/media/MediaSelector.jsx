@@ -14,6 +14,13 @@ export default function MediaSelector({ title, attachType }) {
     fileInputRef.current.click()
   }
 
+  const getAttachment = () => {
+    Api.getAttachment("attach_type=signature").then((resp) => {
+      console.log(resp);
+    })
+
+  }
+
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     handleUpload(selectedFile)
@@ -66,6 +73,7 @@ export default function MediaSelector({ title, attachType }) {
         title={title}
         buttons={modalButtons}
       >
+        {getAttachment()}
         <MediaThumb imgUrl="https://placehold.co/600x400" />
         <MediaThumb imgUrl="https://placehold.co/600x400" />
         <MediaThumb imgUrl="https://placehold.co/600x400" />

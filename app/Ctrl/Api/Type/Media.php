@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -30,12 +31,17 @@ class Media
             "callback" => [$this, "get"],
             "permission_callback" => [$this, "get_per"]
         ]);
+        register_rest_route("ndpv/v1", "/media/attachment" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "get_attachment"],
+            "permission_callback" => [$this, "get_attachment_per"]
+        ]);
 
         register_rest_route("ndpv/v1", "/media", [
             "methods" => "POST",
             "callback" => [$this, "create"],
             "permission_callback" => [$this, "create_per"]
-    ]);
+        ]);
 
         register_rest_route("ndpv/v1", "/media/(?P<id>[0-9,]+)", [
             "methods" => "DELETE",
@@ -132,6 +138,46 @@ class Media
         $result["total"] = $total_data;
 
         wp_send_json_success($result);
+    }
+
+    public function get_attachment($req)
+    {
+        $request = $req->get_params();
+        $args = array(
+            'post_type' => 'attachment',
+            'meta_key' => 'ndpv_attach_type',
+            'meta_value' => 'signature',
+            'meta_compare' => '=',
+            'posts_per_page' => -1,
+        );
+
+        $query = new \WP_Query($args);
+        if ($query->have_posts()) {
+            $attachments = array();
+
+            while ($query->have_posts()) {
+                $query->the_post();
+
+                // Get attachment details
+                $attachment_id = get_the_ID();
+                $attachment_title = get_the_title();
+                $attachment_url = wp_get_attachment_url($attachment_id);
+
+                // Add attachment details to the array
+                $attachments[] = array(
+                    'attachment_id' => $attachment_id,
+                    'attachment_title' => $attachment_title,
+                    'attachment_url' => $attachment_url
+                );
+            }
+
+            // Send JSON response
+            wp_send_json($attachments);
+        } else {
+            wp_send_json(array()); // Send an empty array if no attachments are found
+        }
+
+        wp_reset_postdata();
     }
 
     public function get_single($req)
@@ -297,8 +343,8 @@ class Media
                             ),
                         ];
 
-                        if ( $file_info['type'] == 'application/pdf' ) {
-                            $file_info['name'] = basename( get_attached_file( $attach_id ) );
+                        if ($file_info['type'] == 'application/pdf') {
+                            $file_info['name'] = basename(get_attached_file($attach_id));
                         }
                     }
 
@@ -329,6 +375,10 @@ class Media
     public function get_per()
     {
         return current_user_can("ndpv_media");
+    }
+    public function get_attachment_per()
+    {
+        return true;
     }
 
     public function create_per($req)
