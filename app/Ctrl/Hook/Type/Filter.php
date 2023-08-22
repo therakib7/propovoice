@@ -13,12 +13,14 @@ class Filter
         ]);
 
         //current_user_can always return true, false when super admin in multisite
-        add_filter( 'map_meta_cap', function( $caps, $cap ) {
-            if ( 'ndpv_client_role' === $cap ) {
-                $caps = array('do_not_allow');
-            }
-            return $caps;
-        }, 10, 2 );
+        if ( !current_user_can("ndpv_client_role") ) {
+            add_filter( 'map_meta_cap', function( $caps, $cap ) {
+                if ( 'ndpv_client_role' === $cap ) {
+                    $caps = array('do_not_allow');
+                }
+                return $caps;
+            }, 10, 2 );
+        }        
     }
 
     function body_class($classes)
