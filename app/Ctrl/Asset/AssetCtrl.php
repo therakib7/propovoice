@@ -163,7 +163,7 @@ class AssetCtrl
                 true
             );
             $current_user = wp_get_current_user();
-            $segment = (get_option('permalink_structure') === '' ? '&' : '?');
+            $segment = (get_option('permalink_structure') === '' ? '&' : '?'); //if plain permalink
             wp_localize_script("ndpv-dashboard", "ndpv", [
                 "apiUrl" => esc_url(rest_url()),
                 "siteUrl" => get_site_url(),
