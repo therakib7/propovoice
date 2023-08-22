@@ -4,6 +4,11 @@ import MediaSelector from "./MediaSelector";
 
 export default function Signature({}) {
   const [signature, setSignature] = useState()
+  const [showModal, setShowModal] = useState(false)
+
+  const handleSignButton = () => {
+    setShowModal(true);
+  }
 
   const uploadIcon = (<svg width={25} height={25} viewBox="0 0 14 14" fill="none">
     <path
@@ -21,6 +26,8 @@ export default function Signature({}) {
         <Button
           label="Authorized signature"
           iconName="upload"
+          handleClick={handleSignButton}
+
         />
         <button
           className={"pv-btn pv-bg-stroke pv-bg-hover-stroke "}
@@ -44,11 +51,13 @@ export default function Signature({}) {
   return (
     <>
       {!signature && viewSignatureButton()}
-      {true &&
+      {showModal &&
         (
           <MediaSelector
             title={i18n.aSign}
             attachType="signature"
+            showModal={showModal}
+            setShowModal={setShowModal}
           />
         )
       }

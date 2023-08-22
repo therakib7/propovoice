@@ -1,11 +1,16 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Modal from "./Modal"
 import Api from "api/media";
 import { toast } from "react-toastify";
 
-export default function MediaSelector({ title, attachType }) {
-  const [files, setFiles] = useState();
+export default function MediaSelector({ title, attachType, showModal, setShowModal }) {
+  const [files, setFiles] = useState([]);
   const fileInputRef = useRef(null);
+
+  useEffect(() => {
+    getAttachment(attachType);
+  }, [])
+
   const handleSelect = () => {
     alert("Select button clicked")
   }
@@ -14,9 +19,9 @@ export default function MediaSelector({ title, attachType }) {
     fileInputRef.current.click()
   }
 
-  const getAttachment = () => {
-    Api.getAttachment("attach_type=signature").then((resp) => {
-      setFiles(resp);
+  const getAttachment = (attachType) => {
+    Api.getAttachment(`attach_type=${attachType}`).then((resp) => {
+      setFiles(resp.data);
     })
 
   }
@@ -34,6 +39,7 @@ export default function MediaSelector({ title, attachType }) {
     Api.create(formData).then((resp) => {
       if (resp.data.success) {
         console.log("file uploaded")
+        getAttachment(attachType);
         // this.props.changeHandler(resp.data.data);
       } else {
         resp.data.data.forEach(function (value) {
@@ -72,15 +78,14 @@ export default function MediaSelector({ title, attachType }) {
       <Modal
         title={title}
         buttons={modalButtons}
+        showModal={showModal}
+        setShowModal={setShowModal}
       >
-        {getAttachment()}
-        <MediaThumb imgUrl="https://placehold.co/600x400" />
-        <MediaThumb imgUrl="https://placehold.co/600x400" />
-        <MediaThumb imgUrl="https://placehold.co/600x400" />
-        <MediaThumb imgUrl="https://placehold.co/600x400" />
-        <MediaThumb imgUrl="https://placehold.co/600x400" />
-        <MediaThumb imgUrl="https://placehold.co/600x400" />
-        <MediaThumb imgUrl="https://placehold.co/600x400" />
+        {
+          files.map(file => {
+            return (< MediaThumb key={file.ID} imgUrl={file.guid} />)
+          })
+        }
 
       </Modal >
       <input
@@ -96,6 +101,6 @@ export default function MediaSelector({ title, attachType }) {
 
 function MediaThumb({ imgUrl }) {
   return (<div style={{ display: "inline-block", margin: "5px" }}>
-    <img src={imgUrl} width="100" />
+    <img src={imgUrl} width="120" height="80" />
   </div>)
 }

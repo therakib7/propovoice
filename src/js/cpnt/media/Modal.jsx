@@ -1,17 +1,12 @@
 import { useState } from "react";
 import { Button } from "../html-elements";
 import SvgIcon from "../svg-icons";
-export default function Modal({ title, children, buttons, close }) {
-  const [closed, setClosed] = useState(false)
-
-  const handleClosed = () => {
-    setClosed(true)
-  }
+export default function Modal({ title, children, buttons, showModal, setShowModal }) {
 
   const viewModalHeader = (
     < div className="pv-modal-header" >
       <h2 className="pv-modal-title pv-text-center">{title}</h2>
-      <span className="pv-close" onClick={() => handleClosed()}>
+      <span className="pv-close" onClick={() => setShowModal(false)}>
         <SvgIcon name="x" />
       </span>
     </div >
@@ -30,7 +25,7 @@ export default function Modal({ title, children, buttons, close }) {
   return (
     <>
 
-      {!closed && (<div className="pv-overlay pv-show">
+      {showModal && (<div className="pv-overlay pv-show">
         <div className="pv-modal-content">
           {viewModalHeader}
           <div className="pv-content" style={{ paddingBottom: "30px", textAlign: "left" }}>
