@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 
 export default function MediaSelector({ title, attachType, showModal, setShowModal }) {
   const [files, setFiles] = useState([]);
+  const [selectedFile, setSelectedFile] = useState();
+
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -48,8 +50,13 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
       }
     });
   }
+
+
   const handleRemove = () => {
-    alert("Remove button clicked")
+    Api.remove(selectedFile).then((resp) => {
+      getAttachment(attachType);
+      console.log(resp)
+    })
   }
 
   const modalButtons = [
@@ -83,10 +90,10 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
       >
         {
           files.map(file => {
-            return (< MediaThumb key={file.ID} imgUrl={file.guid} />)
+            const wrapperStyle = file.ID === selectedFile ? { border: "1px solid green", padding: "2px" } : {};
+            return (< MediaThumb key={file.ID} imgID={file.ID} imgUrl={file.guid} setSelectedFile={setSelectedFile} wrapperStyle={wrapperStyle} />)
           })
         }
-
       </Modal >
       <input
         type="file"
@@ -95,12 +102,14 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
         style={{ display: 'none' }}
       />
     </>
-
   )
 }
 
-function MediaThumb({ imgUrl }) {
-  return (<div style={{ display: "inline-block", margin: "5px" }}>
-    <img src={imgUrl} width="120" height="80" />
+function MediaThumb({ imgID, imgUrl, setSelectedFile, wrapperStyle }) {
+  const handleImgClick = () => {
+    setSelectedFile(imgID)
+  }
+  return (<div style={{ display: "inline-block", margin: "5px", ...wrapperStyle }}>
+    <img src={imgUrl} width="120" height="80" onClick={handleImgClick} />
   </div>)
 }

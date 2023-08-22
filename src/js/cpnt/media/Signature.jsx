@@ -21,25 +21,26 @@ export default function Signature({}) {
   </svg>)
 
   const viewSignatureButton = () => {
+    const i18n = ndpv.i18n;
     return (
       <>
         <Button
-          label="Authorized signature"
+          label={i18n.aSign}
           iconName="upload"
           handleClick={handleSignButton}
 
         />
-        <button
-          className={"pv-btn pv-bg-stroke pv-bg-hover-stroke "}
-          onClick={(e) => {}}
-          style={{
-            padding: "10px 20px",
-            border: "1px solid #E2E8F0",
-          }}
-        >
-          {uploadIcon}
-          <span>Authorized signature</span>
-        </button>
+        {/* <button */}
+        {/*   className={"pv-btn pv-bg-stroke pv-bg-hover-stroke "} */}
+        {/*   onClick={(e) => {}} */}
+        {/*   style={{ */}
+        {/*     padding: "10px 20px", */}
+        {/*     border: "1px solid #E2E8F0", */}
+        {/*   }} */}
+        {/* > */}
+        {/*   {uploadIcon} */}
+        {/*   <span>Authorized signature</span> */}
+        {/* </button> */}
       </>
     )
 
