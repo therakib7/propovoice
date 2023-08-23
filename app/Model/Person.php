@@ -29,6 +29,9 @@ class Person
 
         $exist_id = Fns::contact_exist('person', $email);
         if ( $exist_id ) {
+            if ($is_client) {
+                update_post_meta($exist_id, 'is_client', $is_client);
+            }
             return $exist_id;
         }
 

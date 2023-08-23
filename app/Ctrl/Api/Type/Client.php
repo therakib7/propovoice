@@ -292,6 +292,9 @@ class Client
                 } else {
                     $param["is_client"] = true;
                 }
+                if ( $person_id ) {
+                    $param["person_id"] = $person_id;
+                }
                 $org_id = $org->create($param);
             }
 
