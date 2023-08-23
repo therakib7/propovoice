@@ -30,6 +30,9 @@ class Org
         if ( !$person_id ) {
             $exist_id = Fns::contact_exist('org', $email);
             if ( $exist_id ) {
+                if ($is_client) {
+                    update_post_meta($exist_id, 'is_client', $is_client);
+                }
                 return $exist_id;
             }
         }
@@ -102,7 +105,7 @@ class Org
     {
         $reg_errors = new \WP_Error;
 
-        // $name         = isset($param['name']) ? sanitize_text_field($param['name']) : null;
+        //$name      = isset($param['name']) ? sanitize_text_field($param['name']) : null;
         $name         = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : '';
         $email        = isset($param['email']) ? strtolower(sanitize_email($param['email'])) : '';
         $person_id    = isset($param['person_id']) ? sanitize_text_field($param['person_id']) : '';
@@ -112,6 +115,7 @@ class Org
         $region       = isset($param['region']) ? sanitize_text_field($param['region']) : '';
         $address      = isset($param['address']) ? sanitize_text_field($param['address']) : '';
         $logo         = isset($param['logo']) ? absint($param['logo']) : '';
+        $is_client    = isset($param['is_client']) ? $param['is_client'] : false;
 
         /* if (empty($name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -169,6 +173,10 @@ class Org
 
                 if ($logo) {
                     update_post_meta($post_id, 'logo', $logo);
+                }
+
+                if ($is_client) {
+                    update_post_meta($post_id, 'is_client', $is_client);
                 }
 
                 return $post_id;
