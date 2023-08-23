@@ -11,7 +11,7 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
 
   useEffect(() => {
     getAttachment(attachType);
-  }, [])
+  }, [selectedFile])
 
   const handleSelect = () => {
     alert("Select button clicked")
@@ -40,9 +40,8 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
 
     Api.create(formData).then((resp) => {
       if (resp.data.success) {
-        console.log("file uploaded")
-        getAttachment(attachType);
-        // this.props.changeHandler(resp.data.data);
+        setSelectedFile(resp.data.data.id)
+        // getAttachment(attachType);
       } else {
         resp.data.data.forEach(function (value) {
           toast.error(value);
@@ -55,7 +54,6 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
   const handleRemove = () => {
     Api.remove(selectedFile).then((resp) => {
       getAttachment(attachType);
-      console.log(resp)
     })
   }
 
@@ -90,7 +88,7 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
       >
         {
           files.map(file => {
-            const wrapperStyle = file.ID === selectedFile ? { border: "1px solid green", padding: "2px" } : {};
+            const wrapperStyle = file.ID === selectedFile ? { border: "2px solid green", padding: "2px" } : {};
             return (< MediaThumb key={file.ID} imgID={file.ID} imgUrl={file.guid} setSelectedFile={setSelectedFile} wrapperStyle={wrapperStyle} />)
           })
         }
