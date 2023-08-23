@@ -18,7 +18,7 @@ class Person
         $region       = isset($param['region']) ? sanitize_text_field($param['region']) : null;
         $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
         $img = isset($param['img']) ? absint($param['img']) : null;
-        $is_client  = isset($param['is_client']) ? $param['is_client'] : null;
+        $is_client  = isset($param['is_client']) ? $param['is_client'] : false;
         /* if ( empty($first_name) ) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
         }
@@ -107,6 +107,7 @@ class Person
         $region       = isset($param['region']) ? sanitize_text_field($param['region']) : null;
         $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
         $img = isset($param['img']) ? absint($param['img']) : null;
+        $is_client  = isset($param['is_client']) ? $param['is_client'] : false;
 
         /* if (empty($first_name)) {
             $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
@@ -163,6 +164,10 @@ class Person
 
                 if ($img) {
                     update_post_meta($post_id, 'img', $img);
+                }
+
+                if ($is_client) {
+                    update_post_meta($post_id, 'is_client', $is_client);
                 }
 
                 return $post_id;

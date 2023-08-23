@@ -144,8 +144,8 @@ class Client
             $query_data["first_name"] = isset($queryMeta["first_name"])
                 ? $queryMeta["first_name"][0]
                 : "";
-            $query_data["org_name"] = isset($queryMeta["org_name"])
-                ? $queryMeta["org_name"][0]
+            $query_data["org_name"] = isset($queryMeta["name"])
+                ? $queryMeta["name"][0]
                 : "";
             $query_data["email"] = isset($queryMeta["email"])
                 ? $queryMeta["email"][0]
@@ -231,7 +231,7 @@ class Client
 
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
-                "field",
+                "contact_field",
                 esc_html__("Contact info is missing", "propovoice")
             );
         }
@@ -240,7 +240,7 @@ class Client
         if ($client_id) {
             $reg_errors->add(
                 "already_exist",
-                esc_html__("Client already exists!!!", "propovoice")
+                esc_html__("Client already exists! Email or Mobile should be unique", "propovoice")
             );
 
             wp_send_json_error($reg_errors->get_error_messages());
@@ -271,6 +271,7 @@ class Client
         } else {
             $person = new Person();
             if ($person_id) {
+                $param["is_client"] = true;
                 $person->update($param);
             }
 
@@ -281,6 +282,7 @@ class Client
 
             $org = new Org();
             if (!$person_id && $org_id) {
+                $param["is_client"] = true;
                 $org->update($param);
             }
 
@@ -309,15 +311,23 @@ class Client
             "post_type" => ["ndpv_person", "ndpv_org"],
             "post_status" => "publish",
             'meta_query' => array(
-                'relation' => 'OR',
+                'relation' => 'AND',
                 array(
-                    'key'     => 'email',
-                    'value'   => $email,
-                    'compare' => '=',
+                    'relation' => 'OR',
+                    array(
+                        'key'     => 'email',
+                        'value'   => $email,
+                        'compare' => '=',
+                    ),
+                    array(
+                        'key'     => 'mobile',
+                        'value'   => $mobile,
+                        'compare' => '=',
+                    ),
                 ),
                 array(
-                    'key'     => 'mobile',
-                    'value'   => $mobile,
+                    'key'     => 'is_client',
+                    'value'   => 1,
                     'compare' => '=',
                 ),
             ),
@@ -373,10 +383,10 @@ class Client
             ? rest_sanitize_boolean($param["client_portal"])
             : false;
 
-        if (empty($first_name)) {
+        if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
-                "field",
-                esc_html__("Name field is missing", "propovoice")
+                "contact_field",
+                esc_html__("Contact info is missing", "propovoice")
             );
         }
 
