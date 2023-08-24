@@ -492,6 +492,12 @@ class Invoice extends Component {
     }
   };
 
+  handleRemoveSign = () => {
+    const invoice = { ...this.state.invoice }
+    invoice.sign = null
+    this.setState({ invoice })
+  }
+
   formatCurrency = (amount) => {
     const { currency, lang } = this.state.invoice;
     return new Intl.NumberFormat(lang, {
@@ -1150,7 +1156,11 @@ class Invoice extends Component {
                           </div>
 
                           <div className="col-md-6 pv-text-right">
-                            <Signature />
+                            <Signature
+                              data={this.state.invoice.sign}
+                              changeHandler={this.handleSignChange}
+                              handleRemoveSign={this.handleRemoveSign}
+                            />
                             {/* <Upload */}
                             {/*   label={i18n.aSign} */}
                             {/*   padding={"20px 30px"} */}

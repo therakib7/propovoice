@@ -3,9 +3,15 @@ import Modal from "./Modal"
 import Api from "api/media";
 import { toast } from "react-toastify";
 
-export default function MediaSelector({ title, attachType, showModal, setShowModal }) {
+export default function MediaSelector({ title, attachType, showModal, setShowModal, changeHandler, setMedia }) {
   const [files, setFiles] = useState([]);
-  const [selectedFile, setSelectedFile] = useState();
+  const [selectedFile, setSelectedFile] = useState(
+    {
+      id: "",
+      src: "",
+      type: ""
+    }
+  );
 
   const fileInputRef = useRef(null);
 
@@ -14,7 +20,14 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
   }, [selectedFile])
 
   const handleSelect = () => {
-    alert("Select button clicked")
+    if (!selectedFile.id) {
+      toast.error("Select a image first!!!");
+      return;
+    }
+    setDefaultAttachment(attachType, selectedFile.id)
+    changeHandler(selectedFile);
+    setMedia(selectedFile)
+    setShowModal(false)
   }
 
   const handleButtonClick = () => {
@@ -22,25 +35,32 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
   }
 
   const getAttachment = (attachType) => {
-    Api.getAttachment(`attach_type=${attachType}`).then((resp) => {
+    Api.getAttachment(attachType).then((resp) => {
       setFiles(resp.data);
+    })
+
+  }
+  const setDefaultAttachment = (attachType, id) => {
+    Api.setDefaultAttachment(attachType, id).then((resp) => {
+      // console.log(resp.data)
     })
 
   }
 
   const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    handleUpload(selectedFile)
+    const file = event.target.files[0];
+    handleUpload(file)
   }
-  const handleUpload = (selectedFile) => {
+  const handleUpload = (file) => {
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    formData.append("file", file);
     formData.append("attach_type", attachType);
     formData.append("permission", true);
 
     Api.create(formData).then((resp) => {
       if (resp.data.success) {
-        setSelectedFile(resp.data.data.id)
+        const file = resp.data.data
+        setSelectedFile({ id: file.ID, src: file.guid, type: file.post_mime_type })
         // getAttachment(attachType);
       } else {
         resp.data.data.forEach(function (value) {
@@ -52,8 +72,12 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
 
 
   const handleRemove = () => {
+    if (!selectedFile.id) {
+      toast.error("Select a image first!!!");
+      return;
+    }
     const isConfirm = confirm("Are you sure to remove?");
-    isConfirm && Api.remove(selectedFile).then((resp) => {
+    isConfirm && Api.remove(selectedFile.id).then((resp) => {
       getAttachment(attachType);
     })
   }
@@ -89,8 +113,8 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
       >
         {
           files.map(file => {
-            const wrapperStyle = file.ID === selectedFile ? { border: "2px solid green", padding: "2px" } : { padding: "4px" };
-            return (< MediaThumb key={file.ID} imgID={file.ID} imgUrl={file.guid} setSelectedFile={setSelectedFile} wrapperStyle={wrapperStyle} />)
+            const wrapperStyle = file.ID === selectedFile?.id ? { border: "2px solid green", padding: "2px" } : { border: "2px solid #dfdfdf", padding: "2px" };
+            return (< MediaThumb key={file.ID} imgData={{ id: file.ID, src: file.guid, type: file.post_mime_type }} setSelectedFile={setSelectedFile} wrapperStyle={wrapperStyle} />)
           })
         }
       </Modal >
@@ -104,11 +128,11 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
   )
 }
 
-function MediaThumb({ imgID, imgUrl, setSelectedFile, wrapperStyle }) {
+function MediaThumb({ imgData, setSelectedFile, wrapperStyle }) {
   const handleImgClick = () => {
-    setSelectedFile(imgID)
+    setSelectedFile(imgData)
   }
   return (<div style={{ display: "inline-block", margin: "5px", ...wrapperStyle }}>
-    <img src={imgUrl} width="110" height="80" onClick={handleImgClick} />
+    <img src={imgData.src} width="120" height="32" onClick={handleImgClick} />
   </div>)
 }

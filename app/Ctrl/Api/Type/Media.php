@@ -31,12 +31,24 @@ class Media
             "callback" => [$this, "get"],
             "permission_callback" => [$this, "get_per"]
         ]);
-        register_rest_route("ndpv/v1", "/media/attachment" . ndpv()->plain_route(), [
+
+        register_rest_route("ndpv/v1", "/media/attachment/(?P<type>\w+)" . ndpv()->plain_route(), [
             "methods" => "GET",
             "callback" => [$this, "get_attachment"],
             "permission_callback" => [$this, "get_attachment_per"]
         ]);
 
+        register_rest_route("ndpv/v1", "/media/attachment/(?P<type>\w+)/default/get" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "get_default_attachment"],
+            "permission_callback" => [$this, "get_attachment_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/media/attachment/(?P<type>\w+)/default/set/(?P<id>\d+)" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "set_default_attachment"],
+            "permission_callback" => [$this, "get_attachment_per"]
+        ]);
         register_rest_route("ndpv/v1", "/media", [
             "methods" => "POST",
             "callback" => [$this, "create"],
@@ -142,8 +154,8 @@ class Media
 
     public function get_attachment($req)
     {
-        $request = $req->get_params();
-        $attach_type = $request['attach_type'];
+        $url_params = $req->get_url_params();
+        $attach_type = $url_params['type'];
         $args = array(
             'post_type' => 'attachment',
             'meta_query' => array(
@@ -157,34 +169,69 @@ class Media
         );
         $posts = get_posts($args);
         wp_send_json($posts);
-        // $query = new \WP_Query($args);
-        // if ($query->have_posts()) {
-        //     $attachments = array();
-
-        //     while ($query->have_posts()) {
-        //         $query->the_post();
-
-        //         // Get attachment details
-        //         $attachment_id = get_the_ID();
-        //         $attachment_title = get_the_title();
-        //         $attachment_url = wp_get_attachment_url($attachment_id);
-
-        //         // Add attachment details to the array
-        //         $attachments[] = array(
-        //             'attachment_id' => $attachment_id,
-        //             'attachment_title' => $attachment_title,
-        //             'attachment_url' => $attachment_url
-        //         );
-        //     }
-
-        //     // Send JSON response
-        //     wp_send_json($attachments);
-        // } else {
-        //     wp_send_json(array());
-        // }
-
         wp_reset_postdata();
     }
+
+    public function get_default_attachment($req)
+    {
+        $url_params = $req->get_url_params();
+        $attach_type = $url_params['type'];
+        $args = array(
+            'post_type' => 'attachment',
+            'meta_query' => array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'ndpv_attach_type',
+                    'value' => $attach_type,
+                    'meta_compare' => '='
+                ),
+                array(
+                    'key' => 'ndpv_is_default_' . $attach_type,
+                    'value' => true,
+                    'meta_compare' => '='
+                )
+
+            ),
+            'posts_per_page' => 1,
+        );
+        $posts = get_posts($args);
+        wp_send_json($posts[0]);
+        wp_reset_postdata();
+    }
+
+    public function set_default_attachment($req)
+    {
+        $url_params = $req->get_url_params();
+        $attach_type = $url_params['type'];
+        $new_post_id = $url_params['id'];
+
+        $args = array(
+            'post_type' => 'attachment',
+            'meta_query' => array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'ndpv_attach_type',
+                    'value' => $attach_type,
+                    'meta_compare' => '='
+                ),
+                array(
+                    'key' => 'ndpv_is_default_' . $attach_type,
+                    'value' => true,
+                    'meta_compare' => '='
+                )
+
+            ),
+            'posts_per_page' => -1,
+        );
+        $posts = get_posts($args);
+        foreach ($posts as $post) {
+            delete_post_meta($post->ID, 'ndpv_is_default_' . $attach_type);
+        }
+        update_post_meta($new_post_id, 'ndpv_is_default_' . $attach_type, true);
+        wp_send_json($new_post_id);
+        wp_reset_postdata();
+    }
+
 
     public function get_single($req)
     {
