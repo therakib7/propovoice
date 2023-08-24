@@ -52,7 +52,8 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
 
 
   const handleRemove = () => {
-    Api.remove(selectedFile).then((resp) => {
+    const isConfirm = confirm("Are you sure to remove?");
+    isConfirm && Api.remove(selectedFile).then((resp) => {
       getAttachment(attachType);
     })
   }
@@ -88,7 +89,7 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
       >
         {
           files.map(file => {
-            const wrapperStyle = file.ID === selectedFile ? { border: "2px solid green", padding: "2px" } : {};
+            const wrapperStyle = file.ID === selectedFile ? { border: "2px solid green", padding: "2px" } : { padding: "4px" };
             return (< MediaThumb key={file.ID} imgID={file.ID} imgUrl={file.guid} setSelectedFile={setSelectedFile} wrapperStyle={wrapperStyle} />)
           })
         }
@@ -108,6 +109,6 @@ function MediaThumb({ imgID, imgUrl, setSelectedFile, wrapperStyle }) {
     setSelectedFile(imgID)
   }
   return (<div style={{ display: "inline-block", margin: "5px", ...wrapperStyle }}>
-    <img src={imgUrl} width="120" height="80" onClick={handleImgClick} />
+    <img src={imgUrl} width="110" height="80" onClick={handleImgClick} />
   </div>)
 }
