@@ -18,6 +18,44 @@ class Fns
         }
     }
 
+    /**
+     * @param $mod
+     *
+     * @return int
+     * @since 1.7.0
+     */
+
+    public static function auto_id($mod = '')
+    {
+        $total = get_option("ndpv_" . $mod . "_total");
+        if ( !$total ) {
+            //count total post other wise 1
+            $new = 1;
+            $args = array(
+                'post_type'  => 'ndpv_estinv',
+                'meta_key'   => 'path',
+                'meta_value' => $mod,
+                'post_status' => 'publish',
+                'fields' => 'ids',  // Only get post IDs
+            );
+
+            $query = new \WP_Query($args);
+
+            // Get the total number of posts that meet the criteria.
+            $total_posts = $query->found_posts;
+            if ( $total_posts ) {
+                $new = $total_posts;
+            }
+
+            update_option("ndpv_" . $mod . "_total", $new);
+            return $new;
+        } else {
+            $new_total = $total + 1;
+            update_option("ndpv_" . $mod . "_total", $new_total);
+            return $new_total;
+        }
+    }
+
     public static function get_terms($tax, $extra_amount_type = null)
     {
         $args = array(
