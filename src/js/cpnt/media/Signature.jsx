@@ -45,19 +45,10 @@ export default function Signature({ data, changeHandler, handleRemoveSign }) {
           label={i18n.aSign}
           iconName="upload"
           handleClick={handleSignButton}
+          buttonStyle="white"
+          size="medium"
 
         />
-        {/* <button */}
-        {/*   className={"pv-btn pv-bg-stroke pv-bg-hover-stroke "} */}
-        {/*   onClick={(e) => {}} */}
-        {/*   style={{ */}
-        {/*     padding: "10px 20px", */}
-        {/*     border: "1px solid #E2E8F0", */}
-        {/*   }} */}
-        {/* > */}
-        {/*   {uploadIcon} */}
-        {/*   <span>Authorized signature</span> */}
-        {/* </button> */}
       </>
     )
 

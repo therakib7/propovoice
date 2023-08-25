@@ -113,7 +113,7 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
       >
         {
           files.map(file => {
-            const wrapperStyle = file.ID === selectedFile?.id ? { border: "2px solid green", padding: "2px" } : { border: "2px solid #dfdfdf", padding: "2px" };
+            const wrapperStyle = file.ID === selectedFile?.id ? { border: "2px solid green", padding: "2px" } : { border: "1px solid #dfdfdf", padding: "3px" };
             return (< MediaThumb key={file.ID} imgData={{ id: file.ID, src: file.guid, type: file.post_mime_type }} setSelectedFile={setSelectedFile} wrapperStyle={wrapperStyle} />)
           })
         }

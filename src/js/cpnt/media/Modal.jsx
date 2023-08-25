@@ -7,7 +7,7 @@ export default function Modal({ title, children, buttons, showModal, setShowModa
     < div className="pv-modal-header" >
       <h2 className="pv-modal-title pv-text-center">{title}</h2>
       <span className="pv-close" onClick={() => setShowModal(false)}>
-        <SvgIcon name="x" />
+        <SvgIcon name="x" style="blue" />
       </span>
     </div >
   )
