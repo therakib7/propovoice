@@ -27,7 +27,8 @@ const Dropdown = (props) => {
 
 
   useEffect(() => {
-    if (props.purpose !== "notification" || wage.length) return;
+    // if (props.purpose !== "notification" || wage.length) return;
+    if (wage.length) return;
 
     count_new_notifications();
     if (dropdown && countNew > 0) {
