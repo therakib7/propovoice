@@ -672,6 +672,7 @@ class Invoice
                 update_post_meta($post_id, "status", "draft");
                 update_post_meta($post_id, "path", $path);
 
+                $auto_id = '';
                 if ($num) {
                     update_post_meta($post_id, "num", $num);
                 } else {
@@ -684,6 +685,7 @@ class Invoice
                     }
                     $auto_id = $prefix . Fns::auto_id($path);
                     update_post_meta($post_id, "num", $auto_id);
+                    $invoice['num'] = $auto_id;
                 }
 
                 if ($module_id) {
@@ -757,6 +759,7 @@ class Invoice
                 wp_send_json_success([
                     "id" => $post_id,
                     "token" => $token,
+                    "auto_id" => $auto_id
                 ]);
             } else {
                 wp_send_json_error();

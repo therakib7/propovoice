@@ -233,6 +233,9 @@ class Invoice extends Component {
       let invoice = { ...this.state.invoice };
       invoice.id = data.id;
       invoice.token = data.token;
+      if (data.auto_id) {
+        invoice.num = data.auto_id;
+      }
       this.setState({ msg, invoice });
     } else {
       this.setState({ msg });
