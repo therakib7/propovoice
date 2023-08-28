@@ -27,8 +27,8 @@ const Dropdown = (props) => {
 
 
   useEffect(() => {
-    // if (props.purpose !== "notification" || wage.length) return;
-    if (wage.length) return;
+    if (props.purpose !== "notification" || wage.length) return;
+    // if (wage.length) return;
 
     count_new_notifications();
     if (dropdown && countNew > 0) {
@@ -42,8 +42,8 @@ const Dropdown = (props) => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
-  // }, [dropdown, countNew]);
+  }, [dropdown, countNew]);
+
 
 
   const count_new_notifications = () => {
@@ -131,13 +131,10 @@ const Dropdown = (props) => {
           />
         }
         < ul className="pv-dropdown-content pv-show">
-
           {props.list.length > 0 && (props.list.map((item, index) => (
             <a key={index} href={item.url}>{item.label}</a>
           )))}
           {props.purpose !== "notification" && !props.list.length && (<a>No content</a>)}
-
-
         </ul>
       </div>
       )
