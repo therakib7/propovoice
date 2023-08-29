@@ -18,6 +18,46 @@ class Fns
         }
     }
 
+    /**
+     * Auto serial for invoice and estimate
+     * @param $mod
+     *
+     * @return int
+     * @since 1.7.0
+     */
+
+    public static function auto_id($mod = '')
+    {
+        $total = get_option("ndpv_" . $mod . "_total");
+        if ( !$total ) {
+            //count max post id, other wise 1
+            $new = 1;           
+            $args = array(
+                'post_type'      => 'ndpv_estinv',
+                'posts_per_page' => 1,
+                'meta_key'   => 'path',
+                'meta_value' => $mod,
+                'post_status' => 'publish',
+                'orderby'     => 'date',
+                'order'       => 'DESC'
+            );
+
+            $latest_posts = get_posts($args);
+
+            if ($latest_posts) {
+                $last_post_id = $latest_posts[0]->ID;
+                $new = $last_post_id + 1;
+            }
+
+            update_option("ndpv_" . $mod . "_total", $new);
+            return $new;
+        } else {
+            $new_total = $total + 1;
+            update_option("ndpv_" . $mod . "_total", $new_total);
+            return $new_total;
+        }
+    }
+
     public static function get_terms($tax, $extra_amount_type = null)
     {
         $args = array(

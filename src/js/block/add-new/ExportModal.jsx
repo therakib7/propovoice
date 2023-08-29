@@ -41,7 +41,6 @@ class Form extends Component {
       probability: 50,
       tags: [],
       desc: "",
-      note: "",
       date: "",
       active: false,
       actions: [],
