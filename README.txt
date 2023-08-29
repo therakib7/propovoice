@@ -182,6 +182,7 @@ The super fantastic pro features that accelerate your business growth and improv
 
 = 1.7.0 (29-Aug-2023) = 
 * Improved: Client signature upload
+* Update: Invoice and Estimate auto serial ID issue
 * Update: Helper files  Import Export issue
 
 = 1.6.9 (23-Aug-2023) = 
