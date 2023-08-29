@@ -98,131 +98,26 @@ const General = (props) => {
             <table className="pv-table" style={{ marginTop: "50px" }}>
                 <thead>
                     <tr>
-                        <th>
-                            Action
-                        </th>
-                        <th>
-                            Email
-
-                            <div className="pv-field-switch pv-ml-10">
-                                <label className='pv-switch'>
-                                    <input type='checkbox'
-                                        id="email-footer"
-                                        name='mail'
-                                        checked={mailNotification ? 'checked' : ''}
-                                        onChange={handleMailNotificationOnChange}
-                                    />
-                                    <span className='pv-switch-slider pv-round'></span>
-                                </label>
-                            </div>
-                        </th>
-                        <th>
-                            In-App
-
-                            <div className="pv-field-switch pv-ml-10">
-                                <label className='pv-switch'>
-                                    <input type='checkbox'
-                                        id="email-footer"
-                                        name='mail'
-                                        checked={appNotification ? 'checked' : ''}
-                                        onChange={handleAppNotificationOnChange}
-                                    />
-                                    <span className='pv-switch-slider pv-round'></span>
-                                </label>
-                            </div>
-                        </th>
+                        <th style={{ width: "40%" }}>Action</th>
+                        <th style={{ width: "30%" }}>Email</th>
+                        <th style={{ width: "30%" }}>In-App</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Lead Add</td>
-                        <td>
-                            <div className="pv-field-switch pv-ml-10">
-                                <label className='pv-switch'>
-                                    <input type='checkbox'
-                                        id="email-footer"
-                                        name='mail'
-                                        checked={mailNotification ? 'checked' : ''}
-                                        onChange={handleMailNotificationOnChange}
-                                    />
-                                    <span className='pv-switch-slider pv-round'></span>
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-
-                            <div className="pv-field-switch pv-ml-10">
-                                <label className='pv-switch'>
-                                    <input type='checkbox'
-                                        id="email-footer"
-                                        name='mail'
-                                        checked={appNotification ? 'checked' : ''}
-                                        onChange={handleAppNotificationOnChange}
-                                    />
-                                    <span className='pv-switch-slider pv-round'></span>
-                                </label>
-                            </div>
-                        </td>
+                        <td>toggle</td>
+                        <td>toggle</td>
                     </tr>
                     <tr>
-                        <td>Lead Add</td>
-                        <td>
-                            <div className="pv-field-switch pv-ml-10">
-                                <label className='pv-switch'>
-                                    <input type='checkbox'
-                                        id="email-footer"
-                                        name='mail'
-                                        checked={mailNotification ? 'checked' : ''}
-                                        onChange={handleMailNotificationOnChange}
-                                    />
-                                    <span className='pv-switch-slider pv-round'></span>
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-
-                            <div className="pv-field-switch pv-ml-10">
-                                <label className='pv-switch'>
-                                    <input type='checkbox'
-                                        id="email-footer"
-                                        name='mail'
-                                        checked={appNotification ? 'checked' : ''}
-                                        onChange={handleAppNotificationOnChange}
-                                    />
-                                    <span className='pv-switch-slider pv-round'></span>
-                                </label>
-                            </div>
-                        </td>
+                        <td>Deal Add</td>
+                        <td>toggle</td>
+                        <td>toggle</td>
                     </tr>
                     <tr>
-                        <td>Lead Add</td>
-                        <td>
-                            <div className="pv-field-switch pv-ml-10">
-                                <label className='pv-switch'>
-                                    <input type='checkbox'
-                                        id="email-footer"
-                                        name='mail'
-                                        checked={mailNotification ? 'checked' : ''}
-                                        onChange={handleMailNotificationOnChange}
-                                    />
-                                    <span className='pv-switch-slider pv-round'></span>
-                                </label>
-                            </div>
-                        </td>
-                        <td>
-
-                            <div className="pv-field-switch pv-ml-10">
-                                <label className='pv-switch'>
-                                    <input type='checkbox'
-                                        id="email-footer"
-                                        name='mail'
-                                        checked={appNotification ? 'checked' : ''}
-                                        onChange={handleAppNotificationOnChange}
-                                    />
-                                    <span className='pv-switch-slider pv-round'></span>
-                                </label>
-                            </div>
-                        </td>
+                        <td>Estimate</td>
+                        <td>toggle</td>
+                        <td>toggle</td>
                     </tr>
                 </tbody>
             </table>
