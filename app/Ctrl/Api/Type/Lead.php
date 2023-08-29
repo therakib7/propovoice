@@ -9,11 +9,9 @@ use Ndpv\Model\Person;
 
 class Lead
 {
-
     public function __construct()
     {
         add_action("rest_api_init", [$this, "rest_routes"]);
-
     }
 
     public function rest_routes()
@@ -341,7 +339,9 @@ class Lead
         $person_id = isset($param["person_id"])
             ? absint($param["person_id"])
             : null;
-        $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
+        $org_id = isset($param["org_id"])
+            ? absint($param["org_id"])
+            : null;
         $level_id = isset($param["level_id"])
             ? absint($param["level_id"])
             : null;
@@ -572,7 +572,7 @@ class Lead
                 foreach (Fns::custom_field("lead") as $value) {
                     $field = '';
                     if ($value['type'] == 'multi-select') {
-                        $field = isset($param[$value['slug']]) && is_array( $param[$value['slug']] ) ? array_map("sanitize_text_field", $param[$value['slug']])
+                        $field = isset($param[$value['slug']]) && is_array($param[$value['slug']]) ? array_map("sanitize_text_field", $param[$value['slug']])
                             : "";
                     } else {
                         $field = isset($param[$value['slug']])

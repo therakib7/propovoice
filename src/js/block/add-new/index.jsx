@@ -12,7 +12,7 @@ export default (props) => {
   const close = useCallback(() => setDropdown(false), []);
   useClickOutside(dropdownRef, close);
 
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   const showDropdown = () => {
     if (dropdown) {
@@ -60,7 +60,7 @@ export default (props) => {
         {ndpv.i18n.add + ' ' + props.title}
       </button>
 
-      {imp === true && (
+      {imp && (
         <ImportModal
           close={() => setImp(false)}
           modal={props.fields}
@@ -68,7 +68,7 @@ export default (props) => {
           reload={() => props.reload()}
         />
       )}
-      {exp === true && (
+      {exp && (
         <ExportModal
           close={() => setExp(false)}
           fields={props.fields}
