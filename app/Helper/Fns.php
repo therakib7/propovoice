@@ -19,6 +19,7 @@ class Fns
     }
 
     /**
+     * Auto serial for invoice and estimate
      * @param $mod
      *
      * @return int
