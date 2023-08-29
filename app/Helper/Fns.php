@@ -29,22 +29,23 @@ class Fns
     {
         $total = get_option("ndpv_" . $mod . "_total");
         if ( !$total ) {
-            //count total post other wise 1
-            $new = 1;
+            //count max post id, other wise 1
+            $new = 1;           
             $args = array(
-                'post_type'  => 'ndpv_estinv',
+                'post_type'      => 'ndpv_estinv',
+                'posts_per_page' => 1,
                 'meta_key'   => 'path',
                 'meta_value' => $mod,
                 'post_status' => 'publish',
-                'fields' => 'ids',  // Only get post IDs
+                'orderby'     => 'date',
+                'order'       => 'DESC'
             );
 
-            $query = new \WP_Query($args);
+            $latest_posts = get_posts($args);
 
-            // Get the total number of posts that meet the criteria.
-            $total_posts = $query->found_posts;
-            if ( $total_posts ) {
-                $new = $total_posts;
+            if ($latest_posts) {
+                $last_post_id = $latest_posts[0]->ID;
+                $new = $last_post_id + 1;
             }
 
             update_option("ndpv_" . $mod . "_total", $new);
