@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import api from 'api';
+import { Checkbox } from '../../../../html-elements';
 
 const General = (props) => {
     const [appNotification, setAppNotification] = useState(true);
@@ -99,25 +100,94 @@ const General = (props) => {
                 <thead>
                     <tr>
                         <th style={{ width: "40%" }}>Action</th>
-                        <th style={{ width: "30%" }}>Email</th>
-                        <th style={{ width: "30%" }}>In-App</th>
+                        <th style={{ width: "30%" }}>
+                            <Checkbox
+                                style="switch"
+                                label={{ text: "Email", position: "left" }}
+                                id="email-footer"
+                                name='mail'
+                                isChecked={mailNotification ? 'checked' : ''}
+                                changeHandler={handleMailNotificationOnChange}
+                            />
+                        </th>
+                        <th style={{ width: "30%" }}>
+                            <Checkbox
+                                style="switch"
+                                label={{ text: "In-App", position: "left" }}
+                                id="email-footer"
+                                name='mail'
+                                isChecked={appNotification ? 'checked' : ''}
+                                changeHandler={handleAppNotificationOnChange}
+                            />
+
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Lead Add</td>
-                        <td>toggle</td>
-                        <td>toggle</td>
+                        <td>
+                            <Checkbox
+                                style="switch"
+                                id="email-footer"
+                                name='mail'
+                                isChecked={mailNotification ? 'checked' : ''}
+                                changeHandler={handleMailNotificationOnChange}
+                            />
+                        </td>
+                        <td style={{ color: "#15141A" }}>
+                            <Checkbox
+                                style="switch"
+                                id="email-footer"
+                                name='mail'
+                                isChecked={appNotification ? 'checked' : ''}
+                                changeHandler={handleAppNotificationOnChange}
+                            />
+                        </td>
                     </tr>
+
                     <tr>
-                        <td>Deal Add</td>
-                        <td>toggle</td>
-                        <td>toggle</td>
+                        <td>Deal add</td>
+                        <td>
+                            <Checkbox
+                                style="switch"
+                                id="email-footer"
+                                name='mail'
+                                isChecked={mailNotification ? 'checked' : ''}
+                                changeHandler={handleMailNotificationOnChange}
+                            />
+                        </td>
+                        <td style={{ color: "#15141A" }}>
+                            <Checkbox
+                                style="switch"
+                                id="email-footer"
+                                name='mail'
+                                isChecked={appNotification ? 'checked' : ''}
+                                changeHandler={handleAppNotificationOnChange}
+                            />
+                        </td>
                     </tr>
+
                     <tr>
                         <td>Estimate</td>
-                        <td>toggle</td>
-                        <td>toggle</td>
+                        <td>
+                            <Checkbox
+                                style="switch"
+                                id="email-footer"
+                                name='mail'
+                                isChecked={mailNotification ? 'checked' : ''}
+                                changeHandler={handleMailNotificationOnChange}
+                            />
+                        </td>
+                        <td style={{ color: "#15141A" }}>
+                            <Checkbox
+                                style="switch"
+                                id="email-footer"
+                                name='mail'
+                                isChecked={appNotification ? 'checked' : ''}
+                                changeHandler={handleAppNotificationOnChange}
+                            />
+                        </td>
                     </tr>
                 </tbody>
             </table>
