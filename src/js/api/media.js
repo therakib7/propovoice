@@ -7,6 +7,16 @@ const getAll = (args = '') => {
 	return axios.get(`${url}/?${args}`, token);
 };
 
+const getAttachment = (type) => {
+	return axios.get(`${url}/attachment/${type}`, token);
+};
+const getDefaultAttachment = (type) => {
+	return axios.get(`${url}/attachment/${type}/default/get`, token);
+};
+
+const setDefaultAttachment = (type, id) => {
+	return axios.get(`${url}/attachment/${type}/default/set/${id}`, token);
+};
 const get = id => {
 	return axios.get(`${url}/${id}`, token);
 };
@@ -29,6 +39,9 @@ const findByArg = title => {
 
 export default {
 	getAll,
+	getAttachment,
+	getDefaultAttachment,
+	setDefaultAttachment,
 	get,
 	create,
 	update,

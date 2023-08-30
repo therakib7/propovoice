@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -31,11 +32,28 @@ class Media
             "permission_callback" => [$this, "get_per"]
         ]);
 
+        register_rest_route("ndpv/v1", "/media/attachment/(?P<type>\w+)" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "get_attachment"],
+            "permission_callback" => [$this, "get_attachment_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/media/attachment/(?P<type>\w+)/default/get" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "get_default_attachment"],
+            "permission_callback" => [$this, "get_attachment_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/media/attachment/(?P<type>\w+)/default/set/(?P<id>\d+)" . ndpv()->plain_route(), [
+            "methods" => "GET",
+            "callback" => [$this, "set_default_attachment"],
+            "permission_callback" => [$this, "get_attachment_per"]
+        ]);
         register_rest_route("ndpv/v1", "/media", [
             "methods" => "POST",
             "callback" => [$this, "create"],
             "permission_callback" => [$this, "create_per"]
-    ]);
+        ]);
 
         register_rest_route("ndpv/v1", "/media/(?P<id>[0-9,]+)", [
             "methods" => "DELETE",
@@ -133,6 +151,87 @@ class Media
 
         wp_send_json_success($result);
     }
+
+    public function get_attachment($req)
+    {
+        $url_params = $req->get_url_params();
+        $attach_type = $url_params['type'];
+        $args = array(
+            'post_type' => 'attachment',
+            'meta_query' => array(
+                array(
+                    'key' => 'ndpv_attach_type',
+                    'value' => $attach_type,
+                    'meta_compare' => '='
+                )
+            ),
+            'posts_per_page' => -1,
+        );
+        $posts = get_posts($args);
+        wp_send_json($posts);
+        wp_reset_postdata();
+    }
+
+    public function get_default_attachment($req)
+    {
+        $url_params = $req->get_url_params();
+        $attach_type = $url_params['type'];
+        $args = array(
+            'post_type' => 'attachment',
+            'meta_query' => array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'ndpv_attach_type',
+                    'value' => $attach_type,
+                    'meta_compare' => '='
+                ),
+                array(
+                    'key' => 'ndpv_is_default_' . $attach_type,
+                    'value' => true,
+                    'meta_compare' => '='
+                )
+
+            ),
+            'posts_per_page' => 1,
+        );
+        $posts = get_posts($args);
+        wp_send_json($posts[0]);
+        wp_reset_postdata();
+    }
+
+    public function set_default_attachment($req)
+    {
+        $url_params = $req->get_url_params();
+        $attach_type = $url_params['type'];
+        $new_post_id = $url_params['id'];
+
+        $args = array(
+            'post_type' => 'attachment',
+            'meta_query' => array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'ndpv_attach_type',
+                    'value' => $attach_type,
+                    'meta_compare' => '='
+                ),
+                array(
+                    'key' => 'ndpv_is_default_' . $attach_type,
+                    'value' => true,
+                    'meta_compare' => '='
+                )
+
+            ),
+            'posts_per_page' => -1,
+        );
+        $posts = get_posts($args);
+        foreach ($posts as $post) {
+            delete_post_meta($post->ID, 'ndpv_is_default_' . $attach_type);
+        }
+        update_post_meta($new_post_id, 'ndpv_is_default_' . $attach_type, true);
+        wp_send_json($new_post_id);
+        wp_reset_postdata();
+    }
+
 
     public function get_single($req)
     {
@@ -297,8 +396,8 @@ class Media
                             ),
                         ];
 
-                        if ( $file_info['type'] == 'application/pdf' ) {
-                            $file_info['name'] = basename( get_attached_file( $attach_id ) );
+                        if ($file_info['type'] == 'application/pdf') {
+                            $file_info['name'] = basename(get_attached_file($attach_id));
                         }
                     }
 
@@ -329,6 +428,10 @@ class Media
     public function get_per()
     {
         return current_user_can("ndpv_media");
+    }
+    public function get_attachment_per()
+    {
+        return true;
     }
 
     public function create_per($req)
