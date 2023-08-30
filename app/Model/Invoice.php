@@ -173,14 +173,14 @@ class Invoice
 
             $query_data['total'] = get_post_meta($id, 'total', true);
             if ($query_data['total']) {
-                $data['total'] += $query_data['total'];
+                $data['total'] += (int) $query_data['total'];
             }
 
             $query_data['status'] = get_post_meta($id, 'status', true);
             if ($query_data['status'] == 'paid') {
-                $data['paid'] += $query_data['total'];
+                $data['paid'] += (int) $query_data['total'];
             } else {
-                $data['due'] += $query_data['total'];
+                $data['due'] += (int) $query_data['total'];
             }
 
             $data['number']++;

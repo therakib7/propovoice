@@ -140,6 +140,7 @@
 
     .pv-right-content {
         height: calc(100vh - 30px);
+        overflow-x: initial;
     }
 
     .pv-board-content {
@@ -376,6 +377,7 @@ input:-webkit-autofill:active {
     li {
         margin-top: 10px;
     }
+
     .pv-attach-pdf {
         font-size: 12px;
         background: #EDF2F7;
@@ -383,19 +385,23 @@ input:-webkit-autofill:active {
         display: inline-block;
         color: #4A5568;
         border-radius: 10px;
+
         .pv-pdf-icon {
             background: white;
             padding: 8px;
             border-radius: 50%;
+
             svg {
                 top: 2px;
                 position: relative;
             }
         }
+
         .pv-pdf-name {
             font-weight: 500;
             margin: 0 10px;
         }
+
         .pv-download-pdf {
             svg {
                 top: 2px;
@@ -403,6 +409,7 @@ input:-webkit-autofill:active {
             }
         }
     }
+
     li img {
         max-width: 300px;
         border-radius: 10px;
@@ -410,10 +417,12 @@ input:-webkit-autofill:active {
         height: auto;
     }
 }
+
 .ndpv {
     .pv-preloader.pv-preloader-submit {
         padding: 0;
     }
+
     .pv-preloader.pv-preloader-submit:before {
         width: 25px;
         height: 25px;
