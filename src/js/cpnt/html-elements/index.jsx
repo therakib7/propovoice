@@ -62,20 +62,20 @@ export const Checkbox = ({ style, id, name, label = {}, changeHandler, isChecked
     </div>
   )
 
-  const labelStyle = label.position === "left"
+  const labelStyle = label?.position === "left"
     ? "marginRight"
     : "marginLeft";
 
-  const viewLabel = label.text
-    && <label id={id} style={{ [labelStyle]: "10px" }}>
+  const viewLabel = label?.text
+    && (<label id={id} style={{ [labelStyle]: "10px" }}>
       {label.text}
-    </label >;
+    </label >);
 
   return (
     <>
-      {label && label.position === "left" && viewLabel}
+      {label?.position === "left" && viewLabel}
       {style === "switch" ? viewSwitch : viewCheckboxInput}
-      {label && label.position === "right" && viewLabel}
+      {label?.position === "right" && viewLabel}
     </>
   )
 }
