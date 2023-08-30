@@ -310,8 +310,8 @@ class ListSingle extends Component {
     let img = ndpv.assetImgUri + "avatar.png";
     if (data.person && data.person.img) {
       img = data.person.img.src;
-    } else if (data.org && data.org.img) {
-      img = data.org.img.src;
+    } else if (data.org && data.org.logo) {
+      img = data.org.logo.src;
     }
 
     if (data.org == null) data.org = {};
@@ -346,7 +346,7 @@ class ListSingle extends Component {
               {path == "project" && (
                 <NavLink to="/project">{i18n.project}</NavLink>
               )}
-              {path == "contact" && <NavLink to="/contact">{i18n.ct}</NavLink>}
+              {path == "contact" && <NavLink to={'/contact/' + (data.person ? 'person' : 'organization')}>{i18n.ct}</NavLink>}
             </li>
             <li>
               <svg width={5} height={10} viewBox="0 0 5 10" fill="none">
@@ -1216,7 +1216,6 @@ class ListSingle extends Component {
                   <>
                     <h5>{i18n.desc}:</h5>
                     <p
-                      className=""
                       dangerouslySetInnerHTML={{ __html: data.desc }}
                     ></p>
                   </>
@@ -1226,7 +1225,6 @@ class ListSingle extends Component {
                   <>
                     <h5>{i18n.note}:</h5>
                     <p
-                      className=""
                       dangerouslySetInnerHTML={{ __html: data.note }}
                     ></p>
                   </>

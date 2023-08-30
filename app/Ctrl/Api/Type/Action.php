@@ -1,6 +1,8 @@
 <?php
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Helper\Fns;
+
 class Action
 {
     public function __construct()
@@ -96,10 +98,6 @@ class Action
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-            // $post = (array) get_post( $id );
-            // unset($post['ID']); // Remove id, wp will create new post if not set.
-            // wp_insert_post($post);
-            // $post_id = wp_insert_post( $data );
 
             $title = get_the_title($id);
             $oldpost = get_post($id);
@@ -111,34 +109,43 @@ class Action
             ];
             $new_post_id = wp_insert_post($post);
 
-            // Copy post metadata
+            // Copy post metadata 
+
             $data = get_post_meta($id);
+
+            //auto number
+            $auto_id = '';
+            $path = get_post_meta($id, "path", true);
+            if ($type == "copy-to-inv") {
+                $path = "invoice"; 
+            }
+            $prefix = get_option("ndpv_" . $path . "_general");
+            if ($prefix) {
+                $prefix = $prefix["prefix"];
+            } else {
+                $prefix = $path == "invoice" ? "Inv-" : "Est-";
+            }
+            $auto_id = $prefix . Fns::auto_id($path); 
+
             foreach ($data as $key => $values) {
                 foreach ($values as $value) {
                     if ($key == "status") {
                         $value = "draft";
-                    }
-
-                    if ($key == "path") {
-                        $prefix = $value == "estimate" ? "Est" : "Inv";
-                    }
+                    } 
 
                     if ($key == "path" && $type == "copy-to-inv") {
-                        $value = "invoice";
-                        $prefix = "Inv";
-                    }
-
-                    $num = "{$prefix}-{$new_post_id}";
+                        $value = "invoice"; 
+                    }                
 
                     if ($key == "num") {
-                        $value = $num;
+                        $value = $auto_id;
                     }
 
-                    if ($key == "invoice") {
+                    if ($key == "invoice") { //key name invoice, but estimate and invoice stored here in obj
                         $value = maybe_unserialize($value);
 
                         $value["id"] = $new_post_id;
-                        $value["num"] = $num;
+                        $value["num"] = $auto_id;
 
                         if ($type == "copy-to-inv") {
                             $value["path"] = "invoice";
