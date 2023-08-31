@@ -106,6 +106,9 @@
     width: 100%;
     justify-content: center;
 }
+.pv-lost-password {
+  color: #718096;
+}
 </style>
 <div class="pv-login-content pv-container pv-form-style-one" style="top: 30%;">
     <div class="" style="float:none;margin:auto;">
@@ -121,6 +124,7 @@
           'remember' => true
       );
       wp_login_form( $args );
+      echo '<p class="pv-lost-password"><a href="'. wp_lostpassword_url() .'">' . esc_html__( 'Lost your password?', 'propovoice' ) . '</a></p>';
       if ( isset( $_GET['login'] ) && $_GET['login'] == 'failed' ) {
         echo '<p style="color: red">' . esc_html__( 'You enterd wrong credentials', 'propovoice' ) . '</p>';
       }
