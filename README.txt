@@ -180,10 +180,11 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
-= 1.7.0 (29-Aug-2023) = 
+= 1.7.0 (31-Aug-2023) = 
 * Improved: Client signature upload
 * Update: Invoice and Estimate auto serial ID issue
-* Update: Helper files  Import Export issue
+* Update: Helper files Import Export issue
+* Update: JS and functional issues
 
 = 1.6.9 (23-Aug-2023) = 
 * Fixed: Client already exist issue
