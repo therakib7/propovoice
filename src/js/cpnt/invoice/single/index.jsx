@@ -7,15 +7,20 @@ import Invoice from './tab/invoice';
 
 const InvoiceWrap = (props) => {
 
+
 	const { id, tab } = useParams();
 	let navigate = useNavigate();
 	const location = useLocation();
 	let path = '';
+	let module = null;
 	let module_id = null;
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	if (searchParams.get('module_id')) {
 		module_id = searchParams.get('module_id');
+	}
+	if (searchParams.get('module')) {
+		module = searchParams.get('module');
 	}
 
 	if (id === undefined) {
@@ -38,6 +43,7 @@ const InvoiceWrap = (props) => {
 			{...props}
 			id={id}
 			tab={tab}
+			module={module}
 			module_id={module_id}
 			routeChange={routeChange}
 			routeInvoice={routeInvoice}

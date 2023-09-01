@@ -334,7 +334,6 @@ class Invoice extends Component {
   };
 
   handleSetTo = (data) => {
-    console.log(data)
     let invoice = { ...this.state.invoice };
     invoice.to = data.id;
     invoice.to_type = data.type;
@@ -1054,7 +1053,6 @@ class Invoice extends Component {
                         </div>
                       </div>
                       {/* ./ pv-add-info-content */}
-
                       <FromTo
                         setFrom={this.handleSetFrom}
                         setTo={this.handleSetTo}
@@ -1062,6 +1060,7 @@ class Invoice extends Component {
                         toData={this.state.toData}
                         editId={this.props.id}
                         moduleId={this.props.module_id}
+                        module={this.props.module}
                       />
 
                       <Suspense fallback={<Spinner />}>
