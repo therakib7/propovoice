@@ -334,6 +334,7 @@ class Invoice extends Component {
   };
 
   handleSetTo = (data) => {
+    console.log(data)
     let invoice = { ...this.state.invoice };
     invoice.to = data.id;
     invoice.to_type = data.type;

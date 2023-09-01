@@ -228,7 +228,8 @@ export default class FromTo extends Component {
                                 {toData ?
                                     <>
                                         <h4 className="pv-title-small">
-                                            {(toData.type == 'person') ? toData.first_name : toData.org_name}
+                                            {(toData.type == 'person'
+                                                || toData.first_name) ? toData.first_name : toData.org_name}
                                             {false && <span>
                                                 <button
                                                     className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"
@@ -239,6 +240,7 @@ export default class FromTo extends Component {
                                             </span>}
                                         </h4>
                                         <address>
+                                            {toData.first_name && toData.org_name}<br />
                                             {toData.address &&
                                                 <>{toData.address}.<br /></>
                                             }
