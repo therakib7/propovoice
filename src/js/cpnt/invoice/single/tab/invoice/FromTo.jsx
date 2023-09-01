@@ -78,7 +78,10 @@ export default class FromTo extends Component {
             const endpoint = module === "client" ? "contacts" : module + "s"
             api.getS(endpoint, this.props.moduleId).then(resp => {
                 const data = resp.data.data
-                this.props.setTo({ ...data?.person, ...data?.org })
+                console.log("Person: ", data.person)
+                console.log("Org: ", data.org)
+                const receiver = this.mergeObjects(data?.person, data?.org)
+                this.props.setTo(receiver)
             });
         }
 
@@ -95,6 +98,23 @@ export default class FromTo extends Component {
         }
     }
 
+    mergeObjects = (...sources) => {
+        const result = {};
+
+        sources.forEach((source) => {
+            for (const key in source) {
+                if (source.hasOwnProperty(key)) {
+                    if (key !== "first_name" && source[key] !== undefined && source[key] !== null && source[key] !== '') {
+                        result[key] = source[key];
+                    } else if (!result.hasOwnProperty(key)) {
+                        result[key] = source[key];
+                    }
+                }
+            }
+        });
+
+        return result;
+    }
 
 
     handleContactSelect = (val) => {
@@ -228,6 +248,7 @@ export default class FromTo extends Component {
                             </div>
 
                             <div className="pv-from">
+                                {console.log(toData)}
                                 {toData ?
                                     <>
                                         <h4 className="pv-title-small">
