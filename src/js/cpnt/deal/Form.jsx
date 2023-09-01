@@ -360,6 +360,7 @@ class Form extends Component {
                             <Contact
                                 first_name={form.first_name}
                                 org_name={form.org_name}
+                                fromClient={this.fromClient}
                                 onChange={this.handleContactChange}
                                 onSelect={this.handleContactSelect}
                             />
@@ -371,6 +372,7 @@ class Form extends Component {
                                     type="email"
                                     name="email"
                                     wrapperClassName='col-lg'
+                                    disabled={this.fromClient}
                                     value={form.email}
                                     onChange={this.handleChange}
                                     validation={{ required: { value: true }, email: { value: true } }}
@@ -386,6 +388,7 @@ class Form extends Component {
                                         type="text"
                                         name="mobile"
                                         value={form.mobile}
+                                        disabled={this.fromClient}
                                         onChange={this.handleChange}
                                     />
                                 </div>
