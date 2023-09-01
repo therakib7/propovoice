@@ -78,8 +78,6 @@ export default class FromTo extends Component {
             const endpoint = module === "client" ? "contacts" : module + "s"
             api.getS(endpoint, this.props.moduleId).then(resp => {
                 const data = resp.data.data
-                console.log("Person: ", data.person)
-                console.log("Org: ", data.org)
                 const receiver = this.mergeObjects(data?.person, data?.org)
                 this.props.setTo(receiver)
             });
@@ -248,7 +246,6 @@ export default class FromTo extends Component {
                             </div>
 
                             <div className="pv-from">
-                                {console.log(toData)}
                                 {toData ?
                                     <>
                                         <h4 className="pv-title-small">
