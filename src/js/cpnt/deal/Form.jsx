@@ -43,6 +43,19 @@ class Form extends Component {
             date: false
         };
 
+        if (this.props.parentData) {
+            this.fromClient = true;
+            const { person, org } = this.props.parentData;
+            const contactInfo = this.mergeObjects(person, org)
+
+            if (Object.keys(contactInfo).length > 0) {
+                this.initialState.first_name = contactInfo.first_name;
+                this.initialState.email = contactInfo.email;
+                this.initialState.mobile = contactInfo.mobile;
+                this.initialState.org_name = contactInfo.name;
+            }
+        }
+
         this.state = {
             submitPreloader: false,
             form: this.initialState,
@@ -50,6 +63,24 @@ class Form extends Component {
             stages: [],
             tags: [],
         };
+    }
+
+    mergeObjects = (...sources) => {
+        const result = {};
+
+        sources.forEach((source) => {
+            for (const key in source) {
+                if (source.hasOwnProperty(key)) {
+                    if (key !== "first_name" && source[key] !== undefined && source[key] !== null && source[key] !== '') {
+                        result[key] = source[key];
+                    } else if (!result.hasOwnProperty(key)) {
+                        result[key] = source[key];
+                    }
+                }
+            }
+        });
+
+        return result;
     }
 
     componentDidMount() {

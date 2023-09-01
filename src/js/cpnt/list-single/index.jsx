@@ -1155,7 +1155,7 @@ class ListSingle extends Component {
                     <Project module_id={data.id} data={data} parent={path} />
                   )}
                   {currentTab == "deal" && data.id && (
-                    <Deal module_id={data.id} parent={path} />
+                    <Deal module_id={data.id} data={data} parent={path} />
                   )}
                 </Suspense>
               </div>

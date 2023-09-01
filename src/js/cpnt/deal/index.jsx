@@ -139,6 +139,7 @@ const Deal = (props) => {
 
       {props.state.formModal && (
         <Form
+          parentData={props.data}
           custom_field={extra.custom_field}
           handleSubmit={handleSubmit}
           modalType={props.state.formModalType}
