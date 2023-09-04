@@ -6,7 +6,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-08-21 10:02+0000\n"
+"POT-Creation-Date: 2023-08-31 05:39+0000\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. translators: %s template
-#: ../app/Helper/Fns.php:385
+#: ../app/Helper/Fns.php:425
 msgid "%s does not exist."
 msgstr ""
 
@@ -1333,7 +1333,7 @@ msgstr ""
 msgid "Default options"
 msgstr ""
 
-#: ../app/Model/Org.php:96, ../app/Model/Org.php:176, ../app/Model/Person.php:92, ../app/Model/Person.php:170
+#: ../app/Model/Org.php:99, ../app/Model/Org.php:184, ../app/Model/Person.php:95, ../app/Model/Person.php:178
 msgid "Something wrong!"
 msgstr ""
 
@@ -1361,7 +1361,7 @@ msgstr ""
 msgid "Propovoice Client Invoice"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Action.php:92, ../app/Ctrl/Api/Type/Action.php:178
+#: ../app/Ctrl/Api/Type/Action.php:94, ../app/Ctrl/Api/Type/Action.php:185
 msgid "Required field is missing"
 msgstr ""
 
@@ -1369,24 +1369,24 @@ msgstr ""
 msgid "Name is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:235, ../app/Ctrl/Api/Type/Deal.php:445, ../app/Ctrl/Api/Type/Deal.php:663, ../app/Ctrl/Api/Type/Lead.php:363, ../app/Ctrl/Api/Type/Lead.php:498, ../app/Ctrl/Api/Type/Project.php:538, ../app/Ctrl/Api/Type/Project.php:747
+#: ../app/Ctrl/Api/Type/Client.php:235, ../app/Ctrl/Api/Type/Client.php:392, ../app/Ctrl/Api/Type/Deal.php:445, ../app/Ctrl/Api/Type/Deal.php:663, ../app/Ctrl/Api/Type/Lead.php:363, ../app/Ctrl/Api/Type/Lead.php:498, ../app/Ctrl/Api/Type/Project.php:538, ../app/Ctrl/Api/Type/Project.php:747
 msgid "Contact info is missing"
 msgstr ""
 
 #: ../app/Ctrl/Api/Type/Client.php:243
-msgid "Client already exists!!!"
+msgid "Client already exists! Email or Mobile should be unique"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:264, ../app/Ctrl/Api/Type/Client.php:405
+#: ../app/Ctrl/Api/Type/Client.php:264, ../app/Ctrl/Api/Type/Client.php:418
 msgid "You can not add a Team member as client"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:379, ../app/Ctrl/Api/Type/Contact.php:348, ../app/Ctrl/Api/Type/Note.php:163, ../app/Ctrl/Api/Type/Note.php:202, ../app/Ctrl/Api/Type/Org.php:267, ../app/Ctrl/Api/Type/Org.php:385, ../app/Ctrl/Api/Type/Person.php:302, ../app/Ctrl/Api/Type/Person.php:459, ../app/Ctrl/Api/Type/Workspace.php:254, ../app/Ctrl/Api/Type/Workspace.php:363
-msgid "Name field is missing"
+#: ../app/Ctrl/Api/Type/Client.php:399, ../app/Ctrl/Api/Type/Contact.php:355, ../app/Ctrl/Api/Type/Org.php:274, ../app/Ctrl/Api/Type/Org.php:392, ../app/Ctrl/Api/Type/Person.php:309, ../app/Ctrl/Api/Type/Person.php:466, ../app/Ctrl/Api/Type/Team.php:185, ../app/Ctrl/Api/Type/Team.php:298, ../app/Ctrl/Api/Type/Workspace.php:261, ../app/Ctrl/Api/Type/Workspace.php:370
+msgid "Email id is not valid!"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Client.php:386, ../app/Ctrl/Api/Type/Contact.php:355, ../app/Ctrl/Api/Type/Org.php:274, ../app/Ctrl/Api/Type/Org.php:392, ../app/Ctrl/Api/Type/Person.php:309, ../app/Ctrl/Api/Type/Person.php:466, ../app/Ctrl/Api/Type/Team.php:185, ../app/Ctrl/Api/Type/Team.php:298, ../app/Ctrl/Api/Type/Workspace.php:261, ../app/Ctrl/Api/Type/Workspace.php:370
-msgid "Email id is not valid!"
+#: ../app/Ctrl/Api/Type/Contact.php:348, ../app/Ctrl/Api/Type/Note.php:163, ../app/Ctrl/Api/Type/Note.php:202, ../app/Ctrl/Api/Type/Org.php:267, ../app/Ctrl/Api/Type/Org.php:385, ../app/Ctrl/Api/Type/Person.php:302, ../app/Ctrl/Api/Type/Person.php:459, ../app/Ctrl/Api/Type/Workspace.php:254, ../app/Ctrl/Api/Type/Workspace.php:363
+msgid "Name field is missing"
 msgstr ""
 
 #: ../app/Ctrl/Api/Type/Dashbaord.php:55
@@ -1409,19 +1409,19 @@ msgstr ""
 msgid "Type is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:637, ../app/Ctrl/Api/Type/Invoice.php:789
+#: ../app/Ctrl/Api/Type/Invoice.php:638, ../app/Ctrl/Api/Type/Invoice.php:803
 msgid "Business is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:644
+#: ../app/Ctrl/Api/Type/Invoice.php:645
 msgid "Module is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Invoice.php:651, ../app/Ctrl/Api/Type/Invoice.php:796
+#: ../app/Ctrl/Api/Type/Invoice.php:652, ../app/Ctrl/Api/Type/Invoice.php:810
 msgid "Receiver is missing"
 msgstr ""
 
-#: ../app/Ctrl/Api/Type/Media.php:219
+#: ../app/Ctrl/Api/Type/Media.php:318
 msgid "Invalid file type: %s. Supported file types: %s"
 msgstr ""
 
@@ -1561,26 +1561,30 @@ msgstr ""
 msgid "We Can't find this page you're looking for"
 msgstr ""
 
-#: ../view/template/partial/login.php:112
+#: ../view/template/partial/login.php:115
 msgid "Please enter your login credentials"
 msgstr ""
 
-#: ../view/template/partial/login.php:117
+#: ../view/template/partial/login.php:120
 msgid "Username"
 msgstr ""
 
-#: ../view/template/partial/login.php:118
+#: ../view/template/partial/login.php:121
 msgid "Password"
 msgstr ""
 
-#: ../view/template/partial/login.php:119
+#: ../view/template/partial/login.php:122
 msgid "Remember Me"
 msgstr ""
 
-#: ../view/template/partial/login.php:120
+#: ../view/template/partial/login.php:123
 msgid "Log In"
 msgstr ""
 
-#: ../view/template/partial/login.php:125
+#: ../view/template/partial/login.php:127
+msgid "Lost your password?"
+msgstr ""
+
+#: ../view/template/partial/login.php:129
 msgid "You enterd wrong credentials"
 msgstr ""
