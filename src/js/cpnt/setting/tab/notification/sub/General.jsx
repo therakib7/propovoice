@@ -3,12 +3,12 @@ import { toast } from 'react-toastify';
 import api from 'api';
 import { Checkbox } from '../../../../html-elements';
 
-const General = (props) => {
-    const [appNotification, setAppNotification] = useState(true);
-    const [mailNotification, setMailNotification] = useState(true);
+const General = () => {
+    const [appNotification, setAppNotification] = useState(false);
+    const [mailNotification, setMailNotification] = useState(false);
+    const [userPreferences, setUserPreferences] = useState({});
     const [typeChanged, setTypeChanged] = useState();
     const isMounted = useRef(false);
-
     useEffect(() => {
         if (isMounted.current) {
             if (typeChanged == "app") {
@@ -28,28 +28,63 @@ const General = (props) => {
             };
 
         } else {
-            getUserPreference("notification_type=app", setAppNotification)
-            getUserPreference("notification_type=mail", setMailNotification)
+            getUserPreference("notification_type=app")
+            getUserPreference("notification_type=mail")
             isMounted.current = true;
         }
     }, [appNotification, mailNotification])
 
+    console.log("Mail notification", mailNotification)
 
-    const handleAppNotificationOnChange = () => {
-        setAppNotification(!appNotification);
+    const handleAllAppNotificationOnChange = () => {
+        const newAppNotification = !appNotification
+
+        changeAllPreferenceState("app", newAppNotification)
+        setAppNotification(newAppNotification);
         setTypeChanged("app");
     }
-    const handleMailNotificationOnChange = () => {
-        setMailNotification(!mailNotification);
+
+    const handleAllMailNotificationOnChange = () => {
+        const newMailNotification = !mailNotification
+        changeAllPreferenceState("mail", newMailNotification)
+        setMailNotification(newMailNotification);
         setTypeChanged("mail");
     }
 
+    const changeAllPreferenceState = (type, value) => {
+        Object.keys(userPreferences)
+            .map((slug) => {
+                setUserPreferences((prev) => {
+                    return { ...prev, [slug]: { ...prev[slug], [type]: value } }
+                })
+            })
+    }
 
-    const getUserPreference = (args, callback) => {
+
+    const getUserPreference = (args) => {
         api.get(`notifications/users/${ndpv.profile.id}/preferences`, args, "pro").then(resp => {
-            callback(resp.data);
+            const preferences = resp.data
+            preferences.map((preference) => {
+                const { slug, label, notification_type, is_enabled } = preference
+
+                // User preferences object structure
+                //
+                // userPreferences = {
+                //     user_id: 1,
+                //     lead_add: {
+                //         label: "Lead Add",
+                //         mail: 1,
+                //         app: 0
+                //     }
+                // }
+
+                setUserPreferences((prev) => (
+                    { ...prev, [slug]: { ...prev[slug], label: label, [notification_type]: parseInt(is_enabled) } }
+                ))
+            })
         });
     }
+
 
     const submitUserPreferences = (data) => {
         api.add(`notifications/users/${ndpv.profile.id}/preferences`, data, "pro").then(resp => {
@@ -61,40 +96,6 @@ const General = (props) => {
         <>
 
             <h4 className="pv-title-medium pv-mt-15 pv-mb-15">Notification customization</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div className="row">
-                    <div className="col">
-                        <label id="email-footer">Receive app notification</label>
-                        <div className="pv-field-switch pv-ml-10">
-                            <label className='pv-switch'>
-                                <input type='checkbox'
-                                    id="email-footer"
-                                    name='app'
-                                    checked={appNotification ? 'checked' : ''}
-                                    onChange={handleAppNotificationOnChange}
-                                />
-                                <span className='pv-switch-slider pv-round'></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col">
-                        <label id="email-footer">Receive notification mail</label>
-                        <div className="pv-field-switch pv-ml-10">
-                            <label className='pv-switch'>
-                                <input type='checkbox'
-                                    id="email-footer"
-                                    name='mail'
-                                    checked={mailNotification ? 'checked' : ''}
-                                    onChange={handleMailNotificationOnChange}
-                                />
-                                <span className='pv-switch-slider pv-round'></span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <table className="pv-table" style={{ marginTop: "50px" }}>
                 <thead>
@@ -107,7 +108,7 @@ const General = (props) => {
                                 id="email-footer"
                                 name='mail'
                                 isChecked={mailNotification ? 'checked' : ''}
-                                changeHandler={handleMailNotificationOnChange}
+                                changeHandler={handleAllMailNotificationOnChange}
                             />
                         </th>
                         <th style={{ width: "30%" }}>
@@ -117,78 +118,40 @@ const General = (props) => {
                                 id="email-footer"
                                 name='mail'
                                 isChecked={appNotification ? 'checked' : ''}
-                                changeHandler={handleAppNotificationOnChange}
+                                changeHandler={handleAllAppNotificationOnChange}
                             />
 
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Lead Add</td>
-                        <td>
-                            <Checkbox
-                                style="switch"
-                                id="email-footer"
-                                name='mail'
-                                isChecked={mailNotification ? 'checked' : ''}
-                                changeHandler={handleMailNotificationOnChange}
-                            />
-                        </td>
-                        <td style={{ color: "#15141A" }}>
-                            <Checkbox
-                                style="switch"
-                                id="email-footer"
-                                name='mail'
-                                isChecked={appNotification ? 'checked' : ''}
-                                changeHandler={handleAppNotificationOnChange}
-                            />
-                        </td>
-                    </tr>
+                    {
+                        Object.keys(userPreferences)
+                            .map((key, index) => (
 
-                    <tr>
-                        <td>Deal add</td>
-                        <td>
-                            <Checkbox
-                                style="switch"
-                                id="email-footer"
-                                name='mail'
-                                isChecked={mailNotification ? 'checked' : ''}
-                                changeHandler={handleMailNotificationOnChange}
-                            />
-                        </td>
-                        <td style={{ color: "#15141A" }}>
-                            <Checkbox
-                                style="switch"
-                                id="email-footer"
-                                name='mail'
-                                isChecked={appNotification ? 'checked' : ''}
-                                changeHandler={handleAppNotificationOnChange}
-                            />
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Estimate</td>
-                        <td>
-                            <Checkbox
-                                style="switch"
-                                id="email-footer"
-                                name='mail'
-                                isChecked={mailNotification ? 'checked' : ''}
-                                changeHandler={handleMailNotificationOnChange}
-                            />
-                        </td>
-                        <td style={{ color: "#15141A" }}>
-                            <Checkbox
-                                style="switch"
-                                id="email-footer"
-                                name='mail'
-                                isChecked={appNotification ? 'checked' : ''}
-                                changeHandler={handleAppNotificationOnChange}
-                            />
-                        </td>
-                    </tr>
+                                <tr key={index}>
+                                    <td>{userPreferences[key].label}</td>
+                                    <td>
+                                        <Checkbox
+                                            style="switch"
+                                            id="email-footer"
+                                            name='mail'
+                                            isChecked={userPreferences[key]["mail"] ? 'checked' : ''}
+                                            changeHandler={() => {}}
+                                        />
+                                    </td>
+                                    <td style={{ color: "#15141A" }}>
+                                        <Checkbox
+                                            style="switch"
+                                            id="email-footer"
+                                            name='mail'
+                                            isChecked={userPreferences[key]["app"] ? 'checked' : ''}
+                                            changeHandler={() => {}}
+                                        />
+                                    </td>
+                                </tr>
+                            ))
+                    }
                 </tbody>
             </table>
         </>
