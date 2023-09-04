@@ -8,6 +8,7 @@ import Contact from 'block/field/contact-select';
 //others component
 import BusinessForm from 'cpnt/business/Form';
 import ContactForm from 'cpnt/contact/Form';
+import { mergeObjects } from 'helper';
 
 export default class FromTo extends Component {
 
@@ -78,7 +79,7 @@ export default class FromTo extends Component {
             const endpoint = module === "client" ? "contacts" : module + "s"
             api.getS(endpoint, this.props.moduleId).then(resp => {
                 const data = resp.data.data
-                const receiver = this.mergeObjects(data?.person, data?.org)
+                const receiver = mergeObjects(data?.person, data?.org)
                 this.props.setTo(receiver)
             });
         }
@@ -96,23 +97,6 @@ export default class FromTo extends Component {
         }
     }
 
-    mergeObjects = (...sources) => {
-        const result = {};
-
-        sources.forEach((source) => {
-            for (const key in source) {
-                if (source.hasOwnProperty(key)) {
-                    if (key !== "first_name" && source[key] !== undefined && source[key] !== null && source[key] !== '') {
-                        result[key] = source[key];
-                    } else if (!result.hasOwnProperty(key)) {
-                        result[key] = source[key];
-                    }
-                }
-            }
-        });
-
-        return result;
-    }
 
 
     handleContactSelect = (val) => {
@@ -262,10 +246,10 @@ export default class FromTo extends Component {
                                         </h4>
                                         <address>
                                             {toData.first_name && (toData.org_name || toData.name) &&
-                                                <>{toData.org_name ?? toData.name}  <br /></>
+                                                (<>{toData.name ?? toData.org_name}  <br /></>)
                                             }
                                             {toData.address &&
-                                                <>{toData.address}.<br /></>
+                                                (<>{toData.address}.<br /></>)
                                             }
 
                                             {toData.email}

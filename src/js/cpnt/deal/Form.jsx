@@ -11,7 +11,7 @@ import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
 import Preloader from "block/preloader/spinner";
 import { sprintf } from 'sprintf-js';
-import { checkRoute } from 'helper';
+import { checkRoute, mergeObjects } from 'helper';
 import { TextInput } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
@@ -46,7 +46,7 @@ class Form extends Component {
         if (this.props.parentData) {
             this.fromClient = true;
             const { person, org } = this.props.parentData;
-            const contactInfo = this.mergeObjects(person, org)
+            const contactInfo = mergeObjects(person, org)
 
             if (Object.keys(contactInfo).length > 0) {
                 this.initialState.first_name = contactInfo.first_name;
@@ -65,23 +65,6 @@ class Form extends Component {
         };
     }
 
-    mergeObjects = (...sources) => {
-        const result = {};
-
-        sources.forEach((source) => {
-            for (const key in source) {
-                if (source.hasOwnProperty(key)) {
-                    if (key !== "first_name" && source[key] !== undefined && source[key] !== null && source[key] !== '') {
-                        result[key] = source[key];
-                    } else if (!result.hasOwnProperty(key)) {
-                        result[key] = source[key];
-                    }
-                }
-            }
-        });
-
-        return result;
-    }
 
     componentDidMount() {
         //custom fields

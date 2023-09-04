@@ -20,8 +20,8 @@ const checkRoute = () => {
 		const anchor = navUl[y].querySelector('a');
 		// currentHash = currentHash.replace(/[0-9]/g, '').replace(/\/+$/, '');
 		currentHash = currentHash.replace(/[0-9]|\/+$/g, '');
-	
-		if ( currentHash && anchor && anchor.getAttribute('href').includes(currentHash)) {
+
+		if (currentHash && anchor && anchor.getAttribute('href').includes(currentHash)) {
 			navUl[y].classList.add('current');
 		} else {
 			navUl[y].classList.remove('current');
@@ -33,7 +33,26 @@ const checkRoute = () => {
 	}
 };
 
+const mergeObjects = (...sources) => {
+	const result = {};
+
+	sources.forEach((source) => {
+		for (const key in source) {
+			if (source.hasOwnProperty(key)) {
+				if (key !== "first_name" && source[key] !== undefined && source[key] !== null && source[key] !== '') {
+					result[key] = source[key];
+				} else if (!result.hasOwnProperty(key)) {
+					result[key] = source[key];
+				}
+			}
+		}
+	});
+
+	return result;
+}
+
 export {
 	currency,
-	checkRoute
+	checkRoute,
+	mergeObjects
 };
