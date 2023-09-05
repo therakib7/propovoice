@@ -4,52 +4,53 @@ import api from 'api';
 import { Checkbox } from '../../../../html-elements';
 
 const General = () => {
-    const [appNotification, setAppNotification] = useState(false);
-    const [mailNotification, setMailNotification] = useState(false);
+    const [allIsEnabled, setAllIsEnabled] = useState({
+        mail: false,
+        app: false
+    });
     const [userPreferences, setUserPreferences] = useState({});
-    const [typeChanged, setTypeChanged] = useState();
-    const isMounted = useRef(false);
+
     useEffect(() => {
-        if (isMounted.current) {
-            if (typeChanged == "app") {
-                const data = {
-                    notification_type: "app",
-                    is_enable: appNotification
-                };
-                submitUserPreferences(data);
-            };
+        getUserPreference("notification_type=app")
+        getUserPreference("notification_type=mail")
+    }, [])
 
-            if (typeChanged == "mail") {
-                const data = {
-                    notification_type: "mail",
-                    is_enable: mailNotification
-                };
-                submitUserPreferences(data);
-            };
 
-        } else {
-            getUserPreference("notification_type=app")
-            getUserPreference("notification_type=mail")
-            isMounted.current = true;
+    const handleNotificationChange = (type, action_id = null, action_slug = null) => {
+        const data = {
+            notification_type: type,
+        };
+
+        if (action_id !== null) {
+            updateSingleAction(type, action_id, action_slug, data)
+            return;
         }
-    }, [appNotification, mailNotification])
+        updateAllActions(type, data)
 
-    console.log("Mail notification", mailNotification)
-
-    const handleAllAppNotificationOnChange = () => {
-        const newAppNotification = !appNotification
-
-        changeAllPreferenceState("app", newAppNotification)
-        setAppNotification(newAppNotification);
-        setTypeChanged("app");
     }
 
-    const handleAllMailNotificationOnChange = () => {
-        const newMailNotification = !mailNotification
-        changeAllPreferenceState("mail", newMailNotification)
-        setMailNotification(newMailNotification);
-        setTypeChanged("mail");
+    const updateSingleAction = (type, action_id, action_slug, data) => {
+        const newSingleIsEnabled = !userPreferences[action_slug][type]
+        setUserPreferences((prev) => {
+            return { ...prev, [action_slug]: { ...prev[action_slug], [type]: newSingleIsEnabled } }
+        })
+        submitUserPreferences({
+            ...data,
+            is_enable: newSingleIsEnabled,
+            action_id: action_id
+        });
     }
+
+    const updateAllActions = (type, data) => {
+        const newAllIsEnabled = !allIsEnabled[type]
+        changeAllPreferenceState(type, newAllIsEnabled)
+        setAllIsEnabled({ ...allIsEnabled, [type]: newAllIsEnabled })
+        submitUserPreferences({
+            ...data,
+            is_enable: newAllIsEnabled,
+        });
+    }
+
 
     const changeAllPreferenceState = (type, value) => {
         Object.keys(userPreferences)
@@ -65,13 +66,13 @@ const General = () => {
         api.get(`notifications/users/${ndpv.profile.id}/preferences`, args, "pro").then(resp => {
             const preferences = resp.data
             preferences.map((preference) => {
-                const { slug, label, notification_type, is_enabled } = preference
+                const { slug, action_id, label, notification_type, is_enabled } = preference
 
                 // User preferences object structure
                 //
                 // userPreferences = {
-                //     user_id: 1,
                 //     lead_add: {
+                //         action_id: 1,
                 //         label: "Lead Add",
                 //         mail: 1,
                 //         app: 0
@@ -79,7 +80,7 @@ const General = () => {
                 // }
 
                 setUserPreferences((prev) => (
-                    { ...prev, [slug]: { ...prev[slug], label: label, [notification_type]: parseInt(is_enabled) } }
+                    { ...prev, [slug]: { ...prev[slug], action_id: action_id, label: label, [notification_type]: parseInt(is_enabled) } }
                 ))
             })
         });
@@ -107,8 +108,8 @@ const General = () => {
                                 label={{ text: "Email", position: "left" }}
                                 id="email-footer"
                                 name='mail'
-                                isChecked={mailNotification ? 'checked' : ''}
-                                changeHandler={handleAllMailNotificationOnChange}
+                                isChecked={allIsEnabled["mail"] ? 'checked' : ''}
+                                changeHandler={() => handleNotificationChange("mail")}
                             />
                         </th>
                         <th style={{ width: "30%" }}>
@@ -117,8 +118,8 @@ const General = () => {
                                 label={{ text: "In-App", position: "left" }}
                                 id="email-footer"
                                 name='mail'
-                                isChecked={appNotification ? 'checked' : ''}
-                                changeHandler={handleAllAppNotificationOnChange}
+                                isChecked={allIsEnabled["app"] ? 'checked' : ''}
+                                changeHandler={() => handleNotificationChange("app")}
                             />
 
                         </th>
@@ -127,17 +128,17 @@ const General = () => {
                 <tbody>
                     {
                         Object.keys(userPreferences)
-                            .map((key, index) => (
+                            .map((slug, index) => (
 
                                 <tr key={index}>
-                                    <td>{userPreferences[key].label}</td>
+                                    <td>{userPreferences[slug].label}</td>
                                     <td>
                                         <Checkbox
                                             style="switch"
                                             id="email-footer"
                                             name='mail'
-                                            isChecked={userPreferences[key]["mail"] ? 'checked' : ''}
-                                            changeHandler={() => {}}
+                                            isChecked={userPreferences[slug]["mail"] ? 'checked' : ''}
+                                            changeHandler={() => handleNotificationChange("mail", userPreferences[slug].action_id, slug)}
                                         />
                                     </td>
                                     <td style={{ color: "#15141A" }}>
@@ -145,8 +146,8 @@ const General = () => {
                                             style="switch"
                                             id="email-footer"
                                             name='mail'
-                                            isChecked={userPreferences[key]["app"] ? 'checked' : ''}
-                                            changeHandler={() => {}}
+                                            isChecked={userPreferences[slug]["app"] ? 'checked' : ''}
+                                            changeHandler={() => handleNotificationChange("app", userPreferences[slug].action_id, slug)}
                                         />
                                     </td>
                                 </tr>
