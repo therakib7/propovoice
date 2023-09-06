@@ -19,18 +19,17 @@ export default (props) => {
 			text: i18n.qty + ' ' + i18n.type
 		},
 		{
-			id: 'tax',
-			text: i18n.tax
+			id: 'discount',
+			text: i18n.discount
 		},
 		{
 			id: 'fee',
 			text: i18n.fee
 		},
 		{
-			id: 'discount',
-			text: i18n.discount
+			id: 'tax',
+			text: i18n.tax
 		}
-
 	]
 
 	if (!wage.length) {

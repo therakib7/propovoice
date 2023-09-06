@@ -27,7 +27,6 @@ export default function SavedItemsSettings() {
     };
 
     const deleteRow = (rowId) => {
-        console.log('delete called')
         api.del('savefornext', rowId).then((res) => {
             setCheckedRows(checkedRows.filter((id) => id !== rowId));
             toast.success('Item Deleted !')
@@ -37,7 +36,6 @@ export default function SavedItemsSettings() {
     }
 
     const deleteRows = () => {
-        console.log(checkedRows)
         let jobs = []
         checkedRows.map((rowId, index) => {
 
@@ -52,7 +50,7 @@ export default function SavedItemsSettings() {
 
         })
 
-        Promise.all(jobs).then((e)=>{
+        Promise.all(jobs).then((e) => {
             toast.success('Items deleted');
         });
     }
