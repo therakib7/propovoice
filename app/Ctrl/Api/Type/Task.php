@@ -404,7 +404,7 @@ class Task
                 if ($due_date) {
                     update_post_meta($post_id, "due_date", $due_date);
                 }
-
+                $param['id'] = $post_id;
                 do_action("ndpvp/webhook", "task_add", $param);
 
                 wp_send_json_success($post_id);
