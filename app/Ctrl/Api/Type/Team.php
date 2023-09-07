@@ -84,25 +84,25 @@ class Team
 
         $result = $data = [];
 
-        $users = get_users( array(
-            'role__in' => array( 'administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' )
-        ) );
+        $users = get_users(array(
+            'role__in' => array('administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff')
+        ));
 
         $total_data = count($users);
 
-        foreach ( $users as $user ) {
+        foreach ($users as $user) {
             $info = [];
             $info['id'] = $user->id;
-            $info['name'] = $user->display_name; 
-            $info['img'] = Fns::gravatar($user->user_email); 
-            $info['email'] = $user->user_email; 
+            $info['name'] = $user->display_name;
+            $info['img'] = Fns::gravatar($user->user_email);
+            $info['email'] = $user->user_email;
             $info['role'] = reset($user->roles);
 
             $user_data = new \WP_User($user->id);
-            $allcaps = array_keys( array_filter( $user_data->allcaps ) );
+            $allcaps = array_keys(array_filter($user_data->allcaps));
 
-            $info['caps'] = $allcaps; 
-            $info['role_title'] = ucwords( str_replace( 'ndpv_', '', reset($user->roles) ) ); 
+            $info['caps'] = $allcaps;
+            $info['role_title'] = ucwords(str_replace('ndpv_', '', reset($user->roles)));
             $data[] = $info;
         }
 
@@ -158,111 +158,112 @@ class Team
             : '';
         $email = isset($param["email"])
             ? sanitize_text_field($param["email"])
-            : ''; 
+            : '';
         $role = isset($param["role"])
             ? sanitize_text_field($param["role"])
-            : ''; 
-        
+            : '';
+
         $caps = isset($param["caps"])
             ? array_map("sanitize_text_field", $param["caps"])
-            : ''; 
+            : '';
 
         if (empty($name)) {
             $reg_errors->add(
                 "name_field",
                 esc_html__("Name is missing", "propovoice")
             );
-        } 
+        }
 
         if (empty($email)) {
             $reg_errors->add(
                 "email_field",
                 esc_html__("Email is missing", "propovoice")
             );
-        } 
+        }
 
-        if ( !is_email($email) ) {
+        if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        } 
+        }
 
-         if ( empty($role) ) {
+        if (empty($role)) {
             $reg_errors->add(
                 "role_field",
                 esc_html__("Role is missing", "propovoice")
             );
-        } 
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
 
-            $user_id = email_exists( $email );
-        
-            if ( !$user_id ) {
-                $password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
-                $user_args = array (
+            $user_id = email_exists($email);
+
+            if (!$user_id) {
+                $password = wp_generate_password($length = 12, $include_standard_special_chars = false);
+                $user_args = array(
                     'user_login'     => $email,
-                    'user_pass'      => $password, 
+                    'user_pass'      => $password,
                     'user_email'     => $email,
                     'first_name'     => $name,
                     'nickname'       => $name,
                     'display_name'   => $name
                 );
-                $user_id = wp_insert_user( $user_args); 
+                $user_id = wp_insert_user($user_args);
                 $user_id_role = new \WP_User($user_id);
-                $user_id_role->set_role($role);    
-                
+                $user_id_role->set_role($role);
 
-                Fns::password_mail( $name, $email, $password, 'team');
+
+                Fns::password_mail($name, $email, $password, 'team');
             } else {
                 //check if already exist
                 $user_data = new \WP_User($user_id);
                 $user_roles = $user_data->roles;
 
                 //check without client
-                $check_roles = array( 'ndpv_admin', 'ndpv_manager', 'ndpv_staff' );
+                $check_roles = array('ndpv_admin', 'ndpv_manager', 'ndpv_staff');
                 $role_exist = false;
-                foreach( $check_roles as $role ) {
-                    if ( in_array($role, $user_roles) ) {
+                foreach ($check_roles as $role) {
+                    if (in_array($role, $user_roles)) {
                         $role_exist = true;
                     }
                 }
-                if ( $role_exist ) {
+                if ($role_exist) {
                     wp_send_json_error(['Team already exist! Please edit team member']);
-                } 
+                }
 
-                //check client 
+                //check client
                 $client_role_exist = false;
-                if ( in_array('ndpv_client_role', $user_roles) ) {
+                if (in_array('ndpv_client_role', $user_roles)) {
                     $client_role_exist = true;
                 }
-                if ( $client_role_exist ) {
+                if ($client_role_exist) {
                     wp_send_json_error(['The user already exist in client!']);
                 }
 
                 //check administrator 
                 $administrator_role_exist = false;
-                if ( in_array('administrator', $user_roles) ) {
+                if (in_array('administrator', $user_roles)) {
                     $administrator_role_exist = true;
                 }
-                if ( $administrator_role_exist ) {
+                if ($administrator_role_exist) {
                     wp_send_json_error(['The user already exist in administrator!']);
                 }
 
                 //if not asign new role
                 $user_id_role = new \WP_User($user_id);
-                $user_id_role->set_role($role);   
+                $user_id_role->set_role($role);
 
-                Fns::password_mail( $name, $email, 'Use your old password', 'team');
+                Fns::password_mail($name, $email, 'Use your old password', 'team');
             }
 
             $this->add_remove_user_caps($user_id, $caps);
 
+            do_action('ndpvp/webhook', 'team_add', $param);
             wp_send_json_success($user_id);
         }
     }
 
-     public function update($req)
+    public function update($req)
     {
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
@@ -272,51 +273,51 @@ class Team
             : '';
         $email = isset($param["email"])
             ? sanitize_text_field($param["email"])
-            : ''; 
+            : '';
         $role = isset($param["role"])
             ? sanitize_text_field($param["role"])
-            : ''; 
+            : '';
         $caps = isset($param["caps"])
             ? array_map("sanitize_text_field", $param["caps"])
-            : ''; 
+            : '';
 
         if (empty($name)) {
             $reg_errors->add(
                 "name_field",
                 esc_html__("Name is missing", "propovoice")
             );
-        } 
+        }
 
         if (empty($email)) {
             $reg_errors->add(
                 "name_field",
                 esc_html__("Email is missing", "propovoice")
             );
-        } 
+        }
 
-        if ( !is_email($email) ) {
+        if (!is_email($email)) {
             $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        } 
+        }
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
 
-            $user_id = email_exists( $email );
-        
-            if ( !$user_id ) {
-                $password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
-                $user_args = array (
+            $user_id = email_exists($email);
+
+            if (!$user_id) {
+                $password = wp_generate_password($length = 12, $include_standard_special_chars = false);
+                $user_args = array(
                     'user_login'   => $email,
-                    'user_pass'    => $password, 
+                    'user_pass'    => $password,
                     'user_email'   => $email,
                     'first_name'   => $name,
                     'nickname'     => $name,
                     'display_name' => $name
                 );
 
-                $user_id = wp_insert_user( $user_args );
-                 
+                $user_id = wp_insert_user($user_args);
+
 
                 /* $send_mail = Fns::password_mail( $name, $email, $password);
 
@@ -325,11 +326,11 @@ class Team
                 } else {
                     //wp_send_json_error(["Something wrong: Email not sent"]);
                 } */
-            } 
+            }
 
             $user_id_role = new \WP_User($user_id);
-            $user_id_role->set_role($role);  
-            
+            $user_id_role->set_role($role);
+
             $this->add_remove_user_caps($user_id, $caps);
 
             wp_send_json_success($user_id);
@@ -352,14 +353,13 @@ class Team
         $user = new \WP_User($user_id);
 
         $test = [];
-        foreach( $default_caps as $cap ) {
-            if ( in_array($cap, $caps) ) {
+        foreach ($default_caps as $cap) {
+            if (in_array($cap, $caps)) {
                 $user->add_cap($cap, true);
             } else {
                 $user->add_cap($cap, false);
             }
-        } 
-        
+        }
     }
 
     public function delete($req)
@@ -369,13 +369,13 @@ class Team
         $ids = explode(",", $url_params["id"]);
         foreach ($ids as $id) {
 
-            if ( user_can($id, 'administrator') ) continue;
+            if (user_can($id, 'administrator')) continue;
 
             $user_id_role = new \WP_User($id);
-            $user_id_role->remove_role('ndpv_admin');  
-            $user_id_role->remove_role('ndpv_manager');  
-            $user_id_role->remove_role('ndpv_staff');   
-            $user_id_role->set_role('subscriber');  
+            $user_id_role->remove_role('ndpv_admin');
+            $user_id_role->remove_role('ndpv_manager');
+            $user_id_role->remove_role('ndpv_staff');
+            $user_id_role->set_role('subscriber');
         }
 
         wp_send_json_success($ids);

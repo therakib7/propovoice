@@ -90,6 +90,7 @@ const General = () => {
     const submitUserPreferences = (data) => {
         api.add(`notifications/users/${ndpv.profile.id}/preferences`, data, "pro").then(resp => {
             toast.success("Notification Preference updated successfully!!!")
+            getUserPreference(`notification_type=${data.notification_type}`)
         });
     }
 

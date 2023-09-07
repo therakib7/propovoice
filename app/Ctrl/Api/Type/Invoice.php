@@ -71,11 +71,11 @@ class Invoice
         $param = $req->get_params();
         //this is the short solution to fix plain permalink issue
         $permalink_structure = get_option('permalink_structure');
-        if ( $permalink_structure === '' && isset( $param['token'] ) ) {
-            $text = isset( $param['args']) ? $param['args'] : '';
+        if ($permalink_structure === '' && isset($param['token'])) {
+            $text = isset($param['args']) ? $param['args'] : '';
 
             preg_match('/\d+/', $text, $matches);
-            if ( !empty($matches) ) {
+            if (!empty($matches)) {
                 $req->set_url_params(['id' => $matches[0]]);
                 $this->get_single($req);
             }
@@ -203,7 +203,7 @@ class Invoice
             );
         } */
 
-        if ( $module_id ) { 
+        if ($module_id) {
             //if query from client module search key as 'to'
             $module_key = isset($param["client_mod"]) ? 'to' : 'module_id';
             $args["meta_query"][] = [
@@ -211,7 +211,7 @@ class Invoice
                     "key" => $module_key,
                     "value" => $module_id,
                 ],
-            ]; 
+            ];
         }
 
         $query = new \WP_Query($args);
@@ -751,6 +751,7 @@ class Invoice
                 $bytes = random_bytes(20);
                 $token = bin2hex($bytes);
                 update_post_meta($post_id, "token", $token);
+                $param["id"] = $post_id;
 
                 $hook = $path == "invoice" ? "inv" : "est";
                 do_action("ndpvp/webhook", $hook . "_add", $param);
