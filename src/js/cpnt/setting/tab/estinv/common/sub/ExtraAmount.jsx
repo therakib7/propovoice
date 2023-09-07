@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import Taxonomy from 'block/field/taxonomy/setting';
 import pro from 'block/pro-alert';
@@ -36,10 +35,10 @@ export default class ExtraAmount extends Component {
         const value = target.type == 'checkbox' ? target.checked : target.value;
         form[name] = value;
 
-        if ( wage.length > 0 && name == 'item_tax' ) {
-			pro();
-			return;
-		}
+        if (wage.length > 0 && name == 'item_tax') {
+            pro();
+            return;
+        }
 
         this.setState({ form }, () => {
             let form = this.state.form;
@@ -97,7 +96,7 @@ export default class ExtraAmount extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.tax} {i18n.fields}</label>
-                        <Taxonomy taxonomy='extra_amount' title={i18n.tax+' '+i18n.field} extra_amount_type='tax' tax_cal />
+                        <Taxonomy taxonomy='extra_amount' title={i18n.tax + ' ' + i18n.field} extra_amount_type='tax' tax_cal />
                     </div>
                     <div className="col">
                     </div>
@@ -106,7 +105,7 @@ export default class ExtraAmount extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.addi} {i18n.fee} {i18n.fields}</label>
-                        <Taxonomy taxonomy='extra_amount' title={i18n.addi +' ' + i18n.fee + ' ' +i18n.field} extra_amount_type='fee' tax_cal />
+                        <Taxonomy taxonomy='extra_amount' title={i18n.addi + ' ' + i18n.fee + ' ' + i18n.field} extra_amount_type='fee' tax_cal />
                     </div>
                     <div className="col">
                     </div>
@@ -115,7 +114,7 @@ export default class ExtraAmount extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.discount} {i18n.fields}</label>
-                        <Taxonomy taxonomy='extra_amount' title={i18n.discount+' '+i18n.field} extra_amount_type='discount' tax_cal fee_cal />
+                        <Taxonomy taxonomy='extra_amount' title={i18n.discount + ' ' + i18n.field} extra_amount_type='discount' tax_cal fee_cal />
                     </div>
                     <div className="col">
                     </div>

@@ -3,7 +3,6 @@ import ColorPicker from 'block/color-picker';
 import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
 import api from 'api';
-import Preloader from "block/preloader/spinner";
 import { Add } from 'block/icon';
 import { TextInput } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
@@ -88,6 +87,20 @@ export default class Form extends Component {
         this.setState({ form: this.props.data });
       }
     } else {
+      console.log(this.props.taxonomy)
+
+      if (this.props.taxonomy == 'extra_amount') {
+        //extra_amount_type
+        let extra_amount_type = this.props.extra_amount_type;
+        if (extra_amount_type == 'discount') {
+          this.initialState.tax_cal = '1';
+          console.log(this.initialState)
+        }
+
+      }
+      //this.props.tax_cal
+      //this.props.fee_cal
+
       if (this.state.form.id != null) {
         this.setState({ form: this.initialState });
       }

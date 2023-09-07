@@ -99,7 +99,7 @@ export default class ExtraAmount extends Component {
                 <div className="row">
                     <div className="col">
                         <label>{i18n.tax} {i18n.fields}</label>
-                        <Taxonomy taxonomy='extra_amount' title={i18n.tax + ' ' + i18n.field} extra_amount_type='tax' tax_cal />
+                        <Taxonomy taxonomy='extra_amount' title={i18n.tax + ' ' + i18n.field} extra_amount_type='tax' tax_cal fee_cal />
                     </div>
                     <div className="col">
                     </div>
