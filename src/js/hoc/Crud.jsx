@@ -164,7 +164,6 @@ const HOC = (Inner, mod, title, modPlural = '', pro = false) => {
                     });
                 } */
                 if (type == 'singleDrive') {
-                    console.log(index);
                     await deleteFile(index[1]);
                     index = index[0];
                 }

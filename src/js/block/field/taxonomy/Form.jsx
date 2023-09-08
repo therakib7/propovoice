@@ -76,7 +76,7 @@ export default class Form extends Component {
   }
 
   componentDidUpdate() {
-    this.editData();
+    // this.editData();
   }
 
   editData = () => {
@@ -87,22 +87,22 @@ export default class Form extends Component {
         this.setState({ form: this.props.data });
       }
     } else {
-      console.log(this.props.taxonomy)
+      let emptyForm = { ...this.initialState }
 
       if (this.props.taxonomy == 'extra_amount') {
-        //extra_amount_type
         let extra_amount_type = this.props.extra_amount_type;
         if (extra_amount_type == 'discount') {
-          this.initialState.tax_cal = '1';
-          console.log(this.initialState)
+          emptyForm.tax_cal = '1';
+          emptyForm.fee_cal = '1';
         }
 
+        if (extra_amount_type == 'fee') {
+          emptyForm.tax_cal = '1';
+        }
       }
-      //this.props.tax_cal
-      //this.props.fee_cal
 
-      if (this.state.form.id != null) {
-        this.setState({ form: this.initialState });
+      if (this.state.form.id == null) {
+        this.setState({ form: emptyForm });
       }
     }
   }
@@ -148,7 +148,6 @@ export default class Form extends Component {
         }
       });
     }
-    // setModal(false);
 
   }
 
@@ -268,18 +267,6 @@ export default class Form extends Component {
                   </div>
                 </div>}
 
-              {this.props.tax_cal &&
-                <div className="row">
-                  <div className="col-md">
-                    <label htmlFor="field-label">{i18n.tax} {i18n.cal}</label>
-                    <select name="tax_cal" value={form.tax_cal} onChange={this.handleChange}>
-                      <option value="">{i18n.with} {eat == 'tax' ? i18n.item : ''} {i18n.tax}</option>
-                      <option value="1">{i18n.witho} {eat == 'tax' ? i18n.item : ''} {i18n.tax}</option>
-                    </select>
-                  </div>
-                </div>
-              }
-
               {this.props.fee_cal &&
                 <div className="row">
                   <div className="col-md">
@@ -287,6 +274,19 @@ export default class Form extends Component {
                     <select name="fee_cal" value={form.fee_cal} onChange={this.handleChange}>
                       <option value="">{i18n.with} {i18n.fee}</option>
                       <option value="1">{i18n.witho} {i18n.fee}</option>
+                    </select>
+                  </div>
+                </div>
+              }
+
+              {this.props.tax_cal &&
+                <div className="row">
+                  <div className="col-md">
+                    <label htmlFor="field-label">{i18n.tax} {i18n.cal}</label>
+
+                    <select name="tax_cal" value={form.tax_cal} onChange={this.handleChange}>
+                      <option value="">{i18n.with} {eat == 'tax' ? i18n.item : ''} {i18n.tax}</option>
+                      <option value="1">{i18n.witho} {eat == 'tax' ? i18n.item : ''} {i18n.tax}</option>
                     </select>
                   </div>
                 </div>

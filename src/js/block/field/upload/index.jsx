@@ -86,7 +86,6 @@ class Upload extends Component {
 
     Api.create(formData).then((resp) => {
       if (resp.data.success) {
-        console.log(resp.data.data)
         this.props.changeHandler(resp.data.data);
       } else {
         resp.data.data.forEach(function (value) {
