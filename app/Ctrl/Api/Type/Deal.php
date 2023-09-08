@@ -709,7 +709,15 @@ class Deal
 
             if (!is_wp_error($post_id)) {
                 if ($stage_id) {
-                    wp_set_post_terms($post_id, [$stage_id], "ndpv_deal_stage");
+                    $previous_deal_stage = wp_get_post_terms($post_id, "ndpv_deal_stage");
+                    $stage_ids = wp_set_post_terms($post_id, [$stage_id], "ndpv_deal_stage");
+                    if (is_wp_error($stage_ids)) {
+                        throw new \Exception("There is an error to update lead level!!!");
+                    }
+
+                    if ($previous_deal_stage["term_id"] != $stage_ids) {
+                        do_action("ndpvp/webhook", "deal_stage_change", $param);
+                    }
                 }
 
                 if ($status) {

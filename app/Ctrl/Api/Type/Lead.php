@@ -547,7 +547,7 @@ class Lead
                     $level_ids = wp_set_post_terms($post_id, [$level_id], "ndpv_lead_level");
 
                     if (is_wp_error($level_ids)) {
-                        throw new Exception("There is an error to update lead level!!!");
+                        throw new \Exception("There is an error to update lead level!!!");
                     }
 
                     if ($previous_lead_level["term_id"] != $level_id) {
