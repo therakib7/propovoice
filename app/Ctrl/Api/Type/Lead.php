@@ -2,6 +2,7 @@
 
 namespace Ndpv\Ctrl\Api\Type;
 
+use Exception;
 use Ndpv\Helper\Fns;
 use Ndpv\Model\Contact;
 use Ndpv\Model\Org;
@@ -541,7 +542,17 @@ class Lead
 
             if (!is_wp_error($post_id)) {
                 if ($level_id) {
-                    wp_set_post_terms($post_id, [$level_id], "ndpv_lead_level");
+
+                    $previous_lead_level = wp_get_post_terms($post_id, "ndpv_lead_level");
+                    $level_ids = wp_set_post_terms($post_id, [$level_id], "ndpv_lead_level");
+
+                    if (is_wp_error($level_ids)) {
+                        throw new Exception("There is an error to update lead level!!!");
+                    }
+
+                    if ($previous_lead_level["term_id"] != $level_id) {
+                        do_action("ndpvp/webhook", "lead_level_change", $param);
+                    }
                 }
 
                 if ($person_id) {
