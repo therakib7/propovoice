@@ -334,7 +334,7 @@ export default (props) => {
       {caps.includes("ndpv_contact") && (
         <li>
           <NavLink
-            to="contact/person"
+            to="contact"
             className={({ isActive }) => (isActive ? "pv-active" : "")}
           >
             <svg width={20} height={18} viewBox="0 0 20 18" fill="none">

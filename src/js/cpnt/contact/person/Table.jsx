@@ -15,7 +15,7 @@ const TableHeader = props => {
                     />
                 </th>
                 <th>
-                    {i18n.ct} {i18n.prsn}
+                    {i18n.ct}
                 </th>
                 <th>
                     {i18n.email}
@@ -27,7 +27,7 @@ const TableHeader = props => {
                     Status
                 </th>  */}
                 <th>
-                    {i18n.date}
+                    {i18n.created_at}
                 </th>
                 <th>
                     {i18n.action}

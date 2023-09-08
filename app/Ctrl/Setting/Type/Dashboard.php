@@ -82,10 +82,7 @@ class Dashboard
         $settings_menu = apply_filters("ndpv_sidebar_menu", $settings_menu);
 
         foreach ($settings_menu as $menu) {
-            $menu_id = $menu["id"];
-            if ($menu_id == "contact") {
-                $menu_id = $menu_id . "/person";
-            }
+            $menu_id = $menu["id"]; 
 
             add_submenu_page(
                 "ndpv",

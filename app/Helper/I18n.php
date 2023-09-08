@@ -143,6 +143,7 @@ class I18n
             "no" => esc_html__("No", "propovoice"),
             //table
             "status" => esc_html__("Status", "propovoice"),
+            "created_at" => esc_html__("Created At", "propovoice"),
             "date" => esc_html__("Date", "propovoice"),
             "due_date" => esc_html__("Due Date", "propovoice"),
             "action" => esc_html__("Action", "propovoice"),
@@ -164,7 +165,6 @@ class I18n
             "create" => esc_html__("Create", "propovoice"),
             "icon" => esc_html__("Icon", "propovoice"),
             "text" => esc_html__("Text", "propovoice"),
-            "date" => esc_html__("Date", "propovoice"),
             "multiselect" => esc_html__("Multiselect", "propovoice"),
             "radio" => esc_html__("Radio", "propovoice"),
             "number" => esc_html__("Number", "propovoice"),

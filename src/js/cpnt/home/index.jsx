@@ -30,7 +30,7 @@ const InvoiceSingle = lazy(() => import('cpnt/invoice/single'));
 const InvoiceSubscription = lazy(() => import('cpnt/invoice/single/subscription'));
 
 const ContactPerson = lazy(() => import('cpnt/contact/person'));
-const ContactOrg = lazy(() => import('cpnt/contact/org'));
+// const ContactOrg = lazy(() => import('cpnt/contact/org'));
 // const ContactSummary = lazy(() => import('cpnt/contact/summary'));
 
 const Setting = lazy(() => import('cpnt/setting'));
@@ -204,8 +204,8 @@ export default () => {
                                 )}
                                 <Route path={'/invoice/:id/subscription'} element={<InvoiceSubscription />} />
 
-                                <Route path="/contact/person" exact element={<ContactPerson />} />
-                                <Route path="/contact/organization" exact element={<ContactOrg />} />
+                                <Route path="/contact" exact element={<ContactPerson />} />
+                                {/* <Route path="/contact/organization" exact element={<ContactOrg />} /> */}
                                 <Route path="/contact/:id" exact element={<ListSingle />} />
 
                                 <Route path="/setting" element={<Setting />} />

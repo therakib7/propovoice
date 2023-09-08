@@ -24,7 +24,7 @@ const Org = (props) => {
   const i18n = ndpv.i18n;
   return (
     <div className="ndpv-cpnt">
-      <Breadcrumb title={i18n.ct + ' ' + i18n.book} />
+      <Breadcrumb title={i18n.ct_book} />
 
       <div className="row">
         <div className="col-6">

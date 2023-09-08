@@ -96,7 +96,7 @@ const TableHeader = props => {
                     {i18n.aut}
                 </th>
                 <th>
-                    {i18n.date}
+                    {i18n.created_at}
                 </th>
                 <th>
                     {i18n.action}
