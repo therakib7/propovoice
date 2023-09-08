@@ -8,6 +8,7 @@ import Contact from 'block/field/contact-select';
 //others component
 import BusinessForm from 'cpnt/business/Form';
 import ContactForm from 'cpnt/contact/Form';
+import { mergeObjects } from 'helper';
 
 export default class FromTo extends Component {
 
@@ -74,8 +75,12 @@ export default class FromTo extends Component {
         });
 
         if (this.props.moduleId) {
-            api.getS('deals', this.props.moduleId).then(resp => {
-                this.props.setTo(resp.data.data.person);
+            const module = this.props.module
+            const endpoint = module === "client" ? "contacts" : module + "s"
+            api.getS(endpoint, this.props.moduleId).then(resp => {
+                const data = resp.data.data
+                const receiver = mergeObjects(data?.person, data?.org)
+                this.props.setTo(receiver)
             });
         }
 
@@ -228,7 +233,8 @@ export default class FromTo extends Component {
                                 {toData ?
                                     <>
                                         <h4 className="pv-title-small">
-                                            {(toData.type == 'person') ? toData.first_name : toData.org_name}
+                                            {(toData.type == 'person'
+                                                || toData.first_name) ? toData.first_name : (toData.org_name ?? toData.name)}
                                             {false && <span>
                                                 <button
                                                     className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"
@@ -239,8 +245,11 @@ export default class FromTo extends Component {
                                             </span>}
                                         </h4>
                                         <address>
+                                            {toData.first_name && (toData.org_name || toData.name) &&
+                                                (<>{toData.name ?? toData.org_name}  <br /></>)
+                                            }
                                             {toData.address &&
-                                                <>{toData.address}.<br /></>
+                                                (<>{toData.address}.<br /></>)
                                             }
 
                                             {toData.email}

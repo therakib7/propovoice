@@ -9,7 +9,7 @@ import Currency from 'block/field/currency';
 
 import CustomField from 'block/field/custom-field';
 import Preloader from "block/preloader/spinner";
-import { checkRoute } from 'helper';
+import { mergeObjects, checkRoute } from 'helper';
 
 const DateField = lazy(() => import('block/date-picker'));
 
@@ -46,15 +46,13 @@ class Form extends Component {
         if (this.props.parentData) {
             this.fromClient = true;
             const { person, org } = this.props.parentData;
+            const contactInfo = mergeObjects(person, org)
 
-            if (person && Object.keys(person).length > 0) {
-                this.initialState.first_name = person.first_name;
-                this.initialState.email = person.email;
-                this.initialState.mobile = person.mobile;
-            } else if (org && Object.keys(org).length > 0) {
-                this.initialState.org_name = org.name;
-                this.initialState.email = org.email;
-                this.initialState.mobile = org.mobile;
+            if (Object.keys(contactInfo).length > 0) {
+                this.initialState.first_name = contactInfo.first_name;
+                this.initialState.email = contactInfo.email;
+                this.initialState.mobile = contactInfo.mobile;
+                this.initialState.org_name = contactInfo.name ?? contactInfo.org_name;
             }
         }
         this.state = {
@@ -65,6 +63,7 @@ class Form extends Component {
             tags: [],
         };
     }
+
 
     componentDidMount() {
         //custom fields
