@@ -454,7 +454,7 @@ function InvoiceWrap(props) {
   let navigate = useNavigate();
   const routeChange = () => {
     if (module_id) {
-      navigate(`${path}/new?module_id=${module_id}`);
+      navigate(`${path}/new?module=${props.parent}&module_id=${module_id}`);
     } else {
       navigate(`${path}/new`);
     }
@@ -465,10 +465,12 @@ function InvoiceWrap(props) {
       <Invoice
         routeChange={routeChange}
         path={path}
+        module={props.parent}
         module_id={module_id}
         client_mod={client_mod}
         dashboard={props.dashboard}
         key={path}
+
       />
     </>
   );

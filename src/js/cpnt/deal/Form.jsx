@@ -11,7 +11,7 @@ import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
 import Preloader from "block/preloader/spinner";
 import { sprintf } from 'sprintf-js';
-import { checkRoute } from 'helper';
+import { checkRoute, mergeObjects } from 'helper';
 import { TextInput } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
@@ -43,6 +43,19 @@ class Form extends Component {
             date: false
         };
 
+        if (this.props.parentData) {
+            this.fromClient = true;
+            const { person, org } = this.props.parentData;
+            const contactInfo = mergeObjects(person, org)
+
+            if (Object.keys(contactInfo).length > 0) {
+                this.initialState.first_name = contactInfo.first_name;
+                this.initialState.email = contactInfo.email;
+                this.initialState.mobile = contactInfo.mobile;
+                this.initialState.org_name = contactInfo.name;
+            }
+        }
+
         this.state = {
             submitPreloader: false,
             form: this.initialState,
@@ -51,6 +64,7 @@ class Form extends Component {
             tags: [],
         };
     }
+
 
     componentDidMount() {
         //custom fields
@@ -329,6 +343,7 @@ class Form extends Component {
                             <Contact
                                 first_name={form.first_name}
                                 org_name={form.org_name}
+                                fromClient={this.fromClient}
                                 onChange={this.handleContactChange}
                                 onSelect={this.handleContactSelect}
                             />
@@ -340,6 +355,7 @@ class Form extends Component {
                                     type="email"
                                     name="email"
                                     wrapperClassName='col-lg'
+                                    disabled={this.fromClient}
                                     value={form.email}
                                     onChange={this.handleChange}
                                     validation={{ required: { value: true }, email: { value: true } }}
@@ -355,6 +371,7 @@ class Form extends Component {
                                         type="text"
                                         name="mobile"
                                         value={form.mobile}
+                                        disabled={this.fromClient}
                                         onChange={this.handleChange}
                                     />
                                 </div>
