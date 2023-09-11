@@ -4,7 +4,7 @@ Donate link:
 Tags: CRM, Invoice Builder, Lead Management, WP CRM, Deal Pipeline, Wordpress CRM, Free Wordpress CRM, ERP, Business Management, Business Automation, Estimate, Quotation, Lead Generation, Billing, Client Management, Project Management, Customer, Client, Free Wordpress CRM
 Requires at least: 5.0
 Tested up to: 6.3
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 Requires PHP: 7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -179,6 +179,10 @@ The super fantastic pro features that accelerate your business growth and improv
 7. Settings
 
 == Changelog ==
+
+= 1.7.1 (12-Sep-2023) = 
+* Update: Notification
+* Update: Extra amount reserial to Discount, Fee, Tax
 
 = 1.7.0 (31-Aug-2023) = 
 * Improved: Client signature upload
