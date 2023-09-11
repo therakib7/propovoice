@@ -143,6 +143,10 @@
         overflow-x: initial;
     }
 
+    .pv-right-content-data {
+        overflow: hidden;
+    }
+
     .pv-board-content {
         height: calc(100vh - 350px) !important;
     }
