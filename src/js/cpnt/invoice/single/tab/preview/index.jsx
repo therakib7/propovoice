@@ -4,7 +4,6 @@ import InvTemplate from "inv-tmpl";
 import generatePDF, { Resolution, Margin } from "react-to-pdf";
 import Share from "./Share";
 import Send from "./Send";
-import ProLabel from "block/pro-alert/label";
 
 import api from "api";
 
@@ -45,28 +44,28 @@ const DownloadPDF = (props) => {
     // default is `save`
     filename: fileName,
     method: "save",
- 
+
     resolution: Resolution.HIGH,
     page: {
       // margin is in MM, default is Margin.NONE = 0
       margin: Margin.SMALL,
-     
+
       format: "A4",
-  
+
       orientation: "portrait",
     },
     canvas: {
-     
+
       mimeType: "image/jpeg",
       qualityRatio: 1,
     },
-  
+
     overrides: {
-     
+
       pdf: {
         compress: true,
       },
-     
+
       canvas: {
         useCORS: true,
       },
@@ -161,12 +160,12 @@ export default class Preview extends Component {
                 />
                 <ReactToPrint
                   content={() => this.componentRef}
-                 
+
                   trigger={() => (
                     <button
                       className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-                      // style={{ color: '#000', marginRight: '5px' }}
-                      // onClick={() => props.handlePrint()}
+                    // style={{ color: '#000', marginRight: '5px' }}
+                    // onClick={() => props.handlePrint()}
                     >
                       <svg
                         width={15}
@@ -250,8 +249,8 @@ export default class Preview extends Component {
                   trigger={() => (
                     <button
                       className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-                      // style={{ color: '#000', marginRight: '5px' }}
-                      // onClick={() => props.handlePrint()}
+                    // style={{ color: '#000', marginRight: '5px' }}
+                    // onClick={() => props.handlePrint()}
                     >
                       <svg
                         width={15}
