@@ -9,7 +9,6 @@ import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
-import Preloader from "block/preloader/spinner";
 import { sprintf } from 'sprintf-js';
 import { checkRoute, mergeObjects } from 'helper';
 import { TextInput } from 'block/form/input';
@@ -127,14 +126,6 @@ class Form extends Component {
             if (this.state.form.id != null) {
                 this.setState({ form: this.initialState });
             }
-
-            /* else {
-                if ( this.props.data && ! this.state.form.stage_id && this.props.data.hasOwnProperty('label') ) { // new deal from stage
-                    let form = {...this.initialState}
-                    form.stage_id = this.props.data;
-                    this.setState({ form });
-                }
-            }  */
         }
     }
 
@@ -148,7 +139,6 @@ class Form extends Component {
     handleCFChange = (e) => {
 
         const { name, value } = e.target;
-
         this.setState({ form: { ...this.state.form, [name]: value } });
     }
 
@@ -515,22 +505,6 @@ class Form extends Component {
                                     />
                                 </div>
                             </div>
-
-                            {false && <div className="row">
-                                <div className="col">
-                                    <label htmlFor="field-note">
-                                        {i18n.note}
-                                    </label>
-
-                                    <textarea
-                                        id="form-note"
-                                        rows={2}
-                                        name="note"
-                                        value={form.note}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>}
 
                             <div className="row">
                                 <div className="col">
