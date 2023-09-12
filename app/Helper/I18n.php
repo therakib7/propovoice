@@ -105,7 +105,7 @@ class I18n
             "pos" => esc_html__("Position", "propovoice"),
             "before" => esc_html__("Before", "propovoice"),
             "after" => esc_html__("After", "propovoice"),
-            "aSign" => esc_html__("Authorized Signature", "propovoice"),
+            "authSign" => esc_html__("Authorized Signature", "propovoice"),
             "Sign" => esc_html__("Signature", "propovoice"),
             "style" => esc_html__("Style", "propovoice"),
             "addi" => esc_html__("Additional", "propovoice"),
@@ -203,6 +203,7 @@ class I18n
             "section" => esc_html__("Section", "propovoice"),
             "dtl" => esc_html__("Details", "propovoice"),
             "cat" => esc_html__("Category", "propovoice"),
+            "assign" => esc_html__("Assign", "propovoice"),
             //btn
             "logo" => esc_html__("Logo", "propovoice"),
             "cont" => esc_html__("Continue", "propovoice"),

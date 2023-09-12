@@ -126,7 +126,7 @@
       wp_login_form( $args );
       echo '<p class="pv-lost-password"><a href="'. wp_lostpassword_url() .'">' . esc_html__( 'Lost your password?', 'propovoice' ) . '</a></p>';
       if ( isset( $_GET['login'] ) && $_GET['login'] == 'failed' ) {
-        echo '<p style="color: red">' . esc_html__( 'You enterd wrong credentials', 'propovoice' ) . '</p>';
+        echo '<p style="color: red">' . esc_html__( 'You entered wrong credentials', 'propovoice' ) . '</p>';
       }
     ?>
     </div>

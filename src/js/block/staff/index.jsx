@@ -109,7 +109,7 @@ export default (props) => {
 							}}
 							onClick={(e) => showDropdown(e)}
 						>
-							Asign
+							{i18n.assign}
 							<svg
 								width={10}
 								height={6}
@@ -128,7 +128,7 @@ export default (props) => {
 				}
 
 				{!props.inForm && <h3 className="pv-widget-title">
-					Team
+					{i18n.team}
 					<button
 						className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow pv-mb-20"
 						style={{
@@ -137,7 +137,7 @@ export default (props) => {
 						}}
 						onClick={(e) => showDropdown(e)}
 					>
-						Asign
+						{i18n.assign}
 						<svg
 							width={10}
 							height={6}

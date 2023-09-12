@@ -17,7 +17,7 @@ export default class Main extends Component {
             list: [],
             singleForm: [],
             leadField: {
-                '': 'Not Asign',
+                '': 'Not Assign',
                 first_name: 'Name',
                 org_name: 'Org Name',
                 email: 'Email',
