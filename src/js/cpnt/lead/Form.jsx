@@ -259,7 +259,7 @@ export default class Form extends Component {
         const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
 
         const emailInput = {
-            label: ndpv.i18n.email,
+            label: i18n.email,
             type: 'email',
             id: 'form-email',
             name: 'email',

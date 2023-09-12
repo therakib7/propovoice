@@ -1,14 +1,14 @@
-<?php 
-namespace Ndpv\Ctrl\Taxonomy; 
+<?php
+namespace Ndpv\Ctrl\Taxonomy;
 
 class TaxonomyCtrl {
-	
-	public function __construct() {   
-		add_action('init', [$this, 'create_taxonomy'] ); 		
-	}  
 
-    public function create_taxonomy() {
-        
+	public function __construct() {
+		add_action('init', [$this, 'register_taxonomy'] );
+	}
+
+    public function register_taxonomy() {
+
 		$taxonomies = [
             'lead_level' => 'lead',
             'lead_source' => 'lead',
@@ -30,20 +30,20 @@ class TaxonomyCtrl {
 				return;
 			}
 
-			do_action('ndpv_'. $tax .'_taxonomy');  
+			do_action('ndpv_'. $tax .'_taxonomy');
 
 			$args = array(
-				'hierarchical'      => true, 
-				'show_ui'           => false, 
-				'show_in_menu'      => false, 
+				'hierarchical'      => true,
+				'show_ui'           => false,
+				'show_in_menu'      => false,
 				'show_in_nav_menus' => false,
 				'query_var'         => true,
 				'rewrite'           => array( 'slug' => 'ndpv_' . $tax ),
 			);
-		 
-			register_taxonomy( 'ndpv_' . $tax , array( 'ndpv_' . $post_type ), apply_filters('ndpv_'. $tax .'_taxonomy_args', $args) ); 
-			
-			do_action('ndpv_after_'. $tax .'_taxonomy');    
-		} 
+
+			register_taxonomy( 'ndpv_' . $tax , array( 'ndpv_' . $post_type ), apply_filters('ndpv_'. $tax .'_taxonomy_args', $args) );
+
+			do_action('ndpv_after_'. $tax .'_taxonomy');
+		}
     }
 }

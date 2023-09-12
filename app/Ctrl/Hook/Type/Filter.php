@@ -12,6 +12,8 @@ class Filter
             "hide_bank_attachment",
         ]);
 
+        add_filter("woocommerce_prevent_admin_access", "__return_false");
+
         //current_user_can always return true, false when super admin in multisite
         if ( !current_user_can("ndpv_client_role") ) {
             add_filter( 'map_meta_cap', function( $caps, $cap ) {
@@ -20,7 +22,7 @@ class Filter
                 }
                 return $caps;
             }, 10, 2 );
-        }        
+        }
     }
 
     function body_class($classes)

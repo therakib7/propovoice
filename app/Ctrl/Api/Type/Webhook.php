@@ -4,12 +4,8 @@ namespace Ndpv\Ctrl\Api\Type;
 
 class Webhook
 {
-    public function __construct()
-    {
-        add_action("rest_api_init", [$this, "rest_routes"]);
-    }
 
-    public function rest_routes()
+    public function register_routes()
     {
         register_rest_route("ndpv/v1", "/webhooks/(?P<id>\d+)", [
             "methods" => "GET",
@@ -17,7 +13,7 @@ class Webhook
             "permission_callback" => [$this, "get_per"],
             "args" => [
                 "id" => [
-                    "validate_callback" => function ($param, $request, $key) {
+                    "validate_callback" => function ($param) {
                         return is_numeric($param);
                     },
                 ],

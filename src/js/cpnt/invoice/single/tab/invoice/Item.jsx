@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import api from 'api';
 import { toast } from "react-toastify";
 
@@ -10,8 +10,6 @@ export default (props) => {
     const { index, title, desc, qty, qty_type, qtyTypeList, item_tax, tax, tax_type, price } = props
     const i18n = ndpv.i18n;
     const [savedItems, setSavedItems] = useState([]);
-
-
 
     useEffect(() => {
         api.get('savefornext').then(data => {
@@ -62,9 +60,6 @@ export default (props) => {
 
     }, [title, isFocused]);
 
-
-
-
     const changeItemsValue = (e, item) => {
         e.preventDefault();
         setSuggestionVisiblity(false)
@@ -74,8 +69,6 @@ export default (props) => {
             qty: item.qty,
             price: item.price
         });
-
-
     }
 
     return (

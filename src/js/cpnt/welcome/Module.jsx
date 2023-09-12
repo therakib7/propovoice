@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from 'react-toastify';
-import Upload from 'block/field/upload';
 import api from 'api';
-export default (props) => {
+const Module = (props) => {
 	const [form, setForm] = useState({
 		deactivate: []
 	});
@@ -128,7 +127,7 @@ export default (props) => {
 						<div className="col-sm-6 col-lg-4">
 							<div className="pv-module">
 								<h3>
-									Deal Pipeline{" "}
+									{i18n.deal_pipeline}
 									<span className="pv-pro-label">
 										<svg
 											width={13}
@@ -223,7 +222,7 @@ export default (props) => {
 						<div className="col-sm-6 col-lg-4">
 							<div className="pv-module">
 								<h3>
-									Deal Pipeline{" "}
+									{i18n.deal_pipeline}
 									<span className="pv-pro-label">
 										<svg
 											width={13}
@@ -291,3 +290,5 @@ export default (props) => {
 		</div>
 	);
 }
+
+export default Module;

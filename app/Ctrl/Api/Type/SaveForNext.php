@@ -6,17 +6,12 @@ class SaveForNext
 {
     private $option_name = 'save_for_next_data';
 
-    public function __construct()
-    {
-        add_action("rest_api_init", [$this, "rest_routes"]);
-    }
-
-    public function rest_routes()
+    public function register_routes()
     {
         register_rest_route("ndpv/v1", "/savefornext" . ndpv()->plain_route(), [
             [
                 "methods" => "GET",
-                "callback" => [$this, "get_data"],
+                "callback" => [$this, "get"],
                 "permission_callback" => function () {
                     return true;
                 },
@@ -34,20 +29,19 @@ class SaveForNext
         ]);
 
         register_rest_route("ndpv/v1", "/savefornext/(?P<index>[a-zA-Z0-9\-]+)", [
-            "methods" => "DELETE",
-            "callback" => [$this, "delete_data"],
+            "methods" => "PUT",
+            "callback" => [$this, "update"],
             "permission_callback" => function () {
                 return true;
             }
         ]);
 
         register_rest_route("ndpv/v1", "/savefornext/(?P<index>[a-zA-Z0-9\-]+)", [
-            "methods" => "PUT",
-            "callback" => [$this, "update_data"],
+            "methods" => "DELETE",
+            "callback" => [$this, "delete"],
             "permission_callback" => function () {
                 return true;
             }
-
         ]);
     }
 
@@ -75,7 +69,7 @@ class SaveForNext
         update_option($this->option_name, $existing_data);
     }
 
-    public function get_data()
+    public function get()
     {
         // Get existing data from the option.
         $existing_data = get_option($this->option_name, array());
@@ -84,26 +78,7 @@ class SaveForNext
         return $existing_data;
     }
 
-    public function delete_data($req)
-    {
-
-        $param = $req->get_params();
-        $index = $param['index'];
-        // Get existing data from the option.
-        $existing_data = get_option($this->option_name, array());
-
-        // Find the data to delete based on the index.
-        $key = array_search($index, array_column($existing_data, 'index'));
-        if ($key !== false) {
-            // Remove the data from the array.
-            unset($existing_data[$key]);
-
-            // Save the updated data to the option.
-            update_option($this->option_name, array_values($existing_data));
-        }
-    }
-
-    public function update_data($request)
+    public function update($request)
     {
 
         // Get the index of the item to update.
@@ -138,5 +113,24 @@ class SaveForNext
             'status'  => 'error',
             'message' => 'Failed to update item data item.',
         ), 500);
+    }
+
+    public function delete($req)
+    {
+
+        $param = $req->get_params();
+        $index = $param['index'];
+        // Get existing data from the option.
+        $existing_data = get_option($this->option_name, array());
+
+        // Find the data to delete based on the index.
+        $key = array_search($index, array_column($existing_data, 'index'));
+        if ($key !== false) {
+            // Remove the data from the array.
+            unset($existing_data[$key]);
+
+            // Save the updated data to the option.
+            update_option($this->option_name, array_values($existing_data));
+        }
     }
 }

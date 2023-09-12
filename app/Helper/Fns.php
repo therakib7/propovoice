@@ -31,7 +31,7 @@ class Fns
         $total = get_option("ndpv_" . $mod . "_total");
         if ( !$total ) {
             //count max post id, other wise 1
-            $new = 1;           
+            $new = 1;
             $args = array(
                 'post_type'      => 'ndpv_estinv',
                 'posts_per_page' => 1,
@@ -78,16 +78,6 @@ class Fns
             'hide_empty' => false
         );
 
-        //TODO: this is not working, that's why temp added in tax js file
-        /* if ( $extra_amount_type ) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'extra_amount_type',
-                    'value'   => $extra_amount_type,
-                    'compare' => '=',
-                )
-            );
-        }  */
         return get_terms($args);
     }
 
@@ -478,7 +468,6 @@ class Fns
     /**
      *  String to slug convert
      *
-     * @package NDPV Project
      * @since 1.0
      */
     public static function slugify($string)
@@ -489,7 +478,6 @@ class Fns
     /**
      *  String to slug convert
      *
-     * @package NDPV Project
      * @since 1.0
      */
     public static function slugify_key($string)
@@ -500,7 +488,6 @@ class Fns
     /**
      * Sanitize out put
      *
-     * @package NDPV Project
      * @since 1.0
      */
     public function sanitizeOutPut($value, $type = 'text')
@@ -523,7 +510,6 @@ class Fns
     /**
      * Image information
      *
-     * @package NDPV Project
      * @since 1.0
      */
     public function imageInfo($attachment_id)
@@ -541,7 +527,6 @@ class Fns
     /**
      *  Format bye
      *
-     * @package NDPV Project
      * @since 1.0
      */
     public static function format_bytes($bytes)
@@ -554,7 +539,6 @@ class Fns
     /**
      *  Password mail
      *
-     * @package NDPV Project
      * @since 1.0
      */
     public static function password_mail($name, $email, $password, $type = 'client_portal')

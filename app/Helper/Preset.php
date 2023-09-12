@@ -1,7 +1,7 @@
-<?php 
+<?php
 namespace Ndpv\Helper;
 
-class Data
+class Preset
 {
     public function default()
     {
@@ -85,52 +85,52 @@ Thank you for your business.
 Regards
 {org_name}'
                     ]
-                ],   
-                'client_portal' => [    
+                ],
+                'client_portal' => [
                     'password' => [
                         'subject' => '{org_name} client portal credentials',
                         'msg' => 'Hi <b>{client_name}</b>,
-{org_name} gives you access to their client portal. 
+{org_name} gives you access to their client portal.
 You can log in with the credentials
 
 <b>Login URL:</b> {login_url}
 <b>Email:</b> {email}
-<b>Password:</b> {password} 
+<b>Password:</b> {password}
 
 Thank you for staying with us.
 
 Regards
 {org_name}'
                     ]
-                ],  
-                'team' => [    
+                ],
+                'team' => [
                     'password' => [
                         'subject' => '{org_name} team credentials',
                         'msg' => 'Hi <b>{client_name}</b>,
-{org_name} gives you access to their team. 
+{org_name} gives you access to their team.
 You can log in with the credentials
 
 <b>Login URL:</b> {login_url}
 <b>Email:</b> {email}
-<b>Password:</b> {password} 
+<b>Password:</b> {password}
 
 Thank you for staying with us.
 
 Regards
 {org_name}'
                     ]
-                ],    
-                'notification' => [    
+                ],
+                'notification' => [
                     'default' => [
                         'subject' => '{org_name} Notification: {notification}',
                         'msg' => 'Hi <b>{name}</b>,
-You have a notification 
+You have a notification
 {notification_link}
 
 Regards
 {org_name}'
                     ]
-                ],    
+                ],
             ]
         ];
     }

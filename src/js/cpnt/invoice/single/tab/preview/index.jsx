@@ -21,7 +21,6 @@ const EditDownload = (props) => {
     <>
       <button
         className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-        // style={{ color: '#000', marginRight: '5px' }}
         onClick={() => props.handleEdit()}
       >
         <svg width={14} height={14} viewBox="0 0 14 14" fill="none">
@@ -38,7 +37,6 @@ const EditDownload = (props) => {
 
 const DownloadPDF = (props) => {
   const i18n = ndpv.i18n;
-  console.log(props.data)
   const fileName = props.data.title + '-' + props.data.invoice.id
   const options = {
     // default is `save`
@@ -75,7 +73,6 @@ const DownloadPDF = (props) => {
     <>
       <button
         className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-        // style={{ color: '#000', marginRight: '5px' }}
         onClick={() => generatePDF(props.content, options)}
       >
         <svg width={12} height={14} viewBox="0 0 12 14" fill="none">
@@ -134,7 +131,6 @@ export default class Preview extends Component {
   render() {
     // const { id } = this.props.data.invoice.template;
     const i18n = ndpv.i18n;
-    const color = this.props.data.invoice.style.primary_color;
     return (
       <div id="pv-tab-share" className="pv-invoice-tab-content">
         <h2 className="pv-page-title">
@@ -144,7 +140,7 @@ export default class Preview extends Component {
           id="ndpv-invoice-print"
           style={{ height: 0, width: 0, position: "absolute" }}
         ></iframe>
-        <div className="row justify-content-md-center">
+        <div className="row justify-content-md-center" style={{overflow: 'hidden'}}>
           <div className="col-md-8" style={{ margin: "50px 0 30px 0" }}>
             <div className="" style={{ width: "788px", margin: "0 auto" }}>
               <div className="pv-float-left">
@@ -164,8 +160,6 @@ export default class Preview extends Component {
                   trigger={() => (
                     <button
                       className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-                    // style={{ color: '#000', marginRight: '5px' }}
-                    // onClick={() => props.handlePrint()}
                     >
                       <svg
                         width={15}
@@ -186,7 +180,6 @@ export default class Preview extends Component {
               <div className="pv-float-right">
                 <button
                   className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5 pv-br-4"
-                  // style={{ color: '#000', marginRight: '5px' }}
                   onClick={() => this.props.showShareModal()}
                 >
                   <svg width={14} height={12} viewBox="0 0 14 12" fill="none">
@@ -248,9 +241,7 @@ export default class Preview extends Component {
                   content={() => this.componentRef}
                   trigger={() => (
                     <button
-                      className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-                    // style={{ color: '#000', marginRight: '5px' }}
-                    // onClick={() => props.handlePrint()}
+                      className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5" 
                     >
                       <svg
                         width={15}
@@ -272,7 +263,6 @@ export default class Preview extends Component {
               <div className="pv-float-right">
                 <button
                   className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5 pv-br-4"
-                  // style={{ color: '#000', marginRight: '5px' }}
                   onClick={() => this.props.showShareModal()}
                 >
                   <svg width={14} height={12} viewBox="0 0 14 12" fill="none">
@@ -284,10 +274,11 @@ export default class Preview extends Component {
                   {i18n.share}
                 </button>
                 <button
-                  className="pv-btn pv-btn-medium pv-bg-hover-blue pv-bg-blue pv-br-4"
+                  className="pv-btn pv-btn-medium pv-bg-hover-blue pv-bg-blue pv-bg-shadow pv-br-4"
+                  style={{position: 'relative', top: '-2px'}}
                   onClick={() => this.props.showEmailModal()}
                 >
-                  {i18n.send} {i18n.email}
+                  {i18n.send_email}
                   <svg
                     className="pv-ml-10 pv-mr-0"
                     width={6}

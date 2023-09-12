@@ -87,6 +87,7 @@ class I18n
             "subT" => esc_html__("Subtotal", "propovoice"),
             "down" => esc_html__("Download", "propovoice"),
             "print" => esc_html__("Print", "propovoice"),
+            "send_email" => esc_html__("Send Email", "propovoice"),
             "share" => esc_html__("Share", "propovoice"),
             "send" => esc_html__("Send", "propovoice"),
             "sent" => esc_html__("Sent", "propovoice"),
@@ -401,9 +402,9 @@ class I18n
                 "propovoice"
             ),
             // custom field
-            "opt" => esc_html__("Option", "propovoice"), 
-            "optList" => esc_html__("Option list", "propovoice"), 
-            "optDef" => esc_html__("Default options", "propovoice"), 
+            "opt" => esc_html__("Option", "propovoice"),
+            "optList" => esc_html__("Option list", "propovoice"),
+            "optDef" => esc_html__("Default options", "propovoice"),
         ];
     }
 }

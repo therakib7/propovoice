@@ -1,12 +1,12 @@
 <?php
-namespace Ndpv\Ctrl\Setting\Type;
+namespace Ndpv\Ctrl\MenuPage\Type;
 
 class Welcome
 {
 
 	public function __construct()
 	{
-		add_action('admin_menu', [$this, 'add_settings_menu'], 30);
+		add_action('admin_menu', [$this, 'add_menu'], 30);
 		add_action('admin_head', function() {
 			echo "<style>
 				li.toplevel_page_ndpv-welcome {
@@ -16,7 +16,7 @@ class Welcome
 		});
 	}
 
-	public function add_settings_menu()
+	public function add_menu()
 	{
 		add_menu_page(
 			esc_html__('Propovoice Welcome', 'propovoice'),

@@ -1,7 +1,6 @@
 <?php
 namespace Ndpv\Ctrl\Install;
 
-use Ndpv\Ctrl\Install\Type\DB;
 use Ndpv\Ctrl\Install\Type\Update;
 use Ndpv\Ctrl\Install\Type\Page;
 use Ndpv\Ctrl\Install\Type\Taxonomy;
@@ -72,11 +71,7 @@ class InstallCtrl
 
         if ( version_compare($version, '1.0.0', '<') ) {
             new Page();
-            new DB();
             new Taxonomy();
-
-            // $uploads_dir = trailingslashit(wp_upload_dir()['basedir']) . 'propovoice';
-            // wp_mkdir_p($uploads_dir);
         }
 
         if ( version_compare($version, '1.0.1.4', '<') ) {
