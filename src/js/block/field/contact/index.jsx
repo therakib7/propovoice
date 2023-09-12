@@ -87,10 +87,10 @@ export default (props) => {
     const i18n = ndpv.i18n;
 
     const personValidation = {
-        // required: {
-        //     value: false,
-        //     group: "contact"
-        // }
+        required: {
+            value: true,
+            message: "Person field is required"
+        }
     }
     const orgValidation = {
         // required: {
