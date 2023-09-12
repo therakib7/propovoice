@@ -2,7 +2,6 @@ import SvgIcon from "../svg-icons";
 
 export const Button = ({ label, type = "button", iconName, size, cssStyle, handleClick, buttonStyle = "default" }) => {
 
-
   const sizes = {
     big: "pv-btn-big",
     medium: " pv-btn-medium"

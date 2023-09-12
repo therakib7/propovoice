@@ -24,7 +24,6 @@ export default function Modal({ title, children, buttons, showModal, setShowModa
 
   return (
     <>
-
       {showModal && (<div className="pv-overlay pv-show">
         <div className="pv-modal-content">
           {viewModalHeader}

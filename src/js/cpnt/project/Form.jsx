@@ -8,7 +8,6 @@ import Taxonomy from 'block/field/taxonomy';
 import Currency from 'block/field/currency';
 
 import CustomField from 'block/field/custom-field';
-import Preloader from "block/preloader/spinner";
 import { mergeObjects, checkRoute } from 'helper';
 
 const DateField = lazy(() => import('block/date-picker'));
@@ -22,7 +21,7 @@ class Form extends Component {
     constructor(props) {
         super(props);
 
-        this.initialState = {
+        this.initState = {
             id: null,
             title: '',
             first_name: '',
@@ -49,15 +48,15 @@ class Form extends Component {
             const contactInfo = mergeObjects(person, org)
 
             if (Object.keys(contactInfo).length > 0) {
-                this.initialState.first_name = contactInfo.first_name;
-                this.initialState.email = contactInfo.email;
-                this.initialState.mobile = contactInfo.mobile;
-                this.initialState.org_name = contactInfo.name ?? contactInfo.org_name;
+                this.initState.first_name = contactInfo.first_name;
+                this.initState.email = contactInfo.email;
+                this.initState.mobile = contactInfo.mobile;
+                this.initState.org_name = contactInfo.name ?? contactInfo.org_name;
             }
         }
         this.state = {
             submitPreloader: false,
-            form: this.initialState,
+            form: this.initState,
             custom_field: false,
             stages: [],
             tags: [],
@@ -121,16 +120,8 @@ class Form extends Component {
             }
         } else {
             if (this.state.form.id != null) {
-                this.setState({ form: this.initialState });
+                this.setState({ form: this.initState });
             }
-
-            /* else {
-                if ( this.props.data && ! this.state.form.status_id && this.props.data.hasOwnProperty('label') ) { // new project from stage
-                    let form = {...this.initialState}
-                    form.status_id = this.props.data;
-                    this.setState({ form });
-                }
-            }  */
         }
     }
 
@@ -228,7 +219,7 @@ class Form extends Component {
         } else {
             this.props.handleSubmit(form);
         }
-        // this.setState({ form: this.initialState });
+        // this.setState({ form: this.initState });
     }
 
     handleContactChange = (val, type) => {
@@ -266,15 +257,6 @@ class Form extends Component {
         } else {
             form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
-            if (!form.first_name) {
-                form.email = (val) ? val.email : '';
-                form.mobile = (val) ? val.mobile : '';
-                form.web = (val) ? val.web : '';
-                form.country = (val) ? val.country : '';
-                form.region = (val) ? val.region : '';
-                form.address = (val) ? val.address : '';
-                form.img = (val) ? val.img : '';
-            }
         }
 
         this.setState({ form });
