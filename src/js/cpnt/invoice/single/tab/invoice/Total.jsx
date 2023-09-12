@@ -1,5 +1,5 @@
-export default (props) => {
-    const { inv, currencyFormatter, changeHandler, focusHandler } = props
+const Total = ({ inv, currencyFormatter, changeHandler, focusHandler }) => {
+
     const extra_field = inv.extra_field;
 
     const itemsTotal = () => {
@@ -27,7 +27,7 @@ export default (props) => {
         let total = 0;
         let item_total = itemsTotal();
         let item_tax_total = itemsTaxTotal();
-        extra_field.map((item, i) => {
+        extra_field.map((item) => {
 
             if (item.type == 'tax') {
                 let val = item.val ? item.val : 0;
@@ -200,4 +200,5 @@ export default (props) => {
             </tbody>
         </table>
     )
-} 
+}
+export default Total;

@@ -9,12 +9,8 @@ use Ndpv\Model\Person;
 
 class Deal
 {
-    public function __construct()
-    {
-        add_action("rest_api_init", [$this, "rest_routes"]);
-    }
 
-    public function rest_routes()
+    public function register_routes()
     {
         register_rest_route("ndpv/v1", "/deals/(?P<id>\d+)", [
             "methods" => "GET",

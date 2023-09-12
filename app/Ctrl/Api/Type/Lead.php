@@ -2,7 +2,6 @@
 
 namespace Ndpv\Ctrl\Api\Type;
 
-use Exception;
 use Ndpv\Helper\Fns;
 use Ndpv\Model\Contact;
 use Ndpv\Model\Org;
@@ -10,12 +9,8 @@ use Ndpv\Model\Person;
 
 class Lead
 {
-    public function __construct()
-    {
-        add_action("rest_api_init", [$this, "rest_routes"]);
-    }
 
-    public function rest_routes()
+    public function register_routes()
     {
         register_rest_route("ndpv/v1", "/leads/(?P<id>\d+)", [
             "methods" => "GET",

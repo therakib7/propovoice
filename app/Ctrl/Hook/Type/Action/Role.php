@@ -33,7 +33,6 @@ class Role
     public function __construct()
     {
         add_action("init", [$this, "update_admin_caps"], 11);
-        add_filter("woocommerce_prevent_admin_access", "__return_false");
     }
 
     public function update_admin_caps()

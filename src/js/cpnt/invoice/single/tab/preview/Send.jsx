@@ -259,7 +259,7 @@ export default class Send extends Component {
                                 </div>
                                 <div className="col">
                                     <button type='submit' disabled={submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
-                                        {submitPreloader && <Preloader submit />} {i18n.send} {i18n.email}
+                                        {submitPreloader && <Preloader submit />} {i18n.send_email}
                                     </button>
                                 </div>
                             </div>

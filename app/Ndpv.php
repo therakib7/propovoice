@@ -6,7 +6,7 @@ use Ndpv\Ctrl\Install\InstallCtrl;
 use Ndpv\Traits\Singleton;
 use Ndpv\Helper\Constant;
 use Ndpv\Helper\Fns;
-use Ndpv\Helper\Data;
+use Ndpv\Helper\Preset;
 use Ndpv\Ctrl\MainCtrl;
 
 /**
@@ -184,7 +184,7 @@ final class Ndpv {
      */
     public function get_default()
     {
-        $data = new Data;
+        $data = new Preset;
         $result = $data->default();
         $func_args = func_get_args();
 

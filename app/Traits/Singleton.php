@@ -4,7 +4,7 @@
  * Singleton 
  * 
  * @since 0.1.0 
- * @package NDPV Project
+ 
  * @author NurencyDigital
  */
 

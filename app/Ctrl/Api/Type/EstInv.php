@@ -6,14 +6,10 @@ use Ndpv\Helper\Fns;
 use Ndpv\Model\Invoice as ModelInvoice;
 use Ndpv\Model\Contact;
 
-class Invoice
+class EstInv
 {
-    public function __construct()
-    {
-        add_action("rest_api_init", [$this, "rest_routes"]);
-    }
 
-    public function rest_routes()
+    public function register_routes()
     {
         register_rest_route("ndpv/v1", "/invoices/(?P<id>\d+)", [
             "methods" => "GET",

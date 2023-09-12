@@ -1,5 +1,5 @@
 <?php
-namespace Ndpv\Ctrl\Setting\Type;
+namespace Ndpv\Ctrl\MenuPage\Type;
 
 use Ndpv\Helper\Fns;
 
@@ -8,11 +8,11 @@ class Dashboard
     public function __construct()
     {
         if (current_user_can("ndpv_core")) {
-            add_action("admin_menu", [$this, "add_settings_menu"], 30);
+            add_action("admin_menu", [$this, "add_menu"], 30);
         }
     }
 
-    public function add_settings_menu()
+    public function add_menu()
     {
         if ( current_user_can("ndpv_client_role") ) return; //not allowed for client
 
@@ -82,7 +82,7 @@ class Dashboard
         $settings_menu = apply_filters("ndpv_sidebar_menu", $settings_menu);
 
         foreach ($settings_menu as $menu) {
-            $menu_id = $menu["id"]; 
+            $menu_id = $menu["id"];
 
             add_submenu_page(
                 "ndpv",
