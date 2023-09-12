@@ -6,18 +6,16 @@ import { FormContext } from 'block/form';
 import { TextInput } from 'block/form/input';
 import { alterValidation } from "block/form/input/validations";
 
-export default (props) => {
+const Contact = (props) => {
 
     const personRef = useRef();
     const orgRef = useRef();
-
 
     const { form, setForm, setErrorFields } = useContext(FormContext);
     const [personList, setPersonList] = useState([]);
     const [orgList, setOrgList] = useState([]);
     const [personModal, setPersonModal] = useState(false);
     const [orgModal, setOrgModal] = useState(false);
-
 
     const personClose = useCallback(() => setPersonModal(false), []);
     useClickOutside(personRef, personClose);
@@ -89,7 +87,7 @@ export default (props) => {
     const personValidation = {
         required: {
             value: true,
-            message: "Person field is required"
+            message: "Name field is required"
         }
     }
     const orgValidation = {
@@ -105,7 +103,7 @@ export default (props) => {
 
                 <TextInput id="first_name"
                     wrapperClassName=''
-                    label={i18n.prsn}
+                    label={i18n.name}
                     type="text"
                     name="first_name"
                     autoComplete='off'
@@ -230,3 +228,4 @@ export default (props) => {
         </div>
     );
 }
+export default Contact;

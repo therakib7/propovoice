@@ -7,14 +7,9 @@ use Ndpv\Model\Org;
 
 class Person
 {
-    public function __construct()
-    {
-        add_action("rest_api_init", [$this, "rest_routes"]);
-    }
 
-    public function rest_routes()
+    public function register_routes()
     {
-
         register_rest_route("ndpv/v1", "/persons/(?P<id>\d+)", [
             "methods" => "GET",
             "callback" => [$this, "get_single"],

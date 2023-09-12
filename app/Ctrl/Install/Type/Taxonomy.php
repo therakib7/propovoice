@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace Ndpv\Ctrl\Install\Type;
 
 class Taxonomy
@@ -10,14 +10,13 @@ class Taxonomy
 
     public function create_custom_taxonomy()
     {
-        //when install set workspace for all previous data
 
         //Workspace pro
         $data = array(
             'post_type'     => 'ndpv_workspace',
             'post_title'    => 'Workspace',
             'post_content'  => '',
-            'post_status'   => 'publish', //TODO: is it public or private for workspace
+            'post_status'   => 'publish',
             'post_author'   => get_current_user_id()
         );
         $post_id = wp_insert_post($data);
@@ -326,7 +325,7 @@ class Taxonomy
                     //set icon
                     if ( isset( $taxonomy['icon'] ) && $taxonomy['icon']) {
                         $url = ndpv()->get_asset_uri('img/task-type/') . $taxonomy['icon'] .'.png';
-                        $icon_id = $this->custom_media_sideload_image( $url );
+                        $icon_id = $this->custom_taxonomy_image( $url );
                         update_term_meta($term_id['term_id'], 'icon', $icon_id);
                     }
                 }
@@ -334,7 +333,7 @@ class Taxonomy
         }
     }
 
-    public function custom_media_sideload_image($image_url = '', $post_id = false)
+    public function custom_taxonomy_image($image_url = '', $post_id = false)
     {
         require_once ABSPATH . 'wp-admin/includes/file.php';
 

@@ -3,7 +3,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import Item from './Item'
 import ItemLabel from './sidebar/ItemLabel'
-import styles from './scss/Items.module.scss' 
+import styles from './scss/Items.module.scss'
 import api from 'api';
 
 const Items = (props) => {
@@ -11,8 +11,8 @@ const Items = (props) => {
     const [qtyType, setQtyType] = useState([]);
 
     useEffect(() => {
-        if (!props.id) { 
-            api.get('taxonomies', 'taxonomy=estinv_qty_type&label_only=true').then(resp => { 
+        if (!props.id) {
+            api.get('taxonomies', 'taxonomy=estinv_qty_type&label_only=true').then(resp => {
                 if (resp.data.success) {
                     setQtyType(resp.data.data.estinv_qty_type);
                 }

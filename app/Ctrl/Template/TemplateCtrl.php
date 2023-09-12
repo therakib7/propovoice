@@ -42,6 +42,7 @@ class TemplateCtrl
      * Check if current page has our custom template. Try to load
      * template from theme directory and if not exist load it
      * from root plugin directory.
+     * @since 1.0.0
      */
     function template_path($default)
     {
@@ -65,10 +66,9 @@ class TemplateCtrl
     }
 
     /**
-     *  NDPV Project Entity Star Icon
+     *  Check wage script
      *
-     * @package NDPV Project
-     * @since 1.0
+     * @since 1.0.0
      */
     function wage_scripts()
     {

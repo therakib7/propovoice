@@ -467,22 +467,6 @@ class Form extends Component {
                                 </div>
                             </div>
 
-                            {false && !isClient && <div className="row">
-                                <div className="col">
-                                    <label htmlFor="field-note">
-                                        {i18n.note}
-                                    </label>
-
-                                    <textarea
-                                        id="form-note"
-                                        rows={2}
-                                        name="note"
-                                        value={form.note}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>}
-
                             {!isClient && this.state.custom_field && <CustomField mod='project' type={this.props.modalType} form={form} onChange={this.handleCFChange} />}
 
                         </FormContent>

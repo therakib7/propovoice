@@ -876,7 +876,7 @@ class Invoice extends Component {
                       className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white pv-mt-20"
                       onClick={() => this.setState({ emailModal: true })}
                     >
-                      {i18n.send} {i18n.email}
+                      {i18n.send_email}
                       <svg
                         className="pv-mr-0 pv-ml-10"
                         width={9}
