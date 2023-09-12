@@ -8,13 +8,11 @@ import { checkRoute } from 'helper';
 
 function Dashboard() {
     return (
-        <>
-            <AppContext.Provider value={{
-                CrudMsg: msgData
-            }}>
-                <Home />
-            </AppContext.Provider>
-        </>
+        <AppContext.Provider value={{
+            CrudMsg: msgData
+        }}>
+            <Home />
+        </AppContext.Provider>
     )
 }
 
