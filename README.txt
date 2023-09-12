@@ -182,6 +182,7 @@ The super fantastic pro features that accelerate your business growth and improv
 
 = 1.7.1 (12-Sep-2023) = 
 * Update: Notification
+* Update: PDF download
 * Update: Extra amount reserial to Discount, Fee, Tax
 
 = 1.7.0 (31-Aug-2023) = 
