@@ -1165,7 +1165,7 @@ class Invoice extends Component {
                               handleRemoveSign={this.handleRemoveSign}
                             />
                             {/* <Upload */}
-                            {/*   label={i18n.aSign} */}
+                            {/*   label={i18n.authSign} */}
                             {/*   padding={"20px 30px"} */}
                             {/*   data={invoice.sign} */}
                             {/*   changeHandler={this.handleSignChange} */}

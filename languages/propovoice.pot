@@ -1586,5 +1586,5 @@ msgid "Lost your password?"
 msgstr ""
 
 #: ../view/template/partial/login.php:129
-msgid "You enterd wrong credentials"
+msgid "You entered wrong credentials"
 msgstr ""

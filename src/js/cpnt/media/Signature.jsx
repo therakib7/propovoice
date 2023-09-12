@@ -42,7 +42,7 @@ export default function Signature({ data, changeHandler, handleRemoveSign }) {
     return (
       <>
         <Button
-          label={i18n.aSign}
+          label={i18n.authSign}
           iconName="upload"
           handleClick={handleSignButton}
           buttonStyle="white"
@@ -86,7 +86,7 @@ export default function Signature({ data, changeHandler, handleRemoveSign }) {
       {showModal &&
         (
           <MediaSelector
-            title={i18n.aSign}
+            title={i18n.authSign}
             attachType="signature"
             showModal={showModal}
             setShowModal={setShowModal}
