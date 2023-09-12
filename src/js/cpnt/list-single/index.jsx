@@ -346,7 +346,7 @@ class ListSingle extends Component {
               {path == "project" && (
                 <NavLink to="/project">{i18n.project}</NavLink>
               )}
-              {path == "contact" && <NavLink to={'/contact/' + (data.person ? 'person' : 'organization')}>{i18n.ct}</NavLink>}
+              {path == "contact" && <NavLink to={'/contact/'}>{i18n.ct}</NavLink>}
             </li>
             <li>
               <svg width={5} height={10} viewBox="0 0 5 10" fill="none">
