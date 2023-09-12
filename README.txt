@@ -180,12 +180,12 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
-= 1.7.1 (12-Sep-2023) = 
+= 1.7.1 (12-Sep-2023) =
 * Update: Notification
 * Update: Direct PDF download
 * Update: Extra amount reserial to Discount, Fee, Tax
 
-= 1.7.0 (31-Aug-2023) = 
+= 1.7.0 (31-Aug-2023) =
 * Improved: Client signature upload
 * Update: Invoice and Estimate auto serial ID issue
 * Update: Helper files Import Export issue
