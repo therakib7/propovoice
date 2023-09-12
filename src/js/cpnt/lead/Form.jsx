@@ -287,7 +287,6 @@ export default class Form extends Component {
             onChange: this.handleChange,
         };
 
-
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -430,22 +429,6 @@ export default class Form extends Component {
                                     />
                                 </div>
                             </div>
-
-                            {false && <div className="row">
-                                <div className="col">
-                                    <label htmlFor="form-note">
-                                        {i18n.note}
-                                    </label>
-
-                                    <textarea
-                                        id="form-note"
-                                        type="text"
-                                        name="note"
-                                        value={form.note}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>}
 
                             <div className="row">
                                 <div className="col">
