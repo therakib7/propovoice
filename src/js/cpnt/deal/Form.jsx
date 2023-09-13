@@ -282,11 +282,12 @@ class Form extends Component {
         const probabilityPercent = (form.probability / 100) * 100;
 
         let title = '';
-        if (this.props.modalType == 'new') {
+        const modalType = this.props.modalType;
+        if (modalType == 'new') {
             title = i18n.new
-        } else if (this.props.modalType == 'edit') {
+        } else if (modalType == 'edit') {
             title = i18n.edit
-        } else if (this.props.modalType == 'move') {
+        } else if (modalType == 'move') {
             title = i18n.moveto
         }
 
@@ -410,6 +411,7 @@ class Form extends Component {
                                     </label>
                                     <Taxonomy
                                         selectedFirst
+                                        modalType={modalType}
                                         data={form.stage_id}
                                         taxonomy='deal_stage'
                                         title={i18n.stage}
