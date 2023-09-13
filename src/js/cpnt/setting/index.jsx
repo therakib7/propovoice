@@ -149,11 +149,11 @@ const Setting = (props) => {
       label: 'Public API'
     };
   }
-  if (!wage.length) {
-    tab_data['notification'] = {
-      label: 'Notification'
-    };
-  }
+  // if (!wage.length) {
+  //   tab_data['notification'] = {
+  //     label: 'Notification'
+  //   };
+  // }
 
   const [currentTab, setCurrentTab] = useState(tabDefault);
   const [currentSubtab, setCurrentSubtab] = useState(subTabDefault);

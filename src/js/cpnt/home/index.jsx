@@ -151,7 +151,7 @@ export default () => {
                                 />
                             </div>
                             <div className="pv-avater" style={navBarStyle}>
-                                {true &&
+                                {false &&
                                     <Dropdown
                                         isSvgIcon={true}
                                         icon={notificationIcon}
