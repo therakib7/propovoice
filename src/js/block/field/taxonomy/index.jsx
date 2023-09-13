@@ -66,7 +66,7 @@ export default (props) => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
 				//if new chose first one
-				if (!props.data && props.modalType && (props.modalType == 'new') && props.selectedFirst) {
+				if (!props.data && props.modalType && (props.modalType == 'new' || props.modalType == 'move') && props.selectedFirst) {
 					handleSelect(resp.data.data[props.taxonomy][0]);
 				}
 				if (props.id) {
