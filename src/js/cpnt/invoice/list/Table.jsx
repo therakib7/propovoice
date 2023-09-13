@@ -19,11 +19,7 @@ const TableHeader = props => {
         <thead>
             <tr>
                 <th>
-                    {!isClient && <input type="checkbox"
-                        // value={row.id}
-                        // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
-                        onChange={(e) => props.checkedBoxes.handle(e, 'all')}
-                    />}
+                    {!isClient && <input type="checkbox" onChange={(e) => props.checkedBoxes.handle(e, 'all')} />}
                 </th>
                 <th>
                     {props.path == 'invoice' ? ndpv.i18n.inv : ndpv.i18n.est} ID
