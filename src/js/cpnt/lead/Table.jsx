@@ -12,7 +12,7 @@ const TableHeader = props => {
                     <input type="checkbox" onChange={(e) => props.checkedBoxes.handle(e, 'all')} />
                 </th>
                 <th>
-                    {i18n.ct} {i18n.name}
+                    {i18n.ct}
                 </th>
                 <th>
                     <Email />

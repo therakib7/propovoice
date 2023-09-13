@@ -65,10 +65,10 @@ export default (props) => {
 		api.get('taxonomies', 'taxonomy=' + props.taxonomy + '&id=' + props.id).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
-				// console.log(props.data);
-				/* if (!props.data && props.selectedFirst) {
+				//if new chose first one
+				if (!props.data && props.modalType && (props.modalType == 'new') && props.selectedFirst) {
 					handleSelect(resp.data.data[props.taxonomy][0]);
-				} */
+				}
 				if (props.id) {
 					setListById(resp.data.data['single_' + props.taxonomy]);
 				}
