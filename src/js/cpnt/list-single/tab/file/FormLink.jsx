@@ -38,10 +38,6 @@ class Form extends Component {
             if (this.state.form.id != this.props.data.id) {
                 this.setState({ form: this.props.data });
             }
-
-            /* if ( JSON.stringify(this.state.form) != JSON.stringify(this.props.data) ) {
-                this.setState({ form: this.props.data }); 
-            } */
         } else {
             if (this.state.form.id != null) {
                 this.setState({ form: this.initialState });
@@ -59,6 +55,7 @@ class Form extends Component {
     render() {
         const form = this.state.form;
         const i18n = ndpv.i18n;
+        const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -67,8 +64,8 @@ class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.link}</h2>
-                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.link + ' ' + i18n.from + ' ' + i18n.here}</p>
+                        <h2 className="pv-modal-title">{modalType} {i18n.link}</h2>
+                        <p>{sprintf(i18n.formDesc, modalType, i18n.link)}</p>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
@@ -93,7 +90,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="url">
-                                            URL
+                                            {i18n.url}
                                         </label>
 
                                         <input
@@ -112,7 +109,7 @@ class Form extends Component {
                         <div className="pv-modal-footer">
                             <div className="row">
                                 <div className="col">
-                                    <button type='reset' className="pv-btn pv-text-hover-blue">{i18n.clear}</button>
+                                    <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
                                 <div className="col">
                                     <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
