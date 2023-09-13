@@ -159,6 +159,7 @@ class I18n
             "dup" => esc_html__("Duplicate", "propovoice"),
             "dft" => esc_html__("Draft", "propovoice"),
             "req" => esc_html__("Request", "propovoice"),
+            "portal_access" => esc_html__("Portal Access", "propovoice"),
             //form
             /* translators: %s: Add, Edit %s: Module Name */
             "formDesc" => esc_html__("%s %s here", "propovoice"),
