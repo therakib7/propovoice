@@ -12,9 +12,7 @@ class SaveForNext
             [
                 "methods" => "GET",
                 "callback" => [$this, "get"],
-                "permission_callback" => function () {
-                    return true;
-                },
+                "permission_callback" => [$this, "get_per"]
             ],
         ]);
 
@@ -22,26 +20,20 @@ class SaveForNext
             [
                 "methods" => "POST",
                 "callback" => [$this, "create"],
-                "permission_callback" => function () {
-                    return true;
-                },
+                "permission_callback" => [$this, "create_per"]
             ],
         ]);
 
         register_rest_route("ndpv/v1", "/savefornext/(?P<index>[a-zA-Z0-9\-]+)", [
             "methods" => "PUT",
             "callback" => [$this, "update"],
-            "permission_callback" => function () {
-                return true;
-            }
+            "permission_callback" => [$this, "update_per"]
         ]);
 
         register_rest_route("ndpv/v1", "/savefornext/(?P<index>[a-zA-Z0-9\-]+)", [
             "methods" => "DELETE",
             "callback" => [$this, "delete"],
-            "permission_callback" => function () {
-                return true;
-            }
+            "permission_callback" => [$this, "del_per"]
         ]);
     }
 
@@ -132,5 +124,30 @@ class SaveForNext
             // Save the updated data to the option.
             update_option($this->option_name, array_values($existing_data));
         }
+    }
+
+    // check permission
+    public function get_per()
+    {
+        return current_user_can("ndpv_invoice") ||
+            current_user_can("ndpv_estimate");
+    } 
+
+    public function create_per()
+    {
+        return current_user_can("ndpv_invoice") ||
+            current_user_can("ndpv_estimate");
+    }
+
+    public function update_per()
+    {
+        return current_user_can("ndpv_invoice") ||
+            current_user_can("ndpv_estimate");
+    }
+
+    public function del_per()
+    {
+        return current_user_can("ndpv_invoice") ||
+            current_user_can("ndpv_estimate");
     }
 }
