@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SvgIcon, Button } from "../html-elements";
+import { Button } from "cpnt/html-elements";
 import MediaSelector from "./MediaSelector";
 import Api from "api/media";
 

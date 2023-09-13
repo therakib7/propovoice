@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "../html-elements";
-import SvgIcon from "../svg-icons";
+import { Button } from "cpnt/html-elements";
+import SvgIcon from "cpnt/svg-icons";
 export default function Modal({ title, children, buttons, showModal, setShowModal }) {
 
   const viewModalHeader = (

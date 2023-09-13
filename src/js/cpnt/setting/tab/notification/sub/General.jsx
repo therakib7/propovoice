@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import api from 'api';
-import { Checkbox } from '../../../../html-elements';
+import { Checkbox } from 'cpnt/html-elements';
 
 const General = () => {
     const [allIsEnabled, setAllIsEnabled] = useState({
