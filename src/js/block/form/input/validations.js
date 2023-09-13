@@ -39,7 +39,7 @@ const checkRequired = (criteria, criteriaValue, name, value, setForm, setErrorFi
 }
 
 const checkEmail = (criteria, criteriaValue, name, email, setForm, setErrorFields) => {
-  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/;
   const isValid = emailPattern.test(email)
   if (!isValid && email.length > 0) {
     addError(criteria, criteriaValue, name, setForm, setErrorFields)
