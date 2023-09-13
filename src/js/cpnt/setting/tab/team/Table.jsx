@@ -11,11 +11,7 @@ const TableHeader = props => {
         <thead>
             <tr>
                 {!isStaff && <th>
-                    <input type="checkbox"
-                        // value={row.id}
-                        // checked={ props.checkedBoxes.data.find((p) => p.id === row.id)} 
-                        onChange={(e) => props.checkedBoxes.handle(e, 'all')}
-                    />
+                    <input type="checkbox" onChange={(e) => props.checkedBoxes.handle(e, 'all')} />
                 </th>}
                 <th>
                     {i18n.name}
