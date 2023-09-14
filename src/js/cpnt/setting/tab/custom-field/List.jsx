@@ -95,7 +95,6 @@ export default (props) => {
 			return parseInt(obj.id);
 		});
 
-		// console.log(finalArray)
 		let newForm = {
 			reorder: finalArray,
 			mod: props.mod

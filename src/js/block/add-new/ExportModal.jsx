@@ -150,8 +150,8 @@ class Form extends Component {
             <div className="pv-modal-footer">
               <div className="row">
                 <div className="col">
-                  <button type="reset" className="pv-btn pv-text-hover-blue">
-                    {i18n.clear}
+                  <button type="reset" className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>
+                    {i18n.cancel}
                   </button>
                 </div>
                 <div className="col">
