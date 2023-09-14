@@ -18,9 +18,6 @@ const TableHeader = props => {
                 <th>
                     {i18n.mob}
                 </th>
-                <th>
-                    {i18n.type}
-                </th>
                 {!wage.length && <th>
                     {i18n.portal_access}
                 </th>}
@@ -71,7 +68,6 @@ const TableBody = props => {
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.email}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.mobile}</td>
-                <td>{row.type == 'person' ? i18n.prsn : i18n.org}</td>
                 {!wage.length && <td>{row.client_portal ? 'Yes' : 'No'}</td>}
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.author}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.date}</td>

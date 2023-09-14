@@ -160,7 +160,7 @@ export default class Form extends Component {
 
                                 <div className="col-md">
                                     <label htmlFor="field-type">{i18n.type}</label>
-                                    <select name="type" id="field-type" value={type} onChange={this.handleChange}>
+                                    <select name="type" id="field-type" value={type} onChange={this.handleChange} disabled={this.props.modalType == 'edit'}>
                                         <option value="text">{i18n.text}</option>
                                         <option value="email">{i18n.email}</option>
                                         <option value="number">{i18n.number}</option>
@@ -171,17 +171,15 @@ export default class Form extends Component {
                                 </div>
 
                                 {(type == 'select' || type == 'multi-select' || type == 'radio') &&
-                                    <>
-                                        <Options
-                                            data={options}
-                                            type={type}
-                                            typeLabel={typeLabel}
-                                            label={label}
-                                            value={value}
-                                            changeHandler={this.handleOptionsChange}
-                                            changeValueHandler={this.handleOptionsValueChange}
-                                        />
-                                    </>
+                                    <Options
+                                        data={options}
+                                        type={type}
+                                        typeLabel={typeLabel}
+                                        label={label}
+                                        value={value}
+                                        changeHandler={this.handleOptionsChange}
+                                        changeValueHandler={this.handleOptionsValueChange}
+                                    />
                                 }
                             </div>
                         </FormContent>

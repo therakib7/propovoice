@@ -177,8 +177,7 @@ class Options extends Component {
                             );
                         })}
                     </select>}
-
-                    {(this.props.type == 'multi-select') && Array.isArray(value) && <div className="pi-field-multi">
+                    {(this.props.type == 'multi-select') && <div className="pi-field-multi">
                         <MultiSelect
                             setting
                             onChange={this.handleMultiSelect}
