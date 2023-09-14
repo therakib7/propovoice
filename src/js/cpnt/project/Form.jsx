@@ -278,11 +278,12 @@ class Form extends Component {
         const form = this.state.form;
 
         let title = '';
-        if (this.props.modalType == 'new') {
+        const modalType = this.props.modalType;
+        if (modalType == 'new') {
             title = i18n.new
-        } else if (this.props.modalType == 'edit') {
+        } else if (modalType == 'edit') {
             title = i18n.edit
-        } else if (this.props.modalType == 'move') {
+        } else if (modalType == 'move') {
             title = i18n.moveto
         }
 
@@ -296,7 +297,7 @@ class Form extends Component {
                             <Cross />
                         </span>
                         <h2 className="pv-modal-title">{isClient ? i18n.new + ' ' + i18n.project + ' ' + i18n.req : title + ' ' + i18n.project}</h2>
-                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.project + ' ' + i18n.from + ' ' + i18n.here}</p>
+                        <p>{sprintf(i18n.formDesc, title, i18n.project)}</p>
                     </div>
 
                     <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
@@ -385,6 +386,8 @@ class Form extends Component {
                                     </label>
 
                                     <Taxonomy
+                                        selectedFirst
+                                        modalType={modalType}
                                         data={form.status_id}
                                         taxonomy='project_status'
                                         title={i18n.status}
@@ -449,7 +452,7 @@ class Form extends Component {
                                 </div>
                             </div>
 
-                            {!isClient && this.state.custom_field && <CustomField mod='project' type={this.props.modalType} form={form} onChange={this.handleCFChange} />}
+                            {!isClient && this.state.custom_field && <CustomField mod='project' type={modalType} form={form} onChange={this.handleCFChange} />}
 
                         </FormContent>
                     </FormWrapper>

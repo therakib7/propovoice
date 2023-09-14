@@ -95,7 +95,6 @@ export function FormContent({ formStyleClass, children }) {
             </div>
         </div>
     );
-
 }
 
 export function FormFooter({ close, submitPreloader, submitLabel, formTag, onSubmit }) {
@@ -111,7 +110,7 @@ export function FormFooter({ close, submitPreloader, submitLabel, formTag, onSub
                         {...(!formTag ? { onClick: onSubmit } : {})}
                         className="pv-btn pv-bg-blue pv-bg-hover-blue  pv-float-right pv-color-white">
 
-                        {submitPreloader && <Preloader submit />}                       {submitLabel ? submitLabel : i18n.save}
+                        {submitPreloader && <Preloader submit />} {submitLabel ? submitLabel : i18n.save}
                     </button>
                 </div>
             </div>
