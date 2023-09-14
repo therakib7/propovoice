@@ -39,6 +39,7 @@ class Invoice extends Component {
     const i18n = ndpv.i18n;
     this.state = {
       preload: true,
+      submitPreloader: false,
       title: "",
       tabs: [
         {
@@ -461,10 +462,12 @@ class Invoice extends Component {
 
   handleSave = () => {
     let editId = this.props.id;
+    this.setState({ submitPreloader: true });
     if (!editId) {
       let invoice = { ...this.state.invoice };
 
       ApiInv.create(invoice).then((resp) => {
+        this.setState({ submitPreloader: false });
         if (resp.data.success) {
           this.updateEdit(resp.data.data);
           this.props.routeChange(resp.data.data.id);
@@ -481,6 +484,7 @@ class Invoice extends Component {
       });
     } else {
       ApiInv.update(editId, this.state.invoice).then((resp) => {
+        this.setState({ submitPreloader: false });
         if (resp.data.success) {
           toast.success(ndpv.i18n.aUpd, {
             position: toast.POSITION.BOTTOM_RIGHT,
@@ -836,6 +840,7 @@ class Invoice extends Component {
                   <button
                     className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white pv-mt-20"
                     onClick={this.handleSave}
+                    disabled={this.state.submitPreloader}
                   >
                     {this.state.msg.saveTxt} {i18n.nd} {i18n.cont}
                     <svg
@@ -855,23 +860,6 @@ class Invoice extends Component {
 
                 {currentTab == "preview" && (
                   <>
-                    {/* <button
-											className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-10 pv-br-4"
-											onClick={() => this.setState({ shareModal: true })} >
-											<svg
-												width={14}
-												height={12}
-												viewBox="0 0 14 12"
-												fill="none"
-
-											>
-												<path
-													d="M6.667 8.333H5.333a6 6 0 00-5.312 3.206 6.667 6.667 0 016.645-7.207V.667l7 5.667-7 5.666V8.333zM5.333 6.999H8v2.206l3.547-2.872L8 3.46v2.205H6.667a5.321 5.321 0 00-4.038 1.849 7.325 7.325 0 012.704-.516z"
-													fill="#2D3748"
-												/>
-											</svg>
-											{i18n.share}
-										</button> */}
                     <button
                       className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white pv-mt-20"
                       onClick={() => this.setState({ emailModal: true })}
@@ -1249,7 +1237,6 @@ class Invoice extends Component {
                                     wc={this.state.wc}
                                     data={invoice}
                                     subs={invoice.recurring.subscription}
-                                  //handleSave={this.handleSave}
                                   />
                                 </li>
                               )}
