@@ -1,10 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from "react";
-import { toast } from 'react-toastify';
 import useClickOutside from 'block/outside-click';
-import api from 'api';
 
-import pro from 'block/pro-alert';
-import ProLabel from 'block/pro-alert/label';
 
 export default (props) => {
 	const dropdownContent = useRef();
@@ -58,10 +54,10 @@ export default (props) => {
 		}
 	}
 
-	const { i18n, caps } = ndpv;
+	const { i18n } = ndpv;
 	return (
 		<>
-			{value && value.map((item, i) => {
+			{value && Array.isArray(value) && value.map((item, i) => {
 				return (
 					<span key={i} className="pv-badge">{item} <b onClick={() => handleDelete(item)}>X</b></span>
 				)
