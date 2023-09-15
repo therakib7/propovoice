@@ -5,10 +5,12 @@ use Ndpv\Model\Deal;
 use Ndpv\Model\Org;
 use Ndpv\Model\Person;
 use Ndpv\Model\Project;
+use Ndpv\Traits\Singleton;
 
 class Contact
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/contacts/(?P<id>\d+)", [

@@ -2,10 +2,12 @@
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
+use Ndpv\Traits\Singleton;
 
 class Action
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/actions" . ndpv()->plain_route(), [

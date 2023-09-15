@@ -6,10 +6,12 @@ use Ndpv\Helper\Fns;
 use Ndpv\Model\Client as ModelClient;
 use Ndpv\Model\Org;
 use Ndpv\Model\Person;
+use Ndpv\Traits\Singleton;
 
 class Client
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/clients/(?P<id>\d+)", [

@@ -6,10 +6,12 @@ use Ndpv\Model\Contact;
 use Ndpv\Model\Invoice;
 use Ndpv\Model\Org;
 use Ndpv\Model\Person;
+use Ndpv\Traits\Singleton;
 
 class Project
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
 

@@ -3,10 +3,12 @@
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Invoice;
+use Ndpv\Traits\Singleton;
 
 class PaymentProcess
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/payment-process" . ndpv()->plain_route(), [

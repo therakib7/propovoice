@@ -1,9 +1,12 @@
 <?php
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Traits\Singleton;
+
 class Note
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/notes/(?P<id>\d+)", [

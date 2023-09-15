@@ -6,9 +6,12 @@ use Ndpv\Model\Client;
 use Ndpv\Model\Deal;
 use Ndpv\Model\Lead;
 use Ndpv\Model\Project;
+use Ndpv\Traits\Singleton;
 
 class Dashbaord
 {
+    use Singleton;
+    
     public $months = [
         1 => "Jan",
         2 => "Feb",

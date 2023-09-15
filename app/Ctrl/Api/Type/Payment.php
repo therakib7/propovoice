@@ -1,9 +1,12 @@
 <?php
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Traits\Singleton;
+
 class Payment
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
 

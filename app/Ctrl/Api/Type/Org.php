@@ -4,13 +4,14 @@ namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Client;
 use Ndpv\Model\Person;
+use Ndpv\Traits\Singleton;
 
 class Org
 {
+    use Singleton;
 
     public function register_routes()
     {
-
         register_rest_route("ndpv/v1", "/organizations/(?P<id>\d+)", [
             "methods" => "GET",
             "callback" => [$this, "get_single"],

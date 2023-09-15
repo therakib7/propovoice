@@ -3,10 +3,12 @@
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
+use Ndpv\Traits\Singleton;
 
 class Taxonomy
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/taxonomies/(?P<id>\d+)", [

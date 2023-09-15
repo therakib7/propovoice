@@ -5,10 +5,12 @@ namespace Ndpv\Ctrl\Api\Type;
 use Ndpv\Helper\Fns;
 use Ndpv\Model\Invoice as ModelInvoice;
 use Ndpv\Model\Contact;
+use Ndpv\Traits\Singleton;
 
 class EstInv
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/invoices/(?P<id>\d+)", [

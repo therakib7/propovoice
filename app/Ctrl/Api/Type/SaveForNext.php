@@ -2,8 +2,12 @@
 
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Traits\Singleton;
+
 class SaveForNext
 {
+    use Singleton;
+    
     private $option_name = 'save_for_next_data';
 
     public function register_routes()

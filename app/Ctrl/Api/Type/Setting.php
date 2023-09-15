@@ -2,9 +2,12 @@
 
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Traits\Singleton;
+
 class Setting
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/settings" . ndpv()->plain_route(), [

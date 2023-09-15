@@ -2,9 +2,12 @@
 
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Traits\Singleton;
+
 class File
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
 

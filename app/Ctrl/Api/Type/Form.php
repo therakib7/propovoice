@@ -3,10 +3,12 @@
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Model\Form as ModelForm;
+use Ndpv\Traits\Singleton;
 
 class Form
 {
-
+    use Singleton;
+    
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/forms" . ndpv()->plain_route(), [

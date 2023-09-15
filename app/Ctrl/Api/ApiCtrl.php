@@ -32,78 +32,31 @@ class ApiCtrl
 
 	public function __construct()
 	{
-		add_action("rest_api_init", function() {
-			$lead = new Lead();
-			$lead->register_routes();
-
-			$task = new Task();
-			$task->register_routes();
-
-			$note = new Note();
-			$note->register_routes();
-
-			$file = new File();
-			$file->register_routes();
-
-			$client = new Client();
-			$client->register_routes();
-
-			$deal = new Deal();
-			$deal->register_routes();
-
-			$person = new Person();
-			$person->register_routes();
-
-			$org = new Org();
-			$org->register_routes();
-
-			$contact = new Contact();
-			$contact->register_routes();
-
-			$project = new Project();
-			$project->register_routes();
-
-			$invoice = new EstInv();
-			$invoice->register_routes();
-
-			$business = new Business();
-			$business->register_routes();
-
-			$email = new Email();
-			$email->register_routes();
-
-			$media = new Media();
-			$media->register_routes();
-
-			$payment = new Payment();
-			$payment->register_routes();
-
-			$payment_process = new PaymentProcess();
-			$payment_process->register_routes();
-
-			$dashboard = new Dashbaord();
-			$dashboard->register_routes();
-
-			$action = new Action();
-			$action->register_routes();
-
-			$taxonomy = new Taxonomy();
-			$taxonomy->register_routes();
-
-			$form = new Form();
-			$form->register_routes();
-
-			$webhook = new Webhook();
-			$webhook->register_routes();
-
-			$setting = new Setting();
-			$setting->register_routes();
-
-			$team = new Team();
-			$team->register_routes();
-
-			$save_for_next = new SaveForNext();
-			$save_for_next->register_routes();
+		add_action("rest_api_init", function() { 
+			Lead::getInstance()->register_routes();
+			Deal::getInstance()->register_routes();
+			Task::getInstance()->register_routes();
+			Note::getInstance()->register_routes();
+			File::getInstance()->register_routes();
+			Client::getInstance()->register_routes();
+			Person::getInstance()->register_routes();
+			Org::getInstance()->register_routes();
+			Contact::getInstance()->register_routes();
+			Project::getInstance()->register_routes();
+			EstInv::getInstance()->register_routes();
+			Business::getInstance()->register_routes();
+			Email::getInstance()->register_routes();
+			Media::getInstance()->register_routes();
+			Payment::getInstance()->register_routes();
+			PaymentProcess::getInstance()->register_routes();
+			Dashbaord::getInstance()->register_routes();
+			Action::getInstance()->register_routes();
+			Taxonomy::getInstance()->register_routes();
+			Form::getInstance()->register_routes();
+			Webhook::getInstance()->register_routes();
+			Setting::getInstance()->register_routes();
+			Team::getInstance()->register_routes();
+			SaveForNext::getInstance()->register_routes();
 		});
 
 		//for plain permalink api support
