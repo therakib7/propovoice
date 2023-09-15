@@ -22,7 +22,7 @@ const Paypal = lazy(() => import("./payment/paypal"));
 const DownloadPDF = (props) => {
   const i18n = ndpv.i18n;
 
-  const fileName = Date.now();
+  const fileName = props.data.invoice.path + '-' + props.data.invoice.id;
   const options = {
     // default is `save`
     filename: fileName,
@@ -32,9 +32,7 @@ const DownloadPDF = (props) => {
     page: {
       // margin is in MM, default is Margin.NONE = 0
       margin: Margin.SMALL,
-
       format: "A4",
-
       orientation: "portrait",
     },
     canvas: {
@@ -75,7 +73,7 @@ const EditDownload = (props) => {
   const i18n = ndpv.i18n;
   return (
     <>
-      <DownloadPDF content={() => props.componentRef} />
+      <DownloadPDF data={props.data} content={() => props.componentRef} />
 
       <ReactToPrint
         content={() => props.componentRef}
@@ -83,8 +81,8 @@ const EditDownload = (props) => {
         trigger={() => (
           <button
             className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-            // style={{ color: '#000', marginRight: '5px' }}
-            // onClick={() => props.handlePrint()}
+          // style={{ color: '#000', marginRight: '5px' }}
+          // onClick={() => props.handlePrint()}
           >
             <svg width={15} height={14} viewBox="0 0 15 14" fill="none">
               <path
@@ -377,7 +375,7 @@ export default class Invoice extends Component {
           <div className="col-md-8 pv-no-print" style={{ margin: "30px 0" }}>
             <div className="" style={{ maxWidth: "794px", margin: "0 auto" }}>
               <div className="pv-float-left">
-                <EditDownload componentRef={this.componentRef} />
+                <EditDownload data={this.state} componentRef={this.componentRef} />
               </div>
               <div className="pv-float-right">
                 <InvoiceBtn
@@ -425,7 +423,7 @@ export default class Invoice extends Component {
           <div className="col-md-8 pv-no-print" style={{ margin: "30px 0" }}>
             <div className="" style={{ maxWidth: "794px", margin: "0 auto" }}>
               <div className="pv-float-left">
-                <EditDownload componentRef={this.componentRef} />
+                <EditDownload data={this.state} componentRef={this.componentRef} />
               </div>
               <div className="pv-float-right">
                 <InvoiceBtn
