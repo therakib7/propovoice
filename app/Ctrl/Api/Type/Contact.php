@@ -380,24 +380,14 @@ class Contact
                     update_post_meta($post_id, "email", $email);
                 }
 
-                if ($org_name) {
-                    update_post_meta($post_id, "org_name", $org_name);
-                }
-
-                if ($web) {
-                    update_post_meta($post_id, "web", $web);
-                }
-
-                if ($mobile) {
-                    update_post_meta($post_id, "mobile", $mobile);
-                }
+                update_post_meta($post_id, "org_name", $org_name);
+                update_post_meta($post_id, "web", $web);
+                update_post_meta($post_id, "mobile", $mobile);
 
                 update_post_meta($post_id, "country", $country);
                 update_post_meta($post_id, "region", $region);
 
-                if ($address) {
-                    update_post_meta($post_id, "address", $address);
-                }
+                update_post_meta($post_id, "address", $address);
 
                 if ($img) {
                     update_post_meta($post_id, "img", $img);

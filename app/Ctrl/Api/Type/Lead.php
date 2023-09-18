@@ -424,10 +424,6 @@ class Lead
                     wp_set_post_terms($post_id, $tags, "ndpv_tag");
                 }
 
-                if ($note) {
-                    update_post_meta($post_id, "note", $note);
-                }
-
                 //custom field
                 foreach (Fns::custom_field("lead") as $value) {
                     $field = '';
@@ -484,11 +480,7 @@ class Lead
         $tags = isset($param["tags"])
             ? array_map("absint", $param["tags"])
             : null;
-        $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
-        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
-        $img = isset($param["img"]) ? absint($param["img"]) : null;
-
-        // $img = isset($contact['img']) && isset($contact['img']['id']) ? absint($contact['img']['id']) : null;
+        $desc = isset($param["desc"]) ? nl2br($param["desc"]) : ""; 
 
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
@@ -496,10 +488,6 @@ class Lead
                 esc_html__("Contact info is missing", "propovoice")
             );
         }
-
-        /* if (!is_email($email)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        } */
 
         $person = new Person();
         if ($person_id) {
@@ -560,21 +548,13 @@ class Lead
                     update_post_meta($post_id, "org_id", $org_id);
                 }
 
-                if ($budget) {
-                    update_post_meta($post_id, "budget", $budget);
-                }
+                update_post_meta($post_id, "budget", $budget);
 
                 if ($currency) {
                     update_post_meta($post_id, "currency", $currency);
                 }
 
-                if ($tags) {
-                    wp_set_post_terms($post_id, $tags, "ndpv_tag");
-                }
-
-                if ($note) {
-                    update_post_meta($post_id, "note", $note);
-                }
+                wp_set_post_terms($post_id, $tags, "ndpv_tag");
 
                 //custom field
                 foreach (Fns::custom_field("lead") as $value) {

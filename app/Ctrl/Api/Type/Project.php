@@ -723,18 +723,6 @@ class Project
         $note = isset($param["note"]) ? nl2br($param["note"]) : "";
         $change_tax = isset($param["change_tax"]) ? true : false;
 
-        /* if (empty($first_name) &&  empty($org_name)) {
-            $reg_errors->add('field', esc_html__('Contact info is missing', 'propovoice'));
-        } */
-
-        /* if (empty($status_id)) {
-            $reg_errors->add('field', esc_html__('Please select a status', 'propovoice'));
-        }
-
-        if (empty($contact_id)) {
-            $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
-        } */
-
         if (
             !$reorder &&
             !$change_tax &&
@@ -810,12 +798,7 @@ class Project
                 update_post_meta($post_id, 'currency', $currency);
                 update_post_meta($post_id, 'start_date', $start_date);
                 update_post_meta($post_id, 'due_date', $due_date);
-
-                if ($tags) {
-                    wp_set_post_terms($post_id, $tags, "ndpv_tag");
-                }
-
-                update_post_meta($post_id, "note", $note);
+                wp_set_post_terms($post_id, $tags, "ndpv_tag");
 
                 //custom field
                 foreach( Fns::custom_field('project') as $value ) {

@@ -642,14 +642,6 @@ class Deal
         $change_tax = isset($param["change_tax"]) ? true : false;
         $change_prob = isset($param["change_prob"]) ? true : false;
 
-        /* if (empty($stage_id)) {
-            $reg_errors->add('field', esc_html__('Please select a stage', 'propovoice'));
-        }
-
-        if (empty($contact_id)) {
-            $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
-        } */
-
         if (
             !$reorder &&
             !$change_tax &&
@@ -734,9 +726,7 @@ class Deal
                     update_post_meta($post_id, "org_id", $org_id);
                 }
 
-                if ($budget) {
-                    update_post_meta($post_id, "budget", $budget);
-                }
+                update_post_meta($post_id, "budget", $budget);
 
                 if ($currency) {
                     update_post_meta($post_id, "currency", $currency);
@@ -746,11 +736,7 @@ class Deal
                     update_post_meta($post_id, "probability", $probability);
                 }
 
-                if ($tags) {
-                    wp_set_post_terms($post_id, $tags, "ndpv_tag");
-                }
-
-                update_post_meta($post_id, 'note', $note);
+                wp_set_post_terms($post_id, $tags, "ndpv_tag");
 
                 //custom field
                 foreach (Fns::custom_field('deal') as $value) {

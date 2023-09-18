@@ -70,7 +70,6 @@ class Taxonomy
 
     public function get($req)
     {
-        // wp_send_json($req->get_params());
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
@@ -459,8 +458,6 @@ class Taxonomy
             } else if ($delete) {
                 if ($post_id) { //delete term from post
                     wp_remove_object_terms($post_id, $term_id, 'ndpv_' . $taxonomy);
-                } else { // delete term
-                    // wp_delete_term($term_id, 'ndpv_' . $taxonomy);
                 }
                 wp_send_json_success();
             } else {
