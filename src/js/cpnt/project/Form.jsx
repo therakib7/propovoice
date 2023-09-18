@@ -335,7 +335,10 @@ class Form extends Component {
                                         disabled={this.fromClient}
                                         value={form.email}
                                         onChange={this.handleChange}
-                                        validation={{ email: { value: true } }}
+                                        validation={{
+                                            required: { value: true },
+                                            email: { value: true }
+                                        }}
                                     />
 
                                     <div className="col-lg">
