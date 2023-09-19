@@ -180,8 +180,7 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
-= 1.7.1 (14-Sep-2023) =
-* Update: Notification
+= 1.7.1 (18-Sep-2023) =
 * Update: Direct PDF download
 * Update: Extra amount reserial to Discount, Fee, Tax
 
