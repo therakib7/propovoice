@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { currency, countryByCode } from "helper";
 import { useNavigate } from 'react-router-dom';
 import WithApi from 'hoc/Api';
 
@@ -106,7 +107,6 @@ function Pipeline(props) {
 											height={24}
 											viewBox="0 0 24 24"
 											fill="none"
-
 										>
 											<path
 												fillRule="evenodd"
@@ -145,14 +145,6 @@ function Pipeline(props) {
 											{...provided.droppableProps}
 											ref={provided.innerRef}
 											className="pv-board-content"
-										/* style={{
-											background: snapshot.isDraggingOver
-												? "lightblue"
-												: "lightgrey",
-											padding: 4,
-											width: 250,
-											minHeight: 500
-										}} */
 										>
 											{column.items.map((item, index) => {
 												let img = ndpv.assetImgUri + 'avatar.png';
@@ -174,22 +166,11 @@ function Pipeline(props) {
 																	ref={provided.innerRef}
 																	{...provided.draggableProps}
 																	{...provided.dragHandleProps}
-																	/* style={{
-																		userSelect: "none",
-																		padding: 16,
-																		margin: "0 0 8px 0",
-																		minHeight: "50px",
-																		backgroundColor: snapshot.isDragging
-																			? "#263B4A"
-																			: "#456C86",
-																		color: "white",
-																		...provided.draggableProps.style
-																	}} */
 																	className="pv-board-column-item pv-bg-shadow"
 																>
 																	<div className="pv-board-item-top">
 																		<h4>{CharLimit(item.title)}</h4>
-																		<span>$ {item.budget}</span>
+																		{item.budget && <span>{currency(item.budget, item.currency)}</span>}
 																		{!wage.length && <p>{i18n.proba}: {item.probability}%</p>}
 																	</div>
 																	<div className="pv-avatar-content">
@@ -197,13 +178,23 @@ function Pipeline(props) {
 																		<div className="pv-avatar-text">
 																			<h5>{(item.person) ? item.person.first_name : item.org.name} </h5>
 																			<p>
-																				{(item.person) ? item.person.region : item.org.region}
-
-																				{(item.person) ? item.person.country : item.org.country}
+																				{item.person ? <>
+																					{(item.person.region || item.person.country) &&
+																						<>
+																							{(item.person.region && item.person.country) ? item.person.region + ', ' : ''} {countryByCode(item.person.country)}
+																						</>
+																					}
+																				</> : <>
+																					{(item.org.region || item.org.country) &&
+																						<>
+																							{(item.org.region && item.org.country) ? item.org.region + ', ' : ''} {countryByCode(item.org.country)}
+																						</>
+																					}
+																				</>}
 																			</p>
 
-																			{column.type == 'won' && <span className="pv-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>Won</span>}
-																			{column.type == 'lost' && <span className="pv-badge" style={{ backgroundColor: '#FFDEEB', color: '#FF267F' }}>Lost</span>}
+																			{column.type == 'won' && <span className="pv-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>{i18n.won}</span>}
+																			{column.type == 'lost' && <span className="pv-badge" style={{ backgroundColor: '#FFDEEB', color: '#FF267F' }}>{i18n.lost}</span>}
 																		</div>
 																	</div>
 																</div>
