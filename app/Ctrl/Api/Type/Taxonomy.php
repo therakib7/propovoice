@@ -376,8 +376,8 @@ class Taxonomy
                     }
 
                     wp_send_json_success($term_id);
-                } else {
-                    wp_send_json_error();
+                } else { 
+                    wp_send_json_error($add_taxonomy->get_error_messages());
                 }
             }
         }

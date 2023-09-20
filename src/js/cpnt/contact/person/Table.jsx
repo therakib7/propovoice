@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import Moment from 'react-moment';
 import Action from 'block/action/row';
 
 const TableHeader = props => {

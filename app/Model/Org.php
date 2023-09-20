@@ -186,6 +186,9 @@ class Org
         }
         $data['email'] = isset($meta['email']) ? $meta['email'][0] : '';
         $data['mobile'] = isset($meta['mobile']) ? $meta['mobile'][0] : '';
+        $data["is_client"] = isset($meta["is_client"])
+            ? $meta["is_client"][0]
+            : false;
         $data["client_portal"] = isset($meta["client_portal"])
             ? $meta["client_portal"][0]
             : false;
