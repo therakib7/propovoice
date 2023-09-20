@@ -292,6 +292,7 @@ class Form extends Component {
         }
 
         const submitPreloader = this.props.reload ? this.state.submitPreloader : this.props.submitPreloader;
+
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -305,7 +306,11 @@ class Form extends Component {
 
                     </div>
 
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper
+                        submitHandler={this.handleSubmit}
+                        submitPreloader={submitPreloader}
+                        close={this.props.close}
+                    >
                         <FormContent formStyleClass="pv-form-style-one">
 
                             <div className="row">

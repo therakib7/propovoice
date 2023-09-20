@@ -5,8 +5,8 @@ import { checkAllValidation, groupProcessing, removeError, setGroupValidation } 
 
 export const FormContext = createContext({});
 
-export function FormWrapper({ submitHandler, close, submitLabel, children, formTag = true }) {
-
+export function FormWrapper(props) {
+    const { submitHandler, close, submitLabel, children, formTag = true } = props;
     // const form = {
     //     email: {
     //         value: '',
@@ -33,7 +33,8 @@ export function FormWrapper({ submitHandler, close, submitLabel, children, formT
     const [groupFields, setGroupFields] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [submitEvent, setSubmitEvent] = useState();
-    const [submitPreloader, setSubmitPreloader] = useState(false);
+    const [submitPreloader, setSubmitPreloader] = useState(props.submitPreloader);
+
 
     useEffect(() => {
         if (isSubmitted && submitEvent) {
@@ -44,7 +45,7 @@ export function FormWrapper({ submitHandler, close, submitLabel, children, formT
                 toast.error("Invalid submission!!!")
             }
 
-            setSubmitPreloader(false)
+            // setSubmitPreloader(false)
             setIsSubmitted(false)
         }
     }, [isSubmitted, errorFields])

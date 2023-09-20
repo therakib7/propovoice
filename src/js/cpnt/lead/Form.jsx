@@ -258,6 +258,8 @@ export default class Form extends Component {
 
         const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
 
+        const submitPreloader = this.props.reload ? this.state.submitPreloader : this.props.submitPreloader;
+
         const emailInput = {
             label: i18n.email,
             type: 'email',
@@ -299,7 +301,10 @@ export default class Form extends Component {
                         <p>{sprintf(i18n.formDesc, modalType, i18n.lead)}</p>
                     </div>
 
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close} >
+                    <FormWrapper
+                        submitHandler={this.handleSubmit}
+                        submitPreloader={submitPreloader}
+                        close={this.props.close} >
                         <FormContent formStyleClass="pv-form-style-one">
                             <Contact
                                 first_name={form.first_name}
