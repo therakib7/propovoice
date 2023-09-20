@@ -133,7 +133,7 @@ export default class Form extends Component {
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {this.props.title}</h2>
                     </div>
 
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
                                 <TextInput

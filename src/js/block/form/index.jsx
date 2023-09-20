@@ -5,8 +5,7 @@ import { checkAllValidation, groupProcessing, removeError, setGroupValidation } 
 
 export const FormContext = createContext({});
 
-export function FormWrapper(props) {
-    const { submitHandler, close, submitLabel, children, formTag = true } = props;
+export function FormWrapper({ submitHandler, submitPreloader, close, submitLabel, children, formTag = true }) {
     // const form = {
     //     email: {
     //         value: '',
@@ -33,7 +32,7 @@ export function FormWrapper(props) {
     const [groupFields, setGroupFields] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [submitEvent, setSubmitEvent] = useState();
-    const [submitPreloader, setSubmitPreloader] = useState(props.submitPreloader);
+    // const [submitPreloader, setSubmitPreloader] = useState(props.submitPreloader);
 
 
     useEffect(() => {
@@ -61,12 +60,6 @@ export function FormWrapper(props) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        setSubmitPreloader(true)
-        // groupProcessing(form, setGroupFields)
-
-        // for (const [_group, fields] of Object.entries(groupFields)) {
-        //     setGroupValidation(fields, form, setForm)
-        // }
         checkAllValidation(form, setForm, setErrorFields)
         setIsSubmitted(true)
         setSubmitEvent(e)
@@ -108,6 +101,7 @@ export function FormFooter({ close, submitPreloader, submitLabel, formTag, onSub
                 </div>
                 <div className="col">
                     <button type='submit'
+                        disabled={submitPreloader}
                         {...(!formTag ? { onClick: onSubmit } : {})}
                         className="pv-btn pv-bg-blue pv-bg-hover-blue  pv-float-right pv-color-white">
 

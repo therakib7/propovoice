@@ -100,7 +100,7 @@ export default class Business extends Component {
         const i18n = ndpv.i18n;
         const submitPreloader = this.state.submitPreloader;
         return (
-            <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+            <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
                 <FormContent formStyleClass="pv-form-style-one">
                     <div className="row">
                         <div className="col-md">

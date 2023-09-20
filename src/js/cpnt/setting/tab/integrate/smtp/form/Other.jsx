@@ -70,7 +70,7 @@ export default class Form extends Component {
         const i18n = ndpv.i18n;
         const { host, port, secure, auth, user, pass } = this.state.form;
         return (
-            <FormWrapper submitHandler={this.handleSubmit} submitLabel={i18n.act}>
+            <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} submitLabel={i18n.act}>
                 <FormContent formStyleClass="pv-form-style-one">
                     <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>Other SMTP</h4>
 

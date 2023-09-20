@@ -62,7 +62,7 @@ export default (props) => {
     }
     const i18n = ndpv.i18n;
     return (
-        <FormWrapper submitHandler={handleSubmit} close={props.close}>
+        <FormWrapper submitPreloader={submitPreloader} submitHandler={handleSubmit} close={props.close}>
             <FormContent formStyleClass="pv-form-style-one">
                 <h4 className="pv-title-medium pv-mb-15">Brand Logo</h4>
                 <div className="row">

@@ -147,7 +147,7 @@ export default class Form extends Component {
                         <h2 className="pv-modal-title">{modalType} {i18n.team + ' ' + i18n.member}</h2>
                         <p>{sprintf(i18n.formDesc, modalType, i18n.team + ' ' + i18n.member)}</p>
                     </div>
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
 
                             <div className="row">

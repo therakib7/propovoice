@@ -109,7 +109,7 @@ class Form extends Component {
                         <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.biz + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
                                 <div className="col-md">

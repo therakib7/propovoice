@@ -306,9 +306,8 @@ class Form extends Component {
 
                     </div>
 
-                    <FormWrapper
+                    <FormWrapper submitPreloader={submitPreloader}
                         submitHandler={this.handleSubmit}
-                        submitPreloader={submitPreloader}
                         close={this.props.close}
                     >
                         <FormContent formStyleClass="pv-form-style-one">

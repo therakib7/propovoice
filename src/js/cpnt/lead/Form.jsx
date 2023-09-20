@@ -304,7 +304,7 @@ export default class Form extends Component {
                         <p>{sprintf(i18n.formDesc, modalType, i18n.lead)}</p>
                     </div>
 
-                    <FormWrapper
+                    <FormWrapper submitPreloader={submitPreloader}
                         submitHandler={this.handleSubmit}
                         submitPreloader={submitPreloader}
                         close={this.props.close} >

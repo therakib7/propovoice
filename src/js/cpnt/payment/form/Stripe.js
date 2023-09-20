@@ -82,7 +82,8 @@ class FormStripe extends Component {
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.stripe}</h2>
                         <p>Please fill up necessary informaiton in the form.</p>
                     </div>
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit}
+                        close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
 

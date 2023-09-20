@@ -300,7 +300,7 @@ class Form extends Component {
                         <p>{sprintf(i18n.formDesc, title, i18n.project)}</p>
                     </div>
 
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
 
                             <div className="row">
