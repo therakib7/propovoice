@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback, useState } from 'react';
 import useClickOutside from 'block/outside-click';
 import { Edit } from 'block/icon';
 
@@ -9,8 +9,6 @@ export default (props) => {
     const closeAction = useCallback(() => setDropdownAction(false), []);
     useClickOutside(actionDropdownRef, closeAction);
 
-    const row = props.row;
-    const i18n = ndpv.i18n;
     return (
         <div
             className={'pv-action-content pv-action-btn'}

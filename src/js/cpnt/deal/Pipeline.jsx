@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useRef, useCallback, useState, useEffect } from 'react';
+import useClickOutside from 'block/outside-click';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { currency, countryByCode } from "helper";
 import { useNavigate } from 'react-router-dom';
@@ -60,16 +61,19 @@ const onDragEnd = (update, result, columns, setColumns) => {
 };
 
 function Pipeline(props) {
-	// const [columns, setColumns] = useState(columnsFromBackend);
+
+	const actionStageDropdownRef = useRef();
+	const [dropdownStageAction, setStageDropdownAction] = useState(null);
+	const closeAction = useCallback(() => setStageDropdownAction(null), []);
+	useClickOutside(actionStageDropdownRef, closeAction);
+
 	const [columns, setColumns] = useState({});
 
-	const [dropdown, setDropdown] = useState(null);
-
-	const showDropdown = (id) => {
-		if (dropdown == id) {
-			setDropdown(null);
+	const showStageDropdown = (id) => {
+		if (dropdownStageAction == id) {
+			setStageDropdownAction(null);
 		} else {
-			setDropdown(id);
+			setStageDropdownAction(id);
 		}
 	};
 
@@ -101,7 +105,7 @@ function Pipeline(props) {
 							<div className="pv-board-column-title pv-bg-shadow" style={{ borderColor: column.color, color: column.color }}>
 								<h4 className="">{column.name}</h4>
 								<div className="pv-action-content">
-									<button className={(columnId == dropdown ? 'pv-active' : '')} onClick={() => showDropdown(columnId)}>
+									<button className={(columnId == dropdownStageAction ? 'pv-active' : '')} onClick={() => showStageDropdown(columnId)}>
 										<svg
 											width={24}
 											height={24}
@@ -129,12 +133,8 @@ function Pipeline(props) {
 										</svg>
 									</button>
 
-									{columnId == dropdown && <div className="pv-dropdown-content pv-show"
-									// ref={popover}
-									>
-										{/* <a onClick={() => props.editEntry('edit', columnId)}>{i18n.edit}</a> */}
-										<a onClick={() => { props.taxForm('edit', column); showDropdown(columnId); }}>{i18n.edit}</a>
-										{/* <a onClick={() => props.deleteEntry('single', columnId)}>{i18n.del}</a> */}
+									{columnId == dropdownStageAction && <div className="pv-dropdown-content pv-show" ref={actionStageDropdownRef} >
+										<a onClick={() => { props.taxForm('edit', column); showStageDropdown(columnId); }}>{i18n.edit}</a>
 									</div>}
 								</div>
 							</div>
