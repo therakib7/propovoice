@@ -141,10 +141,7 @@ class Client
             $query_data["type"] = $type;
             $query_data["first_name"] = isset($queryMeta["first_name"])
                 ? $queryMeta["first_name"][0]
-                : "";
-            $query_data["org_name"] = isset($queryMeta["name"])
-                ? $queryMeta["name"][0]
-                : "";
+                : "";            
             $query_data["email"] = isset($queryMeta["email"])
                 ? $queryMeta["email"][0]
                 : "";
@@ -166,6 +163,14 @@ class Client
             $query_data["img"] = isset($queryMeta["img"])
                 ? $queryMeta["img"][0]
                 : "";
+
+            $query_data["org"] = null;
+            $org_id = get_post_meta($id, "org_id", true);
+            if ($org_id) {
+                $org = new Org();
+                $query_data["org"] = $org->single($org_id);
+            }
+
             $query_data["client_portal"] = isset($queryMeta["client_portal"])
                 ? $queryMeta["client_portal"][0]
                 : false;
@@ -280,16 +285,14 @@ class Client
 
             $org = new Org();
             if (!$person_id && $org_id) {
-                $param["is_client"] = true;
+                $org->update($param);
+            }
+
+            if ($org_id) {
                 $org->update($param);
             }
 
             if (!$org_id && $org_name) {
-                if ($first_name) {
-                    $param["is_client"] = false;
-                } else {
-                    $param["is_client"] = true;
-                }
                 if ( $person_id ) {
                     $param["person_id"] = $person_id;
                 }
@@ -297,6 +300,11 @@ class Client
             }
 
             $post_id = ($person_id) ? $person_id : $org_id;
+
+            if ($org_id) {
+                update_post_meta($post_id, "org_id", $org_id);
+            }
+
             $client_model = new ModelClient();
             $name = ($person_id) ? $first_name : $org_name;
             $client_model->set_user_if_not($post_id, $name, $email, $client_portal);
@@ -353,13 +361,11 @@ class Client
 
         $first_name = isset($param["first_name"])
             ? sanitize_text_field($req["first_name"])
-            : null;
-        $last_name = isset($param["last_name"])
-            ? sanitize_text_field($req["last_name"])
-            : null;
+            : null; 
         $email = isset($param["email"])
             ? strtolower(sanitize_email($req["email"]))
             : null;
+        $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
         $org_name = isset($param["org_name"])
             ? sanitize_text_field($req["org_name"])
             : null;
@@ -434,11 +440,7 @@ class Client
             if (!is_wp_error($post_id)) {
                 if ($first_name) {
                     update_post_meta($post_id, "first_name", $first_name);
-                }
-
-                if ($last_name) {
-                    update_post_meta($post_id, "last_name", $last_name);
-                }
+                } 
 
                 if ($email) {
                     update_post_meta($post_id, "email", $email);
@@ -451,8 +453,31 @@ class Client
                 update_post_meta($post_id, "region", $region);
                 update_post_meta($post_id, "address", $address);
 
-                if ($img) {
-                    update_post_meta($post_id, "img", $img);
+                $org = new Org();
+                if (!$org_id && $org_name) {
+                    $org_id = $org->create([
+                        "org_name" => $org_name,
+                        "person_id" => $post_id,
+                    ]);
+                } else if ($org_id && $org_name) {
+                    $org->update([
+                        "org_id" => $org_id,
+                        "org_name" => $org_name
+                    ]);
+                }
+
+                if ($org_id && !$org_name) {
+                    update_post_meta($post_id, "org_id", null);
+                } else if ($org_id) {
+                    update_post_meta($post_id, "org_id", $org_id);
+                }
+
+                if ( isset($param['img']) ) { 
+                    if ($img) {
+                        update_post_meta($post_id, "img", $img);
+                    } else {
+                        delete_post_meta($post_id, "img");
+                    }
                 }
 
                 $client_model = new ModelClient();

@@ -720,7 +720,6 @@ class Project
             ? array_map("absint", $param["tags"])
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
-        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
         $change_tax = isset($param["change_tax"]) ? true : false;
 
         if (
@@ -745,6 +744,10 @@ class Project
 
         $org = new Org();
         if (!$person_id && $org_id) {
+            $org->update($param);
+        }
+
+        if ($org_id && $org_name) {
             $org->update($param);
         }
 
@@ -790,7 +793,9 @@ class Project
                     update_post_meta($post_id, "person_id", $person_id);
                 }
 
-                if ($org_id) {
+                if ($org_id && !$org_name) {
+                    update_post_meta($post_id, "org_id", null);
+                } else if ($org_id) {
                     update_post_meta($post_id, "org_id", $org_id);
                 }
 

@@ -480,7 +480,14 @@ class Person
             if (!is_wp_error($post_id)) {
                 if ($first_name) {
                     update_post_meta($post_id, "first_name", $first_name);
-                }
+                } 
+                update_post_meta($post_id, "email", $email);
+                update_post_meta($post_id, "org_name", $org_name);
+                update_post_meta($post_id, "web", $web);
+                update_post_meta($post_id, "mobile", $mobile);
+                update_post_meta($post_id, "country", $country);
+                update_post_meta($post_id, "region", $region);
+                update_post_meta($post_id, "address", $address);
 
                 $org = new Org();
                 if (!$org_id && $org_name) {
@@ -495,29 +502,18 @@ class Person
                     ]);
                 }
 
-                if ($org_id) {
+                if ($org_id && !$org_name) {
+                    update_post_meta($post_id, "org_id", null);
+                } else if ($org_id) {
                     update_post_meta($post_id, "org_id", $org_id);
                 }
 
-                update_post_meta($post_id, "email", $email);
-                update_post_meta($post_id, "org_name", $org_name);
-                update_post_meta($post_id, "web", $web);
-                update_post_meta($post_id, "mobile", $mobile);
-                update_post_meta($post_id, "country", $country);
-                update_post_meta($post_id, "region", $region);
-
-                update_post_meta($post_id, "address", $address);
-
-                if ($img) {
-                    update_post_meta($post_id, "img", $img);
-                } else {
-                    delete_post_meta($post_id, "img");
-                }
-
-                if ($img) {
-                    update_post_meta($post_id, "img", $img);
-                } else {
-                    delete_post_meta($post_id, "img");
+                if ( isset($param['img']) ) { 
+                    if ($img) {
+                        update_post_meta($post_id, "img", $img);
+                    } else {
+                        delete_post_meta($post_id, "img");
+                    }
                 }
 
                 if (isset($param['client_portal'])) {

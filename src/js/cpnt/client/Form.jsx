@@ -15,9 +15,9 @@ class Form extends Component {
         this.initialState = {
             id: null,
             first_name: '',
-            org_name: '',
             person_id: null,
             org_id: null,
+            org_name: '',
             email: '',
             web: '',
             mobile: '',
@@ -62,7 +62,13 @@ class Form extends Component {
         //condition added to stop multi rendering 
         if (this.props.modalType == 'edit') {
             if (this.state.form.id != this.props.data.id) {
-                this.setState({ form: this.props.data });
+
+                let form = this.props.data;
+                if (form.org) {
+                    form.org_name = (form.org) ? form.org.name : '';
+                    form.org_id = (form.org) ? form.org.id : null;
+                }
+                this.setState({ form });
             }
         } else {
             if (this.state.form.id != null) {

@@ -638,7 +638,6 @@ class Deal
             ? array_map("absint", $param["tags"])
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
-        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
         $change_tax = isset($param["change_tax"]) ? true : false;
         $change_prob = isset($param["change_prob"]) ? true : false;
 
@@ -722,7 +721,9 @@ class Deal
                     update_post_meta($post_id, "person_id", $person_id);
                 }
 
-                if ($org_id) {
+                if ($org_id && !$org_name) {
+                    update_post_meta($post_id, "org_id", null);
+                } else if ($org_id) {
                     update_post_meta($post_id, "org_id", $org_id);
                 }
 

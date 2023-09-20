@@ -78,7 +78,6 @@ const Contact = (props) => {
       />}
 
       {props.state.empty && <Empty mod='person' title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
-
       {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
       {props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}

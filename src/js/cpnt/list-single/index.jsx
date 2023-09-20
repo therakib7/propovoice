@@ -1223,6 +1223,7 @@ class ListSingle extends Component {
                   <>
                     <h5>{i18n.desc}:</h5>
                     <p
+                      style={{ marginTop: 0 }}
                       dangerouslySetInnerHTML={{ __html: data.desc }}
                     ></p>
                   </>

@@ -20,13 +20,7 @@ class Org
         $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
         $logo = isset($param['logo']) ? absint($param['logo']) : null;
         $is_client  = isset($param['is_client']) ? $param['is_client'] : false;
-        /* if ( empty($name) ) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        }
-
-        if (!is_email($email)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        }  */
+ 
         if ( !$person_id ) {
             $exist_id = Fns::contact_exist('org', $email);
             if ( $exist_id ) {
@@ -88,10 +82,6 @@ class Org
 
                 if ($logo) {
                     update_post_meta($post_id, 'logo', $logo);
-                }
-
-                if ($is_client) {
-                    update_post_meta($post_id, 'is_client', $is_client);
                 }
 
                 return $post_id;

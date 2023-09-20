@@ -353,7 +353,6 @@ class Lead
             ? array_map("absint", $param["tags"])
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
-        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
 
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
@@ -362,9 +361,6 @@ class Lead
             );
         }
 
-        /* if (!is_email($email)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        }  */
         $person = new Person();
         if ($person_id) {
             $person->update($param);
@@ -544,7 +540,9 @@ class Lead
                     update_post_meta($post_id, "person_id", $person_id);
                 }
 
-                if ($org_id) {
+                if ($org_id && !$org_name) {
+                    update_post_meta($post_id, "org_id", null);
+                } else if ($org_id) {
                     update_post_meta($post_id, "org_id", $org_id);
                 }
 
