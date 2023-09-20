@@ -429,7 +429,12 @@ input:-webkit-autofill:active {
         left: -20px;
         top: 2px;
     }
+
+    .pv-accordion-table-list ul li h4 {
+        line-height: 150%;
+    }
 }
+
 
 //expired license
 .ndpv-license-expired {

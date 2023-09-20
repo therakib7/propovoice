@@ -16,7 +16,7 @@ const TableBody = (props) => {
         key={index}
       >
         {!props.dashboard && (
-          <div className="pv-checkbox">
+          <div className="pv-checkbox" style={{ display: 'none' }}>
             <input
               type="checkbox"
               value={row.id}

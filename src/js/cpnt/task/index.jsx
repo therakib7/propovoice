@@ -28,23 +28,6 @@ export default (props) => {
             </div>
           </div>
         </div>
-
-        {false && (
-          <div className="col-lg-3 pv-lead-right-content">
-            <div className="pv-widget pv-timeline-box">
-              <h3 className="pv-widget-title pv-mb-15">
-                Timeline Info (Upcoming)
-              </h3>
-              <ul>
-                <li>
-                  <h4 className="timeline-title">Rakib Created a Task</h4>
-                  <span>Aprill 11, 2022</span>
-                  <span>4.10 PM</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { CountryRegionData } from 'react-country-region-selector';
 
 const currency = (amount, currency = 'USD', lang = 'en') => {
 	try {
@@ -11,6 +12,20 @@ const currency = (amount, currency = 'USD', lang = 'en') => {
 		return amount;
 	}
 };
+
+const countryByCode = (country = '') => {
+	if (country) {
+		let obj = CountryRegionData.find((o, i) => {
+			if (o[1] === country) {
+				return true; // stop searching
+			}
+		});
+
+		if (obj) {
+			return obj[0];
+		}
+	}
+}
 
 const checkRoute = () => {
 	let currentHash = window.location.hash;
@@ -53,6 +68,7 @@ const mergeObjects = (...sources) => {
 
 export {
 	currency,
+	countryByCode,
 	checkRoute,
 	mergeObjects
 };

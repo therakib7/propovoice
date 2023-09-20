@@ -1,5 +1,5 @@
 import api from "api";
-import { currency } from "helper";
+import { currency, countryByCode } from "helper";
 import Action from "block/action/row/single";
 import Taxonomy from "block/field/taxonomy";
 import Spinner from "block/preloader/spinner";
@@ -11,7 +11,7 @@ import ProjectForm from "cpnt/project/Form";
 import React, { Component, lazy, Suspense } from "react";
 import Moment from "react-moment";
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
-import { CountryRegionData } from 'react-country-region-selector';
+// import { CountryRegionData } from 'react-country-region-selector';
 import { toast } from "react-toastify";
 
 const Task = lazy(() => import("./tab/task"));
@@ -288,7 +288,7 @@ class ListSingle extends Component {
     }
   };
 
-  countryByCode = (country = '') => {
+  /* countryByCode = (country = '') => {
     if (country) {
       let obj = CountryRegionData.find((o, i) => {
         if (o[1] === country) {
@@ -300,7 +300,7 @@ class ListSingle extends Component {
         return obj[0];
       }
     }
-  }
+  } */
 
   render() {
     const { tabs = [], currentTab } = this.state;
@@ -522,14 +522,22 @@ class ListSingle extends Component {
                       <img src={img} alt="avatar" />
                       <div className="pv-avatar-text">
                         <h5 style={{ fontSize: 12 }}>
-                          {data.person ? data.person.first_name : data.org.name}{" "}
+                          {data.person ? data.person.first_name : data.org.name}
                         </h5>
                         <p style={{ fontSize: 12 }}>
-                          {data.person
-                            ? data.person.region + " "
-                            : data.org.region + " "}
-
-                          {data.person ? data.person.country : data.org.country}
+                          {data.person ? <>
+                            {(data.person.region || data.person.country) &&
+                              <>
+                                {(data.person.region && data.person.country) ? data.person.region + ', ' : ''} {countryByCode(data.person.country)}
+                              </>
+                            }
+                          </> : <>
+                            {(data.org.region || data.org.country) &&
+                              <>
+                                {(data.org.region && data.org.country) ? data.org.region + ', ' : ''} {countryByCode(data.org.country)}
+                              </>
+                            }
+                          </>}
                         </p>
                       </div>
                     </div>
@@ -538,7 +546,6 @@ class ListSingle extends Component {
                       <div className="pv-range">
                         <span>{data.probability}%</span>
                         <label htmlFor="field-probability">{i18n.proba}</label>
-
                         <input
                           id="field-probability"
                           type="range"
@@ -1196,13 +1203,13 @@ class ListSingle extends Component {
                     {data.person ? <>
                       {(data.person.region || data.person.country) &&
                         <>
-                          {(data.person.region && data.person.country) ? data.person.region + ', ' : ''} {this.countryByCode(data.person.country)}
+                          {(data.person.region && data.person.country) ? data.person.region + ', ' : ''} {countryByCode(data.person.country)}
                         </>
                       }
                     </> : <>
                       {(data.org.region || data.org.country) &&
                         <>
-                          {(data.org.region && data.org.country) ? data.org.region + ', ' : ''} {this.countryByCode(data.org.country)}
+                          {(data.org.region && data.org.country) ? data.org.region + ', ' : ''} {countryByCode(data.org.country)}
                         </>
                       }
                     </>}
@@ -1217,15 +1224,6 @@ class ListSingle extends Component {
                     <h5>{i18n.desc}:</h5>
                     <p
                       dangerouslySetInnerHTML={{ __html: data.desc }}
-                    ></p>
-                  </>
-                )}
-
-                {data.desc && (
-                  <>
-                    <h5>{i18n.note}:</h5>
-                    <p
-                      dangerouslySetInnerHTML={{ __html: data.note }}
                     ></p>
                   </>
                 )}
