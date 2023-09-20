@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../html-elements";
 import SvgIcon from "../svg-icons";
-export default function Modal({ title, children, buttons, showModal, setShowModal }) {
+export default function Modal({ title, children, buttons, showModal, setShowModal, isFileSelected }) {
 
   const viewModalHeader = (
     < div className="pv-modal-header" >
@@ -15,9 +15,17 @@ export default function Modal({ title, children, buttons, showModal, setShowModa
   const viewModalFooter = (
     <div style={{ padding: "0 50px 30px" }}>
       {
-        buttons.map((button, index) => {
-          return (<Button key={index} {...button} />)
-        })
+        buttons
+          .filter(button => {
+            if (isFileSelected) {
+              return true;
+            } else {
+              return button.slug !== 'insert' && button.slug !== 'remove';
+            }
+          })
+          .map((button, index) => {
+            return (<Button key={index} {...button} />)
+          })
       }
 
     </div>)

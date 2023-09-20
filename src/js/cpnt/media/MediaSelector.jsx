@@ -86,17 +86,20 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
 
     {
       label: "Remove",
+      slug: 'remove',
       iconName: "x",
       size: "medium",
       handleClick: handleRemove,
     }, {
       label: "Upload",
+      slug: 'upload',
       iconName: "upload",
       size: "medium",
       handleClick: handleButtonClick,
     },
     {
-      label: "Select",
+      label: "Insert",
+      slug: 'insert',
       iconName: "tick",
       size: "medium",
       handleClick: handleSelect,
@@ -110,10 +113,12 @@ export default function MediaSelector({ title, attachType, showModal, setShowMod
         buttons={modalButtons}
         showModal={showModal}
         setShowModal={setShowModal}
+        isFileSelected={selectedFile.id}
       >
         {
           files.map(file => {
             const wrapperStyle = file.ID === selectedFile?.id ? { border: "2px solid green", padding: "2px" } : { border: "1px solid #dfdfdf", padding: "3px" };
+
             return (< MediaThumb key={file.ID} imgData={{ id: file.ID, src: file.guid, type: file.post_mime_type }} setSelectedFile={setSelectedFile} wrapperStyle={wrapperStyle} />)
           })
         }
