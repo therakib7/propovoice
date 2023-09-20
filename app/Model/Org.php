@@ -105,7 +105,6 @@ class Org
     {
         $reg_errors = new \WP_Error;
 
-        //$name      = isset($param['name']) ? sanitize_text_field($param['name']) : null;
         $name         = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : '';
         $email        = isset($param['email']) ? strtolower(sanitize_email($param['email'])) : '';
         $person_id    = isset($param['person_id']) ? sanitize_text_field($param['person_id']) : '';
@@ -116,14 +115,6 @@ class Org
         $address      = isset($param['address']) ? sanitize_text_field($param['address']) : '';
         $logo         = isset($param['logo']) ? absint($param['logo']) : '';
         $is_client    = isset($param['is_client']) ? $param['is_client'] : false;
-
-        /* if (empty($name)) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        }
-
-        if (!is_email($email)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        } */
 
         if ($reg_errors->get_error_messages()) {
             return $reg_errors;
@@ -139,11 +130,11 @@ class Org
 
             if (!is_wp_error($post_id)) {
 
-                if ($name) {
+                if ( isset($param['org_name']) ) {
                     update_post_meta($post_id, 'name', $name);
                 }
 
-                if ($email) {
+                if ( isset($param['email']) ) {
                     update_post_meta($post_id, 'email', $email);
                 }
 
@@ -151,28 +142,32 @@ class Org
                     update_post_meta($post_id, 'person_id', $person_id);
                 }
 
-                if ($web) {
+                if ( isset($param['web']) ) {
                     update_post_meta($post_id, 'web', $web);
                 }
 
-                if ($mobile) {
+                if ( isset($param['mobile']) ) {
                     update_post_meta($post_id, 'mobile', $mobile);
                 }
 
-                if ($country) {
+                if ( isset($param['country']) ) {
                     update_post_meta($post_id, 'country', $country);
                 }
 
-                if ($region) {
+                if ( isset($param['region']) ) {
                     update_post_meta($post_id, 'region', $region);
                 }
 
-                if ($address) {
+                if ( isset($param['address']) ) {
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ($logo) {
-                    update_post_meta($post_id, 'logo', $logo);
+                if ( isset($param['logo']) ) { 
+                    if ($logo) {
+                        update_post_meta($post_id, "logo", $logo);
+                    } else {
+                        delete_post_meta($post_id, "logo");
+                    }
                 }
 
                 if ($is_client) {

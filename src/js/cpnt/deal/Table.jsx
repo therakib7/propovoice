@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import Moment from 'react-moment';
+import { currency } from 'helper';
 import Action from 'block/action/row';
 
 const TableHeader = props => {
@@ -124,7 +124,7 @@ const TableBody = props => {
                 </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.title}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>${row.budget}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.budget && row.currency ? currency(row.budget, row.currency) : ''}</td>
                 {!wage.length && <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.probability}%</td>}
                 <td>
                     {row.stage_id && <>
@@ -139,7 +139,6 @@ const TableBody = props => {
                                 height={6}
                                 viewBox="0 0 6 6"
                                 fill="none"
-
                             >
                                 <circle cx={3} cy={3} r={3} fill={row.stage_id.color} />
                             </svg>

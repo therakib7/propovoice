@@ -80,7 +80,30 @@ const TableBody = props => {
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.start_date && <Moment format="YYYY-MM-DD">{row.start_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.due_date && <Moment format="YYYY-MM-DD">{row.due_date}</Moment>}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.budget && row.currency ? currency(row.budget, row.currency) : ''}</td>
-                <td>{row.status_id && <span className="pv-badge">{row.status_id.label}</span>}</td>
+                <td>
+                    {row.status_id && <>
+                        {(row.status_id.color && row.status_id.bg_color) && <span className="pv-badge"
+                            style={{
+                                backgroundColor: row.status_id.bg_color,
+                                color: row.status_id.color
+                            }}
+                        >
+                            <svg
+                                width={6}
+                                height={6}
+                                viewBox="0 0 6 6"
+                                fill="none"
+                            >
+                                <circle cx={3} cy={3} r={3} fill={row.status_id.color} />
+                            </svg>
+                            {row.status_id.label}
+                        </span>}
+
+                        {(!row.status_id.color || !row.status_id.bg_color) && <span className="pv-badge">
+                            {row.status_id.label}
+                        </span>}
+                    </>}
+                </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.author}</td>
                 <td className="pv-action">
                     <Action

@@ -19,13 +19,6 @@ class Person
         $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
         $img = isset($param['img']) ? absint($param['img']) : null;
         $is_client  = isset($param['is_client']) ? $param['is_client'] : false;
-        /* if ( empty($first_name) ) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        }
-
-        if (!is_email($email)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        }  */
 
         $exist_id = Fns::contact_exist('person', $email);
         if ( $exist_id ) {
@@ -103,7 +96,7 @@ class Person
 
         $first_name   = isset($param['first_name']) ? sanitize_text_field($param['first_name']) : null;
         $email        = isset($param['email']) ? strtolower(sanitize_email($param['email'])) : null;
-        $org_id     = isset($param['org_id']) ? sanitize_text_field($param['org_id']) : null;
+        $org_id       = isset($param['org_id']) ? sanitize_text_field($param['org_id']) : null;
         $web          = isset($param['web']) ? esc_url_raw($param['web']) : null;
         $mobile       = isset($param['mobile']) ? sanitize_text_field($param['mobile']) : null;
         $country      = isset($param['country']) ? sanitize_text_field($param['country']) : null;
@@ -111,14 +104,6 @@ class Person
         $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
         $img = isset($param['img']) ? absint($param['img']) : null;
         $is_client  = isset($param['is_client']) ? $param['is_client'] : false;
-
-        /* if (empty($first_name)) {
-            $reg_errors->add('field', esc_html__('Name field is missing', 'propovoice'));
-        }
-
-        if (!is_email($email)) {
-            $reg_errors->add('email_invalid', esc_html__('Email id is not valid!', 'propovoice'));
-        } */
 
         if ($reg_errors->get_error_messages()) {
             return $reg_errors;
@@ -145,28 +130,32 @@ class Person
                     update_post_meta($post_id, 'org_id', $org_id);
                 }
 
-                if ($web) {
+                if ( isset($param['web']) ) {
                     update_post_meta($post_id, 'web', $web);
                 }
 
-                if ($mobile) {
+                if ( isset($param['mobile']) ) {
                     update_post_meta($post_id, 'mobile', $mobile);
                 }
 
-                if ($country) {
+                if ( isset($param['country']) ) {
                     update_post_meta($post_id, 'country', $country);
                 }
 
-                if ($region) {
+                if ( isset($param['region']) ) {
                     update_post_meta($post_id, 'region', $region);
                 }
 
-                if ($address) {
+                if ( isset($param['address']) ) {
                     update_post_meta($post_id, 'address', $address);
                 }
 
-                if ($img) {
-                    update_post_meta($post_id, 'img', $img);
+                if ( isset($param['img']) ) { 
+                    if ($img) {
+                        update_post_meta($post_id, "img", $img);
+                    } else {
+                        delete_post_meta($post_id, "img");
+                    }
                 }
 
                 if ($is_client) {

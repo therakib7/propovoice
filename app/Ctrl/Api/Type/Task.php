@@ -197,7 +197,7 @@ class Task
 
             $query_data = [];
             $query_data["id"] = $id;
-            $query_data["title"] = get_the_title();
+            $query_data["title"] = html_entity_decode( get_the_title() );
 
             $query_data["status_id"] = "";
             $status = get_the_terms($id, "ndpv_task_status");
