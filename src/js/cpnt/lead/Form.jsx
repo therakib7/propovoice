@@ -40,6 +40,7 @@ export default class Form extends Component {
         };
 
         this.state = {
+            submitPreloader: false,
             form: this.initialState,
             custom_field: false,
             levels: [],
@@ -189,7 +190,9 @@ export default class Form extends Component {
         delete form.org;
 
         if (this.props.reload) {
+            this.setState({ submitPreloader: true });
             api.edit('leads', form.id, form).then(resp => {
+                this.setState({ submitPreloader: false });
                 if (resp.data.success) {
                     this.props.close();
                     toast.success(ndpv.i18n.aUpd);
