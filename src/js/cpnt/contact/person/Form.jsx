@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import Upload from 'block/field/upload';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
-
 import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import Preloader from "block/preloader/spinner";
 import { TextInput } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
@@ -19,8 +17,8 @@ class Form extends Component {
             org_name: '',
             org_id: null,
             email: '',
-            web: '',
             mobile: '',
+            web: '',
             country: '',
             region: '',
             address: '',
@@ -148,8 +146,8 @@ class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{modalType} {i18n.prsn}</h2>
-                        <p>{sprintf(i18n.formDesc, modalType, i18n.prsn)}</p>
+                        <h2 className="pv-modal-title">{modalType} {i18n.ct}</h2>
+                        <p>{sprintf(i18n.formDesc, modalType, i18n.ct)}</p>
                     </div>
 
                     <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
@@ -184,6 +182,21 @@ class Form extends Component {
                                         type="text"
                                         name="mobile"
                                         value={form.mobile}
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-lg">
+                                    <label htmlFor="form-web">
+                                        {i18n.web}
+                                    </label>
+                                    <input
+                                        id="form-web"
+                                        type="text"
+                                        name="web"
+                                        value={form.web}
                                         onChange={this.handleChange}
                                     />
                                 </div>
@@ -234,22 +247,6 @@ class Form extends Component {
                             </div>
 
                             <div className="row">
-                                <div className="col-lg">
-                                    <label htmlFor="form-web">
-                                        {i18n.web}
-                                    </label>
-
-                                    <input
-                                        id="form-web"
-                                        type="text"
-                                        name="web"
-                                        value={form.web}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="row">
                                 <div className="col">
                                     <label
                                         htmlFor="field-img">
@@ -259,7 +256,7 @@ class Form extends Component {
                                 </div>
                             </div>
 
-                            {!wage.length && this.props.single && <div className="row">
+                            {!wage.length && this.props.single && form.is_client && <div className="row">
                                 <div className="col">
                                     <label id="form-client_portal">Client Portal Access</label>
                                     <div className="pv-field-switch pv-ml-10">
