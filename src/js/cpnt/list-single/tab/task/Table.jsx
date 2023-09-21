@@ -33,6 +33,7 @@ const TableBody = (props) => {
           >
             <div
               className={"pv-task-type " + (props.dashboard ? "pv-mt-10" : "")}
+            // style={{ width: '44px' }}
             >
               {row.type_id.icon && <img src={row.type_id.icon.src} />}
               {!row.type_id.icon && (
