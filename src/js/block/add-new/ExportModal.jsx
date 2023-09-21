@@ -89,6 +89,7 @@ class Form extends Component {
         this.setState({ csvFile: res.data }, () => {
           this.csvLink.current.link.click();
         });
+        this.props.close()
       })
       .catch((error) => console.log(error.message));
   };
