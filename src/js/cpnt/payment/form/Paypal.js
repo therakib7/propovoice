@@ -85,7 +85,7 @@ class FormPaypal extends Component {
                         <p>Please fill up necessary informaiton in the form.</p>
                     </div>
 
-                    <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper  submitHandler={this.handleSubmit} close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
                             <div className="row d-none">
                                 <div className="col-lg">

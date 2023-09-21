@@ -306,7 +306,6 @@ export default class Form extends Component {
 
                     <FormWrapper submitPreloader={submitPreloader}
                         submitHandler={this.handleSubmit}
-                        submitPreloader={submitPreloader}
                         close={this.props.close} >
                         <FormContent formStyleClass="pv-form-style-one">
                             <Contact
