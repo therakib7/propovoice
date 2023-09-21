@@ -62,7 +62,12 @@ export default (props) => {
 	}
 
 	const getDataWithSingle = () => {
-		api.get('taxonomies', 'taxonomy=' + props.taxonomy + '&id=' + props.id).then(resp => {
+		//this is for lead source
+		let hide_bg = '';
+		if (props.hide_bg) {
+			hide_bg = '&hide_bg=true';
+		}
+		api.get('taxonomies', 'taxonomy=' + props.taxonomy + '&id=' + props.id + hide_bg).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
 				//if new chose first one

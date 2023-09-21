@@ -104,7 +104,7 @@ class Invoice extends Component {
             id: "init", //react-beautiful-dnd unique key
             title: "",
             desc: "",
-            qty: 0,
+            qty: 1,
             qty_type: "",
             price: 0,
             tax: 0,
