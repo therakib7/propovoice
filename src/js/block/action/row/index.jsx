@@ -15,7 +15,6 @@ export default (props) => {
     const { row, project, boardView } = props;
     const { i18n, caps } = ndpv;
     const isClient = caps.includes("ndpv_client_role");
-    const isStaff = caps.includes("ndpv_staff");
 
     let overview = true;
     if (project && isClient && boardView) {
