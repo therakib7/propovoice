@@ -29,20 +29,7 @@ class ListSingle extends Component {
     super(props);
 
     this.state = {
-      tabs: [
-        {
-          id: "task",
-          text: ndpv.i18n.taska,
-        },
-        {
-          id: "note",
-          text: ndpv.i18n.note,
-        },
-        {
-          id: "file",
-          text: ndpv.i18n.file,
-        },
-      ],
+      tabs: [],
       currentTab: "task",
       leadModal: false,
       dealModal: false,
@@ -55,6 +42,7 @@ class ListSingle extends Component {
       stages: [],
       tags: [],
       project_status: [],
+      path: '',
       data: {
         id: null,
         person: {
@@ -78,14 +66,37 @@ class ListSingle extends Component {
   }
 
   componentDidMount() {
+    this.whenRender();
+  }
 
+  componentDidUpdate() {
+    const path = this.props.path;
+    if (this.state.path != path) {
+      this.whenRender();
+    }
+  }
+
+  whenRender = () => {
     this.getData();
     const path = this.props.path;
 
-    let tabs = this.state.tabs;
+    let tabs = [
+      {
+        id: "task",
+        text: ndpv.i18n.taska,
+      },
+      {
+        id: "note",
+        text: ndpv.i18n.note,
+      },
+      {
+        id: "file",
+        text: ndpv.i18n.file,
+      },
+    ];
 
     if (!wage.length && path == "project") {
-      this.state.tabs.splice(1, 0, {
+      tabs.splice(1, 0, {
         id: "discussion",
         text: ndpv.i18n.discuss,
       });
@@ -122,6 +133,8 @@ class ListSingle extends Component {
         text: ndpv.i18n.deal,
       });
     }
+
+    this.setState({ tabs, currentTab: 'task', path: this.props.path });
   }
 
   getData = () => {
@@ -138,14 +151,7 @@ class ListSingle extends Component {
   };
 
   getLevelTagData = () => {
-    /* this.props.getAll('taxonomies', 'taxonomy=lead_level,tag').then(resp => {
-        if (resp.data.success) {
-          this.setState({
-            levels: resp.data.data.lead_level,
-            tags: resp.data.data.tag,
-          });
-        }
-      }); */
+
   };
 
   getStageTagData = () => {
