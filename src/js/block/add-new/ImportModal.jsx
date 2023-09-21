@@ -121,6 +121,7 @@ const ImportModal = (props) => {
                     <label
                       htmlFor="files"
                       className=" pv-btn pv-bg-stroke pv-bg-hover-stroke  "
+                      style={{ display: 'inline-flex' }}
                     >
                       <svg
                         width={25}
