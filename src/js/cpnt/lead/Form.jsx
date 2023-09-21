@@ -304,7 +304,7 @@ export default class Form extends Component {
                         <p>{sprintf(i18n.formDesc, modalType, i18n.lead)}</p>
                     </div>
 
-                    <FormWrapper submitPreloader={submitPreloader}
+                    <FormWrapper
                         submitHandler={this.handleSubmit}
                         close={this.props.close} >
                         <FormContent formStyleClass="pv-form-style-one">

@@ -254,7 +254,7 @@ class Team
                 Fns::password_mail($name, $email, 'Use your old password', 'team');
             }
 
-            $this->add_remove_user_caps($user_id, $caps);
+            $this->add_remove_user_caps($user_id, $role, $caps);
 
             do_action('ndpvp/webhook', 'team_add', $param);
             wp_send_json_success($user_id);
@@ -318,7 +318,6 @@ class Team
 
 
                 /* $send_mail = Fns::password_mail( $name, $email, $password);
-
                 if ($send_mail) {
                     //wp_send_json_success($send_mail);
                 } else {
@@ -329,13 +328,13 @@ class Team
             $user_id_role = new \WP_User($user_id);
             $user_id_role->set_role($role);
 
-            $this->add_remove_user_caps($user_id, $caps);
+            $this->add_remove_user_caps($user_id, $role, $caps, true);
 
             wp_send_json_success($user_id);
         }
     }
 
-    public function add_remove_user_caps($user_id, $caps)
+    public function add_remove_user_caps($user_id, $role, $caps, $edit_mode = false)
     {
         $default_caps = [
             'ndpv_dashboard',
@@ -345,13 +344,43 @@ class Team
             'ndpv_invoice',
             'ndpv_client',
             'ndpv_project',
+            'ndpv_task',
             'ndpv_contact'
         ];
 
         $user = new \WP_User($user_id);
 
-        $test = [];
+        if ( $edit_mode ) {
+            foreach ($default_caps as $cap) {
+                if ( $role == 'ndpv_admin' ) {
+                    $user->add_cap($cap, true);
+                } else {
+                    $user->remove_cap($cap);
+                }
+            }
+
+            if ( $role == 'ndpv_admin' ) {
+                return;
+            }
+        }
+
+        $not_allowed_for_staff = [
+            'ndpv_estimate',
+            'ndpv_invoice',
+            'ndpv_contact'
+        ];
         foreach ($default_caps as $cap) {
+
+            //for staff only
+            if ( ! empty( $user->roles ) ) {                
+                if ( in_array( 'ndpv_staff', $user->roles ) ) {
+                    if (in_array($cap, $not_allowed_for_staff)) {
+                        continue;
+                    }
+                }
+            }
+
+            //for others role
             if (in_array($cap, $caps)) {
                 $user->add_cap($cap, true);
             } else {

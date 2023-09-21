@@ -20,6 +20,7 @@ export default class Form extends Component {
         };
 
         this.state = {
+            submitPreloader: false,
             form: this.initialState,
             capsList: [
                 { label: 'Dashbaord', value: 'ndpv_dashboard' },
@@ -121,10 +122,20 @@ export default class Form extends Component {
         let form = { ...this.state.form }
 
         if (this.props.reload) {
-            api.edit('teams', form.id, form);
-            this.props.close();
-            toast.success(ndpv.i18n.aUpd);
-            this.props.reload();
+            this.setState({ submitPreloader: true });
+            api.edit('teams', form.id, form).then(resp => {
+                this.setState({ submitPreloader: false });
+                if (resp.data.success) {
+                    this.props.close();
+                    toast.success(ndpv.i18n.aUpd);
+                    this.props.reload();
+                } else {
+                    resp.data.data.forEach(function (value) {
+                        toast.error(value);
+                    });
+                }
+            });
+
         } else {
             this.props.handleSubmit(form);
         }
@@ -136,6 +147,8 @@ export default class Form extends Component {
         const i18n = ndpv.i18n;
 
         const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
+
+        const submitPreloader = this.props.reload ? this.state.submitPreloader : this.props.submitPreloader;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
