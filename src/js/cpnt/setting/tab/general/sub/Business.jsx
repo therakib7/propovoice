@@ -103,19 +103,17 @@ export default class Business extends Component {
             <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
                 <FormContent formStyleClass="pv-form-style-one">
                     <div className="row">
-                        <div className="col-md">
-                            <label htmlFor="field-name">
-                                {i18n.name}
-                            </label>
 
-                            <input
-                                id="field-name"
-                                type="text"
-                                name="name"
-                                value={this.state.form.name}
-                                onChange={this.handleChange}
-                            />
-                        </div>
+                        <TextInput
+                            label={i18n.name}
+                            id="field-name"
+                            type="text"
+                            name="name"
+                            value={this.state.form.name}
+                            wrapperClassName='col-md'
+                            onChange={this.handleChange}
+                            validation={{ required: { value: true } }}
+                        />
 
                         {/* <div className="col-md">
                         <label htmlFor="field-org_name">

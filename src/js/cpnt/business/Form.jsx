@@ -109,23 +109,20 @@ class Form extends Component {
                         <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.biz + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
-                    <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
-                                <div className="col-md">
-                                    <label
-                                        htmlFor="field-name">
-                                        {i18n.name}
-                                    </label>
 
-                                    <input
-                                        id="field-name"
-                                        type="text"
-                                        name="name"
-                                        value={form.name}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
+                                <TextInput
+                                    label={i18n.name}
+                                    id="field-name"
+                                    type="text"
+                                    name="name"
+                                    value={form.name}
+                                    wrapperClassName='col-md'
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true } }}
+                                />
 
                                 {/* <div className="col-md">
                                             <label
@@ -168,7 +165,6 @@ class Form extends Component {
                                     wrapperClassName='col-md'
                                     onChange={this.handleChange}
                                     validation={{ required: { value: true }, email: { value: true } }}
-
                                 />
 
                             </div>
