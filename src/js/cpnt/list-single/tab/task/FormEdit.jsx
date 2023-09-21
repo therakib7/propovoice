@@ -369,19 +369,19 @@ export default class Form extends Component {
                 </div>
               </div>
 
-              <div className="row">
-                <div className="col-lg">
-                  <label htmlFor="google_meet">
-                    {i18n.meeting} {i18n.link}
-                  </label>
-                  <input
-                    type="text"
-                    id="google_meet"
-                    name="google_meet"
-                    value={form.google_meet}
-                    onChange={this.handleChange}
-                  />
-                  {true && this.props.tab_id && !wage.length && (
+              {this.props.tab_id && !wage.length && (
+                <div className="row">
+                  <div className="col-lg">
+                    <label htmlFor="google_meet">
+                      {i18n.meeting} {i18n.link}
+                    </label>
+                    <input
+                      type="text"
+                      id="google_meet"
+                      name="google_meet"
+                      value={form.google_meet}
+                      onChange={this.handleChange}
+                    />
                     <div className="pv-buttons pv-mt-15">
                       <button
                         className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-mr-10"
@@ -443,10 +443,10 @@ export default class Form extends Component {
                         </button>
                       )}{" "}
                     </div>
-                  )}
-                </div>
-              </div>
 
+                  </div>
+                </div>
+              )}
               <div className="row">
                 <div className="col">
                   <label htmlFor="form-desc">{i18n.desc}</label>
