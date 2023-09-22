@@ -23,7 +23,8 @@ const ImportModal = (props) => {
 
   const fileReader = new FileReader();
   const handleOnChange = (e) => {
-    setFile(e.target.files[0]);
+    setFile(e.target.files[0])
+    handleMaping(e.target.files[0])
   };
 
   const valueSate = (e, si) => {
@@ -52,8 +53,7 @@ const ImportModal = (props) => {
     setCsvData(csvData);
   };
 
-  const handleMaping = (e) => {
-    e.preventDefault();
+  const handleMaping = (file) => {
 
     if (file) {
       fileReader.onload = function (event) {
@@ -155,16 +155,6 @@ const ImportModal = (props) => {
                   {!file && <p>{i18n.csvDco}</p>}
                 </div>
               )}
-              <div className="pv-import-map">
-                <button
-                  className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white pv-mb-30"
-                  onClick={(e) => {
-                    handleMaping(e);
-                  }}
-                >
-                  {i18n.nextBtn}
-                </button>
-              </div>
               <br />
               {file && (
                 <div className="pv-table-wrap pv-mb-20">
