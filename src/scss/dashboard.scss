@@ -33,10 +33,13 @@
     height: auto !important;
 }
  */
-/* .pv-field-desc {
-    line-height: 1.4;
-    margin-top: 2px;
-} */
+.pv-field-desc {
+    font-size: 12px;
+    list-style: 1.4;
+    color: #718096;
+    margin: 0;
+    margin-top: 5px;
+}
 
 .ndpv .pv-info-logo img,
 .pv-inv .pv-from-logo img {
