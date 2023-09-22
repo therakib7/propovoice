@@ -109,22 +109,9 @@ class EstInv
             "offset" => $offset,
         ];
 
-        /* if ( $s ) {
-            $args['p'] = $s;
-        } */
-
         $args["meta_query"] = [
             "relation" => "AND",
         ];
-
-        /* if (isset($request['client_id'])) {
-            $args['meta_query'][] = array(
-                array(
-                    'key'     => 'to',
-                    'value'   => $request['client_id']
-                )
-            );
-        } */
 
         if (current_user_can("ndpv_client_role")) {
             $user_id = get_current_user_id();
@@ -201,13 +188,13 @@ class EstInv
             );
         } */
 
-        if ($module_id) {
+        if ( $module_id ) {
             //if query from client module search key as 'to'
             $module_key = isset($param["client_mod"]) ? 'to' : 'module_id';
             $args["meta_query"][] = [
                 [
                     "key" => $module_key,
-                    "value" => $module_id,
+                    "value" => $module_id
                 ],
             ];
         }

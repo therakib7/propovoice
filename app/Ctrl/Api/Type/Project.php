@@ -89,8 +89,8 @@ class Project
                 $status_name = $status->name;
                 $items = $this->project_query($param, $status_id);
                 $column[] = [
-                    "name" => $status_name,
                     "id" => $status_id,
+                    "name" => $status_name,
                     "color" => get_term_meta($status_id, "color", true),
                     "bg_color" => get_term_meta($status_id, "bg_color", true),
                     "type" => get_term_meta($status_id, "type", true),
