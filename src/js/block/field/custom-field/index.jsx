@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import api from 'api';
 import Spinner from 'block/preloader/spinner';
 import MultiSelect from 'block/field/multi-select';
@@ -117,14 +117,16 @@ export default (props) => {
 
 								{item.type === 'date' &&
 									<div className="pv-field-date">
-										<DateField
-											key={form[item.slug]}
-											id={'custom-field-' + i}
-											date={form[item.slug]}
-											type="date"
-											name={item.slug}
-											onDateChange={(val) => handleDateChange(val, item.slug)}
-										/>
+										<Suspense fallback={<Spinner />}>
+											<DateField
+												key={form[item.slug]}
+												id={'custom-field-' + i}
+												date={form[item.slug]}
+												type="date"
+												name={item.slug}
+												onDateChange={(val) => handleDateChange(val, item.slug)}
+											/>
+										</Suspense>
 									</div>
 								}
 								{item.desc && <p className='pv-field-desc'>{item.desc}</p>}
