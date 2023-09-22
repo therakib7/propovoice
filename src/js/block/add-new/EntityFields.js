@@ -9,7 +9,6 @@ export default {
                 budget: 'Budget',
                 currency: 'Currency',
                 desc: 'Description',
-                // note: 'Note',
         },
         client: {
                 not_assign: 'Not Assign',
