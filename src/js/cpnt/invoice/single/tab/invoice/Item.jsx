@@ -67,6 +67,7 @@ export default (props) => {
             title: item.title,
             desc: item.desc,
             qty: item.qty,
+            qty_type:item.qty_type,
             price: item.price
         });
     }

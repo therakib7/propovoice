@@ -449,7 +449,7 @@ class Form extends Component {
                                         id="form-desc"
                                         rows={2}
                                         name="desc"
-                                        value={form.desc}
+                                        value={form.desc.replace(/<br \/>/gi, '')}
                                         onChange={this.handleChange}
                                     />
                                 </div>
