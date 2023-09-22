@@ -432,7 +432,7 @@ export default class Form extends Component {
                                         id="form-desc"
                                         type="text"
                                         name="desc"
-                                        value={form.desc}
+                                        value={form.desc.replace(/<br \/>/gi, '')}
                                         onChange={this.handleChange}
                                     />
                                 </div>
