@@ -327,12 +327,7 @@ class Client
                         'key'     => 'email',
                         'value'   => $email,
                         'compare' => '=',
-                    ),
-                    array(
-                        'key'     => 'mobile',
-                        'value'   => $mobile,
-                        'compare' => '=',
-                    ),
+                    )
                 ),
                 array(
                     'key'     => 'is_client',
@@ -343,6 +338,14 @@ class Client
             'fields' => 'ids',
             'posts_per_page' => 1,
         );
+
+        if ( $mobile ) {
+            $args['meta_query'][] = [
+                'key'     => 'mobile',
+                'value'   => $mobile,
+                'compare' => '='
+            ];
+        }
 
         $posts = get_posts($args);
 

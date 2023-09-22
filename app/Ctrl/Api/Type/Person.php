@@ -311,7 +311,7 @@ class Person
         if ($person_id) {
             $reg_errors->add(
                 "already_exist",
-                esc_html__("Person already exists!!!", "propovoice")
+                esc_html__("Contact already exists!", "propovoice")
             );
 
             wp_send_json_error($reg_errors->get_error_messages());
@@ -394,17 +394,21 @@ class Person
                 array(
                     'key'     => 'email',
                     'value'   => $email,
-                    'compare' => '=',
-                ),
-                array(
-                    'key'     => 'mobile',
-                    'value'   => $mobile,
-                    'compare' => '=',
-                ),
+                    'compare' => '='
+                )                
             ),
             'fields' => 'ids',
             'posts_per_page' => 1,
         );
+
+        if ( $mobile ) {
+            $args['meta_query'][] = [
+                'key'     => 'mobile',
+                'value'   => $mobile,
+                'compare' => '='
+            ];
+        }
+
 
         $posts = get_posts($args);
 
