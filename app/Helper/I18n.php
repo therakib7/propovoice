@@ -35,6 +35,7 @@ class I18n
                 "propovoice"
             ),
             "aConf" => esc_html__("Are you sure to delete it?", "propovoice"),
+            "receiver_missing" => esc_html__("Receiver is missing", "propovoice"),
             "cc" => esc_html__("Copied", "propovoice"),
             "conV" => esc_html__("convert", "propovoice"),
             //dashboard
