@@ -9,7 +9,7 @@ import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
 import api from 'api';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
@@ -317,8 +317,8 @@ export default class Form extends Component {
                             />
 
                             <div className="row">
-                                <TextInput  {...emailInput} />
-                                <TextInput {...mobileInput} />
+                                <Text  {...emailInput} />
+                                <Text {...mobileInput} />
                             </div>
 
                             <div className="row">

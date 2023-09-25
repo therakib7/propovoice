@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import Upload from 'block/field/upload';
 import api from 'api';
 import { Add } from 'block/icon';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
@@ -176,7 +176,7 @@ export default class Form extends Component {
             close={this.props.close} formTag={this.props.formTag}>
             <FormContent formStyleClass="pv-form-style-one">
               <div className="row">
-                <TextInput
+                <Text
                   label={i18n.name}
                   id="field-label"
                   type="text"

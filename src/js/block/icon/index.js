@@ -6,5 +6,6 @@ import Tag from './Tag';
 import Filter from './Filter';
 import Edit from './Edit';
 import Add from './Add';
+import Svg from './Svg';
 
-export { Email, Arrow, Tag, Search, Cross, Filter, Edit, Add }
+export { Email, Arrow, Tag, Search, Cross, Filter, Edit, Add, Svg }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import api from 'api';
-import { Checkbox } from '../../../../html-elements';
+import { Checkbox } from 'block/form/input';
 
 const General = () => {
     const [allIsEnabled, setAllIsEnabled] = useState({
@@ -51,7 +51,6 @@ const General = () => {
         });
     }
 
-
     const changeAllPreferenceState = (type, value) => {
         Object.keys(userPreferences)
             .map((slug) => {
@@ -60,7 +59,6 @@ const General = () => {
                 })
             })
     }
-
 
     const getUserPreference = (args) => {
         api.get(`notifications/users/${ndpv.profile.id}/preferences`, args, "pro").then(resp => {
@@ -85,7 +83,6 @@ const General = () => {
             })
         });
     }
-
 
     const submitUserPreferences = (data) => {
         api.add(`notifications/users/${ndpv.profile.id}/preferences`, data, "pro").then(resp => {

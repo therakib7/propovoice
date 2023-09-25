@@ -54,7 +54,6 @@ const DownloadPDF = (props) => {
     <>
       <button
         className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-        // style={{ color: '#000', marginRight: '5px' }}
         onClick={() => generatePDF(props.content, options)}
       >
         <svg width={12} height={14} viewBox="0 0 12 14" fill="none">

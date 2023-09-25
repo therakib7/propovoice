@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useRef, useCallback, useState, useEffect } from 'react';
+import useClickOutside from 'block/outside-click';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { currency, countryByCode } from "helper";
 import { useNavigate } from 'react-router-dom';
 import WithApi from 'hoc/Api';
 
@@ -59,16 +61,19 @@ const onDragEnd = (update, result, columns, setColumns) => {
 };
 
 function Board(props) {
-	// const [columns, setColumns] = useState(columnsFromBackend);
+
+	const actionStageDropdownRef = useRef();
+	const [dropdownStageAction, setStageDropdownAction] = useState(null);
+	const closeAction = useCallback(() => setStageDropdownAction(null), []);
+	useClickOutside(actionStageDropdownRef, closeAction);
+
 	const [columns, setColumns] = useState({});
 
-	const [dropdown, setDropdown] = useState(null);
-
-	const showDropdown = (id) => {
-		if (dropdown == id) {
-			setDropdown(null);
+	const showStageDropdown = (id) => {
+		if (dropdownStageAction == id) {
+			setStageDropdownAction(null);
 		} else {
-			setDropdown(id);
+			setStageDropdownAction(id);
 		}
 	};
 
@@ -100,7 +105,7 @@ function Board(props) {
 							<div className="pv-board-column-title pv-bg-shadow" style={{ borderColor: column.color, color: column.color }}>
 								<h4 className="">{column.name}</h4>
 								<div className="pv-action-content">
-									<button className={(columnId == dropdown ? 'pv-active' : '')} onClick={() => showDropdown(columnId)}>
+									<button className={(columnId == dropdownStageAction ? 'pv-active' : '')} onClick={() => showStageDropdown(columnId)}>
 										<svg
 											width={24}
 											height={24}
@@ -129,12 +134,8 @@ function Board(props) {
 										</svg>
 									</button>
 
-									{columnId == dropdown && <div className="pv-dropdown-content pv-show"
-									// ref={popover}
-									>
-										{/* <a onClick={() => props.editEntry('edit', columnId)}>{i18n.edit}</a> */}
-										<a onClick={() => { props.taxForm('edit', column); showDropdown(columnId); }}>{i18n.edit}</a>
-										{/* <a onClick={() => props.deleteEntry('single', columnId)}>{i18n.del}</a> */}
+									{columnId == dropdownStageAction && <div className="pv-dropdown-content pv-show" ref={actionStageDropdownRef}>
+										<a onClick={() => { props.taxForm('edit', column); showStageDropdown(columnId); }}>{i18n.edit}</a>
 									</div>}
 								</div>
 							</div>
@@ -145,14 +146,6 @@ function Board(props) {
 											{...provided.droppableProps}
 											ref={provided.innerRef}
 											className="pv-board-content"
-										/* style={{
-											background: snapshot.isDraggingOver
-												? "lightblue"
-												: "lightgrey",
-											padding: 4,
-											width: 250,
-											minHeight: 500
-										}} */
 										>
 											{column.items.map((item, index) => {
 												let img = ndpv.assetImgUri + 'avatar.png';
@@ -174,31 +167,30 @@ function Board(props) {
 																	ref={provided.innerRef}
 																	{...provided.draggableProps}
 																	{...provided.dragHandleProps}
-																	/* style={{
-																		userSelect: "none",
-																		padding: 16,
-																		margin: "0 0 8px 0",
-																		minHeight: "50px",
-																		backgroundColor: snapshot.isDragging
-																			? "#263B4A"
-																			: "#456C86",
-																		color: "white",
-																		...provided.draggableProps.style
-																	}} */
 																	className="pv-board-column-item pv-bg-shadow"
 																>
 																	<div className="pv-board-item-top">
 																		<h4>{CharLimit(item.title)}</h4>
-																		<span>$ {item.budget}</span>
+																		{item.budget && <span>{currency(item.budget, item.currency)}</span>}
 																	</div>
 																	<div className="pv-avatar-content">
 																		<img src={img} alt="avatar" />
 																		<div className="pv-avatar-text">
 																			<h5>{(item.person) ? item.person.first_name : item.org.name} </h5>
 																			<p>
-																				{(item.person) ? item.person.region : item.org.region}
-
-																				{(item.person) ? item.person.country : item.org.country}
+																				{item.person ? <>
+																					{(item.person.region || item.person.country) &&
+																						<>
+																							{(item.person.region && item.person.country) ? item.person.region + ', ' : ''} {countryByCode(item.person.country)}
+																						</>
+																					}
+																				</> : <>
+																					{(item.org.region || item.org.country) &&
+																						<>
+																							{(item.org.region && item.org.country) ? item.org.region + ', ' : ''} {countryByCode(item.org.country)}
+																						</>
+																					}
+																				</>}
 																			</p>
 
 																			{column.type == 'won' && <span className="pv-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>Won</span>}

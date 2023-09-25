@@ -3,7 +3,7 @@ import api from 'api';
 import useClickOutside from 'block/outside-click';
 
 import { FormContext } from 'block/form';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { alterValidation } from "block/form/input/validations";
 
 const Contact = (props) => {
@@ -98,10 +98,9 @@ const Contact = (props) => {
     }
     const person = (
         <>
-
             <div style={{ position: "relative" }} className="col-lg">
 
-                <TextInput id="first_name"
+                <Text id="first_name"
                     wrapperClassName=''
                     label={i18n.name}
                     type="text"
@@ -128,40 +127,13 @@ const Contact = (props) => {
             </div>
         </>
     );
-    // const person = (
-    //     <div className="col-lg">
-    //         <label htmlFor="first_name">
-    //             {i18n.prsn}
-    //         </label>
-    //         <div className="pv-field-search" ref={personRef}>
-    //             <div className="pv-action-content">
-    //                 <input
-    //                     id="first_name"
-    //                     type="text"
-    //                     name="first_name"
-    //                     autoComplete='off'
-    //                     disabled={props.fromClient}
-    //                     value={props.first_name}
-    //                     onChange={handleChange}
-    //                 />
-
-    //                 {personModal && <div className="pv-dropdown-content pv-show">
-    //                     <button style={{ color: '#4c6fff' }} onClick={(e) => handleSelect(e, null, 'person')}>+ {i18n.add} '{props.first_name}' {i18n.as} {i18n.new} {i18n.ct}</button>
-    //                     {personList.map((item, i) => (
-    //                         <a key={i} onClick={(e) => handleSelect(e, item, 'person')}>{item.first_name}</a>
-    //                     ))}
-    //                 </div>}
-    //             </div>
-    //         </div>
-    //     </div>
-    // );
 
     const org = (
         <>
 
             <div style={{ position: "relative" }} className="col-lg">
 
-                <TextInput
+                <Text
                     wrapperClassName=''
                     label={i18n.org}
                     id="org_name"
@@ -192,33 +164,6 @@ const Contact = (props) => {
 
         </>
     );
-    // const org = (
-    //     <div className="col-lg">
-    //         <label htmlFor="org_name">
-    //             {i18n.org}
-    //         </label>
-    //         <div className="pv-field-search" ref={orgRef}>
-    //             <div className="pv-action-content">
-    //                 <input
-    //                     id="org_name"
-    //                     type="text"
-    //                     name="org_name"
-    //                     autoComplete='off'
-    //                     disabled={props.fromClient}
-    //                     value={props.org_name}
-    //                     onChange={handleChange}
-    //                 />
-
-    //                 {orgModal && <div className="pv-dropdown-content pv-show">
-    //                     <button style={{ color: '#4c6fff' }} onClick={(e) => handleSelect(e, null, 'org')}>+ {i18n.add} '{props.org_name}' {i18n.as} {i18n.new} {i18n.org}</button>
-    //                     {orgList.map((item, i) => (
-    //                         <a key={i} onClick={(e) => handleSelect(e, item, 'org')}>{item.name}</a>
-    //                     ))}
-    //                 </div>}
-    //             </div>
-    //         </div>
-    //     </div>
-    // );
 
     return (
         <div className="row">

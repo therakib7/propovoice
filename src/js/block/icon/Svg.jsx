@@ -1,5 +1,5 @@
 
-const SvgIcon = ({ name, size = "small", style = "default" }) => {
+const Svg = ({ name, size = "small", style = "default" }) => {
   const svgStyles = {
     width: 25,
     height: 25,
@@ -47,4 +47,4 @@ const SvgIcon = ({ name, size = "small", style = "default" }) => {
     />
   </svg>)
 }
-export default SvgIcon;
+export default Svg;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Upload from 'block/field/upload';
 import { Add } from 'block/icon';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 
@@ -113,7 +113,7 @@ class Form extends Component {
                         <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
 
-                                <TextInput
+                                <Text
                                     label={i18n.name}
                                     id="field-name"
                                     type="text"
@@ -156,7 +156,7 @@ class Form extends Component {
                                     />
                                 </div>
 
-                                <TextInput
+                                <Text
                                     label={i18n.email}
                                     id="field-email"
                                     type="email"

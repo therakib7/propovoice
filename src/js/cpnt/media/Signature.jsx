@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SvgIcon, Button } from "../html-elements";
+import { Button } from "block/form/input";
 import MediaSelector from "./MediaSelector";
 import Api from "api/media";
 

@@ -11,7 +11,7 @@ import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
 import { sprintf } from 'sprintf-js';
 import { checkRoute, mergeObjects } from 'helper';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 class Form extends Component {
@@ -313,7 +313,7 @@ class Form extends Component {
                         <FormContent formStyleClass="pv-form-style-one">
 
                             <div className="row">
-                                <TextInput
+                                <Text
                                     label={i18n.title}
                                     id="field-title"
                                     type="text"
@@ -335,7 +335,7 @@ class Form extends Component {
                             />
 
                             <div className="row">
-                                <TextInput
+                                <Text
                                     label={i18n.email}
                                     id="form-email"
                                     type="email"

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 class FormStripe extends Component {
@@ -82,12 +82,12 @@ class FormStripe extends Component {
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.stripe}</h2>
                         <p>Please fill up necessary informaiton in the form.</p>
                     </div>
-                    <FormWrapper  submitHandler={this.handleSubmit}
+                    <FormWrapper submitHandler={this.handleSubmit}
                         close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
 
-                                <TextInput
+                                <Text
                                     label={i18n.account + " " + i18n.name}
                                     id="form-account_name"
                                     type="text"
@@ -101,7 +101,7 @@ class FormStripe extends Component {
 
                             <div className="row">
 
-                                <TextInput
+                                <Text
                                     label={i18n.pub + " " + i18n.key}
                                     id="form-public_key"
                                     type="text"
@@ -115,7 +115,7 @@ class FormStripe extends Component {
 
                             <div className="row">
 
-                                <TextInput
+                                <Text
                                     label={i18n.secret + " " + i18n.key}
                                     id="form-secret_key"
                                     type="text"

@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import api from 'api';
 import { Add } from 'block/icon';
 import Options from "./Options";
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
@@ -133,10 +133,10 @@ export default class Form extends Component {
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {this.props.title}</h2>
                     </div>
 
-                    <FormWrapper  submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
-                                <TextInput
+                                <Text
                                     label={i18n.label}
                                     id="field-label"
                                     type="text"
