@@ -20,8 +20,8 @@ import Preview from "../preview";
 
 // import Attach from './Attach';
 const DateField = lazy(() => import("block/date-picker"));
-import Upload from "block/field/upload";
-import Signature from "../../../../media/Signature";
+// import Upload from "block/field/upload";
+import Signature from "cpnt/media/Signature";
 
 //sidebar section
 const InvTemplate = lazy(() => import("inv-tmpl"));
@@ -140,7 +140,7 @@ class Invoice extends Component {
       },
       wc: false,
       previewHeight: "",
-      previewScale: "",
+      previewScale: ""
     };
 
     this.setSidebarActive = this.setSidebarActive.bind(this);
@@ -155,12 +155,13 @@ class Invoice extends Component {
     //TODO: ref not working
     let sidebarRef = document.getElementById("pv-right-sidebar");
     if (sidebarRef) {
-      let scale = Math.min(
-        sidebarRef.clientWidth / 796,
-        sidebarRef.clientHeight / 1122
-      );
-
-      this.setState({ previewScale: scale });
+      setTimeout(() => {
+        let scale = Math.min(
+          sidebarRef.clientWidth / 796,
+          sidebarRef.clientHeight / 1122
+        );
+        this.setState({ previewScale: scale });
+      }, 700);
     }
   };
 
@@ -214,6 +215,7 @@ class Invoice extends Component {
   }
 
   componentDidUpdate() {
+    this.isPrvwLoad();
     this.bgColor();
   }
 
@@ -1182,6 +1184,7 @@ class Invoice extends Component {
                             this.state.previewScale +
                             " - 1) * 1120px)",
                           transform: "scale(" + this.state.previewScale + ")",
+                          display: (this.state.previewScale ? 'block' : 'none')
                         }}
                       >
                         <InvTemplate
