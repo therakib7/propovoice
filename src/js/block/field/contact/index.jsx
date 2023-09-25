@@ -4,7 +4,6 @@ import useClickOutside from 'block/outside-click';
 
 import { FormContext } from 'block/form';
 import { Text } from 'block/form/input';
-import { alterValidation } from "block/form/input/validations";
 
 const Contact = (props) => {
     const { nameLabel = ndpv.i18n.name } = props;
@@ -131,9 +130,7 @@ const Contact = (props) => {
 
     const org = (
         <>
-
             <div style={{ position: "relative" }} className="col-lg">
-
                 <Text
                     wrapperClassName=''
                     label={i18n.org}
