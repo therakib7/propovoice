@@ -1,13 +1,12 @@
-import { useState } from "react";
-import { Button } from "../html-elements";
-import SvgIcon from "../svg-icons";
+import { Button } from "block/form/input";
+import { Svg } from 'block/icon';
 export default function Modal({ title, children, buttons, showModal, setShowModal, isFileSelected }) {
 
   const viewModalHeader = (
     < div className="pv-modal-header" >
       <h2 className="pv-modal-title pv-text-center">{title}</h2>
       <span className="pv-close" onClick={() => setShowModal(false)}>
-        <SvgIcon name="x" style="blue" />
+        <Svg name="x" style="blue" />
       </span>
     </div >
   )
