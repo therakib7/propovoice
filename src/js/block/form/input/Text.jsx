@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { FormContext } from 'block/form';
 import { checkValidation, groupProcessing } from "./validations";
 
-const TextInput = ({ label, wrapperClassName = "col", validation = {}, onChange, ...attrs }) => {
+const Text = ({ label, wrapperClassName = "col", validation = {}, onChange, ...attrs }) => {
 
   const { form, setForm, setErrorFields, setGroupFields } = useContext(FormContext);
   const { name, value = "" } = attrs;
@@ -55,4 +55,4 @@ const TextInput = ({ label, wrapperClassName = "col", validation = {}, onChange,
   );
 }
 
-export default TextInput;
+export default Text;

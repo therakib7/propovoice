@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
@@ -70,13 +70,13 @@ export default class Form extends Component {
         const i18n = ndpv.i18n;
         const { host, port, secure, auth, user, pass } = this.state.form;
         return (
-            <FormWrapper  submitHandler={this.handleSubmit} submitLabel={i18n.act}>
+            <FormWrapper submitHandler={this.handleSubmit} submitLabel={i18n.act}>
                 <FormContent formStyleClass="pv-form-style-one">
                     <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>Other SMTP</h4>
 
                     <div className="row">
 
-                        <TextInput
+                        <Text
                             label="SMTP Host"
                             id="field-host"
                             type="text"
@@ -87,7 +87,7 @@ export default class Form extends Component {
                             validation={{ required: { value: true } }}
                         />
 
-                        <TextInput
+                        <Text
                             label="SMTP Port"
                             id="field-port"
                             type="number"
@@ -166,7 +166,7 @@ export default class Form extends Component {
 
                     <div className="row">
 
-                        <TextInput
+                        <Text
                             label="Username"
                             id="field-user"
                             type="text"
@@ -177,7 +177,7 @@ export default class Form extends Component {
                             validation={{ required: { value: true } }}
                         />
 
-                        <TextInput
+                        <Text
                             label="Password"
                             id="field-pass"
                             type="password"

@@ -3,7 +3,7 @@ import api from 'api';
 import useClickOutside from 'block/outside-click';
 
 import { FormContext } from 'block/form';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { alterValidation } from "block/form/input/validations";
 
 const Contact = (props) => {
@@ -100,7 +100,7 @@ const Contact = (props) => {
         <>
             <div style={{ position: "relative" }} className="col-lg">
 
-                <TextInput id="first_name"
+                <Text id="first_name"
                     wrapperClassName=''
                     label={i18n.name}
                     type="text"
@@ -133,7 +133,7 @@ const Contact = (props) => {
 
             <div style={{ position: "relative" }} className="col-lg">
 
-                <TextInput
+                <Text
                     wrapperClassName=''
                     label={i18n.org}
                     id="org_name"

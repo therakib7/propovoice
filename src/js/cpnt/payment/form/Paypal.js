@@ -4,7 +4,7 @@ import { Add } from 'block/icon';
 import { toast } from 'react-toastify';
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 class FormPaypal extends Component {
@@ -85,7 +85,7 @@ class FormPaypal extends Component {
                         <p>Please fill up necessary informaiton in the form.</p>
                     </div>
 
-                    <FormWrapper  submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
                             <div className="row d-none">
                                 <div className="col-lg">
@@ -121,7 +121,7 @@ class FormPaypal extends Component {
                             </div>
 
                             <div className="row">
-                                <TextInput
+                                <Text
                                     label={i18n.account + " " + i18n.name}
                                     id="form-account_name"
                                     type="text"
@@ -150,7 +150,7 @@ class FormPaypal extends Component {
 
                             <div className="row">
 
-                                <TextInput
+                                <Text
                                     label={i18n.client + " " + i18n.id}
                                     id="form-client_id"
                                     type="text"
@@ -163,7 +163,7 @@ class FormPaypal extends Component {
                             </div>
 
                             <div className="row">
-                                <TextInput
+                                <Text
                                     label={i18n.secret + " " + i18n.id}
                                     id="form-secret_id"
                                     type="text"
