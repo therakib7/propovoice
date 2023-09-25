@@ -7,6 +7,7 @@ import { Text } from 'block/form/input';
 import { alterValidation } from "block/form/input/validations";
 
 const Contact = (props) => {
+    const { nameLabel = ndpv.i18n.name } = props;
 
     const personRef = useRef();
     const orgRef = useRef();
@@ -102,7 +103,7 @@ const Contact = (props) => {
 
                 <Text id="first_name"
                     wrapperClassName=''
-                    label={i18n.name}
+                    label={nameLabel}
                     type="text"
                     name="first_name"
                     autoComplete='off'

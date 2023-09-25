@@ -62,6 +62,7 @@ class I18n
             "deal_pipeline" => esc_html__("Deal Pipeline", "propovoice"),
             "add_stage" => esc_html__("Add Stage", "propovoice"),
             "add_deal" => esc_html__("Add Deal", "propovoice"),
+            "client_name" => esc_html__("Client Name", "propovoice"),
             "stage" => esc_html__("Stage", "propovoice"),
             "won" => esc_html__("Won", "propovoice"),
             "lost" => esc_html__("Lost", "propovoice"),

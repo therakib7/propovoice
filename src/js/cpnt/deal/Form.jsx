@@ -328,6 +328,7 @@ class Form extends Component {
                             {/* {!this.props.reload && <>  */}
                             <Contact
                                 first_name={form.first_name}
+                                nameLabel={i18n.client_name}
                                 org_name={form.org_name}
                                 fromClient={this.fromClient}
                                 onChange={this.handleContactChange}
