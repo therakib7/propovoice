@@ -1152,11 +1152,11 @@ class Invoice extends Component {
 													</div>
 
 													<div className="col-md-6 pv-text-right">
-														<Signature
+														{true && <Signature
 															data={this.state.invoice.sign}
 															changeHandler={this.handleSignChange}
 															handleRemoveSign={this.handleRemoveSign}
-														/>
+														/>}
 													</div>
 												</div>
 											</div>

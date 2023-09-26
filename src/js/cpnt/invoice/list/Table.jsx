@@ -175,7 +175,7 @@ const TableBody = props => {
                 <td onClick={() => { handleClick(row, '/tab/preview', isClient, client_url); }} className='pv-cursor-pointer'><span className='pv-list-title'>{nNum}</span></td>
                 {/*<td>{row.project.name}</td>*/}
                 {!isClient && !props.client_id && <td onClick={() => { handleClick(row, '/tab/preview', isClient, client_url); }} className='pv-cursor-pointer'>
-                    {(row.to.type == 'person') ? row.to.first_name : row.to.org_name}
+                    {row.to.first_name ?? row.to.org_name}
                 </td>}
                 <td onClick={() => { handleClick(row, '/tab/preview', isClient, client_url); }} className='pv-cursor-pointer'>{currency(row.total, row.invoice.currency, row.invoice.lang)}</td>
                 {/* {(props.path == 'invoice') &&
