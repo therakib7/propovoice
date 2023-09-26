@@ -1071,7 +1071,7 @@
 
   // Table
   .pv-table input[type=checkbox] {
-    zoom: 1.2;
+    // zoom: 1.2;
     top: -1px !important;
 
     @media screen and (max-width: 768px) {
@@ -1718,8 +1718,4 @@ table thead:first-child tr:first-child th {
   .pv-field-switch {
     top: 0;
   }
-}
-
-.pv-modal-content .pv-dropdown-content {
-  // height: 351px;
 }
