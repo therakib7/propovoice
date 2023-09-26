@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\MenuPage\Type;
 
 use Ndpv\Helper\Fns;
@@ -14,7 +15,9 @@ class Dashboard
 
     public function add_menu()
     {
-        if ( current_user_can("ndpv_client_role") ) return; //not allowed for client
+        if (!is_multisite()) {
+            if (current_user_can("ndpv_client_role")) return; //not allowed for client
+        }
 
         add_menu_page(
             esc_html__("Propovoice", "propovoice"),
