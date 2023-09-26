@@ -1,38 +1,19 @@
-@import "partial/_list-single.scss";
+@import "partials/_list-single.scss";
 
 #wpbody-content {
     padding-bottom: 0;
 }
 
-//editor js
-//TODO: do it only for editor
-/* .ndpv-page-content {
-    max-height: 600px; //TODO: add a4 size later
-    overflow: hidden;
-} */
-
-/* .ce-block__content,
-.ce-toolbar__content {
-    max-width: calc(100% - 80px) !important;
+body {
+    background-color: #f7f8fa !important;
 }
 
-.cdx-block {
-    max-width: 100% !important;
-} */
+
 //tiny mce editor
 .tox .tox-tbtn svg {
     fill: #4A5568 !important;
 }
 
-//invoice item radius without edit column
-
-
-//for backend only 
-/* .ndpv .pv-right-content {
-    padding: 20px 30px 15px;
-    height: auto !important;
-}
- */
 .pv-field-desc {
     font-size: 12px;
     list-style: 1.4;
@@ -93,11 +74,6 @@
         height: auto !important;
     }
 }
-
-//tiny mce editor 
-/* .mce-content-body {
-    font-family: Inter, sans-serif !important;
-} */
 
 // bootstrap class
 .d-none {

@@ -1,0 +1,91 @@
+/*-------------------------------------------------------------- 
+# Color 
+--------------------------------------------------------------*/
+:root {
+  --pv-bg-color-white: #fff;
+  --pv-bg-color-orange: #FFF5E9;
+  --pv-bg-color-gray: #a0aec0;
+  --pv-bg-color-blue: #4c6fff;
+  --pv-bg-color-green: #18954d;
+  --pv-bg-color-pearl: #f7f8fa;
+
+  --pv-text-color-black: #000;
+  --pv-text-color-red: #da0f0f;
+  --pv-text-color-white: #fff;
+  --pv-text-color-orange: #F68A0B;
+  --pv-text-color-blue: #4c6fff;
+  --pv-text-color-green: #45ac9d;
+
+  --pv-border-color-gray: #dddddda8;
+}
+
+.ndpv {
+  .pv-bg-pearl {
+    background-color: var(--pv-bg-color-pearl) !important;
+  }
+
+  .pv-bg-blue {
+    background: linear-gradient(180deg, #4C6FFF 0%, #3157F0 99.99%, rgba(76, 111, 255, 0) 100%) !important;
+    border: none !important;
+  }
+
+  .pv-bg-shadow {
+    box-shadow: 0px 4.95074px 6.60099px rgba(0, 0, 0, 0.07);
+  }
+
+  .pv-bg-stroke {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8F8FA 100%);
+    color: #2D3748 !important;
+  }
+
+  .pv-bg-green {
+    background-color: var(--pv-bg-color-green) !important;
+  }
+
+  .pv-border-blue {
+    border: 1px solid var(--pv-text-color-blue) !important;
+  }
+
+  .pv-bg-white {
+    background-color: var(--pv-bg-color-white);
+  }
+
+  .pv-bg-black {
+    background-color: var(--bg-color-black);
+  }
+
+  .pv-bg-gray {
+    background-color: var(--pv-bg-color-gray);
+  }
+
+  .pv-bg-orange {
+    background-color: var(--pv-bg-color-orange) !important;
+  }
+
+  //Color
+  .pv-color-blue {
+    color: var(--pv-text-color-blue) !important;
+  }
+
+
+  .pv-color-green {
+    color: var(--pv-text-color-green) !important;
+  }
+
+  .pv-color-black {
+    color: var(--pv-text-color-black) !important;
+  }
+
+  .pv-color-white {
+    color: var(--pv-text-color-white) !important;
+  }
+
+  .pv-color-orange {
+    color: var(--pv-text-color-orange) !important;
+  }
+
+  //Brder olor
+  .pv-border-e-blue {
+    border: 1px solid var(--pv-border-color-gray) !important;
+  }
+}

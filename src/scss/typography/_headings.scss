@@ -1,0 +1,67 @@
+.ndpv {
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		clear: both;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
+		font-family: 'Inter', sans-serif;
+	}
+
+	p {
+		font-size: 14px;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-weight: inherit;
+		line-height: 30px;
+		margin: 0;
+	}
+
+	h1 {
+		font-size: 36px !important;
+		font-weight: 700;
+	}
+
+	@media screen and (max-width: 769px) {
+		h1 {
+			font-size: 28px !important;
+			font-weight: 700;
+		}
+	}
+
+	@media screen and (max-width: 400px) {
+		h1 {
+			font-size: 22px !important;
+			font-weight: 700;
+		}
+	}
+
+	.pv-title-medium {
+		font-size: 18px;
+		color: #2D3748;
+		font-weight: 500;
+	}
+
+	.pv-title-small {
+		font-size: 16px !important;
+		font-weight: 500;
+		margin-bottom: 15px;
+		margin-top: 30px;
+		color: #4A5568;
+	}
+}

@@ -1,0 +1,301 @@
+/*-------------------------------------------------------------- 
+# Table
+--------------------------------------------------------------*/
+@import "partials/table";
+/*-------------------------------------------------------------- 
+# crid
+--------------------------------------------------------------*/
+@import "partials/crud";
+/*-------------------------------------------------------------- 
+# modal
+--------------------------------------------------------------*/
+@import "partials/modal";
+/*-------------------------------------------------------------- 
+# tabs
+--------------------------------------------------------------*/
+@import "partials/tabs";
+/*-------------------------------------------------------------- 
+# widget
+--------------------------------------------------------------*/
+@import "partials/widget";
+
+.ndpv {
+  .pv-text-center {
+    text-align: center;
+  }
+
+  .pv-text-right {
+    text-align: right;
+  }
+
+  .pv-text-left {
+    text-align: left;
+  }
+
+  .pv-float-center {
+    float: center;
+  }
+
+  .pv-float-right {
+    float: right;
+  }
+
+  .pv-float-left {
+    float: left;
+  }
+
+  .pv-cursor-pointer {
+    cursor: pointer;
+  }
+
+  .pv-text-uppercase {
+    text-transform: uppercase;
+  }
+
+  .pv-mt-35 {
+    margin-top: 35px;
+  }
+
+  .pv-mt-15 {
+    margin-top: 15px !important;
+  }
+
+  .pv-mt-10 {
+    margin-top: 10px;
+  }
+
+  .pv-mb-10 {
+    margin-bottom: 10px;
+  }
+
+  .pv-mb-15 {
+    margin-bottom: 15px !important;
+  }
+
+  .pv-mb-20 {
+    margin-bottom: 20px;
+  }
+
+  .pv-mt-25 {
+    margin-top: 25px;
+  }
+
+  .pv-mt-90 {
+    margin-top: 90px;
+  }
+
+  .pv-mt-m-15 {
+    margin-top: -15px;
+  }
+
+  .pv-mb-45 {
+    margin-bottom: 45px !important;
+  }
+
+  .pv-mt-60 {
+    margin-top: 60px;
+  }
+
+  .pv-ml-55 {
+    margin-left: 55px;
+  }
+
+  .pv-mr-10 {
+    margin-right: 10px;
+  }
+
+  .pv-mr-14 {
+    margin-right: 14px !important;
+  }
+
+  .pv-ml-45 {
+    margin-left: 45px;
+  }
+
+  .pv-m-40 {
+    margin: 40px 0px 20px;
+  }
+
+  .pv-mt-2 {
+    position: relative;
+    top: 2px;
+  }
+
+  .pv-mt-3 {
+    position: relative;
+    top: 3px !important;
+  }
+
+  .pv-mt-6 {
+    position: relative;
+    top: 6px;
+  }
+
+  .pv-mt-m-2 {
+    position: relative;
+    top: -2px;
+  }
+
+  .pv-mr-m-30 {
+    margin-right: -30px;
+  }
+
+  .pv-mt-4 {
+    position: relative !important;
+    top: 4px !important;
+  }
+
+  .pv-mt-8 {
+    position: relative !important;
+    top: 8px !important;
+  }
+
+  .pv-mt-m-4 {
+    position: relative !important;
+    top: -4px !important;
+  }
+
+  .pv-mt-1 {
+    position: relative !important;
+    top: 1px !important;
+  }
+
+  .pv-mt-6 {
+    position: relative !important;
+    top: 6px !important;
+  }
+
+  .pv-m-auto {
+    margin: auto;
+    display: block !important;
+  }
+
+  .pv-mt-5 {
+    top: 5px;
+    position: relative;
+  }
+
+  .pv-mr-5 {
+    margin-right: 5px;
+  }
+
+  .pv-mr-0 {
+    margin-right: 0px !important;
+  }
+
+  .pv-mt-m-10 {
+    margin-top: -10px;
+  }
+
+  .pv-mt-m-5 {
+    margin-top: -5px;
+  }
+
+  .pv-ml-10 {
+    margin-left: 10px;
+  }
+
+  .pv-ml-5 {
+    margin-left: 5px !important;
+  }
+
+  .pv-ml-m-15 {
+    margin-left: -15px;
+  }
+
+  .pv-ml-m-50 {
+    left: -50px !important;
+  }
+
+  .pv-mb-30 {
+    margin-bottom: 30px !important;
+  }
+
+  .pv-mb-10 {
+    margin-bottom: 10px !important;
+  }
+
+  .pv-mt-30 {
+    margin-top: 30px;
+  }
+
+  .pv-z-2 {
+    z-index: 2;
+  }
+
+  .pv-p {
+    margin-top: -10px !important;
+  }
+
+  .pv-p-0 {
+    padding: 0 !important;
+  }
+
+  .pv-p-8 {
+    padding: 8px 15px !important;
+  }
+
+  .pv-gap>div {
+    padding: 10px;
+  }
+
+  .pv-margin-l-r {
+    margin-right: -10px;
+    margin-left: -10px;
+  }
+
+  .pv-br-4 {
+    border-radius: 4px !important;
+  }
+
+  .pv-border-0 {
+    border: 0 !important;
+  }
+
+  .pv-border-gray {
+    border: 1px solid rgba(221, 221, 221, 0.6588235294) !important;
+  }
+
+  .pv-gradient {
+    background: linear-gradient(to bottom, #ffffff6b 0%, #00000004 100%);
+  }
+
+  .pv-box-shodow {
+    box-shadow: rgb(0 0 0 / 10%) 0px 4px 7px -3px, rgb(0 0 0 / 6%) 0px 2px 0px -1px;
+  }
+
+  //Hover
+  .pv-bg-hover-blue:hover {
+    background: linear-gradient(180deg, #365DFD 0%, #123DEE 100%) !important;
+    transition: all 0.3s ease-out;
+  }
+
+  .pv-bg-hover-shadow:hover {
+    box-shadow: 0px 4.95074px 6.60099px rgba(0, 0, 0, 0.07) !important;
+    transition: all 0.3s ease-out;
+  }
+
+  .pv-bg-hover-stroke:hover {
+    background: linear-gradient(180deg, #F9F9FD 0%, #EBEDF3 100%);
+    transition: all 0.3s ease-out;
+  }
+
+  .pv-bg-hover-red:hover {
+    background-color: #e72626 !important;
+    transition: all 0.3s ease-out;
+  }
+
+  .pv-text-hover-blue:hover {
+    color: #4e6de9 !important;
+  }
+
+  .pv-hover-color-white:hover {
+    color: white !important;
+  }
+
+  .pv-hover-color-white:hover svg path {
+    fill: white !important;
+    transition: all 0.3s ease-out;
+  }
+
+}
