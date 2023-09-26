@@ -141,6 +141,9 @@ class Client
             $query_data["type"] = $type;
             $query_data["first_name"] = isset($queryMeta["first_name"])
                 ? $queryMeta["first_name"][0]
+                : "";   
+            $query_data["org_name"] = isset($queryMeta["name"])
+                ? $queryMeta["name"][0]
                 : "";            
             $query_data["email"] = isset($queryMeta["email"])
                 ? $queryMeta["email"][0]

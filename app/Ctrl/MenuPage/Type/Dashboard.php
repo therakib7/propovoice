@@ -56,10 +56,6 @@ class Dashboard
                 "label" => esc_html__("Estimate", "propovoice"),
                 "capability" => "ndpv_estimate",
             ],
-            /* [
-                'id' => 'quotation',
-                'label' => esc_html__('Quotation', 'propovoice'),
-            ], */
             [
                 "id" => "invoice",
                 "label" => esc_html__("Invoice", "propovoice"),
