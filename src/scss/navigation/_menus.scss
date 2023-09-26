@@ -1,0 +1,188 @@
+.ndpv {
+  .pv-left-sidebar {
+    width: 280px;
+    background-color: #f7f8fa;
+
+    .pv-logo-content {
+      padding: 18px 30px;
+      z-index: 9;
+      background: #fff;
+      width: 100%;
+      border-bottom: 1px solid #dddddd36;
+      position: fixed;
+      height: 74px;
+
+      @media screen and (max-width: 420px) {
+        padding: 11px 30px;
+      }
+    }
+
+    .pv-sidebar-menu {
+      margin: 0;
+      background-color: #fff;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      height: 100vh;
+      padding-bottom: 50px;
+      padding-top: 95px;
+
+      ul li {
+        display: block;
+        position: relative;
+
+        a {
+          padding: 13px 35px;
+          color: #4a5568;
+          font-weight: 500;
+          font-size: 14px;
+          width: 100%;
+          position: relative;
+          display: flex;
+          align-items: center;
+
+          img {
+            position: relative;
+            top: 2px;
+            margin-right: 6px;
+          }
+
+          & svg {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+
+    ul li .pv-active,
+    ul li:hover {
+      background-color: #F7F8FA;
+      color: var(--pv-text-color-blue);
+      color: #000;
+
+    }
+
+    ul li .pv-sub-menu li a {
+      font-weight: 500;
+      font-size: 12px;
+      display: table;
+      padding: 8px 25px;
+      padding-left: 40px;
+      font-size: 14px;
+    }
+
+    .pv-menu-buttons {
+      text-align: center;
+      margin-top: 50px;
+
+      a {
+        width: 180px;
+        border: 1px solid #dddddda8;
+        font-size: 13px;
+        margin-bottom: 15px;
+        padding: 15px 10px;
+      }
+
+      a.pv-bg-blue:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  .pv-menubar-icon {
+    display: none;
+
+    @media screen and (max-width: 420px) {
+      margin-top: 8px !important;
+
+      svg {
+        width: 17px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .pv-left-sidebar {
+      position: fixed;
+      overflow-x: visible;
+      scroll-behavior: smooth;
+      z-index: 99;
+      left: -220px;
+      transition: all 0.3s ease-out;
+      width: 220px;
+      border-right: 1px solid rgba(221, 221, 221, 0.6588235294);
+
+      .pv-logo-content {
+        width: 220px;
+      }
+    }
+
+    .pv-menubar-icon {
+      display: block;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 10px;
+      margin-right: 15px;
+    }
+
+    .pv-menu-open {
+      left: 0 !important;
+    }
+
+    .pv-left-sidebar.pv-menu-left {
+      .pv-menubar-icon {
+        left: 235px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .pv-menubar-icon {
+      left: 235px;
+    }
+  }
+}
+
+.pv-sub-menu {
+  display: none;
+}
+
+.pv-sub-menu-show {
+  display: block;
+}
+
+@media screen and (min-width: 768px) {
+  .pv-collapse-menu {
+    transition: all 0.2s ease-out;
+    width: 90px !important;
+
+    ul li a {
+      display: inline-table !important;
+
+      span {
+        position: absolute;
+        display: none;
+        top: 25%;
+        left: 25%;
+        transition: all 0.9s ease-out;
+      }
+
+      &:hover svg path {
+        fill: #3157f0;
+      }
+    }
+
+    .pv-menu-buttons {
+      display: none;
+    }
+  }
+
+  .pv-collapse-menu:hover {
+    width: 242px !important;
+
+    ul li a span {
+      display: table;
+      left: 28%;
+    }
+  }
+}
