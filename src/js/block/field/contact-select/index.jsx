@@ -93,7 +93,7 @@ export default (props) => {
 			>
 				{!props.data && i18n.select + ' ' + i18n.rec}
 				{props.data && <>
-					{(props.data.type == 'person') ? props.data.first_name : props.data.org_name}
+					{props.data.first_name ?? props.data.org_name}
 				</>}
 
 				<svg
