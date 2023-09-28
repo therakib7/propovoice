@@ -800,7 +800,7 @@ class ListSingle extends Component {
                   </span>
                 </li>
                 <li>
-                  <label htmlFor="">{i18n.dueDate}:</label>
+                  <label htmlFor="">{i18n.due_date}:</label>
                   <span className="pv-date">
                     {data.due_date && (
                       <Moment format="YYYY-MM-DD">{data.due_date}</Moment>

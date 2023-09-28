@@ -299,11 +299,12 @@ export default class Form extends Component {
               <div className="row">
                 <div className="col-md">
                   <label htmlFor="field-start_date">
-                    {i18n.start} {i18n.date}
+                    {i18n.start_date}
                   </label>
                   <div className="pv-field-date">
                     <DateField
                       date={form.start_date}
+                      label={i18n.start_date}
                       type="date"
                       onDateChange={this.onDateChange}
                     />
@@ -312,11 +313,12 @@ export default class Form extends Component {
 
                 <div className="col-md">
                   <label htmlFor="field-start_date">
-                    {i18n.dueDate}
+                    {i18n.due_date}
                   </label>
                   <div className="pv-field-date">
                     <DateField
                       date={form.due_date}
+                      label={i18n.due_date}
                       type="due_date"
                       onDateChange={this.onDateChange}
                     />

@@ -1030,7 +1030,7 @@ class Invoice extends Component {
 
 															<div className="pv-info-form-list">
 																<div className="pv-info-lavel">
-																	<label htmlFor="due">{i18n.dueDate}:</label>
+																	<label htmlFor="due">{i18n.due_date}:</label>
 																</div>
 																<div className="pv-info-input-field">
 																	<DateField
