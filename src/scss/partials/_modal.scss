@@ -415,92 +415,18 @@
     width: 25% !important;
   }
 
-  //Modal right side
-  .pv-modal-content.pv-modal-sidebar .row>div {
-    margin-bottom: 25px;
-  }
 
-  .pv-modal-sidebar {
-    float: right;
-    margin: 0;
-    border-radius: 0px;
-    margin-right: 17px;
-
-    @media screen and (max-width: 420px) {
-      max-width: 350px;
-    }
-
+  .pv-modal-task {
     .pv-modal-header {
-      padding: 40px 35px;
-    }
-
-    .pv-content {
-      padding: 20px 35px 15px;
-      height: calc(100vh - 219px);
-
-      @media screen and (max-width: 992px) {
-        padding: 20px 25px 15px;
-        height: calc(100vh - 202px);
-      }
-    }
-
-    .pv-close {
-      top: 46%;
-      left: -60px;
-
-      @media screen and (max-width: 992px) {
-        top: 45%;
-      }
-    }
-
-    .pv-modal-footer {
-      margin-top: 20px;
-      padding: 20px 35px 5px;
-      border: 1px solid #dddddda8;
-
-      @media screen and (max-width: 992px) {
-        margin-top: 30px;
-      }
-    }
-
-    .pv-title-field {
-      font-size: 24px !important;
-      font-weight: 500;
-      padding: 13px 20px !important;
-
-      @media screen and (max-width: 550px) {
-        font-size: 16px !important;
-      }
-
-    }
-
-    .pv-action-content {
-      display: inline;
-
-      .pv-dropdown-content {
-        top: 35px;
-        left: 0;
-
-        @media screen and (max-width: 550px) {
-          left: -65px !important;
-        }
-      }
-    }
-  }
-
-  .pv-modal-sidebar-two {
-    width: 760px;
-
-    .pv-modal-header {
-      .pv-action-content {
-        display: inline;
-      }
-
       .pv-btn-medium {
         border-radius: 5px;
         border: none;
         margin-top: -8px;
       }
+    }
+
+    .pv-action-content {
+      display: inline;
     }
 
     .pv-checklist-head {
@@ -602,21 +528,9 @@
       }
     }
 
-    .pv-content {
-      height: calc(100vh - 108px);
-
-      @media screen and (max-width: 420px) {
-        height: calc(100vh - 58px);
-      }
-    }
   }
 
-  //Raange
-  .pv-modal-sidebar {
-    input[type="range"] {
-      margin-top: 0;
-    }
-  }
+
 
   .pv-range {
     width: 70%;

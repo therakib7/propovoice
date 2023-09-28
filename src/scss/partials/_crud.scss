@@ -1153,54 +1153,8 @@
   }
 
   @media screen and (max-width: 992px) {
-    .pv-modal-sidebar .pv-content {
-      padding: 20px 35px 15px 25px;
-    }
-  }
-
-  @media screen and (max-width: 420px) {
-    .pv-modal-sidebar .pv-content {
-      padding: 15px 30px 15px 15px !important;
-    }
-  }
-
-  @media screen and (max-width: 992px) {
     .pv-list-single-button-content .pv-action-btn .pv-dropdown-content {
       left: -125px !important;
-    }
-  }
-
-
-  .pv-modal-sidebar-two .pv-modal-style-two {
-    .pv-modal-header {
-      padding: 30px 35px;
-    }
-
-    .pv-close {
-      left: auto;
-      top: 52%;
-    }
-
-    .pv-content {
-      height: auto;
-      padding: 20px 35px 0px;
-    }
-
-    .pv-modal-footer {
-      padding: 20px 30px 15px;
-      border-radius: 0 0 12px 12px;
-      margin-top: -25px;
-      border: none;
-
-      .btn {
-        margin-left: -15px;
-      }
-    }
-  }
-
-  @media screen and (max-width: 992px) {
-    .pv-modal-content.pv-modal-sidebar {
-      width: 60%;
     }
   }
 
