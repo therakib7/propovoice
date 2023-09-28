@@ -52,6 +52,7 @@ const CustomContainer = ({ className, label, children, ...props }) => {
 		<CalendarContainer {...props} className={className}>
 			{label && <div style={{
 				background: "rgb(241 241 241)",
+				color: '#4A5568',
 				padding: '5px 10px',
 				textAlign: 'center',
 				fontFamily: "Inter",
