@@ -59,7 +59,7 @@ const Dashboard = (props) => {
                 <div className="col">
                     <h2
                         className="pv-page-title"
-                        style={{ color: "#2d3748", display: "inline-block" }}
+                        style={{ color: "#2d3748", display: "inline-block", marginBottom: 0 }}
                     >
                         {i18n.ov}
                     </h2>
