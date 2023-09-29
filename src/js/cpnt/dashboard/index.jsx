@@ -27,7 +27,7 @@ import WithApi from 'hoc/Api';
 const TaskCom = () => {
     const i18n = ndpv.i18n;
     return (
-        <div className='pv-bg-white pv-border-gray' style={{ minHeight: '435px', padding: '10px 20px 5px 30px', borderRadius: '8px' }}>
+        <div className='pv-bg-white pv-border-gray' style={{ padding: '10px 20px 5px 30px', borderRadius: '8px' }}>
             <h3
                 className="pv-title-medium pv-mb-20"
                 style={{ fontWeight: "bold", color: "#718096", marginLeft: '-10px' }}
@@ -126,19 +126,16 @@ const Dashboard = (props) => {
                 <Summary {...props} />
             </Suspense>
 
-            {!wage.length && <div className="pv-block">
-                <div className="row">
-                    {!isClient && caps.includes("ndpv_task") && <div className="col-lg-7">
-                        <TaskCom />
-                    </div>}
+            {!wage.length && !isClient &&
+                <div className="pv-db-task-deal">
+                    {caps.includes("ndpv_task") && <TaskCom />}
 
-                    {caps.includes("ndpv_deal") && <div className="col-lg-5">
+                    {caps.includes("ndpv_deal") &&
                         <Suspense fallback={<Spinner />}>
                             <DealFunnel {...props} />
                         </Suspense>
-                    </div>}
-                </div>
-            </div>}
+                    }
+                </div>}
 
             <div className="row">
                 {isClient && <div className="col-lg-12">

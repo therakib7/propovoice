@@ -359,15 +359,22 @@
     }
   }
 
+  .pv-db-task-deal {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 30px;
+    margin-bottom: 30px;
+
+    @media screen and (max-width: 820px) {
+      grid-template-columns: auto;
+    }
+  }
+
   //Block
   .pv-punnel {
     background: #fff;
     padding: 10px 20px;
     border-radius: 8px;
-
-    @media screen and (max-width: 992px) {
-      margin-top: 20px;
-    }
 
     ul {
       margin: 0;
