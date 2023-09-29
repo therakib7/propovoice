@@ -176,7 +176,7 @@ function Pipeline(props) {
 																	<div className="pv-avatar-content">
 																		<img src={img} alt="avatar" />
 																		<div className="pv-avatar-text">
-																			<h5>{(item.person) ? item.person.first_name : item.org.name} </h5>
+																			<h5>{(item.person || item.org) && <>{(item.person) ? item.person.first_name : item.org.name}</>}</h5>
 																			<p>
 																				{item.person ? <>
 																					{(item.person.region || item.person.country) &&

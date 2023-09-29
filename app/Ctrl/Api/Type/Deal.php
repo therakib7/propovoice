@@ -20,7 +20,7 @@ class Deal
             "permission_callback" => [$this, "get_per"],
             "args" => [
                 "id" => [
-                    "validate_callback" => function ($param, $request, $key) {
+                    "validate_callback" => function ($param) {
                         return is_numeric($param);
                     },
                 ],
@@ -45,7 +45,7 @@ class Deal
             "permission_callback" => [$this, "update_per"],
             "args" => [
                 "id" => [
-                    "validate_callback" => function ($param, $request, $key) {
+                    "validate_callback" => function ($param) {
                         return is_numeric($param);
                     },
                 ],
@@ -472,6 +472,7 @@ class Deal
             //auto asign first deal stage
             $deal_stage = Fns::get_terms('deal_stage');
             $stage_id = $deal_stage[0]->term_id;
+            $probability = 1;
 
             //get client 
             $user_id = get_current_user_id();
@@ -483,10 +484,6 @@ class Deal
                 $org_id = $client_id;
             }
         }
-
-        /* if ( !$lead_id && empty($contact_id)) {
-            $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
-        } */
 
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
