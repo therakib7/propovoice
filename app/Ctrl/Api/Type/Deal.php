@@ -316,9 +316,6 @@ class Deal
         $query_data["probability"] = isset($queryMeta["probability"])
             ? absint($queryMeta["probability"][0])
             : "";
-        $query_data["note"] = isset($queryMeta["note"])
-            ? $queryMeta["note"][0]
-            : "";
         $query_data["desc"] = get_post_field("post_content", $id);
 
         //custom field
@@ -429,7 +426,6 @@ class Deal
             ? array_map("absint", $param["tags"])
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
-        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
         $project_req = isset($param["project_req"]) ? true : false;
 
         /* if ( $lead_id ) {
@@ -551,10 +547,6 @@ class Deal
 
                 if ($tags) {
                     wp_set_post_terms($post_id, $tags, "ndpv_tag");
-                }
-
-                if ($note) {
-                    update_post_meta($post_id, "note", $note);
                 }
 
                 if ($lead_id) {
