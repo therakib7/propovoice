@@ -25,7 +25,7 @@ export default (props) => {
                     <h5>{ndpv.i18n.billTo}</h5>
                     <h6>{data?.first_name ?? data?.org_name}</h6>
                     <p>
-                        {!data?.first_name ? data?.org_name + "<br />" : ""}
+                        {!data?.first_name ? <>{data?.org_name} <br /></> : ""}
                         {data.address &&
                             <>{data.address}.<br /></>
                         }
