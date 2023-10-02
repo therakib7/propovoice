@@ -1,6 +1,7 @@
+const i18n = ndpv.i18n;
 export default [
     {
-        label: 'Lead',
+        label: i18n.lead,
         slug: 'lead',
         list: {
             lead_add: 'Create',
@@ -9,7 +10,7 @@ export default [
         }
     },
     {
-        label: 'Deal',
+        label: i18n.deal,
         slug: 'deal',
         list: {
             deal_add: 'Create',
@@ -18,7 +19,7 @@ export default [
         }
     },
     {
-        label: 'Estimate',
+        label: i18n.est,
         slug: 'est',
         list: {
             est_add: 'Create',
@@ -27,7 +28,7 @@ export default [
         }
     },
     {
-        label: 'Invoice',
+        label: i18n.inv,
         slug: 'inv',
         list: {
             inv_add: 'Create',
@@ -36,7 +37,7 @@ export default [
         }
     },
     {
-        label: 'Project',
+        label: i18n.project,
         slug: 'project',
         list: {
             project_add: 'Create',
@@ -45,7 +46,7 @@ export default [
         }
     },
     {
-        label: 'Task',
+        label: i18n.task,
         slug: 'task',
         list: {
             task_add: 'Create',
@@ -54,7 +55,7 @@ export default [
         }
     },
     {
-        label: 'Contact',
+        label: i18n.ct,
         slug: 'contact',
         list: {
             contact_add: 'Create',
