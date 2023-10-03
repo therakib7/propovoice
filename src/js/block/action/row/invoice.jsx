@@ -3,7 +3,6 @@ import ProLabel from 'block/pro-alert/label';
 import useClickOutside from 'block/outside-click';
 import { Edit } from 'block/icon';
 
-
 export default (props) => {
 
     const dropdownRef = useRef();

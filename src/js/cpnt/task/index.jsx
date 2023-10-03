@@ -23,7 +23,7 @@ export default (props) => {
 
             <div className="pv-tab-content">
               <Suspense fallback={<Spinner />}>
-                <Task tab_id={null} />
+                <Task tab_id={null} source />
               </Suspense>
             </div>
           </div>

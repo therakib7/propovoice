@@ -279,6 +279,39 @@ class Task
             $query_data["checklist"] = get_post_meta($id, "checklist", true);
             $query_data["date"] = get_the_time(get_option("date_format"));
 
+            $query_data["tab_title"] = '';
+            $query_data["tab_url"] = '';
+            $tab_id = get_post_meta($id, "tab_id", true);
+            if ( $tab_id ) {
+                $post_type = get_post_type( $tab_id );
+                switch ($post_type) {
+                    case 'ndpv_lead':
+                        $query_data["tab_title"] = esc_html__('Lead: ', 'propovoice') . $tab_id;
+                        $query_data["tab_url"] = 'lead/' . $tab_id;
+                        break;
+
+                    case 'ndpv_deal':
+                        $query_data["tab_title"] = esc_html__('Deal: ', 'propovoice') . $tab_id;
+                        $query_data["tab_url"] = 'deal/' . $tab_id;
+                        break;
+
+                    case 'ndpv_person':
+                    case 'ndpv_org':
+                        $query_data["tab_title"] = esc_html__('Contact: ', 'propovoice') . $tab_id;
+                        $query_data["tab_url"] = 'contact/' . $tab_id;
+                        break;
+                    
+                    case 'ndpv_project':
+                        $query_data["tab_title"] = esc_html__('Project: ', 'propovoice') . $tab_id;
+                        $query_data["tab_url"] = 'project/' . $tab_id;
+                        break;
+                    
+                    default:
+                        # code...
+                        break;
+                }
+            } 
+
             if ($dashboard) {
                 $data["latest"][] = $query_data;
             } else {

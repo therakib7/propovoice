@@ -35,7 +35,7 @@ const TaskCom = () => {
                 {i18n.latest} {i18n.taska}
             </h3>
             <Suspense fallback={<Spinner />}>
-                <Task tab_id={null} dashboard />
+                <Task tab_id={null} dashboard source />
             </Suspense>
         </div>
     )
