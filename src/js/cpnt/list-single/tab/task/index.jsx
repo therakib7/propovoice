@@ -127,6 +127,7 @@ const Task = (props) => {
           {props.dashboard && (
             <Table
               dashboard
+              source={props.source}
               reload={reload}
               tableData={lists.latest}
               taxonomies={taxonomies}
@@ -177,6 +178,7 @@ const Task = (props) => {
                     <label className="pv-table-close" htmlFor="pv-acc-close" />
                     <div className="pv-accordion-content">
                       <Table
+                        source={props.source}
                         reload={reload}
                         tableData={lists.today}
                         taxonomies={taxonomies}
@@ -228,6 +230,7 @@ const Task = (props) => {
                     <label className="pv-table-close" htmlFor="pv-acc-close" />
                     <div className="pv-accordion-content">
                       <Table
+                        source={props.source}
                         reload={reload}
                         tableData={lists.other}
                         taxonomies={taxonomies}
@@ -278,6 +281,7 @@ const Task = (props) => {
                     <label className="pv-table-close" htmlFor="pv-acc-close" />
                     <div className="pv-accordion-content">
                       <Table
+                        source={props.source}
                         reload={reload}
                         tableData={lists.unschedule}
                         taxonomies={taxonomies}

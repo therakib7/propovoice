@@ -279,6 +279,52 @@ class Task
             $query_data["checklist"] = get_post_meta($id, "checklist", true);
             $query_data["date"] = get_the_time(get_option("date_format"));
 
+            $query_data["tab_title"] = '';
+            $query_data["tab_url"] = '';
+            $tab_id = get_post_meta($id, "tab_id", true);
+            if ( $tab_id ) {
+                $name = '';
+                $post_type = get_post_type( $tab_id );
+                $person_id = get_post_meta($tab_id, "person_id", true);
+                $org_id = get_post_meta($tab_id, "org_id", true);
+                if ( $person_id ) {
+                    $name = get_post_meta($person_id, "first_name", true);
+                } else if ( $org_id ) {
+                    $name = get_post_meta($person_id, "org_name", true);
+                }
+                switch ($post_type) {
+                    case 'ndpv_lead':
+                        $query_data["tab_title"] = esc_html__('Lead: ', 'propovoice') . $name;
+                        $query_data["tab_url"] = 'lead/' . $tab_id;
+                        break;
+
+                    case 'ndpv_deal':
+                        $query_data["tab_title"] = esc_html__('Deal: ', 'propovoice') . $name;
+                        $query_data["tab_url"] = 'deal/' . $tab_id;
+                        break;
+
+                    case 'ndpv_person':
+                        $name = get_post_meta($tab_id, "first_name", true);
+                        $query_data["tab_title"] = esc_html__('Contact: ', 'propovoice') . $name;
+                        $query_data["tab_url"] = 'contact/' . $tab_id;
+                        break;
+                    case 'ndpv_org':
+                        $name = get_post_meta($tab_id, "name", true);
+                        $query_data["tab_title"] = esc_html__('Contact: ', 'propovoice') . $name;
+                        $query_data["tab_url"] = 'contact/' . $tab_id;
+                        break;
+                    
+                    case 'ndpv_project':
+                        $query_data["tab_title"] = esc_html__('Project: ', 'propovoice') . $name;
+                        $query_data["tab_url"] = 'project/' . $tab_id;
+                        break;
+                    
+                    default:
+                        # code...
+                        break;
+                }
+            } 
+
             if ($dashboard) {
                 $data["latest"][] = $query_data;
             } else {
