@@ -17,7 +17,7 @@ class Task
             "permission_callback" => [$this, "get_per"],
             "args" => [
                 "id" => [
-                    "validate_callback" => function ($param, $request, $key) {
+                    "validate_callback" => function ($param) {
                         return is_numeric($param);
                     },
                 ],
@@ -42,7 +42,7 @@ class Task
             "permission_callback" => [$this, "update_per"],
             "args" => [
                 "id" => [
-                    "validate_callback" => function ($param, $request, $key) {
+                    "validate_callback" => function ($param) {
                         return is_numeric($param);
                     },
                 ],
@@ -93,10 +93,6 @@ class Task
             "post_status" => "publish",
             "posts_per_page" => -1,
         ];
-
-        // if (!in_array("ndpv_manager", wp_get_current_user()->roles)) {
-        //     $args["author"] = get_current_user_id();
-        // }
 
         if (!$tab_id) {
             $args["posts_per_page"] = $per_page;
@@ -318,7 +314,6 @@ class Task
 
         $query_data["title"] = get_the_title();
         $query_data["desc"] = get_the_content();
-        // $query_data['desc'] = get_post_meta($id, 'title', true);
 
         wp_send_json_success($query_data);
     }

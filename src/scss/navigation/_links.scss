@@ -1,0 +1,32 @@
+.ndpv {
+  select {
+    /*   -webkit-appearance: none;
+    appearance: none; */
+  }
+  
+  ol,
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    cursor: pointer;
+    color: inherit;
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+      color: inherit;
+    }
+    &:focus {
+      outline: none;
+    }
+    &:hover,
+    &:active {
+      outline: 0;
+      text-decoration: none;
+    }
+    text-decoration: none;
+  }
+}

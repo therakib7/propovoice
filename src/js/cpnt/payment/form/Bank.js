@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import { toast } from 'react-toastify';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 // const Editor = lazy(() => import('block/editor'));
@@ -83,10 +83,10 @@ class FormBank extends Component {
                         <h2 className="pv-modal-title">{this.props.modalType == 'new' ? i18n.new : i18n.edit} {i18n.account}</h2>
                         <p>{i18n.necInfo}</p>
                     </div>
-                    <FormWrapper  submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
                             <div className="row">
-                                <TextInput
+                                <Text
                                     label={i18n.name}
                                     id="form-name"
                                     type="text"

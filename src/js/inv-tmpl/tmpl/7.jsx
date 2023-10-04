@@ -57,7 +57,7 @@ export default (props) => {
                             <div className="pv-inv-from-date">
                                 <p>{titleNo}: <span>{id ? nNum : ''}</span></p>
                                 <p>{i18n.date}: <span>{date && <Moment format={ndpv.date_format}>{date}</Moment>}</span></p>
-                                <p>{i18n.dueDate}: <span>{due_date && <Moment format={ndpv.date_format}>{due_date}</Moment>}</span></p>
+                                <p>{i18n.due_date}: <span>{due_date && <Moment format={ndpv.date_format}>{due_date}</Moment>}</span></p>
                             </div>
                         </div>
                     </div>

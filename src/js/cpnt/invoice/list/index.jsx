@@ -58,7 +58,7 @@ class Invoice extends Component {
 
   componentDidMount() {
     const i18n = ndpv.i18n;
-    let title = this.props.path == "/invoice" ? "Invoice" : "Estimate";
+    let title = this.props.path == "/invoice" ? i18n.inv : i18n.est;
     let path = this.props.path == "/invoice" ? "invoice" : "estimate";
 
     this.setState({ title, path }, () => {
@@ -286,19 +286,12 @@ class Invoice extends Component {
 
         {!this.props.dashboard && <div className="row">
           <div className="col">
-            <h2 className="pv-page-title">
-              {title == "Invoice"
-                ? ndpv.i18n.inv
-                : title == "Estimate"
-                  ? ndpv.i18n.est
-                  : title}
-            </h2>
+            <h2 className="pv-page-title">{title}</h2>
           </div>
           <div className="col">
             {!caps.includes("ndpv_client_role") && <AddNew
               title={title}
               openForm={() => this.newInvoie()}
-            // fields={EntityFields.invoice}
             />}
           </div>
         </div>}

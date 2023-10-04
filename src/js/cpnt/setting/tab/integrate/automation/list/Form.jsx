@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import actionList from './actions';
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
@@ -119,7 +119,7 @@ export default class Form extends Component {
                         <h2 className="pv-modal-title">{modalType} {this.props.title}</h2>
                         <p>{sprintf(i18n.formDesc, modalType, this.props.title)}</p>
                     </div>
-                    <FormWrapper  submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
                         <FormContent formStyleClass="pv-form-style-one">
 
                             <div className="row">
@@ -142,7 +142,7 @@ export default class Form extends Component {
                             </div>
 
                             <div className="row">
-                                <TextInput
+                                <Text
                                     label={i18n.name}
                                     id="name"
                                     type="text"
@@ -155,7 +155,7 @@ export default class Form extends Component {
                             </div>
 
                             <div className="row">
-                                <TextInput
+                                <Text
                                     label="Webhook URL"
                                     id="url"
                                     type="text"

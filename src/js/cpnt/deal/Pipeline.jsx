@@ -176,9 +176,9 @@ function Pipeline(props) {
 																	<div className="pv-avatar-content">
 																		<img src={img} alt="avatar" />
 																		<div className="pv-avatar-text">
-																			<h5>{(item.person) ? item.person.first_name : item.org.name} </h5>
+																			<h5>{(item.person || item.org) && <>{(item.person) ? item.person.first_name : item.org.name}</>}</h5>
 																			<p>
-																				{item.person ? <>
+																				{(item.person || item.org) && <>{item.person ? <>
 																					{(item.person.region || item.person.country) &&
 																						<>
 																							{(item.person.region && item.person.country) ? item.person.region + ', ' : ''} {countryByCode(item.person.country)}
@@ -190,7 +190,7 @@ function Pipeline(props) {
 																							{(item.org.region && item.org.country) ? item.org.region + ', ' : ''} {countryByCode(item.org.country)}
 																						</>
 																					}
-																				</>}
+																				</>}</>}
 																			</p>
 
 																			{column.type == 'won' && <span className="pv-badge" style={{ backgroundColor: '#DDFFDE', color: '#0BA24B' }}>{i18n.won}</span>}

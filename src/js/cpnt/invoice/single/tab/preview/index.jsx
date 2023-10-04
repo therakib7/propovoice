@@ -18,20 +18,18 @@ const EditDownload = (props) => {
   }
 
   return (
-    <>
-      <button
-        className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
-        onClick={() => props.handleEdit()}
-      >
-        <svg width={14} height={14} viewBox="0 0 14 14" fill="none">
-          <path
-            d="M12.5 3.505L11.167 4.84V1.667h-6v3.334H1.833v7.333h9.334v-1.838L12.5 9.163v3.843a.662.662 0 01-.662.661H1.162a.666.666 0 01-.662-.671V4.334l4.002-4h7.33a.67.67 0 01.668.661v2.51zm.519 1.367l.942.943-5.185 5.186-.944-.002.001-.941 5.186-5.185v-.001z"
-            fill="#2D3748"
-          />
-        </svg>
-        {ndpv.i18n.edit} {title}
-      </button>
-    </>
+    <button
+      className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
+      onClick={() => props.handleEdit()}
+    >
+      <svg width={14} height={14} viewBox="0 0 14 14" fill="none">
+        <path
+          d="M12.5 3.505L11.167 4.84V1.667h-6v3.334H1.833v7.333h9.334v-1.838L12.5 9.163v3.843a.662.662 0 01-.662.661H1.162a.666.666 0 01-.662-.671V4.334l4.002-4h7.33a.67.67 0 01.668.661v2.51zm.519 1.367l.942.943-5.185 5.186-.944-.002.001-.941 5.186-5.185v-.001z"
+          fill="#2D3748"
+        />
+      </svg>
+      {ndpv.i18n.edit} {title}
+    </button>
   );
 };
 
@@ -140,7 +138,7 @@ export default class Preview extends Component {
           id="ndpv-invoice-print"
           style={{ height: 0, width: 0, position: "absolute" }}
         ></iframe>
-        <div className="row justify-content-md-center" style={{overflow: 'hidden'}}>
+        <div className="row justify-content-md-center" style={{ overflow: 'hidden' }}>
           <div className="col-md-8" style={{ margin: "50px 0 30px 0" }}>
             <div className="" style={{ width: "788px", margin: "0 auto" }}>
               <div className="pv-float-left">
@@ -241,7 +239,7 @@ export default class Preview extends Component {
                   content={() => this.componentRef}
                   trigger={() => (
                     <button
-                      className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5" 
+                      className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow pv-mr-5"
                     >
                       <svg
                         width={15}
@@ -275,7 +273,7 @@ export default class Preview extends Component {
                 </button>
                 <button
                   className="pv-btn pv-btn-medium pv-bg-hover-blue pv-bg-blue pv-bg-shadow pv-br-4"
-                  style={{position: 'relative', top: '-2px'}}
+                  style={{ position: 'relative', top: '-2px' }}
                   onClick={() => this.props.showEmailModal()}
                 >
                   {i18n.send_email}

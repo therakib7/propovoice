@@ -14,7 +14,7 @@ const DateField = lazy(() => import('block/date-picker'));
 
 const { i18n, caps } = ndpv;
 const isClient = caps.includes("ndpv_client_role");
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 class Form extends Component {
@@ -304,7 +304,7 @@ class Form extends Component {
                         <FormContent formStyleClass="pv-form-style-one">
 
                             <div className="row">
-                                <TextInput
+                                <Text
                                     label={i18n.title}
                                     id="field-title"
                                     type="text"
@@ -326,7 +326,7 @@ class Form extends Component {
                                 />
 
                                 <div className="row">
-                                    <TextInput
+                                    <Text
                                         label={i18n.email}
                                         id="form-email"
                                         type="email"
@@ -404,19 +404,19 @@ class Form extends Component {
                             {!isClient && <div className="row">
                                 <div className="col-md">
                                     <label htmlFor="field-start_date">
-                                        {i18n.start} {i18n.date}
+                                        {i18n.start_date}
                                     </label>
                                     <div className='pv-field-date'>
-                                        <DateField date={form.start_date} type='date' onDateChange={this.onDateChange} />
+                                        <DateField date={form.start_date} label={i18n.start_date} type='date' onDateChange={this.onDateChange} />
                                     </div>
                                 </div>
 
                                 <div className="col-md">
                                     <label htmlFor="field-start_date">
-                                        {i18n.dueDate}
+                                        {i18n.due_date}
                                     </label>
                                     <div className='pv-field-date'>
-                                        <DateField date={form.due_date} type='due_date' onDateChange={this.onDateChange} />
+                                        <DateField date={form.due_date} label={i18n.due_date} type='due_date' onDateChange={this.onDateChange} />
                                     </div>
                                 </div>
                             </div>}
@@ -449,7 +449,7 @@ class Form extends Component {
                                         id="form-desc"
                                         rows={2}
                                         name="desc"
-                                        value={form.desc}
+                                        value={form.desc.replace(/<br \/>/gi, '')}
                                         onChange={this.handleChange}
                                     />
                                 </div>

@@ -104,7 +104,6 @@ if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'producti
     mix.sass(`src/scss/main.scss`, `asset/css/main${min}.css`)
         .sass(`src/scss/dashboard.scss`, `asset/css/dashboard${min}.css`)
         .sass(`src/scss/welcome.scss`, `asset/css/welcome${min}.css`)
-        .sass(`src/scss/invoice.scss`, `asset/css/invoice${min}.css`)
         /* .postCss('src/vendor/tailwind/tailwind.css', `asset/vendor/tailwind/tailwind${min}.css`, [
             require('tailwindcss'),
         ]) */

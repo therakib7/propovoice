@@ -16,7 +16,7 @@ class Payment
             "permission_callback" => [$this, "get_per"],
             "args" => [
                 "id" => [
-                    "validate_callback" => function ($param, $request, $key) {
+                    "validate_callback" => function ($param) {
                         return is_numeric($param);
                     },
                 ],
@@ -41,7 +41,7 @@ class Payment
             "permission_callback" => [$this, "update_per"],
             "args" => [
                 "id" => [
-                    "validate_callback" => function ($param, $request, $key) {
+                    "validate_callback" => function ($param) {
                         return is_numeric($param);
                     },
                 ],

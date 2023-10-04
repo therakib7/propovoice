@@ -35,6 +35,7 @@ class I18n
                 "propovoice"
             ),
             "aConf" => esc_html__("Are you sure to delete it?", "propovoice"),
+            "receiver_missing" => esc_html__("Receiver is missing", "propovoice"),
             "cc" => esc_html__("Copied", "propovoice"),
             "conV" => esc_html__("convert", "propovoice"),
             //dashboard
@@ -62,6 +63,7 @@ class I18n
             "deal_pipeline" => esc_html__("Deal Pipeline", "propovoice"),
             "add_stage" => esc_html__("Add Stage", "propovoice"),
             "add_deal" => esc_html__("Add Deal", "propovoice"),
+            "client_name" => esc_html__("Client Name", "propovoice"),
             "stage" => esc_html__("Stage", "propovoice"),
             "won" => esc_html__("Won", "propovoice"),
             "lost" => esc_html__("Lost", "propovoice"),
@@ -146,6 +148,7 @@ class I18n
             "status" => esc_html__("Status", "propovoice"),
             "created_at" => esc_html__("Created At", "propovoice"),
             "date" => esc_html__("Date", "propovoice"),
+            "start_date" => esc_html__("Start Date", "propovoice"),
             "due_date" => esc_html__("Due Date", "propovoice"),
             "action" => esc_html__("Action", "propovoice"),
             "show" => esc_html__("Show", "propovoice"),
@@ -189,7 +192,6 @@ class I18n
             "title" => esc_html__("Title", "propovoice"),
             "start" => esc_html__("Start", "propovoice"),
             "due" => esc_html__("Due", "propovoice"),
-            "dueDate" => esc_html__("Due Date", "propovoice"),
             "sub" => esc_html__("Subject", "propovoice"),
             "msg" => esc_html__("Message", "propovoice"),
             "clear" => esc_html__("Clear", "propovoice"),

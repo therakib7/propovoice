@@ -4,7 +4,7 @@ import AppContext from 'context/app-context';
 import Upload from 'block/field/upload';
 import api from 'api';
 import Preloader from "block/preloader/spinner";
-import { TextInput } from 'block/form/input';
+import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 export default class Business extends Component {
@@ -104,7 +104,7 @@ export default class Business extends Component {
                 <FormContent formStyleClass="pv-form-style-one">
                     <div className="row">
 
-                        <TextInput
+                        <Text
                             label={i18n.name}
                             id="field-name"
                             type="text"
@@ -146,7 +146,7 @@ export default class Business extends Component {
                             />
                         </div>
 
-                        <TextInput
+                        <Text
                             label={i18n.email}
                             id="field-email"
                             type="email"

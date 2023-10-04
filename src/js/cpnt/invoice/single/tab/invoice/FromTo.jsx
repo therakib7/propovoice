@@ -225,7 +225,7 @@ export default class FromTo extends Component {
                             <div className="pv-from-to-content">
                                 <label className="pv-title-small">{i18n.rec}</label>
                                 <div className="pv-sendlist pv-action-content">
-                                    <Contact data={toData} onChange={this.handleContactSelect} />
+                                    {!this.props.moduleId && <Contact data={toData} onChange={this.handleContactSelect} />}
                                 </div>
                             </div>
 

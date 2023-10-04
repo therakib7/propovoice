@@ -171,7 +171,7 @@ class Form extends Component {
                     type="submit"
                     className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white"
                   >
-                    Export <ProLabel blueBtn />
+                    {i18n.exp} <ProLabel blueBtn />
                   </button>
                 </div>
                 {this.state.csvFile && (

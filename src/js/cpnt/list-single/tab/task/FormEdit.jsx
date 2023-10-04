@@ -71,10 +71,6 @@ export default class Form extends Component {
       if (this.state.form.id != this.props.data.id) {
         this.setState({ form: this.props.data });
       }
-
-      /* if ( JSON.stringify(this.state.form) != JSON.stringify(this.props.data) ) {
-                      this.setState({ form: this.props.data });
-                  } */
     } else {
       if (this.state.form.id != null) {
         this.setState({ form: this.initialState });
@@ -116,6 +112,47 @@ export default class Form extends Component {
       });
     }, 300);
   };
+
+  /* handleSubmit = (e) => {
+    e.preventDefault();
+    let form = { ...this.state.form };
+    let status_id = form.status_id.id;
+    delete form.priority_id;
+    delete form.status_id;
+    delete form.type_id;
+
+    if (form.start_date) {
+      let startDate = moment(form.start_date).format("YYYY-MM-DD");
+      form.start_date = startDate;
+    }
+
+    if (form.end_date) {
+      let endDate = moment(form.end_date).format("YYYY-MM-DD");
+      form.end_date = endDate;
+    }
+
+    api.edit("tasks", form.id, form).then((resp) => {
+      if (resp.data.success) {
+        this.props.reload({ status_id });
+      }
+    });
+  }; */
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let form = { ...this.state.form }
+
+    if (form.status_id) {
+      form.status_id = form.status_id.id;
+    }
+    if (form.priority_id) {
+      form.priority_id = form.priority_id.id;
+    }
+    if (form.type_id) {
+      form.type_id = form.type_id.id;
+    }
+    this.props.handleSubmit(form);
+    this.setState({ form: this.initialState });
+  }
 
   handleTaskStatusChange = (val) => {
     let data = { ...this.state.form };
@@ -237,7 +274,7 @@ export default class Form extends Component {
     return (
       <div className="pv-overlay">
         <div
-          className="pv-modal-content pv-modal-sidebar pv-modal-sidebar-two"
+          className="pv-modal-content pv-modal-task"
           ref={this.myRef}
         >
           <div className="pv-modal-header pv-gradient">
@@ -279,211 +316,228 @@ export default class Form extends Component {
             </div>
           </div>
 
-          <div className="pv-content">
-            <div className="pv-form-style-one">
-              <div className="row">
-                <div className="col-lg">
-                  <label htmlFor="title">{i18n.title}</label>
-
-                  <input
-                    id="title"
-                    className="pv-title-field"
-                    type="text"
-                    name="title"
-                    value={form.title}
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-md">
-                  <label htmlFor="field-start_date">
-                    {i18n.start} {i18n.date}
-                  </label>
-                  <div className="pv-field-date">
-                    <DateField
-                      date={form.start_date}
-                      type="date"
-                      onDateChange={this.onDateChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="col-md">
-                  <label htmlFor="field-start_date">
-                    {i18n.dueDate}
-                  </label>
-                  <div className="pv-field-date">
-                    <DateField
-                      date={form.due_date}
-                      type="due_date"
-                      onDateChange={this.onDateChange}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-md-6">
-                  <label htmlFor="form-desc">
-                    {i18n.task} {i18n.type}:
-                  </label>
-                  <div className="pv-field-action">
-                    {form.id && (
-                      <Taxonomy
-                        id={form.id}
-                        data={form.type_id}
-                        taxonomy="task_type"
-                        title={i18n.type}
-                        /* small */ color
-                      />
-                    )}
-                  </div>
-                </div>
-
-                <div className="col-md-6">
-                  <label htmlFor="form-desc">
-                    {i18n.task} {i18n.prior}:
-                  </label>
-                  <div className="pv-field-action">
-                    {form.id && (
-                      <Taxonomy
-                        id={form.id}
-                        data={form.priority_id}
-                        taxonomy="task_priority"
-                        title={i18n.prior}
-                        onDone={this.handleTaskTaxDone}
-                        /* small */ color
-                      />
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col">
-                  {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
-                    <Staff tab_id={this.props.data.id} parent_tab_id={this.props.tab_id} inForm />
-                  </Suspense>}
-                </div>
-              </div>
-
-              {this.props.tab_id && !wage.length && (
+          <form onSubmit={this.handleSubmit} >
+            <div className="pv-content">
+              <div className="pv-form-style-one">
                 <div className="row">
                   <div className="col-lg">
-                    <label htmlFor="google_meet">
-                      {i18n.meeting} {i18n.link}
-                    </label>
+                    <label htmlFor="title">{i18n.title}</label>
+
                     <input
+                      id="title"
+                      className="pv-title-field"
                       type="text"
-                      id="google_meet"
-                      name="google_meet"
-                      value={form.google_meet}
+                      name="title"
+                      value={form.title}
                       onChange={this.handleChange}
                     />
-                    <div className="pv-buttons pv-mt-15">
-                      <button
-                        className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-mr-10"
-                        onClick={() => {
-                          this.generateGoogleMeetLink();
-                        }}
-                      >
-                        <svg
-                          width={17}
-                          height={14}
-                          viewBox="0 0 17 14"
-                          fill="none"
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-md">
+                    <label htmlFor="field-start_date">
+                      {i18n.start_date}
+                    </label>
+                    <div className="pv-field-date">
+                      <DateField
+                        date={form.start_date}
+                        label={i18n.start_date}
+                        type="date"
+                        onDateChange={this.onDateChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-md">
+                    <label htmlFor="field-start_date">
+                      {i18n.due_date}
+                    </label>
+                    <div className="pv-field-date">
+                      <DateField
+                        date={form.due_date}
+                        label={i18n.due_date}
+                        type="due_date"
+                        onDateChange={this.onDateChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-md-6">
+                    <label htmlFor="form-desc">
+                      {i18n.task} {i18n.type}:
+                    </label>
+                    <div className="pv-field-action">
+                      {form.id && (
+                        <Taxonomy
+                          id={form.id}
+                          data={form.type_id}
+                          taxonomy="task_type"
+                          title={i18n.type}
+                          /* small */ color
+                        />
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="col-md-6">
+                    <label htmlFor="form-desc">
+                      {i18n.task} {i18n.prior}:
+                    </label>
+                    <div className="pv-field-action">
+                      {form.id && (
+                        <Taxonomy
+                          id={form.id}
+                          data={form.priority_id}
+                          taxonomy="task_priority"
+                          title={i18n.prior}
+                          onDone={this.handleTaskTaxDone}
+                          /* small */ color
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col">
+                    {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
+                      <Staff tab_id={this.props.data.id} parent_tab_id={this.props.tab_id} inForm />
+                    </Suspense>}
+                  </div>
+                </div>
+
+                {this.props.tab_id && !wage.length && (
+                  <div className="row">
+                    <div className="col-lg">
+                      <label htmlFor="google_meet">
+                        {i18n.meeting} {i18n.link}
+                      </label>
+                      <input
+                        type="text"
+                        id="google_meet"
+                        name="google_meet"
+                        value={form.google_meet}
+                        onChange={this.handleChange}
+                      />
+                      <div className="pv-buttons pv-mt-15">
+                        <button
+                          className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow pv-mr-10"
+                          onClick={() => {
+                            this.generateGoogleMeetLink();
+                          }}
                         >
-                          <path
-                            d="M4.5 0.399902L0.5 4.3999L2.5 5.63793L4.5 4.3999L5.62941 2.3999L4.5 0.399902Z"
-                            fill="#FF2820"
-                          />
-                          <path
-                            d="M4.5 4.3999H0.5V9.5999L2.5 10.6982L4.5 9.5999V4.3999Z"
-                            fill="#0084FF"
-                          />
-                          <path
-                            d="M0.5 9.59985V12.2665C0.5 12.9999 1.1 13.5999 1.83334 13.5999H4.5L5.62941 11.4767L4.5 9.59985H0.5Z"
-                            fill="#0066DD"
-                          />
-                          <path
-                            d="M15.6738 1.82014L13.1999 3.77986V3.79995L12.3931 6.88026L13.1999 9.99755L15.6628 11.9798C15.9933 12.257 16.4999 12.0241 16.4999 11.5916V2.20833C16.4999 1.77576 16.0043 1.54286 15.6738 1.82014Z"
-                            fill="#00AD3C"
-                          />
-                          <path
-                            d="M13.2 3.77981V1.71793C13.2 0.993027 12.6128 0.399902 11.895 0.399902H9.285H4.5V4.3999H9.4V6.9999L12.0326 6.70662L13.2 3.77981Z"
-                            fill="#FFBA00"
-                          />
-                          <path
-                            d="M9.4 9.6H4.5V13.6H9.285H11.895C12.6128 13.6 13.2 13.0078 13.2 12.2839V10L11.894 7.31684L9.4 7V9.6Z"
-                            fill="#00AD3C"
-                          />
-                          <path
-                            d="M9.3999 6.99988L13.1999 9.99988V3.77979L9.3999 6.99988Z"
-                            fill="#00831E"
-                          />
-                        </svg>
-                        {i18n.add} Google {i18n.meet}
-                      </button>
-                      {false && (
-                        <button className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow">
                           <svg
                             width={17}
-                            height={10}
-                            viewBox="0 0 17 10"
+                            height={14}
+                            viewBox="0 0 17 14"
                             fill="none"
                           >
                             <path
-                              d="M0.5 1.09594V6.95562C0.505313 8.28062 1.5875 9.34687 2.90719 9.34156H11.4481C11.6909 9.34156 11.8862 9.14625 11.8862 8.90875V3.04937C11.8809 1.72437 10.7991 0.657811 9.47906 0.663124H0.938125C0.695313 0.663124 0.5 0.858437 0.5 1.09594H0.5ZM12.43 3.38187L15.9563 0.805624C16.2625 0.552499 16.5 0.615624 16.5 1.075V8.92969C16.5 9.4525 16.2097 9.38906 15.9563 9.19906L12.43 6.62812V3.38187Z"
-                              fill="#4A8CFF"
+                              d="M4.5 0.399902L0.5 4.3999L2.5 5.63793L4.5 4.3999L5.62941 2.3999L4.5 0.399902Z"
+                              fill="#FF2820"
+                            />
+                            <path
+                              d="M4.5 4.3999H0.5V9.5999L2.5 10.6982L4.5 9.5999V4.3999Z"
+                              fill="#0084FF"
+                            />
+                            <path
+                              d="M0.5 9.59985V12.2665C0.5 12.9999 1.1 13.5999 1.83334 13.5999H4.5L5.62941 11.4767L4.5 9.59985H0.5Z"
+                              fill="#0066DD"
+                            />
+                            <path
+                              d="M15.6738 1.82014L13.1999 3.77986V3.79995L12.3931 6.88026L13.1999 9.99755L15.6628 11.9798C15.9933 12.257 16.4999 12.0241 16.4999 11.5916V2.20833C16.4999 1.77576 16.0043 1.54286 15.6738 1.82014Z"
+                              fill="#00AD3C"
+                            />
+                            <path
+                              d="M13.2 3.77981V1.71793C13.2 0.993027 12.6128 0.399902 11.895 0.399902H9.285H4.5V4.3999H9.4V6.9999L12.0326 6.70662L13.2 3.77981Z"
+                              fill="#FFBA00"
+                            />
+                            <path
+                              d="M9.4 9.6H4.5V13.6H9.285H11.895C12.6128 13.6 13.2 13.0078 13.2 12.2839V10L11.894 7.31684L9.4 7V9.6Z"
+                              fill="#00AD3C"
+                            />
+                            <path
+                              d="M9.3999 6.99988L13.1999 9.99988V3.77979L9.3999 6.99988Z"
+                              fill="#00831E"
                             />
                           </svg>
-                          {i18n.zoomconn}
+                          {i18n.add} Google {i18n.meet}
                         </button>
-                      )}{" "}
-                    </div>
+                        {false && (
+                          <button className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-shadow">
+                            <svg
+                              width={17}
+                              height={10}
+                              viewBox="0 0 17 10"
+                              fill="none"
+                            >
+                              <path
+                                d="M0.5 1.09594V6.95562C0.505313 8.28062 1.5875 9.34687 2.90719 9.34156H11.4481C11.6909 9.34156 11.8862 9.14625 11.8862 8.90875V3.04937C11.8809 1.72437 10.7991 0.657811 9.47906 0.663124H0.938125C0.695313 0.663124 0.5 0.858437 0.5 1.09594H0.5ZM12.43 3.38187L15.9563 0.805624C16.2625 0.552499 16.5 0.615624 16.5 1.075V8.92969C16.5 9.4525 16.2097 9.38906 15.9563 9.19906L12.43 6.62812V3.38187Z"
+                                fill="#4A8CFF"
+                              />
+                            </svg>
+                            {i18n.zoomconn}
+                          </button>
+                        )}{" "}
+                      </div>
 
+                    </div>
+                  </div>
+                )}
+                <div className="row">
+                  <div className="col">
+                    <label htmlFor="form-desc">{i18n.desc}</label>
+
+                    <textarea
+                      id="form-desc"
+                      name="desc"
+                      value={form.desc}
+                      onChange={this.handleChange}
+                    />
                   </div>
                 </div>
-              )}
-              <div className="row">
-                <div className="col">
-                  <label htmlFor="form-desc">{i18n.desc}</label>
 
-                  <textarea
-                    id="form-desc"
-                    name="desc"
-                    value={form.desc}
-                    onChange={this.handleChange}
-                  />
+                <div className="row">
+                  <div className="col">
+                    <label htmlFor="form-note">{i18n.note}</label>
+
+                    <textarea
+                      id="form-note"
+                      name="note"
+                      value={form.note}
+                      onChange={this.handleChange}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="row">
-                <div className="col">
-                  <label htmlFor="form-note">{i18n.note}</label>
-
-                  <textarea
-                    id="form-note"
-                    name="note"
-                    value={form.note}
-                    onChange={this.handleChange}
-                  />
+                <div className="row">
+                  <div className="col">
+                    <Checklist
+                      data={this.state.form.checklist}
+                      changeHandler={this.handleChecklistChange}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="row">
-                <div className="col">
-                  <Checklist
-                    data={this.state.form.checklist}
-                    changeHandler={this.handleChecklistChange}
-                  />
-                </div>
               </div>
-
             </div>
-          </div>
+
+            <div className="pv-modal-footer">
+              <div className="row">
+                <div className="col">
+                  <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
+                </div>
+                <div className="col">
+                  <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+                    {i18n.save}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     );

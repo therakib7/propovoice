@@ -114,15 +114,7 @@ class AssetCtrl
 
         if (
             is_page_template(["invoice-template.php", "estimate-template.php"])
-        ) {
-            //TODO: Remove all wordpress unused file from frontend
-
-            wp_enqueue_style(
-                "ndpv-invoice",
-                ndpv()->get_asset_uri("css/invoice{$this->suffix}.css"),
-                [],
-                $this->version
-            );
+        ) {           
             wp_enqueue_script(
                 "ndpv-invoice",
                 ndpv()->get_asset_uri("/js/invoice{$this->suffix}.js"),

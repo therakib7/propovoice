@@ -27,7 +27,7 @@ const TableHeader = props => {
                 </th>
                 <th>
                     <Arrow />
-                    {i18n.dueDate}
+                    {i18n.due_date}
                 </th>
                 <th>
                     <Arrow />
