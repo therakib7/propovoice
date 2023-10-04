@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Breadcrumb from "block/breadcrumb";
 import AddNew from "block/add-new";
 import Action from "block/action/table";
@@ -12,10 +12,35 @@ import Search from "./Search";
 import Empty from "block/empty";
 
 import Crud from "hoc/Crud";
+
+import api from "api";
+
 const Lead = (props) => {
+  const [fields, setFields] = useState({});
   useEffect(() => {
     props.getLists();
+    getFields();
   }, []);
+
+  // Custom field: props.state.extra.custom_field : Array of Object
+  // [{slug: "", label: ""}]
+  const getFields = async () => {
+    const finalFields = EntityFields.lead;
+    const customFields = await getCustomFields();
+
+    customFields.map((field) => {
+      finalFields[field["slug"]] = field["label"];
+    });
+    setFields(finalFields);
+  };
+
+  const getCustomFields = () => {
+    return api.get("custom-fields", "mod=lead").then((resp) => {
+      if (resp.data.success) {
+        return resp.data.data;
+      }
+    });
+  };
 
   const { title, lists, extra, checkedBoxes, searchVal } = props.state;
   return (
@@ -29,7 +54,7 @@ const Lead = (props) => {
           <AddNew
             title={title}
             openForm={props.openForm}
-            fields={EntityFields.lead}
+            fields={fields}
             reload={() => props.getLists()}
           />
         </div>

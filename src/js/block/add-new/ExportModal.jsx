@@ -56,7 +56,7 @@ class Form extends Component {
     const target = e.target;
     let actions = this.state.form.actions;
     const fields = Object.keys(this.props.fields).filter(
-      (key) => key != "not_assign"
+      (key) => key != "not_assign",
     );
     if (type == "action") {
       const { value } = e.target;
@@ -81,7 +81,14 @@ class Form extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const title = this.props.title.toLowerCase();
-    const data = { fields: this.state.form.actions, title };
+
+    const actions = {};
+    for (const [key, value] of Object.entries(this.props.fields)) {
+      if (this.state.form.actions.includes(key)) {
+        actions[key] = value;
+      }
+    }
+    const data = { fields: actions, title };
 
     api
       .add("export/csv", data, "pro")
@@ -89,7 +96,7 @@ class Form extends Component {
         this.setState({ csvFile: res.data }, () => {
           this.csvLink.current.link.click();
         });
-        this.props.close()
+        this.props.close();
       })
       .catch((error) => console.log(error.message));
   };
@@ -97,8 +104,8 @@ class Form extends Component {
   render() {
     const fields = Object.fromEntries(
       Object.entries(this.props.fields).filter(
-        ([key, value]) => key != "not_assign"
-      )
+        ([key, value]) => key != "not_assign",
+      ),
     );
     const i18n = ndpv.i18n;
     const form = this.state.form;
@@ -151,7 +158,11 @@ class Form extends Component {
             <div className="pv-modal-footer">
               <div className="row">
                 <div className="col">
-                  <button type="reset" className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>
+                  <button
+                    type="reset"
+                    className="pv-btn pv-text-hover-blue"
+                    onClick={() => this.props.close()}
+                  >
                     {i18n.cancel}
                   </button>
                 </div>

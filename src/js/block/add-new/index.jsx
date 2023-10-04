@@ -57,7 +57,7 @@ export default (props) => {
           ></path>
         </svg>
         {/* {ndpv.i18n["add" + "_" + props.title]} */}
-        {ndpv.i18n.add + ' ' + props.title}
+        {ndpv.i18n.add + " " + props.title}
       </button>
 
       {imp && (
