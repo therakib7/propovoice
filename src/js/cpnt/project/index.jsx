@@ -151,7 +151,7 @@ const Project = (props) => {
 	} else if ((!props.module_id && !boardView && !isClient)) {
 		tableViewData = true;
 	}
-	// console.log(tableViewData)
+	
 	return (
 		<div className="ndpv-cpnt">
 			{!props.module_id && !props.dashboard && <Breadcrumb title={title} />}
@@ -166,6 +166,7 @@ const Project = (props) => {
 					submitPreloader={props.state.submitPreloader}
 					close={props.closeForm}
 					boardView={boardView}
+					project_req={viewChange}
 				/>
 			)}
 

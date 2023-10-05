@@ -1216,8 +1216,8 @@ class ListSingle extends Component {
                   <>
                     <span>{i18n.addr}:</span>
                     {data.person ? data.person.address : data.org.address}
-                    {(data.person && (data.person.address || data.person.region || data.person.country)) || 
-                    (data.org && (data.org.address || data.org.region || data.org.country)) ? <br /> : ''}
+                    {(data.person && (data.person.address)) || 
+                    (data.org && (data.org.address)) ? <br /> : ''}
                     
                     {data.person ? (
                       <>

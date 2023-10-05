@@ -4,6 +4,9 @@ import Api from 'api/payment-process';
 import Upload from 'block/field/upload';
 import { Add } from 'block/icon';
 
+const { i18n, caps } = ndpv;
+const isClient = caps.includes("ndpv_client_role");
+
 class Bank extends Component {
     constructor(props) {
         super(props);
@@ -93,7 +96,7 @@ class Bank extends Component {
                                     </div>
                                 </div>
 
-                                <div className="row">
+                                {!isClient && <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-note">
                                             {i18n.addi} {i18n.note}
@@ -106,7 +109,7 @@ class Bank extends Component {
                                             onChange={this.handleChange}
                                         />
                                     </div>
-                                </div>
+                                </div>}
                             </div>
                         </div>
 
@@ -116,9 +119,9 @@ class Bank extends Component {
                                     <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
                                 </div>
                                 <div className="col">
-                                    <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
+                                    {!isClient && <button type='submit' className="pv-btn pv-bg-blue pv-bg-hover-blue pv-btn-big pv-float-right pv-color-white">
                                         {i18n.mark} {i18n.paid}
-                                    </button>
+                                    </button>}
                                 </div>
                             </div>
                         </div>

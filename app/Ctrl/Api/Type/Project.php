@@ -239,30 +239,34 @@ class Project
         }
 
         if ($s) {
-            $args["_meta_or_title"] = $s;
+            if ( current_user_can("ndpv_client_role") ) {
+                $args["s"] = $s;
+            } else {
+                $args["_meta_or_title"] = $s;
 
-            $contact_person = new Contact();
-            $person_ids = $contact_person->query($s, "person");
-            if ($person_ids) {
-                $args["meta_query"][] = [
-                    [
-                        "key" => "person_id",
-                        "value" => $person_ids,
-                        "compare" => "IN",
-                    ],
-                ];
-            }
+                $contact_person = new Contact();
+                $person_ids = $contact_person->query($s, "person");
+                if ($person_ids) {
+                    $args["meta_query"][] = [
+                        [
+                            "key" => "person_id",
+                            "value" => $person_ids,
+                            "compare" => "IN",
+                        ],
+                    ];
+                }
 
-            $org_ids = $contact_person->query($s, "org");
-            if ($org_ids) {
-                $args["meta_query"][] = [
-                    [
-                        "key" => "org_id",
-                        "value" => $org_ids,
-                        "compare" => "IN",
-                    ],
-                ];
-            }
+                $org_ids = $contact_person->query($s, "org");
+                if ($org_ids) {
+                    $args["meta_query"][] = [
+                        [
+                            "key" => "org_id",
+                            "value" => $org_ids,
+                            "compare" => "IN",
+                        ],
+                    ];
+                }
+            }            
         }
 
         if ( current_user_can("ndpv_staff") ) {
@@ -522,9 +526,6 @@ class Project
             );
         }
 
-        /* if ( !$project_id && empty($contact_id)) {
-            $reg_errors->add('field', esc_html__('Please select a contact', 'propovoice'));
-        } */
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
                 "field",

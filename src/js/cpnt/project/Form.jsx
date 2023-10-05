@@ -175,6 +175,7 @@ class Form extends Component {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aAdd);
                     this.props.close();
+                    this.props.project_req('board');
                 } else {
                     resp.data.data.forEach(function (value) {
                         toast.error(value);
@@ -219,7 +220,6 @@ class Form extends Component {
         } else {
             this.props.handleSubmit(form);
         }
-        // this.setState({ form: this.initState });
     }
 
     handleContactChange = (val, type) => {
@@ -297,7 +297,7 @@ class Form extends Component {
                             <Cross />
                         </span>
                         <h2 className="pv-modal-title">{isClient ? i18n.new + ' ' + i18n.project + ' ' + i18n.req : title + ' ' + i18n.project}</h2>
-                        <p>{sprintf(i18n.formDesc, title, i18n.project)}</p>
+                        <p>{sprintf(i18n.formDesc, title, ( isClient ? i18n.project + ' ' + i18n.req : i18n.project ))}</p>
                     </div>
 
                     <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>

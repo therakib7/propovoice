@@ -132,6 +132,17 @@ export default class Business extends Component {
                     </div>
 
                     <div className="row">
+                        <Text
+                            label={i18n.email}
+                            id="field-email"
+                            type="email"
+                            name="email"
+                            value={this.state.form.email}
+                            wrapperClassName='col-md'
+                            onChange={this.handleChange}
+                            validation={{ required: { value: true }, email: { value: true } }}
+                        />
+
                         <div className="col-md">
                             <label htmlFor="field-web">
                                 {i18n.web}
@@ -145,17 +156,6 @@ export default class Business extends Component {
                                 onChange={this.handleChange}
                             />
                         </div>
-
-                        <Text
-                            label={i18n.email}
-                            id="field-email"
-                            type="email"
-                            name="email"
-                            value={this.state.form.email}
-                            wrapperClassName='col-md'
-                            onChange={this.handleChange}
-                            validation={{ required: { value: true }, email: { value: true } }}
-                        />
 
                     </div>
 

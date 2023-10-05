@@ -40,9 +40,9 @@ const TableHeader = props => {
                 {/* <th>
                     {i18n.date}
                 </th> */}
-                <th>
+                {!isClient && <th>
                     {i18n.aut}
-                </th>
+                </th>}
                 <th>
                     {i18n.action}
                 </th>
@@ -104,16 +104,16 @@ const TableBody = props => {
                         </span>}
                     </>}
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.author}</td>
+                {!isClient && <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.author}</td>}
                 <td className="pv-action">
-                    <Action
+                    {(!isClient || !props.boardView) && <Action
                         project
                         boardView={props.boardView}
                         row={row}
                         handleOverview={handleOverview}
                         editEntry={props.editEntry}
                         deleteEntry={props.deleteEntry}
-                    />
+                    />}
                 </td>
             </tr>
         );
