@@ -299,6 +299,7 @@ class Task
                         break;
 
                     case 'ndpv_deal':
+                        $name = get_the_title($tab_id);
                         $query_data["tab_title"] = esc_html__('Deal: ', 'propovoice') . $name;
                         $query_data["tab_url"] = 'deal/' . $tab_id;
                         break;
@@ -315,6 +316,7 @@ class Task
                         break;
                     
                     case 'ndpv_project':
+                        $name = get_the_title($tab_id);
                         $query_data["tab_title"] = esc_html__('Project: ', 'propovoice') . $name;
                         $query_data["tab_url"] = 'project/' . $tab_id;
                         break;
