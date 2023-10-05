@@ -173,19 +173,23 @@ class Invoice
 
             $query_data['total'] = get_post_meta($id, 'total', true);
             if ($query_data['total']) {
-                $data['total'] += (int) $query_data['total'];
+                $data['total'] += (float) $query_data['total'];
             }
 
             $query_data['status'] = get_post_meta($id, 'status', true);
             if ($query_data['status'] == 'paid') {
-                $data['paid'] += (int) $query_data['total'];
+                $data['paid'] += (float) $query_data['total'];
             } else {
-                $data['due'] += (int) $query_data['total'];
+                $data['due'] += (float) $query_data['total'];
             }
 
             $data['number']++;
         }
         wp_reset_postdata();
+        
+        $data['total'] = $data['total'] ? number_format($data['total'], 2) : 0;
+        $data['paid'] = $data['paid'] ? number_format($data['paid'], 2) : 0;
+        $data['due'] = $data['due'] ? number_format($data['due'], 2): 0;
 
         return $data;
     }

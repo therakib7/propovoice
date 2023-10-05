@@ -468,7 +468,7 @@ class Deal
             //auto asign first deal stage
             $deal_stage = Fns::get_terms('deal_stage');
             $stage_id = $deal_stage[0]->term_id;
-            $probability = 1;
+            $probability = 20;
 
             //get client 
             $user_id = get_current_user_id();
