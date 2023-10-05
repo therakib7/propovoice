@@ -361,7 +361,7 @@
 
   .pv-db-task-deal {
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: calc(60% - 30px) 40%;
     column-gap: 30px;
     margin-bottom: 30px;
 
