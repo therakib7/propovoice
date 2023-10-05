@@ -34,8 +34,9 @@ const EditDownload = (props) => {
 };
 
 const DownloadPDF = (props) => {
+ 
   const i18n = ndpv.i18n;
-  const fileName = props.data.title + '-' + props.data.invoice.id
+  const fileName = props.data.invoice.num
   const options = {
     // default is `save`
     filename: fileName,

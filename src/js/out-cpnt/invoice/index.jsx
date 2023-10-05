@@ -21,7 +21,6 @@ const Paypal = lazy(() => import("./payment/paypal"));
 
 const DownloadPDF = (props) => {
   const i18n = ndpv.i18n;
-
   const fileName = props.data.invoice.path + '-' + props.data.invoice.id;
   const options = {
     // default is `save`
