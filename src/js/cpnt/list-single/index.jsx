@@ -715,12 +715,22 @@ class ListSingle extends Component {
                       <img src={img} alt="avatar" />
                       <div className="pv-avatar-text">
                         <h5 style={{ fontSize: 12 }}>
-                          {data.person ? data.person.first_name : data.org.name}{" "}
+                          {data.person ? data.person.first_name : data.org.name}
                         </h5>
                         <p style={{ fontSize: 12 }}>
-                          {data.person ? data.person.region : data.org.region}
-
-                          {data.person ? data.person.country : data.org.country}
+                          {data.person ? <>
+                            {(data.person.region || data.person.country) &&
+                              <>
+                                {(data.person.region && data.person.country) ? data.person.region + ', ' : ''} {countryByCode(data.person.country)}
+                              </>
+                            }
+                          </> : <>
+                            {(data.org.region || data.org.country) &&
+                              <>
+                                {(data.org.region && data.org.country) ? data.org.region + ', ' : ''} {countryByCode(data.org.country)}
+                              </>
+                            }
+                          </>}
                         </p>
                       </div>
                     </div>

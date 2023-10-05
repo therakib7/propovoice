@@ -294,7 +294,6 @@ class Project
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
             $query_data['start_date'] = isset($queryMeta['start_date']) ? $queryMeta['start_date'][0] : '';
             $query_data['due_date'] = isset($queryMeta['due_date']) ? $queryMeta['due_date'][0] : '';
-            $query_data['note'] = isset($queryMeta['note']) ? $queryMeta['note'][0] : '';
             $query_data['desc'] = get_the_content();
             //custom field
             foreach( Fns::custom_field('project') as $value ) {
@@ -392,9 +391,6 @@ class Project
             : "";
         $query_data["due_date"] = isset($queryMeta["due_date"])
             ? $queryMeta["due_date"][0]
-            : "";
-        $query_data["note"] = isset($queryMeta["note"])
-            ? $queryMeta["note"][0]
             : "";
         $query_data["desc"] = get_post_field("post_content", $id);
 
@@ -509,7 +505,6 @@ class Project
             ? array_map("absint", $param["tags"])
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
-        $note = isset($param["note"]) ? nl2br($param["note"]) : "";
 
         $deal_id = isset($param["deal_id"]) ? absint($param["deal_id"]) : false;
 
@@ -641,10 +636,6 @@ class Project
 
                 if ($tags) {
                     wp_set_post_terms($post_id, $tags, "ndpv_tag");
-                }
-
-                if ($note) {
-                    update_post_meta($post_id, "note", $note);
                 }
 
                 if ( $deal_id ) {
