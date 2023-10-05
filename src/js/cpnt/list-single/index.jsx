@@ -1186,42 +1186,50 @@ class ListSingle extends Component {
                 {i18n.addi} {i18n.info}
               </h3>
               <address>
-                {caps.includes("ndpv_contact") && (
+
+                {caps.includes("ndpv_contact") && ((data.person && data.person.mobile) || (data.org && data.org.mobile)) && (
                   <>
                     <span>{i18n.mob}:</span>
                     {data.person ? data.person.mobile : data.org.mobile}
                   </>
                 )}
-
-                {true && (
+                 
+                {((data.person && data.person.web) || (data.org && data.org.web)) && (
                   <>
                     <span>{i18n.web}:</span>
                     {data.person ? data.person.web : data.org.web}
                   </>
-                )}
-
-                {true && (
+                )} 
+                 
+                {((data.person && (data.person.address || data.person.region || data.person.country)) || 
+                  (data.org && (data.org.address || data.org.region || data.org.country))) && (
                   <>
                     <span>{i18n.addr}:</span>
                     {data.person ? data.person.address : data.org.address}
-                    {(data.person && data.person.address) || (data.org && data.org.address) ? <br /> : ''}
-
-                    {data.person ? <>
-                      {(data.person.region || data.person.country) &&
-                        <>
-                          {(data.person.region && data.person.country) ? data.person.region + ', ' : ''} {countryByCode(data.person.country)}
-                        </>
-                      }
-                    </> : <>
-                      {(data.org.region || data.org.country) &&
-                        <>
-                          {(data.org.region && data.org.country) ? data.org.region + ', ' : ''} {countryByCode(data.org.country)}
-                        </>
-                      }
-                    </>}
+                    {(data.person && (data.person.address || data.person.region || data.person.country)) || 
+                    (data.org && (data.org.address || data.org.region || data.org.country)) ? <br /> : ''}
+                    
+                    {data.person ? (
+                      <>
+                        {(data.person.region || data.person.country) && (
+                          <>
+                            {(data.person.region && data.person.country) ? `${data.person.region}, ` : ''}
+                            {countryByCode(data.person.country)}
+                          </>
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        {(data.org.region || data.org.country) && (
+                          <>
+                            {(data.org.region && data.org.country) ? `${data.org.region}, ` : ''}
+                            {countryByCode(data.org.country)}
+                          </>
+                        )}
+                      </>
+                    )}
                   </>
                 )}
-
               </address>
 
               <div className="pv-desc-content">

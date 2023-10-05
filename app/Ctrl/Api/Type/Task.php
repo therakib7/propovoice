@@ -309,6 +309,7 @@ class Task
                         $query_data["tab_title"] = esc_html__('Contact: ', 'propovoice') . $name;
                         $query_data["tab_url"] = 'contact/' . $tab_id;
                         break;
+                        
                     case 'ndpv_org':
                         $name = get_post_meta($tab_id, "name", true);
                         $query_data["tab_title"] = esc_html__('Contact: ', 'propovoice') . $name;

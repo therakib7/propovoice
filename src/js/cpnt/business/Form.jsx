@@ -124,23 +124,20 @@ class Form extends Component {
                                     validation={{ required: { value: true } }}
                                 />
 
-                                {/* <div className="col-md">
-                                            <label
-                                                htmlFor="field-org_name">
-                                                Company Name
-                                            </label>
-
-                                            <input
-                                                id="field-org_name"
-                                                type="text" 
-                                                name="org_name"
-                                                value={form.org_name}
-                                                onChange={this.handleChange}
-                                            />
-                                        </div> */}
-
                             </div>
-                            <div className="row">
+                            <div className="row">                               
+
+                                <Text
+                                    label={i18n.email}
+                                    id="field-email"
+                                    type="email"
+                                    name="email"
+                                    value={form.email}
+                                    wrapperClassName='col-md'
+                                    onChange={this.handleChange}
+                                    validation={{ required: { value: true }, email: { value: true } }}
+                                />
+
                                 <div className="col-md">
                                     <label
                                         htmlFor="field-web">
@@ -155,17 +152,6 @@ class Form extends Component {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-
-                                <Text
-                                    label={i18n.email}
-                                    id="field-email"
-                                    type="email"
-                                    name="email"
-                                    value={form.email}
-                                    wrapperClassName='col-md'
-                                    onChange={this.handleChange}
-                                    validation={{ required: { value: true }, email: { value: true } }}
-                                />
 
                             </div>
                             <div className="row">
