@@ -14,28 +14,36 @@ export default (props) => {
 	useClickOutside(dropdownContent, close);
 
 	useEffect(() => {
-		getData();
-		getDataWithSingle();
+		getDataWithSingle().then((res) => {
+			getData()
+		});
+
 	}, []);
 
 	const getData = () => {
 		let tab_id = props.parent_tab_id ? props.parent_tab_id : props.tab_id;
 		api.get('staffs', 'tab_id=' + tab_id, 'pro').then(resp => {
 			if (resp.data.success) {
-				
+
 				setList(resp.data.data.result);
 				setListById(resp.data.data.result);
+			
 
 			}
 		});
 	}
 
 	const getDataWithSingle = () => {
-		api.getS('staffs',  props.tab_id, 'pro').then(resp => {
-			if (resp.data.success) {
-				setListById(resp.data.data.result);
-			}
-		});
+		return new Promise((resolve, reject) => {
+			api.getS('staffs', props.tab_id, 'pro').then(resp => {
+
+				if (resp.data.success) {
+					setListById(resp.data.data.result);
+					
+					resolve(resp)
+				}
+			}).catch(err => reject(err));
+		})
 	}
 
 	const showDropdown = (e) => {
@@ -79,6 +87,7 @@ export default (props) => {
 			const filtered = listById.filter(obj => {
 				return obj.id !== id;
 			});
+
 			setListById(filtered);
 
 			api.del('staffs', id + '/' + props.tab_id, 'pro').then(resp => {
