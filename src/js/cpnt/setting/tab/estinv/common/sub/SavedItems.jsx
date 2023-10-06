@@ -8,6 +8,8 @@ export default function SavedItemsSettings() {
 
     const [checkedAll, setCheckedAll] = useState(false);
     const [checkedRows, setCheckedRows] = useState([]);
+    const [qtyTypes , setQtyTypes] = useState([]);
+
     let allRowId = []
 
     const handleSelectAll = (event) => {
@@ -55,6 +57,25 @@ export default function SavedItemsSettings() {
         });
     }
 
+    const getData = () => {
+	
+	
+		
+        useEffect(()=>{
+            async function getQtyTypes(){
+               await api.get('taxonomies', 'taxonomy=estinv_qty_type').then(resp => {
+                    if (resp.data.success) {
+                        console.log(resp.data.data.estinv_qty_type)
+                        setQtyTypes(resp.data.data.estinv_qty_type)
+                    }
+                });
+            }
+            getQtyTypes();
+        },[])
+	}
+
+    getData();
+
     let Row = (props) => {
         let row = props.row;
         const [hidden, setHidden] = useState(true);
@@ -97,6 +118,23 @@ export default function SavedItemsSettings() {
                 <td>
                     {hidden ? row.qty : <input type="number" style={{ width: '50px' }} value={data.qty} onChange={(e) => setData({ ...data, qty: e.target.value })} />}
                     {/* {row.qty} */}
+                </td>
+                <td>
+                    {hidden ? data.qty_type : 
+                 
+                        <select value={data.qty_type} onChange={(e) => setData({ ...data, qty_type: e.target.value })}>
+                            {
+                                qtyTypes.map((t,k)=>{
+                                    return <option key={k} value={t.label}>{t.label}</option>
+                                })
+                            }
+                            
+                        </select>
+                        
+                  
+                    
+                   }
+                    {/* {row.qty_type} */}
                 </td>
                 <td>
                     {hidden ? row.price : <input type="number" style={{ width: '50px' }} value={data.price} onChange={(e) => setData({ ...data, price: e.target.value })} />}
@@ -172,6 +210,7 @@ export default function SavedItemsSettings() {
                     </th>
                     <th>Item & DESCRIPTION</th>
                     <th>QTY</th>
+                    <th>QTY Type</th>
                     <th>RATE</th>
                     <th>TAX</th>
                     <th>AMOUNT</th>
