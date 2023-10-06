@@ -14,36 +14,29 @@ export default (props) => {
 	useClickOutside(dropdownContent, close);
 
 	useEffect(() => {
-		getDataWithSingle().then((res) => {
-			getData()
-		});
-
+	
+		getData();
+		getDataWithSingle();
 	}, []);
 
 	const getData = () => {
 		let tab_id = props.parent_tab_id ? props.parent_tab_id : props.tab_id;
 		api.get('staffs', 'tab_id=' + tab_id, 'pro').then(resp => {
 			if (resp.data.success) {
-
+				
 				setList(resp.data.data.result);
-				setListById(resp.data.data.result);
-			
+				// setListById(resp.data.data.result);
 
 			}
 		});
 	}
 
 	const getDataWithSingle = () => {
-		return new Promise((resolve, reject) => {
-			api.getS('staffs', props.tab_id, 'pro').then(resp => {
-
-				if (resp.data.success) {
-					setListById(resp.data.data.result);
-					
-					resolve(resp)
-				}
-			}).catch(err => reject(err));
-		})
+		api.getS('staffs',  props.tab_id, 'pro').then(resp => {
+			if (resp.data.success) {
+				setListById(resp.data.data.result);
+			}
+		});
 	}
 
 	const showDropdown = (e) => {
@@ -87,7 +80,6 @@ export default (props) => {
 			const filtered = listById.filter(obj => {
 				return obj.id !== id;
 			});
-
 			setListById(filtered);
 
 			api.del('staffs', id + '/' + props.tab_id, 'pro').then(resp => {
@@ -140,6 +132,7 @@ export default (props) => {
 				}
 
 				{!props.inForm && <h3 className="pv-widget-title">
+				
 					{i18n.team}
 					<button
 						className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow pv-mb-20"
@@ -149,6 +142,7 @@ export default (props) => {
 						}}
 						onClick={(e) => showDropdown(e)}
 					>
+						
 						{i18n.assign}
 						<svg
 							width={10}
@@ -167,6 +161,7 @@ export default (props) => {
 				</h3>}
 
 				{dropdown && <div className="pv-dropdown-content pv-show" style={{ left: 0 }}>
+					
 					{list && list.map((v, i) => {
 						return (
 							<a key={i} onClick={() => handleSelect(v)}>{v.name}</a>
