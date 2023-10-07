@@ -486,12 +486,11 @@ class Form extends Component {
               <div className="row">
                 <div className="col">
                   <label htmlFor="field-desc">{i18n.desc}</label>
-
                   <textarea
                     id="form-desc"
                     rows={2}
                     name="desc"
-                    value={form.desc.replace(/<br \/>/gi, "")}
+                    value={form.desc}
                     onChange={this.handleChange}
                   />
                 </div>
