@@ -167,7 +167,13 @@ class Deal
 
         if ($s) {
 
-            $args['_meta_or_title'] = $s;
+            $args["meta_query"][] = [
+                [
+                    "key" => "title",
+                    "value" => $s,
+                    "compare" => "LIKE",
+                ],
+            ];
 
             $contact_person = new Contact();
             $person_ids = $contact_person->query($s, "person");
