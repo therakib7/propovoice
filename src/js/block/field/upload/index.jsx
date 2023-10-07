@@ -124,13 +124,12 @@ class Upload extends Component {
         {data && !multiple && (
           <>
             <div className="pv-field-logo">
-              {/* <img src={data.src} width={} /> */}
-              <div style={{ width: (this.props.small ? 40 : 100), display: 'inline-block' }}>
+              {data.type == 'application/pdf' ? <a href={data.src} target="_blank">{data.name}</a> : <div style={{ width: (this.props.small ? 40 : 100), display: 'inline-block' }}>
                 <ModalImage
                   small={data.src}
                   large={data.src}
                 />
-              </div>
+              </div>}
 
               {remove && (
                 <span
