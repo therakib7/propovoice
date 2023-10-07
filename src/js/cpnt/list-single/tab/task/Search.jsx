@@ -112,7 +112,7 @@ export default class Form extends Component {
                                                 <label
                                                     className="block tracking-wide text-gray-700 text-xs font-bold mb-2"
                                                     htmlFor="grid-mobile">
-                                                    {i18n.mob} {i18n.num}
+                                                    {i18n.mob}
                                                 </label>
 
                                                 <input
