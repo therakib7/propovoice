@@ -122,7 +122,12 @@ const TableBody = props => {
                         onChange={(e) => props.checkedBoxes.handle(e, 'single', row.id)}
                     />
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.title}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>
+                    <span className="pv-list-title" style={{
+                        maxWidth: '210px',
+                        display: 'inline-block',
+                    }}>{row.title}</span>
+                </td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.budget && row.currency ? currency(row.budget, row.currency) : ''}</td>
                 {!wage.length && <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.probability}%</td>}
@@ -171,7 +176,7 @@ export default (props) => {
     return (
         <>
             {tableData.length > 0 && <div className='pv-table-wrap' style={{ marginTop: '20px' }}>
-                <table className='pv-table'>
+                <table className='pv-table pv-table-four'>
                     <TableHeader checkedBoxes={checkedBoxes} />
                     <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />
                 </table>
