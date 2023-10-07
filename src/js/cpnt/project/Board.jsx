@@ -215,7 +215,6 @@ function Board(props) {
 														height={12}
 														viewBox="0 0 12 15"
 														fill="none"
-
 													>
 														<path
 															d="M2.5 8H13.5"

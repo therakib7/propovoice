@@ -496,6 +496,8 @@ class EstInv
                     (!$recurring["status"] || !$recurring["subscription"])
                 ) {
                     unset($invoice["recurring"]);
+                    $invoice["recurring"]['status'] = false;
+                    $invoice["recurring"]['subscription'] = false;
                 }
 
                 $is_admin =

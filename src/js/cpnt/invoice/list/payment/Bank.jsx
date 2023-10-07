@@ -59,6 +59,7 @@ class Bank extends Component {
     render() {
         const data = this.props.data;
         const i18n = ndpv.i18n;
+        const receipt = this.state.form.receipt
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -92,7 +93,7 @@ class Bank extends Component {
                                 <div className="row">
                                     <div className="col-md">
                                         <label htmlFor="field-receipt">{i18n.payment} Receipt</label>
-                                        <Upload label={'Upload'} attach_type='secret' permission={true} library={false} data={this.state.form.receipt} changeHandler={this.handleUploadChange} />
+                                        <Upload label={'Upload'} attach_type='secret' permission={true} library={false} data={receipt} changeHandler={this.handleUploadChange} />
                                     </div>
                                 </div>
 

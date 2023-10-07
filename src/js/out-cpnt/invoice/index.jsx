@@ -137,7 +137,7 @@ const InvoiceBtn = (props) => {
 
       {props.type == "invoice" && (
         <>
-          {wc && !props.invoice.hasOwnProperty("recurring") ? (
+          {wc && !(props.invoice.hasOwnProperty('recurring') && props.invoice.recurring.status && props.invoice.recurring.subscription) ? (
             <>
               <button
                 className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-bg-shadow pv-color-white"
@@ -179,7 +179,7 @@ const InvoiceBtn = (props) => {
                       props.handleChange("payment", selected_method.id)
                     }
                   >
-                    {props.invoice.hasOwnProperty("recurring")
+                    {(props.invoice.hasOwnProperty('recurring') && props.invoice.recurring.status && props.invoice.recurring.subscription)
                       ? i18n.subs
                       : i18n.pay}
                   </button>
@@ -289,7 +289,7 @@ export default class Invoice extends Component {
       if (
         data.invoice.payment_methods.hasOwnProperty("bank") &&
         data.invoice.payment_methods.bank &&
-        !data.invoice.hasOwnProperty("recurring")
+        !(data.invoice.hasOwnProperty('recurring') && data.invoice.recurring.status && data.invoice.recurring.subscription)
       ) {
         payment_methods.push(bank);
       }

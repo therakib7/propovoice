@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import AppContext from "context/app-context";
 import Api from "api/media";
 import Media from "cpnt/media";
+import ModalImage from "react-modal-image";
 
 class Upload extends Component {
   constructor(props) {
@@ -123,7 +124,14 @@ class Upload extends Component {
         {data && !multiple && (
           <>
             <div className="pv-field-logo">
-              <img src={data.src} width={this.props.small ? "40" : "100"} />
+              {/* <img src={data.src} width={} /> */}
+              <div style={{ width: (this.props.small ? 40 : 100), display: 'inline-block' }}>
+                <ModalImage
+                  small={data.src}
+                  large={data.src}
+                />
+              </div>
+
               {remove && (
                 <span
                   className="pv-field-logo-close"
