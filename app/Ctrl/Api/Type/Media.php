@@ -396,6 +396,7 @@ class Media
 
                         if ($file_info['type'] == 'application/pdf') {
                             $file_info['name'] = basename(get_attached_file($attach_id));
+                            $file_info['src'] = wp_get_attachment_url($attach_id);
                         }
                     }
 
