@@ -14,7 +14,6 @@ const url = (api) => {
   return `${apiUrl}wp/v2/${api}`;
 };
 
-
 export default function PublicApi() {
   const [appPwdName, setAppPwdName] = useState("");
   const [appPwd, setAppPwd] = useState("");
@@ -26,41 +25,44 @@ export default function PublicApi() {
 
   const getPwdList = () => {
     const api = `users/${ndpv.profile.id}/application-passwords`;
-    axios.get(`${url(api)}`, token)
-      .then((res) => {
-        setPwdList(res.data);
-      });
-  }
+    axios.get(`${url(api)}`, token).then((res) => {
+      setPwdList(res.data);
+    });
+  };
 
   const createPwd = async (name) => {
     const api = `users/${ndpv.profile.id}/application-passwords`;
-    axios.post(`${url(api)}`, { name: name }, token)
-      .then((res) => {
-        setNewAppPwdName(res.data.name);
-        setNewAppPwd(res.data.password);
-      });
-  }
-
+    axios.post(`${url(api)}`, { name: name }, token).then((res) => {
+      setNewAppPwdName(res.data.name);
+      setNewAppPwd(res.data.password);
+    });
+  };
 
   const deletePwd = async (uuid) => {
+    var confirmation = confirm("Are you sure you want to delete this item?");
+    if (!confirmation) {
+      return;
+    }
     const api = `users/${ndpv.profile.id}/application-passwords/${uuid}`;
-    axios.delete(`${url(api)}`, token)
-      .then(() => {
-        setIsDeleted(true);
-        setNewAppPwdName("");
-        setNewAppPwd("");
-      });
-  }
+    axios.delete(`${url(api)}`, token).then(() => {
+      setIsDeleted(true);
+      setNewAppPwdName("");
+      setNewAppPwd("");
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
+    if (ndpv.isDemo) {
+      toast.error(ndpv.demoMsg);
+      return;
+    }
     await createPwd(appPwdName);
     setIsSubmitted(true);
     setAppPwdName("");
     // setAppPwd("");
-  }
+  };
 
   useEffect(() => {
     getPwdList();
@@ -70,9 +72,8 @@ export default function PublicApi() {
 
   return (
     <>
-      <form onSubmit={e => handleSubmit(e)} className="pv-form-style-one">
+      <form onSubmit={(e) => handleSubmit(e)} className="pv-form-style-one">
         <div className="row">
-
           <div className="col">
             <label htmlFor="app-pwd-name">New Application Password Name</label>
             <input
@@ -81,32 +82,50 @@ export default function PublicApi() {
               required
               name="app-pwd-name"
               value={appPwdName}
-              onChange={e => setAppPwdName(e.target.value)}
+              onChange={(e) => setAppPwdName(e.target.value)}
             />
           </div>
         </div>
         <div className="row">
           <div className="col">
-            <button className="pv-btn  pv-bg-blue pv-bg-hover-blue">Create new Application Password</button>
+            <button className="pv-btn  pv-bg-blue pv-bg-hover-blue">
+              Create new Application Password
+            </button>
           </div>
         </div>
-
       </form>
 
-
-      {newAppPwd &&
-        <div className="notice notice-success is-dismissible new-application-password-notice" role="alert" tabIndex="-1">
+      {newAppPwd && (
+        <div
+          className="notice notice-success is-dismissible new-application-password-notice"
+          role="alert"
+          tabIndex="-1"
+        >
           <p className="application-password-display">
             <label htmlFor="new-application-password-value">
-              Your new password for <code><b>{newAppPwdName}</b></code> is: </label>
-            <input id="new-application-password-value" type="text" className="code" readOnly="readonly" value={newAppPwd} />
+              Your new password for{" "}
+              <code>
+                <b>{newAppPwdName}</b>
+              </code>{" "}
+              is:{" "}
+            </label>
+            <input
+              id="new-application-password-value"
+              type="text"
+              className="code"
+              readOnly="readonly"
+              value={newAppPwd}
+            />
           </p>
-          <p>Be sure to save this in a safe location. You will not be able to retrieve it.</p>
+          <p>
+            Be sure to save this in a safe location. You will not be able to
+            retrieve it.
+          </p>
           {/* <button type="button" className="notice-dismiss"> */}
           {/*   <span className="screen-reader-text">Dismiss this notice.</span> */}
           {/* </button> */}
         </div>
-      }
+      )}
       {pwdList.length > 0 && (
         <table className="pv-table">
           <thead>
@@ -119,18 +138,23 @@ export default function PublicApi() {
             </tr>
           </thead>
           <tbody>
-            {pwdList.map((pwd) =>
+            {pwdList.map((pwd) => (
               <tr key={pwd.uuid}>
                 <td style={{ width: "auto" }}>{pwd.name}</td>
                 <td>{pwd.created}</td>
                 <td>{pwd.last_used}</td>
                 <td>{pwd.last_ip}</td>
                 <td>
-                  <button onClick={() => deletePwd(pwd.uuid)} className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow" type="button" >Revoke</button>
+                  <button
+                    onClick={() => deletePwd(pwd.uuid)}
+                    className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow"
+                    type="button"
+                  >
+                    Revoke
+                  </button>
                 </td>
               </tr>
-
-            )}
+            ))}
           </tbody>
         </table>
       )}

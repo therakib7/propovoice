@@ -11,7 +11,7 @@ use Ndpv\Traits\Singleton;
 class Lead
 {
     use Singleton;
-    
+
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/leads/(?P<id>\d+)", [
@@ -476,7 +476,7 @@ class Lead
         $tags = isset($param["tags"])
             ? array_map("absint", $param["tags"])
             : null;
-        $desc = isset($param["desc"]) ? nl2br($param["desc"]) : ""; 
+        $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
 
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
