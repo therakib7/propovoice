@@ -28,9 +28,8 @@ const Notification = lazy(() => import('./tab/notification'));
 const License = lazy(() => import('./tab/license'));
 
 //subtab: email
-const EmailEstimate = lazy(() => import('./tab/email/estimate'));
-const EmailInvoice = lazy(() => import('./tab/email/invoice'));
-const EmailCredential = lazy(() => import('./tab/email/credential'));
+const EmailSMTP = lazy(() => import('./tab/email/smtp'));
+const EmailSystemTemplate = lazy(() => import('./tab/email/system-template'));
 
 const Payment = lazy(() => import('cpnt/payment'));
 
@@ -95,20 +94,14 @@ const Setting = (props) => {
   }
   if (isAdmin) {
     tab_data.email = {
-      label: i18n.email + ' ' + i18n.tmpl,
+      label: 'Delivery',
       subtabs: {
-        estimate: {
-          label: i18n.est,
+        delivery: {
+          label: 'Email Delivery',
         },
-        invoice: {
-          label: i18n.inv
-        },
-        client_portal: {
-          label: 'Client Portal'
-        },
-        team: {
-          label: 'Team'
-        },
+        'system-template': {
+          label: 'System Email Template',
+        }
       },
     };
   }
@@ -270,10 +263,8 @@ const Setting = (props) => {
                 {currentTab == 'project' && <Project {...props} />}
                 {currentTab == 'payment' && <Payment {...props} />}
 
-                {currentTab == 'email' && (currentSubtab == 'estimate' || !currentSubtab) && <EmailEstimate {...props} />}
-                {currentTab == 'email' && currentSubtab == 'invoice' && <EmailInvoice {...props} />}
-                {currentTab == 'email' && currentSubtab == 'client_portal' && <EmailCredential type='client_portal' {...props} />}
-                {currentTab == 'email' && currentSubtab == 'team' && <EmailCredential type='team' {...props} />}
+                {currentTab == 'email' && (currentSubtab == 'delivery' || !currentSubtab) && <EmailSMTP {...props} />}
+                {currentTab == 'email' && (currentSubtab == 'system-template' || !currentSubtab) && <EmailSystemTemplate {...props} />}
                 {currentTab == 'contact' && <Contact />}
                 {currentTab == 'tag' && <Tag />}
                 {currentTab == 'custom-field' && <CustomField {...props} />}

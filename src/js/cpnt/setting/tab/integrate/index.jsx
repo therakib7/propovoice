@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import WithApi from "hoc/Api";
-import ProLabel from "block/pro-alert/label";
 
 import Form from "./form";
-import Smtp from "./smtp";
 import GOAuth2 from "./google-api/services/goauth2";
 import Automation from "./automation";
 
@@ -23,10 +21,6 @@ const Main = (props) => {
       text: "Form",
     },
     {
-      id: "smtp",
-      text: "SMTP",
-    },
-    {
       id: "google-apps",
       text: "Google Apps",
     },
@@ -39,7 +33,7 @@ const Main = (props) => {
   const [currentTab, setCurrentTab] = useState(tabDefault);
   const [currentSubtab, setCurrentSubtab] = useState("");
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const routeChange = (tab, subtab = null) => {
     if (subtab) {
@@ -74,15 +68,6 @@ const Main = (props) => {
 
       {currentTab == "form" && (
         <Form
-          key={reload}
-          {...props}
-          onChange={addCurrentTab}
-          tab={currentSubtab}
-        />
-      )}
-
-      {currentTab == "smtp" && (
-        <Smtp
           key={reload}
           {...props}
           onChange={addCurrentTab}

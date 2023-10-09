@@ -3,11 +3,10 @@ import WithApi from 'hoc/Api';
 
 import Default from './sub/Default';
 import Reminder from './sub/Reminder';
-import Recurring from './sub/Recurring';
 import ProLabel from 'block/pro-alert/label';
 
 const Main = (props) => {
-	const [tabs, setTabs] = useState(
+	/* const [tabs, setTabs] = useState(
 		[
 			{
 				id: 'default',
@@ -16,32 +15,27 @@ const Main = (props) => {
 			{
 				id: 'reminder',
 				text: ndpv.i18n.rem
-			},
-			{
-				id: 'recurring',
-				text: ndpv.i18n.recur
 			}
 		]
 	);
-	const [currentTab, setCurrentTab] = useState('default');
+	const [currentTab, setCurrentTab] = useState('default'); */
 
 	return (
 		<>
-			<ul className='pv-horizontal-tab'>
+			{/* <ul className='pv-horizontal-tab'>
 				{tabs.map((tab, index) => (
 					<li
 						key={index}
 						className={'pv-tab ' + (tab.id == currentTab ? 'pv-active' : '')}
 						onClick={(e) => setCurrentTab(tab.id)}
 					>
-						{tab.text} {(tab.id == 'reminder' || tab.id == 'recurring') && wage.length > 0 && <ProLabel />}
+						{tab.text} {tab.id == 'reminder' && wage.length > 0 && <ProLabel />}
 					</li>
 				))}
-			</ul>
+			</ul> */}
 
-			{currentTab == 'default' && <Default {...props} />}
-			{currentTab == 'reminder' && <Reminder {...props} />}
-			{currentTab == 'recurring' && <Recurring {...props} />}
+			<Default {...props} />
+			<Reminder {...props} />
 		</>
 	)
 }

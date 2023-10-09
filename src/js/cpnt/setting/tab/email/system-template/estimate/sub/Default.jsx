@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import pro from 'block/pro-alert';
-import ProLabel from 'block/pro-alert/label';
+
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import api from 'api';
 
-export default class Reminder extends Component {
+export default class DefaultMail extends Component {
     constructor(props) {
         super(props);
 
@@ -20,7 +19,7 @@ export default class Reminder extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        api.get('settings', 'tab=email_estimate_reminder').then(resp => {
+        api.get('settings', 'tab=email_estimate_default').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
             }
@@ -41,13 +40,8 @@ export default class Reminder extends Component {
         e.preventDefault();
 
         if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
-        if (wage.length > 0) {
-            pro();
-            return;
-        }
-
         let form = this.state.form;
-        form.tab = 'email_estimate_reminder';
+        form.tab = 'email_estimate_default';
 
         api.add('settings', form).then(resp => {
             if (resp.data.success) {
@@ -64,7 +58,7 @@ export default class Reminder extends Component {
         const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pv-form-style-one">
-
+                <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>Default Template</h4>
                 <div className="row">
                     <div className="col">
                         <label htmlFor="form-subject">
@@ -100,7 +94,7 @@ export default class Reminder extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
-                            {i18n.save} <ProLabel blueBtn />
+                            {i18n.save}
                         </button>
                     </div>
                 </div>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-
+import pro from 'block/pro-alert';
+import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import api from 'api';
 
-export default class DefaultMail extends Component {
+export default class Reminder extends Component {
     constructor(props) {
         super(props);
 
@@ -19,7 +20,7 @@ export default class DefaultMail extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        api.get('settings', 'tab=email_invoice_default').then(resp => {
+        api.get('settings', 'tab=email_invoice_reminder').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
             }
@@ -27,13 +28,13 @@ export default class DefaultMail extends Component {
     }
 
     handleChange = (e) => {
-        let recurring = { ...this.state.form }
+        let reminder = { ...this.state.form }
         const target = e.target;
         const name = target.name;
         const value = target.value
-        recurring[name] = value;
+        reminder[name] = value;
 
-        this.setState({ form: recurring })
+        this.setState({ form: reminder })
     }
 
     handleSubmit = (e) => {
@@ -41,8 +42,13 @@ export default class DefaultMail extends Component {
 
         if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
 
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
+
         let form = this.state.form;
-        form.tab = 'email_invoice_default';
+        form.tab = 'email_invoice_reminder';
 
         api.add('settings', form).then(resp => {
             if (resp.data.success) {
@@ -59,7 +65,7 @@ export default class DefaultMail extends Component {
         const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pv-form-style-one">
-
+                <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>Reminder Template</h4>
                 <div className="row">
                     <div className="col">
                         <label htmlFor="form-subject">
@@ -79,7 +85,7 @@ export default class DefaultMail extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label htmlFor="form-msg">{i18n.msg}</label>
+                        <label htmlFor="form-msg">Message</label>
                         <textarea
                             id="form-msg"
                             required
@@ -95,7 +101,7 @@ export default class DefaultMail extends Component {
                 <div className="row">
                     <div className="col">
                         <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
-                            {i18n.save}
+                            {i18n.save} <ProLabel blueBtn />
                         </button>
                     </div>
                 </div>

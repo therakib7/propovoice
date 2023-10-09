@@ -19,7 +19,7 @@ export default class DefaultMail extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        api.get('settings', 'tab=email_estimate_default').then(resp => {
+        api.get('settings', 'tab=email_invoice_default').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
             }
@@ -27,21 +27,22 @@ export default class DefaultMail extends Component {
     }
 
     handleChange = (e) => {
-        let reminder = { ...this.state.form }
+        let recurring = { ...this.state.form }
         const target = e.target;
         const name = target.name;
         const value = target.value
-        reminder[name] = value;
+        recurring[name] = value;
 
-        this.setState({ form: reminder })
+        this.setState({ form: recurring })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
         if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
+
         let form = this.state.form;
-        form.tab = 'email_estimate_default';
+        form.tab = 'email_invoice_default';
 
         api.add('settings', form).then(resp => {
             if (resp.data.success) {
@@ -58,7 +59,7 @@ export default class DefaultMail extends Component {
         const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pv-form-style-one">
-
+                <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>Default Template</h4>
                 <div className="row">
                     <div className="col">
                         <label htmlFor="form-subject">

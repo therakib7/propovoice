@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
 import api from 'api';
 
-export default class Recurring extends Component {
+export default class Reminder extends Component {
     constructor(props) {
         super(props);
 
@@ -20,7 +20,7 @@ export default class Recurring extends Component {
     static contextType = AppContext;
 
     componentDidMount() {
-        api.get('settings', 'tab=email_invoice_recurring').then(resp => {
+        api.get('settings', 'tab=email_estimate_reminder').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
             }
@@ -28,28 +28,26 @@ export default class Recurring extends Component {
     }
 
     handleChange = (e) => {
-        let recurring = { ...this.state.form }
+        let reminder = { ...this.state.form }
         const target = e.target;
         const name = target.name;
         const value = target.value
-        recurring[name] = value;
+        reminder[name] = value;
 
-        this.setState({ form: recurring })
+        this.setState({ form: reminder })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
 
-
         if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
-
         if (wage.length > 0) {
             pro();
             return;
         }
 
         let form = this.state.form;
-        form.tab = 'email_invoice_recurring';
+        form.tab = 'email_estimate_reminder';
 
         api.add('settings', form).then(resp => {
             if (resp.data.success) {
@@ -66,7 +64,7 @@ export default class Recurring extends Component {
         const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pv-form-style-one">
-
+                <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>Reminder Template</h4>
                 <div className="row">
                     <div className="col">
                         <label htmlFor="form-subject">
