@@ -94,7 +94,7 @@ const Setting = (props) => {
   }
   if (isAdmin) {
     tab_data.email = {
-      label: 'Delivery',
+      label: 'Email',
       subtabs: {
         delivery: {
           label: 'Email Delivery',
