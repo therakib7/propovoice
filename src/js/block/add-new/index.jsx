@@ -24,13 +24,32 @@ export default (props) => {
 
   const ImportExport = (e, type) => {
     e.preventDefault();
+    // Show pro alert if pro version not active
+    if (!isPro()) {
+      return;
+    }
+
     setDropdown(false);
     setExp(true);
   };
   const ImportImport = (e, type) => {
     e.preventDefault();
+
+    // Show pro alert if pro version not active
+    if (!isPro()) {
+      return;
+    }
+
     setDropdown(false);
     setImp(true);
+  };
+
+  const isPro = () => {
+    if (wage.length > 0) {
+      document.getElementById("pv-pro-alert").style.display = "block";
+      return false;
+    }
+    return true;
   };
 
   const i18n = ndpv.i18n;
