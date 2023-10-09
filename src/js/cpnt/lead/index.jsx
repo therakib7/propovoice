@@ -19,7 +19,10 @@ const Lead = (props) => {
   const [fields, setFields] = useState({});
   useEffect(() => {
     props.getLists();
-    getFields();
+
+    if (!wage.length) {
+      getFields();
+    }
   }, []);
 
   // Custom field: props.state.extra.custom_field : Array of Object
