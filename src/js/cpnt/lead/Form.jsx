@@ -121,19 +121,23 @@ export default class Form extends Component {
                 if (form.person) {
                     form.person_id = (form.person) ? form.person.id : null;
                     form.email = (form.person) ? form.person.email : '';
-                    form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
+                    form.mobile = (form.person) ? form.person.mobile : '';
                     form.country = (form.person) ? form.person.country : '';
                     form.region = (form.person) ? form.person.region : '';
                     form.address = (form.person) ? form.person.address : '';
+                    form.city = (form.person) ? form.person.city : '';
+                    form.zip = (form.person) ? form.person.zip : '';
                     form.img = (form.person) ? form.person.img : '';
                 } else {
                     form.email = (form.org) ? form.org.email : '';
-                    form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
+                    form.mobile = (form.org) ? form.org.mobile : '';
                     form.country = (form.org) ? form.org.country : '';
                     form.region = (form.org) ? form.org.region : '';
                     form.address = (form.org) ? form.org.address : '';
+                    form.city = (form.org) ? form.org.city : '';
+                    form.zip = (form.org) ? form.org.zip : '';
                     form.img = (form.org) ? form.org.img : '';
                 }
                 form.org_name = (form.org) ? form.org.name : '';

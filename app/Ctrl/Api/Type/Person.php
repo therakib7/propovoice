@@ -150,6 +150,12 @@ class Person
             $query_data["address"] = isset($queryMeta["address"])
                 ? $queryMeta["address"][0]
                 : "";
+            $query_data["city"] = isset($queryMeta["city"])
+                ? $queryMeta["city"][0]
+                : "";
+            $query_data["zip"] = isset($queryMeta["zip"])
+                ? $queryMeta["zip"][0]
+                : "";
 
             $img_id = isset($queryMeta["img"]) ? $queryMeta["img"][0] : null;
             $imgData = null;
@@ -239,6 +245,12 @@ class Person
             $personData["address"] = isset($personMeta["address"])
                 ? $personMeta["address"][0]
                 : "";
+            $personData["city"] = isset($personMeta["city"])
+                ? $personMeta["city"][0]
+                : "";
+            $personData["zip"] = isset($personMeta["zip"])
+                ? $personMeta["zip"][0]
+                : "";
 
             $personData["client_portal"] = isset($personMeta["client_portal"])
                 ? $personMeta["client_portal"][0]
@@ -284,13 +296,19 @@ class Person
             : null;
         $country = isset($param["country"])
             ? sanitize_text_field($req["country"])
-            : null;
+            : '';
         $region = isset($param["region"])
             ? sanitize_text_field($req["region"])
-            : null;
+            : '';
         $address = isset($param["address"])
             ? sanitize_text_field($req["address"])
-            : null;
+            : '';
+        $city = isset($param["city"])
+            ? sanitize_text_field($req["city"])
+            : '';
+        $zip = isset($param["zip"])
+            ? sanitize_text_field($req["zip"])
+            : '';
         $img = isset($param["img"]) ? absint($param["img"]) : null;
 
         if (empty($first_name)) {
@@ -371,6 +389,14 @@ class Person
                     update_post_meta($post_id, "address", $address);
                 }
 
+                if ($city) {
+                    update_post_meta($post_id, "city", $city);
+                }
+
+                if ($zip) {
+                    update_post_meta($post_id, "zip", $zip);
+                }
+
                 if ($img) {
                     update_post_meta($post_id, "img", $img);
                 }
@@ -447,7 +473,13 @@ class Person
             : "";
         $address = isset($param["address"])
             ? sanitize_text_field($req["address"])
-            : null;
+            : '';
+        $city = isset($param["city"])
+            ? sanitize_text_field($req["city"])
+            : '';
+        $zip = isset($param["zip"])
+            ? sanitize_text_field($req["zip"])
+            : '';
         $img = isset($param["img"]) ? absint($param["img"]) : null;
 
         $client_portal = isset($param["client_portal"])
@@ -482,16 +514,46 @@ class Person
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
-                if ($first_name) {
-                    update_post_meta($post_id, "first_name", $first_name);
+
+                if ( isset($param['first_name']) ) {
+                    update_post_meta($post_id, 'first_name', $first_name);
+                }
+
+                if ( isset($param['org_name']) ) {
+                    update_post_meta($post_id, 'org_name', $org_name);
+                }
+
+                if ( isset($param['email']) ) {
+                    update_post_meta($post_id, 'email', $email);
+                }
+
+                if ( isset($param['web']) ) {
+                    update_post_meta($post_id, 'web', $web);
+                }
+
+                if ( isset($param['mobile']) ) {
+                    update_post_meta($post_id, 'mobile', $mobile);
+                }
+
+                if ( isset($param['country']) ) {
+                    update_post_meta($post_id, 'country', $country);
+                }
+
+                if ( isset($param['region']) ) {
+                    update_post_meta($post_id, 'region', $region);
+                }
+
+                if ( isset($param['address']) ) {
+                    update_post_meta($post_id, 'address', $address);
+                }
+
+                if ( isset($param['city']) ) {
+                    update_post_meta($post_id, 'city', $city);
+                }
+
+                if ( isset($param['zip']) ) {
+                    update_post_meta($post_id, 'zip', $zip);
                 } 
-                update_post_meta($post_id, "email", $email);
-                update_post_meta($post_id, "org_name", $org_name);
-                update_post_meta($post_id, "web", $web);
-                update_post_meta($post_id, "mobile", $mobile);
-                update_post_meta($post_id, "country", $country);
-                update_post_meta($post_id, "region", $region);
-                update_post_meta($post_id, "address", $address);
 
                 $org = new Org();
                 if (!$org_id && $org_name) {

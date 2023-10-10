@@ -104,6 +104,8 @@ class Form extends Component {
                     form.country = form.person ? form.person.country : "";
                     form.region = form.person ? form.person.region : "";
                     form.address = form.person ? form.person.address : "";
+                    form.city = form.person ? form.person.city : "";
+                    form.zip = form.person ? form.person.zip : "";
                     form.img = form.person ? form.person.img : "";
                 } else {
                     form.email = form.org ? form.org.email : "";
@@ -112,6 +114,8 @@ class Form extends Component {
                     form.country = form.org ? form.org.country : "";
                     form.region = form.org ? form.org.region : "";
                     form.address = form.org ? form.org.address : "";
+                    form.city = form.org ? form.org.city : "";
+                    form.zip = form.org ? form.org.zip : "";
                     form.img = form.org ? form.org.img : "";
                 }
                 form.org_name = form.org ? form.org.name : "";

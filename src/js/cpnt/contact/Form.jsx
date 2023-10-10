@@ -4,9 +4,9 @@ import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import api from 'api';
 
-import AppContext from 'context/app-context';
 import Contact from 'block/field/contact';
 import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
+import { Address } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
@@ -16,7 +16,6 @@ export default class Form extends Component {
         this.initialState = {
             id: null,
             first_name: '',
-            last_name: '',
             org_id: '',
             org_name: '',
             email: '',
@@ -25,15 +24,17 @@ export default class Form extends Component {
             country: '',
             region: '',
             address: '',
+            city: '',
+            zip: '',
             date: false
         };
 
         this.state = {
             form: this.initialState
         };
-    }
 
-    static contextType = AppContext;
+        this.selectCountry = this.selectCountry.bind(this);
+    }
 
     componentDidMount() {
         //added this multi place, because not working in invoice single
@@ -156,7 +157,7 @@ export default class Form extends Component {
                         <p>{sprintf(i18n.formDesc, modalType, i18n.ct)}</p>
                     </div>
 
-                    <FormWrapper  submitHandler={this.handleSubmit} close={this.props.close} >
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close} >
                         <FormContent formStyleClass="pv-form-style-one">
 
                             <Contact
@@ -182,22 +183,7 @@ export default class Form extends Component {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-                                <div className="col-lg">
-                                    <label htmlFor="form-mobile">
-                                        {i18n.mob}
-                                    </label>
 
-                                    <input
-                                        id="form-mobile"
-                                        type="text"
-                                        name="mobile"
-                                        value={form.mobile}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="form-web">
                                         {i18n.web}
@@ -214,48 +200,28 @@ export default class Form extends Component {
                             </div>
 
                             <div className="row">
-                                <div className="col-md-6">
-                                    <label htmlFor="form-country">
-                                        {i18n.country}
-                                    </label>
-
-                                    <CountryDropdown
-                                        value={form.country}
-                                        valueType='short'
-                                        onChange={(val) => this.selectCountry(val)}
-                                    />
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label htmlFor="form-region">
-                                        {i18n.region}
-                                    </label>
-
-                                    <RegionDropdown
-                                        country={form.country}
-                                        countryValueType='short'
-                                        value={form.region}
-                                        onChange={(val) => this.selectRegion(val)}
-                                    />
-                                </div>
-
-                            </div>
-
-                            <div className="row">
-                                <div className="col">
-                                    <label htmlFor="form-address">
-                                        {i18n.addr}
+                                <div className="col-lg">
+                                    <label htmlFor="form-mobile">
+                                        {i18n.mob}
                                     </label>
 
                                     <input
-                                        id="form-address"
+                                        id="form-mobile"
                                         type="text"
-                                        name="address"
-                                        value={form.address}
+                                        name="mobile"
+                                        value={form.mobile}
                                         onChange={this.handleChange}
                                     />
                                 </div>
                             </div>
+
+                            <Address
+                                data={form}
+                                selectCountry={this.selectCountry}
+                                handleChange={this.handleChange}
+                            />
+
+
                         </FormContent>
                     </FormWrapper>
                 </div >
