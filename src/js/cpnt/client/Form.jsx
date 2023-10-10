@@ -116,6 +116,8 @@ class Form extends Component {
             form.country = (val) ? val.country : '';
             form.region = (val) ? val.region : '';
             form.address = (val) ? val.address : '';
+            form.city = (val) ? val.city : '';
+            form.zip = (val) ? val.zip : '';
             form.img = (val) ? val.img : '';
         } else {
             form.org_name = val.name;

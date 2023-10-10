@@ -21,9 +21,7 @@ class Lead
         $budget    = isset($param['budget']) ? sanitize_text_field($param['budget']) : null;
         $currency  = isset($param['currency']) ? sanitize_text_field($param['currency']) : null;
         $tags      = isset($param['tags']) ? array_map('absint', $param['tags']) : null;
-        $desc      = isset($param['desc']) ? nl2br($param['desc']) : '';
-        $note      = isset($param['note']) ? nl2br($param['note']) : '';
-
+        $desc      = isset($param['desc']) ? nl2br($param['desc']) : ''; 
 
         $person = new Person();
         if ($person_id) {
@@ -79,10 +77,6 @@ class Lead
 
             if ($tags) {
                 wp_set_post_terms($post_id, $tags, 'ndpv_tag');
-            }
-
-            if ($note) {
-                update_post_meta($post_id, 'note', $note);
             }
 
             //custom field

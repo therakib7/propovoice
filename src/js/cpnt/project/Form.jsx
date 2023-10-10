@@ -104,10 +104,20 @@ class Form extends Component {
                     form.email = (form.person) ? form.person.email : '';
                     form.mobile = (form.person) ? form.person.mobile : '';
                     form.web = (form.person) ? form.person.web : '';
+                    form.country = (form.person) ? form.person.country : '';
+                    form.region = (form.person) ? form.person.region : '';
+                    form.address = (form.person) ? form.person.address : '';
+                    form.city = (form.person) ? form.person.city : '';
+                    form.zip = (form.person) ? form.person.zip : '';
                 } else {
                     form.email = (form.org) ? form.org.email : '';
                     form.mobile = (form.org) ? form.org.mobile : '';
                     form.web = (form.org) ? form.org.web : '';
+                    form.country = form.org ? form.org.country : "";
+                    form.region = form.org ? form.org.region : "";
+                    form.address = form.org ? form.org.address : "";
+                    form.city = form.org ? form.org.city : "";
+                    form.zip = form.org ? form.org.zip : "";
                 }
                 form.org_name = (form.org) ? form.org.name : '';
 
