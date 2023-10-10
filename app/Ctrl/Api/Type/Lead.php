@@ -453,6 +453,9 @@ class Lead
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
+        $url_params = $req->get_url_params();
+        $post_id = $url_params["id"];
+
         //lead
         $first_name = isset($param["first_name"])
             ? sanitize_text_field($param["first_name"])
@@ -476,7 +479,19 @@ class Lead
         $tags = isset($param["tags"])
             ? array_map("absint", $param["tags"])
             : null;
-        $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
+        // $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
+
+        $desc = $post_content = get_post_field('post_content', $post_id);
+        $post_content = get_post_field('post_content', $post_id);
+
+        if (isset($param["desc"])) {
+            if ($param["desc"] === $post_content) {
+                $desc = $post_content;
+            } else {
+                $desc = nl2br($param["desc"]);
+            }
+        }
+
 
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
@@ -510,8 +525,7 @@ class Lead
         if ($reg_errors->get_error_messages()) {
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
-            $url_params = $req->get_url_params();
-            $post_id = $url_params["id"];
+
 
             $data = [
                 "ID" => $post_id,
