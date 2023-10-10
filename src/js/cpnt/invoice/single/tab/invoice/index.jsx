@@ -160,7 +160,9 @@ class Invoice extends Component {
 					sidebarRef.clientWidth / 796,
 					sidebarRef.clientHeight / 1122
 				);
-				this.setState({ previewScale: scale });
+				if (this.state.previewScale != scale) {
+					this.setState({ previewScale: scale });
+				}
 			}, 700);
 		}
 	};
