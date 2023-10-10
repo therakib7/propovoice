@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context';
 import Upload from 'block/field/upload';
 import api from 'api';
-import Preloader from "block/preloader/spinner";
-import { Text } from 'block/form/input';
+import { Text, Address } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 export default class Business extends Component {
@@ -14,13 +12,15 @@ export default class Business extends Component {
         this.initialState = {
             id: null,
             name: '',
-            org_name: '',
-            web: '',
             email: '',
+            web: '',
             mobile: '',
+            country: '',
+            region: '',
             address: '',
-            logo: null,
+            city: '',
             zip: '',
+            logo: null,
             default: true,
             date: false
         };
@@ -29,18 +29,8 @@ export default class Business extends Component {
             submitPreloader: false,
             form: this.initialState
         };
-    }
 
-    static contextType = AppContext;
-
-    handleChange = e => {
-        const { name, value } = e.target;
-        this.setState({ form: { ...this.state.form, [name]: value } });
-    }
-
-    toggleChange = () => {
-        let value = !this.state.form.default;
-        this.setState({ form: { ...this.state.form, ['default']: value } });
+        this.selectCountry = this.selectCountry.bind(this);
     }
 
     componentDidMount() {
@@ -90,6 +80,20 @@ export default class Business extends Component {
         }
     }
 
+    handleChange = e => {
+        const { name, value } = e.target;
+        this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    selectCountry(val) {
+        this.setState({ form: { ...this.state.form, ['country']: val } });
+    }
+
+    toggleChange = () => {
+        let value = !this.state.form.default;
+        this.setState({ form: { ...this.state.form, ['default']: value } });
+    }
+
     handleLogoChange = (data, type = null) => {
         let form = { ...this.state.form }
         form.logo = data;
@@ -97,6 +101,7 @@ export default class Business extends Component {
     }
 
     render() {
+        const form = this.state.form;
         const i18n = ndpv.i18n;
         const submitPreloader = this.state.submitPreloader;
         return (
@@ -109,25 +114,11 @@ export default class Business extends Component {
                             id="field-name"
                             type="text"
                             name="name"
-                            value={this.state.form.name}
+                            value={form.name}
                             wrapperClassName='col-md'
                             onChange={this.handleChange}
                             validation={{ required: { value: true } }}
                         />
-
-                        {/* <div className="col-md">
-                        <label htmlFor="field-org_name">
-                            Company/Organization Name
-                        </label>
-
-                        <input
-                            id="field-org_name"
-                            type="text" 
-                            name="org_name"
-                            value={this.state.form.org_name}
-                            onChange={this.handleChange}
-                        />
-                    </div> */}
 
                     </div>
 
@@ -137,7 +128,7 @@ export default class Business extends Component {
                             id="field-email"
                             type="email"
                             name="email"
-                            value={this.state.form.email}
+                            value={form.email}
                             wrapperClassName='col-md'
                             onChange={this.handleChange}
                             validation={{ required: { value: true }, email: { value: true } }}
@@ -152,7 +143,7 @@ export default class Business extends Component {
                                 id="field-web"
                                 type="text"
                                 name="web"
-                                value={this.state.form.web}
+                                value={form.web}
                                 onChange={this.handleChange}
                             />
                         </div>
@@ -169,46 +160,22 @@ export default class Business extends Component {
                                 id="field-mobile"
                                 type="text"
                                 name="mobile"
-                                value={this.state.form.mobile}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className="col-md">
-                            <label htmlFor="field-zip">
-                                {i18n.zip}
-                            </label>
-
-                            <input
-                                id="field-zip"
-                                type="text"
-                                name="zip"
-                                value={this.state.form.zip}
+                                value={form.mobile}
                                 onChange={this.handleChange}
                             />
                         </div>
                     </div>
 
-                    <div className="row">
-                        <div className="col">
-                            <label htmlFor="field-address">
-                                {i18n.addr}
-                            </label>
-
-                            <input
-                                id="field-address"
-                                type="text"
-                                name="address"
-                                placeholder='Write you full address here'
-                                value={this.state.form.address}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                    </div>
+                    <Address
+                        data={form}
+                        selectCountry={this.selectCountry}
+                        handleChange={this.handleChange}
+                    />
 
                     <div className="row">
                         <div className="col-md">
                             <label htmlFor="field-logo">{i18n.upload} {i18n.logo}</label>
-                            <Upload label={'Logo'} library={false} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
+                            <Upload label={i18n.logo} library={false} data={form.logo} changeHandler={this.handleLogoChange} />
                         </div>
                     </div>
 

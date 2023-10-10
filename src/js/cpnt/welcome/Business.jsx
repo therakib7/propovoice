@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Upload from 'block/field/upload';
+import { Address } from 'block/form/input';
 
 class Info extends Component {
     constructor(props) {
@@ -12,9 +13,12 @@ class Info extends Component {
             web: '',
             email: '',
             mobile: '',
+            country: '',
+            region: '',
             address: '',
-            logo: null,
+            city: '',
             zip: '',
+            logo: null,
             default: true,
             date: false
         };
@@ -22,16 +26,8 @@ class Info extends Component {
         this.state = {
             form: this.initialState
         };
-    }
 
-    handleChange = e => {
-        const { name, value } = e.target;
-        this.setState({ form: { ...this.state.form, [name]: value } });
-    }
-
-    toggleChange = () => {
-        let value = !this.state.form.default;
-        this.setState({ form: { ...this.state.form, ['default']: value } });
+        this.selectCountry = this.selectCountry.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +42,20 @@ class Info extends Component {
         this.props.handleSubmit(this.state.form);
     }
 
+    handleChange = e => {
+        const { name, value } = e.target;
+        this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    toggleChange = () => {
+        let value = !this.state.form.default;
+        this.setState({ form: { ...this.state.form, ['default']: value } });
+    }
+
+    selectCountry(val) {
+        this.setState({ form: { ...this.state.form, ['country']: val } });
+    }
+
     handleLogoChange = (data) => {
         let form = { ...this.state.form }
         form.logo = data;
@@ -54,6 +64,7 @@ class Info extends Component {
 
     render() {
         const i18n = ndpv.i18n;
+        const form = this.state.form;
         return (
             <div id="pv-business">
                 <div className="pv-welcome-title-content pv-text-center">
@@ -71,48 +82,17 @@ class Info extends Component {
                         <div className="row">
                             <div className="col-md">
                                 <label htmlFor="field-name">{i18n.name}</label>
-
                                 <input
                                     id="field-name"
                                     type="text"
                                     name="name"
-                                    value={this.state.form.name}
+                                    value={form.name}
                                     onChange={this.handleChange}
                                 />
                             </div>
-
-                            {/* <div className="col-md">
-                                <label
-                                    htmlFor="field-org_name">
-                                    Company Name
-                                </label>
-
-                                <input
-                                    id="field-org_name"
-                                    type="text" 
-                                    name="org_name"
-                                    value={this.state.form.org_name}
-                                    onChange={this.handleChange}
-                                />
-                            </div> */}
                         </div>
 
                         <div className="row">
-                            <div className="col-md">
-                                <label
-                                    htmlFor="field-web">
-                                    {i18n.web}
-                                </label>
-
-                                <input
-                                    id="field-web"
-                                    type="text"
-                                    name="web"
-                                    value={this.state.form.web}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
-
                             <div className="col-md">
                                 <label
                                     htmlFor="field-email">
@@ -124,7 +104,22 @@ class Info extends Component {
                                     type="email"
                                     required
                                     name="email"
-                                    value={this.state.form.email}
+                                    value={form.email}
+                                    onChange={this.handleChange}
+                                />
+                            </div>
+
+                            <div className="col-md">
+                                <label
+                                    htmlFor="field-web">
+                                    {i18n.web}
+                                </label>
+
+                                <input
+                                    id="field-web"
+                                    type="text"
+                                    name="web"
+                                    value={form.web}
                                     onChange={this.handleChange}
                                 />
                             </div>
@@ -134,56 +129,29 @@ class Info extends Component {
                             <div className="col-md">
                                 <label
                                     htmlFor="field-mobile">
-                                    {i18n.mob} {i18n.num}
+                                    {i18n.mob}
                                 </label>
 
                                 <input
                                     id="field-mobile"
                                     type="text"
                                     name="mobile"
-                                    value={this.state.form.mobile}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
-
-                            <div className="col-md">
-                                <label
-                                    htmlFor="field-zip">
-                                    {i18n.zip}
-                                </label>
-
-                                <input
-                                    id="field-zip"
-                                    type="text"
-                                    name="zip"
-                                    value={this.state.form.zip}
+                                    value={form.mobile}
                                     onChange={this.handleChange}
                                 />
                             </div>
                         </div>
 
-                        <div className="row">
-                            <div className="col">
-                                <label
-                                    htmlFor="field-address">
-                                    {i18n.addr}
-                                </label>
-
-                                <input
-                                    id="field-address"
-                                    type="text"
-                                    name="address"
-                                    placeholder='Write you full address here'
-                                    value={this.state.form.address}
-                                    onChange={this.handleChange}
-                                />
-                            </div>
-                        </div>
+                        <Address
+                            data={form}
+                            selectCountry={this.selectCountry}
+                            handleChange={this.handleChange}
+                        />
 
                         <div className="row">
                             <div className="col-md">
                                 <label htmlFor="field-logo">{i18n.upload} {i18n.logo}</label>
-                                <Upload label={'Logo'} library={false} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
+                                <Upload label={i18n.logo} library={false} data={form.logo} changeHandler={this.handleLogoChange} />
                             </div>
                         </div>
                     </div>
