@@ -123,7 +123,9 @@ export default function SavedItemsSettings() {
                     {hidden ? data.qty_type : 
                  
                         <select value={data.qty_type} onChange={(e) => setData({ ...data, qty_type: e.target.value })}>
+                            <option>Select</option>
                             {
+                                
                                 qtyTypes.map((t,k)=>{
                                     return <option key={k} value={t.label}>{t.label}</option>
                                 })

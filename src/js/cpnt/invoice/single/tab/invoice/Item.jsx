@@ -63,11 +63,12 @@ export default (props) => {
     const changeItemsValue = (e, item) => {
         e.preventDefault();
         setSuggestionVisiblity(false)
+        console.log(item)
         props.handleItemsValue(index, {
             title: item.title,
             desc: item.desc,
             qty: item.qty,
-            qty_type:item.qty_type,
+            qty_type:item.qty_type.toLowerCase(),
             price: item.price
         });
     }
