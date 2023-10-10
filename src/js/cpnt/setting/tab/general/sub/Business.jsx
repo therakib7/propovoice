@@ -1,121 +1,131 @@
-import React, { Component } from 'react';
-import { toast } from 'react-toastify';
-import AppContext from 'context/app-context';
-import Upload from 'block/field/upload';
-import api from 'api';
+import React, { Component } from "react";
+import { toast } from "react-toastify";
+import AppContext from "context/app-context";
+import Upload from "block/field/upload";
+import api from "api";
 import Preloader from "block/preloader/spinner";
-import { Text } from 'block/form/input';
-import { FormWrapper, FormContent } from 'block/form';
+import { Text } from "block/form/input";
+import { FormWrapper, FormContent } from "block/form";
 
 export default class Business extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.initialState = {
-            id: null,
-            name: '',
-            org_name: '',
-            web: '',
-            email: '',
-            mobile: '',
-            address: '',
-            logo: null,
-            zip: '',
-            default: true,
-            date: false
-        };
-
-        this.state = {
-            submitPreloader: false,
-            form: this.initialState
-        };
-    }
-
-    static contextType = AppContext;
-
-    handleChange = e => {
-        const { name, value } = e.target;
-        this.setState({ form: { ...this.state.form, [name]: value } });
-    }
-
-    toggleChange = () => {
-        let value = !this.state.form.default;
-        this.setState({ form: { ...this.state.form, ['default']: value } });
-    }
-
-    componentDidMount() {
-        this.getData();
-    }
-
-    getData = () => {
-        this.props.getAll('businesses', 'default=1').then(resp => {
-            let businessData = resp.data.data.result;
-            if (businessData.length) {
-                this.setState({ form: businessData[0] });
-            }
-        });
+    this.initialState = {
+      id: null,
+      name: "",
+      org_name: "",
+      web: "",
+      email: "",
+      mobile: "",
+      address: "",
+      logo: null,
+      zip: "",
+      default: true,
+      date: false,
     };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
+    this.state = {
+      submitPreloader: false,
+      form: this.initialState,
+    };
+  }
 
-        if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
+  static contextType = AppContext;
 
-        let form = { ...this.state.form }
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ form: { ...this.state.form, [name]: value } });
+  };
 
-        this.setState({ submitPreloader: true });
+  toggleChange = () => {
+    let value = !this.state.form.default;
+    this.setState({ form: { ...this.state.form, ["default"]: value } });
+  };
 
-        if (!form.id) {
-            api.add('businesses', form).then(resp => {
-                this.setState({ submitPreloader: false });
-                if (resp.data.success) {
-                    toast.success(ndpv.i18n.aAdd);
-                } else {
-                    resp.data.data.forEach(function (value) {
-                        toast.error(value);
-                    });
-                }
-            })
+  componentDidMount() {
+    this.getData();
+  }
+
+  getData = () => {
+    this.props.getAll("businesses", "default=1").then((resp) => {
+      let businessData = resp.data.data.result;
+      if (businessData.length) {
+        this.setState({ form: businessData[0] });
+      }
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (ndpv.isDemo) {
+      toast.error(ndpv.demoMsg);
+      return;
+    }
+
+    let form = { ...this.state.form };
+
+    this.setState({ submitPreloader: true });
+
+    if (!form.id) {
+      api.add("businesses", form).then((resp) => {
+        this.setState({ submitPreloader: false });
+        if (resp.data.success) {
+          toast.success(ndpv.i18n.aAdd);
         } else {
-            api.edit('businesses', form.id, form).then(resp => {
-                this.setState({ submitPreloader: false });
-                if (resp.data.success) {
-                    toast.success(ndpv.i18n.aUpd);
-                } else {
-                    resp.data.data.forEach(function (value) {
-                        toast.error(value);
-                    });
-                }
-            })
+          resp.data.data.forEach(function (value) {
+            toast.error(value);
+          });
         }
+      });
+    } else {
+      api.edit("businesses", form.id, form).then((resp) => {
+        this.setState({ submitPreloader: false });
+        if (resp.data.success) {
+          toast.success(ndpv.i18n.aUpd);
+        } else {
+          resp.data.data.forEach(function (value) {
+            toast.error(value);
+          });
+        }
+      });
     }
+  };
 
-    handleLogoChange = (data, type = null) => {
-        let form = { ...this.state.form }
-        form.logo = data;
-        this.setState({ form })
-    }
+  handleLogoChange = (data, type = null) => {
+    let form = { ...this.state.form };
+    form.logo = data;
+    this.setState({ form });
+  };
 
-    render() {
-        const i18n = ndpv.i18n;
-        const submitPreloader = this.state.submitPreloader;
-        return (
-            <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
-                <FormContent formStyleClass="pv-form-style-one">
-                    <div className="row">
+  render() {
+    const i18n = ndpv.i18n;
 
-                        <Text
-                            label={i18n.name}
-                            id="field-name"
-                            type="text"
-                            name="name"
-                            value={this.state.form.name}
-                            wrapperClassName='col-md'
-                            onChange={this.handleChange}
-                            validation={{ required: { value: true } }}
-                        />
+    const submitPreloader = this.props.reload
+      ? this.state.submitPreloader
+      : this.props.submitPreloader;
 
-                        {/* <div className="col-md">
+    return (
+      <FormWrapper
+        submitPreloader={submitPreloader}
+        submitHandler={this.handleSubmit}
+        close={this.props.close}
+      >
+        <FormContent formStyleClass="pv-form-style-one">
+          <div className="row">
+            <Text
+              label={i18n.name}
+              id="field-name"
+              type="text"
+              name="name"
+              value={this.state.form.name}
+              wrapperClassName="col-md"
+              onChange={this.handleChange}
+              validation={{ required: { value: true } }}
+            />
+
+            {/* <div className="col-md">
                         <label htmlFor="field-org_name">
                             Company/Organization Name
                         </label>
@@ -128,92 +138,88 @@ export default class Business extends Component {
                             onChange={this.handleChange}
                         />
                     </div> */}
+          </div>
 
-                    </div>
+          <div className="row">
+            <Text
+              label={i18n.email}
+              id="field-email"
+              type="email"
+              name="email"
+              value={this.state.form.email}
+              wrapperClassName="col-md"
+              onChange={this.handleChange}
+              validation={{ required: { value: true }, email: { value: true } }}
+            />
 
-                    <div className="row">
-                        <Text
-                            label={i18n.email}
-                            id="field-email"
-                            type="email"
-                            name="email"
-                            value={this.state.form.email}
-                            wrapperClassName='col-md'
-                            onChange={this.handleChange}
-                            validation={{ required: { value: true }, email: { value: true } }}
-                        />
+            <div className="col-md">
+              <label htmlFor="field-web">{i18n.web}</label>
 
-                        <div className="col-md">
-                            <label htmlFor="field-web">
-                                {i18n.web}
-                            </label>
+              <input
+                id="field-web"
+                type="text"
+                name="web"
+                value={this.state.form.web}
+                onChange={this.handleChange}
+              />
+            </div>
+          </div>
 
-                            <input
-                                id="field-web"
-                                type="text"
-                                name="web"
-                                value={this.state.form.web}
-                                onChange={this.handleChange}
-                            />
-                        </div>
+          <div className="row">
+            <div className="col-md">
+              <label htmlFor="field-mobile">{i18n.mob}</label>
 
-                    </div>
+              <input
+                id="field-mobile"
+                type="text"
+                name="mobile"
+                value={this.state.form.mobile}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="col-md">
+              <label htmlFor="field-zip">{i18n.zip}</label>
 
-                    <div className="row">
-                        <div className="col-md">
-                            <label htmlFor="field-mobile">
-                                {i18n.mob}
-                            </label>
+              <input
+                id="field-zip"
+                type="text"
+                name="zip"
+                value={this.state.form.zip}
+                onChange={this.handleChange}
+              />
+            </div>
+          </div>
 
-                            <input
-                                id="field-mobile"
-                                type="text"
-                                name="mobile"
-                                value={this.state.form.mobile}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className="col-md">
-                            <label htmlFor="field-zip">
-                                {i18n.zip}
-                            </label>
+          <div className="row">
+            <div className="col">
+              <label htmlFor="field-address">{i18n.addr}</label>
 
-                            <input
-                                id="field-zip"
-                                type="text"
-                                name="zip"
-                                value={this.state.form.zip}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                    </div>
+              <input
+                id="field-address"
+                type="text"
+                name="address"
+                placeholder="Write you full address here"
+                value={this.state.form.address}
+                onChange={this.handleChange}
+              />
+            </div>
+          </div>
 
-                    <div className="row">
-                        <div className="col">
-                            <label htmlFor="field-address">
-                                {i18n.addr}
-                            </label>
-
-                            <input
-                                id="field-address"
-                                type="text"
-                                name="address"
-                                placeholder='Write you full address here'
-                                value={this.state.form.address}
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-md">
-                            <label htmlFor="field-logo">{i18n.upload} {i18n.logo}</label>
-                            <Upload label={'Logo'} library={false} data={this.state.form.logo} changeHandler={this.handleLogoChange} />
-                        </div>
-                    </div>
-
-                </FormContent>
-            </FormWrapper>
-        );
-    }
+          <div className="row">
+            <div className="col-md">
+              <label htmlFor="field-logo">
+                {i18n.upload} {i18n.logo}
+              </label>
+              <Upload
+                label={"Logo"}
+                library={false}
+                data={this.state.form.logo}
+                changeHandler={this.handleLogoChange}
+              />
+            </div>
+          </div>
+        </FormContent>
+      </FormWrapper>
+    );
+  }
 }
