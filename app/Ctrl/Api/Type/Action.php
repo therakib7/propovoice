@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -7,7 +8,7 @@ use Ndpv\Traits\Singleton;
 class Action
 {
     use Singleton;
-    
+
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/actions" . ndpv()->plain_route(), [
@@ -35,7 +36,7 @@ class Action
             ],
         ]);
 
-        register_rest_route("ndpv/v1", "/actions/(?P<id>\d+)", [
+        register_rest_route("ndpv/v1", "/actions/(?P<id>[^/]+)", [
             "methods" => "PUT",
             "callback" => [$this, "update"],
             "permission_callback" => [$this, "update_per"],
@@ -81,88 +82,95 @@ class Action
         $param = $req->get_params();
         $reg_errors = new \WP_Error();
 
-        $id = isset($param["id"]) ? absint($param["id"]) : null;
+        // modified for multiple id support
+        $str_id = isset($param["id"]) ? $param["id"] : null;
         $type = isset($param["type"])
             ? sanitize_text_field($param["type"])
             : null;
 
-        if (empty($id) || empty($type)) {
-            $reg_errors->add(
-                "field",
-                esc_html__("Required field is missing", "propovoice")
-            );
-        }
+        $ids = explode(",", $str_id);
 
-        if ($reg_errors->get_error_messages()) {
-            wp_send_json_error($reg_errors->get_error_messages());
-        } else {
+        foreach ($ids as $id) {
+            $id = (int)$id;
 
-            $title = get_the_title($id);
-            $oldpost = get_post($id);
-            $post = [
-                "post_title" => $title,
-                "post_status" => "publish",
-                "post_type" => $oldpost->post_type,
-                "post_author" => get_current_user_id(),
-            ];
-            $new_post_id = wp_insert_post($post);
-
-            // Copy post metadata 
-
-            $data = get_post_meta($id);
-
-            //auto number
-            $auto_id = '';
-            $path = get_post_meta($id, "path", true);
-            if ($type == "copy-to-inv") {
-                $path = "invoice"; 
+            if (empty($id) || empty($type)) {
+                $reg_errors->add(
+                    "field",
+                    esc_html__("Required field is missing", "propovoice")
+                );
             }
-            $prefix = get_option("ndpv_" . $path . "_general");
-            if ($prefix) {
-                $prefix = $prefix["prefix"];
+
+            if ($reg_errors->get_error_messages()) {
+                wp_send_json_error($reg_errors->get_error_messages());
             } else {
-                $prefix = $path == "invoice" ? "Inv-" : "Est-";
-            }
-            $auto_id = $prefix . Fns::auto_id($path); 
 
-            foreach ($data as $key => $values) {
-                foreach ($values as $value) {
-                    if ($key == "status") {
-                        $value = "draft";
-                    } 
+                $title = get_the_title($id);
+                $oldpost = get_post($id);
+                $post = [
+                    "post_title" => $title,
+                    "post_status" => "publish",
+                    "post_type" => $oldpost->post_type,
+                    "post_author" => get_current_user_id(),
+                ];
+                $new_post_id = wp_insert_post($post);
 
-                    if ($key == "path" && $type == "copy-to-inv") {
-                        $value = "invoice"; 
-                    }                
+                // Copy post metadata
 
-                    if ($key == "num") {
-                        $value = $auto_id;
-                    }
+                $data = get_post_meta($id);
 
-                    if ($key == "invoice") { //key name invoice, but estimate and invoice stored here in obj
-                        $value = maybe_unserialize($value);
+                //auto number
+                $auto_id = '';
+                $path = get_post_meta($id, "path", true);
+                if ($type == "copy-to-inv") {
+                    $path = "invoice";
+                }
+                $prefix = get_option("ndpv_" . $path . "_general");
+                if ($prefix) {
+                    $prefix = $prefix["prefix"];
+                } else {
+                    $prefix = $path == "invoice" ? "Inv-" : "Est-";
+                }
+                $auto_id = $prefix . Fns::auto_id($path);
 
-                        $value["id"] = $new_post_id;
-                        $value["num"] = $auto_id;
-
-                        if ($type == "copy-to-inv") {
-                            $value["path"] = "invoice";
+                foreach ($data as $key => $values) {
+                    foreach ($values as $value) {
+                        if ($key == "status") {
+                            $value = "draft";
                         }
-                    }
 
-                    add_post_meta(
-                        $new_post_id,
-                        $key,
-                        maybe_unserialize($value)
-                    );
+                        if ($key == "path" && $type == "copy-to-inv") {
+                            $value = "invoice";
+                        }
+
+                        if ($key == "num") {
+                            $value = $auto_id;
+                        }
+
+                        if ($key == "invoice") { //key name invoice, but estimate and invoice stored here in obj
+                            $value = maybe_unserialize($value);
+
+                            $value["id"] = $new_post_id;
+                            $value["num"] = $auto_id;
+
+                            if ($type == "copy-to-inv") {
+                                $value["path"] = "invoice";
+                            }
+                        }
+
+                        add_post_meta(
+                            $new_post_id,
+                            $key,
+                            maybe_unserialize($value)
+                        );
+                    }
                 }
             }
+        }
 
-            if (!is_wp_error($new_post_id)) {
-                wp_send_json_success($new_post_id);
-            } else {
-                wp_send_json_error();
-            }
+        if (!is_wp_error($new_post_id)) {
+            wp_send_json_success($new_post_id);
+        } else {
+            wp_send_json_error();
         }
     }
 
@@ -172,24 +180,35 @@ class Action
         $reg_errors = new \WP_Error();
 
         $url_params = $req->get_url_params();
-        $id = isset($url_params["id"]) ? absint($url_params["id"]) : null;
+        $id = isset($url_params["id"]) ? $url_params["id"] : "";
+        $ids = isset($params["ids"]) ? $params["ids"] : "";
+        if ($id) {
+            $ids = $ids ? $ids .= "," . $id : $id;
+        }
+        error_log(print_r($ids, true));
         $type = isset($param["type"])
             ? sanitize_text_field($param["type"])
             : null;
 
-        if (empty($id) || empty($type)) {
-            $reg_errors->add(
-                "field",
-                esc_html__("Required field is missing", "propovoice")
-            );
+        $ids_array = explode(",", $ids);
+
+        foreach ($ids_array as $id) {
+            $id = (int)$id;
+
+            if (empty($id) || empty($type)) {
+                $reg_errors->add(
+                    "field",
+                    esc_html__("Required field is missing", "propovoice")
+                );
+            }
+
+            if ($reg_errors->get_error_messages()) {
+                wp_send_json_error($reg_errors->get_error_messages());
+            }
+            update_post_meta($id, "status", $type);
         }
 
-        if ($reg_errors->get_error_messages()) {
-            wp_send_json_error($reg_errors->get_error_messages());
-        } else {
-            update_post_meta($id, "status", $type);
-            wp_send_json_success($id);
-        }
+        wp_send_json_success($id);
     }
 
     public function delete($req)

@@ -218,40 +218,44 @@ class Invoice extends Component {
   };
 
   handleBulkAction = async (type) => {
-    const ids = this.state.checkedBoxes;
+    let ids = this.state.checkedBoxes;
 
     // Action for sent, paid, accept, decline
-    const actionIds = this.actionIdsToUpdate(ids, type);
-    await Promise.all(
-      actionIds.map(async (id) => {
-        await ApiAction.update(id, { type }).then((resp) => {
-          if (resp.data.success) {
-            // console.log(`${type} action successfull for id - ${id}`);
-          } else {
-            resp.data.data.forEach(function (value) {
-              toast.error(value);
-            });
-          }
-        });
-      }),
-    );
+    await this.applyUpdateAction(ids, type);
 
     // Action for copy to invoice
-    this.copyToInvoiceAction(ids, type);
+    await this.copyToInvoiceAction(ids, type);
 
     this.setState({ checkedBoxes: [] });
     this.getLists();
-    toast.info("Bulk action compleated");
+  };
+
+  applyUpdateAction = async (ids, type) => {
+    //Exclude copy to invoice
+    if (type == "copy-to-inv") {
+      return;
+    }
+
+    const actionIds = this.actionIdsToUpdate(ids, type);
+    ids = actionIds.toString();
+
+    if (!ids) {
+      return;
+    }
+
+    const resp = await ApiAction.update(ids, { type });
+    if (resp.data.success) {
+      // console.log(`${type} action successfull for id - ${id}`);
+    } else {
+      resp.data.data.forEach(function (value) {
+        toast.error(value);
+      });
+    }
   };
 
   actionIdsToUpdate = (ids, type) => {
     return ids.filter((id) => {
       const invoice = this.state.invoices.find((inv) => inv.id === id);
-
-      //Exclude copy to invoice
-      if (type === "copy-to-inv") {
-        return false;
-      }
 
       // Restrict sent while an invoice status is paid
       if (type === "sent" && invoice.status === "paid") {
@@ -263,25 +267,24 @@ class Invoice extends Component {
   };
 
   copyToInvoiceAction = async (ids, type) => {
-    for (const id of ids) {
-      // const invoice = this.state.invoices.find((inv) => inv.id === id);
+    const id = ids.toString();
 
-      if (type === "copy-to-inv") {
-        try {
-          const resp = await ApiAction.create({ id, type });
-          if (resp.data.success) {
-            // toast.success(
-            //   `Copy to invoice action successful for ${invoice.num}`,
-            // );
-          } else {
-            resp.data.data.forEach((value) => {
-              toast.error(value);
-            });
-          }
-        } catch (error) {
-          console.error(error);
-        }
+    // Check for type is copy-to-inv
+    if (type !== "copy-to-inv" || !id) {
+      return;
+    }
+
+    try {
+      const resp = await ApiAction.create({ id, type });
+      if (resp.data.success) {
+        toast.success("Copy to invoice action successful");
+      } else {
+        resp.data.data.forEach((value) => {
+          toast.error(value);
+        });
       }
+    } catch (error) {
+      console.error(error);
     }
   };
 
