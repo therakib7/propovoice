@@ -1,6 +1,4 @@
 const Checkbox = ({ style, id, name, label = {}, changeHandler, isChecked }) => {
-	// label={{ text: "Test label", position: "right" }}
-	// label position => left / right
 	const viewCheckboxInput = (
 		<input type='checkbox'
 			id={id}

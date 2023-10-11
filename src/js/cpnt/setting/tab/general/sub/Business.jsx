@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-import { toast } from "react-toastify";
-import AppContext from "context/app-context";
-import Upload from "block/field/upload";
-import api from "api";
-import Preloader from "block/preloader/spinner";
-import { Text } from "block/form/input";
-import { FormWrapper, FormContent } from "block/form";
+import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+import Upload from 'block/field/upload';
+import api from 'api';
+import { Text, Address } from 'block/form/input';
+import { FormWrapper, FormContent } from 'block/form';
 
 export default class Business extends Component {
   constructor(props) {
@@ -13,42 +11,34 @@ export default class Business extends Component {
 
     this.initialState = {
       id: null,
-      name: "",
-      org_name: "",
-      web: "",
-      email: "",
-      mobile: "",
-      address: "",
+      name: '',
+      email: '',
+      web: '',
+      mobile: '',
+      country: '',
+      region: '',
+      address: '',
+      city: '',
+      zip: '',
       logo: null,
-      zip: "",
       default: true,
-      date: false,
+      date: false
     };
 
     this.state = {
       submitPreloader: false,
-      form: this.initialState,
+      form: this.initialState
     };
+
+    this.selectCountry = this.selectCountry.bind(this);
   }
-
-  static contextType = AppContext;
-
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ form: { ...this.state.form, [name]: value } });
-  };
-
-  toggleChange = () => {
-    let value = !this.state.form.default;
-    this.setState({ form: { ...this.state.form, ["default"]: value } });
-  };
 
   componentDidMount() {
     this.getData();
   }
 
   getData = () => {
-    this.props.getAll("businesses", "default=1").then((resp) => {
+    this.props.getAll('businesses', 'default=1').then(resp => {
       let businessData = resp.data.data.result;
       if (businessData.length) {
         this.setState({ form: businessData[0] });
@@ -59,17 +49,14 @@ export default class Business extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    if (ndpv.isDemo) {
-      toast.error(ndpv.demoMsg);
-      return;
-    }
+    if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
 
-    let form = { ...this.state.form };
+    let form = { ...this.state.form }
 
     this.setState({ submitPreloader: true });
 
     if (!form.id) {
-      api.add("businesses", form).then((resp) => {
+      api.add('businesses', form).then(resp => {
         this.setState({ submitPreloader: false });
         if (resp.data.success) {
           toast.success(ndpv.i18n.aAdd);
@@ -78,9 +65,9 @@ export default class Business extends Component {
             toast.error(value);
           });
         }
-      });
+      })
     } else {
-      api.edit("businesses", form.id, form).then((resp) => {
+      api.edit('businesses', form.id, form).then(resp => {
         this.setState({ submitPreloader: false });
         if (resp.data.success) {
           toast.success(ndpv.i18n.aUpd);
@@ -89,55 +76,50 @@ export default class Business extends Component {
             toast.error(value);
           });
         }
-      });
+      })
     }
-  };
+  }
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({ form: { ...this.state.form, [name]: value } });
+  }
+
+  selectCountry(val) {
+    this.setState({ form: { ...this.state.form, ['country']: val } });
+  }
+
+  toggleChange = () => {
+    let value = !this.state.form.default;
+    this.setState({ form: { ...this.state.form, ['default']: value } });
+  }
 
   handleLogoChange = (data, type = null) => {
-    let form = { ...this.state.form };
+    let form = { ...this.state.form }
     form.logo = data;
-    this.setState({ form });
-  };
+    this.setState({ form })
+  }
 
   render() {
+    const form = this.state.form;
     const i18n = ndpv.i18n;
-
-    const submitPreloader = this.props.reload
-      ? this.state.submitPreloader
-      : this.props.submitPreloader;
-
+    const submitPreloader = this.state.submitPreloader;
     return (
-      <FormWrapper
-        submitPreloader={submitPreloader}
-        submitHandler={this.handleSubmit}
-        close={this.props.close}
-      >
+      <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
         <FormContent formStyleClass="pv-form-style-one">
           <div className="row">
+
             <Text
               label={i18n.name}
               id="field-name"
               type="text"
               name="name"
-              value={this.state.form.name}
-              wrapperClassName="col-md"
+              value={form.name}
+              wrapperClassName='col-md'
               onChange={this.handleChange}
               validation={{ required: { value: true } }}
             />
 
-            {/* <div className="col-md">
-                        <label htmlFor="field-org_name">
-                            Company/Organization Name
-                        </label>
-
-                        <input
-                            id="field-org_name"
-                            type="text" 
-                            name="org_name"
-                            value={this.state.form.org_name}
-                            onChange={this.handleChange}
-                        />
-                    </div> */}
           </div>
 
           <div className="row">
@@ -146,78 +128,57 @@ export default class Business extends Component {
               id="field-email"
               type="email"
               name="email"
-              value={this.state.form.email}
-              wrapperClassName="col-md"
+              value={form.email}
+              wrapperClassName='col-md'
               onChange={this.handleChange}
               validation={{ required: { value: true }, email: { value: true } }}
             />
 
             <div className="col-md">
-              <label htmlFor="field-web">{i18n.web}</label>
+              <label htmlFor="field-web">
+                {i18n.web}
+              </label>
 
               <input
                 id="field-web"
                 type="text"
                 name="web"
-                value={this.state.form.web}
+                value={form.web}
                 onChange={this.handleChange}
               />
             </div>
+
           </div>
 
           <div className="row">
             <div className="col-md">
-              <label htmlFor="field-mobile">{i18n.mob}</label>
+              <label htmlFor="field-mobile">
+                {i18n.mob}
+              </label>
 
               <input
                 id="field-mobile"
                 type="text"
                 name="mobile"
-                value={this.state.form.mobile}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className="col-md">
-              <label htmlFor="field-zip">{i18n.zip}</label>
-
-              <input
-                id="field-zip"
-                type="text"
-                name="zip"
-                value={this.state.form.zip}
+                value={form.mobile}
                 onChange={this.handleChange}
               />
             </div>
           </div>
 
-          <div className="row">
-            <div className="col">
-              <label htmlFor="field-address">{i18n.addr}</label>
-
-              <input
-                id="field-address"
-                type="text"
-                name="address"
-                placeholder="Write you full address here"
-                value={this.state.form.address}
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
+          <Address
+            data={form}
+            selectCountry={this.selectCountry}
+            handleChange={this.handleChange}
+          />
 
           <div className="row">
             <div className="col-md">
-              <label htmlFor="field-logo">
-                {i18n.upload} {i18n.logo}
-              </label>
-              <Upload
-                label={"Logo"}
-                library={false}
-                data={this.state.form.logo}
-                changeHandler={this.handleLogoChange}
-              />
+              <label htmlFor="field-logo">{i18n.upload} {i18n.logo}</label>
+              <Upload label={i18n.logo} library={false} data={form.logo} changeHandler={this.handleLogoChange} />
             </div>
           </div>
+
         </FormContent>
       </FormWrapper>
     );

@@ -238,18 +238,6 @@ class EstInv
             }
             $query_data["from"] = $fromData;
 
-            /* $to_id = get_post_meta($id, 'to', true);
-            $toData = [];
-            if ($to_id) {
-                $toData['id'] = $to_id;
-                $to_obj = get_user_by('id', $to_id);
-
-                $toData['first_name'] = $to_obj->first_name;
-                $toData['last_name'] = $to_obj->last_name;
-                $toData['email'] = $to_obj->user_email;
-            }
-            $query_data['to'] = $toData; */
-
             $contact_id = get_post_meta($id, "to", true);
             $to_type = get_post_meta($id, "to_type", true);
             $contactData = [];
@@ -378,16 +366,27 @@ class EstInv
                 $fromData["email"] = isset($fromMeta["email"])
                     ? $fromMeta["email"][0]
                     : "";
+                $fromData["web"] = isset($fromMeta["web"])
+                    ? $fromMeta["web"][0]
+                    : "";
                 $fromData["mobile"] = isset($fromMeta["mobile"])
                     ? $fromMeta["mobile"][0]
                     : "";
-                $fromData["web"] = isset($fromMeta["web"])
-                    ? $fromMeta["web"][0]
+                $fromData["country"] = isset($fromMeta["country"])
+                    ? $fromMeta["country"][0]
+                    : "";
+                $fromData["region"] = isset($fromMeta["region"])
+                    ? $fromMeta["region"][0]
                     : "";
                 $fromData["address"] = isset($fromMeta["address"])
                     ? $fromMeta["address"][0]
                     : "";
-
+                $fromData["city"] = isset($fromMeta["city"])
+                    ? $fromMeta["city"][0]
+                    : "";
+                $fromData["zip"] = isset($fromMeta["zip"])
+                    ? $fromMeta["zip"][0]
+                    : "";
                 $logo_id = get_post_meta($from_id, "logo", true);
                 $logoData = null;
                 if ($logo_id) {

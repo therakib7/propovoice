@@ -10,14 +10,16 @@ class Org
     {
         $reg_errors = new \WP_Error;
 
-        $name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : null;
+        $name   = isset($param['org_name']) ? sanitize_text_field($param['org_name']) : '';
         $person_id     = isset($param['person_id']) ? sanitize_text_field($param['person_id']) : null;
-        $email        = isset($param['email']) ? strtolower(sanitize_email($param['email'])) : null;
-        $web          = isset($param['web']) ? esc_url_raw($param['web']) : null;
-        $mobile       = isset($param['mobile']) ? sanitize_text_field($param['mobile']) : null;
-        $country      = isset($param['country']) ? sanitize_text_field($param['country']) : null;
-        $region       = isset($param['region']) ? sanitize_text_field($param['region']) : null;
-        $address      = isset($param['address']) ? sanitize_text_field($param['address']) : null;
+        $email        = isset($param['email']) ? strtolower(sanitize_email($param['email'])) : '';
+        $web          = isset($param['web']) ? esc_url_raw($param['web']) : '';
+        $mobile       = isset($param['mobile']) ? sanitize_text_field($param['mobile']) : '';
+        $country      = isset($param['country']) ? sanitize_text_field($param['country']) : '';
+        $region       = isset($param['region']) ? sanitize_text_field($param['region']) : '';
+        $address      = isset($param['address']) ? sanitize_text_field($param['address']) : '';
+        $city         = isset($param['city']) ? sanitize_text_field($param['city']) : '';
+        $zip          = isset($param['zip']) ? sanitize_text_field($param['zip']) : '';
         $logo = isset($param['logo']) ? absint($param['logo']) : null;
         $is_client  = isset($param['is_client']) ? $param['is_client'] : false;
  
@@ -80,6 +82,14 @@ class Org
                     update_post_meta($post_id, 'address', $address);
                 }
 
+                if ($city) {
+                    update_post_meta($post_id, 'city', $city);
+                }
+
+                if ($zip) {
+                    update_post_meta($post_id, 'zip', $zip);
+                }
+
                 if ($logo) {
                     update_post_meta($post_id, 'logo', $logo);
                 }
@@ -103,6 +113,8 @@ class Org
         $country      = isset($param['country']) ? sanitize_text_field($param['country']) : '';
         $region       = isset($param['region']) ? sanitize_text_field($param['region']) : '';
         $address      = isset($param['address']) ? sanitize_text_field($param['address']) : '';
+        $city         = isset($param['city']) ? sanitize_text_field($param['city']) : '';
+        $zip          = isset($param['zip']) ? sanitize_text_field($param['zip']) : '';
         $logo         = isset($param['logo']) ? absint($param['logo']) : '';
         $is_client    = isset($param['is_client']) ? $param['is_client'] : false;
 
@@ -152,6 +164,14 @@ class Org
                     update_post_meta($post_id, 'address', $address);
                 }
 
+                if ( isset($param['city']) ) {
+                    update_post_meta($post_id, 'city', $city);
+                }
+
+                if ( isset($param['zip']) ) {
+                    update_post_meta($post_id, 'zip', $zip);
+                }
+
                 if ( isset($param['logo']) ) { 
                     if ($logo) {
                         update_post_meta($post_id, "logo", $logo);
@@ -185,7 +205,15 @@ class Org
             $data['first_name'] = get_post_meta($data['person_id'], 'first_name', true);
         }
         $data['email'] = isset($meta['email']) ? $meta['email'][0] : '';
+        $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
         $data['mobile'] = isset($meta['mobile']) ? $meta['mobile'][0] : '';
+        $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';
+        $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
+        $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
+        $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
+        $data['city'] = isset($meta['city']) ? $meta['city'][0] : '';
+        $data['zip'] = isset($meta['zip']) ? $meta['zip'][0] : '';
+
         $data["is_client"] = isset($meta["is_client"])
             ? $meta["is_client"][0]
             : false;
@@ -202,11 +230,8 @@ class Org
                 $logoData['src'] = $logo_src[0];
             }
         }
-        $data['logo'] = $logoData;
-        $data['web'] = isset($meta['web']) ? $meta['web'][0] : '';
-        $data['country'] = isset($meta['country']) ? $meta['country'][0] : '';
-        $data['region'] = isset($meta['region']) ? $meta['region'][0] : '';
-        $data['address'] = isset($meta['address']) ? $meta['address'][0] : '';
+        $data['logo'] = $logoData;        
+        
         return $data;
     }
 }

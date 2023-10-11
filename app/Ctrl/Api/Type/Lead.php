@@ -144,9 +144,6 @@ class Lead
             $query_data["currency"] = isset($queryMeta["currency"])
                 ? $queryMeta["currency"][0]
                 : "";
-            $query_data["note"] = isset($queryMeta["note"])
-                ? $queryMeta["note"][0]
-                : "";
             $query_data["desc"] = get_the_content();
 
             //custom field
@@ -235,10 +232,7 @@ class Lead
             : "";
         $query_data["currency"] = isset($queryMeta["currency"])
             ? $queryMeta["currency"][0]
-            : "";
-        $query_data["note"] = isset($queryMeta["note"])
-            ? $queryMeta["note"][0]
-            : "";
+            : ""; 
         $query_data["desc"] = get_post_field("post_content", $id);
 
         //custom field
