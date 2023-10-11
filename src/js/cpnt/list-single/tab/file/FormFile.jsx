@@ -40,7 +40,7 @@ class Form extends Component {
         this.props.close();
     }
 
-    handleUploadChange = (data, type = null) => {
+    handleUploadChange = (data) => {
         let form = { ...this.state.form }
         form.file = data;
         this.setState({ form })

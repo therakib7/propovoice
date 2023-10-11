@@ -106,7 +106,7 @@ export default function SavedItemsSettings() {
                 </td>
                 <td>
                     <div>
-                        <div>{hidden ? <div style={{ fontWeight: '500', fontSize: '16px' }}>{row.title}</div> : <input type="text" value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} />}</div>
+                        <div>{hidden ? <div style={{ fontWeight: '500', fontSize: '14px' }}>{row.title}</div> : <input type="text" value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} />}</div>
                         <div>
                             {hidden ? <div style={{ fontWeight: '400px', fontSize: '12px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', width: '150px' }}>{row.desc}</div> : <input style={{ marginTop: '5px' }} type="text" value={data.desc} onChange={(e) => setData({ ...data, desc: e.target.value })} />}
                         </div>
@@ -114,7 +114,6 @@ export default function SavedItemsSettings() {
                 </td>
                 <td>
                     {hidden ? row.qty : <input type="number" style={{ width: '50px' }} value={data.qty} onChange={(e) => setData({ ...data, qty: e.target.value })} />}
-                    {/* {row.qty} */}
                 </td>
                 <td>
                     {hidden ? data.qty_type :
