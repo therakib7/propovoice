@@ -121,12 +121,7 @@ export default function SavedItemsSettings() {
                         <select value={data.qty_type} onChange={(e) => setData({ ...data, qty_type: e.target.value })}>
                             <option>Select</option>
                             {
-<<<<<<< HEAD
-                                
-                                qtyTypes.map((t,k)=>{
-=======
                                 qtyTypes.map((t, k) => {
->>>>>>> email-setting
                                     return <option key={k} value={t.label}>{t.label}</option>
                                 })
                             }
