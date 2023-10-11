@@ -2,14 +2,13 @@ import React, { Component, lazy } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import { toast } from "react-toastify";
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 import Upload from 'block/field/upload';
 import Currency from 'block/field/currency';
 import Taxonomy from 'block/field/taxonomy';
 import Contact from 'block/field/contact';
 import CustomField from 'block/field/custom-field';
 import api from 'api';
-import { Text } from 'block/form/input';
+import { Text, Address } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 export default class Form extends Component {
@@ -35,6 +34,8 @@ export default class Form extends Component {
             country: '',
             region: '',
             address: '',
+            city: '',
+            zip: '',
             img: '',
             date: false,
         };
@@ -48,9 +49,11 @@ export default class Form extends Component {
             personList: [],
             orgList: [],
         };
+
+        this.selectCountry = this.selectCountry.bind(this);
     }
 
-    handleChange = (e, type) => {
+    handleChange = (e, type = '') => {
 
         const { name, value } = e.target;
 
@@ -161,10 +164,6 @@ export default class Form extends Component {
 
     selectCountry(val) {
         this.setState({ form: { ...this.state.form, ['country']: val } });
-    }
-
-    selectRegion(val) {
-        this.setState({ form: { ...this.state.form, ['region']: val } });
     }
 
     handleSubmit = (e) => {
@@ -321,56 +320,17 @@ export default class Form extends Component {
                                 <Text {...mobileInput} />
                             </div>
 
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <label htmlFor="form-country">
-                                        {i18n.country}
-                                    </label>
-
-                                    <CountryDropdown
-                                        value={form.country}
-                                        valueType='short'
-                                        onChange={(val) => this.selectCountry(val)}
-                                    />
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label htmlFor="form-region">
-                                        {i18n.region}
-                                    </label>
-
-                                    <RegionDropdown
-                                        country={form.country}
-                                        countryValueType='short'
-                                        value={form.region}
-                                        onChange={(val) => this.selectRegion(val)}
-                                    />
-                                </div>
-
-                            </div>
-
-                            <div className="row">
-                                <div className="col">
-                                    <label htmlFor="form-address">
-                                        {i18n.addr}
-                                    </label>
-
-                                    <input
-                                        id="form-address"
-                                        type="text"
-                                        name="address"
-                                        value={form.address}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
+                            <Address
+                                data={form}
+                                selectCountry={this.selectCountry}
+                                handleChange={this.handleChange}
+                            />
 
                             <div className="row">
                                 <div className="col-md">
                                     <label htmlFor="field-budget">
                                         {i18n.budget}
                                     </label>
-
                                     <input
                                         id="field-budget"
                                         type="number"

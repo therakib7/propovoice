@@ -14,7 +14,7 @@ const DateField = lazy(() => import('block/date-picker'));
 
 const { i18n, caps } = ndpv;
 const isClient = caps.includes("ndpv_client_role");
-import { Text } from 'block/form/input';
+import { Text, Address } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 class Form extends Component {
@@ -30,6 +30,11 @@ class Form extends Component {
             org_id: null,
             email: '',
             mobile: '',
+            country: '',
+            region: '',
+            address: '',
+            city: '',
+            zip: '',
             deal_id: '',
             status_id: '',
             budget: '',
@@ -38,7 +43,6 @@ class Form extends Component {
             due_date: null,
             tags: [],
             desc: '',
-            note: '',
             date: false
         };
 
@@ -61,6 +65,8 @@ class Form extends Component {
             stages: [],
             tags: [],
         };
+
+        this.selectCountry = this.selectCountry.bind(this);
     }
 
 
@@ -130,6 +136,10 @@ class Form extends Component {
         const name = target.name;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    selectCountry(val) {
+        this.setState({ form: { ...this.state.form, ['country']: val } });
     }
 
     handleCFChange = (e) => {
@@ -297,7 +307,7 @@ class Form extends Component {
                             <Cross />
                         </span>
                         <h2 className="pv-modal-title">{isClient ? i18n.new + ' ' + i18n.project + ' ' + i18n.req : title + ' ' + i18n.project}</h2>
-                        <p>{sprintf(i18n.formDesc, title, ( isClient ? i18n.project + ' ' + i18n.req : i18n.project ))}</p>
+                        <p>{sprintf(i18n.formDesc, title, (isClient ? i18n.project + ' ' + i18n.req : i18n.project))}</p>
                     </div>
 
                     <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close}>
@@ -357,6 +367,12 @@ class Form extends Component {
                                     </div>
                                 </div>
                             </>}
+
+                            {!isClient && <Address
+                                data={form}
+                                selectCountry={this.selectCountry}
+                                handleChange={this.handleChange}
+                            />}
 
                             <div className="row">
                                 <div className="col-md">
