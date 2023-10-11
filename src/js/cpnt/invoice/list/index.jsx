@@ -217,6 +217,65 @@ class Invoice extends Component {
     this.props.routeChange();
   };
 
+  handleBulkAction = async (type) => {
+    const ids = this.state.checkedBoxes;
+
+    // Action for sent, paid, accept, decline
+    await Promise.all(
+      ids
+        .filter((id) => {
+          const invoice = this.state.invoices.find((inv) => inv.id === id);
+
+          //Exclude copy to invoice
+          if (type === "copy-to-inv") {
+            return false;
+          }
+
+          // Restrict sent while an invoice status is paid
+          if (type === "sent" && invoice.status === "paid") {
+            toast.error(`Can not be sent ${invoice.num} after paid!!!`);
+            return false;
+          }
+          return true;
+        })
+        .map(async (id) => {
+          await ApiAction.update(id, { type }).then((resp) => {
+            if (resp.data.success) {
+              // console.log(`${type} action successfull for id - ${id}`);
+            } else {
+              resp.data.data.forEach(function (value) {
+                toast.error(value);
+              });
+            }
+          });
+        }),
+    );
+
+    // Action for copy to invoice
+    await Promise.all(
+      ids
+        .filter((_id) => type === "copy-to-inv")
+        .map(async (id) => {
+          const invoice = this.state.invoices.find((inv) => inv.id === id);
+          await ApiAction.create({ id, type }).then((resp) => {
+            if (resp.data.success) {
+              toast.success(
+                `Copy to invoice action successfull for  ${invoice.num}`,
+              );
+            } else {
+              resp.data.data.forEach(function (value) {
+                toast.error(value);
+              });
+            }
+          });
+        }),
+    );
+
+    this.setState({ checkedBoxes: [] });
+    this.getLists();
+    toast.info("Bulk action compleated");
+  };
+
   handleAction = (type, id) => {
     const i18n = ndpv.i18n;
     if (wage.length > 0 && (type == "copy" || type == "copy-to-inv")) {
@@ -280,6 +339,7 @@ class Invoice extends Component {
     common: [
       {
         slug: "delete",
+        type: "selected",
         label: ndpv.i18n.del,
         handleClick: this.deleteEntry,
       },
@@ -287,30 +347,35 @@ class Invoice extends Component {
     estimate: [
       {
         slug: "mark_accepted",
+        type: "accept",
         label: ndpv.i18n.mark + " " + ndpv.i18n.acptd,
-        handleClick: this.deleteEntry,
+        handleClick: this.handleBulkAction,
       },
       {
         slug: "mark_declined",
+        type: "decline",
         label: ndpv.i18n.mark + " " + ndpv.i18n.dec,
-        handleClick: this.deleteEntry,
+        handleClick: this.handleBulkAction,
       },
       {
         slug: "copy_to_invoicce",
+        type: "copy-to-inv",
         label: ndpv.i18n.copy + " " + ndpv.i18n.to + " " + ndpv.i18n.inv,
-        handleClick: this.deleteEntry,
+        handleClick: this.handleBulkAction,
       },
     ],
     invoice: [
       {
         slug: "mark_sent",
+        type: "sent",
         label: ndpv.i18n.mark + " " + ndpv.i18n.sent,
-        handleClick: this.deleteEntry,
+        handleClick: this.handleBulkAction,
       },
       {
         slug: "mark_paid",
+        type: "paid",
         label: ndpv.i18n.mark + " " + ndpv.i18n.paid,
-        handleClick: this.deleteEntry,
+        handleClick: this.handleBulkAction,
       },
     ],
   };
@@ -449,7 +514,11 @@ class Invoice extends Component {
             prefix={prefix}
             reload={this.getLists}
             tableData={invoices}
-            checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }}
+            checkedBoxes={{
+              data: checkedBoxes,
+              handle: this.handleCheckbox,
+              totalRow: this.state.invoices.length,
+            }}
             deleteEntry={this.deleteEntry}
             invoice_id={this.props.invoice_id}
             path={this.state.path}
