@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context';
 import api from 'api';
 
 export default class Reminder extends Component {
@@ -17,10 +16,8 @@ export default class Reminder extends Component {
         };
     }
 
-    static contextType = AppContext;
-
     componentDidMount() {
-        api.get('settings', 'tab=email_estimate_reminder').then(resp => {
+        api.get('settings', 'tab=email_' + this.props.type + '_password').then(resp => {
             if (resp.data.success) {
                 this.setState({ form: resp.data.data });
             }
@@ -47,7 +44,7 @@ export default class Reminder extends Component {
         }
 
         let form = this.state.form;
-        form.tab = 'email_estimate_reminder';
+        form.tab = 'email_' + this.props.type + '_password';
 
         api.add('settings', form).then(resp => {
             if (resp.data.success) {
@@ -64,7 +61,7 @@ export default class Reminder extends Component {
         const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pv-form-style-one">
-
+                <h4 className='pv-title-medium pv-mb-15 pv-mt-30' style={{ textTransform: 'capitalize' }}>{this.props.type == 'team' ? 'Team' : 'Client Portal'} Invitation</h4>
                 <div className="row">
                     <div className="col">
                         <label htmlFor="form-subject">
@@ -78,13 +75,13 @@ export default class Reminder extends Component {
                             value={this.state.form.subject}
                             onChange={this.handleChange}
                         />
-                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{org_name}'}, {'{client_name}'} </p>
+                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{org_name}'}</p>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col">
-                        <label htmlFor="form-msg">{i18n.msg}</label>
+                        <label htmlFor="form-msg">Message</label>
                         <textarea
                             id="form-msg"
                             required
@@ -93,7 +90,7 @@ export default class Reminder extends Component {
                             value={this.state.form.msg}
                             onChange={this.handleChange}
                         />
-                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{id}'}, {'{client_name}'}, {'{date}'}, {'{due_date}'}, {'{amount}'}, {'{org_name}'}</p>
+                        <p className='pv-field-desc'><b>{i18n.var}:</b> {'{client_name}'}, {'{login_url}'}, {'{email}'}, {'{password}'}, {'{org_name}'}</p>
                     </div>
                 </div>
 

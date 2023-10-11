@@ -131,6 +131,16 @@ Regards
 {org_name}'
                     ]
                 ],
+                'smtp' => [
+                    'test' => [
+                        'subject' => 'Test Mail From {org_name}',
+                        'msg' => 'Hi,
+This is a Test Mail From {org_name}
+
+Regards
+{org_name}'
+                    ]
+                ],
             ]
         ];
     }
