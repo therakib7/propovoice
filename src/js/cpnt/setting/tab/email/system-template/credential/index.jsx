@@ -61,7 +61,7 @@ export default class Reminder extends Component {
         const i18n = ndpv.i18n;
         return (
             <form onSubmit={this.handleSubmit} className="pv-form-style-one">
-
+                <h4 className='pv-title-medium pv-mb-15 pv-mt-30' style={{ textTransform: 'capitalize' }}>{this.props.type == 'team' ? 'Team' : 'Client Portal'} Invitation</h4>
                 <div className="row">
                     <div className="col">
                         <label htmlFor="form-subject">

@@ -8,7 +8,7 @@ export default function SavedItemsSettings() {
 
     const [checkedAll, setCheckedAll] = useState(false);
     const [checkedRows, setCheckedRows] = useState([]);
-    const [qtyTypes , setQtyTypes] = useState([]);
+    const [qtyTypes, setQtyTypes] = useState([]);
 
     let allRowId = []
 
@@ -58,21 +58,18 @@ export default function SavedItemsSettings() {
     }
 
     const getData = () => {
-	
-	
-		
-        useEffect(()=>{
-            async function getQtyTypes(){
-               await api.get('taxonomies', 'taxonomy=estinv_qty_type').then(resp => {
+
+        useEffect(() => {
+            async function getQtyTypes() {
+                await api.get('taxonomies', 'taxonomy=estinv_qty_type').then(resp => {
                     if (resp.data.success) {
-                        console.log(resp.data.data.estinv_qty_type)
                         setQtyTypes(resp.data.data.estinv_qty_type)
                     }
                 });
             }
             getQtyTypes();
-        },[])
-	}
+        }, [])
+    }
 
     getData();
 
@@ -120,31 +117,22 @@ export default function SavedItemsSettings() {
                     {/* {row.qty} */}
                 </td>
                 <td>
-                    {hidden ? data.qty_type : 
-                 
+                    {hidden ? data.qty_type :
                         <select value={data.qty_type} onChange={(e) => setData({ ...data, qty_type: e.target.value })}>
                             <option>Select</option>
                             {
-                                
-                                qtyTypes.map((t,k)=>{
+                                qtyTypes.map((t, k) => {
                                     return <option key={k} value={t.label}>{t.label}</option>
                                 })
                             }
-                            
                         </select>
-                        
-                  
-                    
-                   }
-                    {/* {row.qty_type} */}
+                    }
                 </td>
                 <td>
                     {hidden ? row.price : <input type="number" style={{ width: '50px' }} value={data.price} onChange={(e) => setData({ ...data, price: e.target.value })} />}
-                    {/* {row.price} */}
                 </td>
                 <td>
                     {hidden ? row.tax : <input type="number" style={{ width: '50px' }} value={data.tax} onChange={(e) => setData({ ...data, tax: e.target.value })} />}
-                    {/* {row.tax} */}
                 </td>
                 <td>${hidden ? row.price * row.qty : data.price * data.qty}</td>
                 <td>
@@ -210,7 +198,7 @@ export default function SavedItemsSettings() {
                         <input type="checkbox" checked={checkedAll}
                             onChange={handleSelectAll} />
                     </th>
-                    <th>Item & DESCRIPTION</th>
+                    <th>Item & Description</th>
                     <th>QTY</th>
                     <th>QTY Type</th>
                     <th>RATE</th>
