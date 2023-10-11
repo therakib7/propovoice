@@ -335,7 +335,7 @@ class Invoice extends Component {
             this.getLists();
           } else if (type == "copy-to-inv") {
             toast.success(
-              i18n.scf + " " + i18n.conV + " " + i18n.to + " " + i18n.inv,
+              i18n.scf + " " + i18n.copy + " " + i18n.to + " " + i18n.inv,
             );
           }
         } else {
