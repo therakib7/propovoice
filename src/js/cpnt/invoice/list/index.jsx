@@ -221,59 +221,68 @@ class Invoice extends Component {
     const ids = this.state.checkedBoxes;
 
     // Action for sent, paid, accept, decline
+    const actionIds = this.actionIdsToUpdate(ids, type);
     await Promise.all(
-      ids
-        .filter((id) => {
-          const invoice = this.state.invoices.find((inv) => inv.id === id);
-
-          //Exclude copy to invoice
-          if (type === "copy-to-inv") {
-            return false;
+      actionIds.map(async (id) => {
+        await ApiAction.update(id, { type }).then((resp) => {
+          if (resp.data.success) {
+            // console.log(`${type} action successfull for id - ${id}`);
+          } else {
+            resp.data.data.forEach(function (value) {
+              toast.error(value);
+            });
           }
-
-          // Restrict sent while an invoice status is paid
-          if (type === "sent" && invoice.status === "paid") {
-            toast.error(`Can not be sent ${invoice.num} after paid!!!`);
-            return false;
-          }
-          return true;
-        })
-        .map(async (id) => {
-          await ApiAction.update(id, { type }).then((resp) => {
-            if (resp.data.success) {
-              // console.log(`${type} action successfull for id - ${id}`);
-            } else {
-              resp.data.data.forEach(function (value) {
-                toast.error(value);
-              });
-            }
-          });
-        }),
+        });
+      }),
     );
 
     // Action for copy to invoice
-    await Promise.all(
-      ids
-        .filter((_id) => type === "copy-to-inv")
-        .map(async (id) => {
-          const invoice = this.state.invoices.find((inv) => inv.id === id);
-          await ApiAction.create({ id, type }).then((resp) => {
-            if (resp.data.success) {
-              toast.success(
-                `Copy to invoice action successfull for  ${invoice.num}`,
-              );
-            } else {
-              resp.data.data.forEach(function (value) {
-                toast.error(value);
-              });
-            }
-          });
-        }),
-    );
+    this.copyToInvoiceAction(ids, type);
 
     this.setState({ checkedBoxes: [] });
     this.getLists();
     toast.info("Bulk action compleated");
+  };
+
+  actionIdsToUpdate = (ids, type) => {
+    return ids.filter((id) => {
+      const invoice = this.state.invoices.find((inv) => inv.id === id);
+
+      //Exclude copy to invoice
+      if (type === "copy-to-inv") {
+        return false;
+      }
+
+      // Restrict sent while an invoice status is paid
+      if (type === "sent" && invoice.status === "paid") {
+        toast.error(`Can not be sent ${invoice.num} after paid!!!`);
+        return false;
+      }
+      return true;
+    });
+  };
+
+  copyToInvoiceAction = async (ids, type) => {
+    for (const id of ids) {
+      // const invoice = this.state.invoices.find((inv) => inv.id === id);
+
+      if (type === "copy-to-inv") {
+        try {
+          const resp = await ApiAction.create({ id, type });
+          if (resp.data.success) {
+            // toast.success(
+            //   `Copy to invoice action successful for ${invoice.num}`,
+            // );
+          } else {
+            resp.data.data.forEach((value) => {
+              toast.error(value);
+            });
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
   };
 
   handleAction = (type, id) => {
