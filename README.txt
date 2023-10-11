@@ -181,14 +181,41 @@ The super fantastic pro features that accelerate your business growth and improv
 == Changelog ==
 
 = 1.7.1 (11-Oct-2023) =
-* Update: Direct PDF download
-* Update: Extra amount reserial to Discount, Fee, Tax
-* Update: Address fields
-* Update: Multisite issue
-* Update: Invoice Estimate Save Items
-* Update: Search issue
+* Added: Direct PDF download
+* Update: Extra amount re-serial to Discount, Fee, Tax
+* Added: Task source
+* Update: Address fields (Country, State / Province / Region, Address, City, Zip)
+* Update: Multi site issue
+* Update: Invoice/Estimate Save Items Setting issue
+* Update: Invoice/Estimate Save Items Select issue
+* Fixed: Search issue
+* Fixed: Payment receipt PDF title issue
+* Fixed: Payment receipt image full view issue
+* Update: Spinner when API Request
+* Fixed: Organization, Email, Mobile field update issue
+* Fixed: Apostrophe s not rendering properly on task list
+* Fixed: Deal stage option outside click closing
+* Fixed: In all description field br tag issue
+* Fixed: Custom fields data CSS spacing
+* Fixed: Currency icon not changing in deal pipeline
+* Fixed: Exist taxonomy alert issue
+* Fixed: Empty file upload alert issue
+* Added: Calendar title
+* Update: One module to another module overview issue  
+* Update: Double click submit issue  
+* Update: Translation issue  
+* Update: Estimate/Invoice Signature modal
+* Update: Task edit Modal sidebar to Popup
+* Update: Task title multi line height issue
+* Update: Custom field query from free version issue
+* Update: Required field alert
+* Update: Country short name to full name
+* Update: Pro label CSS issue in tab
+* Update: Hide currency icon without budget
+* Update: Remove checkbox from task list
 * Update: CSS issue
-* Update: JS and functional issues
+* Update: JS issues
+* Update: PHP and functional issues
 
 = 1.7.0 (31-Aug-2023) =
 * Improved: Client signature upload
