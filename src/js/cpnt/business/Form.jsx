@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Upload from 'block/field/upload';
 import { Add } from 'block/icon';
-import { Text } from 'block/form/input';
+import { Text, Address } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
-
 
 class Form extends Component {
     constructor(props) {
@@ -13,26 +12,24 @@ class Form extends Component {
             id: null,
             name: '',
             org_name: '',
-            web: '',
             email: '',
+            web: '',
             mobile: '',
+            country: '',
+            region: '',
             address: '',
+            city: '',
             zip: '',
-            default: true,
             logo: null,
+            default: true,
             date: false
         };
 
         this.state = {
             form: this.initialState
         };
-    }
 
-    handleChange = e => {
-        const target = e.target;
-        const name = target.name;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        this.setState({ form: { ...this.state.form, [name]: value } });
+        this.selectCountry = this.selectCountry.bind(this);
     }
 
     componentDidMount() {
@@ -67,6 +64,17 @@ class Form extends Component {
                 }
             }
         }
+    }
+
+    handleChange = e => {
+        const target = e.target;
+        const name = target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        this.setState({ form: { ...this.state.form, [name]: value } });
+    }
+
+    selectCountry(val) {
+        this.setState({ form: { ...this.state.form, ['country']: val } });
     }
 
     handleSubmit = (e) => {
@@ -125,7 +133,7 @@ class Form extends Component {
                                 />
 
                             </div>
-                            <div className="row">                               
+                            <div className="row">
 
                                 <Text
                                     label={i18n.email}
@@ -169,38 +177,14 @@ class Form extends Component {
                                         onChange={this.handleChange}
                                     />
                                 </div>
-                                <div className="col-md">
-                                    <label
-                                        htmlFor="field-zip">
-                                        {i18n.zip}
-                                    </label>
-
-                                    <input
-                                        id="field-zip"
-                                        type="text"
-                                        name="zip"
-                                        value={form.zip}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
                             </div>
-                            <div className="row">
-                                <div className="col">
-                                    <label
-                                        htmlFor="field-address">
-                                        {i18n.addr}
-                                    </label>
 
-                                    <input
-                                        id="field-address"
-                                        type="text"
-                                        name="address"
-                                        placeholder='Write you full address here'
-                                        value={form.address}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
+                            <Address
+                                data={form}
+                                selectCountry={this.selectCountry}
+                                handleChange={this.handleChange}
+                            />
+
                             <div className="row">
                                 <div className="col">
                                     <label

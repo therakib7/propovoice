@@ -115,10 +115,13 @@ class Business
 
             $query_data["name"] = get_post_meta($id, "name", true);
             $query_data["org_name"] = get_post_meta($id, "org_name", true);
-            $query_data["web"] = get_post_meta($id, "web", true);
             $query_data["email"] = get_post_meta($id, "email", true);
+            $query_data["web"] = get_post_meta($id, "web", true);
             $query_data["mobile"] = get_post_meta($id, "mobile", true);
+            $query_data["country"] = get_post_meta($id, "country", true);
+            $query_data["region"] = get_post_meta($id, "region", true);
             $query_data["address"] = get_post_meta($id, "address", true);
+            $query_data["city"] = get_post_meta($id, "city", true);
             $query_data["zip"] = get_post_meta($id, "zip", true);
             $query_data["default"] = (bool) get_post_meta($id, "default", true);
 
@@ -154,10 +157,13 @@ class Business
 
         $query_data["name"] = get_post_meta($id, "name", true);
         $query_data["org_name"] = get_post_meta($id, "org_name", true);
-        $query_data["web"] = get_post_meta($id, "web", true);
         $query_data["email"] = get_post_meta($id, "email", true);
-        $query_data["mobile"] = get_post_meta($id, "mobile", true);
+        $query_data["web"] = get_post_meta($id, "web", true);
+        $query_data["mobile"] = get_post_meta($id, "mobile", true); 
+        $query_data["country"] = get_post_meta($id, "country", true);
+        $query_data["region"] = get_post_meta($id, "region", true);
         $query_data["address"] = get_post_meta($id, "address", true);
+        $query_data["city"] = get_post_meta($id, "city", true);
         $query_data["zip"] = get_post_meta($id, "zip", true);
         $query_data["default"] = (bool) get_post_meta($id, "default", true);
 
@@ -213,18 +219,27 @@ class Business
             : null;
         $org_name = isset($param["org_name"])
             ? sanitize_text_field($param["org_name"])
-            : null;
-        $web = isset($param["web"]) ? esc_url_raw($param["web"]) : null;
+            : null;        
         $email = isset($param["email"])
             ? strtolower(sanitize_email($param["email"]))
             : null;
+        $web = isset($param["web"]) ? esc_url_raw($param["web"]) : null;
         $mobile = isset($param["mobile"])
             ? sanitize_text_field($param["mobile"])
             : null;
+        $country = isset($param["country"])
+            ? sanitize_text_field($param["country"])
+            : '';
+        $region = isset($param["region"])
+            ? sanitize_text_field($param["region"])
+            : '';
         $address = isset($param["address"])
             ? sanitize_text_field($param["address"])
-            : null;
-        $zip = isset($param["zip"]) ? sanitize_text_field($param["zip"]) : null;
+            : '';
+        $city = isset($param["city"])
+            ? sanitize_text_field($param["city"])
+            : '';
+        $zip = isset($param["zip"]) ? sanitize_text_field($param["zip"]) : '';
         $default = isset($param["default"])
             ? rest_sanitize_boolean($param["default"])
             : null;
@@ -274,8 +289,20 @@ class Business
                     update_post_meta($post_id, "mobile", $mobile);
                 }
 
+                if ($country) {
+                    update_post_meta($post_id, "country", $country);
+                }
+
+                if ($region) {
+                    update_post_meta($post_id, "region", $region);
+                }
+
                 if ($address) {
                     update_post_meta($post_id, "address", $address);
+                }
+
+                if ($city) {
+                    update_post_meta($post_id, "city", $city);
                 }
 
                 if ($zip) {
@@ -317,11 +344,22 @@ class Business
             : null;
         $mobile = isset($param["mobile"])
             ? sanitize_text_field($param["mobile"])
-            : null;
+            : null; 
+
+        $country = isset($param["country"])
+            ? sanitize_text_field($param["country"])
+            : '';
+        $region = isset($param["region"])
+            ? sanitize_text_field($param["region"])
+            : '';
         $address = isset($param["address"])
             ? sanitize_text_field($param["address"])
-            : null;
-        $zip = isset($param["zip"]) ? sanitize_text_field($param["zip"]) : null;
+            : '';
+        $city = isset($param["city"])
+            ? sanitize_text_field($param["city"])
+            : '';
+        $zip = isset($param["zip"]) ? sanitize_text_field($param["zip"]) : '';
+
         $default = isset($param["default"])
             ? rest_sanitize_boolean($param["default"])
             : null;
@@ -350,21 +388,45 @@ class Business
             $post_id = wp_update_post($data);
 
             if (!is_wp_error($post_id)) {
-                update_post_meta($post_id, "name", $name);
-
-                if ($org_name) {
-                    update_post_meta($post_id, "org_name", $org_name);
+                if ( isset($param['name']) ) {
+                    update_post_meta($post_id, 'name', $name);
                 }
 
-                update_post_meta($post_id, "web", $web);
+                if ( isset($param['org_name']) ) {
+                    update_post_meta($post_id, 'org_name', $org_name);
+                }
 
-                update_post_meta($post_id, "email", $email);
+                if ( isset($param['email']) ) {
+                    update_post_meta($post_id, 'email', $email);
+                }
 
-                update_post_meta($post_id, "mobile", $mobile);
+                if ( isset($param['web']) ) {
+                    update_post_meta($post_id, 'web', $web);
+                }
 
-                update_post_meta($post_id, "address", $address);
+                if ( isset($param['mobile']) ) {
+                    update_post_meta($post_id, 'mobile', $mobile);
+                }
 
-                update_post_meta($post_id, "zip", $zip);
+                if ( isset($param['country']) ) {
+                    update_post_meta($post_id, 'country', $country);
+                }
+
+                if ( isset($param['region']) ) {
+                    update_post_meta($post_id, 'region', $region);
+                }
+
+                if ( isset($param['address']) ) {
+                    update_post_meta($post_id, 'address', $address);
+                }
+
+                if ( isset($param['city']) ) {
+                    update_post_meta($post_id, 'city', $city);
+                }
+
+                if ( isset($param['zip']) ) {
+                    update_post_meta($post_id, 'zip', $zip);
+                } 
 
                 if ($default) {
                     $this->set_default();

@@ -3,8 +3,7 @@ import Upload from 'block/field/upload';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import Contact from 'block/field/contact';
-import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
-import { Text } from 'block/form/input';
+import { Text, Address } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
 class Form extends Component {
@@ -22,6 +21,8 @@ class Form extends Component {
             country: '',
             region: '',
             address: '',
+            city: '',
+            zip: '',
             img: null,
             client_portal: false,
             date: false
@@ -30,6 +31,8 @@ class Form extends Component {
         this.state = {
             form: this.initialState
         };
+
+        this.selectCountry = this.selectCountry.bind(this);
     }
 
     handleChange = e => {
@@ -95,22 +98,26 @@ class Form extends Component {
             form.first_name = val.first_name;
             form.person_id = (val) ? val.id : null;
             form.email = (val) ? val.email : '';
-            form.mobile = (val) ? val.mobile : '';
             form.web = (val) ? val.web : '';
+            form.mobile = (val) ? val.mobile : '';
             form.country = (val) ? val.country : '';
             form.region = (val) ? val.region : '';
             form.address = (val) ? val.address : '';
+            form.city = (val) ? val.city : '';
+            form.zip = (val) ? val.zip : '';
             form.img = (val) ? val.img : '';
         } else {
             form.org_name = val.name;
             form.org_id = (val) ? val.id : null;
             if (!form.first_name) {
                 form.email = (val) ? val.email : '';
-                form.mobile = (val) ? val.mobile : '';
                 form.web = (val) ? val.web : '';
+                form.mobile = (val) ? val.mobile : '';
                 form.country = (val) ? val.country : '';
                 form.region = (val) ? val.region : '';
                 form.address = (val) ? val.address : '';
+                form.city = (val) ? val.city : '';
+                form.zip = (val) ? val.zip : '';
                 form.img = (val) ? val.img : '';
             }
         }
@@ -202,49 +209,11 @@ class Form extends Component {
                                 </div>
                             </div>
 
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <label htmlFor="form-country">
-                                        {i18n.country}
-                                    </label>
-
-                                    <CountryDropdown
-                                        value={form.country}
-                                        valueType='short'
-                                        onChange={(val) => this.selectCountry(val)}
-                                    />
-                                </div>
-
-                                <div className="col-md-6">
-                                    <label htmlFor="form-region">
-                                        {i18n.region}
-                                    </label>
-
-                                    <RegionDropdown
-                                        country={form.country}
-                                        countryValueType='short'
-                                        value={form.region}
-                                        onChange={(val) => this.selectRegion(val)}
-                                    />
-                                </div>
-
-                            </div>
-
-                            <div className="row">
-                                <div className="col">
-                                    <label htmlFor="form-address">
-                                        {i18n.addr}
-                                    </label>
-
-                                    <input
-                                        id="form-address"
-                                        type="text"
-                                        name="address"
-                                        value={form.address}
-                                        onChange={this.handleChange}
-                                    />
-                                </div>
-                            </div>
+                            <Address
+                                data={form}
+                                selectCountry={this.selectCountry}
+                                handleChange={this.handleChange}
+                            />
 
                             <div className="row">
                                 <div className="col">

@@ -142,6 +142,8 @@ class Contact
                 $query_data["country"] = get_post_meta($id, "country", true);
                 $query_data["region"] = get_post_meta($id, "region", true);
                 $query_data["address"] = get_post_meta($id, "address", true);
+                $query_data["city"] = get_post_meta($id, "city", true);
+                $query_data["zip"] = get_post_meta($id, "zip", true);
 
                 $img_id = get_post_meta($id, "img", true);
                 $imgData = null;
@@ -181,9 +183,6 @@ class Contact
             ? $queryMeta["ws_id"][0]
             : "";
         $query_data["tab_id"] = $id;
-        $query_data["note"] = isset($queryMeta["note"])
-            ? $queryMeta["note"][0]
-            : "";
 
         $project = new Project();
         $query_data["project"] = $project->total($id);
@@ -313,9 +312,6 @@ class Contact
         $first_name = isset($param["first_name"])
             ? sanitize_text_field($param["first_name"])
             : null;
-        $last_name = isset($param["last_name"])
-            ? sanitize_text_field($param["last_name"])
-            : null;
         $email = isset($param["email"])
             ? strtolower(sanitize_email($param["email"]))
             : null;
@@ -334,7 +330,13 @@ class Contact
             : "";
         $address = isset($param["address"])
             ? sanitize_text_field($param["address"])
-            : null;
+            : '';
+        $city = isset($param["city"])
+            ? sanitize_text_field($param["city"])
+            : '';
+        $zip = isset($param["zip"])
+            ? sanitize_text_field($param["zip"])
+            : '';
         $img =
             isset($param["img"]) && isset($param["img"]["id"])
                 ? absint($param["img"]["id"])
@@ -370,24 +372,41 @@ class Contact
             if (!is_wp_error($post_id)) {
                 if ($first_name) {
                     update_post_meta($post_id, "first_name", $first_name);
-                }
-
-                if ($last_name) {
-                    update_post_meta($post_id, "last_name", $last_name);
-                }
-
-                if ($email) {
-                    update_post_meta($post_id, "email", $email);
-                }
-
+                } 
+                 
                 update_post_meta($post_id, "org_name", $org_name);
-                update_post_meta($post_id, "web", $web);
-                update_post_meta($post_id, "mobile", $mobile);
+                
+                if ( isset($param['web']) ) {
+                    update_post_meta($post_id, 'web', $web);
+                }
 
-                update_post_meta($post_id, "country", $country);
-                update_post_meta($post_id, "region", $region);
+                if ( isset($param['email']) ) {
+                    update_post_meta($post_id, 'email', $email);
+                }
 
-                update_post_meta($post_id, "address", $address);
+                if ( isset($param['mobile']) ) {
+                    update_post_meta($post_id, 'mobile', $mobile);
+                }
+
+                if ( isset($param['country']) ) {
+                    update_post_meta($post_id, 'country', $country);
+                }
+
+                if ( isset($param['region']) ) {
+                    update_post_meta($post_id, 'region', $region);
+                }
+
+                if ( isset($param['address']) ) {
+                    update_post_meta($post_id, 'address', $address);
+                }
+
+                if ( isset($param['city']) ) {
+                    update_post_meta($post_id, 'city', $city);
+                }
+
+                if ( isset($param['zip']) ) {
+                    update_post_meta($post_id, 'zip', $zip);
+                }
 
                 if ($img) {
                     update_post_meta($post_id, "img", $img);
