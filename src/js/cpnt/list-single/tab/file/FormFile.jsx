@@ -27,7 +27,13 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        
         let form = { ...this.state.form }
+        
+        if(form.file.length === 0){
+            alert('File is empty');
+            return;
+        }
         this.props.handleSubmit(form);
         this.setState({ form: this.initialState });
         this.props.close();
