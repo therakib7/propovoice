@@ -57,7 +57,7 @@
             <table class="ndpv-footer-container" style="overflow: hidden;border-spacing: 0;text-align: center;width: 559px;margin: 0 auto;">
               <tbody>
                 <tr>
-                  <td class="ndpv-footer-text" style="">
+                  <td class="ndpv-footer-text">
                     {footer_text}
                     <ul class="ndpv-social" style="display:table;margin:16px auto 0 auto;padding:0;text-align:center;">
                       {social}
