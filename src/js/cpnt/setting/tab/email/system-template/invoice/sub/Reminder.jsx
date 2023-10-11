@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import pro from 'block/pro-alert';
 import ProLabel from 'block/pro-alert/label';
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context';
 import api from 'api';
 
 export default class Reminder extends Component {
@@ -16,8 +15,6 @@ export default class Reminder extends Component {
             }
         };
     }
-
-    static contextType = AppContext;
 
     componentDidMount() {
         api.get('settings', 'tab=email_invoice_reminder').then(resp => {

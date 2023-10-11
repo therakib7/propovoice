@@ -10,6 +10,9 @@ import Spinner from 'block/preloader/spinner';
 import Other from './form/Other';
 import Sendinblue from './form/Sendinblue';
 
+//test mail
+import TestMail from './TestMail';
+
 export default class Main extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +22,7 @@ export default class Main extends Component {
             formModal: false,
             currentTab: this.props.tab,
             list: [],
-            singleList: [], 
+            singleList: [],
         };
     }
 
@@ -29,7 +32,7 @@ export default class Main extends Component {
         this.getList()
     }
 
-    getList = () => { 
+    getList = () => {
         this.setState({ loading: true });
         this.props.getAll('intg-smtp').then(resp => {
             if (resp.data.success) {
@@ -51,11 +54,11 @@ export default class Main extends Component {
 
         const slug = item.slug;
 
-        if ( !slug ) { 
+        if (!slug) {
 
             let form = {
                 tab: 'smtp_default'
-            }; 
+            };
             this.props.create('settings', form).then(resp => {
                 if (resp.data.success) {
                     toast.success(ndpv.i18n.aUpd);
@@ -70,7 +73,7 @@ export default class Main extends Component {
         }
 
         this.setState({ currentTab: slug, formModal: true })
-        this.props.onChange('smtp', slug, false)
+        // this.props.onChange('smtp', slug, false)
     };
 
     close = () => {
@@ -91,7 +94,7 @@ export default class Main extends Component {
                                     <svg
                                         width={12}
                                         height={11}
-                                        
+
                                         viewBox="3.4 5.6 17.6 13.4"
                                         xmlSpace="preserve"
                                     >
@@ -107,14 +110,16 @@ export default class Main extends Component {
                     </div>}
 
                     {currentTab == 'other' && this.state.formModal && <Other
-                        {...this.props} 
+                        {...this.props}
                         close={this.close}
                     />}
 
                     {currentTab == 'sendinblue' && this.state.formModal && <Sendinblue
-                        {...this.props} 
+                        {...this.props}
                         close={this.close}
                     />}
+
+                    {(currentTab != 'sendinblue' && !this.state.formModal) && <TestMail />}
 
                 </>}
             </>

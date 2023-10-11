@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { toast } from 'react-toastify';
-import AppContext from 'context/app-context';
 import api from 'api';
 
 export default class DefaultMail extends Component {
@@ -15,8 +14,6 @@ export default class DefaultMail extends Component {
             }
         };
     }
-
-    static contextType = AppContext;
 
     componentDidMount() {
         api.get('settings', 'tab=email_estimate_default').then(resp => {
