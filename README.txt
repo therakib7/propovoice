@@ -180,10 +180,15 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
-= 1.7.1 (25-Sep-2023) =
-* Update: JS and functional issues
+= 1.7.1 (11-Oct-2023) =
 * Update: Direct PDF download
 * Update: Extra amount reserial to Discount, Fee, Tax
+* Update: Address fields
+* Update: Multisite issue
+* Update: Invoice Estimate Save Items
+* Update: Search issue
+* Update: CSS issue
+* Update: JS and functional issues
 
 = 1.7.0 (31-Aug-2023) =
 * Improved: Client signature upload
