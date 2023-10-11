@@ -6,34 +6,12 @@ import { checkAllValidation, groupProcessing, removeError, setGroupValidation } 
 export const FormContext = createContext({});
 
 export function FormWrapper({ submitHandler, submitPreloader, close, submitLabel, children, formTag = true }) {
-    // const form = {
-    //     email: {
-    //         value: '',
-    //         validation: {
-    //             required: {
-    //                 value: true,
-    //                 message: "Email required",
-    //                 group : "contact"
-    //                 error: "Email required"
-    //             },
-    //         }
-    //     }
-    // }
-    //
-    // groupFields = {contact: {first_name: "", org_name: "something"}}
-    //
-    // errorFields = {
-    //     email: [required, email]
-    // }
-    //
-    //
+
     const [form, setForm] = useState({});
     const [errorFields, setErrorFields] = useState({});
     const [groupFields, setGroupFields] = useState({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [submitEvent, setSubmitEvent] = useState();
-    // const [submitPreloader, setSubmitPreloader] = useState(props.submitPreloader);
-
 
     useEffect(() => {
         if (isSubmitted && submitEvent) {
@@ -43,8 +21,6 @@ export function FormWrapper({ submitHandler, submitPreloader, close, submitLabel
             } else {
                 toast.error("Invalid submission!!!")
             }
-
-            // setSubmitPreloader(false)
             setIsSubmitted(false)
         }
     }, [isSubmitted, errorFields])

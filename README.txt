@@ -189,6 +189,7 @@ The super fantastic pro features that accelerate your business growth and improv
 * Update: Invoice/Estimate Save Items Setting issue
 * Update: Invoice/Estimate Save Items Select issue
 * Fixed: Search issue
+* Added: Test mail send in SMTP
 * Fixed: Payment receipt PDF title issue
 * Fixed: Payment receipt image full view issue
 * Update: Spinner when API Request

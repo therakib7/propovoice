@@ -106,7 +106,6 @@ export default class Main extends Component {
                     </div>}
 
                     {currentTab && <div className="pv-intg-single">
-                        {/* <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>{currentTab.name}</h4> */}
                         <Suspense fallback={<Spinner />}>
                             <List item={currentTab} />
                         </Suspense>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import Upload from 'block/field/upload';
+import { toast } from 'react-toastify';
 
 class Form extends Component {
     constructor(props) {
@@ -27,11 +28,11 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        
+
         let form = { ...this.state.form }
-        
-        if(form.file.length === 0){
-            alert('File is empty');
+
+        if (form.file.length === 0) {
+            toast.error('File is empty');
             return;
         }
         this.props.handleSubmit(form);

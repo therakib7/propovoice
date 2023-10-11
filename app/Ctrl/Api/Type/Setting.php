@@ -2,7 +2,9 @@
 
 namespace Ndpv\Ctrl\Api\Type;
 
+use Ndpv\Model\Business;
 use Ndpv\Traits\Singleton;
+use Ndpv\Helper\Fns;
 
 class Setting
 {
@@ -161,6 +163,53 @@ class Setting
                     $data = $option;
                 } else {
                     $data["status"] = false;
+                }
+            }
+
+            if ($tab == "email_smtp_test") {
+                $option = get_option("ndpv_" . $tab);
+
+                if ($option) {
+                    $data = $option;
+                } else {
+                    $business = new Business;
+                    $business_info = $business->info();
+                    $name = $business_info['name'];
+                    $data["from"] = $business_info['email'];
+                    $data["to"] = '';
+
+                    $subject = str_replace(
+                        array(
+                            '{org_name}'
+                        ),
+                        array(
+                            $name
+                        ),
+                        ndpv()->get_default(
+                            "email_template",
+                            "smtp",
+                            "test",
+                            "subject"
+                        )
+                    );
+
+                    $msg = str_replace(
+                        array(
+                            '{org_name}'
+                        ),
+                        array(
+                            $name
+                        ),
+                        ndpv()->get_default(
+                            "email_template",
+                            "smtp",
+                            "test",
+                            "msg"
+                        )
+                    );
+
+                    $data["subject"] = $subject;
+                    $data["msg"] = $msg; 
                 }
             }
 
@@ -517,6 +566,37 @@ class Setting
                     wp_send_json_error($reg_errors->get_error_messages());
                 }
                 $option = update_option("ndpv_" . $tab, $data);
+            }
+
+            if ($tab == "email_smtp_test") {
+                $data["from"] = isset($param["from"])
+                    ? sanitize_text_field($param["from"])
+                    : '';
+                $data["to"] = isset($param["to"])
+                    ? sanitize_textarea_field($param["to"])
+                    : '';
+                $data["subject"] = isset($param["subject"])
+                    ? sanitize_text_field($param["subject"])
+                    : '';
+                $data["msg"] = isset($param["msg"])
+                    ? sanitize_textarea_field($param["msg"])
+                    : '';
+                $option = update_option("ndpv_" . $tab, $data);         
+                
+                $business = new Business;
+                $business_info = $business->info();
+                $name = $business_info['name'];
+
+                $headers = ["Content-Type: text/html; charset=UTF-8"];
+                $headers[] = "From: " .  $name . " <" . $data["from"] . ">";
+
+                $send_mail = wp_mail($data["to"], $data["subject"], nl2br($data["msg"]), $headers, []);
+
+                if ($send_mail) {  
+                    wp_send_json_success();
+                } else {
+                    wp_send_json_error(["Something wrong: Email not sent"]);
+                }
             }
 
             if ($tab == "email_estimate_default") {

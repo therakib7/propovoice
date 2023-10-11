@@ -127,7 +127,6 @@ export default class Main extends Component {
 
     render() {
         const { loading, currentTab, list, singleForm, leadField } = this.state;
-        console.log(singleForm)
         const i18n = ndpv.i18n;
         let getFormSlug = (formName) => {
             let formList = {

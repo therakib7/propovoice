@@ -18,7 +18,8 @@ export default class Form extends Component {
         };
 
         this.state = {
-            form: this.initialState
+            form: this.initialState,
+            submitPreloader: false,
         };
     }
 
@@ -53,8 +54,9 @@ export default class Form extends Component {
         if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
         let form = this.state.form;
         form.tab = 'smtp_other';
-
+        this.setState({ submitPreloader: true });
         this.props.create('settings', form).then(resp => {
+            this.setState({ submitPreloader: false });
             if (resp.data.success) {
                 toast.success(ndpv.i18n.aUpd);
                 this.props.close();
@@ -69,13 +71,20 @@ export default class Form extends Component {
     render() {
         const i18n = ndpv.i18n;
         const { host, port, secure, auth, user, pass } = this.state.form;
+
+        const submitPreloader = this.state.submitPreloader;
         return (
-            <FormWrapper submitHandler={this.handleSubmit} submitLabel={i18n.act}>
+            <FormWrapper
+                submitPreloader={submitPreloader}
+                submitHandler={this.handleSubmit}
+                submitLabel={i18n.act}
+            >
                 <FormContent formStyleClass="pv-form-style-one">
+                    <div className="" style={{ marginBottom: 10, cursor: 'pointer' }} onClick={() => this.props.close()}>
+                        Back
+                    </div>
                     <h4 className='pv-title-medium pv-mb-15' style={{ textTransform: 'capitalize' }}>Other SMTP</h4>
-
                     <div className="row">
-
                         <Text
                             label="SMTP Host"
                             id="field-host"
@@ -143,7 +152,6 @@ export default class Form extends Component {
                                     <label htmlFor="secure_tls">TLS</label>
                                 </div>
                             </div>
-                            {/* <p class="pv-field-desc">TLS is not the same as STARTTLS, For Most servers SSL is the recommended option.</p> */}
                         </div>
                         <div className="col-md">
                             <label htmlFor="field-auth">
