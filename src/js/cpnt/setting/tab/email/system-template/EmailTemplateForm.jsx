@@ -4,21 +4,22 @@ import ProLabel from "block/pro-alert/label";
 import api from "api";
 
 function EmailTemplateForm({
-  module,
+  module = "settings",
   tab,
-  formTitle,
+  title,
   subVars,
   msgVars,
   isPro,
 }) {
+  const tabPrefix = "email_";
   const [form, setForm] = useState({
     subject: "",
     msg: "",
-    tab: tab,
+    tab: tabPrefix + tab,
   });
 
   useEffect(() => {
-    api.get(module, `tab=${tab}`).then((resp) => {
+    api.get(module, `tab=${tabPrefix + tab}`).then((resp) => {
       if (resp.data.success) {
         setForm({ ...form, ...resp.data.data });
       }
@@ -56,7 +57,7 @@ function EmailTemplateForm({
         className="pv-title-medium pv-mb-15"
         style={{ textTransform: "capitalize" }}
       >
-        {formTitle}
+        {title}
       </h4>
       <div className="row">
         <div className="col">

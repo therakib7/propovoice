@@ -56,22 +56,20 @@ const Main = (props) => {
 			{currentTab == "invoice" && <EmailInvoice {...props} />}
 			{currentTab == "client_portal" && (
 				<EmailTemplateForm
-					module="settings"
-					tab="email_client_portal_password"
-					formTitle="Client Portal Invitation"
+					tab="client_portal_password"
+					title="Client Portal Invitation"
 					subVars="{org_name}"
-					msgVars="{client_name} {login_url} {email} {password} {org_name}"
+					msgVars="{client_name}, {login_url}, {email}, {password}, {org_name}"
 					isPro={true}
 				/>
 				/* <EmailCredential type="client_portal" {...props} /> */
 			)}
 			{currentTab == "team" && (
 				<EmailTemplateForm
-					module="settings"
-					tab="email_team_password"
-					formTitle="Team Invitation"
+					tab="team_password"
+					title="Team Invitation"
 					subVars="{org_name}"
-					msgVars="{client_name} {login_url} {email} {password} {org_name}"
+					msgVars="{client_name}, {login_url}, {email}, {password}, {org_name}"
 					isPro={true}
 				/>
 				/* <EmailCredential type="team" {...props} /> */

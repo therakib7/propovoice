@@ -11,25 +11,24 @@ const Main = (props) => {
 	return (
 		<>
 			<EmailTemplateForm
-				module="settings"
-				tab="email_invoice_default"
-				formTitle="Default Template"
-				subVars="{id} {org_name} {client_name}"
-				msgVars="{id} {client_name} {date} {due_date} {amount} {org_name}"
+				tab="invoice_default"
+				title="Default Template"
+				subVars="{id}, {org_name}, {client_name}"
+				msgVars="{id}, {client_name}, {date}, {due_date}, {amount}, {org_name}"
 			/>
 			<EmailTemplateForm
-				module="settings"
-				tab="email_invoice_reminder"
-				formTitle="Reminder Template"
-				subVars="{id} {org_name} {client_name}"
-				msgVars="{id} {client_name} {date} {due_date} {amount} {org_name}"
+				tab="invoice_reminder"
+				title="Reminder Template"
+				subVars="{id}, {org_name}, {client_name}"
+				msgVars="{id}, {client_name}, {date}, {due_date}, {amount}, {org_name}"
+				isPro={true}
 			/>
 			<EmailTemplateForm
-				module="settings"
-				tab="email_invoice_recurring"
-				formTitle="Recurring Template"
-				subVars="{id} {org_name} {client_name}"
-				msgVars="{id} {client_name} {date} {due_date} {amount} {org_name}"
+				tab="invoice_recurring"
+				title="Recurring Template"
+				subVars="{id}, {org_name}, {client_name}"
+				msgVars="{id}, {client_name}, {date}, {due_date}, {amount}, {org_name}"
+				isPro={true}
 			/>
 			{/* <Default {...props} /> */}
 			{/* <Reminder {...props} /> */}
