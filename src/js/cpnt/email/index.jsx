@@ -1,9 +1,6 @@
 import React, { lazy } from "react";
 
-/**
- * প্রয়োজনে অপটিমাইজেশনের জন্য "SentEmails" কম্পোনেন্টটি ইমপোর্ট হয়.
- */
-
+const Header = lazy(() => import("./Header"));
 const SentEmailsList = lazy(() => import("./SentEmails"));
 
 /**
@@ -14,10 +11,10 @@ const SentEmailsList = lazy(() => import("./SentEmails"));
  * @returns {JSX.Element} A JSX element representing a basic structure with comments.
  */
 export default function Email(props) {
-  console.log(props);
+  
   return (
     <div>
-      Email is here
+      <Header />
       <SentEmailsList />
     </div>
   );
