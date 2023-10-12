@@ -23,6 +23,7 @@ const Project = lazy(() => import("cpnt/project"));
 const Deal = lazy(() => import("cpnt/deal"));
 
 const Staff = lazy(() => import("block/staff"));
+const Email = lazy(()=> import("cpnt/email"))
 
 class ListSingle extends Component {
   constructor(props) {
@@ -92,6 +93,10 @@ class ListSingle extends Component {
       {
         id: "file",
         text: ndpv.i18n.file,
+      },
+      {
+        id: "email",
+        text: ndpv.i18n.email,
       },
     ];
 
@@ -310,6 +315,7 @@ class ListSingle extends Component {
 
   render() {
     const { tabs = [], currentTab } = this.state;
+    console.log(tabs)
     const { path } = this.props;
     const data = this.state.data;
 
@@ -1184,6 +1190,9 @@ class ListSingle extends Component {
                   )}
                   {currentTab == "deal" && data.id && (
                     <Deal module_id={data.id} data={data} parent={path} />
+                  )}
+                  {currentTab == "email" && data.id && (
+                    <Email />
                   )}
                 </Suspense>
               </div>
