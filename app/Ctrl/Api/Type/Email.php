@@ -8,7 +8,7 @@ use Ndpv\Traits\Singleton;
 class Email
 {
     use Singleton;
-    
+
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/emails/(?P<id>\d+)", [
@@ -46,6 +46,60 @@ class Email
                 ],
             ],
         ]);
+
+        register_rest_route("ndpv/v1", "/send-email", [
+            "methods" => "POST",
+            "callback" => [$this, "send_email"],
+            "permission_callback" => [$this, "create_per"]
+        ]);
+    }
+
+    private function save_sent_message_to_db($data)
+    {
+    }
+
+    public function send_email($request)
+    {
+        $param = $request->get_params();
+
+        $to = $param['to']; // Primary recipient
+        $subject = $param['subject'];
+        $message = $param['message'];
+
+        // Define CC and BCC recipients
+        $cc = $param['cc'] ?? null;
+        $bcc = $param['bcc'] ?? null;
+
+        // Set headers for CC and BCC
+        $headers = array(
+            'Content-Type: text/html; charset=UTF-8'
+        );
+
+        // if cc is avilable for the mail,
+        // then set it to header
+        if ($cc) {
+            array_push($headers, 'Cc: ' . $cc);
+        }
+
+        // if bcc is avilable for email,
+        // then set it to header
+
+        if ($bcc) {
+            array_push($headers, 'Bcc: ' . $bcc);
+        }
+        // Send the email
+        $result = wp_mail($to, $subject, $message, $headers);
+
+        if ($result) {
+            $data = [
+                'subject' => $subject,
+                'content' => $message
+            ];
+            $this->save_sent_message_to_db($data);
+            wp_send_json_success();
+        } else {
+            wp_send_json_error();
+        }
     }
 
     public function get($req)
