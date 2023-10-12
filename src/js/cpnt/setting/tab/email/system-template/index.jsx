@@ -4,6 +4,7 @@ import WithApi from "hoc/Api";
 /* import Default from './sub/Default';
 import Reminder from './sub/Reminder'; */
 import ProLabel from "block/pro-alert/label";
+import EmailTemplateForm from "./EmailTemplateForm";
 const EmailLead = lazy(() => import("./lead"));
 const EmailEstimate = lazy(() => import("./estimate"));
 const EmailInvoice = lazy(() => import("./invoice"));
@@ -54,9 +55,27 @@ const Main = (props) => {
 			{currentTab == "estimate" && <EmailEstimate {...props} />}
 			{currentTab == "invoice" && <EmailInvoice {...props} />}
 			{currentTab == "client_portal" && (
-				<EmailCredential type="client_portal" {...props} />
+				<EmailTemplateForm
+					module="settings"
+					tab="email_client_portal_password"
+					formTitle="Client Portal Invitation"
+					subVars="{org_name}"
+					msgVars="{client_name} {login_url} {email} {password} {org_name}"
+					isPro={true}
+				/>
+				/* <EmailCredential type="client_portal" {...props} /> */
 			)}
-			{currentTab == "team" && <EmailCredential type="team" {...props} />}
+			{currentTab == "team" && (
+				<EmailTemplateForm
+					module="settings"
+					tab="email_team_password"
+					formTitle="Team Invitation"
+					subVars="{org_name}"
+					msgVars="{client_name} {login_url} {email} {password} {org_name}"
+					isPro={true}
+				/>
+				/* <EmailCredential type="team" {...props} /> */
+			)}
 		</>
 	);
 };
