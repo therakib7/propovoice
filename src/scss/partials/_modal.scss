@@ -417,6 +417,7 @@
 
 
   .pv-modal-task {
+
     .pv-modal-header {
       .pv-btn-medium {
         border-radius: 5px;
@@ -530,7 +531,28 @@
 
   }
 
+  .pv-modal-task-discussion {
+    max-width: 1040px;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
 
+    .pv-close {
+      top: 5%;
+    }
+
+    .pv-modal-footer {
+      padding: 0;
+    }
+
+    .pv-modal-task-content,
+    .pv-modal-discussion-content {
+      overflow-y: scroll;
+      padding: 30px;
+    }
+
+  }
 
   .pv-range {
     width: 70%;
