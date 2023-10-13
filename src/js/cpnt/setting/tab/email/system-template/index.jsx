@@ -1,13 +1,8 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
-
-/* import Default from './sub/Default';
-import Reminder from './sub/Reminder'; */
-import ProLabel from "block/pro-alert/label";
 import EmailTemplateForm from "./EmailTemplateForm";
 const EmailLead = lazy(() => import("./lead"));
 const EmailEstimate = lazy(() => import("./estimate"));
 const EmailInvoice = lazy(() => import("./invoice"));
-const EmailCredential = lazy(() => import("./credential"));
 
 const i18n = ndpv.i18n;
 
@@ -46,7 +41,6 @@ const Main = (props) => {
 						onClick={(e) => setCurrentTab(tab.id)}
 					>
 						{tab.text} {tab.id == "estimate"}
-						{/* {wage.length > 0 && <ProLabel />} */}
 					</li>
 				))}
 			</ul>
@@ -62,7 +56,6 @@ const Main = (props) => {
 					msgVars="{client_name}, {login_url}, {email}, {password}, {org_name}"
 					isPro={true}
 				/>
-				/* <EmailCredential type="client_portal" {...props} /> */
 			)}
 			{currentTab == "team" && (
 				<EmailTemplateForm
@@ -72,7 +65,6 @@ const Main = (props) => {
 					msgVars="{client_name}, {login_url}, {email}, {password}, {org_name}"
 					isPro={true}
 				/>
-				/* <EmailCredential type="team" {...props} /> */
 			)}
 		</>
 	);
