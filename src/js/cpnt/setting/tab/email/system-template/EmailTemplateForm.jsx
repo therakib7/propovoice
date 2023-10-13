@@ -8,7 +8,7 @@ function EmailTemplateForm({
   module = "settings",
   tabPrefix = "email_",
   tab,
-  title,
+  title = "Template title here",
   subVars,
   msgVars,
   isPro,
