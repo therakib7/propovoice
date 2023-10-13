@@ -1,4 +1,5 @@
-import React from "react";
+import React, { lazy, useState } from "react";
+const Modal = lazy(() => import('./Modal'))
 
 const titleStyle = {
   color: " #2D3748",
@@ -25,11 +26,14 @@ const headerStyle = {
  */
 
 export default function Header(props) {
+  const [modalVisiblity, setModalVisiblity] = useState(false)
   return (
     <div style={headerStyle}>
+      {modalVisiblity && <Modal>hello world</Modal> }
+      
       <div style={titleStyle}>Sent Mail</div>
       <div>
-        <button className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow">
+        <button onClick={() => setModalVisiblity(true)} className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow">
           New Mail
         </button>
       </div>
