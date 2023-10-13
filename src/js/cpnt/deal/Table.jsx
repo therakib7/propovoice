@@ -128,7 +128,7 @@ const TableBody = props => {
                         display: 'inline-block',
                     }}>{row.title}</span>
                 </td>
-                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person) ? row.person.email : row.org.email}</td>
+                <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{(row.person || row.org) && <>{(row.person) ? row.person.email : row.org.email}</>}</td>
                 <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.budget && row.currency ? currency(row.budget, row.currency) : ''}</td>
                 {!wage.length && <td onClick={() => handleOverview(row.id)} className='pv-cursor-pointer'>{row.probability}%</td>}
                 <td>
