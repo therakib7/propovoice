@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
-import WithApi from "hoc/Api";
 
 /* import Default from './sub/Default';
 import Reminder from './sub/Reminder'; */
@@ -46,7 +45,8 @@ const Main = (props) => {
 						className={"pv-tab " + (tab.id == currentTab ? "pv-active" : "")}
 						onClick={(e) => setCurrentTab(tab.id)}
 					>
-						{tab.text} {tab.id == "estimate" && wage.length > 0 && <ProLabel />}
+						{tab.text} {tab.id == "estimate"}
+						{/* {wage.length > 0 && <ProLabel />} */}
 					</li>
 				))}
 			</ul>
@@ -77,4 +77,4 @@ const Main = (props) => {
 		</>
 	);
 };
-export default WithApi(Main);
+export default Main;

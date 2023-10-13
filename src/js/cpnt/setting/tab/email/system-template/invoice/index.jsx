@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import WithApi from "hoc/Api";
 
 import Default from "./sub/Default";
 import Reminder from "./sub/Reminder";
@@ -36,4 +35,4 @@ const Main = (props) => {
 		</>
 	);
 };
-export default WithApi(Main);
+export default Main;

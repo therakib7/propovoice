@@ -1,4 +1,3 @@
-import WithApi from "hoc/Api";
 import EmailTemplateForm from "../EmailTemplateForm";
 // import { useState, useEffect } from "react";
 // import Default from "./sub/Default";
@@ -27,4 +26,4 @@ const Main = () => {
 		</>
 	);
 };
-export default WithApi(Main);
+export default Main;

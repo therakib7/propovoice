@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import ProLabel from "block/pro-alert/label";
+import pro from "block/pro-alert";
 import api from "api";
 
 function EmailTemplateForm({
   module = "settings",
+  tabPrefix = "email_",
   tab,
   title,
   subVars,
   msgVars,
   isPro,
 }) {
-  const tabPrefix = "email_";
   const [form, setForm] = useState({
     subject: "",
     msg: "",
@@ -33,6 +34,12 @@ function EmailTemplateForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Restrict for pro feature if license not activated
+    if (isPro && wage.length > 0) {
+      pro();
+      return;
+    }
 
     if (ndpv.isDemo) {
       toast.error(ndpv.demoMsg);
