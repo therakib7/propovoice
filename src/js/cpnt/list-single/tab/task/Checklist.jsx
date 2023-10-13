@@ -54,10 +54,10 @@ class Checklist extends Component {
 
     addChecklist = (e) => {
         e.preventDefault();
-        if ( wage.length > 0 ) {
-			pro();
-			return;
-		}
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
 
         let checklist = this.state.checklist;
         checklist.push({
@@ -68,10 +68,10 @@ class Checklist extends Component {
     };
 
     handleNewItem = (e, index) => {
-        if ( wage.length > 0 ) {
-			pro();
-			return;
-		}
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
         let items = this.state.checklist[index];
         items['newItem'] = e.target.value;
         let checklist = this.state.checklist;
@@ -161,7 +161,7 @@ class Checklist extends Component {
                                         width={15}
                                         height={15}
                                         viewBox="0 0 10 10"
-                                        fill="none" 
+                                        fill="none"
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -173,8 +173,8 @@ class Checklist extends Component {
                                         />
                                     </svg>
                                 </div>
-
                             </div>
+
                             <div className="pv-checklist-content">
                                 <ul>
                                     {checklist_single.items.map((item, list_index) => {
@@ -252,7 +252,7 @@ class Checklist extends Component {
                         width={12}
                         height={12}
                         viewBox="0 0 12 12"
-                        fill="none" 
+                        fill="none"
                     >
                         <path
                             d="M1.875 6H10.125"

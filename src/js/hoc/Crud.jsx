@@ -143,9 +143,9 @@ const HOC = (Inner, mod, title, modPlural = '', pro = false) => {
                         toast.success(ndpv.i18n.aUpd);
                         this.getLists(args);
                     } else {
+                        this.setState({ submitPreloader: false });
                         resp.data.data.forEach(function (value) {
                             toast.error(value);
-                            this.setState({ submitPreloader: false });
                         });
                     }
                 })

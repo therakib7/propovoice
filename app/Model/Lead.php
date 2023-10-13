@@ -99,6 +99,60 @@ class Lead
         }
     }
 
+    public function is_lead_exists($email, $mobile)
+    {
+        $args = array(
+            "post_type" => ["ndpv_person"],
+            "post_status" => "publish",
+            'meta_query' => array(
+                'relation' => 'OR',
+                array(
+                    'key'     => 'email',
+                    'value'   => $email,
+                    'compare' => '='
+                )                
+            ),
+            'fields' => 'ids',
+            'posts_per_page' => 1,
+        );
+
+        if ( $mobile ) {
+            $args['meta_query'][] = [
+                'key'     => 'mobile',
+                'value'   => $mobile,
+                'compare' => '='
+            ];
+        } 
+
+        $person = get_posts($args);
+
+        if ($person) {
+            $person_id = $person[0]; 
+            $args = array(
+                "post_type" => ["ndpv_lead"],
+                "post_status" => "publish",
+                'meta_query' => array(
+                    'relation' => 'OR',
+                    array(
+                        'key'     => 'person_id',
+                        'value'   => $person_id,
+                        'compare' => '='
+                    )                
+                ),
+                'fields' => 'ids',
+                'posts_per_page' => 1,
+            );
+
+            $lead = get_posts($args);
+
+            if ($lead) {
+                $lead_id = $lead[0];
+                return $lead_id;
+            }
+        } 
+        return false;
+    }
+
     public function total($id = null)
     {
         $args = array(
