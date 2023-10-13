@@ -29,7 +29,10 @@ export default function Header(props) {
   const [modalVisiblity, setModalVisiblity] = useState(false)
   return (
     <div style={headerStyle}>
-      {modalVisiblity && <Modal visiblity={setModalVisiblity}>hello world</Modal>}
+
+      <Modal title="Awesome title" setVisibility={setModalVisiblity} visibility={modalVisiblity}>
+        hello world
+      </Modal>
 
       <div style={titleStyle}>Sent Mail</div>
       <div>

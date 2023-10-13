@@ -31,7 +31,7 @@ const subjectStyle = {
   fontStyle: "normal",
   fontWeight: 700,
   lineHeight: "14px",
-  paddingBottom:"12px",
+  paddingBottom: "12px",
 };
 
 const contentStyle = {
@@ -51,26 +51,35 @@ const contentStyle = {
  */
 
 export default function SentEmails(props) {
+
+  const items = Array(5).fill(null);
+  console.log(items);
+
   return (
     <div>
       {/* items */}
-      <div style={itemStyle}>
-        {/* content */}
-        <div>
-          <div style={subjectStyle}>Subject: Welcome to propovoice</div>
-          <div style={contentStyle}>
-            Welcome to [Your Company Name]! We are thrilled to have you as our
-            newest client, and we're excited to start our partnership journey.
-            Here's what you can expect in the next few days....
+      {
+        items.map((_, index) => {
+         return <div key={index} style={itemStyle}>
+            {/* content */}
+            <div>
+              <div style={subjectStyle}>Subject: Welcome to propovoice</div>
+              <div style={contentStyle}>
+                Welcome to [Your Company Name]! We are thrilled to have you as our
+                newest client, and we're excited to start our partnership journey.
+                Here's what you can expect in the next few days....
+              </div>
+            </div>
+            {/* actions */}
+            <div style={actionStyle}>
+              <button style={deleteButtonStyle}>
+                <DeleteIcon />
+              </button>
+            </div>
           </div>
-        </div>
-        {/* actions */}
-        <div style={actionStyle}>
-          <button style={deleteButtonStyle}>
-            <DeleteIcon />
-          </button>
-        </div>
-      </div>
+        })
+      }
+
     </div>
   );
 }
