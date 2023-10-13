@@ -17,6 +17,27 @@ const Main = () => {
 				msgVars="{id}, {client_name}, {date}, {due_date}, {amount}, {org_name}"
 				isPro={true}
 			/>
+
+			<EmailTemplateForm
+				tab="estimate_add_notif"
+				title="Add Notification Template"
+				isPro={true}
+			/>
+			<EmailTemplateForm
+				tab="estimate_edit_notif"
+				title="Edit Notification Template"
+				isPro={true}
+			/>
+			<EmailTemplateForm
+				tab="estimate_accept_notif"
+				title="Accept Notification Template"
+				isPro={true}
+			/>
+			<EmailTemplateForm
+				tab="estimate_reject_notif"
+				title="Reject Notification Template"
+				isPro={true}
+			/>
 		</>
 	);
 };

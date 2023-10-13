@@ -23,6 +23,26 @@ const Main = (props) => {
 				msgVars="{id}, {client_name}, {date}, {due_date}, {amount}, {org_name}"
 				isPro={true}
 			/>
+			<EmailTemplateForm
+				tab="invoice_add_notif"
+				title="Add Notification Template"
+				isPro={true}
+			/>
+			<EmailTemplateForm
+				tab="invoice_edit_notif"
+				title="Edit Notification Template"
+				isPro={true}
+			/>
+			<EmailTemplateForm
+				tab="invoice_paid_notif"
+				title="Paid Notification Template"
+				isPro={true}
+			/>
+			<EmailTemplateForm
+				tab="invoice_paid_req_notif"
+				title="Paid Request Notification Template"
+				isPro={true}
+			/>
 		</>
 	);
 };
