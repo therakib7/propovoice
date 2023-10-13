@@ -29,8 +29,8 @@ export default function Header(props) {
   const [modalVisiblity, setModalVisiblity] = useState(false)
   return (
     <div style={headerStyle}>
-      {modalVisiblity && <Modal>hello world</Modal> }
-      
+      {modalVisiblity && <Modal visiblity={setModalVisiblity}>hello world</Modal>}
+
       <div style={titleStyle}>Sent Mail</div>
       <div>
         <button onClick={() => setModalVisiblity(true)} className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow">
