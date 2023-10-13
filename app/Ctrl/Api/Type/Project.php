@@ -186,12 +186,33 @@ class Project
         ];
 
         if ( $project_req ) {
-            $args["meta_query"][] = [
-                [
-                    "key" => "project_req",
-                    "compare" => "EXISTS",
-                ],
-            ];
+            if ( current_user_can("ndpv_client_role") ) {
+                $user_id = get_current_user_id();
+                $id = get_user_meta($user_id, 'ndpv_client_id', true);
+                $args['meta_query'][] = [
+                    [
+                        'relation' => 'AND',
+                        [
+                            'relation' => 'AND', 
+                            [
+                                "key" => "project_req",
+                                "compare" => "EXISTS",
+                            ]
+                        ],
+                        [
+                            'relation' => 'OR',
+                            [
+                                'key'   => 'person_id',
+                                'value' => $id
+                            ],
+                            [
+                                'key'   => 'org_id',
+                                'value' => $id
+                            ]
+                        ]
+                    ]
+                ];
+            }
         } else {
             if ( current_user_can("ndpv_client_role") ) {
                 $user_id = get_current_user_id();
