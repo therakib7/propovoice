@@ -503,7 +503,7 @@ class Client
 
         $ids = explode(",", $url_params["id"]);
         foreach ($ids as $id) {
-            wp_delete_post($id);
+            delete_post_meta($id, 'is_client');
         }
         wp_send_json_success($ids);
     }
