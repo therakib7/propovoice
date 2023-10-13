@@ -315,7 +315,6 @@ class ListSingle extends Component {
 
   render() {
     const { tabs = [], currentTab } = this.state;
-    console.log(tabs)
     const { path } = this.props;
     const data = this.state.data;
 
