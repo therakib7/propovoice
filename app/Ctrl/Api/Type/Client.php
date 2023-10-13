@@ -502,8 +502,12 @@ class Client
         $url_params = $req->get_url_params();
 
         $ids = explode(",", $url_params["id"]);
+
+        $client_model = new ModelClient(); 
+            
         foreach ($ids as $id) {
             delete_post_meta($id, 'is_client');
+            $client_model->delete_client($id);
         }
         wp_send_json_success($ids);
     }
