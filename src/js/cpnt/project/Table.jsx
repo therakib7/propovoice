@@ -83,7 +83,7 @@ const TableBody = (props) => {
           className="pv-cursor-pointer"
         >
           <span className="pv-list-title" style={{
-            
+
             maxWidth: '210px',
             display: 'inline-block',
           }}>{row.title}</span>
@@ -93,14 +93,14 @@ const TableBody = (props) => {
             onClick={() => handleOverview(row.id)}
             className="pv-cursor-pointer"
             style={{
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                maxWidth: '400px',
-               
-              }}
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              maxWidth: '400px',
+
+            }}
           >
-            {row.person ? row.person.email : row.org.email}
+            {(row.person || row.org) && <>{(row.person) ? row.person.email : row.org.email}</>}
           </td>
         )}
         <td
