@@ -12,13 +12,15 @@ export default (props) => {
     const i18n = ndpv.i18n;
     return (
         <div className="pv-action-content pv-action-btn pv-bg-shadow">
-            <button className={(dropdown ? 'dpv-active' : '')} onClick={() => setDropdown(val => !val)}>
+            <button className={(dropdown ? 'dpv-active' : '')} onClick={(e) => {
+                e.preventDefault();
+                setDropdown((val) => !val);
+            }}>
                 <svg
                     width={20}
                     height={20}
                     viewBox="0 0 22 13"
                     fill="none"
-
                 >
                     <path
                         fillRule="evenodd"
