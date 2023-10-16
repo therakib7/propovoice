@@ -1,5 +1,8 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
-import EmailTemplateForm from "./EmailTemplateForm";
+import React, { useState, lazy } from "react";
+
+import TabBar from "./tab-bar";
+const EmailTeam = lazy(() => import("./team"));
+const EmailClientPortal = lazy(() => import("./client-portal"));
 const EmailLead = lazy(() => import("./lead"));
 const EmailDeal = lazy(() => import("./deal"));
 const EmailEstimate = lazy(() => import("./estimate"));
@@ -7,87 +10,72 @@ const EmailInvoice = lazy(() => import("./invoice"));
 
 const i18n = ndpv.i18n;
 
-const Main = (props) => {
-	const [tabs, setTabs] = useState([
+const Main = () => {
+	const [currentTab, setCurrentTab] = useState("team");
+
+	const tabs = [
 		{
 			id: "team",
 			text: i18n.team,
+			view: <EmailTeam />,
 		},
 		{
 			id: "client_portal",
 			text: "Client Portal",
+			view: <EmailClientPortal />,
 		},
 		{
 			id: "lead",
 			text: i18n.lead,
+			view: <EmailLead />,
 		},
 		{
 			id: "deal",
 			text: i18n.deal,
+			view: <EmailDeal />,
 		},
 		{
 			id: "estimate",
 			text: i18n.est,
+			view: <EmailEstimate />,
 		},
 		{
 			id: "invoice",
 			text: i18n.inv,
+			view: <EmailInvoice />,
 		},
 		{
 			id: "project",
 			text: i18n.project,
+			view: "",
 		},
 		{
 			id: "task",
 			text: i18n.task,
+			view: "",
 		},
 		{
 			id: "staff",
 			text: i18n.staff,
+			view: "",
 		},
 		{
 			id: "file",
 			text: i18n.file,
+			view: "",
 		},
-	]);
-	const [currentTab, setCurrentTab] = useState("team");
+	];
+
+	const currentTabObj = tabs.find((tab) => tab.id === currentTab);
 
 	return (
 		<>
-			<ul className="pv-horizontal-tab">
-				{tabs.map((tab, index) => (
-					<li
-						key={index}
-						className={"pv-tab " + (tab.id == currentTab ? "pv-active" : "")}
-						onClick={(e) => setCurrentTab(tab.id)}
-					>
-						{tab.text} {tab.id == "estimate"}
-					</li>
-				))}
-			</ul>
-
-			{currentTab == "lead" && <EmailLead />}
-			{currentTab == "deal" && <EmailDeal />}
-			{currentTab == "estimate" && <EmailEstimate {...props} />}
-			{currentTab == "invoice" && <EmailInvoice {...props} />}
-			{currentTab == "client_portal" && (
-				<EmailTemplateForm
-					tab="client_portal_password"
-					title="Client Portal Invitation"
-					subVars="{org_name}"
-					msgVars="{client_name}, {login_url}, {email}, {password}, {org_name}"
-					isPro={true}
-				/>
-			)}
-			{currentTab == "team" && (
-				<EmailTemplateForm
-					tab="team_password"
-					title="Team Invitation"
-					subVars="{org_name}"
-					msgVars="{client_name}, {login_url}, {email}, {password}, {org_name}"
-					isPro={true}
-				/>
-			)}
+			<TabBar
+				tabs={tabs}
+				currentTab={currentTab}
+				setCurrentTab={setCurrentTab}
+			/>
+			{currentTabObj["view"]}
 		</>
 	);
 };
