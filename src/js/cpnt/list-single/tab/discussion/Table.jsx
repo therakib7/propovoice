@@ -1,5 +1,6 @@
 import React, { useRef, useCallback, useState } from 'react';
 import Action from 'block/action/row';
+import ModalImage from "react-modal-image";
 
 const TableBody = props => {
     const { caps } = ndpv;
@@ -97,9 +98,14 @@ const TableBody = props => {
                                                 </span>
                                             </a></li>}
 
-                                            {item.type != 'pdf' && <li><a href={item.url} target="_blank">
-                                                <img src={item.url} />
-                                            </a></li>}
+                                            {item.type != 'pdf' && <li>
+                                                <div style={{ width: 100, display: 'inline-block' }}>
+                                                    <ModalImage
+                                                        small={item.url}
+                                                        large={item.url}
+                                                    />
+                                                </div>
+                                            </li>}
                                         </React.Fragment>
                                     );
                                 })}

@@ -400,14 +400,6 @@ export default class Form extends Component {
                     </div>
                   </div>
 
-                  <div className="row">
-                    <div className="col">
-                      {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
-                        <Staff tab_id={this.props.data.id} parent_tab_id={this.props.tab_id} inForm />
-                      </Suspense>}
-                    </div>
-                  </div>
-
                   {this.props.tab_id && !wage.length && (
                     <div className="row">
                       <div className="col-lg">
@@ -542,6 +534,14 @@ export default class Form extends Component {
             <span className="pv-close" onClick={() => this.props.close()}>
               <Add />
             </span>
+            <div className="row">
+              <div className="col">
+                {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
+                  <Staff tab_id={this.props.data.id} parent_tab_id={this.props.tab_id} inForm avatarGroup />
+                </Suspense>}
+              </div>
+            </div>
+
             {form.id && <Discussion tab_id={form.id} path='task' />}
           </div>
         </div>
