@@ -1,9 +1,10 @@
-import EmailTemplateForm from "./EmailTemplateForm";
+import EmailTemplateForm from "@system-email-template/EmailTemplateForm";
+
 const Main = () => {
   return (
     <EmailTemplateForm
-      tab="team_password"
-      title="Team Invitation"
+      tab="client_portal_password"
+      title="Client Portal Invitation"
       subVars="{org_name}"
       msgVars="{client_name}, {login_url}, {email}, {password}, {org_name}"
       isPro={true}

@@ -1,4 +1,4 @@
-import EmailTemplateForm from "./EmailTemplateForm";
+import EmailTemplateForm from "@system-email-template/EmailTemplateForm";
 
 export default function Lead() {
   return (

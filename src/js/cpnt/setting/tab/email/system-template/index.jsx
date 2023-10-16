@@ -1,13 +1,14 @@
 import React, { useState, lazy } from "react";
 
 import TabBar from "./tab-bar";
-const EmailTeam = lazy(() => import("./team"));
-const EmailClientPortal = lazy(() => import("./client-portal"));
-const EmailLead = lazy(() => import("./lead"));
-const EmailDeal = lazy(() => import("./deal"));
-const EmailEstimate = lazy(() => import("./estimate"));
-const EmailInvoice = lazy(() => import("./invoice"));
-
+import {
+	EmailClientPortal,
+	EmailDeal,
+	EmailEstimate,
+	EmailInvoice,
+	EmailLead,
+	EmailTeam,
+} from "./forms";
 const i18n = ndpv.i18n;
 
 const Main = () => {
