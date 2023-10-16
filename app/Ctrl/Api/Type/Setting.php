@@ -10,7 +10,7 @@ class Setting
 {
     use Singleton;
 
-    public $tabs = [
+    public $system_email_tabs = [
         "email_estimate_default" => [
             "keys" => [
                 "email_template",
@@ -272,10 +272,9 @@ class Setting
                 }
             }
 
-
-
-
-            $data = $this->get_email_template($this->tabs, $tab, $data);
+            if (array_key_exists($tab, $this->system_email_tabs)) {
+                $data = $this->get_email_template($this->system_email_tabs, $tab, $data);
+            }
 
             // if ($tab == "email_estimate_default") {
             //     $option = get_option("ndpv_" . $tab);
@@ -678,7 +677,9 @@ class Setting
                 }
             }
 
-            $this->create_email_template($tab, $param, $data);
+            if (array_key_exists($tab, $this->system_email_tabs)) {
+                $this->create_email_template($tab, $param, $data);
+            }
 
             // if ($tab == "email_estimate_default") {
             //     $data["subject"] = isset($param["subject"])
