@@ -60,11 +60,11 @@ class Setting
                 "password"
             ]
         ],
-        "email_notification_default" => [
+        "email_deal_add_notif" => [
             "keys" => [
                 "email_template",
-                "notification",
-                "default"
+                "team",
+                "password"
             ]
         ],
     ];
@@ -520,16 +520,16 @@ class Setting
     }
     public function get_email_template($tabs, $current_tab, $data)
     {
-
         $option = get_option("ndpv_" . $current_tab);
-
         if ($option) {
-            $data = $option;
-        } else {
+            return $option;
+        }
 
-            $keys = $tabs[$current_tab]["keys"];
-            $data["subject"] = call_user_func_array([ndpv(), "get_default"], [...$keys, "subject"]);
-            $data["msg"] = call_user_func_array([ndpv(), "get_default"], [...$keys, "msg"]);
+        $keys = $tabs[$current_tab]["keys"];
+        $fields = ["subject", "msg"];
+
+        foreach ($fields as $field) {
+            $data[$field] = call_user_func_array([ndpv(), "get_default"], [...$keys, $field]);
         }
 
         return $data;
