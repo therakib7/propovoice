@@ -8,6 +8,10 @@ import {
 	EmailInvoice,
 	EmailLead,
 	EmailTeam,
+	EmailTask,
+	EmailStaff,
+	EmailFile,
+	EmailProject,
 } from "./forms";
 const i18n = ndpv.i18n;
 
@@ -48,22 +52,22 @@ const Main = () => {
 		{
 			id: "project",
 			text: i18n.project,
-			view: "",
+			view: <EmailProject />,
 		},
 		{
 			id: "task",
 			text: i18n.task,
-			view: "",
+			view: <EmailTask />,
 		},
 		{
 			id: "staff",
 			text: i18n.staff,
-			view: "",
+			view: <EmailStaff />,
 		},
 		{
 			id: "file",
 			text: i18n.file,
-			view: "",
+			view: <EmailFile />,
 		},
 	];
 

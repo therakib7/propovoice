@@ -5,6 +5,7 @@ function TabBar({ tabs = [], currentTab = "", setCurrentTab = () => {} }) {
         <li
           key={index}
           className={"pv-tab " + (tab.id == currentTab ? "pv-active" : "")}
+          style={{ padding: "15px" }}
           onClick={(_e) => setCurrentTab(tab.id)}
         >
           {tab.text} {tab.id == "estimate"}

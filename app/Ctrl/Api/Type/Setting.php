@@ -9,7 +9,7 @@ use Ndpv\Helper\Fns;
 class Setting
 {
     use Singleton;
-    
+
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/settings" . ndpv()->plain_route(), [
@@ -209,177 +209,239 @@ class Setting
                     );
 
                     $data["subject"] = $subject;
-                    $data["msg"] = $msg; 
+                    $data["msg"] = $msg;
                 }
             }
 
-            if ($tab == "email_estimate_default") {
-                $option = get_option("ndpv_" . $tab);
 
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["subject"] = ndpv()->get_default(
+            $tabs = [
+                "email_estimate_default" => [
+                    "keys" => [
                         "email_template",
                         "estimate",
-                        "default",
-                        "subject"
-                    );
-                    $data["msg"] = ndpv()->get_default(
+                        "default"
+                    ]
+                ],
+                "email_estimate_reminder" => [
+                    "keys" => [
                         "email_template",
                         "estimate",
-                        "default",
-                        "msg"
-                    );
-                }
-            }
-
-            if ($tab == "email_estimate_reminder") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["subject"] = ndpv()->get_default(
-                        "email_template",
-                        "estimate",
-                        "reminder",
-                        "subject"
-                    );
-                    $data["msg"] = ndpv()->get_default(
-                        "email_template",
-                        "estimate",
-                        "reminder",
-                        "msg"
-                    );
-                }
-            }
-
-            if ($tab == "email_invoice_default") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["subject"] = ndpv()->get_default(
+                        "reminder"
+                    ]
+                ],
+                "email_invoice_default" => [
+                    "keys" => [
                         "email_template",
                         "invoice",
-                        "default",
-                        "subject"
-                    );
-                    $data["msg"] = ndpv()->get_default(
+                        "default"
+                    ]
+                ],
+                "email_invoice_reminder" => [
+                    "keys" => [
                         "email_template",
                         "invoice",
-                        "default",
-                        "msg"
-                    );
-                }
-            }
-
-            if ($tab == "email_invoice_reminder") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["subject"] = ndpv()->get_default(
+                        "reminder"
+                    ]
+                ],
+                "email_invoice_recurring" => [
+                    "keys" => [
                         "email_template",
                         "invoice",
-                        "reminder",
-                        "subject"
-                    );
-                    $data["msg"] = ndpv()->get_default(
-                        "email_template",
-                        "invoice",
-                        "reminder",
-                        "msg"
-                    );
-                }
-            }
-
-            if ($tab == "email_invoice_recurring") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["subject"] = ndpv()->get_default(
-                        "email_template",
-                        "invoice",
-                        "recurring",
-                        "subject"
-                    );
-                    $data["msg"] = ndpv()->get_default(
-                        "email_template",
-                        "invoice",
-                        "recurring",
-                        "msg"
-                    );
-                }
-            }
-
-            if ($tab == "email_client_portal_password") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["subject"] = ndpv()->get_default(
+                        "recurring"
+                    ]
+                ],
+                "email_client_portal_password" => [
+                    "keys" => [
                         "email_template",
                         "client_portal",
-                        "password",
-                        "subject"
-                    );
-                    $data["msg"] = ndpv()->get_default(
-                        "email_template",
-                        "client_portal",
-                        "password",
-                        "msg"
-                    );
-                }
-            }
-
-            if ($tab == "email_team_password") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["subject"] = ndpv()->get_default(
+                        "password"
+                    ]
+                ],
+                "email_team_password" => [
+                    "keys" => [
                         "email_template",
                         "team",
-                        "password",
-                        "subject"
-                    );
-                    $data["msg"] = ndpv()->get_default(
-                        "email_template",
-                        "team",
-                        "password",
-                        "msg"
-                    );
-                }
-            }
-
-            if ($tab == "email_notification_default") {
-                $option = get_option("ndpv_" . $tab);
-
-                if ($option) {
-                    $data = $option;
-                } else {
-                    $data["subject"] = ndpv()->get_default(
+                        "password"
+                    ]
+                ],
+                "email_notification_default" => [
+                    "keys" => [
                         "email_template",
                         "notification",
-                        "default",
-                        "subject"
-                    );
-                    $data["msg"] = ndpv()->get_default(
-                        "email_template",
-                        "notification",
-                        "default",
-                        "msg"
-                    );
-                }
-            }
+                        "default"
+                    ]
+                ],
+            ];
+
+            $data = $this->get_email_template($tabs, $tab, $data);
+
+            // if ($tab == "email_estimate_default") {
+            //     $option = get_option("ndpv_" . $tab);
+
+            //     if ($option) {
+            //         $data = $option;
+            //     } else {
+            //         $data["subject"] = ndpv()->get_default(
+            //             "email_template",
+            //             "estimate",
+            //             "default",
+            //             "subject"
+            //         );
+            //         $data["msg"] = ndpv()->get_default(
+            //             "email_template",
+            //             "estimate",
+            //             "default",
+            //             "msg"
+            //         );
+            //     }
+            // }
+
+            // if ($tab == "email_estimate_reminder") {
+            //     $option = get_option("ndpv_" . $tab);
+
+            //     if ($option) {
+            //         $data = $option;
+            //     } else {
+            //         $data["subject"] = ndpv()->get_default(
+            //             "email_template",
+            //             "estimate",
+            //             "reminder",
+            //             "subject"
+            //         );
+            //         $data["msg"] = ndpv()->get_default(
+            //             "email_template",
+            //             "estimate",
+            //             "reminder",
+            //             "msg"
+            //         );
+            //     }
+            // }
+
+            // if ($tab == "email_invoice_default") {
+            //     $option = get_option("ndpv_" . $tab);
+
+            //     if ($option) {
+            //         $data = $option;
+            //     } else {
+            //         $data["subject"] = ndpv()->get_default(
+            //             "email_template",
+            //             "invoice",
+            //             "default",
+            //             "subject"
+            //         );
+            //         $data["msg"] = ndpv()->get_default(
+            //             "email_template",
+            //             "invoice",
+            //             "default",
+            //             "msg"
+            //         );
+            //     }
+            // }
+
+            // if ($tab == "email_invoice_reminder") {
+            //     $option = get_option("ndpv_" . $tab);
+
+            //     if ($option) {
+            //         $data = $option;
+            //     } else {
+            //         $data["subject"] = ndpv()->get_default(
+            //             "email_template",
+            //             "invoice",
+            //             "reminder",
+            //             "subject"
+            //         );
+            //         $data["msg"] = ndpv()->get_default(
+            //             "email_template",
+            //             "invoice",
+            //             "reminder",
+            //             "msg"
+            //         );
+            //     }
+            // }
+
+            // if ($tab == "email_invoice_recurring") {
+            //     $option = get_option("ndpv_" . $tab);
+
+            //     if ($option) {
+            //         $data = $option;
+            //     } else {
+            //         $data["subject"] = ndpv()->get_default(
+            //             "email_template",
+            //             "invoice",
+            //             "recurring",
+            //             "subject"
+            //         );
+            //         $data["msg"] = ndpv()->get_default(
+            //             "email_template",
+            //             "invoice",
+            //             "recurring",
+            //             "msg"
+            //         );
+            //     }
+            // }
+
+            // if ($tab == "email_client_portal_password") {
+            //     $option = get_option("ndpv_" . $tab);
+
+            //     if ($option) {
+            //         $data = $option;
+            //     } else {
+            //         $data["subject"] = ndpv()->get_default(
+            //             "email_template",
+            //             "client_portal",
+            //             "password",
+            //             "subject"
+            //         );
+            //         $data["msg"] = ndpv()->get_default(
+            //             "email_template",
+            //             "client_portal",
+            //             "password",
+            //             "msg"
+            //         );
+            //     }
+            // }
+
+            // if ($tab == "email_team_password") {
+            //     $option = get_option("ndpv_" . $tab);
+
+            //     if ($option) {
+            //         $data = $option;
+            //     } else {
+            //         $data["subject"] = ndpv()->get_default(
+            //             "email_template",
+            //             "team",
+            //             "password",
+            //             "subject"
+            //         );
+            //         $data["msg"] = ndpv()->get_default(
+            //             "email_template",
+            //             "team",
+            //             "password",
+            //             "msg"
+            //         );
+            //     }
+            // }
+
+            // if ($tab == "email_notification_default") {
+            //     $option = get_option("ndpv_" . $tab);
+
+            //     if ($option) {
+            //         $data = $option;
+            //     } else {
+            //         $data["subject"] = ndpv()->get_default(
+            //             "email_template",
+            //             "notification",
+            //             "default",
+            //             "subject"
+            //         );
+            //         $data["msg"] = ndpv()->get_default(
+            //             "email_template",
+            //             "notification",
+            //             "default",
+            //             "msg"
+            //         );
+            //     }
+            // }
 
             if ($tab == "estvoice_tax") {
                 $option = get_option("ndpv_" . $tab);
@@ -447,13 +509,28 @@ class Setting
                             "custom" => false,
                             "name" => '',
                             "url" => ''
-                        ], */
-                    ];
+                        ], */];
                 }
             }
 
             wp_send_json_success($data);
         }
+    }
+    public function get_email_template($tabs, $current_tab, $data)
+    {
+
+        $option = get_option("ndpv_" . $current_tab);
+
+        if ($option) {
+            $data = $option;
+        } else {
+
+            $keys = $tabs[$current_tab]["keys"];
+            $data["subject"] = call_user_func_array([ndpv(), "get_default"], [...$keys, "subject"]);
+            $data["msg"] = call_user_func_array([ndpv(), "get_default"], [...$keys, "msg"]);
+        }
+
+        return $data;
     }
 
     public function create($req)
@@ -581,8 +658,8 @@ class Setting
                 $data["msg"] = isset($param["msg"])
                     ? sanitize_textarea_field($param["msg"])
                     : '';
-                $option = update_option("ndpv_" . $tab, $data);         
-                
+                $option = update_option("ndpv_" . $tab, $data);
+
                 $business = new Business;
                 $business_info = $business->info();
                 $name = $business_info['name'];
@@ -592,7 +669,7 @@ class Setting
 
                 $send_mail = wp_mail($data["to"], $data["subject"], nl2br($data["msg"]), $headers, []);
 
-                if ($send_mail) {  
+                if ($send_mail) {
                     wp_send_json_success();
                 } else {
                     wp_send_json_error(["Something wrong: Email not sent"]);
@@ -687,20 +764,20 @@ class Setting
                     : '';
                 $data["new_password"] = isset($param["new_password"])
                     ? sanitize_textarea_field($param["new_password"])
-                    : ''; 
+                    : '';
                 $data["confirm_password"] = isset($param["confirm_password"])
                     ? sanitize_textarea_field($param["confirm_password"])
-                    : ''; 
+                    : '';
 
-                $user = get_user_by( 'id', $user_id );
-                if ( !wp_check_password( $data["current_password"], $user->data->user_pass, $user_id ) ) {
+                $user = get_user_by('id', $user_id);
+                if (!wp_check_password($data["current_password"], $user->data->user_pass, $user_id)) {
                     $reg_errors->add(
                         "field",
                         esc_html__("Current password not matched!!!", "propovoice")
                     );
                 }
 
-                if ( $data["new_password"] != $data["confirm_password"] ) {
+                if ($data["new_password"] != $data["confirm_password"]) {
                     $reg_errors->add(
                         "field",
                         esc_html__("Confirm password not matched!!!", "propovoice")
@@ -710,13 +787,12 @@ class Setting
                 if ($reg_errors->get_error_messages()) {
                     wp_send_json_error($reg_errors->get_error_messages());
                 } else {
-                    wp_set_password( $data["new_password"], $user_id );
+                    wp_set_password($data["new_password"], $user_id);
 
                     // Log-in again.
                     wp_set_auth_cookie($user_id);
                     wp_set_current_user($user_id);
-                }                
-                
+                }
             }
 
             if ($tab == "estvoice_tax") {
