@@ -1,6 +1,8 @@
 import React, { lazy, useState } from "react";
 const Modal = lazy(() => import('./Modal'))
 
+import SendForm from "./SendForm";
+
 const titleStyle = {
   color: " #2D3748",
   fontFamily: "Inter",
@@ -30,8 +32,10 @@ export default function Header(props) {
   return (
     <div style={headerStyle}>
 
-      <Modal title="Awesome title" setVisibility={setModalVisiblity} visibility={modalVisiblity}>
-        hello world
+      <Modal title="New Email" setVisibility={setModalVisiblity} visibility={modalVisiblity}>
+        <div>
+          <SendForm setVisibility={setModalVisiblity} />
+        </div>
       </Modal>
 
       <div style={titleStyle}>Sent Mail</div>
