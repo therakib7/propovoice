@@ -10,63 +10,65 @@ class Setting
 {
     use Singleton;
 
-    public $system_email_tabs = [
-        "email_estimate_default" => [
-            "keys" => [
-                "email_template",
-                "estimate",
-                "default"
-            ]
-        ],
-        "email_estimate_reminder" => [
-            "keys" => [
-                "email_template",
-                "estimate",
-                "reminder"
-            ]
-        ],
-        "email_invoice_default" => [
-            "keys" => [
-                "email_template",
-                "invoice",
-                "default"
-            ]
-        ],
-        "email_invoice_reminder" => [
-            "keys" => [
-                "email_template",
-                "invoice",
-                "reminder"
-            ]
-        ],
-        "email_invoice_recurring" => [
-            "keys" => [
-                "email_template",
-                "invoice",
-                "recurring"
-            ]
-        ],
-        "email_client_portal_password" => [
-            "keys" => [
-                "email_template",
-                "client_portal",
-                "password"
-            ]
-        ],
-        "email_team_password" => [
-            "keys" => [
-                "email_template",
-                "team",
-                "password"
-            ]
-        ],
-        "email_deal_add_notif" => [
-            "keys" => [
-                "email_template",
-                "team",
-                "password"
-            ]
-        ],
+    public $tabs = [
+        "system_email_template" => [
+            "email_estimate_default" => [
+                "keys" => [
+                    "email_template",
+                    "estimate",
+                    "default"
+                ]
+            ],
+            "email_estimate_reminder" => [
+                "keys" => [
+                    "email_template",
+                    "estimate",
+                    "reminder"
+                ]
+            ],
+            "email_invoice_default" => [
+                "keys" => [
+                    "email_template",
+                    "invoice",
+                    "default"
+                ]
+            ],
+            "email_invoice_reminder" => [
+                "keys" => [
+                    "email_template",
+                    "invoice",
+                    "reminder"
+                ]
+            ],
+            "email_invoice_recurring" => [
+                "keys" => [
+                    "email_template",
+                    "invoice",
+                    "recurring"
+                ]
+            ],
+            "email_client_portal_password" => [
+                "keys" => [
+                    "email_template",
+                    "client_portal",
+                    "password"
+                ]
+            ],
+            "email_team_password" => [
+                "keys" => [
+                    "email_template",
+                    "team",
+                    "password"
+                ]
+            ],
+            "email_deal_add_notif" => [
+                "keys" => [
+                    "email_template",
+                    "team",
+                    "password"
+                ]
+            ],
+        ]
     ];
 
     public function register_routes()
@@ -272,8 +274,8 @@ class Setting
                 }
             }
 
-            if (array_key_exists($tab, $this->system_email_tabs)) {
-                $data = $this->get_email_template($this->system_email_tabs, $tab, $data);
+            if (array_key_exists($tab, $this->tabs["system_email_template"])) {
+                $data = $this->get_email_template($this->tabs["system_email_template"], $tab, $data);
             }
 
             // if ($tab == "email_estimate_default") {
@@ -677,7 +679,7 @@ class Setting
                 }
             }
 
-            if (array_key_exists($tab, $this->system_email_tabs)) {
+            if (array_key_exists($tab, $this->tabs["system_email_template"])) {
                 $this->create_email_template($tab, $param, $data);
             }
 
