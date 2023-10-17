@@ -1,57 +1,87 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
-import WithApi from 'hoc/Api';
+import React, { useState, lazy } from "react";
 
-/* import Default from './sub/Default';
-import Reminder from './sub/Reminder'; */
-import ProLabel from 'block/pro-alert/label';
-const EmailEstimate = lazy(() => import('./estimate'));
-const EmailInvoice = lazy(() => import('./invoice'));
-const EmailCredential = lazy(() => import('./credential'));
-
+import TabBar from "./tab-bar";
+import {
+	EmailClientPortal,
+	EmailDeal,
+	EmailEstimate,
+	EmailInvoice,
+	EmailLead,
+	EmailTeam,
+	EmailTask,
+	EmailStaff,
+	EmailFile,
+	EmailProject,
+} from "./forms";
 const i18n = ndpv.i18n;
 
-const Main = (props) => {
-	const [tabs, setTabs] = useState(
-		[
-			{
-				id: 'team',
-				text: i18n.team
-			},
-			{
-				id: 'client_portal',
-				text: 'Client Portal'
-			},
-			{
-				id: 'estimate',
-				text: i18n.est
-			},
-			{
-				id: 'invoice',
-				text: i18n.inv
-			}
-		]
-	);
-	const [currentTab, setCurrentTab] = useState('team');
+const Main = () => {
+	const [currentTab, setCurrentTab] = useState("team");
+
+	const tabs = [
+		{
+			id: "team",
+			text: i18n.team,
+			view: <EmailTeam />,
+		},
+		{
+			id: "client_portal",
+			text: "Client Portal",
+			view: <EmailClientPortal />,
+		},
+		{
+			id: "lead",
+			text: i18n.lead,
+			view: <EmailLead />,
+		},
+		{
+			id: "deal",
+			text: i18n.deal,
+			view: <EmailDeal />,
+		},
+		{
+			id: "estimate",
+			text: i18n.est,
+			view: <EmailEstimate />,
+		},
+		{
+			id: "invoice",
+			text: i18n.inv,
+			view: <EmailInvoice />,
+		},
+		{
+			id: "project",
+			text: i18n.project,
+			view: <EmailProject />,
+		},
+		{
+			id: "task",
+			text: i18n.task,
+			view: <EmailTask />,
+		},
+		{
+			id: "staff",
+			text: i18n.staff,
+			view: <EmailStaff />,
+		},
+		{
+			id: "file",
+			text: i18n.file,
+			view: <EmailFile />,
+		},
+	];
+
+	const currentTabObj = tabs.find((tab) => tab.id === currentTab);
 
 	return (
 		<>
-			<ul className='pv-horizontal-tab'>
-				{tabs.map((tab, index) => (
-					<li
-						key={index}
-						className={'pv-tab ' + (tab.id == currentTab ? 'pv-active' : '')}
-						onClick={(e) => setCurrentTab(tab.id)}
-					>
-						{tab.text} {tab.id == 'estimate' && wage.length > 0 && <ProLabel />}
-					</li>
-				))}
-			</ul>
-
-			{currentTab == 'estimate' && <EmailEstimate {...props} />}
-			{currentTab == 'invoice' && <EmailInvoice {...props} />}
-			{currentTab == 'client_portal' && <EmailCredential type='client_portal' {...props} />}
-			{currentTab == 'team' && <EmailCredential type='team' {...props} />}
+			<TabBar
+				tabs={tabs}
+				currentTab={currentTab}
+				setCurrentTab={setCurrentTab}
+			/>
+			{currentTabObj["view"]}
 		</>
-	)
-}
-export default WithApi(Main) 
+	);
+};
+export default Main;

@@ -94,7 +94,7 @@ class Invoice extends Component {
       //Filter all falsy values ( "", 0, false, null, undefined )
       searchArgs = Object.entries(searchArgs).reduce(
         (a, [k, v]) => (v ? ((a[k] = v), a) : a),
-        {}
+        {},
       );
       args = { ...args, ...searchArgs };
     }
@@ -209,12 +209,83 @@ class Invoice extends Component {
       },
       () => {
         this.getLists();
-      }
+      },
     );
   };
 
   newInvoie = () => {
     this.props.routeChange();
+  };
+
+  handleBulkAction = async (type) => {
+    let ids = this.state.checkedBoxes;
+
+    // Action for sent, paid, accept, decline
+    await this.applyUpdateAction(ids, type);
+
+    // Action for copy to invoice
+    await this.copyToInvoiceAction(ids, type);
+
+    this.setState({ checkedBoxes: [] });
+    this.getLists();
+  };
+
+  applyUpdateAction = async (ids, type) => {
+    //Exclude copy to invoice
+    if (type == "copy-to-inv") {
+      return;
+    }
+
+    const actionIds = this.actionIdsToUpdate(ids, type);
+    ids = actionIds.toString();
+
+    if (!ids) {
+      return;
+    }
+
+    const resp = await ApiAction.update(ids, { type });
+    if (resp.data.success) {
+      // console.log(`${type} action successfull for id - ${id}`);
+    } else {
+      resp.data.data.forEach(function (value) {
+        toast.error(value);
+      });
+    }
+  };
+
+  actionIdsToUpdate = (ids, type) => {
+    return ids.filter((id) => {
+      const invoice = this.state.invoices.find((inv) => inv.id === id);
+
+      // Restrict sent while an invoice status is paid
+      if (type === "sent" && invoice.status === "paid") {
+        toast.error(`Can not be sent ${invoice.num} after paid!!!`);
+        return false;
+      }
+      return true;
+    });
+  };
+
+  copyToInvoiceAction = async (ids, type) => {
+    const id = ids.toString();
+
+    // Check for type is copy-to-inv
+    if (type !== "copy-to-inv" || !id) {
+      return;
+    }
+
+    try {
+      const resp = await ApiAction.create({ id, type });
+      if (resp.data.success) {
+        toast.success("Copy to invoice action successful");
+      } else {
+        resp.data.data.forEach((value) => {
+          toast.error(value);
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   handleAction = (type, id) => {
@@ -234,19 +305,19 @@ class Invoice extends Component {
         if (resp.data.success) {
           if (type == "sent") {
             toast.success(
-              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.sent
+              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.sent,
             );
           } else if (type == "paid") {
             toast.success(
-              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.paid
+              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.paid,
             );
           } else if (type == "accept") {
             toast.success(
-              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.acptd
+              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.acptd,
             );
           } else if (type == "decline") {
             toast.success(
-              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.dec
+              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.dec,
             );
           }
           this.getLists();
@@ -264,7 +335,7 @@ class Invoice extends Component {
             this.getLists();
           } else if (type == "copy-to-inv") {
             toast.success(
-              i18n.scf + " " + i18n.conV + " " + i18n.to + " " + i18n.inv
+              i18n.scf + " " + i18n.copy + " " + i18n.to + " " + i18n.inv,
             );
           }
         } else {
@@ -276,25 +347,73 @@ class Invoice extends Component {
     }
   };
 
+  actions = {
+    common: [
+      {
+        slug: "delete",
+        type: "selected",
+        label: ndpv.i18n.del,
+        handleClick: this.deleteEntry,
+      },
+    ],
+    estimate: [
+      {
+        slug: "mark_accepted",
+        type: "accept",
+        label: ndpv.i18n.mark + " " + ndpv.i18n.acptd,
+        handleClick: this.handleBulkAction,
+      },
+      {
+        slug: "mark_declined",
+        type: "decline",
+        label: ndpv.i18n.mark + " " + ndpv.i18n.dec,
+        handleClick: this.handleBulkAction,
+      },
+      {
+        slug: "copy_to_invoicce",
+        type: "copy-to-inv",
+        label: ndpv.i18n.copy + " " + ndpv.i18n.to + " " + ndpv.i18n.inv,
+        handleClick: this.handleBulkAction,
+      },
+    ],
+    invoice: [
+      {
+        slug: "mark_sent",
+        type: "sent",
+        label: ndpv.i18n.mark + " " + ndpv.i18n.sent,
+        handleClick: this.handleBulkAction,
+      },
+      {
+        slug: "mark_paid",
+        type: "paid",
+        label: ndpv.i18n.mark + " " + ndpv.i18n.paid,
+        handleClick: this.handleBulkAction,
+      },
+    ],
+  };
+
   render() {
     const { prefix, title, invoices, checkedBoxes, searchVal } = this.state;
     const { total, paid, unpaid, draft, sent } = this.state.summary;
     const caps = ndpv.caps;
     return (
       <div className="ndpv-cpnt">
-        {!this.props.module_id && !this.props.dashboard && <Breadcrumb title={title} />}
+        {!this.props.module_id && !this.props.dashboard && (
+          <Breadcrumb title={title} />
+        )}
 
-        {!this.props.dashboard && <div className="row">
-          <div className="col">
-            <h2 className="pv-page-title">{title}</h2>
+        {!this.props.dashboard && (
+          <div className="row">
+            <div className="col">
+              <h2 className="pv-page-title">{title}</h2>
+            </div>
+            <div className="col">
+              {!caps.includes("ndpv_client_role") && (
+                <AddNew title={title} openForm={() => this.newInvoie()} />
+              )}
+            </div>
           </div>
-          <div className="col">
-            {!caps.includes("ndpv_client_role") && <AddNew
-              title={title}
-              openForm={() => this.newInvoie()}
-            />}
-          </div>
-        </div>}
+        )}
 
         {!this.props.module_id && !this.props.dashboard && false && (
           <div className="pv-buttons-group pv-mb-20">
@@ -385,9 +504,10 @@ class Invoice extends Component {
 
         {checkedBoxes.length > 0 && (
           <Action
+            path={this.state.path}
             length={checkedBoxes.length}
             uncheckAll={() => this.setState({ checkedBoxes: [] })}
-            deleteEntry={this.deleteEntry}
+            actions={this.actions}
           />
         )}
 
@@ -406,7 +526,11 @@ class Invoice extends Component {
             prefix={prefix}
             reload={this.getLists}
             tableData={invoices}
-            checkedBoxes={{ data: checkedBoxes, handle: this.handleCheckbox }}
+            checkedBoxes={{
+              data: checkedBoxes,
+              handle: this.handleCheckbox,
+              totalRow: this.state.invoices.length,
+            }}
             deleteEntry={this.deleteEntry}
             invoice_id={this.props.invoice_id}
             path={this.state.path}
@@ -463,7 +587,6 @@ function InvoiceWrap(props) {
         client_mod={client_mod}
         dashboard={props.dashboard}
         key={path}
-
       />
     </>
   );
