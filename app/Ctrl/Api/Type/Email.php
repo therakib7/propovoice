@@ -188,6 +188,7 @@ class Email
         }
 
         $param["post_id"] = $invoice_id;
+        $param["id"] = $invoice_id;
         if ($feedback_type == "accept") {
             do_action("ndpvp/webhook", "est_accept", $param);
         }

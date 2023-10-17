@@ -12,7 +12,7 @@ export const FormContext = createContext({});
 
 export function FormWrapper({
   submitHandler,
-  submitPreloader,
+  submitPreloader = false,
   close,
   submitLabel,
   children,
