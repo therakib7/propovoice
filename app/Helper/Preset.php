@@ -6,6 +6,76 @@ class Preset
 {
     public function default()
     {
+        $lead = ['lead' => [
+                        'add_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+            'assign_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+                        'level_change_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+                        'to_deal_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ]
+        ]
+        ];
+        $deal = [
+                'deal' => [
+                        'add_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+                        'assign_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+                        'stage_change_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ]
+                ]
+        ];
         $estimate = ['estimate' => [
             'default' => [
                 'subject' => '{org_name} sent you a Estimate #{id}',
@@ -38,16 +108,40 @@ Regards
 {org_name}'
             ],
             'add_notif' => [
-                'subject' => '{org_name} sent you a reminder of Estimate #{id}',
-                'msg' => 'Hi <b>{client_name}</b>,
-Please find attached Estimate #{id}. Due Date was {due_date}.
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
 
-Estimate No: #{id}
-Estimate Date: {date}
-Due Date: {due_date}
-Amount: {amount}
+Regards
+{org_name}'
+            ],
 
-Thank you for your business.
+            'edit_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+
+            'accept_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+
+            'reject_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
 
 Regards
 {org_name}'
@@ -99,6 +193,42 @@ Thank you for your business.
 
 Regards
 {org_name}'
+            ],
+            'add_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+            'edit_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+            'paid_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+            'paid_req_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
             ]
         ]];
 
@@ -138,8 +268,26 @@ Regards
             ]
         ]];
 
-        $notification = ['notification' => [
-            'default' => [
+        $task = ['task' => [
+                'add_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+                'assign_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ],
+                'status_change_notif' => [
                 'subject' => '{org_name} Notification: {notification}',
                 'msg' => 'Hi <b>{name}</b>,
 You have a notification
@@ -149,6 +297,43 @@ Regards
 {org_name}'
             ]
         ]];
+        $staff = ['staff' => [
+                'add_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ]
+        ]];
+        $project = [
+                'project' => [
+                        'discussion_add_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ]
+                ]
+        ];
+        $file = [
+                'file' => [
+                        'add_notif' => [
+                'subject' => '{org_name} Notification: {notification}',
+                'msg' => 'Hi <b>{name}</b>,
+You have a notification
+{notification_link}
+
+Regards
+{org_name}'
+            ]
+                ]
+        ];
 
         $smtp = ['smtp' => [
             'test' => [
@@ -163,11 +348,16 @@ Regards
 
         return [
             'email_template' => [
+                ...$lead,
+                ...$deal,
                 ...$estimate,
                 ...$invoice,
                 ...$client_portal,
                 ...$team,
-                ...$notification,
+                ...$task,
+                ...$staff,
+                ...$project,
+                ...$file,
                 ...$smtp,
             ]
         ];

@@ -3,22 +3,22 @@ const Main = () => {
   return (
     <>
       <EmailTemplateForm
-        tab="task_add"
+        tab="task_add_notif"
         title="Add Task Notification"
-        subVars=""
-        msgVars=""
+        subVars="{org_name}, {notification}"
+        msgVars="{org_name}, {name}, {notification_link}"
       />
       <EmailTemplateForm
-        tab="task_assign"
+        tab="task_assign_notif"
         title="Assign Task Notification"
-        subVars=""
-        msgVars=""
+        subVars="{org_name}, {notification}"
+        msgVars="{org_name}, {name}, {notification_link}"
       />
       <EmailTemplateForm
-        tab="task_status_change"
+        tab="task_status_change_notif"
         title="Status Change Notification"
-        subVars=""
-        msgVars=""
+        subVars="{org_name}, {notification}"
+        msgVars="{org_name}, {name}, {notification_link}"
       />
     </>
   );

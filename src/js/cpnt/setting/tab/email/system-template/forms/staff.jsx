@@ -3,10 +3,10 @@ const Main = () => {
   return (
     <>
       <EmailTemplateForm
-        tab="staff_add"
+        tab="staff_add_notif"
         title="Add Staff Notification"
-        subVars=""
-        msgVars=""
+        subVars="{org_name}, {notification}"
+        msgVars="{org_name}, {name}, {notification_link}"
       />
     </>
   );

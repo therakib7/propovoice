@@ -26,21 +26,29 @@ const Main = (props) => {
 			<EmailTemplateForm
 				tab="invoice_add_notif"
 				title="Add Notification Template"
+				subVars="{org_name}, {notification}"
+				msgVars="{org_name}, {name}, {notification_link}"
 				isPro={true}
 			/>
 			<EmailTemplateForm
 				tab="invoice_edit_notif"
 				title="Edit Notification Template"
+				subVars="{org_name}, {notification}"
+				msgVars="{org_name}, {name}, {notification_link}"
 				isPro={true}
 			/>
 			<EmailTemplateForm
 				tab="invoice_paid_notif"
 				title="Paid Notification Template"
+				subVars="{org_name}, {notification}"
+				msgVars="{org_name}, {name}, {notification_link}"
 				isPro={true}
 			/>
 			<EmailTemplateForm
 				tab="invoice_paid_req_notif"
 				title="Paid Request Notification Template"
+				subVars="{org_name}, {notification}"
+				msgVars="{org_name}, {name}, {notification_link}"
 				isPro={true}
 			/>
 		</>

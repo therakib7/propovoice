@@ -12,6 +12,55 @@ class Setting
 
     public $tabs = [
         "system_email_template" => [
+            "email_lead_add_notif" => [
+                "keys" => [
+                    "email_template",
+                    "lead",
+                    "add_notif"
+                ]
+            ],
+            "email_lead_assign_notif" => [
+                "keys" => [
+                    "email_template",
+                    "lead",
+                    "assign_notif"
+                ]
+            ],
+            "email_lead_level_change_notif" => [
+                "keys" => [
+                    "email_template",
+                    "lead",
+                    "level_change_notif"
+                ]
+            ],
+            "email_lead_to_deal_notif" => [
+                "keys" => [
+                    "email_template",
+                    "lead",
+                    "to_deal_notif"
+                ]
+            ],
+            "email_deal_add_notif" => [
+                "keys" => [
+                    "email_template",
+                    "deal",
+                    "add_notif"
+                ]
+            ],
+            "email_deal_assign_notif" => [
+                "keys" => [
+                    "email_template",
+                    "deal",
+                    "assign_notif"
+                ]
+            ],
+            "email_deal_stage_change_notif" => [
+                "keys" => [
+                    "email_template",
+                    "deal",
+                    "stage_change_notif"
+                ]
+            ],
             "email_estimate_default" => [
                 "keys" => [
                     "email_template",
@@ -24,6 +73,34 @@ class Setting
                     "email_template",
                     "estimate",
                     "reminder"
+                ]
+            ],
+            "email_estimate_add_notif" => [
+                "keys" => [
+                    "email_template",
+                    "estimate",
+                    "add_notif"
+                ]
+            ],
+            "email_estimate_edit_notif" => [
+                "keys" => [
+                    "email_template",
+                    "estimate",
+                    "edit_notif"
+                ]
+            ],
+            "email_estimate_accept_notif" => [
+                "keys" => [
+                    "email_template",
+                    "estimate",
+                    "accept_notif"
+                ]
+            ],
+            "email_estimate_reject_notif" => [
+                "keys" => [
+                    "email_template",
+                    "estimate",
+                    "reject_notif"
                 ]
             ],
             "email_invoice_default" => [
@@ -47,6 +124,34 @@ class Setting
                     "recurring"
                 ]
             ],
+            "email_invoice_add_notif" => [
+                "keys" => [
+                    "email_template",
+                    "invoice",
+                    "add_notif"
+                ]
+            ],
+            "email_invoice_edit_notif" => [
+                "keys" => [
+                    "email_template",
+                    "invoice",
+                    "edit_notif"
+                ]
+            ],
+            "email_invoice_paid_notif" => [
+                "keys" => [
+                    "email_template",
+                    "invoice",
+                    "paid_notif"
+                ]
+            ],
+            "email_invoice_paid_req_notif" => [
+                "keys" => [
+                    "email_template",
+                    "invoice",
+                    "paid_req_notif"
+                ]
+            ],
             "email_client_portal_password" => [
                 "keys" => [
                     "email_template",
@@ -61,11 +166,46 @@ class Setting
                     "password"
                 ]
             ],
-            "email_deal_add_notif" => [
+            "email_task_add_notif" => [
                 "keys" => [
                     "email_template",
-                    "team",
-                    "password"
+                    "task",
+                    "add_notif"
+                ]
+            ],
+            "email_task_assign_notif" => [
+                "keys" => [
+                    "email_template",
+                    "task",
+                    "assign_notif"
+                ]
+            ],
+            "email_task_status_change_notif" => [
+                "keys" => [
+                    "email_template",
+                    "task",
+                    "status_change_notif"
+                ]
+            ],
+            "email_staff_add_notif" => [
+                "keys" => [
+                    "email_template",
+                    "staff",
+                    "add_notif"
+                ]
+            ],
+            "email_project_discussion_add_notif" => [
+                "keys" => [
+                    "email_template",
+                    "project",
+                    "discussion_add_notif"
+                ]
+            ],
+            "email_file_add_notif" => [
+                "keys" => [
+                    "email_template",
+                    "file",
+                    "add_notif"
                 ]
             ],
         ]
