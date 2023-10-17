@@ -35,6 +35,7 @@ class PaymentProcess
 
         $invoice_id = isset($param["invoice_id"]) ? $param["invoice_id"] : "";
         $param["post_id"] = $invoice_id;
+        $param["id"] = $invoice_id;
         $payment_method = isset($param["payment_method"])
             ? $param["payment_method"]
             : "";
