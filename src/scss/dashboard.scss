@@ -385,10 +385,13 @@ input:-webkit-autofill:active {
     }
 
     li img {
-        max-width: 300px;
+        // max-width: 300px;
         border-radius: 10px;
         width: auto;
         height: auto;
+    }
+    .__react_modal_image__modal_container {
+        z-index: 99999;
     }
 }
 

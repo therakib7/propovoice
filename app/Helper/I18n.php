@@ -146,6 +146,12 @@ class I18n
             "billTo" => esc_html__("Bill To", "propovoice"),
             "info" => esc_html__("Info", "propovoice"),
             "no" => esc_html__("No", "propovoice"),
+            //discussion
+            "comment" => esc_html__("Comment", "propovoice"),
+            "send_team" => esc_html__("Send to Team", "propovoice"),
+            "reply_client" => esc_html__("Reply to Client", "propovoice"),
+            "write_msg" => esc_html__("Write your message", "propovoice"),
+            "write_comment" => esc_html__("Write your comment", "propovoice"),
             //table
             "status" => esc_html__("Status", "propovoice"),
             "created_at" => esc_html__("Created At", "propovoice"),
