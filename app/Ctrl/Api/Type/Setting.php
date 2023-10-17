@@ -9,7 +9,6 @@ use Ndpv\Helper\Fns;
 class Setting
 {
     use Singleton;
-
     public $tabs = [
         "system_email_template" => [
             "email_lead_add_notif" => [
@@ -75,28 +74,28 @@ class Setting
                     "reminder"
                 ]
             ],
-            "email_estimate_add_notif" => [
+            "email_est_add_notif" => [
                 "keys" => [
                     "email_template",
                     "estimate",
                     "add_notif"
                 ]
             ],
-            "email_estimate_edit_notif" => [
+            "email_est_edit_notif" => [
                 "keys" => [
                     "email_template",
                     "estimate",
                     "edit_notif"
                 ]
             ],
-            "email_estimate_accept_notif" => [
+            "email_est_accept_notif" => [
                 "keys" => [
                     "email_template",
                     "estimate",
                     "accept_notif"
                 ]
             ],
-            "email_estimate_reject_notif" => [
+            "email_est_reject_notif" => [
                 "keys" => [
                     "email_template",
                     "estimate",
@@ -124,28 +123,28 @@ class Setting
                     "recurring"
                 ]
             ],
-            "email_invoice_add_notif" => [
+            "email_inv_add_notif" => [
                 "keys" => [
                     "email_template",
                     "invoice",
                     "add_notif"
                 ]
             ],
-            "email_invoice_edit_notif" => [
+            "email_inv_edit_notif" => [
                 "keys" => [
                     "email_template",
                     "invoice",
                     "edit_notif"
                 ]
             ],
-            "email_invoice_paid_notif" => [
+            "email_inv_paid_notif" => [
                 "keys" => [
                     "email_template",
                     "invoice",
                     "paid_notif"
                 ]
             ],
-            "email_invoice_paid_req_notif" => [
+            "email_inv_paid_req_notif" => [
                 "keys" => [
                     "email_template",
                     "invoice",
@@ -414,177 +413,10 @@ class Setting
                 }
             }
 
+            // Get email template
             if (array_key_exists($tab, $this->tabs["system_email_template"])) {
                 $data = $this->get_email_template($this->tabs["system_email_template"], $tab, $data);
             }
-
-            // if ($tab == "email_estimate_default") {
-            //     $option = get_option("ndpv_" . $tab);
-
-            //     if ($option) {
-            //         $data = $option;
-            //     } else {
-            //         $data["subject"] = ndpv()->get_default(
-            //             "email_template",
-            //             "estimate",
-            //             "default",
-            //             "subject"
-            //         );
-            //         $data["msg"] = ndpv()->get_default(
-            //             "email_template",
-            //             "estimate",
-            //             "default",
-            //             "msg"
-            //         );
-            //     }
-            // }
-
-            // if ($tab == "email_estimate_reminder") {
-            //     $option = get_option("ndpv_" . $tab);
-
-            //     if ($option) {
-            //         $data = $option;
-            //     } else {
-            //         $data["subject"] = ndpv()->get_default(
-            //             "email_template",
-            //             "estimate",
-            //             "reminder",
-            //             "subject"
-            //         );
-            //         $data["msg"] = ndpv()->get_default(
-            //             "email_template",
-            //             "estimate",
-            //             "reminder",
-            //             "msg"
-            //         );
-            //     }
-            // }
-
-            // if ($tab == "email_invoice_default") {
-            //     $option = get_option("ndpv_" . $tab);
-
-            //     if ($option) {
-            //         $data = $option;
-            //     } else {
-            //         $data["subject"] = ndpv()->get_default(
-            //             "email_template",
-            //             "invoice",
-            //             "default",
-            //             "subject"
-            //         );
-            //         $data["msg"] = ndpv()->get_default(
-            //             "email_template",
-            //             "invoice",
-            //             "default",
-            //             "msg"
-            //         );
-            //     }
-            // }
-
-            // if ($tab == "email_invoice_reminder") {
-            //     $option = get_option("ndpv_" . $tab);
-
-            //     if ($option) {
-            //         $data = $option;
-            //     } else {
-            //         $data["subject"] = ndpv()->get_default(
-            //             "email_template",
-            //             "invoice",
-            //             "reminder",
-            //             "subject"
-            //         );
-            //         $data["msg"] = ndpv()->get_default(
-            //             "email_template",
-            //             "invoice",
-            //             "reminder",
-            //             "msg"
-            //         );
-            //     }
-            // }
-
-            // if ($tab == "email_invoice_recurring") {
-            //     $option = get_option("ndpv_" . $tab);
-
-            //     if ($option) {
-            //         $data = $option;
-            //     } else {
-            //         $data["subject"] = ndpv()->get_default(
-            //             "email_template",
-            //             "invoice",
-            //             "recurring",
-            //             "subject"
-            //         );
-            //         $data["msg"] = ndpv()->get_default(
-            //             "email_template",
-            //             "invoice",
-            //             "recurring",
-            //             "msg"
-            //         );
-            //     }
-            // }
-
-            // if ($tab == "email_client_portal_password") {
-            //     $option = get_option("ndpv_" . $tab);
-
-            //     if ($option) {
-            //         $data = $option;
-            //     } else {
-            //         $data["subject"] = ndpv()->get_default(
-            //             "email_template",
-            //             "client_portal",
-            //             "password",
-            //             "subject"
-            //         );
-            //         $data["msg"] = ndpv()->get_default(
-            //             "email_template",
-            //             "client_portal",
-            //             "password",
-            //             "msg"
-            //         );
-            //     }
-            // }
-
-            // if ($tab == "email_team_password") {
-            //     $option = get_option("ndpv_" . $tab);
-
-            //     if ($option) {
-            //         $data = $option;
-            //     } else {
-            //         $data["subject"] = ndpv()->get_default(
-            //             "email_template",
-            //             "team",
-            //             "password",
-            //             "subject"
-            //         );
-            //         $data["msg"] = ndpv()->get_default(
-            //             "email_template",
-            //             "team",
-            //             "password",
-            //             "msg"
-            //         );
-            //     }
-            // }
-
-            // if ($tab == "email_notification_default") {
-            //     $option = get_option("ndpv_" . $tab);
-
-            //     if ($option) {
-            //         $data = $option;
-            //     } else {
-            //         $data["subject"] = ndpv()->get_default(
-            //             "email_template",
-            //             "notification",
-            //             "default",
-            //             "subject"
-            //         );
-            //         $data["msg"] = ndpv()->get_default(
-            //             "email_template",
-            //             "notification",
-            //             "default",
-            //             "msg"
-            //         );
-            //     }
-            // }
 
             if ($tab == "estvoice_tax") {
                 $option = get_option("ndpv_" . $tab);
@@ -659,16 +491,18 @@ class Setting
             wp_send_json_success($data);
         }
     }
+
     public function get_email_template($tabs, $current_tab, $data)
     {
+        // Fetch template from database
         $option = get_option("ndpv_" . $current_tab);
         if ($option) {
             return $option;
         }
 
+        // Fetch template from preset
         $keys = $tabs[$current_tab]["keys"];
         $fields = ["subject", "msg"];
-
         foreach ($fields as $field) {
             $data[$field] = call_user_func_array([ndpv(), "get_default"], [...$keys, $field]);
         }
@@ -819,89 +653,11 @@ class Setting
                 }
             }
 
+            // Create email template
             if (array_key_exists($tab, $this->tabs["system_email_template"])) {
                 $this->create_email_template($tab, $param, $data);
             }
 
-            // if ($tab == "email_estimate_default") {
-            //     $data["subject"] = isset($param["subject"])
-            //         ? sanitize_text_field($param["subject"])
-            //         : null;
-            //     $data["msg"] = isset($param["msg"])
-            //         ? sanitize_textarea_field($param["msg"])
-            //         : null;
-            //     $option = update_option("ndpv_" . $tab, $data);
-            // }
-
-            // if ($tab == "email_estimate_reminder") {
-            //     $data["subject"] = isset($param["subject"])
-            //         ? sanitize_text_field($param["subject"])
-            //         : null;
-            //     $data["msg"] = isset($param["msg"])
-            //         ? sanitize_textarea_field($param["msg"])
-            //         : null;
-            //     $option = update_option("ndpv_" . $tab, $data);
-            // }
-
-            // if ($tab == "email_invoice_default") {
-            //     $data["subject"] = isset($param["subject"])
-            //         ? sanitize_text_field($param["subject"])
-            //         : null;
-            //     $data["msg"] = isset($param["msg"])
-            //         ? sanitize_textarea_field($param["msg"])
-            //         : null;
-            //     $option = update_option("ndpv_" . $tab, $data);
-            // }
-
-            // if ($tab == "email_invoice_reminder") {
-            //     $data["subject"] = isset($param["subject"])
-            //         ? sanitize_text_field($param["subject"])
-            //         : null;
-            //     $data["msg"] = isset($param["msg"])
-            //         ? sanitize_textarea_field($param["msg"])
-            //         : null;
-            //     $option = update_option("ndpv_" . $tab, $data);
-            // }
-
-            // if ($tab == "email_invoice_recurring") {
-            //     $data["subject"] = isset($param["subject"])
-            //         ? sanitize_text_field($param["subject"])
-            //         : null;
-            //     $data["msg"] = isset($param["msg"])
-            //         ? sanitize_textarea_field($param["msg"])
-            //         : null;
-            //     $option = update_option("ndpv_" . $tab, $data);
-            // }
-
-            // if ($tab == "email_client_portal_password") {
-            //     $data["subject"] = isset($param["subject"])
-            //         ? sanitize_text_field($param["subject"])
-            //         : null;
-            //     $data["msg"] = isset($param["msg"])
-            //         ? sanitize_textarea_field($param["msg"])
-            //         : null;
-            //     $option = update_option("ndpv_" . $tab, $data);
-            // }
-
-            // if ($tab == "email_team_password") {
-            //     $data["subject"] = isset($param["subject"])
-            //         ? sanitize_text_field($param["subject"])
-            //         : null;
-            //     $data["msg"] = isset($param["msg"])
-            //         ? sanitize_textarea_field($param["msg"])
-            //         : null;
-            //     $option = update_option("ndpv_" . $tab, $data);
-            // }
-
-            // if ($tab == "email_notification_default") {
-            //     $data["subject"] = isset($param["subject"])
-            //         ? sanitize_text_field($param["subject"])
-            //         : null;
-            //     $data["msg"] = isset($param["msg"])
-            //         ? sanitize_textarea_field($param["msg"])
-            //         : null;
-            //     $option = update_option("ndpv_" . $tab, $data);
-            // }
 
             if ($tab == "password_change") {
                 $user_id = get_current_user_id();

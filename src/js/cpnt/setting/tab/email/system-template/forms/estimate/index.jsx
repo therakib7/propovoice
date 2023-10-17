@@ -19,28 +19,28 @@ const Main = () => {
 			/>
 
 			<EmailTemplateForm
-				tab="estimate_add_notif"
+				tab="est_add_notif"
 				title="Add Notification Template"
 				subVars="{org_name}, {notification}"
 				msgVars="{org_name}, {name}, {notification_link}"
 				isPro={true}
 			/>
 			<EmailTemplateForm
-				tab="estimate_edit_notif"
+				tab="est_edit_notif"
 				title="Edit Notification Template"
 				subVars="{org_name}, {notification}"
 				msgVars="{org_name}, {name}, {notification_link}"
 				isPro={true}
 			/>
 			<EmailTemplateForm
-				tab="estimate_accept_notif"
+				tab="est_accept_notif"
 				title="Accept Notification Template"
 				subVars="{org_name}, {notification}"
 				msgVars="{org_name}, {name}, {notification_link}"
 				isPro={true}
 			/>
 			<EmailTemplateForm
-				tab="estimate_reject_notif"
+				tab="est_reject_notif"
 				title="Reject Notification Template"
 				subVars="{org_name}, {notification}"
 				msgVars="{org_name}, {name}, {notification_link}"

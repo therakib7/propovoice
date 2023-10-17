@@ -187,6 +187,7 @@ final class Ndpv {
         $data = new Preset;
         $result = $data->default();
         $func_args = func_get_args();
+            error_log(print_r($func_args));
 
         foreach ($func_args as $arg) {
             if (is_array($arg)) {
