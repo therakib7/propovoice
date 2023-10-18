@@ -114,30 +114,6 @@ export default class Form extends Component {
     }, 300);
   };
 
-  /* handleSubmit = (e) => {
-    e.preventDefault();
-    let form = { ...this.state.form };
-    let status_id = form.status_id.id;
-    delete form.priority_id;
-    delete form.status_id;
-    delete form.type_id;
-
-    if (form.start_date) {
-      let startDate = moment(form.start_date).format("YYYY-MM-DD");
-      form.start_date = startDate;
-    }
-
-    if (form.end_date) {
-      let endDate = moment(form.end_date).format("YYYY-MM-DD");
-      form.end_date = endDate;
-    }
-
-    api.edit("tasks", form.id, form).then((resp) => {
-      if (resp.data.success) {
-        this.props.reload({ status_id });
-      }
-    });
-  }; */
   handleSubmit = (e) => {
     e.preventDefault();
     let form = { ...this.state.form }
