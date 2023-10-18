@@ -7,9 +7,7 @@
 input[type="text"],
 input[type="email"],
 input[type="url"],
-input[type="password"]
-
-select {
+input[type="password"] select {
   background: none;
 }
 
@@ -133,5 +131,14 @@ select {
   input[readonly] {
     background-color: var(--bg-color-air-white) !important;
     cursor: not-allowed;
+  }
+
+  input:disabled,
+  input.disabled,
+  select:disabled,
+  select.disabled,
+  textarea:disabled,
+  textarea.disabled {
+    background: #f6f7f7;
   }
 }
