@@ -3,6 +3,7 @@ import Preloader from "block/preloader/table";
 import { toast } from "react-toastify";
 import Form from "./Form";
 import FormEdit from "./FormEdit";
+import FormEditPro from "./FormEditPro";
 import Table from "./Table";
 //import Search from './Search';
 //import Empty from 'block/empty';
@@ -71,6 +72,14 @@ const Task = (props) => {
   };
 
   const i18n = ndpv.i18n;
+
+  let FormEditComponent;
+
+  if (!wage.length) {
+    FormEditComponent = FormEditPro;
+  } else {
+    FormEditComponent = FormEdit;
+  }
   return (
     <div className="">
       <Form
@@ -79,8 +88,8 @@ const Task = (props) => {
         tab_id={props.tab_id}
       />
 
-      {props.state.formModal && (
-        <FormEdit
+      {props.state.formModal &&
+        <FormEditComponent
           key={activeTab}
           activeTab={activeTab}
           tab_id={props.tab_id}
@@ -90,8 +99,7 @@ const Task = (props) => {
           modalType={props.state.formModalType}
           data={props.state.list}
           close={props.closeForm}
-        />
-      )}
+        />}
 
       {!props.dashboard && (
         <div className="pv-small-button-group">

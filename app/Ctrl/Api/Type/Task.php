@@ -277,6 +277,7 @@ class Task
             $query_data["start_date"] = get_post_meta($id, "start_date", true);
             $query_data["due_date"] = get_post_meta($id, "due_date", true);
             $query_data["checklist"] = get_post_meta($id, "checklist", true);
+            $query_data["author"] = get_the_author(); 
             $query_data["date"] = get_the_time(get_option("date_format"));
 
             $query_data["tab_title"] = '';

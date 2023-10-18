@@ -62,19 +62,9 @@ class Fns
     {
         $args = array(
             'taxonomy' => 'ndpv_' . $tax,
-            'meta_query' => array(
-                'relation' => 'OR',
-                array(
-                    'key' => 'tax_pos',
-                    'compare' => 'NOT EXISTS', // works!
-                    // 'value' => '' // This is ignored, but is necessary...
-                ),
-                array(
-                    'key' => 'tax_pos',
-                    'compare' => 'EXISTS',
-                ),
-            ),
-            'orderby' => 'tax_pos',
+            'meta_key' => 'tax_pos',
+            'orderby'  => 'meta_value_num',
+            'order'    => 'ASC',
             'hide_empty' => false
         );
 

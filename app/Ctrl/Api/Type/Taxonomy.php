@@ -102,6 +102,7 @@ class Taxonomy
                 $format_taxonomy = [];
                 foreach ($get_taxonomy as $single) {
                     $icon_id = get_term_meta($single->term_id, "icon", true);
+                    $tax_pos = get_term_meta($single->term_id, "tax_pos", true);
                     $iconData = null;
                     if ($icon_id) {
                         $icon_src = wp_get_attachment_image_src(
@@ -120,6 +121,7 @@ class Taxonomy
                         "label" => $single->name,
                         "color" => "#4a5568",
                         "bg_color" => "#E2E8F0",
+                        "tax_pos" => $tax_pos,
                         "icon" => $iconData ? $iconData : "",
                     ];
 

@@ -31,7 +31,7 @@ mix.webpackConfig({
       "out-cpnt": path.resolve("src/js/out-cpnt"),
       "inv-tmpl": path.resolve("src/js/inv-tmpl"),
       "@system-email-template": path.resolve(
-        "src/js/cpnt/setting/tab/email/system-template",
+        "src/js/cpnt/setting/tab/email/system-template"
       ),
     },
   },
