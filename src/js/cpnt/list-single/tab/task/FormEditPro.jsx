@@ -286,9 +286,7 @@ export default class Form extends Component {
           <span className="pv-close" style={{ top: '5%' }} onClick={() => this.props.close()}>
             <Add />
           </span>
-          <div
-            className={`pv-modal-task ${!wage.length ? 'pv-modal-task-discussion' : ''}`}
-          >
+          <div className={`pv-modal-task ${!wage.length ? 'pv-modal-task-discussion' : ''}`} >
             <div className="pv-modal-task-content">
               <form onSubmit={this.handleSubmit} >
                 <div className="dpv-content">
@@ -542,11 +540,24 @@ export default class Form extends Component {
               </form>
             </div>
             <div className="pv-modal-discussion-content">
+              <div className="pv-modal-discussion-head-area">
+                <div className="pv-modal-discussion-head">
+                  <div className="pv-modal-discussion-info">
+                    <p>{i18n.task_creator}:</p>
+                    <p>{this.props.data.author}</p>
+                  </div>
 
-              <div className="pv-avatar-group">
-                {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
-                  <Staff tab_id={this.props.data.id} parent_tab_id={this.props.tab_id} inForm avatarGroup />
-                </Suspense>}
+                  <div className="pv-modal-discussion-info">
+                    <p>{i18n.created_at}:</p>
+                    <p>{this.props.data.date}</p>
+                  </div>
+
+                  <div className="pv-avatar-group">
+                    {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
+                      <Staff tab_id={this.props.data.id} parent_tab_id={this.props.tab_id} inForm avatarGroup />
+                    </Suspense>}
+                  </div>
+                </div>
               </div>
 
               {form.id && <Discussion tab_id={form.id} path='task' taskMod />}

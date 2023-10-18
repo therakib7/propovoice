@@ -539,17 +539,47 @@
       padding: 0;
     }
 
-    .pv-modal-task-content,
-    .pv-modal-discussion-content {
+    .pv-modal-task-content {
       overflow-y: scroll;
       padding: 30px;
+    }
+
+    .pv-modal-discussion-content {
       display: flex;
       flex-direction: column;
-      grid-template-columns: 200px auto 200px;
+      background-color: #E2E8F0;
+    }
 
-      .pv-avatar-group {
-        height: 70px;
+    .pv-modal-discussion-content {
+      .pv-modal-discussion-head-area {
+        padding: 20px;
       }
+
+      .pv-modal-discussion-head {
+        height: 110px;
+        background-color: #fff;
+        border-radius: 8px;
+        border: 1px solid rgba(221, 221, 221, 0.6588235294) !important;
+        padding: 20px;
+        width: 100%;
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .pv-modal-discussion-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        p {
+          margin: 0;
+          font-size: 14px;
+          color: #718096;
+        }
+      }
+
+      .pv-avatar-group {}
     }
 
   }
