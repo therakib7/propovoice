@@ -263,7 +263,7 @@ export default class Form extends Component {
             <Add />
           </span>
           <div className={`pv-modal-task ${!wage.length ? 'pv-modal-task-discussion' : ''}`} >
-            <div className="pv-modal-task-content" style={{height: 900}}>
+            <div className="pv-modal-task-content" style={{height: 780}}>
               <form onSubmit={this.handleSubmit} >
                 <div className="dpv-content">
                   <div className="pv-form-style-one">
@@ -515,7 +515,7 @@ export default class Form extends Component {
                 </div>
               </form>
             </div>
-            <div className="pv-modal-discussion-content" style={{height: 900}}>
+            <div className="pv-modal-discussion-content" style={{height: 780}}>
               <div className="pv-modal-discussion-head-area">
                 <div className="pv-modal-discussion-head">
                   <div className="pv-modal-discussion-info">

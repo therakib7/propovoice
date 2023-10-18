@@ -153,6 +153,10 @@ class I18n
             "write_msg" => esc_html__("Write your message", "propovoice"),
             "write_comment" => esc_html__("Write your comment", "propovoice"),
             "task_creator" => esc_html__("Task Creator", "propovoice"),
+            //client portal
+            "tbl_view" => esc_html__("Table View", "propovoice"),
+            "req_project" => esc_html__("Requested Project", "propovoice"),
+            "board_view" => esc_html__("Board View", "propovoice"),
             //table
             "status" => esc_html__("Status", "propovoice"),
             "created_at" => esc_html__("Created At", "propovoice"),
