@@ -47,15 +47,89 @@ class Email
             ],
         ]);
 
+        // email sending features
+
         register_rest_route("ndpv/v1", "/send-email", [
             "methods" => "POST",
             "callback" => [$this, "send_email"],
             "permission_callback" => [$this, "create_per"]
         ]);
+
+        register_rest_route("ndpv/v1", "/email-logs", [
+            "methods" => "POST",
+            "callback" => [$this, "get_email_logs"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/delete-email-logs", [
+            "methods" => "POST",
+            "callback" => [$this, "delete_email_logs"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
     }
 
-    private function save_sent_message_to_db($data)
+    public function delete_email_logs($request)
     {
+        $param = $request->get_params();
+        $post_id = $param['postId'];
+        $id_to_remove = $param['id'];
+
+        // Get the existing array from post meta
+        $existing_array = get_post_meta($post_id, 'email_logs', true);
+
+        // If the existing array is empty or doesn't exist, nothing to remove
+        if (empty($existing_array) || !is_array($existing_array)) {
+            return;
+        }
+
+        // Iterate through the array and find the item to remove by ID
+        foreach ($existing_array as $key => $item) {
+            if (isset($item['id']) && $item['id'] == $id_to_remove) {
+                // Remove the item from the array
+                unset($existing_array[$key]);
+                break; // Exit the loop once the item is found and removed
+            }
+        }
+
+        // Update the post meta with the modified array
+        update_post_meta($post_id, 'email_logs', $existing_array);
+        return wp_send_json_success();
+    }
+
+    public function get_email_logs($request)
+    {
+        $param = $request->get_params();
+        $post_id = $param['postId'];
+
+        $post_meta = get_post_meta($post_id, 'email_logs', true);
+
+        // If the post meta is empty or doesn't exist, return an empty array
+        if (empty($post_meta) || !is_array($post_meta)) {
+            return array();
+        }
+
+        $result = [];
+        foreach ($post_meta as $log) {
+            array_push($result, $log);
+        }
+        return $result;
+    }
+
+    private function save_sent_message_to_db($post_id, $new_item)
+    {
+        // Get the existing array from post meta
+        $existing_array = get_post_meta($post_id, 'email_logs', true);
+
+        // If the existing array is empty or doesn't exist, create a new array
+        if (empty($existing_array) || !is_array($existing_array)) {
+            $existing_array = array();
+        }
+
+        // Add the new item to the existing array
+        $existing_array[] = $new_item;
+
+        // Update the post meta with the modified array
+        update_post_meta($post_id, 'email_logs', $existing_array);
     }
 
     public function send_email($request)
@@ -65,7 +139,7 @@ class Email
         $to = $param['to']; // Primary recipient
         $subject = $param['subject'];
         $message = $param['message'];
-
+        $post_id = $param['postId'];
         // Define CC and BCC recipients
         $cc = $param['cc'] ?? null;
         $bcc = $param['bcc'] ?? null;
@@ -92,10 +166,11 @@ class Email
 
         if ($result) {
             $data = [
+                'id' => time(),
                 'subject' => $subject,
                 'content' => $message
             ];
-            $this->save_sent_message_to_db($data);
+            $this->save_sent_message_to_db($post_id, $data);
             wp_send_json_success();
         } else {
             wp_send_json_error();
