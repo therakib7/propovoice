@@ -152,6 +152,7 @@ class I18n
             "reply_client" => esc_html__("Reply to Client", "propovoice"),
             "write_msg" => esc_html__("Write your message", "propovoice"),
             "write_comment" => esc_html__("Write your comment", "propovoice"),
+            "task_creator" => esc_html__("Task Creator", "propovoice"),
             //table
             "status" => esc_html__("Status", "propovoice"),
             "created_at" => esc_html__("Created At", "propovoice"),

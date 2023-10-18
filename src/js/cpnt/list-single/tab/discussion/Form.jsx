@@ -72,7 +72,7 @@ class Form extends Component {
         const taskMod = this.props.taskMod;
 
         return (
-            <div className="pv-chat-history">
+            <div className="pv-chat-history" style={{ padding: (taskMod ? 20 : 0) }}>
                 <form onSubmit={this.handleSubmit} className="pv-textarea">
 
                     <textarea

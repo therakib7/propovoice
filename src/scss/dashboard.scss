@@ -390,6 +390,8 @@ input:-webkit-autofill:active {
         width: auto;
         height: auto;
     }
+
+    //react modal z index override to avobe wp index
     .__react_modal_image__modal_container {
         z-index: 99999;
     }

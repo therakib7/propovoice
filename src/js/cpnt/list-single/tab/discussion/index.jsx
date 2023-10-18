@@ -4,7 +4,7 @@ import Pagination from 'block/pagination';
 
 import Form from './Form';
 import FormEdit from './FormEdit';
-import Table from './Table'; 
+import Table from './Table';
 
 import Crud from 'hoc/Crud';
 
@@ -24,9 +24,20 @@ const Message = (props) => {
 
     const taskMod = props.taskMod;
 
+    let customStyle = {}
+    if (taskMod) {
+        customStyle = {
+            marginTop: '15px',
+            background: '#fff',
+            padding: '20px',
+            height: '400px',
+            overflowY: 'scroll'
+        }
+    }
+
     return (
         <>
-            <div>
+            <div style={customStyle}>
                 {props.state.formModal && <FormEdit
                     tab_id={props.tab_id}
                     handleSubmit={props.handleSubmit}
