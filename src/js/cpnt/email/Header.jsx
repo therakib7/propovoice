@@ -20,21 +20,16 @@ const headerStyle = {
   borderBottom: "1px solid #E2E8F0",
   paddingBottom: "31px",
 };
-/**
- * This function, Header, that renders the header section.
- *
- * @param {object} props - The properties passed to the component.
- * @returns {JSX.Element} A JSX element representing a basic structure with comments.
- */
 
-export default function Header(props) {
+
+export default function Header({module_id,data,parent}) {
   const [modalVisiblity, setModalVisiblity] = useState(false)
   return (
     <div style={headerStyle}>
 
       <Modal title="New Email" setVisibility={setModalVisiblity} visibility={modalVisiblity}>
         <div>
-          <SendForm setVisibility={setModalVisiblity} />
+          <SendForm setVisibility={setModalVisiblity} module_id={module_id} data={data} parent={parent} />
         </div>
       </Modal>
 
