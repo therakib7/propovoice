@@ -453,12 +453,15 @@ class Taxonomy
                 }
 
                 // Webhook trigger for lead_level, deal_stage, project_status change
-                $webhooks = [
+                $taxonomy_actions = [
                     "lead_level" => "lead_level_change",
                     "deal_stage" => "deal_stage_change",
                     "project_status" => "project_status_change"
                 ];
-                do_action("ndpvp/webhook", $webhooks[$taxonomy], $param);
+                $action = $taxonomy_actions[$taxonomy] ?? null;
+                if ($action) {
+                    do_action("ndpvp/webhook", $action, $param);
+                }
 
                 do_action("ndpvp/webhook", "taxonomy", $param);
 
