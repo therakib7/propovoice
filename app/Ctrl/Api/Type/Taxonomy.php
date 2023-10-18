@@ -8,7 +8,7 @@ use Ndpv\Traits\Singleton;
 class Taxonomy
 {
     use Singleton;
-    
+
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/taxonomies/(?P<id>\d+)", [
@@ -376,7 +376,7 @@ class Taxonomy
                     }
 
                     wp_send_json_success($term_id);
-                } else { 
+                } else {
                     wp_send_json_error($add_taxonomy->get_error_messages());
                 }
             }
@@ -451,7 +451,15 @@ class Taxonomy
                         "ndpv_" . $taxonomy
                     );
                 }
-                
+
+                // Webhook trigger for lead_level, deal_stage, project_status change
+                $webhooks = [
+                    "lead_level" => "lead_level_change",
+                    "deal_stage" => "deal_stage_change",
+                    "project_status" => "project_status_change"
+                ];
+                do_action("ndpvp/webhook", $webhooks[$taxonomy], $param);
+
                 do_action("ndpvp/webhook", "taxonomy", $param);
 
                 wp_send_json_success();
