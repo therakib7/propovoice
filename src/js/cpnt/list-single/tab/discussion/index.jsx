@@ -30,7 +30,6 @@ const Message = (props) => {
             marginTop: '15px',
             background: '#fff',
             padding: '20px',
-            height: '400px',
             overflowY: 'scroll'
         }
     }
