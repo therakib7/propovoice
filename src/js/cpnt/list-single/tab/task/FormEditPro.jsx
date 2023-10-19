@@ -521,7 +521,7 @@ export default class Form extends Component {
                 <div className="pv-modal-discussion-head">
                   <div className="pv-modal-discussion-info">
                     <p>{i18n.task_creator}:</p>
-                    <p>{this.props.data.author}</p>
+                    <p style={{ fontWeight: 500 }}>{this.props.data.author}</p>
                   </div>
 
                   <div className="pv-modal-discussion-info">

@@ -107,8 +107,7 @@ class EstInv
             "post_status" => "publish",
             "posts_per_page" => $per_page,
             "offset" => $offset,
-            "meta_key" => "num",
-            "orderby" => "meta_value",
+            "orderby" => "ID",
             "order" => "DESC"
         ];
 
