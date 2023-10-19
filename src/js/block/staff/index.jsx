@@ -23,10 +23,8 @@ export default (props) => {
 		let tab_id = props.parent_tab_id ? props.parent_tab_id : props.tab_id;
 		api.get('staffs', 'tab_id=' + tab_id, 'pro').then(resp => {
 			if (resp.data.success) {
-
 				setList(resp.data.data.result);
 				// setListById(resp.data.data.result);
-
 			}
 		});
 	}
@@ -95,6 +93,7 @@ export default (props) => {
 	}
 
 	const { i18n, caps } = ndpv;
+	const avatarGroup = props.avatarGroup;
 	return (
 		<div
 			className={props.inForm ? 'pv-tag-content' : 'pv-widget pv-info-box'}
@@ -103,11 +102,11 @@ export default (props) => {
 			<div className="pv-action-content" ref={dropdownContent}>
 				{props.inForm &&
 					<>
-						<label htmlFor="form-asign">Team:</label>
+						{!avatarGroup && <label htmlFor="form-asign">Team:</label>}
 						<button
 							className="pv-btn pv-btn-medium pv-bg-stroke"
 							style={{
-								margin: '0 10px',
+								margin: (avatarGroup ? '0 10px 0 0' : '0 10px'),
 								width: 'auto',
 								border: '1px solid rgba(221, 221, 221, 0.6588235294)'
 							}}
@@ -172,7 +171,7 @@ export default (props) => {
 			{listById && listById.map((v, i) => {
 				if (props.inForm) {
 					return (
-						<span key={i} style={{ marginRight: 10, padding: '12px 10px', fontSize: 12 }} className="pv-badge">{v.name} <b onClick={() => handleDelete(v.id)} style={{ padding: '9px 7px' }}>X</b></span>
+						<span key={i} style={{ marginRight: 10, fontSize: 12 }} className="pv-badge">{v.name} <b onClick={() => handleDelete(v.id)} style={{ padding: '9px 7px' }}>X</b></span>
 					)
 				} else {
 					return (

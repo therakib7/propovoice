@@ -107,6 +107,8 @@ class EstInv
             "post_status" => "publish",
             "posts_per_page" => $per_page,
             "offset" => $offset,
+            "orderby" => "ID",
+            "order" => "DESC"
         ];
 
         $args["meta_query"] = [
