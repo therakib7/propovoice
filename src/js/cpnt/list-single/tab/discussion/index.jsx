@@ -46,6 +46,8 @@ const Message = (props) => {
                     taskMod={taskMod}
                 />}
 
+                {!props.state.preloader && !(lists.length > 0) && <p style={{ color: '#718096' }}>{ndpv.i18n.no_comment}</p>}
+
                 {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
 
                 <div className="pv-pagination-content-two">
