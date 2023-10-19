@@ -4,6 +4,7 @@ namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
 use Ndpv\Traits\Singleton;
+use Ndpv\Model\Business;
 
 class Email
 {
@@ -144,6 +145,8 @@ class Email
         $cc = $param['cc'] ?? null;
         $bcc = $param['bcc'] ?? null;
 
+
+
         // Set headers for CC and BCC
         $headers = array(
             'Content-Type: text/html; charset=UTF-8'
@@ -162,6 +165,15 @@ class Email
             array_push($headers, 'Bcc: ' . $bcc);
         }
         // Send the email
+
+        $business = new Business;
+        $business_info = $business->info();
+
+        $compnay_name = $business_info['name'];
+        $mail_from = $business_info['email'];
+
+        $headers[] = "From: " . $compnay_name . " <" . $mail_from . ">";
+
         $result = wp_mail($to, $subject, $message, $headers);
 
         if ($result) {
