@@ -76,5 +76,43 @@ class Client {
         
         return $user_id;        
     } 
+
+    public function delete_client( $post_id )
+    {   
+        
+        $type = get_post_type($post_id) == "ndpv_person" ? "person" : "org"; 
+        
+        $meta_queries = array(
+            'relation' => 'AND', // Use 'AND' relation for multiple meta queries
+            array(
+                'key'     => 'ndpv_client_id',
+                'value'   => $post_id,
+                'compare' => '='
+            ),
+            array(
+                'key'     => 'ndpv_client_type',
+                'value'   => $type,
+                'compare' => '='
+            )
+        );
+
+        // Query users based on the multiple meta keys and values
+        $user_query = new \WP_User_Query( array(
+            'meta_query' => $meta_queries,
+        ) );
+
+        // Get the results
+        $users = $user_query->get_results();
+
+        // Loop through the users
+        if ( ! empty( $users ) ) {
+            require_once( ABSPATH . 'wp-admin/includes/user.php' );
+            foreach ( $users as $user ) {
+                wp_delete_user( $user->ID );
+            }
+        } 
+        
+        return true;        
+    } 
  
 }

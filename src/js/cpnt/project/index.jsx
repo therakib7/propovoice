@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Breadcrumb from "block/breadcrumb";
 import Preloader from "block/preloader/table";
 import Pagination from "block/pagination";
@@ -151,7 +151,7 @@ const Project = (props) => {
 	} else if ((!props.module_id && !boardView && !isClient)) {
 		tableViewData = true;
 	}
-	
+
 	return (
 		<div className="ndpv-cpnt">
 			{!props.module_id && !props.dashboard && <Breadcrumb title={title} />}
@@ -237,9 +237,6 @@ const Project = (props) => {
 					</div>
 				</div>
 			</div>}
-
-			{/* <div className="pv-buttons-group pv-mb-20"> 
-            </div> */}
 
 			{!props.dashboard && <Search
 				isClient={isClient}

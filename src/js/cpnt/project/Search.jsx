@@ -52,7 +52,7 @@ export default class Form extends Component {
                         className="pv-btn pv-btn-icon pv-bg-hover-shadow"
                         onClick={() => this.props.viewChange('table')}
                         style={{ marginLeft: 0, marginRight: 10 }}
-                        title={isClient ? 'Project' : 'Table View'}
+                        title={isClient ? i18n.project : i18n.tbl_view}
                     >
                         {!isClient ? <svg
                             width={20}
@@ -102,14 +102,14 @@ export default class Form extends Component {
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                             />
-                        </svg> : <span style={{ color: (!boardView ? activeColor : inactiveColor) }}>Project</span>}
+                        </svg> : <span style={{ color: (!boardView ? activeColor : inactiveColor) }}>{i18n.project}</span>}
                     </button>
 
                     <button
                         className="pv-btn pv-btn-icon pv-bg-hover-shadow pv-mr-10"
                         onClick={() => this.props.viewChange('board')}
                         style={{ marginLeft: 0 }}
-                        title={isClient ? 'Requested Project' : 'Board View'}
+                        title={isClient ? i18n.req_project : i18n.board_view}
                     >
                         {!isClient ? <svg
                             width={20}
@@ -124,7 +124,7 @@ export default class Form extends Component {
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                             />
-                        </svg> : <span style={{ color: (boardView ? activeColor : inactiveColor) }}>Requested Project</span>}
+                        </svg> : <span style={{ color: (boardView ? activeColor : inactiveColor) }}>{i18n.req_project}</span>}
                     </button>
                 </>}
 
@@ -147,52 +147,6 @@ export default class Form extends Component {
 
                     {this.state.searchModal && <div className="pv-search-form">
                         <ul>
-                            <li>
-                                <svg
-                                    width={15}
-                                    height={10}
-                                    viewBox="0 0 15 10"
-                                    fill="none"
-
-                                >
-                                    <path
-                                        d="M11.15 9.27502L14 5.00002L11.15 0.725021C11.1048 0.655309 11.0427 0.59814 10.9695 0.558809C10.8963 0.519478 10.8143 0.499258 10.7312 0.500021H1.5C1.36739 0.500021 1.24021 0.552699 1.14645 0.646468C1.05268 0.740236 1 0.867413 1 1.00002V9.00002C1 9.13263 1.05268 9.25981 1.14645 9.35357C1.24021 9.44734 1.36739 9.50002 1.5 9.50002H10.7312C10.8143 9.50078 10.8963 9.48056 10.9695 9.44123C11.0427 9.4019 11.1048 9.34473 11.15 9.27502V9.27502Z"
-                                        stroke="#718096"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                                <select name="" id="">
-                                    <option value="">Lead Label</option>
-                                    <option value="">Lead Label</option>
-                                    <option value="">Lead Label</option>
-                                </select>
-                            </li>
-                            <li>
-                                <svg
-                                    width={16}
-                                    height={16}
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-
-                                >
-                                    <path
-                                        d="M7.66869 1.61869L2.62494 2.62494L1.61869 7.66869C1.60292 7.74922 1.60722 7.8324 1.6312 7.91088C1.65518 7.98936 1.69811 8.06073 1.75619 8.11869L8.28119 14.6437C8.32718 14.6907 8.38211 14.7281 8.44275 14.7537C8.50339 14.7792 8.56852 14.7923 8.63432 14.7923C8.70011 14.7923 8.76524 14.7792 8.82589 14.7537C8.88653 14.7281 8.94146 14.6907 8.98744 14.6437L14.6437 8.98744C14.6907 8.94146 14.7281 8.88653 14.7537 8.82589C14.7792 8.76524 14.7923 8.70011 14.7923 8.63432C14.7923 8.56852 14.7792 8.50339 14.7537 8.44275C14.7281 8.38211 14.6907 8.32718 14.6437 8.28119L8.11869 1.75619C8.06073 1.69811 7.98936 1.65518 7.91088 1.6312C7.8324 1.60722 7.74922 1.60292 7.66869 1.61869V1.61869Z"
-                                        stroke="#718096"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M5.25 6C5.66421 6 6 5.66421 6 5.25C6 4.83579 5.66421 4.5 5.25 4.5C4.83579 4.5 4.5 4.83579 4.5 5.25C4.5 5.66421 4.83579 6 5.25 6Z"
-                                        fill="#718096"
-                                    />
-                                </svg>
-                                <select name="" id="">
-                                    <option value="">Tag Name</option>
-                                    <option value="">Tag Name</option>
-                                    <option value="">Tag Name</option>
-                                </select>
-                            </li>
                             <li>
                                 <svg
                                     width={17}
@@ -267,10 +221,10 @@ export default class Form extends Component {
                             <option value="50">50</option>
                             <option value="99">99</option>
                         </select>
-                        {title} {this.props.boardView ? i18n.per + ' ' + i18n.stage : <>from <span>{total}</span></>}
+                        {title} {this.props.boardView ? i18n.per + ' ' + i18n.stage : <>{i18n.from} <span>{total}</span></>}
                     </p>
                 </div>
             </div>
         );
     }
-} 
+}

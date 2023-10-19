@@ -6,6 +6,7 @@ use Ndpv\Helper\Fns;
 use Ndpv\Model\Contact;
 use Ndpv\Model\Org;
 use Ndpv\Model\Person;
+use Ndpv\Model\Lead as LeadModel;
 use Ndpv\Traits\Singleton;
 
 class Lead
@@ -348,11 +349,26 @@ class Lead
             : null;
         $desc = isset($param["desc"]) ? nl2br($param["desc"]) : "";
 
+        $email   = isset($param['email']) ? strtolower(sanitize_email($param['email'])) : ''; 
+        $mobile  = isset($param['mobile']) ? sanitize_text_field($param['mobile']) : '';
+
         if (empty($first_name) && empty($org_name)) {
             $reg_errors->add(
                 "field",
                 esc_html__("Contact info is missing", "propovoice")
             );
+        }
+
+        $lead = new LeadModel();
+        $lead_id = $lead->is_lead_exists($email, $mobile);
+
+        if ($lead_id) {
+            $reg_errors->add(
+                "lead_already_exist",
+                esc_html__("Lead already exists!", "propovoice")
+            );
+
+            wp_send_json_error($reg_errors->get_error_messages());
         }
 
         $person = new Person();

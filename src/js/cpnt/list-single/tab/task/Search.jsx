@@ -8,7 +8,6 @@ export default class Form extends Component {
         this.initialState = {
             id: null,
             name: '',
-            job: '',
             first_name: '',
             last_name: '',
             email: '',

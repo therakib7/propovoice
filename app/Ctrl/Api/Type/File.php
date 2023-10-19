@@ -255,7 +255,7 @@ class File
                     update_post_meta($post_id, "file", $file);
                 }
 
-
+                $param['id'] = $post_id;
                 do_action("ndpvp/webhook", "file_add", $param);
 
                 wp_send_json_success($post_id);

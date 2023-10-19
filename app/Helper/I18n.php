@@ -129,7 +129,7 @@ class I18n
             "email" => esc_html__("Email", "propovoice"),
             "mob" => esc_html__("Mobile", "propovoice"),
             "web" => esc_html__("Website", "propovoice"),
-            "url" => esc_html__("URL", "propovoice"),            
+            "url" => esc_html__("URL", "propovoice"),
             "country" => esc_html__("Country", "propovoice"),
             "region" => esc_html__("Region", "propovoice"),
             "state_region" => esc_html__("State / Province / Region", "propovoice"),
@@ -146,6 +146,17 @@ class I18n
             "billTo" => esc_html__("Bill To", "propovoice"),
             "info" => esc_html__("Info", "propovoice"),
             "no" => esc_html__("No", "propovoice"),
+            //discussion
+            "comment" => esc_html__("Comment", "propovoice"),
+            "send_team" => esc_html__("Send to Team", "propovoice"),
+            "reply_client" => esc_html__("Reply to Client", "propovoice"),
+            "write_msg" => esc_html__("Write your message", "propovoice"),
+            "write_comment" => esc_html__("Write your comment", "propovoice"),
+            "task_creator" => esc_html__("Task Creator", "propovoice"),
+            //client portal
+            "tbl_view" => esc_html__("Table View", "propovoice"),
+            "req_project" => esc_html__("Requested Project", "propovoice"),
+            "board_view" => esc_html__("Board View", "propovoice"),
             //table
             "status" => esc_html__("Status", "propovoice"),
             "created_at" => esc_html__("Created At", "propovoice"),

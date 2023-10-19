@@ -8,7 +8,7 @@ use Ndpv\Traits\Singleton;
 class Taxonomy
 {
     use Singleton;
-    
+
     public function register_routes()
     {
         register_rest_route("ndpv/v1", "/taxonomies/(?P<id>\d+)", [
@@ -102,6 +102,7 @@ class Taxonomy
                 $format_taxonomy = [];
                 foreach ($get_taxonomy as $single) {
                     $icon_id = get_term_meta($single->term_id, "icon", true);
+                    $tax_pos = get_term_meta($single->term_id, "tax_pos", true);
                     $iconData = null;
                     if ($icon_id) {
                         $icon_src = wp_get_attachment_image_src(
@@ -120,6 +121,7 @@ class Taxonomy
                         "label" => $single->name,
                         "color" => "#4a5568",
                         "bg_color" => "#E2E8F0",
+                        "tax_pos" => $tax_pos,
                         "icon" => $iconData ? $iconData : "",
                     ];
 
@@ -376,7 +378,7 @@ class Taxonomy
                     }
 
                     wp_send_json_success($term_id);
-                } else { 
+                } else {
                     wp_send_json_error($add_taxonomy->get_error_messages());
                 }
             }
@@ -451,7 +453,19 @@ class Taxonomy
                         "ndpv_" . $taxonomy
                     );
                 }
-                
+
+                // Webhook trigger for lead_level, deal_stage, project_status change
+                $param["id"] = $post_id;
+                $taxonomy_actions = [
+                    "lead_level" => "lead_level_change",
+                    "deal_stage" => "deal_stage_change",
+                    "project_status" => "project_status_change"
+                ];
+                $action = $taxonomy_actions[$taxonomy] ?? null;
+                if ($action) {
+                    do_action("ndpvp/webhook", $action, $param);
+                }
+
                 do_action("ndpvp/webhook", "taxonomy", $param);
 
                 wp_send_json_success();
