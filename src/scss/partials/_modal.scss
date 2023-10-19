@@ -552,7 +552,7 @@
 
     .pv-modal-discussion-content {
       .pv-modal-discussion-head-area {
-        padding: 20px;
+        padding: 20px 20px 10px 20px;
       }
 
       .pv-modal-discussion-head {
@@ -565,6 +565,18 @@
         content: "";
         display: table;
         clear: both;
+
+        .pv-tag-content {
+          .pv-badge {
+            padding: 9px 10px;
+            display: inline-block;
+            margin-top: 8px;
+          }
+
+          .pv-badge:hover {
+            padding: 9px 10px;
+          }
+        }
       }
 
       .pv-modal-discussion-info {
@@ -577,6 +589,10 @@
           font-size: 14px;
           color: #718096;
         }
+      }
+
+      .pv-modal-discussion-info:last-child {
+        margin-bottom: 7px;
       }
 
       .pv-avatar-group {}
