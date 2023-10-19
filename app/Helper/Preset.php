@@ -347,19 +347,19 @@ Regards
         ]];
 
         return [
-            'email_template' => [
-                ...$lead,
-                ...$deal,
-                ...$estimate,
-                ...$invoice,
-                ...$client_portal,
-                ...$team,
-                ...$task,
-                ...$staff,
-                ...$project,
-                ...$file,
-                ...$smtp,
-            ]
+            'email_template' => array_merge(
+                $lead,
+                $deal,
+                $estimate,
+                $invoice,
+                $client_portal,
+                $team,
+                $task,
+                $staff,
+                $project,
+                $file,
+                $smtp,
+            )
         ];
     }
 }
