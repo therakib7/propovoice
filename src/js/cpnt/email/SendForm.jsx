@@ -26,11 +26,10 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
   const [showCC, setShowCC] = useState(false);
   const [showBcc, setShowBcc] = useState(false);
 
-  console.log(module_id);
-  console.log(data);
+
 
   const sendEmail = () => {
-    console.log(formData);
+
     api
       .add("send-email", formData)
       .then((response) => {
@@ -45,7 +44,7 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
       })
       .catch((err) => {
         toast.error("Someting went wrong");
-        console.log(err)
+    
       });
   };
 
