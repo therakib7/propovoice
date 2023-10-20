@@ -74,7 +74,6 @@ const Items = (props) => {
                                         height={24}
                                         viewBox="0 0 24 24"
                                         fill="none"
-
                                     >
                                         <path
                                             fillRule="evenodd"
@@ -149,7 +148,6 @@ const Items = (props) => {
                             height={14}
                             viewBox="0 1 12 10"
                             fill="none"
-
                         >
                             <path
                                 d="M1.875 6h8.25M6 1.875v8.25"

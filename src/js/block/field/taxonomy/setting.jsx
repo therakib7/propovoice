@@ -42,7 +42,17 @@ export default (props) => {
 	const openModal = (e, type, tax = '') => {
 		e.preventDefault();
 
-		if (type == 'new' && wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source')) {
+		if (type == 'new' && wage.length > 0 && (
+			props.taxonomy != 'tag' &&
+			props.taxonomy != 'lead_level' &&
+			props.taxonomy != 'lead_source' &&
+			props.taxonomy != 'lead_source' &&
+			props.taxonomy != 'task_status' &&
+			props.taxonomy != 'task_type' &&
+			props.taxonomy != 'task_priority' &&
+			props.taxonomy != 'estinv_qty_type' &&
+			props.taxonomy != 'contact_status'
+		)) {
 			pro();
 			return;
 		}
@@ -97,7 +107,6 @@ export default (props) => {
 			return parseInt(obj.id);
 		});
 
-		// console.log(finalArray)
 		let newForm = {
 			reorder: finalArray,
 			taxonomy: props.taxonomy
@@ -131,8 +140,6 @@ export default (props) => {
 												style={provided.draggableProps.style}
 												className={snapshot.isDragging ? styles.listItemDragging : styles.listItem}
 											>
-
-
 												<div className="">
 													<span className="pv-mt-3 pv-dot-list">
 														<svg
@@ -285,9 +292,17 @@ export default (props) => {
 						/>
 					</svg>
 					{i18n.add} {i18n.new} {props.title}
-					{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <>
-						<ProLabel />
-					</>}
+					{wage.length > 0 && (
+						props.taxonomy != 'tag' &&
+						props.taxonomy != 'lead_level' &&
+						props.taxonomy != 'lead_source' &&
+						props.taxonomy != 'lead_source' &&
+						props.taxonomy != 'task_status' &&
+						props.taxonomy != 'task_type' &&
+						props.taxonomy != 'task_priority' &&
+						props.taxonomy != 'estinv_qty_type' &&
+						props.taxonomy != 'contact_status'
+					) && <ProLabel />}
 				</button>
 			</div>
 

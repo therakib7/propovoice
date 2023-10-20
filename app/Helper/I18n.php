@@ -139,6 +139,7 @@ class I18n
             "home" => esc_html__("Home", "propovoice"),
             "total" => esc_html__("Total", "propovoice"),
             "prv" => esc_html__("Preview", "propovoice"),
+            "full_prv" => esc_html__("Full Preview", "propovoice"),
             "tmpl_prv" => esc_html__("Template Preview", "propovoice"),
             "aut" => esc_html__("Author", "propovoice"),
             //invoice
@@ -294,7 +295,6 @@ class I18n
             "stripe" => esc_html__("Stripe", "propovoice"),
             "paypal" => esc_html__("Paypal", "propovoice"),
             "Pub" => esc_html__("Public", "propovoice"),
-            "full" => esc_html__("Full", "propovoice"),
             "dlvy" => esc_html__("delivery", "propovoice"),
             "option" => esc_html__("option", "propovoice"),
             "upload" => esc_html__("Upload", "propovoice"),

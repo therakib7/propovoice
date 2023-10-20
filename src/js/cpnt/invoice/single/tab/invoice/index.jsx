@@ -92,12 +92,12 @@ class Invoice extends Component {
 				},
 				top_sections: null,
 				item_label: {
-					id: "ID",
-					desc: "Description",
-					qty: "Quantity",
-					price: "Rate",
-					tax: "Tax",
-					amount: "Amount",
+					id: i18n.id,
+					desc: i18n.desc,
+					qty: i18n.qty,
+					price: i18n.rate,
+					tax: i18n.tax,
+					amount: i18n.amt
 				},
 				items: [
 					{
