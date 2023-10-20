@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Text, Address } from "block/form/input";
 import { FormWrapper, FormContent } from "block/form";
 import api from "api";
@@ -28,9 +28,11 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
   const [showCC, setShowCC] = useState(false);
   const [showBcc, setShowBcc] = useState(false);
 
+  const [dropdown, showDropdown] = useState(false);
 
   useEffect(() => {
     api.add("custom-email-templates").then((response) => {
+      console.log(response.data)
       setItems(response.data);
     });
   }, []);
@@ -58,6 +60,23 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
   const handleSectionContent = (index, value = null) => {
     setFormData({ ...formData, message: value });
   };
+
+  const setSavedTemplate = (e, i) => {
+
+    e.preventDefault();
+    setFormData({
+      to: data.person.email,
+      subject: i.subject,
+      message: i.message,
+      postId: module_id
+    })
+    // setFormData({ ...formData, subject: i.subject });
+
+    // setFormData({ ...formData, message: item.message });
+    // console.log(i.subject);
+    console.log(i.message);  
+   
+  }
 
   return (
     <div>
@@ -145,21 +164,24 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
             <div className="col-md">
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div><label htmlFor="field-message">Write Message </label></div>
-                <div style={{ position:'relative'}}>
-                  <div style={{ cursor: 'pointer' }}>Select Email Template</div>
-                  <div style={{ right:'0px' }} className="pv-dropdown-content pv-show">
+                <div style={{ position: 'relative' }}>
+                  <div onClick={() => showDropdown(!dropdown)} style={{ cursor: 'pointer' }}>Select Email Template</div>
+                  {dropdown &&
 
-                    {items.map((item, i) => {
-                      return <a onClick={(e)=> {e.preventDefault(); setFormData({...formData,subject:item.subject,message:item.message})}} key={i} href="#">
-                        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
-                          <div>
-                            <div style={{ fontWeight: '500', fontSize: '12px' }}>{item.name}</div>
+                    <div style={{ right: '0px' }} className="pv-dropdown-content pv-show">
 
+                      {items.map((item, i) => {
+                        return <a onClick={(e) => { setSavedTemplate(e, item) }} key={i} href="#">
+                          <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+                            <div>
+                              <div style={{ fontWeight: '500', fontSize: '12px' }}>{item.name}</div>
+
+                            </div>
                           </div>
-                        </div>
-                      </a>
-                    })}
-                  </div>
+                        </a>
+                      })}
+                    </div>
+                  }
                 </div>
               </div>
 
