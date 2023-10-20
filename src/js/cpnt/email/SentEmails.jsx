@@ -75,7 +75,6 @@ export default function SentEmails({ module_id }) {
 
   const getLogs = () => {
     api.add("email-logs", { postId: module_id }).then((response) => {
- 
       setItems(response.data);
     });
   };

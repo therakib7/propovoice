@@ -17,7 +17,7 @@ export default function Form({setVisibility}) {
   const saveTemplate = () => {
 
     api
-      .add("save-email-template", formData)
+      .add("save-custom-email", formData)
       .then((response) => {
         if (response.data.success) {
           toast.success("Template Saved");

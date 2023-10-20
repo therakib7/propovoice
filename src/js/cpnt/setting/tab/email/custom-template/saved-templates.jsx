@@ -35,6 +35,15 @@ const subjectStyle = {
   paddingBottom: "12px",
 };
 
+const nameStyle = {
+  color: "#000",
+  fontFamily: "Inter",
+  fontSize: "14px",
+  fontStyle: "normal",
+  fontWeight: "400",
+  lineHeight: "14px"
+}
+
 const contentStyle = {
   color: "#718096",
   fontFamily: "Inter",
@@ -73,14 +82,14 @@ export default function SavedTemplates() {
   }, []);
 
   const getEmailTemplates = () => {
-    api.get("custom-email-templates").then((response) => {
+    api.add("custom-email-templates").then((response) => {
       setItems(response.data);
     });
   };
 
-  const deleteLog = (id) => {
-    api.add("delete-email-logs", { id: id }).then((res) => {
-        getEmailTemplates();
+  const deleteTemplate = (id) => {
+    api.add("delete-custom-email-template", { id: id }).then((res) => {
+      getEmailTemplates();
     });
   };
 
@@ -92,16 +101,17 @@ export default function SavedTemplates() {
           <div key={index} style={itemStyle}>
             {/* content */}
             <div>
+              <div style={nameStyle}>{item.name}</div>
               <div style={subjectStyle}>Subject: {item.subject}</div>
               <div
                 style={contentStyle}
-                dangerouslySetInnerHTML={{ __html: item.content }}
+                dangerouslySetInnerHTML={{ __html: item.message }}
               ></div>
             </div>
             {/* actions */}
             <div style={actionStyle}>
               <button
-                onClick={() => deleteLog(item.id)}
+                onClick={() => deleteTemplate(item.id)}
                 style={deleteButtonStyle}
               >
                 <DeleteIcon />
