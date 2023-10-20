@@ -47,7 +47,7 @@
   }
 
   .pv-modal-content {
-    .pv-form-style-one .row>div {
+    .pv-form-style-one .row > div {
       margin-bottom: 15px;
     }
 
@@ -72,7 +72,7 @@
       border-radius: 25px 25px 0 0;
       box-shadow: 0px 0px 3px rgb(0 0 0 / 6%);
       padding: 45px 50px 45px;
-      background: linear-gradient(180deg, #FFFFFF 0%, #F8F8FA 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #f8f8fa 100%);
 
       @media screen and (max-width: 550px) {
         padding: 25px;
@@ -93,7 +93,7 @@
       font-size: 24px;
       font-weight: 700;
       text-transform: capitalize;
-      color: #4A5568;
+      color: #4a5568;
     }
 
     .pv-content {
@@ -107,7 +107,6 @@
       @media screen and (max-width: 420px) {
         padding: 15px !important;
       }
-
     }
 
     .pv-modal-footer {
@@ -123,7 +122,7 @@
 
       .pv-btn {
         background: none;
-        color: #4A5568;
+        color: #4a5568;
         margin-left: -20px;
         text-transform: capitalize;
         font-size: 14px;
@@ -170,7 +169,6 @@
     }
   }
 
-
   // Modal pro alert
   .pv-modal-pro-alert {
     .pv-modal-header {
@@ -182,7 +180,7 @@
     }
 
     .pv-lock {
-      background: #F16063;
+      background: #f16063;
       display: inline-block;
       padding: 35px;
       border-radius: 50%;
@@ -244,7 +242,7 @@
     h2 {
       margin-bottom: 25px;
       font-weight: 500 !important;
-      color: #2D3748 !important;
+      color: #2d3748 !important;
 
       @media (max-width: 550px) {
         margin-bottom: 15px;
@@ -263,11 +261,11 @@
     h3 {
       font-weight: 700;
       margin-top: 25px;
-      color: #2D3748 !important;
+      color: #2d3748 !important;
     }
 
     p {
-      color: #4A5568;
+      color: #4a5568;
       margin-bottom: 40px;
     }
   }
@@ -317,7 +315,7 @@
       background: none !important;
 
       .pv-modal-title {
-        color: #2D3748;
+        color: #2d3748;
       }
     }
 
@@ -415,9 +413,7 @@
     width: 25% !important;
   }
 
-
   .pv-modal-task {
-
     .pv-modal-header {
       .pv-btn-medium {
         border-radius: 5px;
@@ -441,12 +437,11 @@
       label {
         margin-bottom: 0;
         font-weight: 600;
-        color: #2D3748;
+        color: #2d3748;
 
         span {
           cursor: pointer;
         }
-
       }
 
       span {
@@ -485,7 +480,7 @@
             color: #718096;
           }
 
-          input[type=checkbox] {
+          input[type="checkbox"] {
             position: relative;
             top: 1px;
             margin-right: 10px;
@@ -528,7 +523,6 @@
         }
       }
     }
-
   }
 
   .pv-modal-task-discussion {
@@ -547,7 +541,7 @@
     .pv-modal-discussion-content {
       display: flex;
       flex-direction: column;
-      background-color: #E2E8F0;
+      background-color: #e2e8f0;
     }
 
     .pv-modal-discussion-content {
@@ -595,9 +589,9 @@
         margin-bottom: 7px;
       }
 
-      .pv-avatar-group {}
+      .pv-avatar-group {
+      }
     }
-
   }
 
   .pv-range {
@@ -634,7 +628,7 @@
     display: block;
     width: 100%;
     height: 8px;
-    background-color: #CCD6FF !important;
+    background-color: #ccd6ff !important;
     outline: none;
   }
 
