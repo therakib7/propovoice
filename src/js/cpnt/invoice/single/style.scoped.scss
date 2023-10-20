@@ -54,6 +54,10 @@
     height: 100%;
     background-color: #0a0a0a47;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .pv-single-image-content:hover .pv-single-image {
@@ -69,11 +73,8 @@
   }
 
   .pv-single-image-content a {
-    transform: translateY(-113%);
     display: block;
-    width: 130px;
-    margin: auto;
-    top: 50%;
+    min-width: 130px;
     position: relative;
     padding: 10px 15px;
     font-size: 14px;

@@ -401,13 +401,13 @@ export default class Form extends Component {
                   </div>
                 </div>
 
-                <div className="row">
+                {!wage.length && this.props.data.id && <div className="row">
                   <div className="col">
-                    {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
+                    <Suspense fallback={<Spinner />}>
                       <Staff tab_id={this.props.data.id} parent_tab_id={this.props.tab_id} inForm />
-                    </Suspense>}
+                    </Suspense>
                   </div>
-                </div>
+                </div>}
 
                 {this.props.tab_id && !wage.length && (
                   <div className="row">

@@ -268,7 +268,6 @@ class Fns
             $format_taxonomy = [];
             foreach ($get_taxonomy as $single) {
                 $icon_id = get_term_meta($single->term_id, 'icon', true);
-                $iconData = null;
                 if ($icon_id) {
                     $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
                     if ($icon_src) {
@@ -290,7 +289,7 @@ class Fns
         foreach ($social_list as $key => $val) {
             $margin_right = $key === array_key_last($social_list) ? 0 : "15px";
             if ($val['url']) {
-                $social .= '<li  style="display: inline-block;text-align:center;vertical-align:middle;margin-right:' . $margin_right . ';"><a href="' . esc_url($val['url']) . '"  style="display: table-cell;list-style: none;padding: 7px;width: 23px;height: 23px;background-color: #fff;border-radius: 100%;line-height: 16px;text-align: center;vertical-align: middle;"><img src="' . esc_url($val['icon']) . '" alt=""  style="max-height: 16px !important;max-width: 16px !important;"></a></li>';
+                $social .= '<li style="display: inline-block;text-align:center;vertical-align:middle;margin-right:' . $margin_right . ';"><a href="' . esc_url($val['url']) . '" style="display: table-cell;list-style: none;padding: 7px;width: 23px;height: 23px;background-color: #fff;border-radius: 100%;line-height: 16px;text-align: center;vertical-align: middle;"><img src="' . esc_url($val['icon']) . '" alt="" style="max-height: 16px !important;max-width: 16px !important;"></a></li>';
             }
         }
 
@@ -332,7 +331,7 @@ class Fns
                 $url,
                 $footer_text,
                 $social,
-                esc_html('View', 'propovoice')
+                esc_html__("View", "propovoice")
             ),
             $string
         );

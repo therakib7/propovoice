@@ -79,7 +79,7 @@ export default (props) => {
                                         href={'https://propovoice.com/template/preview/inv' + row.id + '.html'}
                                         target="_blank"
                                         className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-stroke pv-bg-shadow"
-                                    >{i18n.full} {i18n.prv}</a>
+                                    >{i18n.full_prv}</a>
                                 </div>}
                             </div>
                         </div>
