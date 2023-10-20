@@ -60,9 +60,6 @@ export default function Form({setVisibility}) {
             />
           </div>
          
-
-         
-
           <div className="row">
             <Text
               label={"Subject"}

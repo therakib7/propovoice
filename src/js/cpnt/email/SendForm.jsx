@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { Text, Address } from "block/form/input";
 import { FormWrapper, FormContent } from "block/form";
 import api from "api";
@@ -20,13 +20,20 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
     to: data.person.email,
     subject: "",
     message: "",
-    postId:module_id
+    postId: module_id
   });
+
+  const [items, setItems] = useState([]);
 
   const [showCC, setShowCC] = useState(false);
   const [showBcc, setShowBcc] = useState(false);
 
 
+  useEffect(() => {
+    api.add("custom-email-templates").then((response) => {
+      setItems(response.data);
+    });
+  }, []);
 
   const sendEmail = () => {
 
@@ -40,11 +47,11 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
         } else {
           toast.error("Enable to send email");
         }
-        
+
       })
       .catch((err) => {
         toast.error("Someting went wrong");
-    
+
       });
   };
 
@@ -136,7 +143,26 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
 
           <div className="row">
             <div className="col-md">
-              <label htmlFor="field-message">Write Message </label>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div><label htmlFor="field-message">Write Message </label></div>
+                <div style={{ position:'relative'}}>
+                  <div style={{ cursor: 'pointer' }}>Select Email Template</div>
+                  <div style={{ right:'0px' }} className="pv-dropdown-content pv-show">
+
+                    {items.map((item, i) => {
+                      return <a onClick={(e)=> {e.preventDefault(); setFormData({...formData,subject:item.subject,message:item.message})}} key={i} href="#">
+                        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
+                          <div>
+                            <div style={{ fontWeight: '500', fontSize: '12px' }}>{item.name}</div>
+
+                          </div>
+                        </div>
+                      </a>
+                    })}
+                  </div>
+                </div>
+              </div>
+
               <Editor
                 key={10}
                 value={formData.message}

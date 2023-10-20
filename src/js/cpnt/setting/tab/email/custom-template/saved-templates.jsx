@@ -42,7 +42,7 @@ const nameStyle = {
   fontStyle: "normal",
   fontWeight: "400",
   lineHeight: "14px",
-  paddingBottom:'10px'
+  paddingBottom: '10px'
 }
 
 const contentStyle = {
@@ -104,6 +104,7 @@ export default function SavedTemplates() {
 
   return (
     <div>
+
       {/* items */}
       {items.map((item, index) => {
         return (
@@ -114,7 +115,7 @@ export default function SavedTemplates() {
               <div style={subjectStyle}>Subject: {item.subject}</div>
               <div
                 style={contentStyle}
-     
+
               >{removeTags(item.message)}</div>
             </div>
             {/* actions */}
