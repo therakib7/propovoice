@@ -74,7 +74,7 @@ export default function Form({setVisibility}) {
               onChange={(e) =>
                 setFormData({ ...formData, subject: e.target.value })
               }
-              validation={{ required: { value: false } }}
+          
             />
           </div>
 

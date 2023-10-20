@@ -41,7 +41,8 @@ const nameStyle = {
   fontSize: "14px",
   fontStyle: "normal",
   fontWeight: "400",
-  lineHeight: "14px"
+  lineHeight: "14px",
+  paddingBottom:'10px'
 }
 
 const contentStyle = {
@@ -66,6 +67,14 @@ export default function SavedTemplates() {
   useEffect(() => {
     getEmailTemplates();
   }, []);
+
+  const removeTags = (str) => {
+    if ((str === null) || (str === ''))
+      return false;
+    else
+      str = str.toString();
+    return str.replace(/(<([^>]+)>)/ig, '');
+  }
 
   useEffect(() => {
     // Add an event listener when the component mounts
@@ -105,8 +114,8 @@ export default function SavedTemplates() {
               <div style={subjectStyle}>Subject: {item.subject}</div>
               <div
                 style={contentStyle}
-                dangerouslySetInnerHTML={{ __html: item.message }}
-              ></div>
+     
+              >{removeTags(item.message)}</div>
             </div>
             {/* actions */}
             <div style={actionStyle}>
