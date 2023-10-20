@@ -207,8 +207,8 @@ class Taxonomy
             'task_priority' => [
                 [
                     'label' => 'Low',
-                    'bg_color' => '#2D3748',
-                    'color' => '#CBD5E0',
+                    'bg_color' => '#CBD5E0',
+                    'color' => '#2D3748',
                     'type' => '',
                 ],
                 [
