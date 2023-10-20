@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, Address } from "block/form/input";
 import { FormWrapper, FormContent } from "block/form";
 import api from "api";
+import pro from "block/pro-alert";
 import Editor from "block/editor";
 import { toast } from "react-toastify";
 
@@ -26,19 +27,22 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
   const [showCC, setShowCC] = useState(false);
   const [showBcc, setShowBcc] = useState(false);
 
-
-
   const sendEmail = () => {
 
+    if (wage.length > 0) {
+      pro();
+      return;
+    }
+    
     api
       .add("send-email", formData)
       .then((response) => {
         if (response.data.success) {
-          toast.success("Email sent !");
+          toast.success("Email sent");
           setVisibility(false)
           window.dispatchEvent(new Event('emailSent'));
         } else {
-          toast.error("Enable to send email");
+          toast.error("Unable to send email");
         }
         
       })
@@ -58,6 +62,7 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
         submitPreloader={false}
         submitHandler={sendEmail}
         submitLabel="Send"
+        isPro={true}
         close={false}
       >
         <FormContent formStyleClass="pv-form-style-one">

@@ -12,6 +12,7 @@ import React, { Component, lazy, Suspense } from "react";
 import Moment from "react-moment";
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import ProLabel from "block/pro-alert/label";
 
 const Task = lazy(() => import("./tab/task"));
 const Discussion = lazy(() => import("./tab/discussion"));
@@ -1151,7 +1152,7 @@ class ListSingle extends Component {
                     key={index}
                     onClick={(e) => this.setActiveTab(e, tab.id)}
                   >
-                    {tab.text}
+                    {tab.text} {tab.id == 'email' && <ProLabel />}
                   </li>
                 ))}
               </ul>

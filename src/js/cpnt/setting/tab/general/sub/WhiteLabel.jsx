@@ -3,7 +3,6 @@ import Taxonomy from "block/field/taxonomy/setting";
 import { toast } from "react-toastify";
 import Upload from "block/field/upload";
 import api from "api";
-import ProLabel from "block/pro-alert/label";
 import pro from "block/pro-alert";
 import Preloader from "block/preloader/spinner";
 import { FormWrapper, FormContent } from "block/form";
@@ -134,14 +133,6 @@ export default (props) => {
           </div>
           <div className="col"></div>
         </div>
-
-        {/* <div className="row"> */}
-        {/*     <div className="col"> */}
-        {/*         <button disabled={submitPreloader} className="pv-btn pv-bg-blue pv-bg-hover-blue"> */}
-        {/*             {submitPreloader && <Preloader submit />} {ndpv.i18n.save} <ProLabel blueBtn /> */}
-        {/*         </button> */}
-        {/*     </div> */}
-        {/* </div> */}
       </FormContent>
     </FormWrapper>
   );
