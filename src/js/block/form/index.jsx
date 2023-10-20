@@ -1,12 +1,8 @@
 import React, { useState, createContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import Preloader from "block/preloader/spinner";
-import {
-  checkAllValidation,
-  groupProcessing,
-  removeError,
-  setGroupValidation,
-} from "./input/validations";
+import ProLabel from "block/pro-alert/label";
+import { checkAllValidation } from "./input/validations";
 
 export const FormContext = createContext({});
 
@@ -17,6 +13,7 @@ export function FormWrapper({
   submitLabel,
   children,
   formTag = true,
+  isPro = false,
 }) {
   const [form, setForm] = useState({});
   const [errorFields, setErrorFields] = useState({});
@@ -61,6 +58,7 @@ export function FormWrapper({
         submitLabel={submitLabel}
         formTag={formTag}
         onSubmit={onSubmit}
+        isPro={isPro}
       />
     </>
   );
@@ -92,6 +90,7 @@ export function FormFooter({
   submitLabel,
   formTag,
   onSubmit,
+  isPro,
 }) {
   const i18n = ndpv.i18n;
   return (
@@ -117,6 +116,7 @@ export function FormFooter({
           >
             {submitPreloader && <Preloader submit />}{" "}
             {submitLabel ? submitLabel : i18n.save}
+            {isPro && <ProLabel blueBtn />}
           </button>
         </div>
       </div>
