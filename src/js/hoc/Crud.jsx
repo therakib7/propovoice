@@ -140,9 +140,9 @@ const HOC = (Inner, mod, title, modPlural = "", pro = false) => {
             toast.success(ndpv.i18n.aAdd);
             this.getLists(args);
           } else {
+            this.setState({ submitPreloader: false });
             resp.data.data.forEach((value) => {
               toast.error(value);
-              this.setState({ submitPreloader: false });
             });
           }
         });

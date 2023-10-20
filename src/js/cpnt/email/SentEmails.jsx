@@ -61,8 +61,7 @@ export default function SentEmails({ module_id }) {
   useEffect(() => {
     // Add an event listener when the component mounts
     const mailSentEvent = (event) => {
-      // Handle the global event here
-      console.log("Global Event Triggered:", event);
+    
       getLogs();
     };
 
@@ -76,17 +75,16 @@ export default function SentEmails({ module_id }) {
 
   const getLogs = () => {
     api.add("email-logs", { postId: module_id }).then((response) => {
-      console.log(response.data);
-      console.log(typeof response.data);
+ 
       setItems(response.data);
     });
   };
 
   const deleteLog = (id) => {
-    console.log("deleting ", id);
+
     api.add("delete-email-logs", { postId: module_id, id: id }).then((res) => {
       getLogs();
-      console.log(res);
+  
     });
   };
 
