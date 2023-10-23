@@ -148,6 +148,7 @@ class I18n
             "info" => esc_html__("Info", "propovoice"),
             "no" => esc_html__("No", "propovoice"),
             //discussion
+            "add_checklist" => esc_html__("Add Checklist", "propovoice"),
             "comment" => esc_html__("Comment", "propovoice"),
             "send_team" => esc_html__("Send to Team", "propovoice"),
             "reply_client" => esc_html__("Reply to Client", "propovoice"),

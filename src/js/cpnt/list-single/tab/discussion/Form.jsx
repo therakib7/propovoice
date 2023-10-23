@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import Upload from 'block/field/upload';
+import pro from "block/pro-alert";
+import ProLabel from "block/pro-alert/label";
 
 class Form extends Component {
     constructor(props) {
@@ -28,6 +30,12 @@ class Form extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
+
         const buttonClicked = e.nativeEvent.submitter;
         let newForm = { ...this.state.form }
 
@@ -35,7 +43,11 @@ class Form extends Component {
             newForm.attach_ids = newForm.attach_ids.map(item => item.id);;
         }
 
-        newForm.receiver_type = (buttonClicked.id === 'ndpv-client') ? 1 : 2;
+        if (buttonClicked) {
+            newForm.receiver_type = (buttonClicked.id === 'ndpv-client') ? 1 : 2;
+        } else {
+            newForm.receiver_type = 2;
+        }
 
         this.props.handleSubmit(newForm, 'new');
         this.setState({
@@ -83,6 +95,11 @@ class Form extends Component {
                         value={this.state.form.text}
                         placeholder={taskMod ? i18n.write_comment : i18n.write_msg}
                         onChange={this.handleChange}
+                        onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                                this.handleSubmit(e)
+                            }
+                        }}
                         rows={4}
                     />
                     <div className="pv-button-content">
@@ -97,7 +114,7 @@ class Form extends Component {
                                 {isClient ? i18n.send : i18n.reply_client}
                             </button>}
                             {!isClient && path != 'project' && <button type='submit' id='ndpv-team' className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow">
-                                {taskMod ? i18n.comment : i18n.send}
+                                {taskMod ? i18n.comment : i18n.send} <ProLabel blueBtn />
                             </button>}
                         </div>
                     </div>

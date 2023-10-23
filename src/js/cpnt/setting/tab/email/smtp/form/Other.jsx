@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import AppContext from 'context/app-context';
+import pro from "block/pro-alert";
 import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
@@ -52,6 +53,12 @@ export default class Form extends Component {
         e.preventDefault();
 
         if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
+
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
+
         let form = this.state.form;
         form.tab = 'smtp_other';
         this.setState({ submitPreloader: true });
@@ -78,6 +85,7 @@ export default class Form extends Component {
                 submitPreloader={submitPreloader}
                 submitHandler={this.handleSubmit}
                 submitLabel={i18n.act}
+                isPro={true}
             >
                 <FormContent formStyleClass="pv-form-style-one">
                     <div className="" style={{ marginBottom: 10, cursor: 'pointer' }} onClick={() => this.props.close()}>

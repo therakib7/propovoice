@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import Upload from "block/field/upload";
 import api from "api";
 import pro from "block/pro-alert";
-import Preloader from "block/preloader/spinner";
 import { FormWrapper, FormContent } from "block/form";
 
 export default (props) => {

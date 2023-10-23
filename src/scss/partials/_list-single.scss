@@ -777,8 +777,7 @@
   .pv-time-content {
     position: absolute;
     right: 0;
-    display: flex;
-    top: 12px;
+    top: 0;
 
     svg {
       cursor: pointer;
@@ -841,8 +840,8 @@
     font-size: 12px;
     background: #EDF2F7;
     padding: 10px;
-    width: 80%;
-    margin-top: 10px;
+    width: 95%;
+    margin-top: 2px;
     color: #4A5568;
     border-radius: 10px;
   }
@@ -891,6 +890,7 @@
     padding: 10px 20px;
     border-radius: 10px;
     font-size: 12px;
+    line-height: 150%;
     color: #979797;
     border: 1px solid #e2e8f0;
     background: #F8FAFC;
