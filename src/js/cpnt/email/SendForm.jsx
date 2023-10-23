@@ -4,6 +4,7 @@ import { FormWrapper, FormContent } from "block/form";
 import api from "api";
 import Editor from "block/editor";
 import { toast } from "react-toastify";
+import DropdownIcon from './dropdown-icon';
 
 const ccContainerStyle = {
   display: "flex",
@@ -164,8 +165,9 @@ export default function SendForm({ setVisibility, module_id, data, parent }) {
             <div className="col-md">
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div><label htmlFor="field-message">Write Message </label></div>
-                <div style={{ position: 'relative' }}>
-                  <div onClick={() => showDropdown(!dropdown)} style={{ cursor: 'pointer' }}>Select Email Template</div>
+                <div onClick={() => showDropdown(!dropdown)} style={{display:'flex', position: 'relative',cursor: 'pointer' }}>
+                  <div >Select Email Template</div>
+                  <DropdownIcon />
                   {dropdown &&
 
                     <div style={{ right: '0px' }} className="pv-dropdown-content pv-show">
