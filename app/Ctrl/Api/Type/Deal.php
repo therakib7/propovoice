@@ -712,7 +712,7 @@ class Deal
                         throw new \Exception("There is an error to update lead level!!!");
                     }
 
-                    if ($previous_deal_stage["term_id"] != $stage_ids) {
+                    if ($previous_deal_stage[0]->term_id != $stage_id) {
                         do_action("ndpvp/webhook", "deal_stage_change", $param);
                     }
                 }
