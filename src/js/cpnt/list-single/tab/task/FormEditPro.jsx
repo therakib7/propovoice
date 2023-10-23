@@ -551,7 +551,7 @@ export default class Form extends Component {
                   </div>
 
                   <div className="pv-avatar-group">
-                    {!wage.length && this.props.data.id && <Suspense fallback={<Spinner />}>
+                    {this.props.data.id && <Suspense fallback={<Spinner />}>
                       <Staff tab_id={this.props.data.id} parent_tab_id={this.props.tab_id} inForm avatarGroup />
                     </Suspense>}
                   </div>
