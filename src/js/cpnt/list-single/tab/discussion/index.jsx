@@ -10,14 +10,17 @@ import Crud from "hoc/Crud";
 
 const Message = (props) => {
   useEffect(() => {
-    props.getLists();
-
-    const interval = setInterval(() => {
+    if (!wage.length) {
       props.getLists();
-    }, 15000); // Set the interval duration in milliseconds (e.g., 1000ms = 1 second)
 
-    // Clear the interval when the component is unmounted or the dependencies change
-    return () => clearInterval(interval);
+      const interval = setInterval(() => {
+        props.getLists();
+      }, 15000); // Set the interval duration in milliseconds (e.g., 1000ms = 1 second)
+
+      // Clear the interval when the component is unmounted or the dependencies change
+      return () => clearInterval(interval);
+    }
+
   }, []);
   const { lists, checkedBoxes, searchVal } = props.state;
 
@@ -48,21 +51,23 @@ const Message = (props) => {
           />
         )}
 
-        {!props.state.preloader && !(lists.length > 0) && (
+        {(wage.length > 0 || (!props.state.preloader && !(lists.length > 0))) && (
           <p style={{ color: "#718096" }}>{ndpv.i18n.no_comment}</p>
         )}
 
-        {props.state.preloader ? (
-          <Preloader />
-        ) : (
-          <Table
-            tableData={lists}
-            searchVal={searchVal}
-            editEntry={props.openForm}
-            checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }}
-            deleteEntry={props.deleteEntry}
-          />
-        )}
+        {!wage.length && <>
+          {props.state.preloader ? (
+            <Preloader />
+          ) : (
+            <Table
+              tableData={lists}
+              searchVal={searchVal}
+              editEntry={props.openForm}
+              checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }}
+              deleteEntry={props.deleteEntry}
+            />
+          )}
+        </>}
 
         <div className="pv-pagination-content-two">
           {props.state.totalPage > 1 && (
