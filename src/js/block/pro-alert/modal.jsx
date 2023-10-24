@@ -103,7 +103,7 @@ const ProModal = () => {
                         </svg>
                         {i18n.tryPro}
                     </h2>
-                    <p>{i18n.ProDesc}</p>
+                    <p>{i18n.proDesc}</p>
                     <a
                         href='https://propovoice.com/pricing'
                         className='pv-btn pv-bg-blue pv-bg-hover-blue pv-color-white'

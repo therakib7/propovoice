@@ -152,7 +152,7 @@ class Checklist extends Component {
                                 {wage.length > 0 && <>
                                     <ProLabel />
                                 </>}
-                                <span>{this.doneCount(checklist_index, true)} task done out of {this.doneCount(checklist_index, false)}</span>
+                                <span>{this.doneCount(checklist_index, true)} {ndpv.i18n.task_done_out} {this.doneCount(checklist_index, false)}</span>
                                 <div
                                     className="pv-close-icon"
                                     onClick={() => this.deleteHandler(checklist_index)}
@@ -239,7 +239,6 @@ class Checklist extends Component {
                                 />
                             </div>
                         </div>
-
                     );
                 })}
 

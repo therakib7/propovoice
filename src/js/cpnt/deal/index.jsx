@@ -11,6 +11,7 @@ import Table from "./Table";
 import Search from "./Search";
 import Empty from "block/empty";
 import pro from "block/pro-alert";
+import ProLabel from 'block/pro-alert/label';
 
 import Crud from "hoc/Crud";
 
@@ -51,19 +52,10 @@ const Deal = (props) => {
 
   useEffect(() => {
     if (props.onLoad) {
-      if (wage.length > 0) {
-        props.onLoad(false);
-      } else {
-        props.onLoad(true);
-      }
+      props.onLoad(true);
     }
 
-    if (wage.length > 0) {
-      setBoardView(false);
-      props.getLists({ table_view: true });
-    } else {
-      props.getLists();
-    }
+    props.getLists();
 
     return () => {
       if (props.onLoad) {
@@ -73,10 +65,6 @@ const Deal = (props) => {
   }, []);
 
   const viewChange = (view = "") => {
-    if (wage.length > 0 && view == "board") {
-      pro();
-      return;
-    }
 
     setLoading(true);
     if (view == "board") {
@@ -131,7 +119,6 @@ const Deal = (props) => {
   const { title, lists, extra, checkedBoxes, searchVal } = props.state;
 
   const i18n = ndpv.i18n;
-  const pipeline = !wage.length ? i18n.pipeline : "";
   const deal_pipeline = !wage.length ? i18n.deal_pipeline : title;
   return (
     <div className="ndpv-cpnt">
@@ -191,7 +178,7 @@ const Deal = (props) => {
                   strokeLinejoin="round"
                 />
               </svg>
-              {i18n.add_stage}
+              {i18n.add_stage} <ProLabel />
             </button>
 
             <button
@@ -219,9 +206,6 @@ const Deal = (props) => {
           </div>
         </div>
       </div>
-
-      {/* <div className="pv-buttons-group pv-mb-20">
-            </div> */}
 
       <Search
         module_id={props.module_id}
@@ -257,9 +241,6 @@ const Deal = (props) => {
           {!props.module_id && boardView && (
             <Pipeline new={props.openForm} data={lists} taxForm={taxForm} />
           )}
-          {/* {(props.module_id || !boardView) && <>
-                    {console.log(lists)}
-                </>} */}
 
           {(props.module_id || !boardView) && (
             <>
