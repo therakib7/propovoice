@@ -29,6 +29,11 @@ export default class Form extends Component {
                     let form = { ...this.state.form }
                     if (!this.props.boardView) {
                         form.table_view = true;
+                    } else {
+                        if (this.props.isClient) {
+                            form.table_view = true;
+                            form.project_req = true;
+                        }
                     }
                     this.props.handleSubmit(form);
                 }, 300);
@@ -140,78 +145,6 @@ export default class Form extends Component {
                     />
                 </div>
 
-                {false && <div className="pv-search-btn">
-                    <button className={this.state.searchModal ? 'pv-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
-                        <Filter />
-                    </button>
-
-                    {this.state.searchModal && <div className="pv-search-form">
-                        <ul>
-                            <li>
-                                <svg
-                                    width={17}
-                                    height={17}
-                                    viewBox="0 0 17 17"
-                                    fill="none"
-
-                                >
-                                    <path
-                                        d="M7.32788 3.42358H3.32788V7.42358H7.32788V3.42358Z"
-                                        stroke="#718096"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M13.3279 3.42358H9.32788V7.42358H13.3279V3.42358Z"
-                                        stroke="#718096"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M7.32788 9.42358H3.32788V13.4236H7.32788V9.42358Z"
-                                        stroke="#718096"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                    <path
-                                        d="M13.3279 9.42358H9.32788V13.4236H13.3279V9.42358Z"
-                                        stroke="#718096"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                                <select name="" id="">
-                                    <option value="">{i18n.cat}</option>
-                                    <option value="">{i18n.cat}</option>
-                                    <option value="">{i18n.cat}</option>
-                                </select>
-                            </li>
-                            <li>
-                                <span onClick={() => this.setState({ searchModal: false })}>
-                                    <svg
-                                        width={16}
-                                        height={16}
-                                        viewBox="0 0 16 16"
-                                        fill="none"
-                                    >
-                                        <path
-                                            d="M12.5 3.5L3.5 12.5"
-                                            stroke="#718096"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                        <path
-                                            d="M12.5 12.5L3.5 3.5"
-                                            stroke="#718096"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>}
-                </div>}
                 <div className="pv-total-list">
                     <p>
                         {i18n.show} <select onChange={showItem} >

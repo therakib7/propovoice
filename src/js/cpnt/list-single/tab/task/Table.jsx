@@ -67,9 +67,7 @@ const TableBody = (props) => {
                 </span>}
 
                 {props.source && row.tab_title &&
-                  <Link
-                    to={'/' + row.tab_url}
-                  >
+                  <Link to={'/' + row.tab_url} >
                     <svg style={{ top: 1 }} width={10} height={10} viewBox="0 0 12 12">
                       <path
                         fillRule="evenodd"

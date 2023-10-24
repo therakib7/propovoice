@@ -180,7 +180,7 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
-= 1.7.3 (19-Oct-2023) =
+= 1.7.3 (20-Oct-2023) =
 * Added: Bulk action button Estimate and Invoice
 * Added: Task discussion helper files for Pro
 * Added: Notification helper files for Pro

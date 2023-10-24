@@ -23,12 +23,12 @@ export default (props) => {
 	const [form, setForm] = useState(newForm);
 
 	const close = useCallback(() => setDropdown(false), []);
-	useClickOutside(dropdownContent, close); 
+	useClickOutside(dropdownContent, close);
 
 	useEffect(() => {
-		
-		if (props.data) { 
-			
+
+		if (props.data) {
+
 			if (props.multi) {
 				setListById(props.data);
 			} else {
@@ -36,7 +36,7 @@ export default (props) => {
 			}
 
 			getData();
-		} else { 
+		} else {
 			getDataWithSingle();
 		}
 	}, [props.data]);
@@ -62,7 +62,7 @@ export default (props) => {
 		api.get('taxonomies', 'taxonomy=' + props.taxonomy + '&id=' + props.id).then(resp => {
 			if (resp.data.success) {
 				setList(resp.data.data[props.taxonomy]);
-				if ( props.id ) {
+				if (props.id) {
 					setListById(resp.data.data['single_' + props.taxonomy]);
 				}
 			}
@@ -82,7 +82,17 @@ export default (props) => {
 		e.preventDefault();
 
 
-		if (type == 'new' && wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source')) {
+		if (type == 'new' && wage.length > 0 && (
+			props.taxonomy != 'tag' &&
+			props.taxonomy != 'lead_level' &&
+			props.taxonomy != 'lead_source' &&
+			props.taxonomy != 'lead_source' &&
+			props.taxonomy != 'task_status' &&
+			props.taxonomy != 'task_type' &&
+			props.taxonomy != 'task_priority' &&
+			props.taxonomy != 'estinv_qty_type' &&
+			props.taxonomy != 'contact_status'
+		)) {
 			pro();
 			return;
 		}
@@ -95,7 +105,7 @@ export default (props) => {
 			setModalType(type);
 			setForm(tax);
 		}
-	} 
+	}
 
 	const handleSelect = (item) => {
 		let newForm = {}
@@ -105,30 +115,30 @@ export default (props) => {
 		newForm.post_id = parseInt(props.id);
 		newForm.id = parseInt(item.id);
 
-		setDropdown(false); 
+		setDropdown(false);
 
 		if (!props.multi) {
 			setListById([item]);
-			if (props.onChange) { 
+			if (props.onChange) {
 				props.onChange(item);
 			}
 		} else {
 			if (!listById.some(e => e.id == item.id)) {
 				setListById([...listById, item]);
 
-				if (props.onChange) { 
+				if (props.onChange) {
 					props.onChange([...listById, item]);
 				}
 			}
-		} 
+		}
 
-		if ( !props.id ) {
+		if (!props.id) {
 			return;
 		}
 
 		api.edit('taxonomies', newForm.id, newForm).then(resp => {
 			if (resp.data.success) {
-				if (props.onDone) { 
+				if (props.onDone) {
 					props.onDone()
 				}
 				getData();
@@ -153,14 +163,14 @@ export default (props) => {
 				return obj.id !== id;
 			});
 			setListById(filtered);
-			if (props.onChange) { 
+			if (props.onChange) {
 				props.onChange(filtered);
 			}
 
-			if ( !props.id ) {
+			if (!props.id) {
 				return;
 			}
-			
+
 			api.edit('taxonomies', newForm.id, newForm).then(resp => {
 				if (resp.data.success) {
 					toast.success(ndpv.i18n.aDel);
@@ -206,7 +216,7 @@ export default (props) => {
 						className='pv-mr-0'
 						viewBox="0 0 10 6"
 						fill="none"
-						
+
 					>
 						<path
 							d="M5.00001 3.78145L8.30001 0.481445L9.24268 1.42411L5.00001 5.66678L0.757342 1.42411L1.70001 0.481445L5.00001 3.78145Z"
@@ -226,7 +236,17 @@ export default (props) => {
 				{dropdown && <div className="pv-dropdown-content pv-show">
 					<button onClick={(e) => { openModal(e, 'new') }}>
 						+ {i18n.add} {i18n.new} {props.title}
-						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <ProLabel />}
+						{wage.length > 0 && (
+							props.taxonomy != 'tag' &&
+							props.taxonomy != 'lead_level' &&
+							props.taxonomy != 'lead_source' &&
+							props.taxonomy != 'lead_source' &&
+							props.taxonomy != 'task_status' &&
+							props.taxonomy != 'task_type' &&
+							props.taxonomy != 'task_priority' &&
+							props.taxonomy != 'estinv_qty_type' &&
+							props.taxonomy != 'contact_status'
+						) && <ProLabel />}
 					</button>
 					{list && list.map((item, itemIndex) => {
 						return (
@@ -250,4 +270,3 @@ export default (props) => {
 		</>
 	);
 }
-  

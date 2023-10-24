@@ -139,6 +139,7 @@ class I18n
             "home" => esc_html__("Home", "propovoice"),
             "total" => esc_html__("Total", "propovoice"),
             "prv" => esc_html__("Preview", "propovoice"),
+            "full_prv" => esc_html__("Full Preview", "propovoice"),
             "tmpl_prv" => esc_html__("Template Preview", "propovoice"),
             "aut" => esc_html__("Author", "propovoice"),
             //invoice
@@ -147,6 +148,7 @@ class I18n
             "info" => esc_html__("Info", "propovoice"),
             "no" => esc_html__("No", "propovoice"),
             //discussion
+            "add_checklist" => esc_html__("Add Checklist", "propovoice"),
             "comment" => esc_html__("Comment", "propovoice"),
             "send_team" => esc_html__("Send to Team", "propovoice"),
             "reply_client" => esc_html__("Reply to Client", "propovoice"),
@@ -154,6 +156,12 @@ class I18n
             "write_comment" => esc_html__("Write your comment", "propovoice"),
             "task_creator" => esc_html__("Task Creator", "propovoice"),
             "no_comment" => esc_html__("This is no comment", "propovoice"),
+            //client portal
+            "tbl_view" => esc_html__("Table View", "propovoice"),
+            "req_project" => esc_html__("Requested Project", "propovoice"),
+            "board_view" => esc_html__("Board View", "propovoice"),
+            "no_req_project" => __("You don't have any Requested Project", "propovoice"),
+            "no_project" => __("You don't have any Project", "propovoice"),
             //table
             "status" => esc_html__("Status", "propovoice"),
             "created_at" => esc_html__("Created At", "propovoice"),
@@ -294,7 +302,6 @@ class I18n
             "stripe" => esc_html__("Stripe", "propovoice"),
             "paypal" => esc_html__("Paypal", "propovoice"),
             "Pub" => esc_html__("Public", "propovoice"),
-            "full" => esc_html__("Full", "propovoice"),
             "dlvy" => esc_html__("delivery", "propovoice"),
             "option" => esc_html__("option", "propovoice"),
             "upload" => esc_html__("Upload", "propovoice"),

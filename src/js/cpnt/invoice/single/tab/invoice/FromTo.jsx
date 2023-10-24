@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { toast } from "react-toastify";
-import { CountryRegionData } from "react-country-region-selector";
+import { countryByCode } from "helper";
 import AppContext from "context/app-context";
 import api from "api";
 import Contact from "block/field/contact-select";
@@ -8,7 +8,6 @@ import Contact from "block/field/contact-select";
 //others component
 import BusinessForm from "cpnt/business/Form";
 import ContactForm from "cpnt/contact/Form";
-import { mergeObjects } from "helper";
 
 export default class FromTo extends Component {
 	constructor(props) {
@@ -150,20 +149,6 @@ export default class FromTo extends Component {
 		this.props.setTo(contact);
 	};
 
-	countryByCode = (country = "") => {
-		if (country) {
-			let obj = CountryRegionData.find((o, i) => {
-				if (o[1] === country) {
-					return true; // stop searching
-				}
-			});
-
-			if (obj) {
-				return obj[0];
-			}
-		}
-	};
-
 	render = () => {
 		const { fromData, toData } = this.props;
 		const i18n = ndpv.i18n;
@@ -212,18 +197,13 @@ export default class FromTo extends Component {
 											</span>
 										</h4>
 										<address>
-											{fromData.address && (
-												<>
-													{fromData.address}.<br />
-												</>
-											)}
-											{fromData.email},
-											{fromData.mobile && (
-												<>
-													<br />
-													{fromData.mobile}
-												</>
-											)}
+											{fromData.address && <>{fromData.address},<br /></>}
+											{fromData.city && <>{fromData.city}, </>}
+											{fromData.region && <>{fromData.region}, </>}
+											{fromData.zip && <>{fromData.zip}, </>}
+											{fromData.country && <>{countryByCode(fromData.country)}, </>}
+											{fromData.email && <><br />{fromData.email}</>}
+											{fromData.mobile && <>, {fromData.mobile}</>}
 										</address>
 									</>
 								) : (
@@ -291,35 +271,13 @@ export default class FromTo extends Component {
 											)}
 										</h4>
 										<address>
-											{toData.first_name &&
-												(toData.org_name || toData.name) && (
-													<>
-														{toData.name ?? toData.org_name} <br />
-													</>
-												)}
-											{toData.address && (
-												<>
-													{toData.address}.<br />
-												</>
-											)}
-
-											{toData.email}
-											{toData.mobile && (
-												<>
-													,<br />
-													{toData.mobile}
-												</>
-											)}
-
-											{(toData.region || toData.country) && (
-												<>
-													<br />
-													{toData.region && toData.country
-														? toData.region + ", "
-														: ""}{" "}
-													{this.countryByCode(toData.country)}
-												</>
-											)}
+											{toData.address && <>{toData.address},<br /></>}
+											{toData.city && <>{toData.city}, </>}
+											{toData.region && <>{toData.region}, </>}
+											{toData.zip && <>{toData.zip}, </>}
+											{toData.country && <>{countryByCode(toData.country)}, </>}
+											{toData.email && <><br />{toData.email}</>}
+											{toData.mobile && <>, {toData.mobile}</>}
 										</address>
 									</>
 								) : (

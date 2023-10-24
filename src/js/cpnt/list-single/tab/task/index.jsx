@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Preloader from "block/preloader/table";
 import { toast } from "react-toastify";
 import Form from "./Form";
-import FormEdit from "./FormEdit";
 import FormEditPro from "./FormEditPro";
 import Table from "./Table";
 //import Search from './Search';
@@ -73,13 +72,6 @@ const Task = (props) => {
 
   const i18n = ndpv.i18n;
 
-  let FormEditComponent;
-
-  if (!wage.length) {
-    FormEditComponent = FormEditPro;
-  } else {
-    FormEditComponent = FormEdit;
-  }
   return (
     <div className="">
       <Form
@@ -89,7 +81,7 @@ const Task = (props) => {
       />
 
       {props.state.formModal &&
-        <FormEditComponent
+        <FormEditPro
           key={activeTab}
           activeTab={activeTab}
           tab_id={props.tab_id}

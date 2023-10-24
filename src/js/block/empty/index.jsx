@@ -1,7 +1,7 @@
 import { sprintf } from "sprintf-js";
 
 export default (props) => {
-  const { title, clickHandler, searchVal, logo = "" } = props;
+  const { title, clickHandler, isClient, boardView, searchVal, logo = "" } = props;
   const { i18n, caps } = ndpv;
   const mod = props.mod ? props.mod : "";
   return (
@@ -25,7 +25,7 @@ export default (props) => {
 
       {!searchVal.length && (
         <h2 className="pv-empty-title">
-          {sprintf(
+          {isClient ? (boardView ? i18n.no_req_project : i18n.no_project) : sprintf(
             i18n.notAdd,
             mod == "lead" ||
               mod == "client" ||

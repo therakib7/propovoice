@@ -462,6 +462,7 @@ class Taxonomy
                     "project_status" => "project_status_change"
                 ];
                 $action = $taxonomy_actions[$taxonomy] ?? null;
+
                 if ($action) {
                     do_action("ndpvp/webhook", $action, $param);
                 }

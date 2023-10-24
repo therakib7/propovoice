@@ -12,6 +12,7 @@ import React, { Component, lazy, Suspense } from "react";
 import Moment from "react-moment";
 import { NavLink, useLocation, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import ProLabel from "block/pro-alert/label";
 
 const Task = lazy(() => import("./tab/task"));
 const Discussion = lazy(() => import("./tab/discussion"));
@@ -22,7 +23,7 @@ const Project = lazy(() => import("cpnt/project"));
 const Deal = lazy(() => import("cpnt/deal"));
 
 const Staff = lazy(() => import("block/staff"));
-const Email = lazy(()=> import("cpnt/email"))
+const Email = lazy(() => import("cpnt/email"))
 
 class ListSingle extends Component {
   constructor(props) {
@@ -171,6 +172,16 @@ class ListSingle extends Component {
         }
       });
   };
+
+  addTabItem = (newTab) => {
+    let tabs = this.state.tabs;
+    const isIdExists = tabs.some(tab => tab.id === newTab.id);
+
+    // If the id does not exist, push the new object into the array
+    if (!isIdExists) {
+      tabs.push(newTab);
+    }
+  }
 
   setActiveTab(e, id) {
     e.preventDefault();
@@ -1074,8 +1085,7 @@ class ListSingle extends Component {
             close={() => this.setState({ dealModal: false })}
             reload={() => {
               if (path != 'deal') {
-                let tabs = this.state.tabs;
-                tabs.push({
+                this.addTabItem({
                   id: "estimate",
                   text: i18n.est,
                 });
@@ -1093,8 +1103,7 @@ class ListSingle extends Component {
             close={() => this.setState({ projectModal: false })}
             reload={() => {
               if (path != 'project') {
-                let tabs = this.state.tabs;
-                tabs.push({
+                this.addTabItem({
                   id: "invoice",
                   text: i18n.inv,
                 });
@@ -1143,7 +1152,7 @@ class ListSingle extends Component {
                     key={index}
                     onClick={(e) => this.setActiveTab(e, tab.id)}
                   >
-                    {tab.text}
+                    {tab.text} {tab.id == 'email' && <ProLabel />}
                   </li>
                 ))}
               </ul>
@@ -1176,7 +1185,7 @@ class ListSingle extends Component {
                     <Deal module_id={data.id} data={data} parent={path} />
                   )}
                   {currentTab == "email" && data.id && (
-                    <Email  module_id={data.id} data={data} parent={path} />
+                    <Email module_id={data.id} data={data} parent={path} />
                   )}
                 </Suspense>
               </div>

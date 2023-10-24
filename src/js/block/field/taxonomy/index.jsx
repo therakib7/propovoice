@@ -94,7 +94,17 @@ export default (props) => {
 		e.preventDefault();
 
 
-		if (type == 'new' && wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source')) {
+		if (type == 'new' && wage.length > 0 && (
+			props.taxonomy != 'tag' &&
+			props.taxonomy != 'lead_level' &&
+			props.taxonomy != 'lead_source' &&
+			props.taxonomy != 'lead_source' &&
+			props.taxonomy != 'task_status' &&
+			props.taxonomy != 'task_type' &&
+			props.taxonomy != 'task_priority' &&
+			props.taxonomy != 'estinv_qty_type' &&
+			props.taxonomy != 'contact_status'
+		)) {
 			pro();
 			return;
 		}
@@ -247,7 +257,17 @@ export default (props) => {
 				{dropdown && <div className="pv-dropdown-content pv-show">
 					{!isClient && <button onClick={(e) => { openModal(e, 'new') }}>
 						+ {i18n.add} {i18n.new} {props.title}
-						{wage.length > 0 && (props.taxonomy != 'tag' && props.taxonomy != 'lead_source') && <ProLabel />}
+						{wage.length > 0 && (
+							props.taxonomy != 'tag' &&
+							props.taxonomy != 'lead_level' &&
+							props.taxonomy != 'lead_source' &&
+							props.taxonomy != 'lead_source' &&
+							props.taxonomy != 'task_status' &&
+							props.taxonomy != 'task_type' &&
+							props.taxonomy != 'task_priority' &&
+							props.taxonomy != 'estinv_qty_type' &&
+							props.taxonomy != 'contact_status'
+						) && <ProLabel />}
 					</button>}
 					{list && list.map((item, itemIndex) => {
 						return (

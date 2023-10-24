@@ -263,6 +263,8 @@ const Project = (props) => {
 					title={title}
 					searchVal={searchVal}
 					clickHandler={() => props.openForm("new")}
+					isClient={isClient}
+					boardView={boardView}
 				/>
 			)}
 
