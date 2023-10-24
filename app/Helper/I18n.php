@@ -149,6 +149,7 @@ class I18n
             "no" => esc_html__("No", "propovoice"),
             //discussion
             "add_checklist" => esc_html__("Add Checklist", "propovoice"),
+            "task_done_out" => esc_html__("task done out of", "propovoice"),
             "comment" => esc_html__("Comment", "propovoice"),
             "send_team" => esc_html__("Send to Team", "propovoice"),
             "reply_client" => esc_html__("Reply to Client", "propovoice"),
@@ -351,7 +352,7 @@ class I18n
             "on" => esc_html__("On", "propovoice"),
             "upPro" => esc_html__("Upgrade to Pro", "propovoice"),
             "tryPro" => esc_html__("Try Propovoice Pro!", "propovoice"),
-            "ProDesc" => esc_html__(
+            "proDesc" => esc_html__(
                 "This is pro features, To use this features you need to upgrade with Pro plugin",
                 "propovoice"
             ),
