@@ -310,7 +310,6 @@ Regards
         ]];
         $project = [
                 'project' => [
-
                         'add_notif' => [
                 'subject' => '{org_name} Notification: {notification}',
                 'msg' => 'Hi <b>{name}</b>,
@@ -332,6 +331,7 @@ Regards
 
                 ]
         ];
+
         $file = [
                 'file' => [
                         'add_notif' => [

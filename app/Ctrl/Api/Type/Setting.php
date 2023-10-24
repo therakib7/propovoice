@@ -193,6 +193,13 @@ class Setting
                     "add_notif"
                 ]
             ],
+            "email_project_add_notif" => [
+                "keys" => [
+                    "email_template",
+                    "project",
+                    "add_notif"
+                ]
+            ],
             "email_project_discussion_add_notif" => [
                 "keys" => [
                     "email_template",
