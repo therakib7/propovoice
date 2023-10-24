@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import WithApi from "hoc/Api";
 
 import General from "./sub/General";
-import EmailTemplate from "./sub/EmailTemplate";
-
+import ProLabel from 'block/pro-alert/label';
 const Notification = (props) => {
 	const [tabs, setTabs] = useState([
 		{
 			id: "general",
 			text: "General",
+			isPro: true
 		},
 	]);
 	const [currentTab, setCurrentTab] = useState("general");
@@ -63,7 +63,7 @@ const Notification = (props) => {
 								}
 								onClick={(e) => setCurrentTab(tab.id)}
 							>
-								{tab.text}
+								{tab.text} {tab.isPro && <ProLabel />}
 							</li>
 						))}
 					</ul>

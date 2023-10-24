@@ -134,21 +134,19 @@ const Setting = (props) => {
       label: i18n.intg,
     };
   }
-  if (isAdmin && !wage.length) {
+  if (isAdmin) {
     tab_data.team = {
       label: "Team",
     };
   }
-  if (isAdmin && !wage.length) {
+  if (isAdmin) {
     tab_data["public-api"] = {
       label: "Public API",
     };
   }
-  if (!wage.length) {
-    tab_data["notification"] = {
-      label: "Notification",
-    };
-  }
+  tab_data["notification"] = {
+    label: "Notification",
+  };
 
   const [currentTab, setCurrentTab] = useState(tabDefault);
   const [currentSubtab, setCurrentSubtab] = useState(subTabDefault);
@@ -241,8 +239,8 @@ const Setting = (props) => {
                           className={
                             "pv-subtab " +
                             (subkey == currentSubtab ||
-                            (!currentSubtab &&
-                              Object.keys(tabs[key].subtabs)[0] == subkey)
+                              (!currentSubtab &&
+                                Object.keys(tabs[key].subtabs)[0] == subkey)
                               ? "pv-active"
                               : "")
                           }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import ProLabel from 'block/pro-alert/label';
 
 const token = {
   headers: {
@@ -13,6 +14,8 @@ const url = (api) => {
   const { apiUrl } = ndpv;
   return `${apiUrl}wp/v2/${api}`;
 };
+
+import pro from "block/pro-alert";
 
 export default function PublicApi() {
   const [appPwdName, setAppPwdName] = useState("");
@@ -58,6 +61,12 @@ export default function PublicApi() {
       toast.error(ndpv.demoMsg);
       return;
     }
+
+    if (wage.length > 0) {
+      pro();
+      return;
+    }
+
     await createPwd(appPwdName);
     setIsSubmitted(true);
     setAppPwdName("");
@@ -89,7 +98,7 @@ export default function PublicApi() {
         <div className="row">
           <div className="col">
             <button className="pv-btn  pv-bg-blue pv-bg-hover-blue">
-              Create new Application Password
+              Create new Application Password <ProLabel blueBtn />
             </button>
           </div>
         </div>
