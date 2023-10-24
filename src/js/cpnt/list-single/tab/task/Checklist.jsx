@@ -239,7 +239,6 @@ class Checklist extends Component {
                                 />
                             </div>
                         </div>
-
                     );
                 })}
 
