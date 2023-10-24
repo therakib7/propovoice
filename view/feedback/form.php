@@ -53,7 +53,7 @@ $deactivate_reasons = [
                      />
                   </svg>
                </span>
-               <h2 class="pv-modal-title"><?php echo esc_html__('Quick Feedback', 'elementor'); ?></h2>
+               <h2 class="pv-modal-title"><?php echo esc_html__('Quick Feedback', 'propovoice'); ?></h2>
                <p><?php echo esc_html__('If you have a moment, please share why you are deactivating Propovoice', 'propovoice'); ?></p>
          </div>
 

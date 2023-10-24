@@ -46,9 +46,7 @@ class Dashboard
             ],
             [
                 "id" => "deal",
-                "label" => ndpv()->wage()
-                    ? esc_html__("Deal Pipeline", "propovoice")
-                    : esc_html__("Deal", "propovoice"),
+                "label" => esc_html__("Deal Pipeline", "propovoice"),
                 "capability" => "ndpv_deal",
             ],
             [
