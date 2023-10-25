@@ -52,6 +52,11 @@ const contentStyle = {
   fontStyle: "normal",
   fontWeight: 400,
   lineHeight: "16px",
+  width:'85%',
+  maxHeight: '2.6em',
+  overflow: 'hidden',
+  position: 'relative',
+
 };
 /**
  * This function, SentEmails, that renders the list of

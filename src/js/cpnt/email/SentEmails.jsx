@@ -42,6 +42,10 @@ const contentStyle = {
   fontStyle: "normal",
   fontWeight: 400,
   lineHeight: "16px",
+  width:'85%',
+  maxHeight: '2.6em',
+  overflow: 'hidden',
+  position: 'relative',
 };
 /**
  * This function, SentEmails, that renders the list of
@@ -87,6 +91,14 @@ export default function SentEmails({ module_id }) {
     });
   };
 
+  const removeTags = (str) => {
+    if ((str === null) || (str === ''))
+      return false;
+    else
+      str = str.toString();
+    return str.replace(/(<([^>]+)>)/ig, '');
+  }
+
   return (
     <div>
       {/* items */}
@@ -98,8 +110,8 @@ export default function SentEmails({ module_id }) {
               <div style={subjectStyle}>Subject: {item.subject}</div>
               <div
                 style={contentStyle}
-                dangerouslySetInnerHTML={{ __html: item.content }}
-              ></div>
+              
+              >{removeTags(item.content)}</div>
             </div>
             {/* actions */}
             <div style={actionStyle}>
