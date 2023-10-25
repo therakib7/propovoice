@@ -67,8 +67,102 @@ class Email
             "callback" => [$this, "delete_email_logs"],
             "permission_callback" => [$this, "get_per"]
         ]);
+
+        // Custom email template
+        register_rest_route("ndpv/v1", "/save-custom-email", [
+            "methods" => "POST",
+            "callback" => [$this, "save_custom_email"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/custom-email-templates", [
+            "methods" => "POST",
+            "callback" => [$this, "get_custom_email"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+        register_rest_route("ndpv/v1", "/delete-custom-email-template", [
+            "methods" => "POST",
+            "callback" => [$this, "delete_custom_email_template"],
+            "permission_callback" => [$this, "get_per"]
+        ]);
+
+
     }
 
+    public function get_custom_email($request)
+    {
+
+        $post_meta = get_option('pv_custom_email_templates', true);
+
+        // If the post meta is empty or doesn't exist, return an empty array
+        if (empty($post_meta) || !is_array($post_meta)) {
+            return array();
+        }
+
+        $result = [];
+        foreach ($post_meta as $log) {
+            array_push($result, $log);
+        }
+        error_log(print_r($result, true));
+        return $result;
+    }
+
+    public function save_custom_email($request)
+    {
+        $param = $request->get_params();
+
+        $new_item = [
+            'id' => time(),
+            'name' => $param['name'],
+            'subject' => $param['subject'],
+            'message' => $param['message']
+        ];
+        // Get the existing array from post meta
+        $existing_array = get_option('pv_custom_email_templates', true);
+
+        // If the existing array is empty or doesn't exist, create a new array
+        if (empty($existing_array) || !is_array($existing_array)) {
+            $existing_array = array();
+        }
+
+        // Add the new item to the existing array
+        $existing_array[] = $new_item;
+
+        // Update the post meta with the modified array
+        update_option('pv_custom_email_templates', $existing_array);
+
+        error_log(print_r(get_option('pv_custom_email_templates', true), true));
+        wp_send_json_success();
+    }
+
+    public function delete_custom_email_template($request)
+    {
+        $param = $request->get_params();
+
+        $id_to_remove = $param['id'];
+
+        // Get the existing array from post meta
+        $existing_array = get_option('pv_custom_email_templates', true);
+
+        // If the existing array is empty or doesn't exist, nothing to remove
+        if (empty($existing_array) || !is_array($existing_array)) {
+            return;
+        }
+
+        // Iterate through the array and find the item to remove by ID
+        foreach ($existing_array as $key => $item) {
+            if (isset($item['id']) && $item['id'] == $id_to_remove) {
+                // Remove the item from the array
+                unset($existing_array[$key]);
+                break; // Exit the loop once the item is found and removed
+            }
+        }
+
+        // Update the post meta with the modified array
+        update_option('pv_custom_email_templates', $existing_array);
+        return wp_send_json_success();
+    }
     public function delete_email_logs($request)
     {
         $param = $request->get_params();

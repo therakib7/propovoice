@@ -30,6 +30,7 @@ const License = lazy(() => import("./tab/license"));
 //subtab: email
 const EmailSMTP = lazy(() => import("./tab/email/smtp"));
 const EmailSystemTemplate = lazy(() => import("./tab/email/system-template"));
+const CustomEmailTemplate = lazy(() => import("./tab/email/custom-template"));
 
 const Payment = lazy(() => import("cpnt/payment"));
 
@@ -106,6 +107,9 @@ const Setting = (props) => {
         "system-template": {
           label: "System Email Template",
         },
+        "custom-template":{
+          label:"Custom Email Tempalte"
+        }
       },
     };
   }
@@ -300,6 +304,10 @@ const Setting = (props) => {
                 {currentTab == "email" &&
                   (currentSubtab == "system-template" || !currentSubtab) && (
                     <EmailSystemTemplate {...props} />
+                  )}
+                {currentTab == "email" &&
+                  (currentSubtab == "custom-template" || !currentSubtab) && (
+                    <CustomEmailTemplate {...props} />
                   )}
                 {currentTab == "contact" && <Contact />}
                 {currentTab == "tag" && <Tag />}

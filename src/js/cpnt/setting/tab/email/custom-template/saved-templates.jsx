@@ -35,6 +35,16 @@ const subjectStyle = {
   paddingBottom: "12px",
 };
 
+const nameStyle = {
+  color: "#000",
+  fontFamily: "Inter",
+  fontSize: "14px",
+  fontStyle: "normal",
+  fontWeight: "400",
+  lineHeight: "14px",
+  paddingBottom: '10px'
+}
+
 const contentStyle = {
   color: "#718096",
   fontFamily: "Inter",
@@ -46,6 +56,7 @@ const contentStyle = {
   maxHeight: '2.6em',
   overflow: 'hidden',
   position: 'relative',
+
 };
 /**
  * This function, SentEmails, that renders the list of
@@ -55,41 +66,12 @@ const contentStyle = {
  * @returns {JSX.Element} A JSX element representing a basic structure with comments.
  */
 
-export default function SentEmails({ module_id }) {
+export default function SavedTemplates() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    getLogs();
+    getEmailTemplates();
   }, []);
-
-  useEffect(() => {
-    // Add an event listener when the component mounts
-    const mailSentEvent = (event) => {
-    
-      getLogs();
-    };
-
-    window.addEventListener("emailSent", mailSentEvent);
-
-    // Remove the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("emailSent", mailSentEvent);
-    };
-  }, []);
-
-  const getLogs = () => {
-    api.add("email-logs", { postId: module_id }).then((response) => {
-      setItems(response.data);
-    });
-  };
-
-  const deleteLog = (id) => {
-
-    api.add("delete-email-logs", { postId: module_id, id: id }).then((res) => {
-      getLogs();
-  
-    });
-  };
 
   const removeTags = (str) => {
     if ((str === null) || (str === ''))
@@ -99,24 +81,52 @@ export default function SentEmails({ module_id }) {
     return str.replace(/(<([^>]+)>)/ig, '');
   }
 
+  useEffect(() => {
+    // Add an event listener when the component mounts
+    const mailSentEvent = (event) => {
+      getEmailTemplates();
+    };
+
+    window.addEventListener("emailSaved", mailSentEvent);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("emailSaved", mailSentEvent);
+    };
+  }, []);
+
+  const getEmailTemplates = () => {
+    api.add("custom-email-templates").then((response) => {
+      setItems(response.data);
+    });
+  };
+
+  const deleteTemplate = (id) => {
+    api.add("delete-custom-email-template", { id: id }).then((res) => {
+      getEmailTemplates();
+    });
+  };
+
   return (
     <div>
+
       {/* items */}
       {items.map((item, index) => {
         return (
           <div key={index} style={itemStyle}>
             {/* content */}
             <div>
+              <div style={nameStyle}>{item.name}</div>
               <div style={subjectStyle}>Subject: {item.subject}</div>
               <div
                 style={contentStyle}
-              
-              >{removeTags(item.content)}</div>
+
+              >{removeTags(item.message)}</div>
             </div>
             {/* actions */}
             <div style={actionStyle}>
               <button
-                onClick={() => deleteLog(item.id)}
+                onClick={() => deleteTemplate(item.id)}
                 style={deleteButtonStyle}
               >
                 <DeleteIcon />
