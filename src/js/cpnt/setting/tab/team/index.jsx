@@ -3,7 +3,6 @@ import AddNew from "block/add-new";
 import Action from "block/action/table";
 import Preloader from "block/preloader/table";
 import Pagination from "block/pagination";
-import EntityFields from "block/add-new/EntityFields";
 
 import Form from "./Form";
 import Table from "./Table";
@@ -16,13 +15,13 @@ const Team = (props) => {
   }, []);
 
   const { title, lists, extra, checkedBoxes, searchVal } = props.state;
-  const { caps } = ndpv;
+  const { i18n, caps } = ndpv;
   const isStaff = caps.includes("ndpv_staff");
   return (
     <div className="ndpv-cpnt">
       <div className="row">
         <div className="col">
-          <h2 className="pv-page-title">{ndpv.i18n.team + ' ' + ndpv.i18n.member}</h2>
+          <h2 className="pv-page-title">{i18n.team + ' ' + i18n.member}</h2>
         </div>
         <div className="col">
           {!isStaff && <AddNew

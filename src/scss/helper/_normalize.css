@@ -67,7 +67,7 @@ hr {
     */
 
 pre {
-  font-family: monospace, monospace;
+  font-family: "Inter", sans-serif;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -111,7 +111,7 @@ abbr[title] {
 code,
 kbd,
 samp {
-  font-family: monospace, monospace;
+  font-family: "Inter", sans-serif;
   /* 1 */
   font-size: 1em;
   /* 2 */

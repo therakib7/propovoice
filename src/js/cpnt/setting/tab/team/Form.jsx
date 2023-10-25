@@ -3,6 +3,7 @@ import { Add } from 'block/icon';
 import { sprintf } from 'sprintf-js';
 import { toast } from "react-toastify";
 import api from 'api';
+import pro from "block/pro-alert";
 import { Text } from 'block/form/input';
 import { FormWrapper, FormContent } from 'block/form';
 
@@ -119,6 +120,12 @@ export default class Form extends Component {
         e.preventDefault();
 
         if (ndpv.isDemo) { toast.error(ndpv.demoMsg); return; }
+
+        if (wage.length > 0) {
+            pro();
+            return;
+        }
+
         let form = { ...this.state.form }
 
         if (this.props.reload) {
@@ -160,7 +167,7 @@ export default class Form extends Component {
                         <h2 className="pv-modal-title">{modalType} {i18n.team + ' ' + i18n.member}</h2>
                         <p>{sprintf(i18n.formDesc, modalType, i18n.team + ' ' + i18n.member)}</p>
                     </div>
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>
+                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close} isPro={true}>
                         <FormContent formStyleClass="pv-form-style-one">
 
                             <div className="row">

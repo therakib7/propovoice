@@ -694,6 +694,9 @@ class Project
                     wp_delete_post( $project_id );
                 } */
 
+                // set post_id for notification
+                $param["id"] = $post_id;
+
                 do_action("ndpvp/webhook", "project_add", $param);
 
                 wp_send_json_success($post_id);

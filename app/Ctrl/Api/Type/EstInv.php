@@ -740,8 +740,8 @@ class EstInv
                 $token = bin2hex($bytes);
                 update_post_meta($post_id, "token", $token);
                 $param["id"] = $post_id;
-
                 $hook = $path == "invoice" ? "inv" : "est";
+
                 do_action("ndpvp/webhook", $hook . "_add", $param);
 
 
@@ -915,5 +915,9 @@ class EstInv
     {
         return current_user_can("ndpv_invoice") ||
             current_user_can("ndpv_estimate");
+    }
+
+    public function is_client($id){
+        return get_post_meta($id,"is_client", true);
     }
 }
