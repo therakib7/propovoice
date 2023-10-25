@@ -39,7 +39,7 @@ export default function Modal({
                     </span>
                 </div >
 
-                <div className="pv-content" style={{ paddingBottom: "30px", textAlign: "left" }}>
+                <div className="" style={{ paddingBottom: "30px", textAlign: "left" }}>
 
                     <div>
                         {children}
