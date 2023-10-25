@@ -238,6 +238,7 @@ class I18n
             "settings" => esc_html__("Settings", "propovoice"),
             "pre" => esc_html__("Prefix", "propovoice"),
             "gen" => esc_html__("General", "propovoice"),
+            "password" => esc_html__("Password", "propovoice"),
             "biz" => esc_html__("Business", "propovoice"),
             "pay" => esc_html__("Pay", "propovoice"),
             "subs" => esc_html__("Subscribe", "propovoice"),

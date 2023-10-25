@@ -163,7 +163,7 @@ const Setting = (props) => {
           label: i18n.gen,
         },
         password: {
-          label: "Password",
+          label: i18n.password,
         },
       });
     } else {
