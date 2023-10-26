@@ -53,7 +53,6 @@ export default (props) => {
                                 <svg
                                     viewBox="0 0 209 7"
                                     fill="none"
-
                                 >
                                     <path d="M0 0H209L203.5 7H0V0Z" fill="#2D3748" />
                                 </svg>

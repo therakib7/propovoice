@@ -70,7 +70,7 @@ class Team
         $per_page = 10;
         $offset = 0;
 
-        $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : null;
+        $s = isset($param["text"]) ? sanitize_text_field($param["text"]) : '';
 
         if (isset($param["per_page"])) {
             $per_page = $param["per_page"];
@@ -82,13 +82,16 @@ class Team
 
         $result = $data = [];
 
-        $users = get_users(array(
-            'role__in' => array('administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff')
-        ));
+        $args = [
+            'role__in' => array('administrator', 'ndpv_admin', 'ndpv_manager', 'ndpv_staff'),
+            'number' => $per_page,
+            'offset' => $offset
+        ];
 
-        $total_data = count($users);
+        $users = new \WP_User_Query($args);
+        $total_data = $users->get_total();
 
-        foreach ($users as $user) {
+        foreach ($users->get_results() as $user) {
             $info = [];
             $info['id'] = $user->id;
             $info['name'] = $user->display_name;

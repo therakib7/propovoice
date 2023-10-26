@@ -153,7 +153,7 @@ export default class Form extends Component {
         const form = this.state.form;
         const i18n = ndpv.i18n;
 
-        const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
+        const modalType = this.props.modalType == 'new' ? i18n.add_new : i18n.edit;
 
         const submitPreloader = this.props.reload ? this.state.submitPreloader : this.props.submitPreloader;
         return (
@@ -164,10 +164,10 @@ export default class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{modalType} {i18n.team + ' ' + i18n.member}</h2>
-                        <p>{sprintf(i18n.formDesc, modalType, i18n.team + ' ' + i18n.member)}</p>
+                        <h2 className="pv-modal-title">{modalType} {i18n.team_member}</h2>
+                        <p>{sprintf(i18n.formDesc, modalType, i18n.team_member)}</p>
                     </div>
-                    <FormWrapper submitHandler={this.handleSubmit} close={this.props.close} isPro={true}>
+                    <FormWrapper submitPreloader={submitPreloader} submitHandler={this.handleSubmit} close={this.props.close} isPro={true}>
                         <FormContent formStyleClass="pv-form-style-one">
 
                             <div className="row">

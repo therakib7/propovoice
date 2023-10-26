@@ -257,7 +257,7 @@ export default (props) => {
 							strokeLinejoin="round"
 						/>
 					</svg>
-					{i18n.add} {i18n.new} {props.title}
+					{i18n.add_new} {props.title}
 					{wage.length > 0 && <>
 						<ProLabel />
 					</>}

@@ -21,7 +21,7 @@ const Team = (props) => {
     <div className="ndpv-cpnt">
       <div className="row">
         <div className="col">
-          <h2 className="pv-page-title">{i18n.team + ' ' + i18n.member}</h2>
+          <h2 className="pv-page-title">{i18n.team_member}</h2>
         </div>
         <div className="col">
           {!isStaff && <AddNew
@@ -46,6 +46,7 @@ const Team = (props) => {
           handleSubmit={props.handleSubmit}
           modalType={props.state.formModalType}
           data={props.state.list}
+          submitPreloader={props.state.submitPreloader}
           close={props.closeForm}
         />
       )}
@@ -82,4 +83,4 @@ const Team = (props) => {
   );
 };
 
-export default Crud(Team, "team", ndpv.i18n.team + ' ' + ndpv.i18n.member);
+export default Crud(Team, "team", ndpv.i18n.team_member);

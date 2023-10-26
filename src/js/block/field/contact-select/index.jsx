@@ -115,7 +115,7 @@ export default (props) => {
 				<div className="pv-search-field">
 					<input type="text" onChange={handleFindContact} placeholder={i18n.search} />
 				</div>
-				<button onClick={(e) => { openModal(e, 'new') }}>+ {i18n.add} {i18n.new}</button>
+				<button onClick={(e) => { openModal(e, 'new') }}>+ {i18n.add_new}</button>
 
 				{list && list.map((item, itemIndex) => {
 					return (

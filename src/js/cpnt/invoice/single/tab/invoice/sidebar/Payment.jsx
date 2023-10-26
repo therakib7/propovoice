@@ -165,7 +165,7 @@ class Payment extends Component {
                                 //onClick={this.goToPayment}
                                 onClick={() => this.setState({ bankModal: true })}
                             >
-                                {i18n.add} {i18n.new} {i18n.payment}
+                                {i18n.add_new} {i18n.payment}
                             </button>
                         </div>
                     </>

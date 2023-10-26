@@ -114,7 +114,7 @@ class Form extends Component {
                             <Add />
                         </span>
                         <h2 className="pv-modal-title">{title} {i18n.biz}</h2>
-                        <p>{i18n.add + ' ' + i18n.new + ' ' + i18n.biz + ' ' + i18n.from + ' ' + i18n.here}</p>
+                        <p>{i18n.add_new + ' ' + i18n.biz + ' ' + i18n.from + ' ' + i18n.here}</p>
                     </div>
 
                     <FormWrapper submitHandler={this.handleSubmit} close={this.props.close}>

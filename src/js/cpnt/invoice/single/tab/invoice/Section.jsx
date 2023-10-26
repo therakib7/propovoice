@@ -16,7 +16,7 @@ class Section extends Component {
     }
 
     componentDidMount() {
-        if ( !this.state.edit && this.props.data ) {
+        if (!this.state.edit && this.props.data) {
             this.setState({ edit: true, sections: this.props.data });
         }
     }
@@ -70,7 +70,7 @@ class Section extends Component {
         const { sections } = this.state;
         const i18n = ndpv.i18n;
         return (
-            <div className='pv-inv-sections pv-form-style-one' style={ { margin: ( this.props.top ? '35px 0 45px' : '') }}>
+            <div className='pv-inv-sections pv-form-style-one' style={{ margin: (this.props.top ? '35px 0 45px' : '') }}>
                 {sections.map((section_single, index) => {
                     return (
                         <div className="pv-group-input" key={index}>
@@ -140,7 +140,7 @@ class Section extends Component {
                             strokeLinejoin="round"
                         />
                     </svg>
-                    {i18n.add} {i18n.new} {i18n.section}
+                    {i18n.add_new} {i18n.section}
                 </button>
             </div>
         )

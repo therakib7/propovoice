@@ -298,7 +298,7 @@ export default class FromTo extends Component {
 												})
 											}
 										>
-											{i18n.add} {i18n.new}
+											{i18n.add_new}
 										</a>
 									</>
 								)}

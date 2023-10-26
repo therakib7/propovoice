@@ -188,7 +188,6 @@ export default class Reminder extends Component {
                                     height={13}
                                     viewBox="0 0 12 13"
                                     fill="none"
-
                                 >
                                     <path
                                         d="M1.875 6.5H10.125"
@@ -205,7 +204,7 @@ export default class Reminder extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                {i18n.add} {i18n.new}
+                                {i18n.add_new}
                             </button>
                         </>}
                     </div>
@@ -281,7 +280,6 @@ export default class Reminder extends Component {
                                     height={13}
                                     viewBox="0 0 12 13"
                                     fill="none"
-
                                 >
                                     <path
                                         d="M1.875 6.5H10.125"
@@ -298,7 +296,7 @@ export default class Reminder extends Component {
                                         strokeLinejoin="round"
                                     />
                                 </svg>
-                                {i18n.add} {i18n.new}
+                                {i18n.add_new}
                             </button>
                         </>}
                     </div>

@@ -235,7 +235,7 @@ export default (props) => {
 
 				{dropdown && <div className="pv-dropdown-content pv-show">
 					<button onClick={(e) => { openModal(e, 'new') }}>
-						+ {i18n.add} {i18n.new} {props.title}
+						+ {i18n.add_new} {props.title}
 						{wage.length > 0 && (
 							props.taxonomy != 'tag' &&
 							props.taxonomy != 'lead_level' &&

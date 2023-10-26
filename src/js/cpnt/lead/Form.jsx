@@ -262,7 +262,7 @@ export default class Form extends Component {
         const form = this.state.form;
         const i18n = ndpv.i18n;
 
-        const modalType = this.props.modalType == 'new' ? i18n.add + ' ' + i18n.new : i18n.edit;
+        const modalType = this.props.modalType == 'new' ? i18n.add_new : i18n.edit;
 
         const submitPreloader = this.props.reload ? this.state.submitPreloader : this.props.submitPreloader;
 
