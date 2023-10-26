@@ -180,14 +180,16 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
-= 1.7.4 (25-Oct-2023) =
-* Update: Deal Pipleline move to free
+= 1.7.4 (26-Oct-2023) =
+* Update: Deal pipeline move to free version
+* Update: Address fields in Estimate and Invoice
 * Update: Lead Label move to free
 * Update: Task Status, Type and Priority move to free
 * Update: Task discussion helper files for Pro
 * Update: Notification helper files for Pro
 * Update: Email Template helpers files for Pro
 * Added: Custom Email Template helpers files for Pro
+* Update: CSS and Functional issue
 
 = 1.7.3 (20-Oct-2023) =
 * Added: Bulk action button Estimate and Invoice
