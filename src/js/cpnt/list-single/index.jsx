@@ -93,11 +93,7 @@ class ListSingle extends Component {
       {
         id: "file",
         text: ndpv.i18n.file,
-      },
-      {
-        id: "email",
-        text: ndpv.i18n.email,
-      },
+      }
     ];
 
     if (!wage.length && path == "project") {
@@ -138,6 +134,11 @@ class ListSingle extends Component {
         text: ndpv.i18n.deal,
       });
     }
+
+    tabs.push({
+      id: "email",
+      text: ndpv.i18n.email
+    });
 
     this.setState({ tabs, currentTab: 'task', path: this.props.path });
   }

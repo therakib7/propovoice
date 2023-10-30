@@ -225,6 +225,7 @@ class Deal
 
             $queryMeta = get_post_meta($id);
             $query_data['title'] = get_the_title();
+            $query_data['desc'] = get_the_content();
             $query_data['status'] = isset($queryMeta['status']) ? $queryMeta['status'][0] : '';
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
