@@ -131,8 +131,7 @@ class Deal
         ];
 
         if ($stage_id) {
-            $args["orderby"] = "menu_order";
-            $args["order"] = "ASC";
+            $args["orderby"] = array('menu_order' => 'ASC', 'date' => 'DESC');            
         }
 
         $args["meta_query"] = [
@@ -497,6 +496,7 @@ class Deal
                 "post_content" => $desc,
                 "post_status" => "publish",
                 "post_author" => get_current_user_id(),
+                "menu_order"  => 0, //added default menu order for carvan board
             ];
             $post_id = wp_insert_post($data);
 
