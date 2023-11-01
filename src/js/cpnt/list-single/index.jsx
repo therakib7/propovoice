@@ -461,7 +461,7 @@ class ListSingle extends Component {
                             strokeLinejoin="round"
                           />
                         </svg>
-                        {i18n.add} {i18n.to} {i18n.deal} {i18n.pipeline}
+                        {i18n.addTo} {i18n.deal_pipeline}
                       </button>
 
                       <Action

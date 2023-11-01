@@ -100,7 +100,7 @@ export default (props) => {
               />
             </svg>
             <span>
-              {i18n.deal} {i18n.pipeline}
+              {i18n.deal_pipeline}
             </span>
           </NavLink>
         </li>
