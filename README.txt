@@ -180,9 +180,10 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
-= 1.7.4.1 =
-* Update: Deal Stage and Project status change issue in canvan board
-* Update: Deal and Project serial canvan board 
+= 1.7.4.1 (1-Nov-2023) =
+* Update: Deal Stage and Project status change custom fields issue in canvan board
+* Update: Deal and Project creating serial in canvan board 
+* Update: Notification helper fiels in Pro 
 * Update: Translation issue
 
 = 1.7.4 (26-Oct-2023) =
