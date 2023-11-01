@@ -131,8 +131,7 @@ class Deal
         ];
 
         if ($stage_id) {
-            $args["orderby"] = "menu_order";
-            $args["order"] = "ASC";
+            $args["orderby"] = array('menu_order' => 'ASC', 'date' => 'DESC');
         }
 
         $args["meta_query"] = [
@@ -226,7 +225,6 @@ class Deal
             $queryMeta = get_post_meta($id);
             $query_data['title'] = get_the_title();
             $query_data['desc'] = get_the_content();
-            $query_data['status'] = isset($queryMeta['status']) ? $queryMeta['status'][0] : '';
             $query_data['budget'] = isset($queryMeta['budget']) ? $queryMeta['budget'][0] : '';
             $query_data['currency'] = isset($queryMeta['currency']) ? $queryMeta['currency'][0] : '';
             $query_data['probability'] = isset($queryMeta['probability']) ? $queryMeta['probability'][0] : '';
@@ -311,9 +309,6 @@ class Deal
             ? absint($queryMeta["tab_id"][0])
             : "";
         $query_data["title"] = get_the_title($id);
-        $query_data["status"] = isset($queryMeta["status"])
-            ? $queryMeta["status"][0]
-            : "";
         $query_data["budget"] = isset($queryMeta["budget"])
             ? $queryMeta["budget"][0]
             : "";
@@ -497,6 +492,7 @@ class Deal
                 "post_content" => $desc,
                 "post_status" => "publish",
                 "post_author" => get_current_user_id(),
+                "menu_order"  => 0, //added default menu order for carvan board
             ];
             $post_id = wp_insert_post($data);
 
@@ -612,9 +608,6 @@ class Deal
             ? absint($param["person_id"])
             : null;
         $org_id = isset($param["org_id"]) ? absint($param["org_id"]) : null;
-        $status = isset($param["status"])
-            ? sanitize_text_field($param["status"])
-            : null;
         $title = isset($param["title"])
             ? sanitize_text_field($param["title"])
             : null;
@@ -689,7 +682,6 @@ class Deal
             wp_send_json_error($reg_errors->get_error_messages());
         } else {
 
-
             $data = [
                 "ID" => $post_id,
                 "post_author" => get_current_user_id(),
@@ -710,7 +702,7 @@ class Deal
                     $previous_deal_stage = wp_get_post_terms($post_id, "ndpv_deal_stage");
                     $stage_ids = wp_set_post_terms($post_id, [$stage_id], "ndpv_deal_stage");
                     if (is_wp_error($stage_ids)) {
-                        throw new \Exception("There is an error to update lead level!!!");
+                        throw new \Exception("There is an error to update deal stage!");
                     }
 
                     if ($previous_deal_stage[0]->term_id != $stage_id) {
@@ -718,52 +710,42 @@ class Deal
                     }
                 }
 
-                if ($status) {
-                    update_post_meta($post_id, "status", $status);
-                }
-
                 if ($reorder) {
                     $this->reorder_posts($reorder);
-                }
-
-                if ($person_id) {
-                    update_post_meta($post_id, "person_id", $person_id);
-                }
-
-                if ($org_id && !$org_name) {
-                    update_post_meta($post_id, "org_id", null);
-                } else if ($org_id) {
-                    update_post_meta($post_id, "org_id", $org_id);
-                }
-
-                update_post_meta($post_id, "budget", $budget);
-
-                if ($currency) {
-                    update_post_meta($post_id, "currency", $currency);
-                }
-
-                if ($probability) {
-                    update_post_meta($post_id, "probability", $probability);
-                }
-
-                wp_set_post_terms($post_id, $tags, "ndpv_tag");
-
-                //custom field
-                foreach (Fns::custom_field('deal') as $value) {
-                    $field = '';
-                    if ($value['type'] == 'multi-select') {
-                        $field = isset($param[$value['slug']])
-                            ? array_map("sanitize_text_field", $param[$value['slug']])
-                            : "";
-                    } else {
-                        $field = isset($param[$value['slug']])
-                            ? sanitize_text_field($param[$value['slug']])
-                            : "";
+                } else {
+                    if ($person_id) {
+                        update_post_meta($post_id, "person_id", $person_id);
                     }
-                    update_post_meta($post_id, $value['slug'], $field);
-                }
 
-                do_action("ndpvp/webhook", "deal_edit", $param);
+                    if ($org_id && !$org_name) {
+                        update_post_meta($post_id, "org_id", null);
+                    } else if ($org_id) {
+                        update_post_meta($post_id, "org_id", $org_id);
+                    }
+
+                    update_post_meta($post_id, "budget", $budget); 
+                    update_post_meta($post_id, "currency", $currency);
+                    update_post_meta($post_id, "probability", $probability);
+
+                    wp_set_post_terms($post_id, $tags, "ndpv_tag");
+
+                    //custom field
+                    foreach (Fns::custom_field('deal') as $value) {
+                        $field = '';
+                        if ($value['type'] == 'multi-select') {
+                            $field = isset($param[$value['slug']])
+                                ? array_map("sanitize_text_field", $param[$value['slug']])
+                                : "";
+                        } else {
+                            $field = isset($param[$value['slug']])
+                                ? sanitize_text_field($param[$value['slug']])
+                                : "";
+                        }
+                        update_post_meta($post_id, $value['slug'], $field);
+                    }
+
+                    do_action("ndpvp/webhook", "deal_edit", $param);
+                }
 
                 wp_send_json_success($post_id);
             } else {

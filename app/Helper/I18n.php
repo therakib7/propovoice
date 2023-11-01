@@ -194,6 +194,7 @@ class I18n
             "number" => esc_html__("Number", "propovoice"),
             "img" => esc_html__("Image", "propovoice"),
             "add" => esc_html__("Add", "propovoice"),
+            "addTo" => esc_html__("Add To", "propovoice"),
             "new" => esc_html__("New", "propovoice"),
             "add_new" => esc_html__("Add New", "propovoice"),
             "edit" => esc_html__("Edit", "propovoice"),

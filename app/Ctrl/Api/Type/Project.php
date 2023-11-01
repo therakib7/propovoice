@@ -1,4 +1,5 @@
 <?php
+
 namespace Ndpv\Ctrl\Api\Type;
 
 use Ndpv\Helper\Fns;
@@ -11,7 +12,7 @@ use Ndpv\Traits\Singleton;
 class Project
 {
     use Singleton;
-    
+
     public function register_routes()
     {
 
@@ -84,7 +85,7 @@ class Project
         if ($board_view) {
             $get_status = Fns::get_terms("project_status");
             $column = [];
-            foreach ($get_status as $status):
+            foreach ($get_status as $status) :
                 $status_id = $status->term_id;
                 $status_name = $status->name;
                 $items = $this->project_query($param, $status_id);
@@ -129,11 +130,11 @@ class Project
 
         $args = [];
 
-        if ( $dashboard ) {
+        if ($dashboard) {
             $per_page = 5;
         }
 
-        if ( $project_req ) {
+        if ($project_req) {
             $args = [
                 "post_type" => "ndpv_deal",
                 "post_status" => "publish",
@@ -147,10 +148,9 @@ class Project
                 "posts_per_page" => $per_page,
                 "offset" => $offset,
             ];
-
         }
 
-        if ( $dashboard ) {
+        if ($dashboard) {
 
             $term_args = array(
                 'hide_empty' => false, // also retrieve terms which are not used yet
@@ -163,7 +163,7 @@ class Project
                 ),
                 'taxonomy'  => 'ndpv_project_status',
             );
-            $terms = get_terms( $term_args );
+            $terms = get_terms($term_args);
             $term_id = $terms[0]->term_id;
 
             $args['tax_query'] = array(
@@ -177,23 +177,22 @@ class Project
         }
 
         if ($status_id) {
-            $args["orderby"] = "menu_order";
-            $args["order"] = "ASC";
+            $args["orderby"] = array('menu_order' => 'ASC', 'date' => 'DESC');
         }
 
         $args["meta_query"] = [
             "relation" => "OR",
         ];
 
-        if ( $project_req ) {
-            if ( current_user_can("ndpv_client_role") ) {
+        if ($project_req) {
+            if (current_user_can("ndpv_client_role")) {
                 $user_id = get_current_user_id();
                 $id = get_user_meta($user_id, 'ndpv_client_id', true);
                 $args['meta_query'][] = [
                     [
                         'relation' => 'AND',
                         [
-                            'relation' => 'AND', 
+                            'relation' => 'AND',
                             [
                                 "key" => "project_req",
                                 "compare" => "EXISTS",
@@ -214,7 +213,7 @@ class Project
                 ];
             }
         } else {
-            if ( current_user_can("ndpv_client_role") ) {
+            if (current_user_can("ndpv_client_role")) {
                 $user_id = get_current_user_id();
                 $id = get_user_meta($user_id, 'ndpv_client_id', true);
                 $args['meta_query'][] = array(
@@ -260,7 +259,7 @@ class Project
         }
 
         if ($s) {
-            if ( current_user_can("ndpv_client_role") ) {
+            if (current_user_can("ndpv_client_role")) {
                 $args["s"] = $s;
             } else {
                 $args["meta_query"][] = [
@@ -293,12 +292,12 @@ class Project
                         ],
                     ];
                 }
-            }            
+            }
         }
 
-        if ( current_user_can("ndpv_staff") ) {
+        if (current_user_can("ndpv_staff")) {
             $post_ids = Fns::get_posts_ids_by_type('ndpv_project');
-            if ( !empty($post_ids) ) {
+            if (!empty($post_ids)) {
                 $args['post__in'] = $post_ids;
                 $args['orderby'] = 'post__in';
             } else {
@@ -327,15 +326,15 @@ class Project
             $query_data['due_date'] = isset($queryMeta['due_date']) ? $queryMeta['due_date'][0] : '';
             $query_data['desc'] = get_the_content();
             //custom field
-            foreach( Fns::custom_field('project') as $value ) {
-                if ( $value['type'] == 'multi-select') {
+            foreach (Fns::custom_field('project') as $value) {
+                if ($value['type'] == 'multi-select') {
                     $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
-                    ? maybe_unserialize( $queryMeta[$value['slug']][0] )
-                    : "";
+                        ? maybe_unserialize($queryMeta[$value['slug']][0])
+                        : "";
                 } else {
                     $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
-                    ? $queryMeta[$value['slug']][0]
-                    : "";
+                        ? $queryMeta[$value['slug']][0]
+                        : "";
                 }
             }
 
@@ -412,8 +411,8 @@ class Project
         $query_data["title"] = get_the_title($id);
         $query_data["budget"] =
             isset($queryMeta["budget"]) && $queryMeta["budget"][0]
-                ? $queryMeta["budget"][0]
-                : 0;
+            ? $queryMeta["budget"][0]
+            : 0;
         $query_data["currency"] = isset($queryMeta["currency"])
             ? $queryMeta["currency"][0]
             : "";
@@ -426,15 +425,15 @@ class Project
         $query_data["desc"] = get_post_field("post_content", $id);
 
         //custom field
-        foreach( Fns::custom_field('project') as $value ) {
-            if ( $value['type'] == 'multi-select') {
+        foreach (Fns::custom_field('project') as $value) {
+            if ($value['type'] == 'multi-select') {
                 $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
-                ? maybe_unserialize( $queryMeta[$value['slug']][0] )
-                : "";
+                    ? maybe_unserialize($queryMeta[$value['slug']][0])
+                    : "";
             } else {
                 $query_data[$value['slug']] = isset($queryMeta[$value['slug']])
-                ? $queryMeta[$value['slug']][0]
-                : "";
+                    ? $queryMeta[$value['slug']][0]
+                    : "";
             }
         }
         $query_data['custom_field'] = Fns::custom_field('project');
@@ -587,6 +586,7 @@ class Project
                 "post_content" => $desc,
                 "post_status" => "publish",
                 "post_author" => get_current_user_id(),
+                "menu_order"  => 0, //added default menu order for carvan board
             ];
             $post_id = wp_insert_post($data);
 
@@ -666,26 +666,26 @@ class Project
                     wp_set_post_terms($post_id, $tags, "ndpv_tag");
                 }
 
-                if ( $deal_id ) {
+                if ($deal_id) {
                     $project_req = get_post_meta($deal_id, 'project_req', true);
-                    if ( $project_req ) {
+                    if ($project_req) {
                         delete_post_meta($deal_id, "project_req");
                     }
                 }
 
                 //custom field
-                foreach(Fns::custom_field('project') as $value) {
+                foreach (Fns::custom_field('project') as $value) {
                     $field = '';
-                    if ( $value['type'] == 'multi-select') {
+                    if ($value['type'] == 'multi-select') {
                         $field = isset($param[$value['slug']])
-                        ? array_map("sanitize_text_field", $param[$value['slug']])
-                        : "";
+                            ? array_map("sanitize_text_field", $param[$value['slug']])
+                            : "";
                     } else {
                         $field = isset($param[$value['slug']])
-                        ? sanitize_text_field($param[$value['slug']])
-                        : "";
+                            ? sanitize_text_field($param[$value['slug']])
+                            : "";
                     }
-                    if ( $field ) {
+                    if ($field) {
                         update_post_meta($post_id, $value['slug'], $field);
                     }
                 }
@@ -809,40 +809,40 @@ class Project
 
                 if ($reorder) {
                     $this->reorder_posts($reorder);
-                }
-
-                if ($person_id) {
-                    update_post_meta($post_id, "person_id", $person_id);
-                }
-
-                if ($org_id && !$org_name) {
-                    update_post_meta($post_id, "org_id", null);
-                } else if ($org_id) {
-                    update_post_meta($post_id, "org_id", $org_id);
-                }
-
-                update_post_meta($post_id, 'budget', $budget);
-                update_post_meta($post_id, 'currency', $currency);
-                update_post_meta($post_id, 'start_date', $start_date);
-                update_post_meta($post_id, 'due_date', $due_date);
-                wp_set_post_terms($post_id, $tags, "ndpv_tag");
-
-                //custom field
-                foreach( Fns::custom_field('project') as $value ) {
-                    $field = '';
-                    if ( $value['type'] == 'multi-select') {
-                        $field = isset($param[$value['slug']])
-                        ? array_map("sanitize_text_field", $param[$value['slug']])
-                        : "";
-                    } else {
-                        $field = isset($param[$value['slug']])
-                        ? sanitize_text_field($param[$value['slug']])
-                        : "";
+                } else {
+                    if ($person_id) {
+                        update_post_meta($post_id, "person_id", $person_id);
                     }
-                    update_post_meta($post_id, $value['slug'], $field);
-                }
 
-                do_action('ndpvp/webhook', 'project_edit', $param);
+                    if ($org_id && !$org_name) {
+                        update_post_meta($post_id, "org_id", null);
+                    } else if ($org_id) {
+                        update_post_meta($post_id, "org_id", $org_id);
+                    }
+
+                    update_post_meta($post_id, 'budget', $budget);
+                    update_post_meta($post_id, 'currency', $currency);
+                    update_post_meta($post_id, 'start_date', $start_date);
+                    update_post_meta($post_id, 'due_date', $due_date);
+                    wp_set_post_terms($post_id, $tags, "ndpv_tag");
+
+                    //custom field
+                    foreach (Fns::custom_field('project') as $value) {
+                        $field = '';
+                        if ($value['type'] == 'multi-select') {
+                            $field = isset($param[$value['slug']])
+                                ? array_map("sanitize_text_field", $param[$value['slug']])
+                                : "";
+                        } else {
+                            $field = isset($param[$value['slug']])
+                                ? sanitize_text_field($param[$value['slug']])
+                                : "";
+                        }
+                        update_post_meta($post_id, $value['slug'], $field);
+                    }
+
+                    do_action('ndpvp/webhook', 'project_edit', $param);
+                }
 
                 wp_send_json_success($post_id);
             } else {
