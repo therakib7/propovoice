@@ -422,3 +422,54 @@ input:-webkit-autofill:active {
     font-weight: 500;
     padding-bottom: 20px;
 }
+
+
+
+  .pv-notif-icon {
+    position: relative;
+    background: rgba(76, 111, 255, 0.1);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+  }
+
+  .pv-notif-count {
+    min-width: 12px;
+    min-height: 12px;
+    background: #FF267F;
+    padding: 2px;
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 100%;
+    color: #FFFFFF;
+  }
+#wpadminbar #wp-admin-bar-notif-count .ab-label {
+	display: inline-block;
+	vertical-align: center;
+	box-sizing: border-box;
+	margin: 1px 0 -1px 2px;
+	padding: 0 5px;
+	min-width: 18px;
+	height: 18px;
+	border-radius: 9px;
+	background-color: #ff267f;
+	color: #fff;
+	font-size: 11px;
+    font-weight: bold;
+	line-height: 1.6;
+	text-align: center;
+    z-index: 26;
+
+}
