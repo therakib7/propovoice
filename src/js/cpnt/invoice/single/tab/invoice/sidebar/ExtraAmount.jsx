@@ -68,7 +68,7 @@ export default (props) => {
                             <div className="row">
                                 <div className="col" style={{ marginBottom: '0' }}>
                                     <label id="form-item_tax">
-                                        {i18n.eachitem} {i18n.tax} {i18n.field}
+                                        {i18n.eachitem_tax_field}
                                         {wage.length > 0 && <>
                                             <ProLabel />
                                         </>}

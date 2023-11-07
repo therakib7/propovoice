@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Search, Filter, Arrow, Cross} from 'block/icon';
+import { Search, Filter, Arrow, Cross } from 'block/icon';
 
 export default class Form extends Component {
 
@@ -44,33 +44,13 @@ export default class Form extends Component {
                     <input
                         type="text"
                         className="pv-search-input"
-                        placeholder={i18n.search+' '+ title}
+                        placeholder={i18n.search + ' ' + title}
                         name="text"
                         value={this.state.form.text}
                         onChange={this.handleChange}
                     />
                 </div>
-                {false && <div className="pv-search-btn">
-                    <button className={this.state.searchModal ? 'pv-active' : ''} onClick={() => this.setState(prevState => ({ searchModal: !prevState.searchModal }))}>
-                        <Filter />
-                    </button>
 
-                    {this.state.searchModal && <div className="pv-search-form">
-                        <ul>
-                            <li>
-                                <Arrow />
-                                <select name="" id="">
-                                    <option value="">{i18n.lead} {i18n.level}</option>
-                                </select>
-                            </li>
-                            <li>
-                                <span onClick={() => this.setState({ searchModal: false })}>
-                                    <Cross size='small' />
-                                </span>
-                            </li>
-                        </ul>
-                    </div>}
-                </div>}
                 <div className="pv-total-list">
                     <p>
                         {i18n.show} <select onChange={showItem} >

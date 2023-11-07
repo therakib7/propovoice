@@ -208,7 +208,6 @@ export default class FromTo extends Component {
 									</>
 								) : (
 									<>
-										{/* Search & select, Or <br /> <br /> */}
 										<a
 											className="pv-color-blue pv-text-hover-blue"
 											style={{
@@ -282,7 +281,6 @@ export default class FromTo extends Component {
 									</>
 								) : (
 									<>
-										{/* Search & select, Or <br /> <br /> */}
 										<a
 											className="pv-color-blue pv-text-hover-blue"
 											style={{

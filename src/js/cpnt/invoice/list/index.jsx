@@ -305,19 +305,19 @@ class Invoice extends Component {
         if (resp.data.success) {
           if (type == "sent") {
             toast.success(
-              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.sent,
+              i18n.scf + " " + i18n.mark_as_sent,
             );
           } else if (type == "paid") {
             toast.success(
-              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.paid,
+              i18n.scf + " " + i18n.mark_as_paid,
             );
           } else if (type == "accept") {
             toast.success(
-              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.acptd,
+              i18n.scf + " " + i18n.mark_as_acpt,
             );
           } else if (type == "decline") {
             toast.success(
-              i18n.scf + " " + i18n.mark + " " + i18n.as + " " + i18n.dec,
+              i18n.scf + " " + i18n.mark_as_decl,
             );
           }
           this.getLists();

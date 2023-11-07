@@ -66,7 +66,7 @@ export default class ExtraAmount extends Component {
             <div className="pv-form-style-one">
                 <div className="row">
                     <div className="col">
-                        <label id="form-item_tax">{i18n.eachitem} {i18n.tax} {i18n.field}
+                        <label id="form-item_tax">{i18n.eachitem_tax_field}
                             {wage.length > 0 && <>
                                 <ProLabel />
                             </>}

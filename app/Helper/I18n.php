@@ -52,7 +52,7 @@ class I18n
             "total_project" => esc_html__("Total Project", "propovoice"),
             "total_projects" => esc_html__("Total Projects", "propovoice"),
             "latest" => esc_html__("Latest", "propovoice"),
-            "funnel" => esc_html__("Funnel", "propovoice"),
+            "latest_task" => __("Latest Task", "propovoice"),
             "trk" => esc_html__("Tracking", "propovoice"),
             //lead
             "level" => esc_html__("Level", "propovoice"),
@@ -60,6 +60,9 @@ class I18n
             "source" => esc_html__("Source", "propovoice"),
             //deal
             "deal_pipeline" => esc_html__("Deal Pipeline", "propovoice"),
+            "deal_funnel" => esc_html__("Deal Funnel", "propovoice"),
+            "deal_won" => esc_html__("Deal Won", "propovoice"),
+            "deal_lost" => esc_html__("Deal Lost", "propovoice"),
             "add_stage" => esc_html__("Add Stage", "propovoice"),
             "add_deal" => esc_html__("Add Deal", "propovoice"),
             "ct_name" => esc_html__("Contact Name", "propovoice"),
@@ -138,6 +141,7 @@ class I18n
             "home" => esc_html__("Home", "propovoice"),
             "total" => esc_html__("Total", "propovoice"),
             "prv" => esc_html__("Preview", "propovoice"),
+            "client_prv" => esc_html__("Client Preview", "propovoice"),
             "full_prv" => esc_html__("Full Preview", "propovoice"),
             "tmpl_prv" => esc_html__("Template Preview", "propovoice"),
             "aut" => esc_html__("Author", "propovoice"),
@@ -272,20 +276,18 @@ class I18n
             "declDes" => esc_html__("Sorry for declining", "propovoice"),
             "decDes" => esc_html__("Sorry for the decline", "propovoice"),
             "ovdDes" => __("You haven't pay yet", "propovoice"),
-            "paidDes" => esc_html__(
-                "Thanks, We have received the payment",
-                "propovoice"
-            ),
-            "paidreqDes" => esc_html__(
-                "You have submited your payment information. it will take a while to approve the payment",
-                "propovoice"
-            ),
+            "paidDes" => esc_html__("Thanks, We have received the payment", "propovoice" ),
+            "paidreqDes" => esc_html__("You have submited your payment information. it will take a while to approve the payment", "propovoice"),
             "appp" => esc_html__("Approval Pending", "propovoice"),
 
             //ext
             "pipeline" => esc_html__("Pipeline", "propovoice"),
             "back_t_db" => esc_html__("Back to WP Dashboard", "propovoice"),
             "mark" => esc_html__("Mark as", "propovoice"),
+            "mark_as_sent" => esc_html__("Mark as Sent", "propovoice"),
+            "mark_as_paid" => esc_html__("Mark as Paid", "propovoice"),
+            "mark_as_acpt" => esc_html__("Mark as Accepted", "propovoice"),
+            "mark_as_decl" => esc_html__("Mark as Declined", "propovoice"),
             "drive" => esc_html__("Drive", "propovoice"),
             "done" => esc_html__("Done", "propovoice"),
             "paid" => esc_html__("Paid", "propovoice"),
@@ -341,8 +343,10 @@ class I18n
             "parent" => esc_html__("Parent", "propovoice"),
             "to" => esc_html__("To", "propovoice"),
             "copy" => esc_html__("Copy", "propovoice"),
+            "copy_to_inv" => esc_html__("Copy to Invoice", "propovoice"),
             "per" => esc_html__("Per", "propovoice"),
             "eachitem" => esc_html__("Each Item", "propovoice"),
+            "eachitem_tax_field" => esc_html__("Each Item Tax Field", "propovoice"),
             "tax" => esc_html__("Tax", "propovoice"),
             "cal" => esc_html__("Calculation", "propovoice"),
             "fix" => esc_html__("Fixed", "propovoice"),

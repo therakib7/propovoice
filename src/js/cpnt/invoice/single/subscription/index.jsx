@@ -45,33 +45,7 @@ const Subscription = (props) => {
 					</div>
 
 					<div className="col-md-6">
-						{false && <div className="pv-list-single-button-content">
-							<div className="pv-select">
-								<label>
-									{i18n.lead} {i18n.level}:
-								</label>
-							</div>
-							<div className="pv-buttons pv-text-right">
-								<button
-									className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow"
-								// onClick={() =>
-								// 	this.setState({
-								// 		dealModal: true,
-								// 		dealModalType: "move",
-								// 	})
-								// }
-								>
-									Cancel Subscription
-								</button>
 
-								{/* <Action
-									id={data.id}
-									module="lead"
-									edit={() => this.setState({ leadModal: true })}
-									del={this.deleteEntry}
-								/> */}
-							</div>
-						</div>}
 					</div>
 				</div>
 			</div>
@@ -80,13 +54,6 @@ const Subscription = (props) => {
 				<div className="col-lg-9">
 					<div className="pv-horizontal-tab" style={{ border: "1px solid rgba(221, 221, 221, 0.6588235294)" }}>
 						<div className="pv-tab-content">
-							{/* {preloader ? (
-								<Preloader />
-							) : (
-								<Table
-									tableData={lists}
-								/>
-							)} */}
 							{props.state.empty && <Empty mod='lead' title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
 
 							{props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
@@ -96,21 +63,6 @@ const Subscription = (props) => {
 					</div>
 				</div>
 
-				<div className="col-lg-3 pv-lead-right-content">
-					<div className="pv-widget pv-info-box">
-						<h3 className="pv-widget-title">
-							{i18n.addi} {i18n.info}
-						</h3>
-						<address>
-							{false && (
-								<>
-									<span>{i18n.mob}:</span>
-									{/* {data.person ? data.person.mobile : data.org.mobile} */}
-								</>
-							)}
-						</address>
-					</div>
-				</div>
 			</div>
 		</div>
 	)

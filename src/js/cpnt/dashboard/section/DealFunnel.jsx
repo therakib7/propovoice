@@ -24,12 +24,12 @@ export default (props) => {
 
     const i18n = ndpv.i18n;
     return (
-        <div className="pv-punnel pv-border-gray" >
+        <div className="pv-punnel pv-border-gray">
             <h3
                 className="pv-title-medium pv-mb-20"
                 style={{ fontWeight: "bold", color: "#718096" }}
             >
-                {i18n.deal} {i18n.funnel}
+                {i18n.deal_funnel}
             </h3>
             <ul>
                 {funnel.common.map((item, i) => (
@@ -39,10 +39,10 @@ export default (props) => {
                 ))}
 
                 {funnel.won && <li style={{ backgroundColor: "#345bde" }}>
-                    <span>{funnel.won.items}</span> {i18n.deal} {i18n.won}
+                    <span>{funnel.won.items}</span> {i18n.deal_won}
                 </li>}
             </ul>
-            {funnel.lost && <p className="pv-text-center">{i18n.deal} {i18n.lost} {funnel.lost.items}</p>}
+            {funnel.lost && <p className="pv-text-center">{i18n.deal_lost} {funnel.lost.items}</p>}
         </div>
     );
 } 
