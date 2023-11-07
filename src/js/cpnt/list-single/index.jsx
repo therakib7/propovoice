@@ -84,7 +84,7 @@ class ListSingle extends Component {
     let tabs = [
       {
         id: "task",
-        text: ndpv.i18n.taska,
+        text: ndpv.i18n.task,
       },
       {
         id: "note",

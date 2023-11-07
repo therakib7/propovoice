@@ -135,8 +135,8 @@ The super fantastic pro features that accelerate your business growth and improv
 * **Copy To Invoice**
 * **Tax and State Tax**
 * **Payment Getway**
-* **Task & Activity Module**
-* **Task & Activity Checklist**
+* **Task Module**
+* **Task Checklist**
 * **Paypal**
 * **Stripe**
 * **Custom SMTP**

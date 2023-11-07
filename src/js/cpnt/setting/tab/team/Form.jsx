@@ -31,7 +31,7 @@ export default class Form extends Component {
                 { label: 'Invoice', value: 'ndpv_invoice' },
                 { label: 'Client', value: 'ndpv_client' },
                 { label: 'Project', value: 'ndpv_project' },
-                { label: 'Task & Activity', value: 'ndpv_task' },
+                { label: 'Task', value: 'ndpv_task' },
                 { label: 'Contact', value: 'ndpv_contact' },
             ]
         };

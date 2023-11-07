@@ -244,7 +244,7 @@ export default (props) => {
                 fill="#718096"
               />
             </svg>
-            <span>{i18n.taska}</span>
+            <span>{i18n.task}</span>
           </NavLink>
         </li>
       )}

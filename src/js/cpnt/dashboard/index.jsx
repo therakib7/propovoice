@@ -32,7 +32,7 @@ const TaskCom = () => {
                 className="pv-title-medium pv-mb-20"
                 style={{ fontWeight: "bold", color: "#718096", marginLeft: '-10px' }}
             >
-                {i18n.latest} {i18n.taska}
+                {i18n.latest} {i18n.task}
             </h3>
             <Suspense fallback={<Spinner />}>
                 <Task tab_id={null} dashboard source />

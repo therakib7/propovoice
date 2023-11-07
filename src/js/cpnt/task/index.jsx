@@ -7,10 +7,10 @@ export default (props) => {
   const i18n = ndpv.i18n;
   return (
     <div className="ndpv-cpnt">
-      <Breadcrumb title={ndpv.i18n.taska} />
+      <Breadcrumb title={ndpv.i18n.task} />
       <div className="row">
         <div className="col-lg">
-          <h2 className="pv-page-title">{i18n.taska}</h2>
+          <h2 className="pv-page-title">{i18n.task}</h2>
         </div>
       </div>
 
@@ -18,7 +18,7 @@ export default (props) => {
         <div className="col-lg-12">
           <div className="pv-horizontal-tab">
             <ul className="pv-tabs">
-              <li className={"pv-tab "}>{i18n.taska}</li>
+              <li className={"pv-tab "}>{i18n.task}</li>
             </ul>
 
             <div className="pv-tab-content">

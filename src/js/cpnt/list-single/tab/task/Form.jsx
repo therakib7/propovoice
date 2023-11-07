@@ -129,7 +129,7 @@ export default (props) => {
                         required
                         name="title"
                         value={form.title}
-                        placeholder={i18n.add + ' ' + i18n.taska}
+                        placeholder={i18n.add + ' ' + i18n.task}
                         onChange={handleChange}
                     />
                 </div>

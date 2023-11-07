@@ -305,4 +305,4 @@ const Task = (props) => {
     </div>
   );
 };
-export default Crud(Task, "task", ndpv.i18n.taska);
+export default Crud(Task, "task", ndpv.i18n.task);

@@ -115,7 +115,7 @@ const Setting = (props) => {
   }
   if (caps.includes("ndpv_task")) {
     tab_data.task = {
-      label: i18n.taska,
+      label: i18n.task,
     };
   }
   if (caps.includes("ndpv_contact")) {

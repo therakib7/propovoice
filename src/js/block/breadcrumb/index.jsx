@@ -30,8 +30,8 @@ export default (props) => {
             ? ndpv.i18n.client
             : props.title == "Project"
             ? ndpv.i18n.project
-            : props.title == "Task & Activity"
-            ? ndpv.i18n.taska
+            : props.title == "Task"
+            ? ndpv.i18n.task
             : props.title == "Contact Book"
             ? ndpv.i18n.ct_book
             : props.title == "Settings"

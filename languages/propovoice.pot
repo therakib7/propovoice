@@ -63,10 +63,6 @@ msgstr ""
 msgid "Task"
 msgstr ""
 
-#: ../app/Helper/I18n.php:21
-msgid "Task & Activity"
-msgstr ""
-
 #: ../app/Helper/I18n.php:22, ../app/Ctrl/MenuPage/Type/Dashboard.php:76
 msgid "Contact"
 msgstr ""

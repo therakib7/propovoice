@@ -29,8 +29,7 @@ use Ndpv\Ctrl\Api\Type\SaveForNext;
 
 class ApiCtrl
 {
-
-	public function __construct()
+  public function __construct()
 	{
 		add_action("rest_api_init", function() { 
 			Lead::getInstance()->register_routes();

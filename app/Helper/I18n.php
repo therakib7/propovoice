@@ -18,7 +18,6 @@ class I18n
             "client" => esc_html__("Client", "propovoice"),
             "project" => esc_html__("Project", "propovoice"),
             "task" => esc_html__("Task", "propovoice"),
-            "taska" => __("Task & Activity", "propovoice"),
             "ct" => esc_html__("Contact", "propovoice"),
             "ct_book" => esc_html__("Contact Book", "propovoice"),
             //alert
