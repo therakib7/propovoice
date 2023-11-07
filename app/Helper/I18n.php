@@ -115,6 +115,10 @@ class I18n
             "Sign" => esc_html__("Signature", "propovoice"),
             "style" => esc_html__("Style", "propovoice"),
             "addi" => esc_html__("Additional", "propovoice"),
+            "addiInfo" => esc_html__("Additional Info", "propovoice"),
+            "addiNote" => esc_html__("Additional Note", "propovoice"),
+            "addiAtch" => esc_html__("Additional Attachment", "propovoice"),
+            "addiFee" => esc_html__("Additional Fee", "propovoice"),
             "staff" => esc_html__("Staff", "propovoice"),
             //Client
             "add_Client" => esc_html__("Add Client", "propovoice"),

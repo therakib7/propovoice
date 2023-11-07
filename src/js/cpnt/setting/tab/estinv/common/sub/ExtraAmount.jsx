@@ -64,9 +64,7 @@ export default class ExtraAmount extends Component {
                 <div className="row">
                     <div className="col">
                         <label id="form-item_tax">{i18n.eachitem_tax_field}
-                            {wage.length > 0 && <>
-                                <ProLabel />
-                            </>}
+                            {wage.length > 0 && <ProLabel />}
                         </label>
                         <div className="pv-field-switch pv-ml-10">
                             <label className='pv-switch'>
@@ -104,8 +102,8 @@ export default class ExtraAmount extends Component {
 
                 <div className="row">
                     <div className="col">
-                        <label>{i18n.addi} {i18n.fee} {i18n.fields}</label>
-                        <Taxonomy taxonomy='extra_amount' title={i18n.addi + ' ' + i18n.fee + ' ' + i18n.field} extra_amount_type='fee' tax_cal />
+                        <label>{i18n.addiFee} {i18n.fields}</label>
+                        <Taxonomy taxonomy='extra_amount' title={i18n.addiFee + ' ' + i18n.field} extra_amount_type='fee' tax_cal />
                     </div>
                     <div className="col">
                     </div>

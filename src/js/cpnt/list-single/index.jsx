@@ -1201,11 +1201,11 @@ class ListSingle extends Component {
 
             <div className="pv-widget pv-info-box">
               <h3 className="pv-widget-title">
-                {i18n.addi} {i18n.info}
+                {i18n.addiInfo}
               </h3>
               <address>
 
-                {caps.includes("ndpv_contact") && ((data.person && data.person.mobile) || (data.org && data.org.mobile)) && (
+                {((data.person && data.person.mobile) || (data.org && data.org.mobile)) && (
                   <>
                     <span>{i18n.mob}:</span>
                     {data.person ? data.person.mobile : data.org.mobile}

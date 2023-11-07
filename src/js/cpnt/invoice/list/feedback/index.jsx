@@ -46,7 +46,7 @@ class Feedback extends Component {
                             <div className="row">
                                 <div className="col-lg">
                                     <label htmlFor="form-note">
-                                        {i18n.addi} {i18n.note}
+                                        {i18n.addiNote}
                                     </label>
                                     {/* <textarea
                                         id="form-note"
@@ -64,7 +64,7 @@ class Feedback extends Component {
 
                             <div className="row">
                                 <div className="col-md">
-                                    <label htmlFor="field-receipt">{i18n.addi} {i18n.atch}</label>
+                                    <label htmlFor="field-receipt">{i18n.addiAtch}</label>
                                     <Upload attach_type='secret' viewOnly library={false} data={data.feedback.attachment} changeHandler={this.handleUploadChange} remove={false} />
                                 </div>
                             </div>

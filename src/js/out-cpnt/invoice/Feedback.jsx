@@ -75,7 +75,7 @@ class Feedback extends Component {
                                         width={25}
                                         height={25}
                                         viewBox="0 0 16 16"
-                                        fill="none" 
+                                        fill="none"
                                     >
                                         <path
                                             d="M12.5 3.5L3.5 12.5"
@@ -92,7 +92,7 @@ class Feedback extends Component {
                                     </svg>
                                 </span>
                                 <h2 className="pv-modal-title">{this.props.data.feedback_type == 'accept' ? i18n.acpt : 'Decline'} {i18n.est}</h2>
-                                <p>{this.props.data.feedback_type == 'accept' ? i18n.acpt  : 'Decline'} {i18n.est} {i18n.from} {i18n.here}</p>
+                                <p>{this.props.data.feedback_type == 'accept' ? i18n.acpt : 'Decline'} {i18n.est} {i18n.from} {i18n.here}</p>
                             </div>
                             <form onSubmit={this.handleSubmit} >
                                 <div className="pv-content">
@@ -101,7 +101,7 @@ class Feedback extends Component {
                                             <div className="col-lg">
                                                 <label
                                                     htmlFor="form-note">
-                                                    {i18n.addi} {i18n.note}
+                                                    {i18n.addiNote}
                                                 </label>
                                                 <textarea
                                                     id="form-note"
@@ -115,12 +115,12 @@ class Feedback extends Component {
 
                                         <div className="row">
                                             <div className="col-md">
-                                                <label htmlFor="field-receipt">{i18n.addi} {i18n.atch}</label>
+                                                <label htmlFor="field-receipt">{i18n.addiAtch}</label>
                                                 <Upload label={'Upload'} attach_type='secret' permission library={false} data={this.state.form.attachment} changeHandler={this.handleUploadChange} />
                                             </div>
                                         </div>
                                     </div>
-                                </div>       
+                                </div>
 
                                 <div className="pv-modal-footer">
                                     <div className="row">

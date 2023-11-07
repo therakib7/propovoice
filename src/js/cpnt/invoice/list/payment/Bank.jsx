@@ -100,7 +100,7 @@ class Bank extends Component {
                                 {!isClient && <div className="row">
                                     <div className="col-lg">
                                         <label htmlFor="form-note">
-                                            {i18n.addi} {i18n.note}
+                                            {i18n.addiNote}
                                         </label>
                                         <textarea
                                             id="form-note"
