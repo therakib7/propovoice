@@ -51,7 +51,7 @@ const Message = (props) => {
           />
         )}
 
-        {(wage.length > 0 || (!props.state.preloader && !(lists.length > 0))) && (
+        {taskMod && (wage.length > 0 || (!props.state.preloader && !(lists.length > 0))) && (
           <p style={{ color: "#718096" }}>{ndpv.i18n.no_comment}</p>
         )}
 

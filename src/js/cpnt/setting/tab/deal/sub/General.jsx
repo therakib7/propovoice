@@ -7,21 +7,12 @@ export default (props) => {
         <div className="pv-form-style-one">
             <div className="row">
                 <div className="col">
-                    <label>{i18n.deal} {i18n.stage}</label>
+                    <label>{i18n.deal_stage}</label>
                     <Taxonomy taxonomy='deal_stage' title={i18n.stage} color />
                 </div>
                 <div className="col">
                 </div>
             </div>
-
-            {/* <div className="row">
-                <div className="col">
-                    <button className="pv-btn pv-bg-blue pv-bg-hover-blue">
-                        Save
-                    </button>
-                </div>
-            </div> */}
-
         </div>
     );
 }

@@ -63,6 +63,7 @@ class I18n
             "deal_funnel" => esc_html__("Deal Funnel", "propovoice"),
             "deal_won" => esc_html__("Deal Won", "propovoice"),
             "deal_lost" => esc_html__("Deal Lost", "propovoice"),
+            "deal_stage" => esc_html__("Deal Stage", "propovoice"),
             "add_stage" => esc_html__("Add Stage", "propovoice"),
             "add_deal" => esc_html__("Add Deal", "propovoice"),
             "ct_name" => esc_html__("Contact Name", "propovoice"),

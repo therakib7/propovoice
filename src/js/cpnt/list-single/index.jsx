@@ -575,7 +575,7 @@ class ListSingle extends Component {
                   <div className="pv-list-single-button-content">
                     <div className="pv-select">
                       <label>
-                        {i18n.deal} {i18n.stage}:
+                        {i18n.deal_stage}:
                       </label>
                       {data.id && data.stage_id && (
                         <Taxonomy
@@ -1058,10 +1058,10 @@ class ListSingle extends Component {
                   )}
                 </li>
                 <li>
-                  {i18n.project} {data.project}
+                  {i18n.project}: {data.project}
                 </li>
                 <li>
-                  {i18n.deal} {data.deal}
+                  {i18n.deal}: {data.deal}
                 </li>
               </ul>
             </div>

@@ -69,9 +69,7 @@ export default (props) => {
                                 <div className="col" style={{ marginBottom: '0' }}>
                                     <label id="form-item_tax">
                                         {i18n.eachitem_tax_field}
-                                        {wage.length > 0 && <>
-                                            <ProLabel />
-                                        </>}
+                                        {wage.length > 0 && <ProLabel />}
                                     </label>
                                     <div className="pv-field-switch pv-ml-10">
                                         <label className='pv-switch'>
