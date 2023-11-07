@@ -30,11 +30,11 @@ const TableBody = props => {
                 <div className="pv-message-data">
                     <div className="pv-time-content">
                         <span className="pv-time">{row.date_ago}</span>
-                        {/* <Action
+                        <Action
                             row={row}
                             editEntry={props.editEntry}
                             deleteEntry={props.deleteEntry}
-                        /> */}
+                        />
                     </div>
 
                     <img src={ndpv.assetImgUri + 'avatar.png'} alt="avatar" />
