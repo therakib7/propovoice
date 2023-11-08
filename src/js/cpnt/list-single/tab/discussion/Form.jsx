@@ -110,9 +110,11 @@ class Form extends Component {
                             {!isClient && path == 'project' && <button type='submit' id='ndpv-team' className="pv-btn pv-btn-medium pv-bg-stroke pv-bg-hover-shadow pv-mr-10">
                                 {i18n.send_team}
                             </button>}
+
                             {path == 'project' && <button type='submit' id='ndpv-client' className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow">
                                 {isClient ? i18n.send : i18n.reply_client}
                             </button>}
+
                             {!isClient && path != 'project' && <button type='submit' id='ndpv-team' className="pv-btn pv-btn-medium pv-bg-blue pv-bg-hover-blue pv-color-white pv-bg-shadow">
                                 {taskMod ? i18n.comment : i18n.send} <ProLabel blueBtn />
                             </button>}
