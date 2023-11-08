@@ -249,7 +249,7 @@ export default class Form extends Component {
 
   render() {
     const form = this.state.form;
-    const { i18n, caps } = ndpv;
+    const { i18n } = ndpv;
     return (
       <div className="pv-overlay">
         <div
@@ -264,8 +264,8 @@ export default class Form extends Component {
           <span className="pv-close" style={{ top: '5%' }} onClick={() => this.props.close()}>
             <Add />
           </span>
-          <div className={`pv-modal-task pv-modal-task-discussion`} >
-            <div className="pv-modal-task-content" style={{ height: (!wage.length ? 805 : 690) }}>
+          <div className='pv-modal-task pv-modal-task-discussion' >
+            <div className="pv-modal-task-content" style={{ height: 690 }}>
               <form onSubmit={this.handleSubmit} >
                 <div className="dpv-content">
                   <div className="pv-form-style-one">
@@ -503,7 +503,7 @@ export default class Form extends Component {
                   </div>
                 </div>
 
-                <div className="pv-modal-footer">
+                <div className="pv-modal-footer" style={{padding: 0}}>
                   <div className="row">
                     <div className="col">
                       <button type='reset' className="pv-btn pv-text-hover-blue" onClick={() => this.props.close()}>{i18n.cancel}</button>
@@ -518,7 +518,7 @@ export default class Form extends Component {
               </form>
             </div>
 
-            <div className="pv-modal-discussion-content" style={{ height: (!wage.length ? 805 : 690) }}>
+            <div className="pv-modal-discussion-content" style={{ height: 690 }}>
               <div className="pv-modal-discussion-head-area">
                 <div className="pv-modal-discussion-head">
                   <div className="pv-modal-discussion-info">

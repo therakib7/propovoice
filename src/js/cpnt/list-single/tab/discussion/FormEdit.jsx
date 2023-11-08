@@ -58,7 +58,8 @@ class Form extends Component {
     render() {
         const form = this.state.form;
         const i18n = ndpv.i18n;
-        const modalType = this.props.modalType == 'new' ? i18n.add_new : i18n.edit;
+        const taskMod = this.props.taskMod;
+        const modalTitle = taskMod ? i18n.edit_comment : i18n.edit_msg;
         return (
             <div className="pv-overlay pv-show">
                 <div className="pv-modal-content">
@@ -67,8 +68,7 @@ class Form extends Component {
                         <span className="pv-close" onClick={() => this.props.close()}>
                             <Add />
                         </span>
-                        <h2 className="pv-modal-title">{modalType} {i18n.msg} </h2>
-                        <p>{sprintf(i18n.formDesc, modalType, i18n.msg)}</p>
+                        <h2 className="pv-modal-title">{modalTitle} </h2>
                     </div>
 
                     <form onSubmit={this.handleSubmit} >
@@ -77,7 +77,7 @@ class Form extends Component {
                                 <div className="row">
                                     <div className="col">
                                         <label htmlFor="form-text">
-                                            {i18n.msg}
+                                            {taskMod ? i18n.comment : i18n.msg}
                                         </label>
 
                                         <textarea

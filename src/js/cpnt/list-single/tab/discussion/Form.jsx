@@ -40,7 +40,7 @@ class Form extends Component {
         let newForm = { ...this.state.form }
 
         if (newForm.attach_ids.length > 0) {
-            newForm.attach_ids = newForm.attach_ids.map(item => item.id);;
+            newForm.attach_ids = newForm.attach_ids.map(item => item.id);
         }
 
         if (buttonClicked) {
