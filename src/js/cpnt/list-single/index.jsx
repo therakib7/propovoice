@@ -1158,7 +1158,7 @@ class ListSingle extends Component {
                 ))}
               </ul>
 
-              <div className="pv-tab-content">
+              <div className="pv-tab-content" style={{padding: ( !wage.length && currentTab == "discussion" && path == "project" && data.tab_id ? 0 : 30)}}>
                 <Suspense fallback={<Spinner />}>
 
                   {currentTab == "task" && data.tab_id && (

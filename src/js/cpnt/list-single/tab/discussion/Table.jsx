@@ -1,8 +1,14 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Action from 'block/action/row';
 import ModalImage from "react-modal-image";
 
 const TableBody = props => {
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }, [props.tableData]);
+
     const { caps } = ndpv;
     const isClient = caps.includes("ndpv_client_role");
 
@@ -117,14 +123,21 @@ const TableBody = props => {
         );
     });
 
-    return <div className="pv-chat-history"><ul>{rows}</ul></div>;
+    const taskMod = props.taskMod;
+
+    return <div ref={containerRef} className="pv-chat-history" style={(!taskMod) ? {
+        maxHeight: 450,
+        overflowY: 'auto',
+        padding: 30,
+        paddingBottom: 0
+    } : {} }><ul>{rows}</ul></div>;
 }
 
 const Table = (props) => {
-    const { tableData, editEntry, checkedBoxes, deleteEntry } = props;
+    const { tableData, editEntry, checkedBoxes, deleteEntry, taskMod, scrollBottom } = props;
     return (
         <>
-            {tableData.length > 0 && <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} />}
+            {tableData.length > 0 && <TableBody tableData={tableData} editEntry={editEntry} checkedBoxes={checkedBoxes} deleteEntry={deleteEntry} taskMod={taskMod} scrollBottom={scrollBottom} />}
         </>
     );
 }

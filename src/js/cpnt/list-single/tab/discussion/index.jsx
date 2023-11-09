@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useRef, useEffect, useState } from 'react';
 import Preloader from "block/preloader/table";
 import Pagination from "block/pagination";
 
@@ -9,9 +9,14 @@ import Table from "./Table";
 import Crud from "hoc/Crud";
 
 const Message = (props) => {
+  const containerRef = useRef(null);
+  
+  const { lists, checkedBoxes, searchVal } = props.state;
+
   useEffect(() => {
     if (!wage.length) {
       props.getLists();
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
 
       const interval = setInterval(() => {
         props.getLists();
@@ -22,7 +27,14 @@ const Message = (props) => {
     }
 
   }, []);
-  const { lists, checkedBoxes, searchVal } = props.state;
+
+  useEffect(() => {
+    containerRef.current.scrollTop = containerRef.current.scrollHeight;
+}, [lists]);
+
+  const formSubmit = (data, type) => {
+    props.handleSubmit(data, type);
+  }
 
   const taskMod = props.taskMod;
 
@@ -39,7 +51,7 @@ const Message = (props) => {
 
   return (
     <>
-      <div style={customStyle}>
+      <div ref={containerRef} style={customStyle}>
         {props.state.formModal && (
           <FormEdit
             tab_id={props.tab_id}
@@ -65,6 +77,7 @@ const Message = (props) => {
               editEntry={props.openForm}
               checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }}
               deleteEntry={props.deleteEntry}
+              taskMod={taskMod}
             />
           )}
         </>}
@@ -81,7 +94,7 @@ const Message = (props) => {
       </div>
 
       <Form
-        handleSubmit={props.handleSubmit}
+        handleSubmit={formSubmit}
         tab_id={props.tab_id}
         path={props.path}
         taskMod={taskMod}
