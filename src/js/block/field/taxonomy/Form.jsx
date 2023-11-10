@@ -243,19 +243,16 @@ export default class Form extends Component {
               </>}
 
               {this.props.url && <div className="row">
-                <div className="col-md">
-                  <label htmlFor="field-url">
-                    {i18n.url}
-                  </label>
-
-                  <input
-                    id="field-url"
-                    type="url"
-                    name="url"
-                    value={form.url}
-                    onChange={(e) => this.handleChange(e)}
-                  />
-                </div>
+                <Text
+                  label={i18n.url}
+                  id="field-url"
+                  type="url"
+                  name="url"
+                  wrapperClassName='col-md'
+                  value={form.url}
+                  onChange={(e) => this.handleChange(e)}
+                  validation={{ required: { value: true } }}
+                />
               </div>}
 
               {this.props.icon &&

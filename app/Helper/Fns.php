@@ -250,16 +250,19 @@ class Fns
         //TODO: set free version social link
         $social_list = [
             [
-                'icon' => ndpv()->get_asset_uri('img/email/') . 'wp.png',
+                'label' => '',
                 'url' => 'https://wordpress.org/plugins/propovoice',
+                'icon' => ndpv()->get_asset_uri('img/email/') . 'wp.png',
             ],
             [
-                'icon' => ndpv()->get_asset_uri('img/email/') . 'facebook.png',
+                'label' => '',
                 'url' => 'https://www.facebook.com/propovoice',
+                'icon' => ndpv()->get_asset_uri('img/email/') . 'facebook.png',
             ],
             [
-                'icon' => ndpv()->get_asset_uri('img/email/') . 'twitter.png',
+                'label' => '',
                 'url' => 'https://twitter.com/nasirbinburhan',
+                'icon' => ndpv()->get_asset_uri('img/email/') . 'twitter.png',
             ],
         ];
 
@@ -268,18 +271,21 @@ class Fns
             $format_taxonomy = [];
             foreach ($get_taxonomy as $single) {
                 $icon_id = get_term_meta($single->term_id, 'icon', true);
+                $label = $single->name;
+                $term_url = get_term_meta($single->term_id, 'url', true);
+                $icon_src = '';
                 if ($icon_id) {
                     $icon_src = wp_get_attachment_image_src($icon_id, 'thumbnail');
-                    if ($icon_src) {
-                        $term_url = get_term_meta($single->term_id, 'url', true);
-                        if ($term_url) {
-                            $format_taxonomy[] = [
-                                'url' => $term_url,
-                                'icon' => $icon_src[0]
-                            ];
-                        }
+                    if ($icon_src) {                        
+                        $icon_src = $icon_src[0];
                     }
                 }
+
+                $format_taxonomy[] = [
+                    'label' => $label,
+                    'url' => $term_url,
+                    'icon' => $icon_src
+                ];
             }
             if ($format_taxonomy) {
                 $social_list = $format_taxonomy;
@@ -289,7 +295,7 @@ class Fns
         foreach ($social_list as $key => $val) {
             $margin_right = $key === array_key_last($social_list) ? 0 : "15px";
             if ($val['url']) {
-                $social .= '<li style="display: inline-block;text-align:center;vertical-align:middle;margin-right:' . $margin_right . ';"><a href="' . esc_url($val['url']) . '" style="display: table-cell;list-style: none;padding: 7px;width: 23px;height: 23px;background-color: #fff;border-radius: 100%;line-height: 16px;text-align: center;vertical-align: middle;"><img src="' . esc_url($val['icon']) . '" alt="" style="max-height: 16px !important;max-width: 16px !important;"></a></li>';
+                $social .= '<li style="display: inline-block;text-align:center;vertical-align:middle;margin-right:' . $margin_right . ';"><a href="' . esc_url($val['url']) . '" style="display: table-cell;list-style: none;padding: 7px;width: 23px;height: 23px;background-color: #fff;border-radius: 100%;line-height: 16px;text-align: center;vertical-align: middle;text-decoration: none;color: #2D3748; ' . ( $val['icon'] ? '' : 'font-size: 15px; padding: 7px 15px; border-radius: 10px') . '">'. ( $val['icon'] ? '<img src="' . esc_url($val['icon']) . '" alt="" style="max-height: 16px !important;max-width: 16px !important;">' : $val['label']) .'</a></li>';
             }
         }
 
