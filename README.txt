@@ -180,6 +180,13 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
+= 1.7.4.2 (10-Nov-2023) =
+* Added: Helpers files for Discussion message and Task Comment edit and delete
+* Update: Email template social link without icon
+* Update: Notification helper fiels in Pro 
+* Update: Mobile number showing issue in single page
+* Update: Translation issue
+
 = 1.7.4.1 (1-Nov-2023) =
 * Update: Deal Stage and Project status change custom fields issue in canvan board
 * Update: Deal and Project creating serial in canvan board 
