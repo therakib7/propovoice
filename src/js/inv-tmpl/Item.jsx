@@ -1,7 +1,9 @@
-export default (props) => { 
+import Autolinker from 'autolinker';
 
-    const formatCurrency = (amt) => { 
-        const {currency, lang} = props.data.invoice; 
+export default (props) => {
+
+    const formatCurrency = (amt) => {
+        const { currency, lang } = props.data.invoice;
         return (new Intl.NumberFormat(lang, {
             style: 'currency',
             currency: currency,
@@ -14,7 +16,7 @@ export default (props) => {
         return (qty * price);
     }
 
-    const calcItemTaxTotal = (qty, price, tax, tax_type) => { 
+    const calcItemTaxTotal = (qty, price, tax, tax_type) => {
         let tax_total = 0;
         if (props.item_tax && tax) {
             if (tax_type == 'percent') {
@@ -35,12 +37,14 @@ export default (props) => {
 
     const { title, desc, qty, qty_type, tax, tax_type, price } = props.item
 
+    const linkedText = Autolinker.link(desc.replaceAll('\n', '<br />'));
+
     return (
         <tr>
             <td>{props.id + 1}.</td>
             <td>
                 {title}<br />
-                <span dangerouslySetInnerHTML={{ __html: desc.replaceAll('\n', '<br />') }}></span>
+                <span dangerouslySetInnerHTML={{ __html: linkedText }}></span>
             </td>
             <td>
                 {qty} <span>{qty_type && <>({titleize(qty_type)})</>}</span>
@@ -49,7 +53,7 @@ export default (props) => {
                 {formatCurrency(price)}
             </td>
             <td>{formatCurrency(calcItemTotal(qty, price))}</td>
-            {props.item_tax && <td>{formatCurrency(calcItemTaxTotal(qty, price, tax, tax_type))}</td>} 
+            {props.item_tax && <td>{formatCurrency(calcItemTaxTotal(qty, price, tax, tax_type))}</td>}
         </tr>
     )
 }  

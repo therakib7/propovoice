@@ -206,12 +206,19 @@
     line-height: 150%;
     padding: 15px 10px;
     color: var(--pv-inv-text-3th);
+    word-break: break-word;
+
+    a {
+      text-decoration: underline;
+      color: var(--pv-inv-primary);
+    }
 
     span {
       color: var(--pv-inv-text-5th);
       font-weight: 400;
     }
   }
+
   .pv-bank-info {
     color: #4a5568;
     font-size: 12px;

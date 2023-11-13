@@ -180,7 +180,7 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
-= 1.7.4.2 (10-Nov-2023) =
+= 1.7.4.2 (13-Nov-2023) =
 * Added: Helpers files for Discussion message and Task Comment edit and delete
 * Update: Email template social link without icon
 * Update: Notification helper fiels in Pro 
