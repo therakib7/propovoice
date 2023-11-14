@@ -180,11 +180,12 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
-= 1.7.4.2 (13-Nov-2023) =
+= 1.7.4.2 (14-Nov-2023) =
 * Added: Helpers files for Discussion message and Task Comment edit and delete
 * Update: Email template social link without icon
 * Update: Notification helper fiels in Pro 
-* Update: Mobile number showing issue in single page
+* Fixed: Mobile number showing issue in single page
+* Fixed: Estimate and Invoice Item description link showing issue
 * Update: Translation issue
 
 = 1.7.4.1 (1-Nov-2023) =
