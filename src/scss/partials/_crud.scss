@@ -839,7 +839,7 @@
     z-index: 1;
     background-color: #fff;
     border-radius: 8px;
-    right: 0;
+    // right: 0;
 
     svg {
       margin-right: 10px;
@@ -865,6 +865,12 @@
       color: #A0AEC0 !important;
       text-align: left;
       margin-left: 0px !important;
+    }
+  }
+
+  .pv-chat-history {
+    .pv-dropdown-content {
+      right: 0;
     }
   }
 
