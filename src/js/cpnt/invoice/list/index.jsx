@@ -335,7 +335,7 @@ class Invoice extends Component {
             this.getLists();
           } else if (type == "copy-to-inv") {
             toast.success(
-              i18n.scf + " " + i18n.copy + " " + i18n.to + " " + i18n.inv,
+              i18n.scf + " " + i18n.copy_to_inv,
             );
           }
         } else {
@@ -372,7 +372,7 @@ class Invoice extends Component {
       {
         slug: "copy_to_invoicce",
         type: "copy-to-inv",
-        label: ndpv.i18n.copy + " " + ndpv.i18n.to + " " + ndpv.i18n.inv,
+        label: ndpv.i18n.copy_to_inv,
         handleClick: this.handleBulkAction,
       },
     ],

@@ -3,6 +3,11 @@ import { apiUrl, token } from './helper'
 
 const url = apiUrl + 'media';
 
+const headers = {
+	...token,
+	'Content-Type': 'multipart/form-data',
+};
+
 const getAll = (args = '') => {
 	return axios.get(`${url}/?${args}`, token);
 };
@@ -22,11 +27,11 @@ const get = id => {
 };
 
 const create = data => {
-	return axios.post(url, data, token);
+	return axios.post(url, data, { headers });
 };
 
 const update = (id, data) => {
-	return axios.put(`${url}/${id}`, data, token);
+	return axios.put(`${url}/${id}`, data, { headers });
 };
 
 const remove = id => {
