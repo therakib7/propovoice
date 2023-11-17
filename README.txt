@@ -180,7 +180,7 @@ The super fantastic pro features that accelerate your business growth and improv
 
 == Changelog ==
 
-= 1.7.4.4 (14-Nov-2023) =
+= 1.7.4.4 (15-Nov-2023) =
 * Fixed: Image upload issue
 
 = 1.7.4.3 (14-Nov-2023) =
