@@ -1,6 +1,5 @@
 const apiUrl = `${ndpv.apiUrl}ndpv/v1/`;
 const apiProUrl = `${ndpv.apiUrl}ndpvp/v1/`;
-const apiServerUrl = `${ndpv.apiServerUrl}ncpis/v1/`;
 
 const token = {
   headers: {
@@ -9,4 +8,4 @@ const token = {
   },
 };
 
-export { apiUrl, apiProUrl, apiServerUrl, token }
+export { apiUrl, apiProUrl, token }

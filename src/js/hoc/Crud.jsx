@@ -164,14 +164,6 @@ const HOC = (Inner, mod, title, modPlural = "", pro = false) => {
 
     deleteEntry = async (type, index, module = null, args = null) => {
       if (confirm(ndpv.i18n.aConf)) {
-        //TODO: instant delete do it later
-        /* if (type == 'single' && module != 'task' ) {
-                    this.setState({
-                        lists: this.state.lists.filter((list, i) => {
-                            return list.id !== index;
-                        })
-                    });
-                } */
         if (type == "singleDrive") {
           await deleteFile(index[1]);
           index = index[0];

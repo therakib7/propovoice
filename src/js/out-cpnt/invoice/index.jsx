@@ -1,5 +1,6 @@
 import React, { Component, Suspense, lazy } from "react";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Select from "react-select";
 import ReactToPrint from "react-to-print";
 import generatePDF, { Resolution, Margin } from "react-to-pdf";
@@ -14,10 +15,6 @@ import Feedback from "./Feedback";
 const Bank = lazy(() => import("./payment/bank"));
 const Stripe = lazy(() => import("./payment/stripe"));
 const Paypal = lazy(() => import("./payment/paypal"));
-// import Bank from './payment/bank';
-// //TODO do it on lazy load
-// import Stripe from './payment/stripe';
-// import Paypal from './payment/paypal';
 
 const DownloadPDF = (props) => {
   const i18n = ndpv.i18n;
@@ -320,6 +317,7 @@ export default class Invoice extends Component {
       this.setState(data);
     });
   };
+
   handleClick = (type, data = null) => {
     if (type == "feedback") {
       this.setState({ emailModal: true, feedback_type: data });

@@ -1,15 +1,10 @@
 import axios from 'axios';
-import { apiUrl, apiServerUrl, token } from './helper'
+import { apiUrl, token } from './helper'
 
 const url = apiUrl + 'invoices';
-const urlServer = apiServerUrl + 'invoices';
 
 const getAll = (args = '') => {
 	return axios.get(`${url}/?${args}`, token);
-};
-
-const getAllTemplate = (args = '') => {
-	return axios.get(`${urlServer}/?${args}`, token);
 };
 
 const get = id => {
@@ -34,7 +29,6 @@ const findByArg = title => {
 
 export default {
 	getAll,
-	getAllTemplate,
 	get,
 	create,
 	update,

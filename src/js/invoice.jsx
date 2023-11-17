@@ -1,18 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import Invoice from 'out-cpnt/invoice';
-import AppContext from 'context/app-context';
-import msgData from 'context/data/msg';
 
-document.addEventListener('DOMContentLoaded', function () {
-    let el = document.getElementById('ndpv-invoice');
-    if (typeof el !== 'undefined' && el !== null) {
-        ReactDOM.render(
-            <AppContext.Provider value={{
-                CrudMsg: msgData
-            }}>
-                <Invoice />
-            </AppContext.Provider>,
-        el);
-    }
-});
+const container = document.getElementById('ndpv-invoice');
+const root = createRoot(container);
+root.render(
+    <StrictMode>
+        <Invoice />
+    </StrictMode>
+);

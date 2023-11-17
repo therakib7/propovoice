@@ -130,6 +130,7 @@ class AssetCtrl
                     get_option("date_format")
                 ),
                 "assetImgUri" => ndpv()->get_asset_uri("img/"),
+                "i18n" => I18n::dashboard()
             ]);
         }
 
@@ -147,6 +148,13 @@ class AssetCtrl
                 [],
                 $this->version
             );
+        }
+        if (
+            (isset($_GET["page"]) && $_GET["page"] == "ndpv") ||
+            is_page_template([
+                "workspace-template.php"
+            ])
+        ) {
             wp_enqueue_script(
                 "ndpv-dashboard",
                 ndpv()->get_asset_uri("/js/dashboard{$this->suffix}.js"),
@@ -175,7 +183,6 @@ class AssetCtrl
                     "invoice_id",
                     "invoice_token"
                 ),
-                "apiServerUrl" => "https://appux.co/propovoice-server/wp-json/", //TODO: change server URL later
                 "nonce" => wp_create_nonce("wp_rest"),
                 "date_format" => Fns::phpToMomentFormat(
                     get_option("date_format")

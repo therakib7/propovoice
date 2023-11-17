@@ -24,7 +24,7 @@ export default class Template extends Component {
     }
 
     componentDidMount() {
-        this.getLists();
+        // this.getLists();
     }
 
     getLists = (searchArgs = null) => {
@@ -42,7 +42,7 @@ export default class Template extends Component {
 
         let params = new URLSearchParams(args).toString();
 
-        Api.getAllTemplate(params)
+        /* Api.getAllTemplate(params)
             .then(resp => {
                 let result = resp.data.data.result;
                 let total = resp.data.data.total;
@@ -51,7 +51,7 @@ export default class Template extends Component {
                 this.setState({
                     totalPage: Math.ceil(total / this.state.perPage)
                 })
-            })
+            }) */
     };
 
     selectEntry = (data) => {
