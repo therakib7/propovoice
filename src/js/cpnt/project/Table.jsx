@@ -15,7 +15,8 @@ const TableHeader = (props) => {
           {!isClient && (
             <input
               type="checkbox"
-              onChange={(e) => props.checkedBoxes.handle(e, "all")}
+              checked={props.checkedBoxes.data.length === props.checkedBoxes.totalRow}
+              onChange={(e) => props.checkedBoxes.handle(e, 'all')}
             />
           )}
         </th>

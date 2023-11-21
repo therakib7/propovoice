@@ -180,7 +180,7 @@ export default (props) => {
 								<img src={v.img} alt="avatar" />
 								<div className="pv-avatar-text">
 									<h5>{v.name}</h5>
-									<p>{v.email}</p>
+									{false && <p>{v.email}</p>}
 								</div>
 								<div className="pv-action-content">
 									<button onClick={() => handleDelete(v.id)}>

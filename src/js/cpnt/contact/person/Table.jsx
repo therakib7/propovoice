@@ -7,7 +7,11 @@ const TableHeader = props => {
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox" onChange={(e) => props.checkedBoxes.handle(e, 'all')} />
+                    <input
+                        type="checkbox"
+                        checked={props.checkedBoxes.data.length === props.checkedBoxes.totalRow}
+                        onChange={(e) => props.checkedBoxes.handle(e, 'all')}
+                    />
                 </th>
                 <th>
                     {i18n.ct}

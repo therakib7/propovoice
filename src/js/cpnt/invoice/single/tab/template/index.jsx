@@ -6,26 +6,6 @@ import pro from 'block/pro-alert';
 export default (props) => {
     const [templates, setTemplates] = useState([
         {
-            id: 1,
-            est_src: "estimate-1.png",
-            inv_src: "invoice-1.png",
-        },
-        {
-            id: 2,
-            est_src: "estimate-2.png",
-            inv_src: "invoice-2.png",
-        },
-        {
-            id: 3,
-            est_src: "estimate-3.png",
-            inv_src: "invoice-3.png",
-        },
-        {
-            id: 4,
-            est_src: "estimate-4.png",
-            inv_src: "invoice-4.png",
-        },
-        {
             id: 5,
             est_src: "estimate-5.png",
             inv_src: "invoice-5.png",
@@ -44,6 +24,26 @@ export default (props) => {
             id: 8,
             est_src: "estimate-8.png",
             inv_src: "invoice-8.png",
+        },
+        {
+            id: 1,
+            est_src: "estimate-1.png",
+            inv_src: "invoice-1.png",
+        },
+        {
+            id: 2,
+            est_src: "estimate-2.png",
+            inv_src: "invoice-2.png",
+        },
+        {
+            id: 3,
+            est_src: "estimate-3.png",
+            inv_src: "invoice-3.png",
+        },
+        {
+            id: 4,
+            est_src: "estimate-4.png",
+            inv_src: "invoice-4.png",
         }
     ]);
 

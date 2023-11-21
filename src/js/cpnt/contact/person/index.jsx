@@ -46,21 +46,6 @@ const Contact = (props) => {
         handleSubmit={props.getLists}
       />
 
-      {false && <div className="pv-small-button-group pv-mb-30">
-        <button
-          className="pv-btn pv-active pv-btn-small pv-bg-stroke pv-bg-hover-shadow"
-          onClick={() => navigate(`/contact/person`)}
-        >
-          {i18n.prsn}
-        </button>
-        <button
-          className="pv-btn pv-btn-small pv-bg-stroke pv-bg-hover-shadow"
-          onClick={() => navigate(`/contact/organization`)}
-        >
-          {i18n.org}
-        </button>
-      </div>}
-
       {checkedBoxes.length > 0 &&
         <Action
           length={checkedBoxes.length}
@@ -78,7 +63,7 @@ const Contact = (props) => {
       />}
 
       {props.state.empty && <Empty mod='person' title={title} searchVal={searchVal} clickHandler={() => props.openForm('new')} />}
-      {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox }} deleteEntry={props.deleteEntry} />}
+      {props.state.preloader ? <Preloader /> : <Table tableData={lists} searchVal={searchVal} editEntry={props.openForm} checkedBoxes={{ data: checkedBoxes, handle: props.handleCheckbox, totalRow: lists.length }} deleteEntry={props.deleteEntry} />}
 
       {props.state.totalPage > 1 && <Pagination forcePage={props.state.currentPage - 1} pageCount={props.state.totalPage} onPageChange={props.handlePageClick} />}
     </div>

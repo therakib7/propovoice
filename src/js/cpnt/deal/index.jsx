@@ -251,6 +251,7 @@ const Deal = (props) => {
                 checkedBoxes={{
                   data: checkedBoxes,
                   handle: props.handleCheckbox,
+                  totalRow: lists.length
                 }}
                 deleteEntry={deleteEntry}
               />
