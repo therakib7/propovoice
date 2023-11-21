@@ -79,6 +79,7 @@ class I18n
             "inv_date" => esc_html__("Invoice Date", "propovoice"),
             "tmpl" => esc_html__("Template", "propovoice"),
             "con" => esc_html__("Content", "propovoice"),
+            "addCon" => esc_html__("Add Content", "propovoice"),
             "num" => esc_html__("Number", "propovoice"),
             "sndr" => esc_html__("Sender", "propovoice"),
             "rec" => esc_html__("Receiver", "propovoice"),
@@ -120,6 +121,7 @@ class I18n
             "addiAtch" => esc_html__("Additional Attachment", "propovoice"),
             "addiFee" => esc_html__("Additional Fee", "propovoice"),
             "staff" => esc_html__("Staff", "propovoice"),
+            "termCondition" => __("Terms & Conditions", "propovoice"),
             //Client
             "add_Client" => esc_html__("Add Client", "propovoice"),
             //project

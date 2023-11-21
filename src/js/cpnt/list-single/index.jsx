@@ -1158,7 +1158,7 @@ class ListSingle extends Component {
                 ))}
               </ul>
 
-              <div className="pv-tab-content" style={{padding: ( !wage.length && currentTab == "discussion" && path == "project" && data.tab_id ? 0 : 30)}}>
+              <div className="pv-tab-content" style={{ padding: (!wage.length && currentTab == "discussion" && path == "project" && data.tab_id ? 0 : 30) }}>
                 <Suspense fallback={<Spinner />}>
 
                   {currentTab == "task" && data.tab_id && (
@@ -1199,75 +1199,85 @@ class ListSingle extends Component {
               <Staff tab_id={data.tab_id} />
             </Suspense>}
 
-            <div className="pv-widget pv-info-box">
-              <h3 className="pv-widget-title">
-                {i18n.addiInfo}
-              </h3>
-              <address>
-
-                {((data.person && data.person.mobile) || (data.org && data.org.mobile)) && (
-                  <>
-                    <span>{i18n.mob}:</span>
-                    {data.person ? data.person.mobile : data.org.mobile}
-                  </>
-                )}
-
-                {((data.person && data.person.web) || (data.org && data.org.web)) && (
-                  <>
-                    <span>{i18n.web}:</span>
-                    {data.person ? data.person.web : data.org.web}
-                  </>
-                )}
-
-                {((data.person && (data.person.address || data.person.region || data.person.country)) ||
-                  (data.org && (data.org.address || data.org.region || data.org.country))) && (
-                    <>
-                      <span>{i18n.addr}:</span>
-                      {data.person ? data.person.address : data.org.address}
-                      {(data.person && (data.person.address)) ||
-                        (data.org && (data.org.address)) ? <br /> : ''}
-
-                      {data.person ? (
+            <div className="pv-accordion-wrapper pv-mt-15">
+              <ul>
+                <li>
+                  <input
+                    type="checkbox"
+                    defaultChecked="checked"
+                  />
+                  <i />
+                  <h3 className="pv-title-small">
+                    {i18n.addiInfo}
+                  </h3>
+                  <div className="pv-info-box">
+                    <address>
+                      {((data.person && data.person.mobile) || (data.org && data.org.mobile)) && (
                         <>
-                          {(data.person.region || data.person.country) && (
-                            <>
-                              {(data.person.region && data.person.country) ? `${data.person.region}, ` : ''}
-                              {countryByCode(data.person.country)}
-                            </>
-                          )}
-                        </>
-                      ) : (
-                        <>
-                          {(data.org.region || data.org.country) && (
-                            <>
-                              {(data.org.region && data.org.country) ? `${data.org.region}, ` : ''}
-                              {countryByCode(data.org.country)}
-                            </>
-                          )}
+                          <span>{i18n.mob}:</span>
+                          {data.person ? data.person.mobile : data.org.mobile}
                         </>
                       )}
-                    </>
-                  )}
-              </address>
 
-              <div className="pv-desc-content">
-                {data.desc && (
-                  <>
-                    <h5>{i18n.desc}:</h5>
-                    <p
-                      style={{ marginTop: 0 }}
-                      dangerouslySetInnerHTML={{ __html: data.desc }}
-                    ></p>
-                  </>
-                )}
+                      {((data.person && data.person.web) || (data.org && data.org.web)) && (
+                        <>
+                          <span>{i18n.web}:</span>
+                          {data.person ? data.person.web : data.org.web}
+                        </>
+                      )}
 
-                {data.custom_field && data.custom_field.map((item, i) => (
-                  <React.Fragment key={i}>
-                    {data[item.slug] && <h5>{item.label}:</h5>}
-                    {(item.type == 'date' && data[item.slug]) ? <p><Moment format={ndpv.date_format}>{data[item.slug]}</Moment></p> : <p style={{ marginTop: 0 }} dangerouslySetInnerHTML={{ __html: data[item.slug] }}></p>}
-                  </React.Fragment>
-                ))}
-              </div>
+                      {((data.person && (data.person.address || data.person.region || data.person.country)) ||
+                        (data.org && (data.org.address || data.org.region || data.org.country))) && (
+                          <>
+                            <span>{i18n.addr}:</span>
+                            {data.person ? data.person.address : data.org.address}
+                            {(data.person && (data.person.address)) ||
+                              (data.org && (data.org.address)) ? <br /> : ''}
+
+                            {data.person ? (
+                              <>
+                                {(data.person.region || data.person.country) && (
+                                  <>
+                                    {(data.person.region && data.person.country) ? `${data.person.region}, ` : ''}
+                                    {countryByCode(data.person.country)}
+                                  </>
+                                )}
+                              </>
+                            ) : (
+                              <>
+                                {(data.org.region || data.org.country) && (
+                                  <>
+                                    {(data.org.region && data.org.country) ? `${data.org.region}, ` : ''}
+                                    {countryByCode(data.org.country)}
+                                  </>
+                                )}
+                              </>
+                            )}
+                          </>
+                        )}
+                    </address>
+
+                    <div className="pv-desc-content">
+                      {data.desc && (
+                        <>
+                          <h5>{i18n.desc}:</h5>
+                          <p
+                            style={{ marginTop: 0 }}
+                            dangerouslySetInnerHTML={{ __html: data.desc }}
+                          ></p>
+                        </>
+                      )}
+
+                      {data.custom_field && data.custom_field.map((item, i) => (
+                        <React.Fragment key={i}>
+                          {data[item.slug] && <h5>{item.label}:</h5>}
+                          {(item.type == 'date' && data[item.slug]) ? <p><Moment format={ndpv.date_format}>{data[item.slug]}</Moment></p> : <p style={{ marginTop: 0 }} dangerouslySetInnerHTML={{ __html: data[item.slug] }}></p>}
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
