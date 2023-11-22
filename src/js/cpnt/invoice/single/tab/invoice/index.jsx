@@ -1,7 +1,6 @@
 import React, { Component, Suspense, lazy } from "react";
 import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
-import ApiInv from "api/invoice";
 import api from "api";
 
 import ProLabel from "block/pro-alert/label";
@@ -205,12 +204,14 @@ class Invoice extends Component {
 				invoice.module_id = parseInt(this.props.module_id);
 			}
 
-			this.setState({
-				title,
-				currentTab: "template",
-				currentTabIndex: 0,
-				invoice,
-			});
+			if ( ! this.state.title ) {
+				this.setState({
+					title,
+					currentTab: "template",
+					currentTabIndex: 0,
+					invoice,
+				});
+			}
 		}
 
 		this.bgColor();
@@ -429,7 +430,7 @@ class Invoice extends Component {
 		this.setState({ invoice });
 	}
 
-	handleAddLineItem = (e) => {
+	handleAddLineItem = () => {
 		let invoice = { ...this.state.invoice };
 		invoice.items = invoice.items.concat([
 			{
@@ -446,7 +447,7 @@ class Invoice extends Component {
 		this.setState({ invoice });
 	};
 
-	handleRemoveLineItem = (elementIndex) => (e) => {
+	handleRemoveLineItem = (elementIndex) => () => {
 		let invoice = { ...this.state.invoice };
 		invoice.items = invoice.items.filter((item, i) => {
 			return elementIndex !== i;
@@ -470,7 +471,7 @@ class Invoice extends Component {
 		if (!editId) {
 			let invoice = { ...this.state.invoice };
 
-			ApiInv.create(invoice).then((resp) => {
+			api.add("invoices", invoice).then((resp) => {
 				this.setState({ submitPreloader: false });
 				if (resp.data.success) {
 					this.updateEdit(resp.data.data);
@@ -487,7 +488,7 @@ class Invoice extends Component {
 				}
 			});
 		} else {
-			ApiInv.update(editId, this.state.invoice).then((resp) => {
+			api.edit("invoices", editId, this.state.invoice).then((resp) => {
 				this.setState({ submitPreloader: false });
 				if (resp.data.success) {
 					toast.success(ndpv.i18n.aUpd, {

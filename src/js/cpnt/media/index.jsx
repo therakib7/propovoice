@@ -3,8 +3,6 @@ import ReactPaginate from 'react-paginate';
 
 import Preloader from 'block/preloader/table';
 
-import Api from 'api/invoice';
-
 import Dropzone from './Dropzone';
 
 export default class Template extends Component {
@@ -24,35 +22,7 @@ export default class Template extends Component {
     }
 
     componentDidMount() {
-        // this.getLists();
     }
-
-    getLists = (searchArgs = null) => {
-
-        let args = {
-            page: this.state.currentPage,
-            per_page: this.state.perPage
-        }
-
-        if (searchArgs) {
-            //Filter all falsy values ( "", 0, false, null, undefined )
-            searchArgs = Object.entries(searchArgs).reduce((a, [k, v]) => (v ? (a[k] = v, a) : a), {})
-            args = { ...args, ...searchArgs }
-        }
-
-        let params = new URLSearchParams(args).toString();
-
-        /* Api.getAllTemplate(params)
-            .then(resp => {
-                let result = resp.data.data.result;
-                let total = resp.data.data.total;
-                this.setState({ templates: result });
-                this.setState({ preloader: false });
-                this.setState({
-                    totalPage: Math.ceil(total / this.state.perPage)
-                })
-            }) */
-    };
 
     selectEntry = (data) => {
         this.setState({

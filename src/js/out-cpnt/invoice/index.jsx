@@ -5,8 +5,6 @@ import Select from "react-select";
 import ReactToPrint from "react-to-print";
 import generatePDF, { Resolution, Margin } from "react-to-pdf";
 import Spinner from "block/preloader/spinner";
-// import Template from 'inv-tmpl';
-import ApiInv from "api/invoice";
 import api from "api";
 import InvTemplate from "inv-tmpl";
 
@@ -248,7 +246,7 @@ export default class Invoice extends Component {
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get("id");
     const token = urlParams.get("token");
-    ApiInv.get(id + "?client_view=1&token=" + token).then((resp) => {
+    api.getS('invoices', id + "?client_view=1&token=" + token).then((resp) => {
       let data = resp.data.data;
       let payment_methods = [];
 

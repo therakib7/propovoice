@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, Address } from "block/form/input";
+import { Text } from "block/form/input";
 import { FormWrapper, FormContent } from "block/form";
 import api from "api";
 import pro from "block/pro-alert";

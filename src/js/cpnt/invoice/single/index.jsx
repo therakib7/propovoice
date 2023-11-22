@@ -7,7 +7,6 @@ import Invoice from './tab/invoice';
 
 const InvoiceWrap = (props) => {
 
-
 	const { id, tab } = useParams();
 	let navigate = useNavigate();
 	const location = useLocation();
@@ -34,10 +33,6 @@ const InvoiceWrap = (props) => {
 		navigate(`/${path}/${id}`);
 	};
 
-	const routeInvoice = () => {
-		navigate(`/${path}`);
-	};
-
 	return (
 		<Invoice
 			{...props}
@@ -46,7 +41,6 @@ const InvoiceWrap = (props) => {
 			module={module}
 			module_id={module_id}
 			routeChange={routeChange}
-			routeInvoice={routeInvoice}
 			path={path}
 			key={path}
 		/>

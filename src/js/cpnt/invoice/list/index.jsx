@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { toast } from "react-toastify";
-import EntityFields from "block/add-new/EntityFields";
 import { useNavigate, useLocation } from "react-router-dom";
 import AppContext from "context/app-context";
 
@@ -13,7 +12,7 @@ import Breadcrumb from "block/breadcrumb";
 import Pagination from "block/pagination";
 import Preloader from "block/preloader/table";
 
-import Api from "api/invoice";
+import api from "api";
 import ApiAction from "api/action";
 
 import Table from "./Table";
@@ -101,7 +100,7 @@ class Invoice extends Component {
 
     let params = new URLSearchParams(args).toString();
 
-    Api.getAll(params).then((resp) => {
+    api.get("invoices", params).then((resp) => {
       let prefix = resp.data.data.prefix;
       let result = resp.data.data.result;
       let total = resp.data.data.total;
@@ -150,7 +149,8 @@ class Invoice extends Component {
                 }); */
       }
       let ids = type == "single" ? index : this.state.checkedBoxes.toString();
-      Api.remove(ids).then((resp) => {
+      
+      api.del("invoices", ids).then((resp) => {
         if (resp.data.success) {
           toast.success(ndpv.i18n.aDel);
           if (type != "single") {
